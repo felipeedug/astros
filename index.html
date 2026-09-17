@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Mapa natal e leitura astrologica do Astrovida.">
+  <title>Astrovida | Mapa natal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#top" aria-label="Astrovida inicio">
+        <span class="brand-mark">✦</span>
+        <span>astrovida</span>
+      </a>
+      <p class="eyebrow">Seu ceu, em perspectiva</p>
+      <nav class="nav" aria-label="Navegacao principal">
+        <a class="nav-link active" href="#mapa"><span>◎</span> Mapa natal</a>
+        <a class="nav-link" href="#transitos"><span>◌</span> Transitos</a>
+        <a class="nav-link" href="#efemerides"><span>✧</span> Efemerides</a>
+      </nav>
+      <div class="sidebar-note">
+        <span class="note-dot"></span>
+        <p>Uma leitura do instante em que voce chegou ao mundo.</p>
+      </div>
+      <footer class="sidebar-footer">ASTROVIDA / 2003<br><span>web edition</span></footer>
+    </aside>
+
+    <main id="top" class="main-content">
+      <header class="topbar">
+        <div>
+          <p class="kicker">Mapa de nascimento</p>
+          <h1>O ceu fala<br><em>sobre voce.</em></h1>
+        </div>
+        <div class="topbar-meta"><span class="live-dot"></span> Leitura pessoal<br><strong>Tempo local</strong></div>
+      </header>
+
+      <section class="workspace" id="mapa">
+        <div class="input-panel">
+          <div class="section-heading"><span>01</span><h2>Dados do nascimento</h2></div>
+          <p class="muted">Preencha os dados para montar uma leitura inicial do seu mapa.</p>
+          <form id="birth-form">
+            <label>Nome <input id="name" type="text" placeholder="Como voce se chama?" required></label>
+            <div class="field-row">
+              <label>Data <input id="date" type="date" value="1990-06-21" required></label>
+              <label>Hora <input id="time" type="time" value="12:00" required></label>
+            </div>
+            <label>Local de nascimento <input id="place" type="text" value="Sao Paulo, Brasil" required></label>
+            <button type="submit" class="primary-button">Gerar meu mapa <span>↗</span></button>
+          </form>
+          <p class="form-status" id="form-status" role="status"></p>
+        </div>
+
+        <div class="chart-panel" aria-label="Visualizacao do mapa natal">
+          <div class="chart-header"><div><span class="overline">Leitura atual</span><h2 id="chart-title">Seu mapa natal</h2></div><button class="icon-button" title="Compartilhar mapa" aria-label="Compartilhar mapa">↗</button></div>
+          <div class="chart-wrap"><canvas id="chart" width="620" height="620"></canvas><div class="chart-center"><span id="center-sign">GEMINI</span><strong id="center-degree">00° 00′</strong><small>mapa tropical</small></div></div>
+          <div class="chart-legend"><span><i class="legend-sun"></i> Planetas</span><span><i class="legend-line"></i> Casas</span><span class="mono">UTC−03:00</span></div>
+          <div class="planet-readout" id="planet-readout" aria-label="Posicoes dos objetos do mapa"></div>
+        </div>
+      </section>
+
+      <section class="insights" id="transitos">
+        <div class="section-heading"><span>02</span><h2>Trindade essencial</h2><span class="section-rule"></span><span class="section-caption">os tres pilares da sua presenca</span></div>
+        <div class="insight-grid">
+          <article class="insight-card accent-gold"><div class="insight-symbol">☉</div><div><span class="card-label">Sol em</span><h3 id="sun-sign">Gemeos</h3><p>Identidade, vitalidade e o centro da sua expressao.</p></div><span class="card-arrow">↗</span></article>
+          <article class="insight-card accent-coral"><div class="insight-symbol">☽</div><div><span class="card-label">Lua em</span><h3 id="moon-sign">Libra</h3><p>O mundo emocional e aquilo que traz conforto.</p></div><span class="card-arrow">↗</span></article>
+          <article class="insight-card accent-mint"><div class="insight-symbol">↗</div><div><span class="card-label">Ascendente em</span><h3 id="rising-sign">Virgem</h3><p>A primeira impressao e o jeito de entrar na vida.</p></div><span class="card-arrow">↗</span></article>
+        </div>
+      </section>
+
+      <section class="bottom-strip" id="efemerides"><div><span class="overline">Proximo passo</span><h2>O mapa e o comeco<br>da conversa.</h2></div><p>Explore os movimentos do ceu e entenda como eles encontram a sua historia.</p><a class="text-link" href="#transitos">Ver transitos <span>→</span></a></section>
+    </main>
+  </div>
+  <script src="app.js"></script>
+  <script type="module">
+    window.astroWasmLoading = true;
+    if (window.location.protocol !== 'file:') {
+      import('./wasm/astro_legacy_wasm_v5.js').then(({ default: createAstroModule }) => createAstroModule({
+        locateFile: (file) => `./wasm/${file}`
+      })).then((module) => {
+        window.astroWasm = module;
+        window.astroWasmLoading = false;
+        window.dispatchEvent(new Event('astro-wasm-ready'));
+      }).catch((error) => {
+        window.astroWasmLoading = false;
+        console.error('Nucleo WebAssembly indisponivel.', error);
+      });
+    } else {
+      window.astroWasmLoading = false;
+    }
+  </script>
+</body>
+</html>

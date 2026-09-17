@@ -1,0 +1,16 @@
+wasm/astro_wasm.js
+wasm/astro_wasm.wasm
+wasm/astro_wasm.data
+wasm/astro_legacy_wasm.js
+wasm/astro_legacy_wasm.wasm
+wasm/astro_legacy_wasm.data
+wasm/astro_legacy_wasm_v2.js
+wasm/astro_legacy_wasm_v2.wasm
+wasm/astro_legacy_wasm_v2.data
+wasm/astro_legacy_wasm_v3.js
+wasm/astro_legacy_wasm_v3.wasm
+wasm/astro_legacy_wasm_v3.data
+wasm/astro_legacy_wasm_v4.js
+wasm/astro_legacy_wasm_v4.wasm
+wasm/astro_legacy_wasm_v4.data
+*.o
