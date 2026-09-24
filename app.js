@@ -8,6 +8,9 @@ const signs = ['ARIES', 'TAURUS', 'GEMINI', 'CANCER', 'LEO', 'VIRGO', 'LIBRA', '
 const signNames = ['Aries', 'Touro', 'Gemeos', 'Cancer', 'Leao', 'Virgem', 'Libra', 'Escorpiao', 'Sagitario', 'Capricornio', 'Aquario', 'Peixes'];
 const colors = { ink: '#20252b', coral: '#d97b65', gold: '#d5a34c', mint: '#76a99a', line: '#d8d2c7', paper: '#f4f0e8' };
 const objectNames = { Sun: 'Sol', Moon: 'Lua', Mercury: 'Mercurio', Venus: 'Venus', Mars: 'Marte', Jupiter: 'Jupiter', Saturn: 'Saturno', Uranus: 'Urano', Neptune: 'Netuno', Pluto: 'Plutao', Chiron: 'Chiron', Demeter: 'Demeter', Vesta: 'Vesta', Node: 'Nodo', Lilith: 'Lilith', Fortune: 'Parte da Fortuna', Vertex: 'Vertex', Ascendant: 'Ascendente' };
+const signGlyphs = [0xF4, 0xF5, 0xF6, 0xF7, 0xF8, 0xF9, 0xFA, 0xFB, 0xFC, 0xFD, 0xFE, 0xFF].map((code) => String.fromCharCode(code));
+const objectGlyphs = { Sun: 0xA2, Moon: 0xA1, Mercury: 0xA3, Venus: 0xA4, Mars: 0xA5, Jupiter: 0xA6, Saturn: 0xA7, Uranus: 0xA8, Neptune: 0xA9, Pluto: 0xAA, Chiron: 0xB1, Demeter: 0xB2, Vesta: 0xB5, Node: 0xAB, Lilith: 0xE0, Fortune: 0xB0, Vertex: 0xAE, Ascendant: 0xAD };
+Object.keys(objectGlyphs).forEach((key) => { objectGlyphs[key] = String.fromCharCode(objectGlyphs[key]); });
 const cities = { 'sao paulo': [-23.5505, -46.6333, -3], 'rio de janeiro': [-22.9068, -43.1729, -3], 'brasilia': [-15.7939, -47.8828, -3], 'lisboa': [38.7223, -9.1393, 0], 'london': [51.5072, -0.1276, 0], 'new york': [40.7128, -74.006, -5] };
 const orbitals = {
   Mercury: [48.3313, 3.24587e-5, 7.0047, 5e-8, 29.1241, 1.01444e-5, 0.387098, 0, 0.205635, 5.59e-10, 168.6562, 4.0923344368],
@@ -178,10 +181,10 @@ function drawChart(longitudes, rising, houses = []) {
     const signLongitude = boundaryLongitude + 15;
     const labelAngle = chartAngle(signLongitude);
     context.fillStyle = index % 3 === 0 ? colors.coral : colors.ink;
-    context.font = '500 13px DM Mono';
+    context.font = '22px Astrovida, "Segoe UI Symbol", sans-serif';
     context.textAlign = 'center';
     context.textBaseline = 'middle';
-    context.fillText(signs[index], center + Math.cos(labelAngle) * radius * 0.9, center + Math.sin(labelAngle) * radius * 0.9);
+    context.fillText(signGlyphs[index], center + Math.cos(labelAngle) * radius * 0.9, center + Math.sin(labelAngle) * radius * 0.9);
   }
 
   const houseCusps = houses.length === 12 ? houses : Array.from({ length: 12 }, (_, index) => mod(rising + index * 30));
@@ -228,16 +231,24 @@ function drawChart(longitudes, rising, houses = []) {
     context.fill();
 
     context.fillStyle = colors.ink;
-    context.font = planet === 'Ascendant' ? '700 10px DM Mono' : '500 10px DM Mono';
+    context.font = planet === 'Ascendant' ? '700 18px Astrovida' : '18px Astrovida';
     context.textAlign = 'center';
     context.textBaseline = 'middle';
-    const displayName = objectNames[planet] || planet;
-    context.fillText(planet === 'Ascendant' ? 'ASC' : displayName.slice(0, 3).toUpperCase(), center + Math.cos(angle) * radius * 0.74, center + Math.sin(angle) * radius * 0.74);
+    context.fillText(objectGlyphs[planet] || planet.slice(0, 3).toUpperCase(), center + Math.cos(angle) * radius * 0.74, center + Math.sin(angle) * radius * 0.74);
   });
 
   const readout = document.querySelector('#planet-readout');
   if (readout) {
-    readout.innerHTML = Object.entries(plottedLongitudes).filter(([, longitude]) => Number.isFinite(longitude)).map(([planet, longitude]) => `<span><b>${objectNames[planet] || planet}</b><small>${positionText(longitude)}</small></span>`).join('');
+    readout.innerHTML = Object.entries(plottedLongitudes).filter(([, longitude]) => Number.isFinite(longitude)).map(([planet, longitude]) => `<span><b><i>${objectGlyphs[planet] || ''}</i>${objectNames[planet] || planet}</b><small>${positionText(longitude)}</small></span>`).join('');
+  }
+
+  const houseReadout = document.querySelector('#house-readout');
+  if (houseReadout) {
+    houseReadout.innerHTML = houseCusps.map((cusp, index) => {
+      const cuspDegree = toDegreeText(cusp);
+      const cuspSign = signNames[signAt(cusp)];
+      return `<span><b>Casa ${index + 1}</b><small>${cuspDegree} ${cuspSign}</small></span>`;
+    }).join('');
   }
 
   document.querySelector('#center-sign').textContent = signs[signAt(longitudes.Sun)];
