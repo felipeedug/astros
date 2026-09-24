@@ -57,11 +57,20 @@
 
         <div class="chart-panel" aria-label="Visualizacao do mapa natal">
           <div class="chart-header"><div><span class="overline">Leitura atual</span><h2 id="chart-title">Seu mapa natal</h2></div><button class="icon-button" title="Compartilhar mapa" aria-label="Compartilhar mapa">↗</button></div>
-          <div class="chart-wrap"><canvas id="chart" width="620" height="620"></canvas><div class="chart-center"><span id="center-sign">GEMINI</span><strong id="center-degree">00° 00′</strong><small>mapa tropical</small></div></div>
-          <div class="chart-legend"><span><i class="legend-sun"></i> Planetas</span><span><i class="legend-line"></i> Casas</span><span class="mono">UTC−03:00</span></div>
+          <div class="chart-wrap"><canvas id="chart" width="620" height="620"></canvas></div>
+          <div class="chart-legend"><span><i class="legend-sun"></i> Planetas</span><span><i class="legend-line"></i> Casas</span><span><i class="legend-aspect"></i> Aspectos</span><span class="mono">UTC−03:00</span></div>
+          <fieldset class="aspect-controls"><legend>Mostrar aspectos</legend><label data-aspect-label="conjunction"><input type="checkbox" data-aspect="conjunction" checked> Conjunção</label><label data-aspect-label="sextile"><input type="checkbox" data-aspect="sextile" checked> Sextil</label><label data-aspect-label="square"><input type="checkbox" data-aspect="square" checked> Quadratura</label><label data-aspect-label="trine"><input type="checkbox" data-aspect="trine" checked> Trígono</label><label data-aspect-label="opposition"><input type="checkbox" data-aspect="opposition" checked> Oposição</label><label class="orb-control" for="aspect-orb">Orbe máxima <input id="aspect-orb" type="range" min="0" max="10" value="5" step="1"><output id="aspect-orb-value" for="aspect-orb">5°</output></label></fieldset>
           <div class="planet-readout" id="planet-readout" aria-label="Posicoes dos objetos do mapa"></div>
           <div class="readout-heading">Casas / grau de abertura</div>
           <div class="house-readout" id="house-readout" aria-label="Aberturas das casas do mapa"></div>
+          <div class="readout-heading">Matriz de aspectos</div>
+          <div class="aspect-readout" id="aspect-readout" aria-label="Aspectos entre os planetas"></div>
+          <div class="balance-tables" aria-label="Distribuição de elementos, ritmos e pólos"><section><h3>Elementos</h3><div id="element-balance"></div></section><section><h3>Ritmos</h3><div id="rhythm-balance"></div></section><section><h3>Pólos</h3><div id="polarity-balance"></div></section></div>
+          <button type="button" class="interpret-button" id="interpret-button">Gerar interpretação <span>↓</span></button>
+          <section class="interpretation-panel" id="interpretation-panel" aria-live="polite" hidden>
+            <div class="readout-heading">Interpretação do mapa</div>
+            <div id="interpretation-content"></div>
+          </section>
         </div>
       </section>
 
