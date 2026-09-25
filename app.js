@@ -2,24 +2,29 @@ window.astroWasmLoading = true;
 
 const form = document.querySelector('#birth-form');
 const canvas = document.querySelector('#chart');
-const context = canvas.getContext('2d');
+let context = canvas.getContext('2d');
 
 const signs = ['ARIES', 'TAURUS', 'GEMINI', 'CANCER', 'LEO', 'VIRGO', 'LIBRA', 'SCORPIO', 'SAGITTARIUS', 'CAPRICORN', 'AQUARIUS', 'PISCES'];
 const signNames = ['Aries', 'Touro', 'Gemeos', 'Cancer', 'Leao', 'Virgem', 'Libra', 'Escorpiao', 'Sagitario', 'Capricornio', 'Aquario', 'Peixes'];
 const colors = { ink: '#20252b', coral: '#d97b65', gold: '#d5a34c', mint: '#76a99a', line: '#d8d2c7', paper: '#f4f0e8' };
 const signColors = { fire: '#e34234', earth: '#8b6a52', air: '#f28c28', water: '#4169e1' };
 const signElements = ['fire', 'earth', 'air', 'water', 'fire', 'earth', 'air', 'water', 'fire', 'earth', 'air', 'water'];
-const objectNames = { Sun: 'Sol', Moon: 'Lua', Mercury: 'Mercurio', Venus: 'Venus', Mars: 'Marte', Jupiter: 'Jupiter', Saturn: 'Saturno', Uranus: 'Urano', Neptune: 'Netuno', Pluto: 'Plutao', Chiron: 'Chiron', Demeter: 'Demeter', Vesta: 'Vesta', NorthNode: 'Nódulo Norte', SouthNode: 'Nódulo Sul', Lilith: 'Lilith', Fortune: 'Parte da Fortuna', Vertex: 'Vertex', Ascendant: 'Ascendente', Midheaven: 'Meio do Ceu' };
+const objectNames = { Sun: 'Sol', Moon: 'Lua', Mercury: 'Mercurio', Venus: 'Venus', Mars: 'Marte', Jupiter: 'Jupiter', Saturn: 'Saturno', Uranus: 'Urano', Neptune: 'Netuno', Pluto: 'Plutao', Chiron: 'Chiron', Demeter: 'Demeter', Vesta: 'Vesta', NorthNode: 'Nódulo Norte', SouthNode: 'Nódulo Sul', Lilith: 'Lilith', Priapo: 'Príapo', Fortune: 'Parte da Fortuna', Vertex: 'Vertex', Ascendant: 'Ascendente', Midheaven: 'Meio do Ceu' };
+const objectLabels = { Ascendant: 'ASC', Midheaven: 'MC' };
 const signGlyphs = [0xF4, 0xF5, 0xF6, 0xF7, 0xF8, 0xF9, 0xFA, 0xFB, 0xFC, 0xFD, 0xFE, 0xFF].map((code) => String.fromCharCode(code));
-const objectGlyphs = { Sun: 0xA2, Moon: 0xA1, Mercury: 0xA3, Venus: 0xA4, Mars: 0xA5, Jupiter: 0xA6, Saturn: 0xA7, Uranus: 0xA8, Neptune: 0xA9, Pluto: 0xAA, Chiron: 0xB1, Demeter: 0xB2, Vesta: 0xB5, NorthNode: 0xAB, SouthNode: 0xC1, Lilith: 0xE0, Fortune: 0xB0, Vertex: 0xAE, Ascendant: 0xAD, Midheaven: 0xAC };
+const objectGlyphs = { Sun: 0xA2, Moon: 0xA1, Mercury: 0xA3, Venus: 0xA4, Mars: 0xA5, Jupiter: 0xA6, Saturn: 0xA7, Uranus: 0xA8, Neptune: 0xA9, Pluto: 0xAA, Chiron: 0xB1, Demeter: 0xB2, Vesta: 0xB5, NorthNode: 0xAB, SouthNode: 0xC1, Lilith: 0xE0, Priapo: 0xBD, Fortune: 0xB0, Vertex: 0xAE, Ascendant: 0xAD, Midheaven: 0xAC };
 Object.keys(objectGlyphs).forEach((key) => { objectGlyphs[key] = String.fromCharCode(objectGlyphs[key]); });
 const aspectColors = { conjunction: '#71857b', sextile: '#5d9b72', square: '#c94f4f', trine: '#4d73b3', opposition: '#d68136' };
 const aspectNames = { conjunction: 'Conjuncao', sextile: 'Sextil', square: 'Quadratura', trine: 'Trigono', opposition: 'Oposicao' };
 const visibleAspects = new Set(['conjunction', 'sextile', 'square', 'trine', 'opposition']);
+const optionalObjects = new Set(['Chiron', 'Demeter', 'Vesta', 'Fortune', 'NorthNode', 'SouthNode', 'Vertex', 'Lilith', 'Priapo']);
+const visibleAdditionalObjects = new Set(optionalObjects);
 let orbLimit = 5;
 let currentChart = null;
+let currentSolarChart = null;
+let currentNatalInput = null;
 let interpretationData = null;
-const planetIds = { Sun: 0, Moon: 1, Mercury: 2, Venus: 3, Mars: 4, Jupiter: 5, Saturn: 6, Uranus: 7, Neptune: 8, Pluto: 9, Ascendant: 10, Midheaven: 11, NorthNode: 13, SouthNode: 14, Lilith: 17, Vertex: 16, Chiron: 19, Demeter: 20, Vesta: 23, Fortune: 12 };
+const planetIds = { Sun: 0, Moon: 1, Mercury: 2, Venus: 3, Mars: 4, Jupiter: 5, Saturn: 6, Uranus: 7, Neptune: 8, Pluto: 9, Ascendant: 10, Midheaven: 11, NorthNode: 13, SouthNode: 14, Lilith: 17, Priapo: 18, Vertex: 16, Chiron: 19, Demeter: 20, Vesta: 23, Fortune: 12 };
 const balanceBodies = { Sun: 3, Moon: 3, Mercury: 2, Venus: 2, Mars: 2, Jupiter: 2, Saturn: 2, Uranus: 1, Neptune: 1, Pluto: 1, Ascendant: 3, Midheaven: 1 };
 const balanceQualities = { Sun: 2, Moon: 2, Mercury: 1, Venus: 1, Mars: 1, Jupiter: 1, Saturn: 1, Uranus: 1, Neptune: 1, Pluto: 1, Ascendant: 2, Midheaven: 2 };
 const signRhythms = ['Cardeal', 'Fixo', 'Mutavel', 'Cardeal', 'Fixo', 'Mutavel', 'Cardeal', 'Fixo', 'Mutavel', 'Cardeal', 'Fixo', 'Mutavel'];
@@ -63,7 +68,21 @@ function withLunarNodes(longitudes) {
     result.SouthNode = mod(result.Node + 180);
     delete result.Node;
   }
+  if (Number.isFinite(result.Lilith)) result.Priapo = mod(result.Lilith + 180);
   return result;
+}
+
+function visibleLongitudes(longitudes) {
+  return Object.fromEntries(Object.entries(longitudes).filter(([planet]) => !optionalObjects.has(planet) || visibleAdditionalObjects.has(planet)));
+}
+
+function setOptionalObjectDefaults(mapType) {
+  const defaults = mapType === 'solar' ? new Set(['Chiron', 'Fortune', 'NorthNode', 'SouthNode']) : new Set(optionalObjects);
+  visibleAdditionalObjects.clear();
+  defaults.forEach((object) => visibleAdditionalObjects.add(object));
+  document.querySelectorAll('[data-object-toggle]').forEach((control) => {
+    control.checked = defaults.has(control.dataset.objectToggle);
+  });
 }
 
 function escapeHtml(value) {
@@ -103,7 +122,7 @@ function renderInterpretation() {
   const content = document.querySelector('#interpretation-content');
   if (!content || !currentChart || !interpretationData) return;
   const houses = currentChart.houses.length === 12 ? currentChart.houses : Array.from({ length: 12 }, (_, index) => mod(currentChart.rising + index * 30));
-  const entries = Object.entries(currentChart.longitudes).filter(([planet, longitude]) => planetIds[planet] !== undefined && Number.isFinite(longitude));
+  const entries = Object.entries(visibleLongitudes(currentChart.longitudes)).filter(([planet, longitude]) => planetIds[planet] !== undefined && Number.isFinite(longitude));
   const placementMarkup = entries.map(([planet, longitude]) => {
     const planetId = planetIds[planet];
     const signId = signAt(longitude);
@@ -138,7 +157,7 @@ function chartAspects(longitudes) {
     { key: 'trine', angle: 120, orb: 6, color: aspectColors.trine },
     { key: 'opposition', angle: 180, orb: 8, color: aspectColors.opposition }
   ];
-  const aspectPlanets = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
+  const aspectPlanets = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto', 'Ascendant', 'Midheaven'];
   const aspects = [];
 
   for (let firstIndex = 0; firstIndex < aspectPlanets.length; firstIndex += 1) {
@@ -181,7 +200,11 @@ function planetaryLongitudes(jd) {
   const days = jd - 2451543.5;
   const marsLongitude = orbitalLongitude('Mars', days);
   const earthLongitude = marsLongitude + 180;
-  const result = { Sun: mod(282.9404 + 4.70935e-5 * days + 356.047 + 0.9856002585 * days) };
+  const solarDays = jd - 2451545.0;
+  const meanLongitude = mod(280.459 + 0.98564736 * solarDays);
+  const meanAnomaly = radians(mod(357.529 + 0.98560028 * solarDays));
+  const solarLongitude = mod(meanLongitude + 1.9148 * Math.sin(meanAnomaly) + 0.0200 * Math.sin(2 * meanAnomaly) + 0.0003 * Math.sin(3 * meanAnomaly));
+  const result = { Sun: solarLongitude };
   Object.keys(orbitals).forEach((planet) => {
     result[planet] = mod(orbitalLongitude(planet, days) + (earthLongitude - marsLongitude) * 0.02);
   });
@@ -193,7 +216,7 @@ function ascendant(jd, latitude, longitude) {
   const centuries = (jd - 2451545) / 36525;
   const sidereal = mod(280.46061837 + 360.98564736629 * (jd - 2451545) + longitude + 0.000387933 * centuries * centuries);
   const obliquity = radians(23.4393 - 0.013 * centuries);
-  return mod(degrees(Math.atan2(-Math.cos(radians(sidereal)), Math.sin(radians(sidereal)) * Math.cos(obliquity) + Math.tan(radians(latitude)) * Math.sin(obliquity))));
+  return mod(degrees(Math.atan2(-Math.cos(radians(sidereal)), Math.sin(radians(sidereal)) * Math.cos(obliquity) + Math.tan(radians(latitude)) * Math.sin(obliquity))) + 180);
 }
 
 function buildFallbackChart(data) {
@@ -215,6 +238,100 @@ function buildFallbackChart(data) {
     longitudes,
     rising,
     houses: Array.from({ length: 12 }, (_, index) => mod(rising + index * 30))
+  };
+}
+
+function chartFromJulian(jd, place, title) {
+  const location = cityData(place) || cities['sao paulo'];
+  const [latitude, longitude] = location;
+  const longitudes = planetaryLongitudes(jd);
+  const rising = ascendant(jd, latitude, longitude);
+  return {
+    chartTitle: title,
+    longitudes: { ...longitudes, Midheaven: mod(rising + 270) },
+    midheaven: mod(rising + 270),
+    rising,
+    houses: Array.from({ length: 12 }, (_, index) => mod(rising + index * 30)),
+    status: cityData(place) ? 'Revolucao calculada com data, hora e local do aniversario.' : 'Cidade nao reconhecida: usamos Sao Paulo como referencia.'
+  };
+}
+
+function localDateTimeFromJulian(jd, zone) {
+  const localDate = new Date((jd - 2440587.5 + zone / 24) * 86400000);
+  const pad = (value) => String(value).padStart(2, '0');
+  return {
+    date: `${localDate.getUTCFullYear()}-${pad(localDate.getUTCMonth() + 1)}-${pad(localDate.getUTCDate())}`,
+    time: `${pad(localDate.getUTCHours())}:${pad(localDate.getUTCMinutes())}`
+  };
+}
+
+function shiftLocalDateTime(date, time, hours) {
+  const [year, month, day] = date.split('-').map(Number);
+  const [hour, minute] = time.split(':').map(Number);
+  const shifted = new Date(Date.UTC(year, month - 1, day, hour, minute) + hours * 3600000);
+  const pad = (value) => String(value).padStart(2, '0');
+  return {
+    date: `${shifted.getUTCFullYear()}-${pad(shifted.getUTCMonth() + 1)}-${pad(shifted.getUTCDate())}`,
+    time: `${pad(shifted.getUTCHours())}:${pad(shifted.getUTCMinutes())}`
+  };
+}
+
+function solarReturnChart(natalChart, natalData, solarYear, solarPlace) {
+  const location = cityData(solarPlace) || cities['sao paulo'];
+  const [, , zone] = location;
+  const natalSun = natalChart.longitudes.Sun;
+  const natalLocation = cityData(natalData.place) || cities['sao paulo'];
+  const natalJd = julianDate(natalData.date, natalData.time, natalLocation[2]);
+  const fallbackNatalSun = planetaryLongitudes(natalJd).Sun;
+  const solarCorrection = degrees(Math.atan2(Math.sin(radians(natalSun - fallbackNatalSun)), Math.cos(radians(natalSun - fallbackNatalSun))));
+  const monthDay = natalData.date.slice(5);
+  const approximateJd = julianDate(`${solarYear}-${monthDay}`, '12:00', zone);
+  const difference = (jd) => Math.atan2(Math.sin(radians(planetaryLongitudes(jd).Sun + solarCorrection - natalSun)), Math.cos(radians(planetaryLongitudes(jd).Sun + solarCorrection - natalSun)));
+  let low = approximateJd - 3;
+  let high = approximateJd + 3;
+  for (let iteration = 0; iteration < 50; iteration += 1) {
+    const middle = (low + high) / 2;
+    if (difference(middle) > 0) high = middle;
+    else low = middle;
+  }
+  const returnJd = (low + high) / 2;
+  const local = localDateTimeFromJulian(returnJd, zone);
+  const chart = chartFromJulian(returnJd, solarPlace, `Revolucao Solar ${solarYear}`);
+  chart.longitudes.Sun = mod(chart.longitudes.Sun + solarCorrection);
+  return { ...chart, returnDate: local.date, returnTime: local.time, returnPlace: solarPlace };
+}
+
+async function calculateSolarChart(natalChart, natalData, solarYear, solarPlace) {
+  const estimate = solarReturnChart(natalChart, natalData, solarYear, solarPlace);
+  let returnDate = estimate.returnDate;
+  let returnTime = estimate.returnTime;
+  let solarResult = null;
+
+  if (window.astroWasm && !window.astroWasmLoading) {
+    for (let iteration = 0; iteration < 3; iteration += 1) {
+      solarResult = await callAstroApi({ name: `${natalData.name} Revolucao Solar`, date: returnDate, time: returnTime, place: solarPlace });
+      if (!solarResult.longitudes || !Number.isFinite(solarResult.longitudes.Sun)) break;
+      const difference = degrees(Math.atan2(Math.sin(radians(solarResult.longitudes.Sun - natalChart.longitudes.Sun)), Math.cos(radians(solarResult.longitudes.Sun - natalChart.longitudes.Sun))));
+      if (Math.abs(difference) < 0.0001) break;
+      const shifted = shiftLocalDateTime(returnDate, returnTime, -difference / 0.041);
+      returnDate = shifted.date;
+      returnTime = shifted.time;
+    }
+  }
+
+  const chart = solarResult && solarResult.longitudes ? solarResult : estimate;
+  const longitudes = withLunarNodes(chart.longitudes);
+  if (Number.isFinite(chart.midheaven)) longitudes.Midheaven = chart.midheaven;
+  return {
+    ...chart,
+    chartTitle: `Revolucao Solar ${solarYear}`,
+    longitudes,
+    rising: chart.rising ?? estimate.rising,
+    houses: chart.houses && chart.houses.length === 12 ? chart.houses : estimate.houses,
+    midheaven: chart.midheaven,
+    returnDate,
+    returnTime,
+    returnPlace: solarPlace
   };
 }
 
@@ -263,12 +380,13 @@ async function callAstroApi(data) {
   return buildFallbackChart(data);
 }
 
-function drawChart(longitudes, rising, houses = []) {
-  const size = canvas.width;
+function drawChart(longitudes, rising, houses = [], targetCanvas = canvas, updateReadout = true, transparent = false, outerLayer = false, anchorRising = rising) {
+  context = targetCanvas.getContext('2d');
+  const size = targetCanvas.width;
   const center = size / 2;
   const radius = size * 0.405;
-  const ascendantLongitude = mod(rising || 0);
-  const plottedLongitudes = { ...longitudes, Ascendant: rising };
+  const ascendantLongitude = mod(anchorRising || 0);
+  const plottedLongitudes = { ...visibleLongitudes(longitudes), Ascendant: rising };
   const chartAngle = (longitude) => radians(180 + ascendantLongitude - mod(longitude));
   const displayAngles = {};
   const displayEntries = Object.entries(plottedLongitudes).filter(([, longitude]) => Number.isFinite(longitude)).sort(([, first], [, second]) => first - second);
@@ -289,11 +407,15 @@ function drawChart(longitudes, rising, houses = []) {
   });
 
   context.clearRect(0, 0, size, size);
-  context.fillStyle = colors.paper;
-  context.fillRect(0, 0, size, size);
+  if (!transparent) {
+    context.fillStyle = colors.paper;
+    context.fillRect(0, 0, size, size);
+  }
   context.strokeStyle = colors.line;
   context.lineWidth = 1;
 
+  const houseCusps = houses.length === 12 ? houses : Array.from({ length: 12 }, (_, index) => mod(rising + index * 30));
+  if (!outerLayer) {
   [radius, radius * 0.82, radius * 0.54].forEach((ring) => {
     context.beginPath();
     context.arc(center, center, ring, 0, Math.PI * 2);
@@ -342,7 +464,6 @@ function drawChart(longitudes, rising, houses = []) {
     context.fillText(signGlyphs[index], center + Math.cos(labelAngle) * radius * 1.06, center + Math.sin(labelAngle) * radius * 1.06);
   }
 
-  const houseCusps = houses.length === 12 ? houses : Array.from({ length: 12 }, (_, index) => mod(rising + index * 30));
   houseCusps.forEach((cusp, index) => {
     const angle = chartAngle(cusp);
     context.strokeStyle = colors.ink;
@@ -377,17 +498,19 @@ function drawChart(longitudes, rising, houses = []) {
     context.font = '500 9px "DM Mono"';
     context.fillText(toDegreeText(cusp), center + Math.cos(cuspLabelAngle) * radius * 1.16, center + Math.sin(cuspLabelAngle) * radius * 1.16);
   });
+  }
 
   const planetColors = { Sun: colors.gold, Moon: colors.coral, Mercury: colors.mint, Venus: colors.coral, Mars: colors.ink, Jupiter: colors.gold, Saturn: colors.mint, Uranus: colors.mint, Neptune: colors.coral, Pluto: colors.ink, Chiron: colors.gold, Demeter: colors.mint, Vesta: colors.coral, Node: colors.ink, Lilith: colors.coral, Fortune: colors.gold, Vertex: colors.mint, Ascendant: colors.ink };
   const aspectDistance = radius * 0.74;
   const aspects = chartAspects(longitudes);
 
+  if (!outerLayer) {
   aspects.forEach(({ firstPlanet, secondPlanet, name, color }) => {
     const firstAngle = displayAngles[firstPlanet] || chartAngle(longitudes[firstPlanet]);
     const secondAngle = displayAngles[secondPlanet] || chartAngle(longitudes[secondPlanet]);
     context.strokeStyle = color;
     context.globalAlpha = name === aspectNames.conjunction ? 0.95 : 0.75;
-    context.lineWidth = name === aspectNames.conjunction ? 1.6 : 1;
+    context.lineWidth = name === aspectNames.conjunction ? 2 : 1.3;
     context.beginPath();
     context.moveTo(center + Math.cos(firstAngle) * aspectDistance, center + Math.sin(firstAngle) * aspectDistance);
     context.lineTo(center + Math.cos(secondAngle) * aspectDistance, center + Math.sin(secondAngle) * aspectDistance);
@@ -395,42 +518,102 @@ function drawChart(longitudes, rising, houses = []) {
   });
   context.globalAlpha = 1;
   context.lineWidth = 1;
+  }
 
+  const symbolDistance = outerLayer ? radius * 0.96 : radius * 0.74;
   Object.entries(plottedLongitudes).forEach(([planet, longitude]) => {
     if (!Number.isFinite(longitude)) return;
     const angle = displayAngles[planet] || chartAngle(longitude);
-    context.fillStyle = colors.ink;
-    context.font = planet === 'Ascendant' ? '700 18px Astrovida' : '18px Astrovida';
+    context.fillStyle = signColors[signElements[signAt(longitude)]];
+    context.font = objectLabels[planet] ? '700 12px "DM Mono"' : '22px Astrovida';
     context.textAlign = 'center';
     context.textBaseline = 'middle';
-    context.fillText(objectGlyphs[planet] || planet.slice(0, 3).toUpperCase(), center + Math.cos(angle) * radius * 0.74, center + Math.sin(angle) * radius * 0.74);
-
-    context.fillStyle = signColors[signElements[signAt(longitude)]];
-    context.font = '500 9px "DM Mono"';
-    context.fillText(toDegreeText(longitude), center + Math.cos(angle) * radius * 0.84, center + Math.sin(angle) * radius * 0.84);
+    context.fillText(objectLabels[planet] || objectGlyphs[planet] || planet.slice(0, 3).toUpperCase(), center + Math.cos(angle) * symbolDistance, center + Math.sin(angle) * symbolDistance);
   });
 
-  const readout = document.querySelector('#planet-readout');
-  if (readout) {
-    readout.innerHTML = Object.entries(plottedLongitudes).filter(([, longitude]) => Number.isFinite(longitude)).map(([planet, longitude]) => `<span><b><i>${objectGlyphs[planet] || ''}</i>${objectNames[planet] || planet}</b><small style="color:${signColors[signElements[signAt(longitude)]]}">${positionText(longitude)}</small></span>`).join('');
+  if (updateReadout) {
+    const readout = document.querySelector('#planet-readout');
+    if (readout) {
+      readout.innerHTML = Object.entries(plottedLongitudes).filter(([, longitude]) => Number.isFinite(longitude)).map(([planet, longitude]) => `<span><b><i>${objectGlyphs[planet] || ''}</i>${objectNames[planet] || planet}</b><small style="color:${signColors[signElements[signAt(longitude)]]}">${positionText(longitude)}</small></span>`).join('');
+    }
+
+    const houseReadout = document.querySelector('#house-readout');
+    if (houseReadout) {
+      houseReadout.innerHTML = houseCusps.map((cusp, index) => {
+        const cuspDegree = toDegreeText(cusp);
+        const cuspSign = signNames[signAt(cusp)];
+        return `<span><b>Casa ${index + 1}</b><small>${cuspDegree} ${cuspSign}</small></span>`;
+      }).join('');
+    }
+
+    const aspectReadout = document.querySelector('#aspect-readout');
+    if (aspectReadout) {
+      aspectReadout.innerHTML = aspects.length
+        ? aspects.map(({ firstPlanet, secondPlanet, name, color, orb }) => `<span><b>${objectNames[firstPlanet] || firstPlanet} / ${objectNames[secondPlanet] || secondPlanet}</b><small style="color:${color}">${name} · ${orb.toFixed(2)}°</small></span>`).join('')
+        : '<span class="readout-empty">Nenhum aspecto dentro da orbe selecionada.</span>';
+    }
   }
 
-  const houseReadout = document.querySelector('#house-readout');
-  if (houseReadout) {
-    houseReadout.innerHTML = houseCusps.map((cusp, index) => {
-      const cuspDegree = toDegreeText(cusp);
-      const cuspSign = signNames[signAt(cusp)];
-      return `<span><b>Casa ${index + 1}</b><small>${cuspDegree} ${cuspSign}</small></span>`;
-    }).join('');
+}
+
+function renderNatalView() {
+  const chartWrap = document.querySelector('#chart-wrap');
+  const solarPair = document.querySelector('#solar-pair');
+  const overlayCanvas = document.querySelector('#solar-overlay-chart');
+  if (chartWrap) chartWrap.hidden = false;
+  if (solarPair) solarPair.hidden = true;
+  if (overlayCanvas) overlayCanvas.hidden = true;
+  if (currentChart) {
+    renderBalanceTables(currentChart.longitudes);
+    drawChart(currentChart.longitudes, currentChart.rising, currentChart.houses, canvas, true, false);
+  }
+}
+
+function renderSolarLayers() {
+  if (!currentChart || !currentSolarChart) return;
+  const innerIsSolar = document.querySelector('#solar-inner')?.value !== 'natal';
+  const innerChart = innerIsSolar ? currentSolarChart : currentChart;
+  const outerChart = innerIsSolar ? currentChart : currentSolarChart;
+  const layout = document.querySelector('#solar-layout')?.value || 'overlay';
+  const chartWrap = document.querySelector('#chart-wrap');
+  const solarPair = document.querySelector('#solar-pair');
+  const overlayCanvas = document.querySelector('#solar-overlay-chart');
+
+  document.querySelector('#chart-title').textContent = `${innerChart.chartTitle || 'Revolucao Solar'} / ${outerChart.chartTitle || 'Mapa Natal'}`;
+  document.querySelector('#form-status').textContent = `Retorno solar: ${currentSolarChart.returnDate} ${currentSolarChart.returnTime} · ${currentSolarChart.returnPlace}`;
+  renderBalanceTables(innerChart.longitudes);
+
+  if (layout === 'side-by-side') {
+    if (chartWrap) chartWrap.hidden = true;
+    if (solarPair) solarPair.hidden = false;
+    if (overlayCanvas) overlayCanvas.hidden = true;
+    const firstCanvas = document.querySelector('#solar-pair-first');
+    const secondCanvas = document.querySelector('#solar-pair-second');
+    document.querySelector('#solar-pair-first-title').textContent = innerIsSolar ? 'Revolucao Solar' : 'Mapa Natal';
+    document.querySelector('#solar-pair-second-title').textContent = innerIsSolar ? 'Mapa Natal' : 'Revolucao Solar';
+    drawChart(innerChart.longitudes, innerChart.rising, innerChart.houses, firstCanvas, true, false);
+    drawChart(outerChart.longitudes, outerChart.rising, outerChart.houses, secondCanvas, false, false);
+    return;
   }
 
-  const aspectReadout = document.querySelector('#aspect-readout');
-  if (aspectReadout) {
-    aspectReadout.innerHTML = aspects.length
-      ? aspects.map(({ firstPlanet, secondPlanet, name, color, orb }) => `<span><b>${objectNames[firstPlanet] || firstPlanet} / ${objectNames[secondPlanet] || secondPlanet}</b><small style="color:${color}">${name} · ${orb.toFixed(2)}°</small></span>`).join('')
-      : '<span class="readout-empty">Nenhum aspecto dentro da orbe selecionada.</span>';
-  }
+  if (chartWrap) chartWrap.hidden = false;
+  if (solarPair) solarPair.hidden = true;
+  if (overlayCanvas) overlayCanvas.hidden = false;
+  drawChart(innerChart.longitudes, innerChart.rising, innerChart.houses, canvas, true, false);
+  drawChart(outerChart.longitudes, outerChart.rising, outerChart.houses, overlayCanvas, false, true, true, innerChart.rising);
+}
 
+async function renderSolarExperience() {
+  if (!currentChart || !currentNatalInput) return;
+  const solarYear = Number(document.querySelector('#solar-year')?.value) || new Date().getFullYear();
+  const solarPlace = document.querySelector('#solar-place')?.value.trim() || currentNatalInput.place;
+  currentSolarChart = await calculateSolarChart(currentChart, currentNatalInput, solarYear, solarPlace);
+  renderSolarLayers();
+}
+
+function redrawActiveView() {
+  if (document.querySelector('#map-type')?.value === 'solar' && currentSolarChart) renderSolarLayers();
+  else renderNatalView();
 }
 
 async function renderMap() {
@@ -438,6 +621,10 @@ async function renderMap() {
   const date = document.querySelector('#date').value || '1990-06-21';
   const time = document.querySelector('#time').value || '12:00';
   const place = document.querySelector('#place').value || 'Sao Paulo, Brasil';
+  const mapType = document.querySelector('#map-type')?.value || 'natal';
+  const solarFields = document.querySelector('#solar-fields');
+  if (solarFields) solarFields.hidden = mapType !== 'solar';
+  currentNatalInput = { name, date, time, place };
 
   const result = await callAstroApi({ name, date, time, place });
   const chartData = result.longitudes ? result : buildFallbackChart({ name, date, time, place });
@@ -448,15 +635,25 @@ async function renderMap() {
   document.querySelector('#rising-sign').textContent = result.risingSign || chartData.risingSign;
   document.querySelector('#form-status').textContent = result.status || chartData.status;
 
-  currentChart = { longitudes: withLunarNodes(chartData.longitudes || buildFallbackChart({ name, date, time, place }).longitudes), rising: chartData.rising ?? buildFallbackChart({ name, date, time, place }).rising, houses: chartData.houses || [] };
+  currentChart = { chartTitle: result.chartTitle || `Mapa de ${name}`, longitudes: withLunarNodes(chartData.longitudes || buildFallbackChart({ name, date, time, place }).longitudes), rising: chartData.rising ?? buildFallbackChart({ name, date, time, place }).rising, houses: chartData.houses || [] };
   if (Number.isFinite(chartData.midheaven)) currentChart.longitudes.Midheaven = chartData.midheaven;
-  renderBalanceTables(currentChart.longitudes);
-  drawChart(currentChart.longitudes, currentChart.rising, currentChart.houses);
+  if (mapType === 'solar') await renderSolarExperience();
+  else {
+    currentSolarChart = null;
+    renderNatalView();
+  }
 }
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
   await renderMap();
+});
+
+['map-type', 'solar-year', 'solar-place', 'solar-layout', 'solar-inner'].forEach((id) => {
+  document.querySelector(`#${id}`)?.addEventListener('change', () => {
+    if (id === 'map-type') setOptionalObjectDefaults(document.querySelector('#map-type').value);
+    renderMap();
+  });
 });
 
 window.addEventListener('astro-wasm-ready', () => {
@@ -467,7 +664,18 @@ document.querySelectorAll('[data-aspect]').forEach((control) => {
   control.addEventListener('change', () => {
     if (control.checked) visibleAspects.add(control.dataset.aspect);
     else visibleAspects.delete(control.dataset.aspect);
-    if (currentChart) drawChart(currentChart.longitudes, currentChart.rising, currentChart.houses);
+    if (currentChart) redrawActiveView();
+  });
+});
+
+document.querySelectorAll('[data-object-toggle]').forEach((control) => {
+  control.addEventListener('change', () => {
+    if (control.checked) visibleAdditionalObjects.add(control.dataset.objectToggle);
+    else visibleAdditionalObjects.delete(control.dataset.objectToggle);
+    if (currentChart) {
+      redrawActiveView();
+      if (!document.querySelector('#interpretation-panel')?.hidden) renderInterpretation();
+    }
   });
 });
 
@@ -478,7 +686,7 @@ if (orbControl) {
     orbLimit = Number(orbControl.value);
     if (orbValue) orbValue.value = `${orbLimit}°`;
     if (orbValue) orbValue.textContent = `${orbLimit}°`;
-    if (currentChart) drawChart(currentChart.longitudes, currentChart.rising, currentChart.houses);
+    if (currentChart) redrawActiveView();
   });
 }
 
