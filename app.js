@@ -167,10 +167,82 @@ function renderBalanceTables(longitudes) {
   document.querySelector('#polarity-balance').innerHTML = renderRows('polarities', totals.polarities);
 }
 
+function renderNatalInterpretation(content, chart) {
+  const longitudes = visibleLongitudes(chart.longitudes || {});
+  if (!Number.isFinite(longitudes.Ascendant) && Number.isFinite(chart.rising)) longitudes.Ascendant = chart.rising;
+  if (!Number.isFinite(longitudes.Midheaven) && Number.isFinite(chart.midheaven)) longitudes.Midheaven = chart.midheaven;
+  const houses = chart.houses.length === 12 ? chart.houses : Array.from({ length: 12 }, (_, index) => mod(chart.rising + index * 30));
+  const aspects = chartAspects(longitudes);
+  const planetLabels = { Sun: 'Sol', Moon: 'Lua', Mercury: 'Mercúrio', Venus: 'Vênus', Mars: 'Marte', Jupiter: 'Júpiter', Saturn: 'Saturno', Uranus: 'Urano', Neptune: 'Netuno', Pluto: 'Plutão', Ascendant: 'Ascendente' };
+  const aspectSectionLabels = { Sun: 'Aspectos do Sol', Ascendant: 'Aspectos do Ascendente', Moon: 'Aspectos da Lua', Mercury: 'Aspectos do Mercúrio', Venus: 'Aspectos da Vênus', Mars: 'Aspectos de Marte', Jupiter: 'Aspectos de Júpiter', Saturn: 'Aspectos de Saturno', Uranus: 'Aspectos de Urano', Neptune: 'Aspectos de Netuno', Pluto: 'Aspectos de Plutão' };
+  const section = (title, cards) => `<section class="interpretation-topic"><h3 class="interpretation-subtitle">${title}</h3><div class="interpretation-grid">${cards.join('')}</div></section>`;
+  const card = (title, text) => {
+    const paragraphs = (Array.isArray(text) ? text : [text]).filter(Boolean);
+    return `<article class="interpretation-card"><h4>${escapeHtml(title)}</h4>${(paragraphs.length ? paragraphs : ['Interpretação indisponível.']).map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join('')}</article>`;
+  };
+  const planetSignText = (planet, longitude) => {
+    const planetId = planetIds[planet];
+    const signId = signAt(longitude);
+    return interpretationText('planetSigns', `${planetId}:${signId}`) || [interpretationText('planets', `${planetId}`), interpretationText('signs', `${signId}`)].filter(Boolean).join(' ');
+  };
+  const planetSignCard = (planet) => {
+    const longitude = longitudes[planet];
+    const signId = signAt(longitude);
+    return card(`${planetLabels[planet] || objectNames[planet]} no signo ${signNames[signId]}`, planetSignText(planet, longitude));
+  };
+  const planetHouseCard = (planet) => {
+    const houseId = houseAtLongitude(longitudes[planet], houses);
+    const planetId = planetIds[planet];
+    const text = interpretationText('planetHouses', `${planetId}:${houseId}`) || interpretationText('houses', `${houseId}`);
+    return card(`${planetLabels[planet] || objectNames[planet]} na casa ${houseId}`, text);
+  };
+  const houseSignCard = (houseId) => {
+    const signId = signAt(houses[houseId - 1]);
+    return card(`Casa ${houseId} no signo ${signNames[signId]}`, interpretationText('houseSigns', `${signId}:${houseId}`));
+  };
+  const aspectsCard = (planet) => {
+    const planetId = planetIds[planet];
+    const related = aspects.filter((aspect) => aspect.firstPlanet === planet || aspect.secondPlanet === planet);
+    const paragraphs = related.map((aspect) => {
+      const aspectKey = Object.keys(aspectNames).find((key) => aspectNames[key] === aspect.name);
+      const aspectId = ['conjunction', 'sextile', 'square', 'trine', 'opposition'].indexOf(aspectKey);
+      const firstId = planetIds[aspect.firstPlanet];
+      const secondId = planetIds[aspect.secondPlanet];
+      const text = interpretationText('aspects', `${aspectId}:${firstId}:${secondId}`) || interpretationText('aspects', `${aspectId}:${secondId}:${firstId}`);
+      const otherPlanet = aspect.firstPlanet === planet ? aspect.secondPlanet : aspect.firstPlanet;
+      return `${objectNames[otherPlanet] || otherPlanet} · ${aspectGlyphNames[aspectKey]}${text ? `: ${text}` : ''}`;
+    });
+    return card(aspectSectionLabels[planet] || `Aspectos de ${planetLabels[planet] || objectNames[planet]}`, paragraphs.length ? paragraphs : 'Nenhum aspecto selecionado dentro da orbe atual.');
+  };
+  const dominantElement = () => {
+    const totals = { Fogo: 0, Terra: 0, Ar: 0, 'Água': 0 };
+    Object.entries(balanceBodies).forEach(([planet, points]) => {
+      if (!Number.isFinite(longitudes[planet])) return;
+      const signIndex = signAt(longitudes[planet]);
+      const element = ['Fogo', 'Terra', 'Ar', 'Água'][signIndex % 4];
+      totals[element] += points;
+    });
+    const highest = Math.max(...Object.values(totals));
+    return Object.entries(totals).filter(([, score]) => score === highest).map(([element]) => `${element} (${highest} pontos)`).join(' e ');
+  };
+
+  const firstHouseSign = signAt(houses[0]);
+  const ascendantText = Number.isFinite(longitudes.Ascendant) ? planetSignText('Ascendant', longitudes.Ascendant) : '';
+  const firstHouseText = interpretationText('houseSigns', `${firstHouseSign}:1`);
+  const ascendantHouseCard = card(`Casa 1 / Ascendente no signo ${signNames[firstHouseSign]}`, [ascendantText, firstHouseText]);
+  const planetSection = (planet) => [planetSignCard(planet), planetHouseCard(planet), aspectsCard(planet)];
+
+  content.innerHTML = `<h3 class="interpretation-subtitle">Interpretação do Mapa Natal</h3>${section('Identidade', [planetSignCard('Sun'), ascendantHouseCard, planetHouseCard('Sun'), aspectsCard('Sun'), aspectsCard('Ascendant'), houseSignCard(5)])}${section('Temperamento', [card('Elemento predominante', dominantElement())])}${section('Emocional', [planetSignCard('Moon'), planetHouseCard('Moon'), aspectsCard('Moon'), houseSignCard(4)])}${section('Forma de Pensar / Intelecto', [...planetSection('Mercury'), houseSignCard(3), houseSignCard(6)])}${section('Afetividade / Forma de Amar', [...planetSection('Venus'), houseSignCard(2), houseSignCard(7)])}${section('Força Interior / Força de Vontade', planetSection('Mars'))}${section('Oportunidades de Expansão e Crescimento', [...planetSection('Jupiter'), houseSignCard(9)])}${section('Desafios e Pontos Importantes', [...planetSection('Saturn'), houseSignCard(10)])}${section('Libertação e Revolução', [...planetSection('Uranus'), houseSignCard(11)])}${section('Espiritualidade e Acreditar em Si', [...planetSection('Neptune'), houseSignCard(12)])}${section('Transformação / Força Potencial', [...planetSection('Pluto'), houseSignCard(8)])}`;
+}
+
 function renderInterpretation() {
   const content = document.querySelector('#interpretation-content');
   const interpretationChart = document.querySelector('#map-type')?.value === 'solar' && currentSolarChart ? currentSolarChart : currentChart;
   if (!content || !interpretationChart || !interpretationData) return;
+  if (document.querySelector('#map-type')?.value !== 'solar') {
+    renderNatalInterpretation(content, interpretationChart);
+    return;
+  }
   const houses = interpretationChart.houses.length === 12 ? interpretationChart.houses : Array.from({ length: 12 }, (_, index) => mod(interpretationChart.rising + index * 30));
   const entries = Object.entries(visibleLongitudes(interpretationChart.longitudes)).filter(([planet, longitude]) => planetIds[planet] !== undefined && Number.isFinite(longitude));
   const placementMarkup = entries.map(([planet, longitude]) => {
