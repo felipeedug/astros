@@ -12,7 +12,7 @@ namespace {
 struct Location {
   double latitude;
   double longitude;
-  // CalcMapa subtracts dZona; west-of-UTC values are therefore positive here.
+  // Matches the Astrovida convention: Sao Paulo is stored as 03w00 / UTC-03.
   double legacyZone;
 };
 
@@ -22,12 +22,12 @@ Location ResolvePlace(const std::string& place) {
   for (char& character : city) {
     if (character >= 'A' && character <= 'Z') character = static_cast<char>(character - 'A' + 'a');
   }
-  if (city == "rio de janeiro") return {-22.9068, -43.1729, 3.0};
-  if (city == "brasilia") return {-15.7939, -47.8828, 3.0};
+  if (city == "rio de janeiro") return {-22.9068, -43.1729, -3.0};
+  if (city == "brasilia") return {-15.7939, -47.8828, -3.0};
   if (city == "lisboa") return {38.7223, -9.1393, 0.0};
   if (city == "london") return {51.5072, -0.1276, 0.0};
   if (city == "new york") return {40.7128, -74.0060, 5.0};
-  return {-23.5505, -46.6333, 3.0};
+  return {-23.5505, -46.6333, -3.0};
 }
 
 void ParseDate(const std::string& date, int& day, int& month, int& year) {
@@ -35,6 +35,18 @@ void ParseDate(const std::string& date, int& day, int& month, int& year) {
   char separator2 = '-';
   std::istringstream input(date);
   input >> year >> separator1 >> month >> separator2 >> day;
+}
+
+bool HasHistoricalBrazilianDst(const std::string& place, int day, int month, int year) {
+  const auto comma = place.find(',');
+  std::string city = place.substr(0, comma);
+  for (char& character : city) {
+    if (character >= 'A' && character <= 'Z') character = static_cast<char>(character - 'A' + 'a');
+  }
+  const bool supportedCity = city == "sao paulo" || city == "rio de janeiro" || city == "brasilia";
+  const bool startSeason = year == 1995 && (month > 10 || (month == 10 && day >= 15));
+  const bool endSeason = year == 1996 && (month < 2 || (month == 2 && day <= 11));
+  return supportedCity && (startSeason || endSeason);
 }
 
 double ParseClock(const std::string& time) {
@@ -71,7 +83,10 @@ std::string ComputeNatalChartJson(const std::string& name,
   int month = 1;
   int year = 2000;
   ParseDate(date, day, month, year);
-  const Location location = ResolvePlace(place);
+  Location location = ResolvePlace(place);
+  if (HasHistoricalBrazilianDst(place, day, month, year) && location.legacyZone < 0.0) {
+    location.legacyZone += 1.0;
+  }
 
   CCalcMapa calculator;
   calculator.CalcularMapa(day, month, year,
@@ -80,9 +95,10 @@ std::string ComputeNatalChartJson(const std::string& name,
                           ParseClock(time), location.legacyZone, 0.0, nullptr);
 
   const POSICAO_MAPA& chart = calculator.sChartPos0;
+  const POSICAO_MAPA* angleChart = &chart;
   const double sun = chart.LongitEcliptica[oSun];
   const double moon = chart.LongitEcliptica[oMoo];
-  const double ascendant = chart.LongitEcliptica[oAsc];
+  const double ascendant = angleChart->LongitEcliptica[oAsc];
   const int planetIndexes[] = {oSun, oMoo, oMer, oVen, oMar, oJup, oSat, oUra, oNep, oPlu, oChi, oCer, oVes, oNod, oLil, oFor, oVtx};
   const char* planetNames[] = {"Sun", "Moon", "Mercury", "Venus", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto", "Chiron", "Demeter", "Vesta", "Node", "Lilith", "Fortune", "Vertex"};
 
@@ -101,9 +117,9 @@ std::string ComputeNatalChartJson(const std::string& name,
   json << "},\"houses\":[";
   for (int house = 1; house <= cSign; ++house) {
     if (house != 1) json << ",";
-    json << chart.cusp[house];
+    json << angleChart->cusp[house];
   }
-  json << "],\"midheaven\":" << chart.LongitEcliptica[oMC] << ",\"status\":\"Calculado pelo nucleo CalcMapa legado.\"}";
+  json << "],\"midheaven\":" << angleChart->LongitEcliptica[oMC] << ",\"status\":\"Calculado pelo nucleo CalcMapa legado.\"}";
   return json.str();
 }
 

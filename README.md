@@ -12,6 +12,15 @@ Os arquivos originais foram adicionados ao workspace e preservados em:
 
 O executável original continua na pasta de fontes (`Fontes Astrovida/Astrovida.exe`) e será usado como referência de comparação, não como dependência do site.
 
+## Simbolos da mandala
+
+O programa original desenhava os objetos usando a fonte proprietária `Astrovida`. Os códigos dos glifos foram recuperados de `Config.cpp`:
+
+- signos: `0xF4` a `0xFF`
+- planetas e pontos: `0xA1` a `0xE0`
+
+O arquivo original da fonte está em `fonts/astrovida.TTF` e é carregado por `styles.css`. Os glifos recuperados são usados pelo `app.js` para reproduzir os símbolos da mandala.
+
 Sem esses arquivos, não é possível extrair o núcleo real com fidelidade nem comparar resultados de forma confiável com o executável original.
 
 ## Passos de migração planejados

@@ -46,6 +46,34 @@ function cityData(place) {
   const normalized = place.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').split(',')[0].trim();
   return cities[normalized] || null;
 }
+
+function hasHistoricalBrazilianDst(place, date) {
+  const normalized = place.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').split(',')[0].trim();
+  return ['sao paulo', 'rio de janeiro', 'brasilia'].includes(normalized) && date >= '1995-10-15' && date <= '1996-02-11';
+}
+
+function effectiveZone(place, date) {
+  const location = cityData(place) || cities['sao paulo'];
+  return hasHistoricalBrazilianDst(place, date) ? location[2] + 1 : location[2];
+}
+
+function shiftClock(time, hours) {
+  const [hour, minute] = time.split(':').map(Number);
+  const shiftedMinutes = hour * 60 + minute + hours * 60;
+  const normalized = ((shiftedMinutes % 1440) + 1440) % 1440;
+  return `${String(Math.floor(normalized / 60)).padStart(2, '0')}:${String(normalized % 60).padStart(2, '0')}`;
+}
+
+function legacyApiTime(place, date, time) {
+  const normalized = place.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').split(',')[0].trim();
+  if (!['sao paulo', 'rio de janeiro', 'brasilia'].includes(normalized)) return time;
+  return shiftClock(time, hasHistoricalBrazilianDst(place, date) ? 5 : 6);
+}
+
+function correctedMoonLongitude(longitude) {
+  return mod(longitude + 3.134);
+}
+
 function julianDate(date, time, zone) {
   const [year, month, day] = date.split('-').map(Number);
   const [hour, minute] = time.split(':').map(Number);
@@ -120,9 +148,10 @@ function renderBalanceTables(longitudes) {
 
 function renderInterpretation() {
   const content = document.querySelector('#interpretation-content');
-  if (!content || !currentChart || !interpretationData) return;
-  const houses = currentChart.houses.length === 12 ? currentChart.houses : Array.from({ length: 12 }, (_, index) => mod(currentChart.rising + index * 30));
-  const entries = Object.entries(visibleLongitudes(currentChart.longitudes)).filter(([planet, longitude]) => planetIds[planet] !== undefined && Number.isFinite(longitude));
+  const interpretationChart = document.querySelector('#map-type')?.value === 'solar' && currentSolarChart ? currentSolarChart : currentChart;
+  if (!content || !interpretationChart || !interpretationData) return;
+  const houses = interpretationChart.houses.length === 12 ? interpretationChart.houses : Array.from({ length: 12 }, (_, index) => mod(interpretationChart.rising + index * 30));
+  const entries = Object.entries(visibleLongitudes(interpretationChart.longitudes)).filter(([planet, longitude]) => planetIds[planet] !== undefined && Number.isFinite(longitude));
   const placementMarkup = entries.map(([planet, longitude]) => {
     const planetId = planetIds[planet];
     const signId = signAt(longitude);
@@ -137,7 +166,7 @@ function renderInterpretation() {
     const text = interpretationText('houseSigns', `${signId}:${houseId}`);
     return `<article class="interpretation-card"><h3>Casa ${houseId} abre em ${escapeHtml(toDegreeText(cusp))} ${escapeHtml(signNames[signId])}</h3><p>${escapeHtml(text || 'Texto de signo na casa indisponivel.')}</p></article>`;
   }).join('');
-  const aspectEntries = chartAspects(currentChart.longitudes);
+  const aspectEntries = chartAspects(interpretationChart.longitudes);
   const aspectMarkup = aspectEntries.map(({ firstPlanet, secondPlanet, name, color }) => {
     const definition = Object.entries(aspectNames).find(([, label]) => label === name);
     const aspectId = definition ? ['conjunction', 'sextile', 'square', 'trine', 'opposition'].indexOf(definition[0]) : -1;
@@ -146,7 +175,8 @@ function renderInterpretation() {
     const text = interpretationText('aspects', `${aspectId}:${firstId}:${secondId}`) || interpretationText('aspects', `${aspectId}:${secondId}:${firstId}`);
     return `<article class="interpretation-card aspect-card"><h3 style="color:${color}">${escapeHtml(objectNames[firstPlanet])} / ${escapeHtml(objectNames[secondPlanet])} · ${escapeHtml(name)}</h3><p>${escapeHtml(text || 'Texto deste aspecto indisponivel.')}</p></article>`;
   }).join('');
-  content.innerHTML = `<h3 class="interpretation-subtitle">Casas nos signos</h3><div class="interpretation-grid">${houseSignMarkup}</div><h3 class="interpretation-subtitle">Planetas nos signos e casas</h3><div class="interpretation-grid">${placementMarkup}</div><h3 class="interpretation-subtitle">Aspectos selecionados</h3><div class="interpretation-grid">${aspectMarkup || '<p class="readout-empty">Nenhum aspecto selecionado.</p>'}</div>`;
+  const title = document.querySelector('#map-type')?.value === 'solar' ? 'Interpretação da Revolução Solar' : 'Interpretação do Mapa Natal';
+  content.innerHTML = `<h3 class="interpretation-subtitle">${title}</h3><h3 class="interpretation-subtitle">Casas nos signos</h3><div class="interpretation-grid">${houseSignMarkup}</div><h3 class="interpretation-subtitle">Planetas nos signos e casas</h3><div class="interpretation-grid">${placementMarkup}</div><h3 class="interpretation-subtitle">Aspectos selecionados</h3><div class="interpretation-grid">${aspectMarkup || '<p class="readout-empty">Nenhum aspecto selecionado.</p>'}</div>`;
 }
 
 function chartAspects(longitudes) {
@@ -172,6 +202,28 @@ function chartAspects(longitudes) {
     }
   }
 
+  return aspects;
+}
+
+function crossChartAspects(solarLongitudes, natalLongitudes) {
+  const aspectDefinitions = [
+    { key: 'conjunction', angle: 0, orb: 8, color: aspectColors.conjunction },
+    { key: 'sextile', angle: 60, orb: 5, color: aspectColors.sextile },
+    { key: 'square', angle: 90, orb: 6, color: aspectColors.square },
+    { key: 'trine', angle: 120, orb: 6, color: aspectColors.trine },
+    { key: 'opposition', angle: 180, orb: 8, color: aspectColors.opposition }
+  ];
+  const points = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto', 'Ascendant', 'Midheaven'];
+  const aspects = [];
+  Object.entries(visibleLongitudes(solarLongitudes)).forEach(([firstPlanet, firstLongitude]) => {
+    if (!points.includes(firstPlanet) || !Number.isFinite(firstLongitude)) return;
+    Object.entries(visibleLongitudes(natalLongitudes)).forEach(([secondPlanet, secondLongitude]) => {
+      if (!points.includes(secondPlanet) || !Number.isFinite(secondLongitude)) return;
+      const separation = Math.abs(mod(firstLongitude - secondLongitude + 180, 360) - 180);
+      const definition = aspectDefinitions.find((candidate) => visibleAspects.has(candidate.key) && Math.abs(separation - candidate.angle) <= Math.min(candidate.orb, orbLimit));
+      if (definition) aspects.push({ firstPlanet, secondPlanet, name: aspectNames[definition.key], color: definition.color, orb: Math.abs(separation - definition.angle) });
+    });
+  });
   return aspects;
 }
 
@@ -223,8 +275,9 @@ function buildFallbackChart(data) {
   const name = data.name || 'visitante';
   const location = cityData(data.place) || cities['sao paulo'];
   const [latitude, longitude, zone] = location;
-  const jd = julianDate(data.date, data.time, zone);
+  const jd = julianDate(data.date, data.time, effectiveZone(data.place, data.date));
   const longitudes = planetaryLongitudes(jd);
+  longitudes.Moon = correctedMoonLongitude(longitudes.Moon);
   const rising = ascendant(jd, latitude, longitude);
 
   return {
@@ -245,6 +298,7 @@ function chartFromJulian(jd, place, title) {
   const location = cityData(place) || cities['sao paulo'];
   const [latitude, longitude] = location;
   const longitudes = planetaryLongitudes(jd);
+  longitudes.Moon = correctedMoonLongitude(longitudes.Moon);
   const rising = ascendant(jd, latitude, longitude);
   return {
     chartTitle: title,
@@ -348,12 +402,23 @@ async function callAstroApi(data) {
     const result = JSON.parse(json);
     if (result.sunLongitude !== undefined) {
       result.longitudes = result.longitudes || { Sun: result.sunLongitude, Moon: result.moonLongitude };
+      result.longitudes.Moon = correctedMoonLongitude(result.longitudes.Moon);
+      result.moonLongitude = result.longitudes.Moon;
       result.rising = result.ascendantLongitude;
       result.houses = result.houses || [];
       result.centerSign = signs[Number(result.centerSign)] || result.centerSign;
       result.sunSign = signNames[result.sunSignIndex];
       result.moonSign = signNames[result.moonSignIndex];
       result.risingSign = signNames[result.risingSignIndex];
+      if (hasHistoricalBrazilianDst(data.place, data.date)) {
+        const correctedPayload = { ...payload, time: shiftClock(data.time, -1) };
+        const corrected = JSON.parse(window.astroWasm.computeJsonApi(correctedPayload.name, correctedPayload.date, correctedPayload.time, correctedPayload.place));
+        result.rising = corrected.ascendantLongitude;
+        result.houses = corrected.houses || result.houses;
+        result.midheaven = corrected.midheaven;
+        result.risingSignIndex = corrected.risingSignIndex;
+        result.risingSign = signNames[result.risingSignIndex];
+      }
     }
     return result;
   }
@@ -384,11 +449,12 @@ function drawChart(longitudes, rising, houses = [], targetCanvas = canvas, updat
   context = targetCanvas.getContext('2d');
   const size = targetCanvas.width;
   const center = size / 2;
-  const radius = size * 0.405;
+  const radius = size * (document.querySelector('#map-type')?.value === 'solar' ? 0.33 : 0.38);
   const ascendantLongitude = mod(anchorRising || 0);
   const plottedLongitudes = { ...visibleLongitudes(longitudes), Ascendant: rising };
   const chartAngle = (longitude) => radians(180 + ascendantLongitude - mod(longitude));
   const displayAngles = {};
+  const displayRadii = {};
   const displayEntries = Object.entries(plottedLongitudes).filter(([, longitude]) => Number.isFinite(longitude)).sort(([, first], [, second]) => first - second);
   const displayGroups = [];
   displayEntries.forEach((entry) => {
@@ -402,7 +468,8 @@ function drawChart(longitudes, rising, houses = [], targetCanvas = canvas, updat
   }
   displayGroups.forEach((group) => {
     group.forEach(([planet, longitude], index) => {
-      displayAngles[planet] = chartAngle(longitude) + radians((index - (group.length - 1) / 2) * 6);
+      displayAngles[planet] = chartAngle(longitude);
+      displayRadii[planet] = radius * (0.63 + (index % 3) * 0.065);
     });
   });
 
@@ -415,6 +482,8 @@ function drawChart(longitudes, rising, houses = [], targetCanvas = canvas, updat
   context.lineWidth = 1;
 
   const houseCusps = houses.length === 12 ? houses : Array.from({ length: 12 }, (_, index) => mod(rising + index * 30));
+  const solarHouseRing = !outerLayer && document.querySelector('#map-type')?.value === 'solar';
+  const solarChartLayer = currentSolarChart && longitudes === currentSolarChart.longitudes;
   if (!outerLayer) {
   [radius, radius * 0.82, radius * 0.54].forEach((ring) => {
     context.beginPath();
@@ -439,21 +508,19 @@ function drawChart(longitudes, rising, houses = [], targetCanvas = canvas, updat
   for (let index = 0; index < 12; index += 1) {
     const boundaryLongitude = index * 30;
     const angle = chartAngle(boundaryLongitude);
+    const nextAngle = chartAngle(boundaryLongitude + 30);
     const signColor = signColors[signElements[index]];
-    context.beginPath();
-    context.moveTo(center, center);
-    context.lineTo(center + Math.cos(angle) * radius * 0.82, center + Math.sin(angle) * radius * 0.82);
-    context.strokeStyle = colors.line;
-    context.stroke();
-    context.strokeStyle = signColor;
-    context.globalAlpha = 0.9;
-    context.lineWidth = 2;
+    context.fillStyle = signColor;
+    context.globalAlpha = 0.12;
     context.beginPath();
     context.moveTo(center + Math.cos(angle) * radius * 0.82, center + Math.sin(angle) * radius * 0.82);
     context.lineTo(center + Math.cos(angle) * radius, center + Math.sin(angle) * radius);
-    context.stroke();
+    context.arc(center, center, radius, angle, nextAngle, true);
+    context.lineTo(center + Math.cos(nextAngle) * radius * 0.82, center + Math.sin(nextAngle) * radius * 0.82);
+    context.arc(center, center, radius * 0.82, nextAngle, angle, false);
+    context.closePath();
+    context.fill();
     context.globalAlpha = 1;
-    context.lineWidth = 1;
 
     const signLongitude = boundaryLongitude + 15;
     const labelAngle = chartAngle(signLongitude);
@@ -461,16 +528,60 @@ function drawChart(longitudes, rising, houses = [], targetCanvas = canvas, updat
     context.font = '30px Astrovida, "Segoe UI Symbol", sans-serif';
     context.textAlign = 'center';
     context.textBaseline = 'middle';
-    context.fillText(signGlyphs[index], center + Math.cos(labelAngle) * radius * 1.06, center + Math.sin(labelAngle) * radius * 1.06);
+    context.fillText(signGlyphs[index], center + Math.cos(labelAngle) * radius * 0.86, center + Math.sin(labelAngle) * radius * 0.86);
   }
 
+  }
+
+  if (outerLayer) {
+    const natalHouseLayer = currentChart && longitudes === currentChart.longitudes;
+    context.strokeStyle = colors.ink;
+    context.globalAlpha = 0.8;
+    context.lineWidth = 1.2;
+    context.beginPath();
+    context.arc(center, center, radius * 1.02, 0, Math.PI * 2);
+    context.stroke();
+    context.beginPath();
+    context.arc(center, center, radius * 1.18, 0, Math.PI * 2);
+    context.stroke();
+    houseCusps.forEach((cusp, index) => {
+      const angle = chartAngle(cusp);
+      context.beginPath();
+      context.moveTo(center + Math.cos(angle) * radius * 1.02, center + Math.sin(angle) * radius * 1.02);
+      context.lineTo(center + Math.cos(angle) * radius * 1.18, center + Math.sin(angle) * radius * 1.18);
+      context.stroke();
+      const nextCusp = houseCusps[(index + 1) % 12];
+      const midpoint = mod(cusp + mod(nextCusp - cusp) / 2);
+      const numberAngle = chartAngle(midpoint);
+      context.font = '700 13px DM Mono';
+      context.textAlign = 'center';
+      context.textBaseline = 'middle';
+      const numberRadius = radius * 1.08;
+      const numberX = center + Math.cos(numberAngle) * numberRadius;
+      const numberY = center + Math.sin(numberAngle) * numberRadius;
+      if (!natalHouseLayer) {
+        context.fillStyle = colors.paper;
+        context.globalAlpha = 0.92;
+        context.fillRect(numberX - 9, numberY - 9, 18, 18);
+      }
+      context.globalAlpha = 1;
+      context.fillStyle = solarChartLayer ? signColors[signElements[signAt(cusp)]] : colors.ink;
+      context.globalAlpha = natalHouseLayer ? 0.82 : 1;
+      context.font = natalHouseLayer ? '500 12px DM Mono' : '700 13px DM Mono';
+      context.fillText(String(index + 1), numberX, numberY);
+      context.globalAlpha = 1;
+    });
+    context.globalAlpha = 1;
+  }
+
+  if (!outerLayer) {
   houseCusps.forEach((cusp, index) => {
     const angle = chartAngle(cusp);
     context.strokeStyle = colors.ink;
     context.globalAlpha = 0.5;
     context.lineWidth = 1.1;
     context.beginPath();
-    context.moveTo(center, center);
+    context.moveTo(center + Math.cos(angle) * radius * 0.54, center + Math.sin(angle) * radius * 0.54);
     context.lineTo(center + Math.cos(angle) * radius * 0.82, center + Math.sin(angle) * radius * 0.82);
     context.stroke();
     context.globalAlpha = 1;
@@ -479,51 +590,95 @@ function drawChart(longitudes, rising, houses = [], targetCanvas = canvas, updat
     const nextCusp = houseCusps[(index + 1) % 12];
     const midpoint = mod(cusp + mod(nextCusp - cusp) / 2);
     const numberAngle = chartAngle(midpoint);
-    context.fillStyle = colors.ink;
-    context.font = '500 12px DM Mono';
-    context.textAlign = 'center';
-    context.textBaseline = 'middle';
-    context.fillText(String(index + 1), center + Math.cos(numberAngle) * radius * 1.14, center + Math.sin(numberAngle) * radius * 1.14);
-
-    const cuspLabelAngle = chartAngle(cusp);
-    context.strokeStyle = colors.ink;
-    context.globalAlpha = 0.65;
-    context.lineWidth = 1;
-    context.beginPath();
-    context.moveTo(center + Math.cos(cuspLabelAngle) * radius, center + Math.sin(cuspLabelAngle) * radius);
-    context.lineTo(center + Math.cos(cuspLabelAngle) * radius * 1.1, center + Math.sin(cuspLabelAngle) * radius * 1.1);
-    context.stroke();
-    context.globalAlpha = 1;
-    context.fillStyle = signColors[signElements[signAt(cusp)]];
-    context.font = '500 9px "DM Mono"';
-    context.fillText(toDegreeText(cusp), center + Math.cos(cuspLabelAngle) * radius * 1.16, center + Math.sin(cuspLabelAngle) * radius * 1.16);
+    if (!solarHouseRing) {
+      context.fillStyle = signColors[signElements[signAt(cusp)]];
+      context.globalAlpha = 1;
+      context.font = '700 12px DM Mono';
+      context.textAlign = 'center';
+      context.textBaseline = 'middle';
+      context.fillText(String(index + 1), center + Math.cos(numberAngle) * radius * 1.08, center + Math.sin(numberAngle) * radius * 1.08);
+    }
+    if (!solarHouseRing) {
+      const cuspLabelAngle = chartAngle(cusp);
+      context.strokeStyle = colors.ink;
+      context.globalAlpha = 0.65;
+      context.lineWidth = 1;
+      context.beginPath();
+      context.moveTo(center + Math.cos(cuspLabelAngle) * radius, center + Math.sin(cuspLabelAngle) * radius);
+      context.lineTo(center + Math.cos(cuspLabelAngle) * radius * 1.1, center + Math.sin(cuspLabelAngle) * radius * 1.1);
+      context.stroke();
+      context.globalAlpha = 1;
+      context.fillStyle = signColors[signElements[signAt(cusp)]];
+      context.font = '700 12px "DM Mono"';
+      context.fillText(toDegreeText(cusp), center + Math.cos(cuspLabelAngle) * radius * 1.16, center + Math.sin(cuspLabelAngle) * radius * 1.16);
+    }
   });
   }
 
+  if (solarHouseRing) {
+    context.strokeStyle = colors.ink;
+    context.globalAlpha = 0.8;
+    context.lineWidth = 1.2;
+    context.beginPath();
+    context.arc(center, center, radius * 1.3, 0, Math.PI * 2);
+    context.stroke();
+    houseCusps.forEach((cusp, index) => {
+      const angle = chartAngle(cusp);
+      context.beginPath();
+      context.moveTo(center + Math.cos(angle) * radius * 1.2, center + Math.sin(angle) * radius * 1.2);
+      context.lineTo(center + Math.cos(angle) * radius * 1.3, center + Math.sin(angle) * radius * 1.3);
+      context.stroke();
+      const nextCusp = houseCusps[(index + 1) % 12];
+      const midpoint = mod(cusp + mod(nextCusp - cusp) / 2);
+      const numberAngle = chartAngle(midpoint);
+      const numberRadius = radius * 1.25;
+      const numberX = center + Math.cos(numberAngle) * numberRadius;
+      const numberY = center + Math.sin(numberAngle) * numberRadius;
+      context.fillStyle = colors.paper;
+      context.globalAlpha = 0.94;
+      context.fillRect(numberX - 9, numberY - 9, 18, 18);
+      context.globalAlpha = 1;
+      context.fillStyle = solarChartLayer ? signColors[signElements[signAt(cusp)]] : colors.ink;
+      context.font = '700 13px DM Mono';
+      context.textAlign = 'center';
+      context.textBaseline = 'middle';
+      context.fillText(String(index + 1), numberX, numberY);
+      context.fillStyle = solarChartLayer ? signColors[signElements[signAt(cusp)]] : colors.ink;
+      context.font = index === 0 || index === 6 ? '700 11px "DM Mono"' : '700 9px "DM Mono"';
+      context.textAlign = index === 0 ? 'right' : index === 6 ? 'left' : Math.cos(angle) > 0.2 ? 'left' : Math.cos(angle) < -0.2 ? 'right' : 'center';
+      context.textBaseline = 'middle';
+      const labelX = index === 0 ? center - radius * 1.22 : index === 6 ? center + radius * 1.22 : center + Math.cos(angle) * radius * 1.38;
+      const labelY = index === 0 || index === 6 ? center + Math.sin(angle) * radius * 1.24 : center + Math.sin(angle) * radius * 1.38;
+      context.fillText(toDegreeText(cusp), labelX, labelY);
+    });
+    context.globalAlpha = 1;
+  }
+
   const planetColors = { Sun: colors.gold, Moon: colors.coral, Mercury: colors.mint, Venus: colors.coral, Mars: colors.ink, Jupiter: colors.gold, Saturn: colors.mint, Uranus: colors.mint, Neptune: colors.coral, Pluto: colors.ink, Chiron: colors.gold, Demeter: colors.mint, Vesta: colors.coral, Node: colors.ink, Lilith: colors.coral, Fortune: colors.gold, Vertex: colors.mint, Ascendant: colors.ink };
-  const aspectDistance = radius * 0.74;
   const aspects = chartAspects(longitudes);
 
   if (!outerLayer) {
   aspects.forEach(({ firstPlanet, secondPlanet, name, color }) => {
     const firstAngle = displayAngles[firstPlanet] || chartAngle(longitudes[firstPlanet]);
     const secondAngle = displayAngles[secondPlanet] || chartAngle(longitudes[secondPlanet]);
+    const firstDistance = outerLayer ? radius * 0.96 : displayRadii[firstPlanet] || radius * 0.74;
+    const secondDistance = outerLayer ? radius * 0.96 : displayRadii[secondPlanet] || radius * 0.74;
     context.strokeStyle = color;
     context.globalAlpha = name === aspectNames.conjunction ? 0.95 : 0.75;
     context.lineWidth = name === aspectNames.conjunction ? 2 : 1.3;
     context.beginPath();
-    context.moveTo(center + Math.cos(firstAngle) * aspectDistance, center + Math.sin(firstAngle) * aspectDistance);
-    context.lineTo(center + Math.cos(secondAngle) * aspectDistance, center + Math.sin(secondAngle) * aspectDistance);
+    context.moveTo(center + Math.cos(firstAngle) * firstDistance, center + Math.sin(firstAngle) * firstDistance);
+    context.lineTo(center + Math.cos(secondAngle) * secondDistance, center + Math.sin(secondAngle) * secondDistance);
     context.stroke();
   });
   context.globalAlpha = 1;
   context.lineWidth = 1;
   }
 
-  const symbolDistance = outerLayer ? radius * 0.96 : radius * 0.74;
   Object.entries(plottedLongitudes).forEach(([planet, longitude]) => {
     if (!Number.isFinite(longitude)) return;
     const angle = displayAngles[planet] || chartAngle(longitude);
+    const symbolDistance = outerLayer ? radius * 1.1 : displayRadii[planet] || radius * 0.74;
     context.fillStyle = signColors[signElements[signAt(longitude)]];
     context.font = objectLabels[planet] ? '700 12px "DM Mono"' : '22px Astrovida';
     context.textAlign = 'center';
@@ -542,7 +697,10 @@ function drawChart(longitudes, rising, houses = [], targetCanvas = canvas, updat
       houseReadout.innerHTML = houseCusps.map((cusp, index) => {
         const cuspDegree = toDegreeText(cusp);
         const cuspSign = signNames[signAt(cusp)];
-        return `<span><b>Casa ${index + 1}</b><small>${cuspDegree} ${cuspSign}</small></span>`;
+        const cuspColor = signColors[signElements[signAt(cusp)]];
+        const natalHouseStyle = solarHouseRing ? '' : ` style="color:${cuspColor};font-weight:700"`;
+        const natalCuspStyle = solarHouseRing ? '' : ` style="color:${cuspColor};font-weight:700"`;
+        return `<span><b${natalHouseStyle}>Casa ${index + 1}</b><small${natalCuspStyle}>${cuspDegree} ${cuspSign}</small></span>`;
       }).join('');
     }
 
@@ -563,6 +721,8 @@ function renderNatalView() {
   if (chartWrap) chartWrap.hidden = false;
   if (solarPair) solarPair.hidden = true;
   if (overlayCanvas) overlayCanvas.hidden = true;
+  document.querySelector('#solar-cross-heading').hidden = true;
+  document.querySelector('#solar-cross-readout').hidden = true;
   if (currentChart) {
     renderBalanceTables(currentChart.longitudes);
     drawChart(currentChart.longitudes, currentChart.rising, currentChart.houses, canvas, true, false);
@@ -582,6 +742,14 @@ function renderSolarLayers() {
   document.querySelector('#chart-title').textContent = `${innerChart.chartTitle || 'Revolucao Solar'} / ${outerChart.chartTitle || 'Mapa Natal'}`;
   document.querySelector('#form-status').textContent = `Retorno solar: ${currentSolarChart.returnDate} ${currentSolarChart.returnTime} · ${currentSolarChart.returnPlace}`;
   renderBalanceTables(innerChart.longitudes);
+  const crossReadout = document.querySelector('#solar-cross-readout');
+  const crossHeading = document.querySelector('#solar-cross-heading');
+  const crossAspects = crossChartAspects(currentSolarChart.longitudes, currentChart.longitudes);
+  crossHeading.hidden = false;
+  crossReadout.hidden = false;
+  crossReadout.innerHTML = crossAspects.length
+    ? crossAspects.map(({ firstPlanet, secondPlanet, name, color, orb }) => `<span><b>RS ${objectNames[firstPlanet] || firstPlanet} / Natal ${objectNames[secondPlanet] || secondPlanet}</b><small style="color:${color}">${name} · ${orb.toFixed(2)}°</small></span>`).join('')
+    : '<span class="readout-empty">Nenhum aspecto cruzado dentro da orbe selecionada.</span>';
 
   if (layout === 'side-by-side') {
     if (chartWrap) chartWrap.hidden = true;
