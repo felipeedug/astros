@@ -30,25 +30,6 @@ Location ResolvePlace(const std::string& place) {
   return {-23.5505, 46.6333, -3.0};
 }
 
-void ParseDate(const std::string& date, int& day, int& month, int& year) {
-  char separator1 = '-';
-  char separator2 = '-';
-  std::istringstream input(date);
-  input >> year >> separator1 >> month >> separator2 >> day;
-}
-
-bool HasHistoricalBrazilianDst(const std::string& place, int day, int month, int year) {
-  const auto comma = place.find(',');
-  std::string city = place.substr(0, comma);
-  for (char& character : city) {
-    if (character >= 'A' && character <= 'Z') character = static_cast<char>(character - 'A' + 'a');
-  }
-  const bool supportedCity = city == "sao paulo" || city == "rio de janeiro" || city == "brasilia";
-  const bool startSeason = year == 1995 && (month > 10 || (month == 10 && day >= 15));
-  const bool endSeason = year == 1996 && (month < 2 || (month == 2 && day <= 11));
-  return supportedCity && (startSeason || endSeason);
-}
-
 double ParseClock(const std::string& time) {
   int hour = 0;
   int minute = 0;
@@ -78,13 +59,17 @@ std::string JsonString(const std::string& value) {
 std::string ComputeNatalChartJson(const std::string& name,
                                   const std::string& date,
                                   const std::string& time,
-                                  const std::string& place) {
+                                  const std::string& place,
+                                  bool daylightSaving) {
   int day = 1;
   int month = 1;
   int year = 2000;
-  ParseDate(date, day, month, year);
+  std::istringstream dateInput(date);
+  char dateSeparator1 = '-';
+  char dateSeparator2 = '-';
+  dateInput >> year >> dateSeparator1 >> month >> dateSeparator2 >> day;
   Location location = ResolvePlace(place);
-  if (HasHistoricalBrazilianDst(place, day, month, year) && location.legacyZone < 0.0) {
+  if (daylightSaving && location.legacyZone < 0.0) {
     location.legacyZone += 1.0;
   }
 
@@ -99,8 +84,8 @@ std::string ComputeNatalChartJson(const std::string& name,
   const double sun = chart.LongitEcliptica[oSun];
   const double moon = chart.LongitEcliptica[oMoo];
   const double ascendant = angleChart->LongitEcliptica[oAsc];
-  const int planetIndexes[] = {oSun, oMoo, oMer, oVen, oMar, oJup, oSat, oUra, oNep, oPlu, oChi, oCer, oVes, oNod, oLil, oFor, oVtx};
-  const char* planetNames[] = {"Sun", "Moon", "Mercury", "Venus", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto", "Chiron", "Demeter", "Vesta", "Node", "Lilith", "Fortune", "Vertex"};
+  const int planetIndexes[] = {oSun, oMoo, oMer, oVen, oMar, oJup, oSat, oUra, oNep, oPlu, oAsc, oMC, oNod, oCau, oFor, oEP, oVtx, oLil, oPri, oChi, oCer, oCer + 1, oCer + 2, oVes};
+  const char* planetNames[] = {"Sun", "Moon", "Mercury", "Venus", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto", "Ascendant", "Midheaven", "NorthNode", "SouthNode", "Fortune", "EastPoint", "Vertex", "Lilith", "Priapo", "Chiron", "Demeter", "Pallas", "Juno", "Vesta"};
 
   std::ostringstream json;
   json << std::fixed << std::setprecision(8);
