@@ -410,15 +410,6 @@ async function callAstroApi(data) {
       result.sunSign = signNames[result.sunSignIndex];
       result.moonSign = signNames[result.moonSignIndex];
       result.risingSign = signNames[result.risingSignIndex];
-      if (hasHistoricalBrazilianDst(data.place, data.date)) {
-        const correctedPayload = { ...payload, time: shiftClock(data.time, -1) };
-        const corrected = JSON.parse(window.astroWasm.computeJsonApi(correctedPayload.name, correctedPayload.date, correctedPayload.time, correctedPayload.place));
-        result.rising = corrected.ascendantLongitude;
-        result.houses = corrected.houses || result.houses;
-        result.midheaven = corrected.midheaven;
-        result.risingSignIndex = corrected.risingSignIndex;
-        result.risingSign = signNames[result.risingSignIndex];
-      }
     }
     return result;
   }

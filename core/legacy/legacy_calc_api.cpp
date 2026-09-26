@@ -12,7 +12,7 @@ namespace {
 struct Location {
   double latitude;
   double longitude;
-  // Matches the Astrovida convention: Sao Paulo is stored as 03w00 / UTC-03.
+  // Legacy CalcMapa uses positive degrees for west longitudes.
   double legacyZone;
 };
 
@@ -22,12 +22,12 @@ Location ResolvePlace(const std::string& place) {
   for (char& character : city) {
     if (character >= 'A' && character <= 'Z') character = static_cast<char>(character - 'A' + 'a');
   }
-  if (city == "rio de janeiro") return {-22.9068, -43.1729, -3.0};
-  if (city == "brasilia") return {-15.7939, -47.8828, -3.0};
-  if (city == "lisboa") return {38.7223, -9.1393, 0.0};
-  if (city == "london") return {51.5072, -0.1276, 0.0};
-  if (city == "new york") return {40.7128, -74.0060, 5.0};
-  return {-23.5505, -46.6333, -3.0};
+  if (city == "rio de janeiro") return {-22.9068, 43.1729, -3.0};
+  if (city == "brasilia") return {-15.7939, 47.8828, -3.0};
+  if (city == "lisboa") return {38.7223, 9.1393, 0.0};
+  if (city == "london") return {51.5072, 0.1276, 0.0};
+  if (city == "new york") return {40.7128, 74.0060, -5.0};
+  return {-23.5505, 46.6333, -3.0};
 }
 
 void ParseDate(const std::string& date, int& day, int& month, int& year) {
