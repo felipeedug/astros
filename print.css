@@ -1,8 +1,14 @@
 .chart-panel > .chart-legend { margin-top:3px; margin-bottom:10px; }
-.chart-panel > .planet-readout { margin-top:8px; }
-.chart-panel > .readout-heading { margin-top:7px; padding:5px 8px 3px; }
-.chart-panel > .house-readout,.chart-panel > .aspect-readout { margin-top:4px; }
+.planet-house-tables { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,.9fr); align-items:start; gap:14px; width:100%; margin-top:8px; }
+.readout-group { min-width:0; }
+.readout-group .readout-heading { margin-top:0; padding:5px 8px 3px; }
+.readout-group .planet-readout,.readout-group .house-readout { margin-top:4px; }
+.readout-group .house-readout { grid-template-columns:minmax(0,1fr); }
+.readout-group .planet-readout { grid-template-columns:minmax(0,1fr); }
+.aspect-readout { margin-top:4px; }
 .chart-panel > .balance-tables { margin-top:14px; }
+.planet-readout .readout-sign,.house-readout .readout-sign { display:inline-block; margin-left:2px; color:inherit; font:14px/1 'Astrovida','Segoe UI Symbol',sans-serif; vertical-align:-2px; }
+.planet-readout i.readout-point-label { color:var(--ink); font:700 9px 'DM Mono',monospace; }
 .result-actions { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:10px; margin-top:14px; }
 .result-actions .interpret-button,.result-actions .print-button { width:100%; min-width:0; margin:0; padding:12px; border:1px solid var(--ink); color:var(--ink); background:transparent; font:700 10px Manrope,sans-serif; text-align:left; cursor:pointer; }
 .result-actions .interpret-button:hover,.result-actions .print-button:hover { color:#fff; background:var(--ink); }
@@ -19,6 +25,8 @@
 .metadata-card dt { color:var(--muted); font:700 8px 'DM Mono',monospace; text-transform:uppercase; }
 .metadata-card dd { overflow-wrap:anywhere; margin:3px 0 0; color:var(--ink); font:500 10px 'DM Mono',monospace; }
 @media (max-width:800px) { .result-actions { grid-template-columns:1fr; } }
+@media (min-width:1301px) { .readout-group .planet-readout { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width:800px) { .planet-house-tables { grid-template-columns:minmax(0,1fr); gap:10px; } }
 @media (max-width:800px) { .chart-metadata-grid.solar-metadata { grid-template-columns:1fr; }.metadata-card dl { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 
 @page { size:A4 portrait; margin:12mm; }
@@ -42,9 +50,11 @@
   .solar-pair { width:100%; max-width:180mm; margin:0 auto 2mm; gap:4mm; break-inside:avoid; page-break-inside:avoid; }
   .solar-pair article { break-inside:avoid; page-break-inside:avoid; }
   .chart-legend { margin:0 0 3mm; }
-  .planet-readout { grid-template-columns:repeat(3,minmax(0,1fr)); margin-top:0; }
+  .planet-house-tables { grid-template-columns:minmax(0,1.35fr) minmax(0,.9fr); gap:3mm; margin-top:2mm; }
+  .readout-group .planet-readout { grid-template-columns:repeat(2,minmax(0,1fr)); margin-top:1mm; }
+  .readout-group .house-readout { grid-template-columns:minmax(0,1fr); margin-top:1mm; }
+  .planet-readout .readout-sign,.house-readout .readout-sign { font-size:11px; }
   .readout-heading { margin-top:3mm; padding:2mm 1mm; }
-  .house-readout { grid-template-columns:repeat(3,minmax(0,1fr)); margin-top:1mm; }
   .aspect-readout { grid-template-columns:repeat(2,minmax(0,1fr)); margin-top:1mm; }
   .balance-tables { grid-template-columns:repeat(3,minmax(0,1fr)); margin-top:3mm; }
   .planet-readout span,.house-readout span,.aspect-readout span,.balance-tables section,.interpretation-card { break-inside:avoid; page-break-inside:avoid; }

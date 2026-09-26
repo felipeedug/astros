@@ -11,9 +11,9 @@ const signColors = { fire: '#e34234', earth: '#4b5320', air: '#f28c28', water: '
 const signElements = ['fire', 'earth', 'air', 'water', 'fire', 'earth', 'air', 'water', 'fire', 'earth', 'air', 'water'];
 const planetReadoutOrder = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto', 'Ascendant', 'Midheaven', 'Fortune', 'NorthNode', 'SouthNode', 'EastPoint', 'Vertex', 'Lilith', 'Priapo', 'Chiron', 'Demeter', 'Pallas', 'Juno', 'Vesta'];
 const objectNames = { Sun: 'Sol', Moon: 'Lua', Mercury: 'Mercurio', Venus: 'Venus', Mars: 'Marte', Jupiter: 'Jupiter', Saturn: 'Saturno', Uranus: 'Urano', Neptune: 'Netuno', Pluto: 'Plutao', Chiron: 'Chiron', Demeter: 'Demeter', Pallas: 'Pallas', Juno: 'Juno', Vesta: 'Vesta', NorthNode: 'Cabeça', SouthNode: 'Cauda', Lilith: 'Lilith', Priapo: 'Príapo', Fortune: 'Roda da Fortuna', EastPoint: 'Ponto Leste', Vertex: 'Vertex', Ascendant: 'Ascendente', Midheaven: 'Meio do Ceu' };
-const objectLabels = { Ascendant: 'ASC', Midheaven: 'MC', EastPoint: 'PE' };
+const objectLabels = { Ascendant: 'ASC', Midheaven: 'MC', EastPoint: 'EP' };
 const signGlyphs = [0xF4, 0xF5, 0xF6, 0xF7, 0xF8, 0xF9, 0xFA, 0xFB, 0xFC, 0xFD, 0xFE, 0xFF].map((code) => String.fromCharCode(code));
-const objectGlyphs = { Sun: 0xA2, Moon: 0xA1, Mercury: 0xA3, Venus: 0xA4, Mars: 0xA5, Jupiter: 0xA6, Saturn: 0xA7, Uranus: 0xA8, Neptune: 0xA9, Pluto: 0xAA, Chiron: 0xB1, Demeter: 0xB2, Pallas: 0xB3, Juno: 0xB4, Vesta: 0xB5, NorthNode: 0xAB, SouthNode: 0xC1, Lilith: 0xE0, Priapo: 0xBD, Fortune: 0xB0, Vertex: 0xAE, Ascendant: 0xAD, Midheaven: 0xAC };
+const objectGlyphs = { Sun: 0xA2, Moon: 0xA1, Mercury: 0xA3, Venus: 0xA4, Mars: 0xA5, Jupiter: 0xA6, Saturn: 0xA7, Uranus: 0xA8, Neptune: 0xA9, Pluto: 0xAA, Chiron: 0xB1, Demeter: 0xB2, Pallas: 0xB3, Juno: 0xB4, Vesta: 0xB5, NorthNode: 0xAB, SouthNode: 0xC1, Lilith: 0xE0, Priapo: 0xBD, Fortune: 0xB0, EastPoint: 0xDB, Vertex: 0xAE, Ascendant: 0xAD, Midheaven: 0xAC };
 Object.keys(objectGlyphs).forEach((key) => { objectGlyphs[key] = String.fromCharCode(objectGlyphs[key]); });
 const aspectColors = { conjunction: '#71857b', sextile: '#5d9b72', square: '#c94f4f', trine: '#4d73b3', opposition: '#c94f4f' };
 const aspectNames = { conjunction: 'Conjuncao', sextile: 'Sextil', square: 'Quadratura', trine: 'Trigono', opposition: 'Oposicao' };
@@ -712,18 +712,24 @@ function drawChart(longitudes, rising, houses = [], targetCanvas = canvas, updat
       const readoutEntries = Object.entries(plottedLongitudes)
         .filter(([, longitude]) => Number.isFinite(longitude))
         .sort(([first], [second]) => (order.get(first) ?? Infinity) - (order.get(second) ?? Infinity));
-      readout.innerHTML = readoutEntries.map(([planet, longitude]) => `<span><b><i>${objectGlyphs[planet] || ''}</i>${objectNames[planet] || planet}</b><small style="color:${signColors[signElements[signAt(longitude)]]}">${positionText(longitude)}</small></span>`).join('');
+      readout.innerHTML = readoutEntries.map(([planet, longitude]) => {
+        const pointLabel = objectLabels[planet];
+        const symbol = pointLabel === 'ASC' || pointLabel === 'EP' ? pointLabel : objectGlyphs[planet] || '';
+        const symbolClass = pointLabel === 'ASC' || pointLabel === 'EP' ? ' class="readout-point-label"' : '';
+        const signColor = signColors[signElements[signAt(longitude)]];
+        return `<span><b><i${symbolClass} style="color:${signColor}">${symbol}</i>${objectNames[planet] || planet}</b><small style="color:${signColor}">${toDegreeText(longitude)} <span class="readout-sign">${signGlyphs[signAt(longitude)]}</span></small></span>`;
+      }).join('');
     }
 
     const houseReadout = document.querySelector('#house-readout');
     if (houseReadout) {
       houseReadout.innerHTML = houseCusps.map((cusp, index) => {
         const cuspDegree = toDegreeText(cusp);
-        const cuspSign = signNames[signAt(cusp)];
+        const cuspSignGlyph = signGlyphs[signAt(cusp)];
         const cuspColor = signColors[signElements[signAt(cusp)]];
         const natalHouseStyle = solarHouseRing ? '' : ` style="color:${cuspColor};font-weight:700"`;
         const natalCuspStyle = solarHouseRing ? '' : ` style="color:${cuspColor};font-weight:700"`;
-        return `<span><b${natalHouseStyle}>Casa ${index + 1}</b><small${natalCuspStyle}>${cuspDegree} ${cuspSign}</small></span>`;
+        return `<span><b${natalHouseStyle}>Casa ${index + 1}</b><small${natalCuspStyle}>${cuspDegree} <span class="readout-sign">${cuspSignGlyph}</span></small></span>`;
       }).join('');
     }
 
