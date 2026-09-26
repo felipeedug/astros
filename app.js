@@ -17,6 +17,7 @@ const objectGlyphs = { Sun: 0xA2, Moon: 0xA1, Mercury: 0xA3, Venus: 0xA4, Mars: 
 Object.keys(objectGlyphs).forEach((key) => { objectGlyphs[key] = String.fromCharCode(objectGlyphs[key]); });
 const aspectColors = { conjunction: '#71857b', sextile: '#5d9b72', square: '#c94f4f', trine: '#4d73b3', opposition: '#c94f4f' };
 const aspectNames = { conjunction: 'Conjuncao', sextile: 'Sextil', square: 'Quadratura', trine: 'Trigono', opposition: 'Oposicao' };
+const aspectGlyphNames = { conjunction: 'Conjunção', sextile: 'Sextil', square: 'Quadratura', trine: 'Trígono', opposition: 'Oposição' };
 const visibleAspects = new Set(['conjunction', 'sextile', 'square', 'trine', 'opposition']);
 const optionalObjects = new Set(['Chiron', 'Demeter', 'Pallas', 'Juno', 'Vesta', 'Fortune', 'NorthNode', 'SouthNode', 'EastPoint', 'Vertex', 'Lilith', 'Priapo']);
 const visibleAdditionalObjects = new Set(optionalObjects);
@@ -96,14 +97,17 @@ function julianDate(date, time, zone) {
   const [hour, minute] = time.split(':').map(Number);
   return Date.UTC(year, month - 1, day, hour - zone, minute) / 86400000 + 2440587.5;
 }
+function roundedLongitude(longitude) { return mod(Math.round(mod(longitude) * 60) / 60); }
 function toDegreeText(longitude) {
-  const normalized = mod(longitude);
-  const degree = Math.floor(mod(normalized, 30));
-  const minute = Math.floor(((normalized % 1) * 60));
+  const withinSign = mod(roundedLongitude(longitude), 30);
+  const totalMinutes = Math.round(withinSign * 60);
+  const degree = Math.floor(totalMinutes / 60);
+  const minute = totalMinutes % 60;
   return `${String(degree).padStart(2, '0')}° ${String(minute).padStart(2, '0')}′`;
 }
 function positionText(longitude) {
-  return `${toDegreeText(longitude)} ${signNames[signAt(longitude)]}`;
+  const normalized = roundedLongitude(longitude);
+  return `${toDegreeText(normalized)} ${signNames[signAt(normalized)]}`;
 }
 
 function withLunarNodes(longitudes) {
@@ -196,7 +200,7 @@ function renderInterpretation() {
   content.innerHTML = `<h3 class="interpretation-subtitle">${title}</h3><h3 class="interpretation-subtitle">Casas nos signos</h3><div class="interpretation-grid">${houseSignMarkup}</div><h3 class="interpretation-subtitle">Planetas nos signos e casas</h3><div class="interpretation-grid">${placementMarkup}</div><h3 class="interpretation-subtitle">Aspectos selecionados</h3><div class="interpretation-grid">${aspectMarkup || '<p class="readout-empty">Nenhum aspecto selecionado.</p>'}</div>`;
 }
 
-function chartAspects(longitudes) {
+function chartAspects(longitudes, selectedPlanets = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto', 'Ascendant', 'Midheaven']) {
   const aspectDefinitions = [
     { key: 'conjunction', angle: 0, orb: 8, color: aspectColors.conjunction },
     { key: 'sextile', angle: 60, orb: 5, color: aspectColors.sextile },
@@ -204,16 +208,15 @@ function chartAspects(longitudes) {
     { key: 'trine', angle: 120, orb: 6, color: aspectColors.trine },
     { key: 'opposition', angle: 180, orb: 8, color: aspectColors.opposition }
   ];
-  const aspectPlanets = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto', 'Ascendant', 'Midheaven'];
+  const visible = visibleLongitudes(longitudes);
+  const aspectPlanets = selectedPlanets.filter((planet) => Number.isFinite(visible[planet]));
   const aspects = [];
 
   for (let firstIndex = 0; firstIndex < aspectPlanets.length; firstIndex += 1) {
     const firstPlanet = aspectPlanets[firstIndex];
-    if (!Number.isFinite(longitudes[firstPlanet])) continue;
     for (let secondIndex = firstIndex + 1; secondIndex < aspectPlanets.length; secondIndex += 1) {
       const secondPlanet = aspectPlanets[secondIndex];
-      if (!Number.isFinite(longitudes[secondPlanet])) continue;
-      const separation = Math.abs(mod(longitudes[firstPlanet] - longitudes[secondPlanet] + 180, 360) - 180);
+      const separation = Math.abs(mod(visible[firstPlanet] - visible[secondPlanet] + 180, 360) - 180);
       const definition = aspectDefinitions.find((candidate) => visibleAspects.has(candidate.key) && Math.abs(separation - candidate.angle) <= Math.min(candidate.orb, orbLimit));
       if (definition) aspects.push({ firstPlanet, secondPlanet, name: aspectNames[definition.key], color: definition.color, orb: Math.abs(separation - definition.angle) });
     }
@@ -242,6 +245,51 @@ function crossChartAspects(solarLongitudes, natalLongitudes) {
     });
   });
   return aspects;
+}
+
+function renderAspectMatrixTo(container, rowLongitudes, columnLongitudes = null, upperTriangleOnly = false) {
+  if (!container) return;
+  const rows = visibleLongitudes(rowLongitudes);
+  const columns = columnLongitudes ? visibleLongitudes(columnLongitudes) : rows;
+  const rowPlanets = planetReadoutOrder.filter((planet) => Number.isFinite(rows[planet]));
+  const columnPlanets = planetReadoutOrder.filter((planet) => Number.isFinite(columns[planet]));
+  const definitions = [
+    { key: 'conjunction', angle: 0, orb: 8, color: aspectColors.conjunction },
+    { key: 'sextile', angle: 60, orb: 5, color: aspectColors.sextile },
+    { key: 'square', angle: 90, orb: 6, color: aspectColors.square },
+    { key: 'trine', angle: 120, orb: 6, color: aspectColors.trine },
+    { key: 'opposition', angle: 180, orb: 8, color: aspectColors.opposition }
+  ];
+  const aspectByPair = new Map();
+  rowPlanets.forEach((firstPlanet, rowIndex) => columnPlanets.forEach((secondPlanet, columnIndex) => {
+    if (!columnLongitudes && rowIndex >= columnIndex) return;
+    const separation = Math.abs(mod(rows[firstPlanet] - columns[secondPlanet] + 180, 360) - 180);
+    const definition = definitions.find((candidate) => visibleAspects.has(candidate.key) && Math.abs(separation - candidate.angle) <= Math.min(candidate.orb, orbLimit));
+    if (!definition) return;
+    const marker = `<span class="aspect-mark aspect-mark--${definition.key}" style="color:${definition.color}" role="img" aria-label="${aspectGlyphNames[definition.key]}" title="${aspectGlyphNames[definition.key]}"></span>`;
+    aspectByPair.set(`${firstPlanet}|${secondPlanet}`, marker);
+    if (!columnLongitudes) aspectByPair.set(`${secondPlanet}|${firstPlanet}`, marker);
+  }));
+  const axisSymbol = (planet, source) => {
+    const symbol = objectLabels[planet] || objectGlyphs[planet] || planet.slice(0, 3).toUpperCase();
+    const symbolClass = objectLabels[planet] ? 'aspect-axis-label' : 'aspect-axis-glyph';
+    const color = signColors[signElements[signAt(source[planet])]];
+    return `<span class="${symbolClass}" style="color:${color}" title="${escapeHtml(objectNames[planet] || planet)}">${escapeHtml(symbol)}</span>`;
+  };
+  const corner = '<th class="aspect-matrix-corner" aria-hidden="true"></th>';
+  const headers = columnPlanets.map((planet) => `<th scope="col">${axisSymbol(planet, columns)}</th>`).join('');
+  const rowsMarkup = rowPlanets.map((firstPlanet, rowIndex) => {
+    const cells = columnPlanets.map((secondPlanet, columnIndex) => {
+      if (columnLongitudes && rowIndex === columnIndex) return '<td class="aspect-matrix-empty"></td>';
+      if (!columnLongitudes && rowIndex === columnIndex) return `<td class="aspect-matrix-diagonal">${axisSymbol(firstPlanet, rows)}</td>`;
+      if (!columnLongitudes && upperTriangleOnly && rowIndex > columnIndex) return '<td class="aspect-matrix-empty"></td>';
+      return `<td>${aspectByPair.get(`${firstPlanet}|${secondPlanet}`) || ''}</td>`;
+    }).join('');
+    return `<tr><th scope="row">${axisSymbol(firstPlanet, rows)}</th>${cells}<th scope="row">${axisSymbol(firstPlanet, rows)}</th></tr>`;
+  }).join('');
+  const footer = `<tfoot><tr>${corner}${headers}${corner}</tr></tfoot>`;
+  const legend = Object.entries(aspectGlyphNames).map(([key, label]) => `<span><i class="aspect-mark aspect-mark--${key}" style="color:${aspectColors[key]}" aria-hidden="true"></i>${label}</span>`).join('');
+  container.innerHTML = `<div class="aspect-matrix-scroll"><table class="aspect-matrix" aria-label="Matriz de aspectos"><thead><tr>${corner}${headers}${corner}</tr></thead><tbody>${rowsMarkup}</tbody>${footer}</table></div><div class="aspect-matrix-legend">${legend}</div>`;
 }
 
 function orbitalLongitude(planet, days) {
@@ -430,8 +478,6 @@ async function callAstroApi(data) {
     const result = JSON.parse(json);
     if (result.sunLongitude !== undefined) {
       result.longitudes = result.longitudes || { Sun: result.sunLongitude, Moon: result.moonLongitude };
-      result.longitudes.Moon = correctedMoonLongitude(result.longitudes.Moon);
-      result.moonLongitude = result.longitudes.Moon;
       result.rising = result.ascendantLongitude;
       result.houses = result.houses || [];
       result.centerSign = signs[Number(result.centerSign)] || result.centerSign;
@@ -713,20 +759,24 @@ function drawChart(longitudes, rising, houses = [], targetCanvas = canvas, updat
         .filter(([, longitude]) => Number.isFinite(longitude))
         .sort(([first], [second]) => (order.get(first) ?? Infinity) - (order.get(second) ?? Infinity));
       readout.innerHTML = readoutEntries.map(([planet, longitude]) => {
+        const displayLongitude = roundedLongitude(longitude);
         const pointLabel = objectLabels[planet];
         const symbol = pointLabel === 'ASC' || pointLabel === 'EP' ? pointLabel : objectGlyphs[planet] || '';
         const symbolClass = pointLabel === 'ASC' || pointLabel === 'EP' ? ' class="readout-point-label"' : '';
-        const signColor = signColors[signElements[signAt(longitude)]];
-        return `<span><b><i${symbolClass} style="color:${signColor}">${symbol}</i>${objectNames[planet] || planet}</b><small style="color:${signColor}">${toDegreeText(longitude)} <span class="readout-sign">${signGlyphs[signAt(longitude)]}</span></small></span>`;
+        const signIndex = signAt(displayLongitude);
+        const signColor = signColors[signElements[signIndex]];
+        return `<span><b><i${symbolClass} style="color:${signColor}">${symbol}</i>${objectNames[planet] || planet}</b><small style="color:${signColor}">${toDegreeText(displayLongitude)} <span class="readout-sign">${signGlyphs[signIndex]}</span></small></span>`;
       }).join('');
     }
 
     const houseReadout = document.querySelector('#house-readout');
     if (houseReadout) {
       houseReadout.innerHTML = houseCusps.map((cusp, index) => {
-        const cuspDegree = toDegreeText(cusp);
-        const cuspSignGlyph = signGlyphs[signAt(cusp)];
-        const cuspColor = signColors[signElements[signAt(cusp)]];
+        const displayCusp = roundedLongitude(cusp);
+        const cuspSignIndex = signAt(displayCusp);
+        const cuspDegree = toDegreeText(displayCusp);
+        const cuspSignGlyph = signGlyphs[cuspSignIndex];
+        const cuspColor = signColors[signElements[cuspSignIndex]];
         const natalHouseStyle = solarHouseRing ? '' : ` style="color:${cuspColor};font-weight:700"`;
         const natalCuspStyle = solarHouseRing ? '' : ` style="color:${cuspColor};font-weight:700"`;
         return `<span><b${natalHouseStyle}>Casa ${index + 1}</b><small${natalCuspStyle}>${cuspDegree} <span class="readout-sign">${cuspSignGlyph}</span></small></span>`;
@@ -735,9 +785,40 @@ function drawChart(longitudes, rising, houses = [], targetCanvas = canvas, updat
 
     const aspectReadout = document.querySelector('#aspect-readout');
     if (aspectReadout) {
-      aspectReadout.innerHTML = aspects.length
-        ? aspects.map(({ firstPlanet, secondPlanet, name, color, orb }) => `<span><b>${objectNames[firstPlanet] || firstPlanet} / ${objectNames[secondPlanet] || secondPlanet}</b><small style="color:${color}">${name} · ${orb.toFixed(2)}°</small></span>`).join('')
-        : '<span class="readout-empty">Nenhum aspecto dentro da orbe selecionada.</span>';
+      const matrixLongitudes = visibleLongitudes(longitudes);
+      const matrixPlanets = planetReadoutOrder.filter((planet) => Number.isFinite(matrixLongitudes[planet]));
+      const matrixAspects = chartAspects(matrixLongitudes, matrixPlanets);
+      const aspectByPair = new Map();
+      matrixAspects.forEach((aspect) => {
+        const key = Object.keys(aspectNames).find((aspectKey) => aspectNames[aspectKey] === aspect.name);
+        if (!key) return;
+        const marker = `<span class="aspect-mark aspect-mark--${key}" style="color:${aspect.color}" role="img" aria-label="${aspectGlyphNames[key]}" title="${aspectGlyphNames[key]}"></span>`;
+        aspectByPair.set(`${aspect.firstPlanet}|${aspect.secondPlanet}`, marker);
+        aspectByPair.set(`${aspect.secondPlanet}|${aspect.firstPlanet}`, marker);
+      });
+      const axisSymbol = (planet) => {
+        const symbol = objectLabels[planet] || objectGlyphs[planet] || planet.slice(0, 3).toUpperCase();
+        const symbolClass = objectLabels[planet] ? 'aspect-axis-label' : 'aspect-axis-glyph';
+        const color = signColors[signElements[signAt(matrixLongitudes[planet])]];
+        return `<span class="${symbolClass}" style="color:${color}" title="${escapeHtml(objectNames[planet] || planet)}">${escapeHtml(symbol)}</span>`;
+      };
+      const columnHeaders = matrixPlanets.map((planet) => `<th scope="col">${axisSymbol(planet)}</th>`).join('');
+      const columnFooters = matrixPlanets.map((planet) => `<th scope="col">${axisSymbol(planet)}</th>`).join('');
+      const upperTriangleOnly = document.querySelector('#map-type')?.value === 'natal';
+      const matrixRows = matrixPlanets.map((firstPlanet, rowIndex) => {
+        const rowHeader = `<th scope="row">${axisSymbol(firstPlanet)}</th>`;
+        const rowFooter = `<th scope="row">${axisSymbol(firstPlanet)}</th>`;
+        const cells = matrixPlanets.map((secondPlanet, columnIndex) => {
+          if (rowIndex === columnIndex) return `<td class="aspect-matrix-diagonal">${upperTriangleOnly ? '' : axisSymbol(firstPlanet)}</td>`;
+          if (upperTriangleOnly && rowIndex > columnIndex) return '<td class="aspect-matrix-empty"></td>';
+          return `<td>${aspectByPair.get(`${firstPlanet}|${secondPlanet}`) || ''}</td>`;
+        }).join('');
+        return `<tr>${rowHeader}${cells}${rowFooter}</tr>`;
+      }).join('');
+      const corner = '<th class="aspect-matrix-corner" aria-hidden="true"></th>';
+      const bottomAxis = `<tfoot><tr>${corner}${columnFooters}${corner}</tr></tfoot>`;
+      const legend = Object.entries(aspectGlyphNames).map(([key, label]) => `<span><i class="aspect-mark aspect-mark--${key}" style="color:${aspectColors[key]}" aria-hidden="true"></i>${label}</span>`).join('');
+      aspectReadout.innerHTML = `<div class="aspect-matrix-scroll"><table class="aspect-matrix" aria-label="Matriz de aspectos do mapa"><thead><tr>${corner}${columnHeaders}${corner}</tr></thead><tbody>${matrixRows}</tbody>${bottomAxis}</table></div><div class="aspect-matrix-legend">${legend}</div>`;
     }
   }
 
@@ -750,11 +831,13 @@ function renderNatalView() {
   if (chartWrap) chartWrap.hidden = false;
   if (solarPair) solarPair.hidden = true;
   if (overlayCanvas) overlayCanvas.hidden = true;
-  document.querySelector('#solar-cross-heading').hidden = true;
-  document.querySelector('#solar-cross-readout').hidden = true;
+  document.querySelector('#natal-aspect-section').hidden = false;
+  document.querySelector('#solar-aspect-section').hidden = true;
+  document.querySelector('#cross-aspect-section').hidden = true;
   if (currentChart) {
     renderBalanceTables(currentChart.longitudes);
     drawChart(currentChart.longitudes, currentChart.rising, currentChart.houses, canvas, true, false);
+    renderAspectMatrixTo(document.querySelector('#aspect-readout'), currentChart.longitudes, null, true);
   }
 }
 
@@ -771,14 +854,12 @@ function renderSolarLayers() {
   document.querySelector('#chart-title').textContent = innerIsSolar ? 'Revolução Solar' : 'Mapa Natal';
   document.querySelector('#form-status').textContent = `Retorno solar: ${currentSolarChart.returnDate} ${currentSolarChart.returnTime} · ${currentSolarChart.returnPlace}`;
   renderBalanceTables(innerChart.longitudes);
-  const crossReadout = document.querySelector('#solar-cross-readout');
-  const crossHeading = document.querySelector('#solar-cross-heading');
-  const crossAspects = crossChartAspects(currentSolarChart.longitudes, currentChart.longitudes);
-  crossHeading.hidden = false;
-  crossReadout.hidden = false;
-  crossReadout.innerHTML = crossAspects.length
-    ? crossAspects.map(({ firstPlanet, secondPlanet, name, color, orb }) => `<span><b>RS ${objectNames[firstPlanet] || firstPlanet} / Natal ${objectNames[secondPlanet] || secondPlanet}</b><small style="color:${color}">${name} · ${orb.toFixed(2)}°</small></span>`).join('')
-    : '<span class="readout-empty">Nenhum aspecto cruzado dentro da orbe selecionada.</span>';
+  document.querySelector('#natal-aspect-section').hidden = false;
+  document.querySelector('#solar-aspect-section').hidden = false;
+  document.querySelector('#cross-aspect-section').hidden = false;
+  renderAspectMatrixTo(document.querySelector('#aspect-readout'), currentChart.longitudes, null, true);
+  renderAspectMatrixTo(document.querySelector('#solar-aspect-readout'), currentSolarChart.longitudes, null, true);
+  renderAspectMatrixTo(document.querySelector('#solar-cross-readout'), currentChart.longitudes, currentSolarChart.longitudes, false);
 
   if (layout === 'side-by-side') {
     if (chartWrap) chartWrap.hidden = true;
@@ -788,6 +869,9 @@ function renderSolarLayers() {
     const secondCanvas = document.querySelector('#solar-pair-second');
     drawChart(innerChart.longitudes, innerChart.rising, innerChart.houses, firstCanvas, true, false);
     drawChart(outerChart.longitudes, outerChart.rising, outerChart.houses, secondCanvas, false, false);
+    renderAspectMatrixTo(document.querySelector('#aspect-readout'), currentChart.longitudes, null, true);
+    renderAspectMatrixTo(document.querySelector('#solar-aspect-readout'), currentSolarChart.longitudes, null, true);
+    renderAspectMatrixTo(document.querySelector('#solar-cross-readout'), currentChart.longitudes, currentSolarChart.longitudes, false);
     return;
   }
 
@@ -796,6 +880,9 @@ function renderSolarLayers() {
   if (overlayCanvas) overlayCanvas.hidden = false;
   drawChart(innerChart.longitudes, innerChart.rising, innerChart.houses, canvas, true, false);
   drawChart(outerChart.longitudes, outerChart.rising, outerChart.houses, overlayCanvas, false, true, true, innerChart.rising);
+  renderAspectMatrixTo(document.querySelector('#aspect-readout'), currentChart.longitudes, null, true);
+  renderAspectMatrixTo(document.querySelector('#solar-aspect-readout'), currentSolarChart.longitudes, null, true);
+  renderAspectMatrixTo(document.querySelector('#solar-cross-readout'), currentChart.longitudes, currentSolarChart.longitudes, false);
 }
 
 async function renderSolarExperience() {
