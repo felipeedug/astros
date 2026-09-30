@@ -40,6 +40,12 @@ Sem esses arquivos, não é possível extrair o núcleo real com fidelidade nem 
 - core/astro_core.cpp: execução do cálculo em modo legado.
 - wasm/astro_wasm.cpp: ponte para WebAssembly.
 
+## Catálogo de localidades
+
+`data/cities/` contém 257.376 localidades de 220 países, convertidas das páginas do GeoWorldMap distribuídas com o Astrovida. Os arquivos são separados por país e carregados sob demanda; a interface permite escolher país, estado/região e cidade. A seleção envia latitude, longitude e fuso do registro ao cálculo WASM.
+
+Para regenerar o catálogo, execute `python tools/import_astrovida_cities.py --source "C:\Users\felip\Fontes Astrovida\db" --output data/cities`. Preserve e consulte `data/cities/LICENSE.txt`: o catálogo original inclui condições próprias de uso e redistribuição.
+
 ## Observação importante
 
 O código em app.js foi modernizado para consumir uma API JSON. No momento, ele usa um fallback local enquanto a extração de `CalcMapa.cpp` ainda separa o cálculo da camada MFC.

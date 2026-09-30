@@ -60,7 +60,10 @@ std::string ComputeNatalChartJson(const std::string& name,
                                   const std::string& date,
                                   const std::string& time,
                                   const std::string& place,
-                                  bool daylightSaving) {
+                                  bool daylightSaving,
+                                  double latitude,
+                                  double longitude,
+                                  double utcOffset) {
   int day = 1;
   int month = 1;
   int year = 2000;
@@ -69,7 +72,12 @@ std::string ComputeNatalChartJson(const std::string& name,
   char dateSeparator2 = '-';
   dateInput >> year >> dateSeparator1 >> month >> dateSeparator2 >> day;
   Location location = ResolvePlace(place);
-  if (daylightSaving && location.legacyZone < 0.0) {
+  if (std::isfinite(latitude) && std::isfinite(longitude) && std::isfinite(utcOffset)) {
+    location.latitude = latitude;
+    location.longitude = -longitude;
+    location.legacyZone = utcOffset;
+  }
+  if (daylightSaving) {
     location.legacyZone += 1.0;
   }
 

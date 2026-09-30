@@ -32,6 +32,18 @@ const balanceQualities = { Sun: 2, Moon: 2, Mercury: 1, Venus: 1, Mars: 1, Jupit
 const signRhythms = ['Cardeal', 'Fixo', 'Mutavel', 'Cardeal', 'Fixo', 'Mutavel', 'Cardeal', 'Fixo', 'Mutavel', 'Cardeal', 'Fixo', 'Mutavel'];
 const signPolarities = ['Positivo', 'Negativo', 'Positivo', 'Negativo', 'Positivo', 'Negativo', 'Positivo', 'Negativo', 'Positivo', 'Negativo', 'Positivo', 'Negativo'];
 const cities = { 'sao paulo': [-23.5505, -46.6333, -3], 'rio de janeiro': [-22.9068, -43.1729, -3], 'brasilia': [-15.7939, -47.8828, -3], 'lisboa': [38.7223, -9.1393, 0], 'london': [51.5072, -0.1276, 0], 'new york': [40.7128, -74.006, -5] };
+const selectedCityLocations = new Map();
+const cityShardCache = new Map();
+const cityCatalogPromise = window.location.protocol === 'file:'
+  ? Promise.resolve(null)
+  : fetch('./data/cities/index.json').then((response) => {
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    return response.json();
+  }).catch((error) => {
+    console.error('Catálogo de cidades indisponível.', error);
+    return null;
+  });
+let locationPickersReady = Promise.resolve();
 const brazilianStateNames = Object.entries({ acre: 'AC', alagoas: 'AL', amapa: 'AP', amazonas: 'AM', bahia: 'BA', ceara: 'CE', 'distrito federal': 'DF', 'espirito santo': 'ES', goias: 'GO', maranhao: 'MA', 'mato grosso do sul': 'MS', 'mato grosso': 'MT', 'minas gerais': 'MG', paraiba: 'PB', parana: 'PR', pernambuco: 'PE', piaui: 'PI', 'rio de janeiro': 'RJ', 'rio grande do norte': 'RN', 'rio grande do sul': 'RS', rondonia: 'RO', roraima: 'RR', 'santa catarina': 'SC', 'sao paulo': 'SP', sergipe: 'SE', tocantins: 'TO', para: 'PA' }).sort(([first], [second]) => second.length - first.length);
 const brazilianCityStates = { 'sao paulo': 'SP', 'rio de janeiro': 'RJ', brasilia: 'DF' };
 const brazilDstRulesPromise = window.location.protocol === 'file:'
@@ -60,9 +72,249 @@ function degrees(value) { return value * 180 / Math.PI; }
 function signAt(longitude) { return Math.floor(mod(longitude) / 30); }
 function normalizePlace(place) { return place.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim(); }
 function cityData(place) {
-  const normalized = normalizePlace(place).split(',')[0].trim();
-  return cities[normalized] || null;
+  const normalizedPlace = normalizePlace(place);
+  const selected = selectedCityLocations.get(normalizedPlace);
+  if (selected) return selected;
+  const normalizedCity = normalizedPlace.split(',')[0].trim();
+  return cities[normalizedCity] || null;
 }
+
+async function initializeLocationPickers() {
+  const catalog = await cityCatalogPromise;
+  if (!catalog?.countries?.length) return;
+  const countriesById = new Map(catalog.countries.map((country) => [country.id, country]));
+  const getShard = (country) => {
+    if (!cityShardCache.has(country.id)) {
+      cityShardCache.set(country.id, fetch(`./data/cities/${country.file}`).then((response) => {
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return response.json();
+      }).then((data) => data.cities || []));
+    }
+    return cityShardCache.get(country.id);
+  };
+
+  async function initializePicker(prefix, defaultCountryName, defaultRegionCode, defaultCityName) {
+    const countrySelect = document.querySelector(`#${prefix}-country`);
+    const regionSelect = document.querySelector(`#${prefix}-region`);
+    const regionField = regionSelect?.closest('.location-region-field');
+    const cityInput = document.querySelector(`#${prefix}-city`);
+    const cityList = document.querySelector(`#${prefix}-city-options`);
+    const placeInput = document.querySelector(prefix === 'birth' ? '#place' : '#solar-place');
+    if (!countrySelect || !regionSelect || !cityInput || !cityList || !placeInput) return;
+
+    const countries = [...catalog.countries].sort((first, second) => first.name.localeCompare(second.name));
+    countrySelect.replaceChildren(new Option('Selecione um país', ''));
+    countries.forEach((country) => countrySelect.add(new Option(country.name, country.id)));
+
+    let currentCountry = null;
+    let cityRecords = [];
+    let regionNameByCode = new Map();
+    let countryGeneration = 0;
+    let suggestionMatches = [];
+    let duplicateCounts = new Map();
+    let renderedSuggestionCount = 0;
+    let activeSuggestionIndex = -1;
+    let chosenLabel = '';
+    let chosenRecord = null;
+
+    const clearCity = () => {
+      cityInput.value = '';
+      cityInput.setCustomValidity('Selecione uma cidade nas sugestões.');
+      placeInput.value = '';
+      cityList.replaceChildren();
+      cityList.hidden = true;
+      cityInput.setAttribute('aria-expanded', 'false');
+      cityInput.removeAttribute('aria-activedescendant');
+      suggestionMatches = [];
+      renderedSuggestionCount = 0;
+      activeSuggestionIndex = -1;
+      chosenLabel = '';
+      chosenRecord = null;
+    };
+
+    const regionRecords = () => {
+      const regionCode = regionSelect.value;
+      if (!regionCode) return [];
+      return cityRecords.filter((record) => record[1] === regionCode);
+    };
+
+    const labelForRecord = (record) => {
+      const regionName = regionNameByCode.get(record[1]) || record[1];
+      const baseLabel = currentCountry.regions.length > 1 ? `${record[0]} — ${regionName}` : record[0];
+      const duplicateKey = `${normalizePlace(record[0])}|${record[1]}`;
+      return duplicateCounts.get(duplicateKey) > 1 ? `${baseLabel} · ${Number(record[2]).toFixed(3)}, ${Number(record[3]).toFixed(3)}` : baseLabel;
+    };
+
+    const chooseCity = (record, label = labelForRecord(record)) => {
+      const canonicalPlace = `${record[0]}, ${record[1]}, ${currentCountry.name}`;
+      cityInput.value = label;
+      placeInput.value = canonicalPlace;
+      selectedCityLocations.set(normalizePlace(canonicalPlace), [record[2], record[3], record[4], record[1], currentCountry.name, record[0]]);
+      cityInput.setCustomValidity('');
+      cityInput.setAttribute('aria-expanded', 'false');
+      cityInput.removeAttribute('aria-activedescendant');
+      cityList.hidden = true;
+      chosenLabel = label;
+      chosenRecord = record;
+      activeSuggestionIndex = -1;
+    };
+
+    const appendSuggestions = () => {
+      const end = Math.min(renderedSuggestionCount + 80, suggestionMatches.length);
+      const fragment = document.createDocumentFragment();
+      for (let index = renderedSuggestionCount; index < end; index += 1) {
+        const record = suggestionMatches[index];
+        const option = document.createElement('button');
+        option.type = 'button';
+        option.id = `${prefix}-city-option-${index}`;
+        option.className = 'city-suggestion-option';
+        option.setAttribute('role', 'option');
+        option.setAttribute('aria-selected', index === activeSuggestionIndex ? 'true' : 'false');
+        option.dataset.index = String(index);
+        option.textContent = labelForRecord(record);
+        fragment.append(option);
+      }
+      cityList.append(fragment);
+      renderedSuggestionCount = end;
+      cityList.hidden = suggestionMatches.length === 0;
+      cityInput.setAttribute('aria-expanded', String(!cityList.hidden));
+    };
+
+    const setActiveSuggestion = (index) => {
+      if (index < 0 || index >= renderedSuggestionCount) return;
+      cityList.querySelector('[aria-selected="true"]')?.setAttribute('aria-selected', 'false');
+      activeSuggestionIndex = index;
+      const option = document.getElementById(`${prefix}-city-option-${index}`);
+      option?.setAttribute('aria-selected', 'true');
+      cityInput.setAttribute('aria-activedescendant', `${prefix}-city-option-${index}`);
+      option?.scrollIntoView({ block: 'nearest' });
+    };
+
+    const refreshSuggestions = (preferredCity = '') => {
+      const records = regionRecords();
+      duplicateCounts = new Map();
+      records.forEach((record) => {
+        const key = `${normalizePlace(record[0])}|${record[1]}`;
+        duplicateCounts.set(key, (duplicateCounts.get(key) || 0) + 1);
+      });
+      const queryText = preferredCity || cityInput.value.split(/[—·]/)[0];
+      const query = normalizePlace(queryText);
+      suggestionMatches = query.length
+        ? records.filter((record) => normalizePlace(record[0]).includes(query))
+        : records;
+      const exactPreferred = preferredCity
+        ? records.find((record) => normalizePlace(record[0]) === normalizePlace(preferredCity))
+        : null;
+      if (exactPreferred) {
+        suggestionMatches = [exactPreferred, ...suggestionMatches.filter((record) => record !== exactPreferred)];
+      }
+      renderedSuggestionCount = 0;
+      activeSuggestionIndex = -1;
+      cityList.replaceChildren();
+      if (!preferredCity) {
+        cityInput.setCustomValidity('Selecione uma cidade nas sugestões.');
+        placeInput.value = '';
+        chosenLabel = '';
+        chosenRecord = null;
+      }
+      appendSuggestions();
+      if (exactPreferred) chooseCity(exactPreferred);
+    };
+
+    async function loadCountry(countryId, preferredRegion = '', preferredCity = '') {
+      const generation = ++countryGeneration;
+      currentCountry = countriesById.get(countryId) || null;
+      clearCity();
+      if (!currentCountry) {
+        regionSelect.replaceChildren(new Option('Selecione um estado/região', ''));
+        regionField.hidden = true;
+        cityInput.disabled = true;
+        cityRecords = [];
+        return;
+      }
+      regionNameByCode = new Map(currentCountry.regions.map((region) => [region.code, region.name]));
+      regionSelect.replaceChildren();
+      const hasMultipleRegions = currentCountry.regions.length > 1;
+      regionField.hidden = !hasMultipleRegions;
+      regionSelect.required = hasMultipleRegions;
+      if (hasMultipleRegions) regionSelect.add(new Option('Selecione um estado/região', ''));
+      currentCountry.regions.forEach((region) => regionSelect.add(new Option(region.name, region.code)));
+      regionSelect.value = currentCountry.regions.some((region) => region.code === preferredRegion)
+        ? preferredRegion
+        : hasMultipleRegions ? '' : currentCountry.regions[0]?.code || '';
+      cityInput.disabled = hasMultipleRegions && !regionSelect.value;
+
+      try {
+        cityRecords = await getShard(currentCountry);
+      } catch (error) {
+        cityRecords = [];
+        console.error(`Cidades de ${currentCountry.name} indisponíveis.`, error);
+      }
+      if (generation !== countryGeneration) return;
+      refreshSuggestions(preferredCity);
+    }
+
+    countrySelect.addEventListener('change', () => loadCountry(countrySelect.value));
+    regionSelect.addEventListener('change', () => {
+      clearCity();
+      cityInput.disabled = currentCountry?.regions.length > 1 && !regionSelect.value;
+      refreshSuggestions();
+    });
+    cityInput.addEventListener('input', () => refreshSuggestions());
+    cityInput.addEventListener('focus', () => {
+      if (!chosenRecord) refreshSuggestions();
+    });
+    cityInput.addEventListener('change', () => {
+      if (chosenRecord && cityInput.value === chosenLabel) return;
+      const query = normalizePlace(cityInput.value.split(/[—·]/)[0]);
+      const exact = regionRecords().find((record) => normalizePlace(record[0]) === query);
+      if (exact) chooseCity(exact);
+      else refreshSuggestions();
+    });
+    cityInput.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        if (cityList.hidden) refreshSuggestions();
+        if (renderedSuggestionCount === 0) return;
+        setActiveSuggestion(Math.min(activeSuggestionIndex + 1, renderedSuggestionCount - 1));
+      } else if (event.key === 'ArrowUp' && !cityList.hidden) {
+        event.preventDefault();
+        setActiveSuggestion(Math.max(activeSuggestionIndex - 1, 0));
+      } else if (event.key === 'Enter' && !cityList.hidden) {
+        const query = normalizePlace(cityInput.value.split(/[—·]/)[0]);
+        const exact = suggestionMatches.find((record) => normalizePlace(record[0]) === query);
+        const record = exact || (activeSuggestionIndex >= 0 ? suggestionMatches[activeSuggestionIndex] : null);
+        if (record) {
+          event.preventDefault();
+          chooseCity(record);
+        }
+      } else if (event.key === 'Escape') {
+        cityList.hidden = true;
+        cityInput.setAttribute('aria-expanded', 'false');
+      }
+    });
+    cityList.addEventListener('click', (event) => {
+      const option = event.target.closest('[role="option"]');
+      if (option) chooseCity(suggestionMatches[Number(option.dataset.index)]);
+    });
+    cityList.addEventListener('scroll', () => {
+      if (cityList.scrollTop + cityList.clientHeight >= cityList.scrollHeight - 32 && renderedSuggestionCount < suggestionMatches.length) {
+        appendSuggestions();
+      }
+    });
+
+    const defaultCountry = countries.find((country) => normalizePlace(country.name) === normalizePlace(defaultCountryName));
+    countrySelect.value = defaultCountry?.id || '';
+    await loadCountry(countrySelect.value, defaultRegionCode, defaultCityName);
+  }
+
+  await Promise.all([
+    initializePicker('birth', 'Brasil', 'SP', 'São Paulo'),
+    initializePicker('solar', 'Brasil', 'SP', 'São Paulo')
+  ]);
+}
+
+locationPickersReady = initializeLocationPickers();
 
 function brazilianStateForPlace(place) {
   const normalized = normalizePlace(place);
@@ -544,9 +796,10 @@ async function callAstroApi(data) {
     place: data.place
   };
   const daylightSaving = await hasHistoricalBrazilianDst(payload.place, payload.date);
+  const [latitude, longitude, utcOffset] = cityData(payload.place) || [NaN, NaN, NaN];
 
   if (window.astroWasm && typeof window.astroWasm.computeJsonApi === 'function') {
-    const json = window.astroWasm.computeJsonApi(payload.name, payload.date, payload.time, payload.place, daylightSaving);
+    const json = window.astroWasm.computeJsonApi(payload.name, payload.date, payload.time, payload.place, daylightSaving, latitude, longitude, utcOffset);
     const result = JSON.parse(json);
     if (result.sunLongitude !== undefined) {
       result.longitudes = result.longitudes || { Sun: result.sunLongitude, Moon: result.moonLongitude };
@@ -1027,6 +1280,7 @@ async function renderChartMetadata() {
 }
 
 async function renderMap() {
+  await locationPickersReady;
   const name = document.querySelector('#name').value.trim() || 'visitante';
   const date = document.querySelector('#date').value || '1990-06-21';
   const time = document.querySelector('#time').value || '12:00';

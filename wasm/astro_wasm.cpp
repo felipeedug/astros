@@ -7,8 +7,8 @@ namespace em = emscripten;
 
 namespace {
 
-std::string ComputeJsonApi(const std::string& name, const std::string& date, const std::string& time, const std::string& place, bool daylightSaving) {
-  return astro_legacy::ComputeNatalChartJson(name, date, time, place, daylightSaving);
+std::string ComputeJsonApi(const std::string& name, const std::string& date, const std::string& time, const std::string& place, bool daylightSaving, double latitude, double longitude, double utcOffset) {
+  return astro_legacy::ComputeNatalChartJson(name, date, time, place, daylightSaving, latitude, longitude, utcOffset);
 }
 
 }  // namespace

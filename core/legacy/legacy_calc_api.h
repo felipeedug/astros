@@ -8,6 +8,9 @@ std::string ComputeNatalChartJson(const std::string& name,
                                   const std::string& date,
                                   const std::string& time,
                                   const std::string& place,
-                                  bool daylightSaving);
+                                  bool daylightSaving,
+                                  double latitude,
+                                  double longitude,
+                                  double utcOffset);
 
 }  // namespace astro_legacy
