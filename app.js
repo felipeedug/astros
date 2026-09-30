@@ -108,7 +108,6 @@ async function initializeLocationPickers() {
 
     let currentCountry = null;
     let cityRecords = [];
-    let regionNameByCode = new Map();
     let countryGeneration = 0;
     let suggestionMatches = [];
     let duplicateCounts = new Map();
@@ -139,8 +138,7 @@ async function initializeLocationPickers() {
     };
 
     const labelForRecord = (record) => {
-      const regionName = regionNameByCode.get(record[1]) || record[1];
-      const baseLabel = currentCountry.regions.length > 1 ? `${record[0]} — ${regionName}` : record[0];
+      const baseLabel = currentCountry.regions.length > 1 ? `${record[0]} — ${record[1]}` : record[0];
       const duplicateKey = `${normalizePlace(record[0])}|${record[1]}`;
       return duplicateCounts.get(duplicateKey) > 1 ? `${baseLabel} · ${Number(record[2]).toFixed(3)}, ${Number(record[3]).toFixed(3)}` : baseLabel;
     };
@@ -232,7 +230,6 @@ async function initializeLocationPickers() {
         cityRecords = [];
         return;
       }
-      regionNameByCode = new Map(currentCountry.regions.map((region) => [region.code, region.name]));
       regionSelect.replaceChildren();
       const hasMultipleRegions = currentCountry.regions.length > 1;
       regionField.hidden = !hasMultipleRegions;
@@ -254,11 +251,17 @@ async function initializeLocationPickers() {
       refreshSuggestions(preferredCity);
     }
 
-    countrySelect.addEventListener('change', () => loadCountry(countrySelect.value));
+    countrySelect.addEventListener('change', async () => {
+      const countryId = countrySelect.value;
+      await loadCountry(countryId);
+      if (countrySelect.value !== countryId || !currentCountry) return;
+      (currentCountry.regions.length > 1 ? regionSelect : cityInput).focus();
+    });
     regionSelect.addEventListener('change', () => {
       clearCity();
       cityInput.disabled = currentCountry?.regions.length > 1 && !regionSelect.value;
       refreshSuggestions();
+      if (regionSelect.value && !cityInput.disabled) cityInput.focus();
     });
     cityInput.addEventListener('input', () => refreshSuggestions());
     cityInput.addEventListener('focus', () => {
