@@ -4,11 +4,14 @@ const form = document.querySelector('#birth-form');
 const canvas = document.querySelector('#chart');
 let context = canvas.getContext('2d');
 
+const themeColor = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 const signs = ['ARIES', 'TAURUS', 'GEMINI', 'CANCER', 'LEO', 'VIRGO', 'LIBRA', 'SCORPIO', 'SAGITTARIUS', 'CAPRICORN', 'AQUARIUS', 'PISCES'];
 const signNames = ['Aries', 'Touro', 'Gemeos', 'Cancer', 'Leao', 'Virgem', 'Libra', 'Escorpiao', 'Sagitario', 'Capricornio', 'Aquario', 'Peixes'];
-const colors = { ink: '#20252b', coral: '#d97b65', gold: '#d5a34c', mint: '#76a99a', line: '#d8d2c7', paper: '#f4f0e8' };
+const colors = { ink: themeColor('--azul-noite'), coral: themeColor('--rosa-queimado'), gold: themeColor('--dourado'), mint: themeColor('--azul-ceu'), line: themeColor('--cinza-azulado'), paper: themeColor('--off-white') };
 const signColors = { fire: '#e34234', earth: '#4b5320', air: '#f28c28', water: '#4169e1' };
 const signElements = ['fire', 'earth', 'air', 'water', 'fire', 'earth', 'air', 'water', 'fire', 'earth', 'air', 'water'];
+const elementColorKeys = { Fogo: 'fire', Terra: 'earth', Ar: 'air', 'Água': 'water' };
+const rhythmColors = { Cardeal: signColors.air, Fixo: signColors.fire, 'Mutável': signColors.water };
 const planetReadoutOrder = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto', 'Ascendant', 'Midheaven', 'Fortune', 'NorthNode', 'SouthNode', 'EastPoint', 'Vertex', 'Lilith', 'Priapo', 'Chiron', 'Demeter', 'Pallas', 'Juno', 'Vesta'];
 const objectNames = { Sun: 'Sol', Moon: 'Lua', Mercury: 'Mercurio', Venus: 'Venus', Mars: 'Marte', Jupiter: 'Jupiter', Saturn: 'Saturno', Uranus: 'Urano', Neptune: 'Netuno', Pluto: 'Plutao', Chiron: 'Chiron', Demeter: 'Demeter', Pallas: 'Pallas', Juno: 'Juno', Vesta: 'Vesta', NorthNode: 'Cabeça', SouthNode: 'Cauda', Lilith: 'Lilith', Priapo: 'Príapo', Fortune: 'Roda da Fortuna', EastPoint: 'Ponto Leste', Vertex: 'Vertex', Ascendant: 'Ascendente', Midheaven: 'Meio do Ceu' };
 const objectLabels = { Ascendant: 'ASC', Midheaven: 'MC', EastPoint: 'EP' };
@@ -425,9 +428,23 @@ function renderBalanceTables(longitudes) {
     totals.polarities[signPolarities[signIndex]] += balanceQualities[planet];
   });
   const renderRows = (element, values) => Object.entries(values).map(([label, value]) => `<div><b>${label}</b><strong>${value}</strong></div>`).join('');
-  document.querySelector('#element-balance').innerHTML = renderRows('elements', totals.elements);
-  document.querySelector('#rhythm-balance').innerHTML = renderRows('rhythms', totals.rhythms);
-  document.querySelector('#polarity-balance').innerHTML = renderRows('polarities', totals.polarities);
+  const renderBarRows = (values, colorMap) => {
+    const maximum = Math.max(1, ...Object.values(values));
+    return Object.entries(values).map(([label, value]) => {
+      const percentage = Math.round(value / maximum * 100);
+      return `<div class="balance-bar-row" style="--balance-color:${colorMap[label]}"><b>${label}</b><strong>${value}</strong><span class="balance-bar-meter" role="meter" aria-label="${label}: ${value} pontos" aria-valuemin="0" aria-valuemax="${maximum}" aria-valuenow="${value}"><span class="balance-bar-fill" style="width:${percentage}%"></span></span></div>`;
+    }).join('');
+  };
+  const elementColors = Object.fromEntries(Object.entries(elementColorKeys).map(([element, colorKey]) => [element, signColors[colorKey]]));
+  document.querySelector('#element-balance').innerHTML = renderBarRows(totals.elements, elementColors);
+  document.querySelector('#rhythm-balance').innerHTML = renderBarRows(totals.rhythms, rhythmColors);
+  const negativePoints = totals.polarities.Negativo;
+  const positivePoints = totals.polarities.Positivo;
+  const polarityTotal = negativePoints + positivePoints;
+  const negativePercentage = polarityTotal ? negativePoints / polarityTotal * 100 : 0;
+  const positivePercentage = polarityTotal ? positivePoints / polarityTotal * 100 : 0;
+  const polarityBalance = document.querySelector('#polarity-balance');
+  polarityBalance.innerHTML = `<div class="polarity-balance" style="--polarity-negative:${signColors.water};--polarity-positive:${signColors.fire}"><div class="polarity-balance-bar" role="img" aria-label="${negativePoints} pontos negativos e ${positivePoints} positivos"><span class="polarity-balance-negative" style="width:${negativePercentage}%"></span><span class="polarity-balance-positive" style="width:${positivePercentage}%"></span></div><div class="polarity-balance-legend"><span><i class="polarity-swatch polarity-swatch-negative"></i>Negativo <strong>${negativePoints}</strong></span><span><i class="polarity-swatch polarity-swatch-positive"></i>Positivo <strong>${positivePoints}</strong></span></div></div>`;
 }
 
 function renderNatalInterpretation(content, chart) {
@@ -1007,7 +1024,9 @@ function drawChart(longitudes, rising, houses = [], targetCanvas = canvas, updat
   context.clearRect(0, 0, size, size);
   if (!transparent) {
     context.fillStyle = colors.paper;
+    context.globalAlpha = 0.94;
     context.fillRect(0, 0, size, size);
+    context.globalAlpha = 1;
   }
   context.strokeStyle = colors.line;
   context.lineWidth = 1;
@@ -1185,7 +1204,6 @@ function drawChart(longitudes, rising, houses = [], targetCanvas = canvas, updat
     context.globalAlpha = 1;
   }
 
-  const planetColors = { Sun: colors.gold, Moon: colors.coral, Mercury: colors.mint, Venus: colors.coral, Mars: colors.ink, Jupiter: colors.gold, Saturn: colors.mint, Uranus: colors.mint, Neptune: colors.coral, Pluto: colors.ink, Chiron: colors.gold, Demeter: colors.mint, Vesta: colors.coral, Node: colors.ink, Lilith: colors.coral, Fortune: colors.gold, Vertex: colors.mint, Ascendant: colors.ink };
   const aspects = chartAspects(longitudes);
 
   if (!outerLayer) {
