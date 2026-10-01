@@ -18,6 +18,7 @@ Object.keys(objectGlyphs).forEach((key) => { objectGlyphs[key] = String.fromChar
 const aspectColors = { conjunction: '#71857b', sextile: '#5d9b72', square: '#c94f4f', trine: '#4d73b3', opposition: '#c94f4f' };
 const aspectNames = { conjunction: 'Conjuncao', sextile: 'Sextil', square: 'Quadratura', trine: 'Trigono', opposition: 'Oposicao' };
 const aspectGlyphNames = { conjunction: 'Conjunção', sextile: 'Sextil', square: 'Quadratura', trine: 'Trígono', opposition: 'Oposição' };
+const aspectGlyphs = { conjunction: '☌', sextile: '⚹', square: '□', trine: '△', opposition: '☍' };
 const visibleAspects = new Set(['conjunction', 'sextile', 'square', 'trine', 'opposition']);
 const optionalObjects = new Set(['Chiron', 'Demeter', 'Pallas', 'Juno', 'Vesta', 'Fortune', 'NorthNode', 'SouthNode', 'EastPoint', 'Vertex', 'Lilith', 'Priapo']);
 const visibleAdditionalObjects = new Set(optionalObjects);
@@ -26,6 +27,7 @@ let currentChart = null;
 let currentSolarChart = null;
 let currentNatalInput = null;
 let interpretationData = null;
+const chartHitTargets = new WeakMap();
 const planetIds = { Sun: 0, Moon: 1, Mercury: 2, Venus: 3, Mars: 4, Jupiter: 5, Saturn: 6, Uranus: 7, Neptune: 8, Pluto: 9, Ascendant: 10, Midheaven: 11, NorthNode: 13, SouthNode: 14, Lilith: 17, Priapo: 18, Vertex: 16, Chiron: 19, Demeter: 20, Vesta: 23, Fortune: 12 };
 const balanceBodies = { Sun: 3, Moon: 3, Mercury: 2, Venus: 2, Mars: 2, Jupiter: 2, Saturn: 2, Uranus: 1, Neptune: 1, Pluto: 1, Ascendant: 3, Midheaven: 1 };
 const balanceQualities = { Sun: 2, Moon: 2, Mercury: 1, Venus: 1, Mars: 1, Jupiter: 1, Saturn: 1, Uranus: 1, Neptune: 1, Pluto: 1, Ascendant: 2, Midheaven: 2 };
@@ -362,7 +364,13 @@ function toDegreeText(longitude) {
 }
 function positionText(longitude) {
   const normalized = roundedLongitude(longitude);
-  return `${toDegreeText(normalized)} ${signNames[signAt(normalized)]}`;
+  const signIndex = signAt(normalized);
+  return {
+    degree: toDegreeText(normalized),
+    signGlyph: signGlyphs[signIndex],
+    signName: signNames[signIndex],
+    signColor: signColors[signElements[signIndex]]
+  };
 }
 
 function withLunarNodes(longitudes) {
@@ -551,6 +559,135 @@ function chartAspects(longitudes, selectedPlanets = ['Sun', 'Moon', 'Mercury', '
 
   return aspects;
 }
+
+function showObjectNote(chartData, planet, longitude) {
+  const dialog = document.querySelector('#object-note');
+  const chartLongitudes = { ...visibleLongitudes(chartData.longitudes), Ascendant: chartData.rising };
+  const activePlanets = planetReadoutOrder.filter((item) => Number.isFinite(chartLongitudes[item]));
+  const relatedAspects = chartAspects(chartLongitudes, activePlanets).filter((aspect) => aspect.firstPlanet === planet || aspect.secondPlanet === planet);
+  const title = document.querySelector('#object-note-title');
+  const titleSymbol = title.querySelector('.object-note-title-symbol');
+  const titleText = document.querySelector('#object-note-title-text');
+  const chartTitle = document.querySelector('#object-note-chart');
+  const position = document.querySelector('#object-note-position');
+  const aspectList = document.querySelector('#object-note-aspects');
+
+  const normalizedLongitude = roundedLongitude(longitude);
+  const itemSignColor = signColors[signElements[signAt(normalizedLongitude)]];
+  titleSymbol.textContent = objectLabels[planet] || objectGlyphs[planet] || planet.slice(0, 3).toUpperCase();
+  titleSymbol.style.color = itemSignColor;
+  titleSymbol.classList.toggle('object-note-title-symbol--label', Boolean(objectLabels[planet]));
+  titleText.textContent = objectNames[planet] || planet;
+  titleText.style.color = itemSignColor;
+  chartTitle.textContent = chartData.title;
+  const positionParts = positionText(longitude);
+  position.replaceChildren();
+  position.style.color = positionParts.signColor;
+  const degree = document.createElement('span');
+  degree.textContent = positionParts.degree;
+  const signGlyph = document.createElement('span');
+  signGlyph.className = 'object-note-sign-glyph';
+  signGlyph.textContent = positionParts.signGlyph;
+  signGlyph.style.color = positionParts.signColor;
+  const signName = document.createElement('span');
+  signName.textContent = positionParts.signName;
+  position.append(degree, signGlyph, signName);
+  aspectList.replaceChildren();
+  if (relatedAspects.length) {
+    relatedAspects.forEach((aspect) => {
+      const otherPlanet = aspect.firstPlanet === planet ? aspect.secondPlanet : aspect.firstPlanet;
+      const aspectKey = Object.keys(aspectNames).find((key) => aspectNames[key] === aspect.name);
+      const item = document.createElement('li');
+      const aspectGroup = document.createElement('span');
+      aspectGroup.className = 'object-note-aspect-group';
+      const aspectSymbol = document.createElement('span');
+      aspectSymbol.className = 'object-note-aspect-symbol';
+      aspectSymbol.textContent = aspectGlyphs[aspectKey] || '';
+      aspectSymbol.style.setProperty('--aspect-color', aspect.color);
+      const aspectName = document.createElement('span');
+      aspectName.className = 'object-note-aspect-name';
+      aspectName.textContent = aspectGlyphNames[aspectKey] || aspect.name;
+      aspectGroup.append(aspectSymbol, aspectName);
+      const planetGroup = document.createElement('span');
+      planetGroup.className = 'object-note-planet-group';
+      const planetLongitude = chartLongitudes[otherPlanet];
+      const planetColor = Number.isFinite(planetLongitude) ? signColors[signElements[signAt(planetLongitude)]] : colors.ink;
+      planetGroup.style.setProperty('--planet-color', planetColor);
+      const planetSymbol = document.createElement('span');
+      planetSymbol.className = `object-note-planet-symbol${objectLabels[otherPlanet] ? ' object-note-planet-symbol--label' : ''}`;
+      planetSymbol.textContent = objectLabels[otherPlanet] || objectGlyphs[otherPlanet] || '';
+      const planetName = document.createElement('span');
+      planetName.className = 'object-note-planet-name';
+      planetName.textContent = objectNames[otherPlanet] || otherPlanet;
+      const planetPositionParts = positionText(planetLongitude);
+      const planetPosition = document.createElement('span');
+      planetPosition.className = 'object-note-planet-position';
+      const planetDegree = document.createElement('span');
+      planetDegree.textContent = planetPositionParts.degree;
+      const planetSignGlyph = document.createElement('span');
+      planetSignGlyph.className = 'object-note-planet-sign-glyph';
+      planetSignGlyph.textContent = planetPositionParts.signGlyph;
+      const planetSignName = document.createElement('span');
+      planetSignName.textContent = planetPositionParts.signName;
+      planetPosition.append(planetDegree, planetSignGlyph, planetSignName);
+      const orb = document.createElement('small');
+      orb.className = 'object-note-orb';
+      orb.textContent = `Orbe ${aspect.orb.toFixed(1)}°`;
+      item.setAttribute('aria-label', `${aspectGlyphNames[aspectKey] || aspect.name} com ${objectNames[otherPlanet] || otherPlanet} em ${planetPositionParts.degree} ${planetPositionParts.signName}, orbe de ${aspect.orb.toFixed(1)} graus`);
+      planetGroup.append(planetSymbol, planetName, planetPosition);
+      item.append(aspectGroup, planetGroup, orb);
+      aspectList.append(item);
+    });
+  } else {
+    const empty = document.createElement('li');
+    empty.className = 'object-note-empty';
+    empty.textContent = 'Nenhum aspecto dentro dos critérios e da orbe atuais.';
+    aspectList.append(empty);
+  }
+  if (!dialog.open) dialog.showModal();
+}
+
+function chartObjectAt(canvasTarget, event) {
+  const canvasTargets = canvasTarget.id === 'solar-overlay-chart' ? [canvasTarget, canvas] : [canvasTarget];
+  let nearest = null;
+  let nearestDistance = Infinity;
+
+  canvasTargets.forEach((target) => {
+    const chartData = chartHitTargets.get(target);
+    const bounds = target.getBoundingClientRect();
+    if (!chartData || !bounds.width || !bounds.height) return;
+    const x = (event.clientX - bounds.left) * target.width / bounds.width;
+    const y = (event.clientY - bounds.top) * target.height / bounds.height;
+    const scale = bounds.width / target.width;
+    const hitRadius = Math.max(22, 26 / scale);
+
+    chartData.points.forEach((point) => {
+      const distance = Math.hypot(point.x - x, point.y - y);
+      if (distance <= hitRadius && distance < nearestDistance) {
+        nearest = { chartData, point };
+        nearestDistance = distance;
+      }
+    });
+  });
+  return nearest;
+}
+
+function handleChartPointer(event) {
+  const hit = chartObjectAt(event.currentTarget, event);
+  event.currentTarget.style.cursor = hit ? 'pointer' : '';
+  if (event.type === 'click' && hit) showObjectNote(hit.chartData, hit.point.planet, hit.point.longitude);
+}
+
+document.querySelectorAll('#chart-wrap canvas, #solar-pair canvas').forEach((target) => {
+  target.addEventListener('click', handleChartPointer);
+  target.addEventListener('pointermove', handleChartPointer);
+  target.title = 'Clique em um objeto para ver sua posição e seus aspectos';
+});
+
+document.querySelector('#object-note-close')?.addEventListener('click', () => document.querySelector('#object-note')?.close());
+document.querySelector('#object-note')?.addEventListener('click', (event) => {
+  if (event.target === event.currentTarget) event.currentTarget.close();
+});
 
 function crossChartAspects(solarLongitudes, natalLongitudes) {
   const aspectDefinitions = [
@@ -848,6 +985,7 @@ function drawChart(longitudes, rising, houses = [], targetCanvas = canvas, updat
   const chartAngle = (longitude) => radians(180 + ascendantLongitude - mod(longitude));
   const displayAngles = {};
   const displayRadii = {};
+  const chartHitPoints = [];
   const displayEntries = Object.entries(plottedLongitudes).filter(([, longitude]) => Number.isFinite(longitude)).sort(([, first], [, second]) => first - second);
   const displayGroups = [];
   displayEntries.forEach((entry) => {
@@ -1072,12 +1210,16 @@ function drawChart(longitudes, rising, houses = [], targetCanvas = canvas, updat
     if (!Number.isFinite(longitude)) return;
     const angle = displayAngles[planet] || chartAngle(longitude);
     const symbolDistance = outerLayer ? radius * 1.1 : displayRadii[planet] || radius * 0.74;
+    const x = center + Math.cos(angle) * symbolDistance;
+    const y = center + Math.sin(angle) * symbolDistance;
+    chartHitPoints.push({ planet, longitude, x, y });
     context.fillStyle = signColors[signElements[signAt(longitude)]];
     context.font = objectLabels[planet] ? '700 12px "DM Mono"' : '22px Astrovida';
     context.textAlign = 'center';
     context.textBaseline = 'middle';
-    context.fillText(objectLabels[planet] || objectGlyphs[planet] || planet.slice(0, 3).toUpperCase(), center + Math.cos(angle) * symbolDistance, center + Math.sin(angle) * symbolDistance);
+    context.fillText(objectLabels[planet] || objectGlyphs[planet] || planet.slice(0, 3).toUpperCase(), x, y);
   });
+  chartHitTargets.set(targetCanvas, { longitudes, rising, title: solarChartLayer ? 'Revolução Solar' : 'Mapa Natal', points: chartHitPoints });
 
   if (updateReadout) {
     const readout = document.querySelector('#planet-readout');
