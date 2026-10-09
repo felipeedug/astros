@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261009-month-label-inline">
+  <link rel="stylesheet" href="styles.css?v=20261009-location-inline-fix">
   <link rel="stylesheet" href="print.css?v=20261009-calendar-toolbar">
 </head>
 <body>
@@ -120,7 +120,7 @@
       </section>
 
       <section class="ephemerides-page view-panel" id="efemerides" hidden>
-        <div class="section-heading"><span>03</span><h2>Efemérides</h2><span class="section-rule"></span><span class="section-caption">posições diárias dos planetas</span><button type="button" class="print-button heading-print" id="print-ephemeris"><span aria-hidden="true">⎙</span> Imprimir / salvar PDF</button></div>
+        <div class="section-heading"><span>03</span><h2>Efemérides</h2><span class="section-rule"></span><span class="section-caption">posições diárias dos planetas</span></div>
         <div class="ephemeris-toolbar">
           <div class="month-nav">
             <button type="button" class="month-nav-btn" id="ephemeris-prev-month" aria-label="Mês anterior">‹</button>
@@ -140,10 +140,11 @@
         <p class="ephemeris-note" id="ephemeris-note">Posições às 00:00 no horário da localidade escolhida. R indica planeta retrógrado.</p>
         <p class="ephemeris-print-context" id="ephemeris-print-context"></p>
         <div class="ephemeris-table-scroll"><table class="ephemeris-table" id="ephemeris-table" aria-label="Efemérides do mês"></table></div>
+        <button type="button" class="print-button ephemeris-print" id="print-ephemeris"><span aria-hidden="true">⎙</span> Imprimir / salvar PDF</button>
       </section>
 
       <section class="ephemerides-page view-panel" id="lua" hidden>
-        <div class="section-heading"><span>04</span><h2>Lua fora de curso</h2><span class="section-rule"></span><span class="section-caption">períodos sem aspectos antes da mudança de signo</span><button type="button" class="print-button heading-print" id="print-void"><span aria-hidden="true">⎙</span> Imprimir / salvar PDF</button></div>
+        <div class="section-heading"><span>04</span><h2>Lua fora de curso</h2><span class="section-rule"></span><span class="section-caption">períodos sem aspectos antes da mudança de signo</span></div>
         <div class="ephemeris-toolbar">
           <div class="month-nav">
             <button type="button" class="month-nav-btn" id="void-prev-month" aria-label="Mês anterior">‹</button>
@@ -163,6 +164,7 @@
         <p class="ephemeris-note">Períodos entre o último aspecto da Lua e a entrada no próximo signo, no horário da localidade escolhida.</p>
         <p class="ephemeris-print-context" id="void-print-context"></p>
         <div class="ephemeris-table-scroll"><table class="ephemeris-table void-moon-table" id="void-moon-table" aria-label="Períodos de Lua fora de curso"></table></div>
+        <button type="button" class="print-button ephemeris-print" id="print-void"><span aria-hidden="true">⎙</span> Imprimir / salvar PDF</button>
       </section>
     </main>
   </div>
