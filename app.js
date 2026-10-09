@@ -104,7 +104,7 @@ async function initializeLocationPickers() {
     const regionField = regionSelect?.closest('.location-region-field');
     const cityInput = document.querySelector(`#${prefix}-city`);
     const cityList = document.querySelector(`#${prefix}-city-options`);
-    const placeInput = document.querySelector(prefix === 'birth' ? '#place' : '#solar-place');
+    const placeInput = document.querySelector(prefix === 'birth' ? '#place' : `#${prefix}-place`);
     if (!countrySelect || !regionSelect || !cityInput || !cityList || !placeInput) return;
 
     const countries = [...catalog.countries].sort((first, second) => first.name.localeCompare(second.name));
@@ -153,6 +153,7 @@ async function initializeLocationPickers() {
       cityInput.value = label;
       placeInput.value = canonicalPlace;
       selectedCityLocations.set(normalizePlace(canonicalPlace), [record[2], record[3], record[4], record[1], currentCountry.name, record[0]]);
+      placeInput.dispatchEvent(new Event('location-changed', { bubbles: true }));
       cityInput.setCustomValidity('');
       cityInput.setAttribute('aria-expanded', 'false');
       cityInput.removeAttribute('aria-activedescendant');
@@ -318,7 +319,9 @@ async function initializeLocationPickers() {
 
   await Promise.all([
     initializePicker('birth', 'Brasil', 'SP', 'São Paulo'),
-    initializePicker('solar', 'Brasil', 'SP', 'São Paulo')
+    initializePicker('solar', 'Brasil', 'SP', 'São Paulo'),
+    initializePicker('ephemeris', 'Brasil', 'SP', 'São Paulo'),
+    initializePicker('void', 'Brasil', 'SP', 'São Paulo')
   ]);
 }
 
@@ -1483,7 +1486,6 @@ const viewPanels = [...document.querySelectorAll('.view-panel')];
 
 const ephemerisMonthNames = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 const ephemerisPlanetKeys = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
-let ephemerisVisible = false;
 
 function ephemerisDateFromJd(jd) {
   return new Date((jd - 2440587.5) * 86400000);
@@ -1495,33 +1497,75 @@ function formatEphemerisDate(jd) {
   return `${pad(date.getUTCDate())}/${pad(date.getUTCMonth() + 1)} ${pad(date.getUTCHours())}:${pad(date.getUTCMinutes())}`;
 }
 
-function renderEphemerisTables() {
-  if (!ephemerisVisible) return;
-  const monthSelect = document.querySelector('#ephemeris-month');
-  const yearInput = document.querySelector('#ephemeris-year');
-  const zoneSelect = document.querySelector('#ephemeris-zone');
-  const table = document.querySelector('#ephemeris-table');
-  const voidTable = document.querySelector('#void-moon-table');
-  if (!table || !voidTable) return;
+function localJdForDay(year, month, day) {
+  return Date.UTC(year, month - 1, day) / 86400000 + 2440587.5;
+}
 
+// Divide o mês em trechos com o mesmo fuso efetivo (base da localidade + DST histórico brasileiro).
+async function monthOffsetSegments(place, year, month) {
+  const location = cityData(place) || cities['sao paulo'];
+  const totalDays = new Date(year, month, 0).getDate();
+  const segments = [];
+  let current = null;
+  for (let day = 1; day <= totalDays; day += 1) {
+    const date = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+    const daylightSaving = await hasHistoricalBrazilianDst(place, date);
+    const offset = location[2] + (daylightSaving ? 1 : 0);
+    if (current && current.offset === offset) current.toDay = day;
+    else {
+      current = { fromDay: day, toDay: day, offset };
+      segments.push(current);
+    }
+  }
+  return segments;
+}
+
+async function renderEphemerisTable() {
+  const table = document.querySelector('#ephemeris-table');
+  if (!table) return;
   if (!window.astroWasm || typeof window.astroWasm.ephemerisMonthApi !== 'function') {
     table.innerHTML = '<tbody><tr><td class="ephemeris-empty">O núcleo de cálculo ainda está carregando.</td></tr></tbody>';
-    voidTable.innerHTML = '';
     return;
   }
 
-  const month = Number(monthSelect.value);
-  const year = Number(yearInput.value);
-  const zone = Number(zoneSelect.value);
-  const data = JSON.parse(window.astroWasm.ephemerisMonthApi(year, month, zone, 0));
+  const month = Number(document.querySelector('#ephemeris-month').value);
+  const year = Number(document.querySelector('#ephemeris-year').value);
+  const place = document.querySelector('#ephemeris-place').value || 'São Paulo, SP, Brasil';
+  const segments = await monthOffsetSegments(place, year, month);
+  const days = [];
+  segments.forEach((segment) => {
+    const data = JSON.parse(window.astroWasm.ephemerisMonthApi(year, month, segment.offset, 0));
+    days.push(...data.days.filter((day) => day.day >= segment.fromDay && day.day <= segment.toDay));
+  });
 
-  table.innerHTML = `<thead><tr><th scope="col">Dia</th>${ephemerisPlanetKeys.map((planet) => `<th scope="col" title="${objectNames[planet]}">${objectGlyphs[planet]}</th>`).join('')}</tr></thead><tbody>${data.days.map((day) => `<tr><th scope="row">${String(day.day).padStart(2, '0')}</th>${day.planets.map((planet) => {
+  table.innerHTML = `<thead><tr><th scope="col">Dia</th>${ephemerisPlanetKeys.map((planet) => `<th scope="col" title="${objectNames[planet]}">${objectGlyphs[planet]}</th>`).join('')}</tr></thead><tbody>${days.map((day) => `<tr><th scope="row">${String(day.day).padStart(2, '0')}</th>${day.planets.map((planet) => {
     const signColor = signColors[signElements[planet.signIndex]];
     return `<td><span class="ephemeris-position" style="color:${signColor}">${String(planet.degree).padStart(2, '0')}°${String(planet.minute).padStart(2, '0')}′ <span class="ephemeris-sign">${signGlyphs[planet.signIndex]}</span>${planet.retrograde ? ' <span class="ephemeris-retrograde" title="Retrógrado">R</span>' : ''}</span>`;
   }).join('')}</tr>`).join('')}</tbody>`;
+}
 
-  const voidData = JSON.parse(window.astroWasm.voidMoonApi(year, month, zone));
-  voidTable.innerHTML = `<thead><tr><th scope="col">Início</th><th scope="col">Fim</th><th scope="col">Lua entra em</th><th scope="col">Duração</th></tr></thead><tbody>${voidData.periods.map((period) => {
+async function renderVoidMoonTable() {
+  const table = document.querySelector('#void-moon-table');
+  if (!table) return;
+  if (!window.astroWasm || typeof window.astroWasm.voidMoonApi !== 'function') {
+    table.innerHTML = '<tbody><tr><td class="ephemeris-empty">O núcleo de cálculo ainda está carregando.</td></tr></tbody>';
+    return;
+  }
+
+  const month = Number(document.querySelector('#void-month').value);
+  const year = Number(document.querySelector('#void-year').value);
+  const place = document.querySelector('#void-place').value || 'São Paulo, SP, Brasil';
+  const segments = await monthOffsetSegments(place, year, month);
+  const periods = [];
+  segments.forEach((segment) => {
+    const data = JSON.parse(window.astroWasm.voidMoonApi(year, month, segment.offset));
+    const segmentStart = localJdForDay(year, month, segment.fromDay);
+    const segmentEnd = localJdForDay(year, month, segment.toDay) + 1;
+    periods.push(...data.periods.filter((period) => period.startJd >= segmentStart && period.startJd < segmentEnd));
+  });
+  periods.sort((first, second) => first.startJd - second.startJd);
+
+  table.innerHTML = `<thead><tr><th scope="col">Início</th><th scope="col">Fim</th><th scope="col">Lua entra em</th><th scope="col">Duração</th></tr></thead><tbody>${periods.map((period) => {
     const durationHours = (period.endJd - period.startJd) * 24;
     const hours = Math.floor(durationHours);
     const minutes = Math.round((durationHours - hours) * 60);
@@ -1531,22 +1575,29 @@ function renderEphemerisTables() {
   }).join('')}</tbody>`;
 }
 
-function initializeEphemerisControls() {
-  const monthSelect = document.querySelector('#ephemeris-month');
-  const yearInput = document.querySelector('#ephemeris-year');
-  const zoneSelect = document.querySelector('#ephemeris-zone');
-  if (!monthSelect || !yearInput || !zoneSelect) return;
+function initializeCalendarControls(prefix, render) {
+  const monthSelect = document.querySelector(`#${prefix}-month`);
+  const yearInput = document.querySelector(`#${prefix}-year`);
+  if (!monthSelect || !yearInput) return;
 
   ephemerisMonthNames.forEach((name, index) => monthSelect.add(new Option(name, String(index + 1))));
-  for (let zone = -12; zone <= 12; zone += 1) {
-    zoneSelect.add(new Option(`GMT${zone >= 0 ? '+' : '−'}${String(Math.abs(zone)).padStart(2, '0')}:00`, String(zone)));
-  }
   const now = new Date();
   monthSelect.value = String(now.getMonth() + 1);
   yearInput.value = String(now.getFullYear());
-  zoneSelect.value = '-3';
 
-  [monthSelect, yearInput, zoneSelect].forEach((control) => control.addEventListener('change', renderEphemerisTables));
+  const renderWhenReady = () => {
+    locationPickersReady.then(() => {
+      const section = monthSelect.closest('.view-panel');
+      if (section && !section.hidden) render();
+    });
+  };
+  [monthSelect, yearInput].forEach((control) => control.addEventListener('change', renderWhenReady));
+  document.querySelector(`#${prefix}-place`)?.addEventListener('location-changed', renderWhenReady);
+}
+
+function initializeEphemerisControls() {
+  initializeCalendarControls('ephemeris', renderEphemerisTable);
+  initializeCalendarControls('void', renderVoidMoonTable);
 }
 
 function showView(viewId) {
@@ -1560,10 +1611,8 @@ function showView(viewId) {
   });
   window.scrollTo(0, 0);
   if (viewId === 'mapa' && currentChart) redrawActiveView();
-  if (viewId === 'efemerides') {
-    ephemerisVisible = true;
-    renderEphemerisTables();
-  }
+  if (viewId === 'efemerides') locationPickersReady.then(renderEphemerisTable);
+  if (viewId === 'lua') locationPickersReady.then(renderVoidMoonTable);
 }
 
 navigationLinks.forEach((link) => {
@@ -1588,7 +1637,8 @@ showView('mapa');
 
 window.addEventListener('astro-wasm-ready', () => {
   renderMap();
-  renderEphemerisTables();
+  if (!document.querySelector('#efemerides')?.hidden) renderEphemerisTable();
+  if (!document.querySelector('#lua')?.hidden) renderVoidMoonTable();
 });
 
 initializeEphemerisControls();

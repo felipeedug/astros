@@ -22,6 +22,7 @@
         <a class="nav-link" href="#ascendente"><span>↗</span> Ascendente</a>
         <a class="nav-link active" href="#mapa"><span>◎</span> Mapas</a>
         <a class="nav-link" href="#efemerides"><span>✧</span> Efemérides</a>
+        <a class="nav-link" href="#lua"><span>☽</span> Lua</a>
       </nav>
     </header>
 
@@ -123,11 +124,34 @@
         <div class="ephemeris-controls">
           <label for="ephemeris-month">Mês <select id="ephemeris-month"></select></label>
           <label for="ephemeris-year">Ano <input id="ephemeris-year" type="number" min="1900" max="2200"></label>
-          <label for="ephemeris-zone">Fuso <select id="ephemeris-zone"></select></label>
         </div>
-        <p class="ephemeris-note" id="ephemeris-note">Posições às 00:00 no fuso escolhido. R indica planeta retrógrado.</p>
+        <div class="location-picker ephemeris-location" data-location-picker="ephemeris">
+          <label for="ephemeris-country">País <select id="ephemeris-country" required></select></label>
+          <div class="field-row location-row">
+            <label class="location-region-field" for="ephemeris-region">Estado / região <select id="ephemeris-region"></select></label>
+            <div class="location-city-field"><label for="ephemeris-city">Cidade</label><input id="ephemeris-city" type="search" role="combobox" aria-autocomplete="list" aria-controls="ephemeris-city-options" aria-expanded="false" placeholder="Digite para buscar ou role" autocomplete="off" required><div id="ephemeris-city-options" class="city-suggestions" role="listbox" hidden></div></div>
+          </div>
+          <input id="ephemeris-place" type="hidden" value="">
+        </div>
+        <p class="ephemeris-note" id="ephemeris-note">Posições às 00:00 no horário da localidade escolhida. R indica planeta retrógrado.</p>
         <div class="ephemeris-table-scroll"><table class="ephemeris-table" id="ephemeris-table" aria-label="Efemérides do mês"></table></div>
-        <div class="section-heading void-moon-heading"><span>04</span><h2>Lua fora de curso</h2><span class="section-rule"></span><span class="section-caption">períodos sem aspectos antes da mudança de signo</span></div>
+      </section>
+
+      <section class="ephemerides-page view-panel" id="lua" hidden>
+        <div class="section-heading"><span>04</span><h2>Lua fora de curso</h2><span class="section-rule"></span><span class="section-caption">períodos sem aspectos antes da mudança de signo</span></div>
+        <div class="ephemeris-controls">
+          <label for="void-month">Mês <select id="void-month"></select></label>
+          <label for="void-year">Ano <input id="void-year" type="number" min="1900" max="2200"></label>
+        </div>
+        <div class="location-picker ephemeris-location" data-location-picker="void">
+          <label for="void-country">País <select id="void-country" required></select></label>
+          <div class="field-row location-row">
+            <label class="location-region-field" for="void-region">Estado / região <select id="void-region"></select></label>
+            <div class="location-city-field"><label for="void-city">Cidade</label><input id="void-city" type="search" role="combobox" aria-autocomplete="list" aria-controls="void-city-options" aria-expanded="false" placeholder="Digite para buscar ou role" autocomplete="off" required><div id="void-city-options" class="city-suggestions" role="listbox" hidden></div></div>
+          </div>
+          <input id="void-place" type="hidden" value="">
+        </div>
+        <p class="ephemeris-note">Períodos entre o último aspecto da Lua e a entrada no próximo signo, no horário da localidade escolhida.</p>
         <div class="ephemeris-table-scroll"><table class="ephemeris-table void-moon-table" id="void-moon-table" aria-label="Períodos de Lua fora de curso"></table></div>
       </section>
     </main>
@@ -140,7 +164,7 @@
     <p class="object-note-position" id="object-note-position"></p>
     <section aria-labelledby="object-note-aspects-title"><h3 id="object-note-aspects-title">Aspectos</h3><ul id="object-note-aspects"></ul></section>
   </dialog>
-  <script src="app.js?v=20261009-ephemerides"></script>
+  <script src="app.js?v=20261009-lua-page"></script>
   <script type="module">
     window.astroWasmLoading = true;
     if (window.location.protocol !== 'file:') {
