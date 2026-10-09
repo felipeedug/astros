@@ -1670,7 +1670,7 @@ document.querySelector('.hero-btn')?.addEventListener('click', (event) => {
   showView('mapa');
 });
 window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
-showView('mapa');
+showView('inicio');
 
 ['map-type', 'solar-year', 'solar-place', 'solar-layout', 'solar-inner'].forEach((id) => {
   document.querySelector(`#${id}`)?.addEventListener('change', () => {
