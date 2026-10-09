@@ -13,4 +13,8 @@ std::string ComputeNatalChartJson(const std::string& name,
                                   double longitude,
                                   double utcOffset);
 
+std::string ComputeEphemerisMonthJson(int year, int month, double utcOffset, double hour);
+
+std::string ComputeVoidMoonJson(int year, int month, double utcOffset);
+
 }  // namespace astro_legacy

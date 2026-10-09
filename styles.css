@@ -56,6 +56,23 @@ p,li,a { color:var(--cinza-azulado); font-family:var(--fonte-corpo); }
 .main-content .input-panel h1,.main-content .input-panel h2,.main-content .input-panel h3,.main-content .input-panel h4,.main-content .configuration-panel h1,.main-content .configuration-panel h2,.main-content .configuration-panel h3,.main-content .configuration-panel h4,.main-content .chart-panel h1,.main-content .chart-panel h2,.main-content .chart-panel h3,.main-content .chart-panel h4,.main-content .insight-card h1,.main-content .insight-card h2,.main-content .insight-card h3,.main-content .insight-card h4,.main-content .interpretation-card h1,.main-content .interpretation-card h2,.main-content .interpretation-card h3,.main-content .interpretation-card h4 { color:var(--azul-noite); }
 .main-content .input-panel p,.main-content .input-panel li,.main-content .input-panel a,.main-content .configuration-panel p,.main-content .configuration-panel li,.main-content .configuration-panel a,.main-content .chart-panel p,.main-content .chart-panel li,.main-content .chart-panel a,.main-content .insight-card p,.main-content .insight-card li,.main-content .insight-card a,.main-content .interpretation-card p,.main-content .interpretation-card li,.main-content .interpretation-card a { color:var(--cinza-azulado); }
 .main-content .readout-heading,.main-content .balance-tables h3,.main-content .solar-pair h3 { color:var(--azul-noite); font-family:var(--fonte-titulo); }
+.ephemerides-page { padding:34px 0 70px; }
+.ephemeris-controls { display:flex; flex-wrap:wrap; gap:18px; margin:20px 0 6px; }
+.ephemeris-controls label { margin-top:0; }
+.ephemeris-controls select,.ephemeris-controls input { margin-top:6px; padding:9px 10px; border:1px solid rgba(13,27,42,.18); border-radius:8px; color:var(--azul-noite); background:var(--off-white); font:500 13px var(--fonte-corpo); }
+.ephemeris-note { margin:0 0 14px; color:var(--cinza-azulado); font-size:11px; }
+.ephemeris-table-scroll { overflow-x:auto; border:1px solid rgba(13,27,42,.1); border-radius:12px; background:var(--off-white); }
+.ephemeris-table { width:100%; border-collapse:collapse; font:500 11px var(--fonte-corpo); }
+.ephemeris-table th,.ephemeris-table td { padding:6px 8px; border-bottom:1px solid rgba(13,27,42,.08); text-align:right; white-space:nowrap; }
+.ephemeris-table thead th { position:sticky; top:0; z-index:1; color:var(--azul-noite); background:var(--off-white); font:700 14px 'Astrovida','Segoe UI Symbol',sans-serif; text-align:center; }
+.ephemeris-table thead th:first-child,.ephemeris-table tbody th { font:700 11px var(--fonte-corpo); text-align:left; }
+.ephemeris-table tbody tr:hover { background:rgba(27,58,92,.06); }
+.ephemeris-position { font-variant-numeric:tabular-nums; }
+.ephemeris-sign { font-family:'Astrovida','Segoe UI Symbol',sans-serif; font-size:14px; }
+.ephemeris-retrograde { color:var(--rosa-queimado); font-weight:700; }
+.ephemeris-empty { padding:16px; color:var(--cinza-azulado); text-align:left; }
+.void-moon-heading { margin-top:36px; }
+.void-moon-table td { text-align:left; font-variant-numeric:tabular-nums; }
 .main-content .planet-readout span,.main-content .house-readout span,.main-content .aspect-readout span,.main-content .balance-tables section > div > div { color:var(--cinza-azulado); }
 .main-content .interpretation-card h3,.main-content .interpretation-card h4 { color:var(--azul-noite)!important; font-family:var(--fonte-titulo); }
 .object-note section h3 { color:var(--azul-noite); font-family:var(--fonte-titulo); }
