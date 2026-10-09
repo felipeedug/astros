@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261009-retrograde-circled">
+  <link rel="stylesheet" href="styles.css?v=20261009-retrograde-legend">
   <link rel="stylesheet" href="print.css?v=20261009-calendar-toolbar">
 </head>
 <body>
@@ -138,9 +138,10 @@
             <input id="ephemeris-place" type="hidden" value="">
           </div>
         </div>
-        <p class="ephemeris-note" id="ephemeris-note">Posições às 00:00 no horário da localidade escolhida. R indica planeta retrógrado.</p>
+        <p class="ephemeris-note" id="ephemeris-note">Posições às 00:00 no horário da localidade escolhida.</p>
         <p class="ephemeris-print-context" id="ephemeris-print-context"></p>
         <div class="ephemeris-table-scroll"><table class="ephemeris-table" id="ephemeris-table" aria-label="Efemérides do mês"></table></div>
+        <p class="ephemeris-legend"><span class="ephemeris-retrograde" aria-hidden="true">R</span> Planeta em movimento retrógrado</p>
         <button type="button" class="print-button ephemeris-print" id="print-ephemeris"><span aria-hidden="true">⎙</span> Imprimir / salvar PDF</button>
       </section>
 

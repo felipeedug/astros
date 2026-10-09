@@ -80,7 +80,8 @@ p,li,a { color:var(--cinza-azulado); font-family:var(--fonte-corpo); }
 .ephemeris-table tbody tr:hover { background:rgba(27,58,92,.06); }
 .ephemeris-position { font-variant-numeric:tabular-nums; }
 .ephemeris-sign { font-family:'Segoe UI Symbol','Noto Sans Symbols 2',sans-serif; font-size:12px; }
-.ephemeris-retrograde { display:inline-flex; align-items:center; justify-content:center; width:15px; height:15px; margin-left:2px; border:1.5px solid #a16207; border-radius:50%; color:#a16207; font-size:9px; font-weight:700; line-height:1; vertical-align:middle; }
+.ephemeris-retrograde { display:inline-flex; align-items:center; justify-content:center; width:12px; height:12px; margin-left:2px; border:1.2px solid #a16207; border-radius:50%; color:#a16207; font-size:7.5px; font-weight:700; line-height:1; vertical-align:middle; }
+.ephemeris-legend { display:flex; align-items:center; gap:6px; margin:8px 0 0; color:var(--cinza-azulado); font-size:10px; }
 .ephemeris-empty { padding:16px; color:var(--cinza-azulado); text-align:left; }
 .void-moon-heading { margin-top:36px; }
 .void-moon-table td { text-align:left; font-variant-numeric:tabular-nums; }
