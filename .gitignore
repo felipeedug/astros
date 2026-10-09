@@ -14,3 +14,4 @@ wasm/astro_legacy_wasm_v4.js
 wasm/astro_legacy_wasm_v4.wasm
 wasm/astro_legacy_wasm_v4.data
 *.o
+__pycache__/
