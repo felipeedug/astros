@@ -84,6 +84,7 @@ p,li,a { color:var(--cinza-azulado); font-family:var(--fonte-corpo); }
 .ephemeris-empty { padding:16px; color:var(--cinza-azulado); text-align:left; }
 .void-moon-heading { margin-top:36px; }
 .void-moon-table td { text-align:left; font-variant-numeric:tabular-nums; }
+.void-moon-table thead th { font:700 11px var(--fonte-corpo); text-align:left; }
 .main-content .planet-readout span,.main-content .house-readout span,.main-content .aspect-readout span,.main-content .balance-tables section > div > div { color:var(--cinza-azulado); }
 .main-content .interpretation-card h3,.main-content .interpretation-card h4 { color:var(--azul-noite)!important; font-family:var(--fonte-titulo); }
 .object-note section h3 { color:var(--azul-noite); font-family:var(--fonte-titulo); }

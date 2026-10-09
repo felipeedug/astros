@@ -1566,13 +1566,12 @@ async function renderVoidMoonTable() {
   });
   periods.sort((first, second) => first.startJd - second.startJd);
 
-  table.innerHTML = `<thead><tr><th scope="col">Início</th><th scope="col">Fim</th><th scope="col">Lua entra em</th><th scope="col">Duração</th></tr></thead><tbody>${periods.map((period) => {
+  table.innerHTML = `<thead><tr><th scope="col">Início</th><th scope="col">Fim</th><th scope="col">Duração</th></tr></thead><tbody>${periods.map((period) => {
     const durationHours = (period.endJd - period.startJd) * 24;
     const hours = Math.floor(durationHours);
     const minutes = Math.round((durationHours - hours) * 60);
     const duration = hours > 0 ? `${hours}h ${String(minutes).padStart(2, '0')}min` : `${minutes}min`;
-    const signColor = signColors[signElements[period.signIndex]];
-    return `<tr><td>${formatEphemerisDate(period.startJd)}</td><td>${formatEphemerisDate(period.endJd)}</td><td><span style="color:${signColor}"><span class="ephemeris-sign">${signUnicodeGlyphs[period.signIndex]}</span> ${signNames[period.signIndex]}</span></td><td>${duration}</td></tr>`;
+    return `<tr><td>${formatEphemerisDate(period.startJd)}</td><td>${formatEphemerisDate(period.endJd)}</td><td>${duration}</td></tr>`;
   }).join('')}</tbody>`;
 }
 
