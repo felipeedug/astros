@@ -1661,6 +1661,14 @@ document.querySelector('.text-link')?.addEventListener('click', (event) => {
   event.preventDefault();
   showView('ascendente');
 });
+document.querySelector('.brand')?.addEventListener('click', (event) => {
+  event.preventDefault();
+  showView('inicio');
+});
+document.querySelector('.hero-btn')?.addEventListener('click', (event) => {
+  event.preventDefault();
+  showView('mapa');
+});
 window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
 showView('mapa');
 

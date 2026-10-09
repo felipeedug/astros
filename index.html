@@ -14,11 +14,12 @@
 <body>
   <div class="app-shell">
     <header class="sidebar">
-      <a class="brand" href="#top" aria-label="Eu e as Estrelas, início">
+      <a class="brand" href="#inicio" aria-label="Eu e as Estrelas, início">
         <img class="brand-logo" src="fonts/logo3.png" alt="">
         <span>Eu e as Estrelas</span>
       </a>
       <nav class="nav" aria-label="Navegacao principal">
+        <a class="nav-link" href="#inicio"><span>✦</span> Início</a>
         <a class="nav-link" href="#ascendente"><span>↗</span> Ascendente</a>
         <a class="nav-link active" href="#mapa"><span>◎</span> Mapas</a>
         <a class="nav-link" href="#efemerides"><span>✧</span> Efemérides</a>
@@ -27,7 +28,7 @@
     </header>
 
     <main id="top" class="main-content">
-      <section class="hero-section">
+      <section class="hero-section view-panel" id="inicio">
         <div class="hero-content">
           <img class="hero-logo" src="fonts/logo com frase.png" alt="Eu e as Estrelas">
           <p class="hero-tagline">A astrologia que conecta céu, memória e vida.</p>
@@ -176,7 +177,7 @@
     <p class="object-note-position" id="object-note-position"></p>
     <section aria-labelledby="object-note-aspects-title"><h3 id="object-note-aspects-title">Aspectos</h3><ul id="object-note-aspects"></ul></section>
   </dialog>
-  <script src="app.js?v=20261009-calendar-toolbar"></script>
+  <script src="app.js?v=20261009-home-view"></script>
   <script type="module">
     window.astroWasmLoading = true;
     if (window.location.protocol !== 'file:') {
