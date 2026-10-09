@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=20260930-hero-logo-frase">
-  <link rel="stylesheet" href="print.css?v=20260926-mobile-config-grid">
+  <link rel="stylesheet" href="print.css?v=20261009-calendar-print">
 </head>
 <body>
   <div class="app-shell">
@@ -134,7 +134,9 @@
           <input id="ephemeris-place" type="hidden" value="">
         </div>
         <p class="ephemeris-note" id="ephemeris-note">Posições às 00:00 no horário da localidade escolhida. R indica planeta retrógrado.</p>
+        <p class="ephemeris-print-context" id="ephemeris-print-context"></p>
         <div class="ephemeris-table-scroll"><table class="ephemeris-table" id="ephemeris-table" aria-label="Efemérides do mês"></table></div>
+        <button type="button" class="print-button ephemeris-print" id="print-ephemeris"><span aria-hidden="true">⎙</span> Imprimir / salvar PDF</button>
       </section>
 
       <section class="ephemerides-page view-panel" id="lua" hidden>
@@ -152,7 +154,9 @@
           <input id="void-place" type="hidden" value="">
         </div>
         <p class="ephemeris-note">Períodos entre o último aspecto da Lua e a entrada no próximo signo, no horário da localidade escolhida.</p>
+        <p class="ephemeris-print-context" id="void-print-context"></p>
         <div class="ephemeris-table-scroll"><table class="ephemeris-table void-moon-table" id="void-moon-table" aria-label="Períodos de Lua fora de curso"></table></div>
+        <button type="button" class="print-button ephemeris-print" id="print-void"><span aria-hidden="true">⎙</span> Imprimir / salvar PDF</button>
       </section>
     </main>
   </div>
@@ -164,7 +168,7 @@
     <p class="object-note-position" id="object-note-position"></p>
     <section aria-labelledby="object-note-aspects-title"><h3 id="object-note-aspects-title">Aspectos</h3><ul id="object-note-aspects"></ul></section>
   </dialog>
-  <script src="app.js?v=20261009-lua-page"></script>
+  <script src="app.js?v=20261009-calendar-print"></script>
   <script type="module">
     window.astroWasmLoading = true;
     if (window.location.protocol !== 'file:') {

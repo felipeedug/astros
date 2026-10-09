@@ -1595,9 +1595,22 @@ function initializeCalendarControls(prefix, render) {
   document.querySelector(`#${prefix}-place`)?.addEventListener('location-changed', renderWhenReady);
 }
 
+function printCalendarPage(prefix) {
+  const month = ephemerisMonthNames[Number(document.querySelector(`#${prefix}-month`).value) - 1];
+  const year = document.querySelector(`#${prefix}-year`).value;
+  const place = document.querySelector(`#${prefix}-place`).value || 'São Paulo, SP, Brasil';
+  const context = document.querySelector(`#${prefix}-print-context`);
+  const title = prefix === 'void' ? 'Lua fora de curso' : 'Efemérides';
+  const note = prefix === 'void' ? 'Períodos entre o último aspecto da Lua e a entrada no próximo signo' : 'Posições às 00:00 no horário local';
+  if (context) context.textContent = `${title} · ${month} de ${year} · ${place} · ${note}`;
+  window.print();
+}
+
 function initializeEphemerisControls() {
   initializeCalendarControls('ephemeris', renderEphemerisTable);
   initializeCalendarControls('void', renderVoidMoonTable);
+  document.querySelector('#print-ephemeris')?.addEventListener('click', () => printCalendarPage('ephemeris'));
+  document.querySelector('#print-void')?.addEventListener('click', () => printCalendarPage('void'));
 }
 
 function showView(viewId) {

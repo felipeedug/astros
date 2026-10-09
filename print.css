@@ -75,10 +75,13 @@
 }
 
 @page { size:A4 portrait; margin:12mm; }
+.ephemeris-print-context { display:none; }
+.ephemerides-page .print-button { margin-top:14px; padding:12px; border:1px solid var(--ink); color:var(--ink); background:transparent; font:700 10px var(--fonte-corpo); text-align:left; cursor:pointer; }
+.ephemerides-page .print-button:hover { color:var(--off-white); background:var(--ink); }
 @media print {
   :root { color-scheme:light; }
   html,body { width:auto; min-width:0; color:#111; background:#fff; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
-  .sidebar,.control-column,.result-actions,.icon-button,.insights,#efemerides { display:none !important; }
+  .sidebar,.control-column,.result-actions,.icon-button,.insights,.hero-section { display:none !important; }
   .main-content { width:100%; max-width:none; margin:0; padding:0; }
   .workspace { display:block; margin:0; padding:0; border:0; }
   .chart-panel { width:100%; margin:0; padding:0; border:0; }
@@ -117,5 +120,19 @@
   .interpretation-card { padding:3mm; background:#fff; }
   .interpretation-card p { color:#333; }
   .readout-heading,.balance-tables h3 { color:#333; }
+  .ephemerides-page { padding:0; }
+  .ephemerides-page .section-heading { margin-bottom:2mm; }
+  .ephemerides-page .section-heading h2 { font-size:16pt; }
+  .ephemerides-page .section-caption { display:inline; color:#555; }
+  .ephemeris-controls,.ephemerides-page .location-picker,.ephemeris-note,.ephemerides-page .print-button { display:none !important; }
+  .ephemeris-print-context { display:block !important; margin:0 0 3mm; color:#333; font-size:9pt; }
+  .ephemeris-table-scroll { overflow:visible; border:0; border-radius:0; background:#fff; }
+  .ephemeris-table { font-size:7pt; }
+  .ephemeris-table thead { display:table-header-group; }
+  .ephemeris-table tr { break-inside:avoid; page-break-inside:avoid; }
+  .ephemeris-table th,.ephemeris-table td { padding:0.5mm 1.2mm; border-bottom:0.2pt solid #bbb; }
+  .ephemeris-table thead th { position:static; background:#fff; font-size:9pt; }
+  .ephemeris-sign { font-size:8pt; }
+  .void-moon-table { font-size:8.5pt; }
   .view-panel[hidden],.chart-wrap[hidden],.solar-pair[hidden] { display:none !important; }
 }
