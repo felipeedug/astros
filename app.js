@@ -1603,7 +1603,16 @@ function printCalendarPage(prefix) {
   const title = prefix === 'void' ? 'Lua fora de curso' : 'Efemérides';
   const note = prefix === 'void' ? 'Períodos entre o último aspecto da Lua e a entrada no próximo signo' : 'Posições às 00:00 no horário local';
   if (context) context.textContent = `${title} · ${month} de ${year} · ${place} · ${note}`;
+
+  const previousTitle = document.title;
+  document.title = `${title} · ${month} de ${year} · ${place}`;
+  const restore = () => {
+    document.title = previousTitle;
+    window.removeEventListener('afterprint', restore);
+  };
+  window.addEventListener('afterprint', restore);
   window.print();
+  restore();
 }
 
 function initializeEphemerisControls() {
