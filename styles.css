@@ -57,6 +57,17 @@ p,li,a { color:var(--cinza-azulado); font-family:var(--fonte-corpo); }
 .main-content .input-panel p,.main-content .input-panel li,.main-content .input-panel a,.main-content .configuration-panel p,.main-content .configuration-panel li,.main-content .configuration-panel a,.main-content .chart-panel p,.main-content .chart-panel li,.main-content .chart-panel a,.main-content .insight-card p,.main-content .insight-card li,.main-content .insight-card a,.main-content .interpretation-card p,.main-content .interpretation-card li,.main-content .interpretation-card a { color:var(--cinza-azulado); }
 .main-content .readout-heading,.main-content .balance-tables h3,.main-content .solar-pair h3 { color:var(--azul-noite); font-family:var(--fonte-titulo); }
 .ephemerides-page { padding:34px 0 70px; }
+.ephemeris-toolbar { display:flex; align-items:flex-end; justify-content:space-between; gap:16px 24px; flex-wrap:wrap; margin:18px 0 8px; }
+.month-nav { display:flex; align-items:flex-end; gap:8px; }
+.month-nav .ephemeris-controls { display:flex; gap:14px; margin:0; }
+.month-nav-btn { flex:0 0 auto; width:34px; height:34px; margin-bottom:0; border:1px solid rgba(13,27,42,.18); border-radius:50%; color:var(--azul-noite); background:var(--off-white); font-size:18px; line-height:1; cursor:pointer; transition:.2s; }
+.month-nav-btn:hover { color:var(--off-white); background:var(--azul-ceu); }
+.location-inline { display:flex; align-items:flex-end; gap:14px; flex-wrap:wrap; flex:1; min-width:280px; }
+.location-inline > label { flex:0 0 auto; min-width:150px; margin-top:0; }
+.location-inline .location-region-field { flex:0 0 auto; min-width:120px; margin-top:0; }
+.location-inline .location-city-field { flex:1; min-width:180px; margin-top:0; }
+.location-inline .location-city-field > label { margin-top:0; }
+.heading-print { width:auto; margin-left:auto; padding:9px 14px; font-size:9px; }
 .ephemeris-controls { display:flex; flex-wrap:wrap; gap:18px; margin:20px 0 6px; }
 .ephemeris-controls label { margin-top:0; }
 .ephemeris-controls select,.ephemeris-controls input { margin-top:6px; padding:9px 10px; border:1px solid rgba(13,27,42,.18); border-radius:8px; color:var(--azul-noite); background:var(--off-white); font:500 13px var(--fonte-corpo); }

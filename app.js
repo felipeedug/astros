@@ -1594,6 +1594,19 @@ function initializeCalendarControls(prefix, render) {
   };
   [monthSelect, yearInput].forEach((control) => control.addEventListener('change', renderWhenReady));
   document.querySelector(`#${prefix}-place`)?.addEventListener('location-changed', renderWhenReady);
+
+  const stepMonth = (delta) => {
+    let month = Number(monthSelect.value) + delta;
+    let year = Number(yearInput.value);
+    if (month < 1) { month = 12; year -= 1; }
+    if (month > 12) { month = 1; year += 1; }
+    year = Math.min(2200, Math.max(1900, year));
+    monthSelect.value = String(month);
+    yearInput.value = String(year);
+    renderWhenReady();
+  };
+  document.querySelector(`#${prefix}-prev-month`)?.addEventListener('click', () => stepMonth(-1));
+  document.querySelector(`#${prefix}-next-month`)?.addEventListener('click', () => stepMonth(1));
 }
 
 function printCalendarPage(prefix) {

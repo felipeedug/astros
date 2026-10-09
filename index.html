@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261009-ephemeris-unicode">
-  <link rel="stylesheet" href="print.css?v=20261009-min-margins">
+  <link rel="stylesheet" href="styles.css?v=20261009-calendar-toolbar">
+  <link rel="stylesheet" href="print.css?v=20261009-calendar-toolbar">
 </head>
 <body>
   <div class="app-shell">
@@ -120,43 +120,49 @@
       </section>
 
       <section class="ephemerides-page view-panel" id="efemerides" hidden>
-        <div class="section-heading"><span>03</span><h2>Efemérides</h2><span class="section-rule"></span><span class="section-caption">posições diárias dos planetas</span></div>
-        <div class="ephemeris-controls">
-          <label for="ephemeris-month">Mês <select id="ephemeris-month"></select></label>
-          <label for="ephemeris-year">Ano <input id="ephemeris-year" type="number" min="1900" max="2200"></label>
-        </div>
-        <div class="location-picker ephemeris-location" data-location-picker="ephemeris">
-          <label for="ephemeris-country">País <select id="ephemeris-country" required></select></label>
-          <div class="field-row location-row">
-            <label class="location-region-field" for="ephemeris-region">Estado / região <select id="ephemeris-region"></select></label>
-            <div class="location-city-field"><label for="ephemeris-city">Cidade</label><input id="ephemeris-city" type="search" role="combobox" aria-autocomplete="list" aria-controls="ephemeris-city-options" aria-expanded="false" placeholder="Digite para buscar ou role" autocomplete="off" required><div id="ephemeris-city-options" class="city-suggestions" role="listbox" hidden></div></div>
+        <div class="section-heading"><span>03</span><h2>Efemérides</h2><span class="section-rule"></span><span class="section-caption">posições diárias dos planetas</span><button type="button" class="print-button heading-print" id="print-ephemeris"><span aria-hidden="true">⎙</span> Imprimir / salvar PDF</button></div>
+        <div class="ephemeris-toolbar">
+          <div class="month-nav">
+            <button type="button" class="month-nav-btn" id="ephemeris-prev-month" aria-label="Mês anterior">‹</button>
+            <div class="ephemeris-controls">
+              <label for="ephemeris-month">Mês <select id="ephemeris-month"></select></label>
+              <label for="ephemeris-year">Ano <input id="ephemeris-year" type="number" min="1900" max="2200"></label>
+            </div>
+            <button type="button" class="month-nav-btn" id="ephemeris-next-month" aria-label="Mês seguinte">›</button>
           </div>
-          <input id="ephemeris-place" type="hidden" value="">
+          <div class="location-picker location-inline" data-location-picker="ephemeris">
+            <label for="ephemeris-country">País <select id="ephemeris-country" required></select></label>
+            <label class="location-region-field" for="ephemeris-region">Estado / região <select id="ephemeris-region"></select></label>
+            <div class="location-city-field"><label for="ephemeris-city">Cidade</label><input id="ephemeris-city" type="search" role="combobox" aria-autocomplete="list" aria-controls="ephemeris-city-options" aria-expanded="false" placeholder="Digite para buscar" autocomplete="off" required><div id="ephemeris-city-options" class="city-suggestions" role="listbox" hidden></div></div>
+            <input id="ephemeris-place" type="hidden" value="">
+          </div>
         </div>
         <p class="ephemeris-note" id="ephemeris-note">Posições às 00:00 no horário da localidade escolhida. R indica planeta retrógrado.</p>
         <p class="ephemeris-print-context" id="ephemeris-print-context"></p>
         <div class="ephemeris-table-scroll"><table class="ephemeris-table" id="ephemeris-table" aria-label="Efemérides do mês"></table></div>
-        <button type="button" class="print-button ephemeris-print" id="print-ephemeris"><span aria-hidden="true">⎙</span> Imprimir / salvar PDF</button>
       </section>
 
       <section class="ephemerides-page view-panel" id="lua" hidden>
-        <div class="section-heading"><span>04</span><h2>Lua fora de curso</h2><span class="section-rule"></span><span class="section-caption">períodos sem aspectos antes da mudança de signo</span></div>
-        <div class="ephemeris-controls">
-          <label for="void-month">Mês <select id="void-month"></select></label>
-          <label for="void-year">Ano <input id="void-year" type="number" min="1900" max="2200"></label>
-        </div>
-        <div class="location-picker ephemeris-location" data-location-picker="void">
-          <label for="void-country">País <select id="void-country" required></select></label>
-          <div class="field-row location-row">
-            <label class="location-region-field" for="void-region">Estado / região <select id="void-region"></select></label>
-            <div class="location-city-field"><label for="void-city">Cidade</label><input id="void-city" type="search" role="combobox" aria-autocomplete="list" aria-controls="void-city-options" aria-expanded="false" placeholder="Digite para buscar ou role" autocomplete="off" required><div id="void-city-options" class="city-suggestions" role="listbox" hidden></div></div>
+        <div class="section-heading"><span>04</span><h2>Lua fora de curso</h2><span class="section-rule"></span><span class="section-caption">períodos sem aspectos antes da mudança de signo</span><button type="button" class="print-button heading-print" id="print-void"><span aria-hidden="true">⎙</span> Imprimir / salvar PDF</button></div>
+        <div class="ephemeris-toolbar">
+          <div class="month-nav">
+            <button type="button" class="month-nav-btn" id="void-prev-month" aria-label="Mês anterior">‹</button>
+            <div class="ephemeris-controls">
+              <label for="void-month">Mês <select id="void-month"></select></label>
+              <label for="void-year">Ano <input id="void-year" type="number" min="1900" max="2200"></label>
+            </div>
+            <button type="button" class="month-nav-btn" id="void-next-month" aria-label="Mês seguinte">›</button>
           </div>
-          <input id="void-place" type="hidden" value="">
+          <div class="location-picker location-inline" data-location-picker="void">
+            <label for="void-country">País <select id="void-country" required></select></label>
+            <label class="location-region-field" for="void-region">Estado / região <select id="void-region"></select></label>
+            <div class="location-city-field"><label for="void-city">Cidade</label><input id="void-city" type="search" role="combobox" aria-autocomplete="list" aria-controls="void-city-options" aria-expanded="false" placeholder="Digite para buscar" autocomplete="off" required><div id="void-city-options" class="city-suggestions" role="listbox" hidden></div></div>
+            <input id="void-place" type="hidden" value="">
+          </div>
         </div>
         <p class="ephemeris-note">Períodos entre o último aspecto da Lua e a entrada no próximo signo, no horário da localidade escolhida.</p>
         <p class="ephemeris-print-context" id="void-print-context"></p>
         <div class="ephemeris-table-scroll"><table class="ephemeris-table void-moon-table" id="void-moon-table" aria-label="Períodos de Lua fora de curso"></table></div>
-        <button type="button" class="print-button ephemeris-print" id="print-void"><span aria-hidden="true">⎙</span> Imprimir / salvar PDF</button>
       </section>
     </main>
   </div>
@@ -168,7 +174,7 @@
     <p class="object-note-position" id="object-note-position"></p>
     <section aria-labelledby="object-note-aspects-title"><h3 id="object-note-aspects-title">Aspectos</h3><ul id="object-note-aspects"></ul></section>
   </dialog>
-  <script src="app.js?v=20261009-ephemeris-unicode"></script>
+  <script src="app.js?v=20261009-calendar-toolbar"></script>
   <script type="module">
     window.astroWasmLoading = true;
     if (window.location.protocol !== 'file:') {
