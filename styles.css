@@ -68,7 +68,7 @@ p,li,a { color:var(--cinza-azulado); font-family:var(--fonte-corpo); }
 .ephemeris-table thead th:first-child,.ephemeris-table tbody th { font:700 11px var(--fonte-corpo); text-align:left; }
 .ephemeris-table tbody tr:hover { background:rgba(27,58,92,.06); }
 .ephemeris-position { font-variant-numeric:tabular-nums; }
-.ephemeris-sign { font-family:'Astrovida','Segoe UI Symbol',sans-serif; font-size:14px; }
+.ephemeris-sign { font-family:'Segoe UI Symbol','Noto Sans Symbols 2',sans-serif; font-size:12px; }
 .ephemeris-retrograde { color:var(--rosa-queimado); font-weight:700; }
 .ephemeris-empty { padding:16px; color:var(--cinza-azulado); text-align:left; }
 .void-moon-heading { margin-top:36px; }

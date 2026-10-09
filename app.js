@@ -16,6 +16,7 @@ const planetReadoutOrder = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter'
 const objectNames = { Sun: 'Sol', Moon: 'Lua', Mercury: 'Mercurio', Venus: 'Venus', Mars: 'Marte', Jupiter: 'Jupiter', Saturn: 'Saturno', Uranus: 'Urano', Neptune: 'Netuno', Pluto: 'Plutao', Chiron: 'Chiron', Demeter: 'Demeter', Pallas: 'Pallas', Juno: 'Juno', Vesta: 'Vesta', NorthNode: 'Cabeça', SouthNode: 'Cauda', Lilith: 'Lilith', Priapo: 'Príapo', Fortune: 'Roda da Fortuna', EastPoint: 'Ponto Leste', Vertex: 'Vertex', Ascendant: 'Ascendente', Midheaven: 'Meio do Ceu' };
 const objectLabels = { Ascendant: 'ASC', Midheaven: 'MC', EastPoint: 'EP' };
 const signGlyphs = [0xF4, 0xF5, 0xF6, 0xF7, 0xF8, 0xF9, 0xFA, 0xFB, 0xFC, 0xFD, 0xFE, 0xFF].map((code) => String.fromCharCode(code));
+const signUnicodeGlyphs = ['♈', '♉', '♊', '♋', '♌', '♍', '♎', '♏', '♐', '♑', '♒', '♓'];
 const objectGlyphs = { Sun: 0xA2, Moon: 0xA1, Mercury: 0xA3, Venus: 0xA4, Mars: 0xA5, Jupiter: 0xA6, Saturn: 0xA7, Uranus: 0xA8, Neptune: 0xA9, Pluto: 0xAA, Chiron: 0xB1, Demeter: 0xB2, Pallas: 0xB3, Juno: 0xB4, Vesta: 0xB5, NorthNode: 0xAB, SouthNode: 0xC1, Lilith: 0xE0, Priapo: 0xBD, Fortune: 0xB0, EastPoint: 0xDB, Vertex: 0xAE, Ascendant: 0xAD, Midheaven: 0xAC };
 Object.keys(objectGlyphs).forEach((key) => { objectGlyphs[key] = String.fromCharCode(objectGlyphs[key]); });
 const aspectColors = { conjunction: '#71857b', sextile: '#5d9b72', square: '#c94f4f', trine: '#4d73b3', opposition: '#c94f4f' };
@@ -1540,7 +1541,7 @@ async function renderEphemerisTable() {
 
   table.innerHTML = `<thead><tr><th scope="col">Dia</th>${ephemerisPlanetKeys.map((planet) => `<th scope="col" title="${objectNames[planet]}">${objectGlyphs[planet]}</th>`).join('')}</tr></thead><tbody>${days.map((day) => `<tr><th scope="row">${String(day.day).padStart(2, '0')}</th>${day.planets.map((planet) => {
     const signColor = signColors[signElements[planet.signIndex]];
-    return `<td><span class="ephemeris-position" style="color:${signColor}">${String(planet.degree).padStart(2, '0')}°${String(planet.minute).padStart(2, '0')}′ <span class="ephemeris-sign">${signGlyphs[planet.signIndex]}</span>${planet.retrograde ? ' <span class="ephemeris-retrograde" title="Retrógrado">R</span>' : ''}</span>`;
+    return `<td><span class="ephemeris-position" style="color:${signColor}">${String(planet.degree).padStart(2, '0')}°${String(planet.minute).padStart(2, '0')}′ <span class="ephemeris-sign">${signUnicodeGlyphs[planet.signIndex]}</span>${planet.retrograde ? ' <span class="ephemeris-retrograde" title="Retrógrado">R</span>' : ''}</span>`;
   }).join('')}</tr>`).join('')}</tbody>`;
 }
 
@@ -1571,7 +1572,7 @@ async function renderVoidMoonTable() {
     const minutes = Math.round((durationHours - hours) * 60);
     const duration = hours > 0 ? `${hours}h ${String(minutes).padStart(2, '0')}min` : `${minutes}min`;
     const signColor = signColors[signElements[period.signIndex]];
-    return `<tr><td>${formatEphemerisDate(period.startJd)}</td><td>${formatEphemerisDate(period.endJd)}</td><td><span style="color:${signColor}"><span class="ephemeris-sign">${signGlyphs[period.signIndex]}</span> ${signNames[period.signIndex]}</span></td><td>${duration}</td></tr>`;
+    return `<tr><td>${formatEphemerisDate(period.startJd)}</td><td>${formatEphemerisDate(period.endJd)}</td><td><span style="color:${signColor}"><span class="ephemeris-sign">${signUnicodeGlyphs[period.signIndex]}</span> ${signNames[period.signIndex]}</span></td><td>${duration}</td></tr>`;
   }).join('')}</tbody>`;
 }
 
