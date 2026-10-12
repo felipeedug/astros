@@ -76,7 +76,36 @@
           <section class="configuration-panel" aria-labelledby="configuration-title">
             <div class="section-heading"><span>02</span><h2 id="configuration-title">Configuração</h2></div>
             <fieldset class="aspect-controls"><legend>Aspectos no mapa</legend><label data-aspect-label="conjunction"><input type="checkbox" data-aspect="conjunction" checked> Conjunção</label><label data-aspect-label="sextile"><input type="checkbox" data-aspect="sextile" checked> Sextil</label><label data-aspect-label="square"><input type="checkbox" data-aspect="square" checked> Quadratura</label><label data-aspect-label="trine"><input type="checkbox" data-aspect="trine" checked> Trígono</label><label data-aspect-label="opposition"><input type="checkbox" data-aspect="opposition" checked> Oposição</label><label class="orb-control" for="aspect-orb">Orbe máxima <input id="aspect-orb" type="range" min="0" max="10" value="5" step="1"><output id="aspect-orb-value" for="aspect-orb">5°</output></label></fieldset>
-            <fieldset class="aspect-controls object-controls"><legend>Pontos adicionais</legend><label><input type="checkbox" data-object-toggle="Chiron" checked> Chiron</label><label><input type="checkbox" data-object-toggle="Demeter" checked> Demeter</label><label><input type="checkbox" data-object-toggle="Pallas" checked> Pallas</label><label><input type="checkbox" data-object-toggle="Juno" checked> Juno</label><label><input type="checkbox" data-object-toggle="Vesta" checked> Vesta</label><label><input type="checkbox" data-object-toggle="Fortune" checked> Roda da Fortuna</label><label><input type="checkbox" data-object-toggle="NorthNode" checked> Cabeça</label><label><input type="checkbox" data-object-toggle="SouthNode" checked> Cauda</label><label><input type="checkbox" data-object-toggle="EastPoint" checked> Ponto Leste</label><label><input type="checkbox" data-object-toggle="Vertex" checked> Vertex</label><label><input type="checkbox" data-object-toggle="Lilith" checked> Lilith</label><label><input type="checkbox" data-object-toggle="Priapo" checked> Príapo</label></fieldset>
+            <fieldset class="aspect-controls object-controls">
+              <legend>Pontos adicionais</legend>
+              <div class="object-category">
+                <h3>Asteroides</h3>
+                <div class="object-category-options">
+                  <label><input type="checkbox" data-object-toggle="Demeter" checked> Ceres</label>
+                  <label><input type="checkbox" data-object-toggle="Vesta" checked> Vesta</label>
+                  <label><input type="checkbox" data-object-toggle="Pallas" checked> Palas</label>
+                  <label><input type="checkbox" data-object-toggle="Juno" checked> Juno</label>
+                  <label><input type="checkbox" data-object-toggle="Chiron" checked> Chiron</label>
+                </div>
+              </div>
+              <div class="object-category">
+                <h3>Pontos Virtuais</h3>
+                <div class="object-category-options">
+                  <label><input type="checkbox" data-object-toggle="Lilith" checked> Lilith</label>
+                  <label><input type="checkbox" data-object-toggle="Priapo" checked> Príapo</label>
+                  <label><input type="checkbox" data-object-toggle="SouthNode" checked> Cauda</label>
+                  <label><input type="checkbox" data-object-toggle="NorthNode" checked> Cabeça</label>
+                  <label><input type="checkbox" data-object-toggle="Vertex" checked> Vertex</label>
+                  <label><input type="checkbox" data-object-toggle="Fortune" checked> Roda da Fortuna</label>
+                </div>
+              </div>
+              <div class="object-category">
+                <h3>Pontos Cardeais</h3>
+                <div class="object-category-options">
+                  <label><input type="checkbox" data-object-toggle="EastPoint" checked> Ponto Leste</label>
+                </div>
+              </div>
+            </fieldset>
           </section>
         </div>
 
