@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261013-home-horizontal-logo">
+  <link rel="stylesheet" href="styles.css?v=20261013-main-navigation">
   <link rel="stylesheet" href="print.css?v=20261009-calendar-toolbar">
 </head>
 <body>
@@ -16,14 +16,16 @@
     <header class="sidebar">
       <a class="brand" href="#inicio" aria-label="Entre Estrelas, início">
         <img class="brand-logo" src="fonts/Logo%20SEM%20texto.png" alt="Símbolo Entre Estrelas">
+        <span class="brand-home-label">Início</span>
       </a>
-      <nav class="nav" aria-label="Navegacao principal">
-        <a class="nav-link active" data-view="inicio" href="#inicio"><span aria-hidden="true">✦</span> Início</a>
+      <nav class="nav" aria-label="Navegação principal">
         <a class="nav-link" data-view="manifesto" href="#manifesto">Manifesto</a>
         <a class="nav-link" data-view="quem-somos" href="#quem-somos">Quem somos</a>
-        <a class="nav-link" data-view="servicos" href="#servicos">Como podemos te ajudar</a>
+        <a class="nav-link" data-view="servicos" href="#servicos">Serviços</a>
+        <a class="nav-link" data-view="comunidade" href="#comunidade">Comunidade</a>
+        <a class="nav-link" data-view="apoie" href="#apoie">Apoie</a>
         <div class="nav-item nav-item--dropdown">
-          <button class="nav-link nav-menu-toggle" id="maps-menu-toggle" type="button" aria-expanded="false" aria-controls="maps-menu">Mapas <span aria-hidden="true">⌄</span></button>
+          <button class="nav-link nav-menu-toggle" id="maps-menu-toggle" type="button" aria-expanded="false" aria-controls="maps-menu"><span class="map-star" aria-hidden="true">★</span> Mapas <span class="nav-chevron" aria-hidden="true">⌄</span></button>
           <div class="nav-submenu" id="maps-menu" hidden>
             <a class="nav-link" data-view="ascendente" href="#ascendente">Ascendente</a>
             <a class="nav-link" data-view="efemerides" href="#efemerides">Efemérides</a>
@@ -32,8 +34,6 @@
             <a class="nav-link" data-view="lua" href="#lua">Lua fora de curso</a>
           </div>
         </div>
-        <a class="nav-link" data-view="comunidade" href="#comunidade">Comunidade</a>
-        <a class="nav-link" data-view="apoie" href="#apoie">Apoie</a>
       </nav>
     </header>
 
@@ -370,7 +370,7 @@
       <section class="editorial-page view-panel help-page" id="servicos" hidden>
         <article class="editorial-content">
           <header class="editorial-header">
-            <h1>Como podemos te ajudar</h1>
+            <h1>Serviços</h1>
             <p class="editorial-eyebrow">Astrologia como bússola, não como sentença</p>
           </header>
 
@@ -595,7 +595,7 @@
         <a data-view="inicio" href="#inicio">Início</a>
         <a data-view="manifesto" href="#manifesto">Manifesto</a>
         <a data-view="quem-somos" href="#quem-somos">Quem somos</a>
-        <a data-view="servicos" href="#servicos">Como podemos te ajudar</a>
+        <a data-view="servicos" href="#servicos">Serviços</a>
         <a data-view="mapa" data-map-mode="life" href="#mapa">Mapa da vida</a>
         <a data-view="comunidade" href="#comunidade">Comunidade</a>
         <a data-view="apoie" href="#apoie">Apoie</a>
@@ -625,7 +625,7 @@
     <p class="object-note-position" id="object-note-position"></p>
     <section aria-labelledby="object-note-aspects-title"><h3 id="object-note-aspects-title">Aspectos</h3><ul id="object-note-aspects"></ul></section>
   </dialog>
-  <script src="app.js?v=20261013-map-life-labels"></script>
+  <script src="app.js?v=20261013-main-navigation"></script>
   <script type="module">
     window.astroWasmLoading = true;
     if (window.location.protocol !== 'file:') {

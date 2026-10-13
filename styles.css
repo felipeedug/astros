@@ -38,6 +38,7 @@ p,li,a { color:var(--cinza-azulado); font-family:var(--fonte-corpo); }
 @keyframes fadeIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
 @media (prefers-reduced-motion:reduce) { .hero-content { animation:none; }.hero-btn { transition:none; } }
 .brand { color:var(--off-white); text-decoration:none; display:flex; gap:10px; align-items:center; font-size:15px; font-weight:800; letter-spacing:0; }
+.brand-home-label { color:#C9A227; font-weight:700; }
 .brand-logo { display:block; flex:0 1 auto; width:auto; max-width:76px; height:58px; object-fit:contain; }
 @media (max-width:800px) { body .app-shell > .sidebar { gap:8px; padding:8px 10px; }.brand { flex-shrink:0; gap:7px; font-size:11px; }.brand-logo { width:auto; max-width:64px; height:48px; }.sidebar .nav { min-width:0; }.sidebar .nav .nav-link { min-width:0; padding:8px 2px; font-size:8px; line-height:1.1; text-align:center; white-space:normal; } }
 .eyebrow,.kicker,.overline,.card-label { text-transform:uppercase; letter-spacing:.16em; font-size:10px; font-weight:700; color:var(--muted); }
@@ -167,7 +168,11 @@ label { display:block; margin-top:20px; color:var(--muted); font-size:10px; font
 .nav-link { gap:5px; padding:9px 8px; border:0; background:transparent; font:700 11px var(--fonte-corpo); cursor:pointer; }
 .nav-link span { margin-right:0; }
 .nav-link--pending { opacity:.72; cursor:not-allowed; }
-.nav-item--dropdown { position:relative; }
+.nav-item--dropdown { position:relative; display:flex; }
+.nav-menu-toggle { gap:5px; padding-bottom:8px; border-bottom:1px solid #C9A227; color:var(--off-white); font-weight:800; }
+.nav-menu-toggle.active,.nav-menu-toggle:hover,.nav-menu-toggle:focus-visible { color:#C9A227; background:transparent; }
+.nav-menu-toggle .map-star { margin:0; color:#C9A227; font-size:12px; }
+.nav-menu-toggle .nav-chevron { margin:0 0 0 2px; color:inherit; font-size:10px; }
 .nav-submenu { position:absolute; top:100%; right:0; z-index:30; min-width:190px; padding:6px; border:1px solid rgba(247,243,238,.16); border-radius:8px; background:var(--azul-noite); box-shadow:0 10px 24px rgba(0,0,0,.24); }
 .nav-submenu[hidden] { display:none; }
 .nav-submenu .nav-link { width:100%; padding:10px 12px; text-align:left; }

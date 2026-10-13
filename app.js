@@ -1700,7 +1700,7 @@ function showView(viewId) {
   const pageTitles = {
     manifesto: 'Manifesto | Entre Estrelas | Astrologia',
     'quem-somos': 'Quem somos | Entre Estrelas | Astrologia',
-    servicos: 'Como podemos te ajudar | Entre Estrelas | Astrologia',
+    servicos: 'Serviços | Entre Estrelas | Astrologia',
     comunidade: 'Comunidade | Entre Estrelas | Astrologia',
     apoie: 'Apoie | Entre Estrelas | Astrologia'
   };
@@ -1712,7 +1712,7 @@ function showView(viewId) {
     if (isActive) link.setAttribute('aria-current', 'page');
     else link.removeAttribute('aria-current');
   });
-  mapsMenuToggle?.classList.toggle('active', viewId === 'mapa');
+  mapsMenuToggle?.classList.toggle('active', ['ascendente', 'efemerides', 'mapa', 'lua'].includes(viewId));
   window.scrollTo(0, 0);
   if (viewId === 'mapa' && currentChart) redrawActiveView();
   if (viewId === 'efemerides') locationPickersReady.then(renderEphemerisTable);
