@@ -273,7 +273,7 @@ label { display:block; margin-top:20px; color:var(--muted); font-size:10px; font
 .editorial-intro p,.editorial-section > p,.editorial-card p,.participation-list p,.support-rewards p,.campaign-section > p,.share-project p { color:var(--editorial-secondary); font:400 18px/1.7 var(--fonte-corpo); }
 .editorial-intro p { margin:0 0 18px; }
 .editorial-intro p:last-child { margin-bottom:0; }
-.editorial-deck { color:var(--editorial-ink)!important; font:600 21px/1.55 var(--fonte-titulo)!important; }
+.editorial-deck { color:#1E3A5F!important; font:600 16px/1.6 var(--fonte-corpo)!important; letter-spacing:.12em; text-align:left; text-transform:uppercase; }
 .editorial-section { padding:34px 0; border-bottom:1px solid var(--editorial-divider); }
 .editorial-header + .editorial-section { padding-top:0; }
 .editorial-intro + .editorial-section { padding-top:34px; }
