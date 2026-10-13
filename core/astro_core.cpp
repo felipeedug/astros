@@ -13,8 +13,8 @@ constexpr const char* kSigns[] = {
     "LIBRA", "SCORPIO", "SAGITTARIUS", "CAPRICORN", "AQUARIUS", "PISCES"};
 
 constexpr const char* kSignNames[] = {
-    "Aries", "Touro", "Gemeos", "Cancer", "Leao", "Virgem",
-    "Libra", "Escorpiao", "Sagitario", "Capricornio", "Aquario", "Peixes"};
+    "Áries", "Touro", "Gêmeos", "Câncer", "Leão", "Virgem",
+    "Libra", "Escorpião", "Sagitário", "Capricórnio", "Aquário", "Peixes"};
 
 double Mod(double value, double divisor = 360.0) {
   const double result = std::fmod(value, divisor);

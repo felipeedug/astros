@@ -6,7 +6,7 @@ let context = canvas.getContext('2d');
 
 const themeColor = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 const signs = ['ARIES', 'TAURUS', 'GEMINI', 'CANCER', 'LEO', 'VIRGO', 'LIBRA', 'SCORPIO', 'SAGITTARIUS', 'CAPRICORN', 'AQUARIUS', 'PISCES'];
-const signNames = ['Aries', 'Touro', 'Gemeos', 'Cancer', 'Leao', 'Virgem', 'Libra', 'Escorpiao', 'Sagitario', 'Capricornio', 'Aquario', 'Peixes'];
+const signNames = ['Áries', 'Touro', 'Gêmeos', 'Câncer', 'Leão', 'Virgem', 'Libra', 'Escorpião', 'Sagitário', 'Capricórnio', 'Aquário', 'Peixes'];
 const colors = { ink: themeColor('--azul-noite'), coral: themeColor('--rosa-queimado'), gold: themeColor('--dourado'), mint: themeColor('--azul-ceu'), line: themeColor('--cinza-azulado'), paper: themeColor('--off-white') };
 const signColors = { fire: '#e34234', earth: '#4b5320', air: '#f28c28', water: '#4169e1' };
 const signElements = ['fire', 'earth', 'air', 'water', 'fire', 'earth', 'air', 'water', 'fire', 'earth', 'air', 'water'];
@@ -572,7 +572,7 @@ function renderNatalInterpretation(content, chart) {
   const planetSection = (planet) => [planetSignCard(planet), planetHouseCard(planet), aspectsCard(planet)];
 
   const motivationAndIdentity = `<section class="interpretation-topic"><h3 class="interpretation-subtitle">Identidade</h3>${interpretationSubsection('Motivação', [symbolicPlanetSignCard('Sun')])}${interpretationSubsection('Comportamentos e Atitudes', [symbolicHouseSignCard(1)])}</section>`;
-  content.innerHTML = `<h3 class="interpretation-subtitle">Interpretação do Mapa Natal</h3>${motivationAndIdentity}${section('Temperamento', [card('Elemento predominante', dominantElement())])}${section('Emocional', [planetSignCard('Moon'), planetHouseCard('Moon'), aspectsCard('Moon'), houseSignCard(4)])}${section('Forma de Pensar / Intelecto', [...planetSection('Mercury'), houseSignCard(3), houseSignCard(6)])}${section('Afetividade / Forma de Amar', [...planetSection('Venus'), houseSignCard(2), houseSignCard(7)])}${section('Força Interior / Força de Vontade', planetSection('Mars'))}${section('Oportunidades de Expansão e Crescimento', [...planetSection('Jupiter'), houseSignCard(9)])}${section('Desafios e Pontos Importantes', [...planetSection('Saturn'), houseSignCard(10)])}${section('Libertação e Revolução', [...planetSection('Uranus'), houseSignCard(11)])}${section('Espiritualidade e Acreditar em Si', [...planetSection('Neptune'), houseSignCard(12)])}${section('Transformação / Força Potencial', [...planetSection('Pluto'), houseSignCard(8)])}`;
+  content.innerHTML = `<h3 class="interpretation-subtitle">Interpretação do Mapa da vida</h3>${motivationAndIdentity}${section('Temperamento', [card('Elemento predominante', dominantElement())])}${section('Emocional', [planetSignCard('Moon'), planetHouseCard('Moon'), aspectsCard('Moon'), houseSignCard(4)])}${section('Forma de Pensar / Intelecto', [...planetSection('Mercury'), houseSignCard(3), houseSignCard(6)])}${section('Afetividade / Forma de Amar', [...planetSection('Venus'), houseSignCard(2), houseSignCard(7)])}${section('Força Interior / Força de Vontade', planetSection('Mars'))}${section('Oportunidades de Expansão e Crescimento', [...planetSection('Jupiter'), houseSignCard(9)])}${section('Desafios e Pontos Importantes', [...planetSection('Saturn'), houseSignCard(10)])}${section('Libertação e Revolução', [...planetSection('Uranus'), houseSignCard(11)])}${section('Espiritualidade e Acreditar em Si', [...planetSection('Neptune'), houseSignCard(12)])}${section('Transformação / Força Potencial', [...planetSection('Pluto'), houseSignCard(8)])}`;
 }
 
 function renderInterpretation() {
@@ -608,7 +608,7 @@ function renderInterpretation() {
     const text = interpretationText('aspects', `${aspectId}:${firstId}:${secondId}`) || interpretationText('aspects', `${aspectId}:${secondId}:${firstId}`);
     return `<article class="interpretation-card aspect-card"><h3 style="color:${color}">${escapeHtml(objectNames[firstPlanet])} / ${escapeHtml(objectNames[secondPlanet])} · ${escapeHtml(name)}</h3><p>${escapeHtml(text || 'Texto deste aspecto indisponivel.')}</p></article>`;
   }).join('');
-  const title = document.querySelector('#map-type')?.value === 'solar' ? 'Interpretação da Revolução Solar' : 'Interpretação do Mapa Natal';
+  const title = document.querySelector('#map-type')?.value === 'solar' ? 'Interpretação do Mapa do ano' : 'Interpretação do Mapa da vida';
   content.innerHTML = `<h3 class="interpretation-subtitle">${title}</h3><h3 class="interpretation-subtitle">Casas nos signos</h3><div class="interpretation-grid">${houseSignMarkup}</div><h3 class="interpretation-subtitle">Planetas nos signos e casas</h3><div class="interpretation-grid">${placementMarkup}</div><h3 class="interpretation-subtitle">Aspectos selecionados</h3><div class="interpretation-grid">${aspectMarkup || '<p class="readout-empty">Nenhum aspecto selecionado.</p>'}</div>`;
 }
 
@@ -1297,7 +1297,7 @@ function drawChart(longitudes, rising, houses = [], targetCanvas = canvas, updat
     context.textBaseline = 'middle';
     context.fillText(objectLabels[planet] || objectGlyphs[planet] || planet.slice(0, 3).toUpperCase(), x, y);
   });
-  chartHitTargets.set(targetCanvas, { longitudes, rising, title: solarChartLayer ? 'Revolução Solar' : 'Mapa Natal', points: chartHitPoints });
+  chartHitTargets.set(targetCanvas, { longitudes, rising, title: solarChartLayer ? 'Mapa do ano' : 'Mapa da vida', points: chartHitPoints });
 
   if (updateReadout) {
     const readout = document.querySelector('#planet-readout');
@@ -1399,8 +1399,8 @@ function renderSolarLayers() {
   const solarPair = document.querySelector('#solar-pair');
   const overlayCanvas = document.querySelector('#solar-overlay-chart');
 
-  document.querySelector('#chart-title').textContent = innerIsSolar ? 'Revolução Solar' : 'Mapa Natal';
-  document.querySelector('#form-status').textContent = `Retorno solar: ${currentSolarChart.returnDate} ${currentSolarChart.returnTime} · ${currentSolarChart.returnPlace}`;
+  document.querySelector('#chart-title').textContent = innerIsSolar ? 'Mapa do ano' : 'Seu mapa';
+  document.querySelector('#form-status').textContent = `Retorno do Mapa do ano: ${currentSolarChart.returnDate} ${currentSolarChart.returnTime} · ${currentSolarChart.returnPlace}`;
   renderBalanceTables(innerChart.longitudes);
   document.querySelector('#natal-aspect-section').hidden = false;
   document.querySelector('#solar-aspect-section').hidden = false;
@@ -1485,7 +1485,7 @@ async function renderChartMetadata() {
   if (!container || !currentNatalInput) return;
   const isSolar = document.querySelector('#map-type')?.value === 'solar' && currentSolarChart;
   const natalDaylightSaving = await hasHistoricalBrazilianDst(currentNatalInput.place, currentNatalInput.date);
-  const natalCard = metadataCard('Mapa Natal', currentNatalInput, natalDaylightSaving);
+  const natalCard = metadataCard('Mapa da vida', currentNatalInput, natalDaylightSaving);
   if (!isSolar) {
     container.classList.remove('solar-metadata');
     container.innerHTML = natalCard;
@@ -1499,7 +1499,7 @@ async function renderChartMetadata() {
   };
   const solarDaylightSaving = await hasHistoricalBrazilianDst(solarData.place, solarData.date);
   container.classList.add('solar-metadata');
-  container.innerHTML = `${natalCard}${metadataCard('Revolução Solar', solarData, solarDaylightSaving)}`;
+  container.innerHTML = `${natalCard}${metadataCard('Mapa do ano', solarData, solarDaylightSaving)}`;
 }
 
 async function renderMap() {
@@ -1516,7 +1516,7 @@ async function renderMap() {
   const result = await callAstroApi({ name, date, time, place });
   const chartData = result.longitudes ? result : buildFallbackChart({ name, date, time, place, daylightSaving: result.daylightSaving });
 
-  document.querySelector('#chart-title').textContent = mapType === 'solar' ? 'Revolução Solar' : 'Mapa Natal';
+  document.querySelector('#chart-title').textContent = mapType === 'solar' ? 'Mapa do ano' : 'Seu mapa';
   document.querySelector('#sun-sign').textContent = result.sunSign || chartData.sunSign;
   document.querySelector('#moon-sign').textContent = result.moonSign || chartData.moonSign;
   document.querySelector('#rising-sign').textContent = result.risingSign || chartData.risingSign;
@@ -1698,13 +1698,13 @@ function showView(viewId) {
   if (!viewPanels.some((panel) => panel.id === viewId)) return;
   viewPanels.forEach((panel) => { panel.hidden = panel.id !== viewId; });
   const pageTitles = {
-    manifesto: 'Manifesto | Entre Estrelas',
-    'quem-somos': 'Quem somos | Entre Estrelas',
-    servicos: 'Como podemos te ajudar | Entre Estrelas',
-    comunidade: 'Comunidade | Entre Estrelas',
-    apoie: 'Apoie | Entre Estrelas'
+    manifesto: 'Manifesto | Entre Estrelas | Astrologia',
+    'quem-somos': 'Quem somos | Entre Estrelas | Astrologia',
+    servicos: 'Como podemos te ajudar | Entre Estrelas | Astrologia',
+    comunidade: 'Comunidade | Entre Estrelas | Astrologia',
+    apoie: 'Apoie | Entre Estrelas | Astrologia'
   };
-  document.title = pageTitles[viewId] || 'Entre Estrelas | Mapas astrais';
+  document.title = pageTitles[viewId] || 'Entre Estrelas — Todos somos feitos do pó de estrelas.';
   navigationLinks.forEach((link) => {
     const isActive = link.dataset.view === viewId
       && (viewId !== 'mapa' || link.dataset.mapMode === currentMapMode);
