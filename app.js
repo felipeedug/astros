@@ -1538,8 +1538,11 @@ form.addEventListener('submit', async (event) => {
   await renderMap();
 });
 
-const navigationLinks = [...document.querySelectorAll('.nav-link')];
+const navigationLinks = [...document.querySelectorAll('[data-view]')];
 const viewPanels = [...document.querySelectorAll('.view-panel')];
+const mapsMenuToggle = document.querySelector('#maps-menu-toggle');
+const mapsMenu = document.querySelector('#maps-menu');
+let currentMapMode = 'life';
 
 const ephemerisMonthNames = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 const ephemerisPlanetKeys = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
@@ -1694,23 +1697,66 @@ function initializeEphemerisControls() {
 function showView(viewId) {
   if (!viewPanels.some((panel) => panel.id === viewId)) return;
   viewPanels.forEach((panel) => { panel.hidden = panel.id !== viewId; });
+  const pageTitles = {
+    manifesto: 'Manifesto | Entre Estrelas',
+    'quem-somos': 'Quem somos | Entre Estrelas',
+    servicos: 'Como podemos te ajudar | Entre Estrelas',
+    comunidade: 'Comunidade | Entre Estrelas',
+    apoie: 'Apoie | Entre Estrelas'
+  };
+  document.title = pageTitles[viewId] || 'Entre Estrelas | Mapas astrais';
   navigationLinks.forEach((link) => {
-    const isActive = link.hash === `#${viewId}`;
+    const isActive = link.dataset.view === viewId
+      && (viewId !== 'mapa' || link.dataset.mapMode === currentMapMode);
     link.classList.toggle('active', isActive);
     if (isActive) link.setAttribute('aria-current', 'page');
     else link.removeAttribute('aria-current');
   });
+  mapsMenuToggle?.classList.toggle('active', viewId === 'mapa');
   window.scrollTo(0, 0);
   if (viewId === 'mapa' && currentChart) redrawActiveView();
   if (viewId === 'efemerides') locationPickersReady.then(renderEphemerisTable);
   if (viewId === 'lua') locationPickersReady.then(renderVoidMoonTable);
 }
 
+function closeMapsMenu() {
+  if (!mapsMenu || !mapsMenuToggle) return;
+  mapsMenu.hidden = true;
+  mapsMenuToggle.setAttribute('aria-expanded', 'false');
+}
+
+function setMapMode(mode) {
+  currentMapMode = mode;
+  const mapTypeControl = document.querySelector('#map-type-control');
+  const mapType = document.querySelector('#map-type');
+  mapTypeControl.hidden = mode !== 'year';
+  const needsNatalRefresh = currentChart && mapType.value !== 'natal';
+  mapType.value = 'natal';
+  document.querySelector('#solar-fields').hidden = true;
+  if (needsNatalRefresh) renderMap();
+}
+
 navigationLinks.forEach((link) => {
   link.addEventListener('click', (event) => {
     event.preventDefault();
+    if (link.dataset.mapMode) setMapMode(link.dataset.mapMode);
+    closeMapsMenu();
     showView(link.hash.slice(1));
   });
+});
+mapsMenuToggle?.addEventListener('click', () => {
+  const isExpanded = mapsMenuToggle.getAttribute('aria-expanded') === 'true';
+  mapsMenu.hidden = isExpanded;
+  mapsMenuToggle.setAttribute('aria-expanded', String(!isExpanded));
+});
+document.addEventListener('click', (event) => {
+  if (!event.target.closest('.nav-item--dropdown')) closeMapsMenu();
+});
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    closeMapsMenu();
+    mapsMenuToggle?.focus();
+  }
 });
 document.querySelector('.text-link')?.addEventListener('click', (event) => {
   event.preventDefault();
@@ -1722,7 +1768,25 @@ document.querySelector('.brand')?.addEventListener('click', (event) => {
 });
 document.querySelector('.hero-btn')?.addEventListener('click', (event) => {
   event.preventDefault();
+  setMapMode('life');
   showView('mapa');
+});
+document.querySelector('#share-project')?.addEventListener('click', async () => {
+  const status = document.querySelector('#share-status');
+  try {
+    if (navigator.share) {
+      await navigator.share({ title: 'Entre Estrelas', text: 'Conheça o Entre Estrelas.', url: window.location.href });
+      status.textContent = 'Obrigado por compartilhar o Entre Estrelas.';
+      return;
+    }
+    if (!navigator.clipboard?.writeText) throw new Error('Compartilhamento indisponível neste navegador.');
+    await navigator.clipboard.writeText(window.location.href);
+    status.textContent = 'Endereço do Entre Estrelas copiado para compartilhar.';
+  } catch (error) {
+    if (error.name === 'AbortError') return;
+    console.error('Não foi possível compartilhar o Entre Estrelas.', error);
+    status.textContent = 'Não foi possível compartilhar automaticamente. Copie o endereço pela barra do navegador.';
+  }
 });
 window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
 showView('inicio');

@@ -3,37 +3,107 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Eu e as Estrelas: mapas astrais e interpretações para explorar sua relação com o céu.">
-  <title>Eu e as Estrelas | Mapas astrais</title>
+  <meta name="description" content="Todos somos feitos do pó de estrelas. Por isso, Entre Estrelas.">
+  <title>Entre Estrelas | Mapas astrais</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261012-inline-symbol-references">
+  <link rel="stylesheet" href="styles.css?v=20261013-home-about-refresh">
   <link rel="stylesheet" href="print.css?v=20261009-calendar-toolbar">
 </head>
 <body>
   <div class="app-shell">
     <header class="sidebar">
-      <a class="brand" href="#inicio" aria-label="Eu e as Estrelas, início">
+      <a class="brand" href="#inicio" aria-label="Entre Estrelas, início">
         <img class="brand-logo" src="fonts/logo3.png" alt="">
-        <span>Eu e as Estrelas</span>
+        <span>Entre Estrelas</span>
       </a>
       <nav class="nav" aria-label="Navegacao principal">
-        <a class="nav-link active" href="#inicio"><span>✦</span> Início</a>
-        <a class="nav-link" href="#ascendente"><span>↗</span> Ascendente</a>
-        <a class="nav-link" href="#mapa"><span>◎</span> Mapas</a>
-        <a class="nav-link" href="#efemerides"><span>✧</span> Efemérides</a>
-        <a class="nav-link" href="#lua"><span>☽</span> Lua</a>
+        <a class="nav-link active" data-view="inicio" href="#inicio"><span aria-hidden="true">✦</span> Início</a>
+        <a class="nav-link" data-view="manifesto" href="#manifesto">Manifesto</a>
+        <a class="nav-link" data-view="quem-somos" href="#quem-somos">Quem somos</a>
+        <a class="nav-link" data-view="servicos" href="#servicos">Como podemos te ajudar</a>
+        <div class="nav-item nav-item--dropdown">
+          <button class="nav-link nav-menu-toggle" id="maps-menu-toggle" type="button" aria-expanded="false" aria-controls="maps-menu">Mapas <span aria-hidden="true">⌄</span></button>
+          <div class="nav-submenu" id="maps-menu" hidden>
+            <a class="nav-link" data-view="ascendente" href="#ascendente">Ascendente</a>
+            <a class="nav-link" data-view="efemerides" href="#efemerides">Efemérides</a>
+            <a class="nav-link" data-view="mapa" data-map-mode="life" href="#mapa">Mapa da vida</a>
+            <a class="nav-link" data-view="mapa" data-map-mode="year" href="#mapa">Mapa do ano</a>
+            <a class="nav-link" data-view="lua" href="#lua">Lua fora de curso</a>
+          </div>
+        </div>
+        <a class="nav-link" data-view="comunidade" href="#comunidade">Comunidade</a>
+        <a class="nav-link" data-view="apoie" href="#apoie">Apoie</a>
       </nav>
     </header>
 
     <main id="top" class="main-content">
-      <section class="hero-section view-panel" id="inicio">
-        <div class="hero-content">
-          <img class="hero-logo" src="fonts/logo com frase.png" alt="Eu e as Estrelas">
-          <p class="hero-tagline">A astrologia que conecta céu, memória e vida.</p>
-          <a href="#mapa" class="hero-btn">Explorar o céu</a>
+      <section class="home-page view-panel" id="inicio">
+        <section class="hero-section">
+          <div class="hero-content">
+            <img class="hero-logo" src="fonts/logo3.png" alt="Entre Estrelas">
+            <h1 class="hero-tagline"><span>Todos somos feitos do pó de estrelas.</span><span>Por isso, Entre Estrelas.</span></h1>
+            <a href="#mapa" class="hero-btn">Gerar meu mapa da vida</a>
+          </div>
+        </section>
+        <div class="home-sections">
+          <section class="home-section about-section">
+            <div class="home-section-copy">
+              <h2>O que é o Entre Estrelas</h2>
+              <p class="home-lead">Uma comunidade de astrologia para todos.</p>
+              <p>Aqui você encontra análises gratuitas, conteúdo de qualidade e um espaço para se reconectar com o céu e consigo mesmo.</p>
+              <p>A astrologia, para nós, não é determinismo. É bússola. Um convite para olhar para dentro e para cima ao mesmo tempo — e reconhecer a luz que indica o seu caminho.</p>
+              <a class="home-button home-button--outline" data-view="quem-somos" href="#quem-somos">Conheça nossa história <span aria-hidden="true">↗</span></a>
+            </div>
+          </section>
+
+          <section class="home-section services-section">
+            <div class="home-section-heading">
+              <h2>Como podemos te ajudar</h2>
+            </div>
+            <ul class="service-list">
+              <li><span class="service-symbol" aria-hidden="true">✦</span><span><strong>Para crianças e filhos</strong>Entender como a criança é, como aprende, e apoiar na escolha da escola e do ensino.</span></li>
+              <li><span class="service-symbol" aria-hidden="true">✦</span><span><strong>Para o trabalho e a carreira</strong>Descobrir suas habilidades e identificar períodos propícios para mudanças e lançamentos.</span></li>
+              <li><span class="service-symbol" aria-hidden="true">✦</span><span><strong>Para o amor e as relações</strong>Entender a dinâmica do casal e apoiar decisões importantes.</span></li>
+              <li><span class="service-symbol" aria-hidden="true">✦</span><span><strong>Para a família e a vida pessoal</strong>Identificar períodos favoráveis para engravidar, mudar de casa, iniciar uma nova fase.</span></li>
+              <li><span class="service-symbol" aria-hidden="true">✦</span><span><strong>Para o autoconhecimento</strong>Reconhecer seus ciclos, respeitar seu tempo e olhar para si com mais clareza.</span></li>
+            </ul>
+            <a class="home-button home-button--outline" data-view="servicos" href="#servicos">Ver todos os serviços <span aria-hidden="true">↗</span></a>
+          </section>
+
+          <section class="home-section support-section">
+            <h2>Faça parte desde o começo</h2>
+            <p>O Entre Estrelas está sendo construído aos poucos, com cuidado e propósito. Apoie a criação do portal, receba seu mapa da vida interpretado e entre para a comunidade.</p>
+            <p class="support-manifesto">Aqui, ninguém é mais importante que ninguém. Todos somos estrelas. Todas têm a sua luz. Todas têm o seu caminho.</p>
+            <a class="home-button home-button--light" data-view="apoie" href="#apoie">Quero apoiar</a>
+          </section>
         </div>
+        <footer class="site-footer">
+          <div class="footer-brand">
+            <strong>Entre Estrelas</strong>
+            <p>Todos somos feitos do pó de estrelas. Por isso, Entre Estrelas.</p>
+          </div>
+          <nav class="footer-links" aria-label="Links do rodapé">
+            <a data-view="inicio" href="#inicio">Início</a>
+            <a data-view="manifesto" href="#manifesto">Manifesto</a>
+            <a data-view="quem-somos" href="#quem-somos">Quem somos</a>
+            <a data-view="servicos" href="#servicos">Como podemos te ajudar</a>
+            <a data-view="mapa" data-map-mode="life" href="#mapa">Mapa da vida</a>
+            <a data-view="comunidade" href="#comunidade">Comunidade</a>
+            <a data-view="apoie" href="#apoie">Apoie</a>
+            <a href="mailto:contato@entreestrelas.com.br">Contato</a>
+          </nav>
+          <div class="footer-social">
+            <strong>Comunidade</strong>
+            <p>Instagram · YouTube · TikTok · WhatsApp</p>
+          </div>
+          <div class="footer-contact">
+            <strong>Contato</strong>
+            <a href="mailto:contato@entreestrelas.com.br">contato@entreestrelas.com.br</a>
+          </div>
+          <p class="footer-copyright">© 2026 Entre Estrelas. Todos os direitos reservados.<span>Feito com propósito, tecnologia e pó de estrelas.</span></p>
+        </footer>
       </section>
       <section class="workspace view-panel" id="mapa">
         <div class="control-column">
@@ -54,7 +124,7 @@
                 </div>
                 <input id="place" type="hidden" value="">
               </div>
-              <label>Tipo de mapa <select id="map-type"><option value="natal">Mapa Natal</option><option value="solar">Revolução Solar</option></select></label>
+              <label id="map-type-control" hidden>Tipo de mapa <select id="map-type"><option value="natal">Mapa Natal</option><option value="solar">Revolução Solar</option></select></label>
               <div id="solar-fields" hidden>
                 <label>Ano da revolução <input id="solar-year" type="number" min="1900" max="2200" value="2026"></label>
                 <div class="location-picker" data-location-picker="solar">
@@ -197,6 +267,347 @@
         <div class="ephemeris-table-scroll"><table class="ephemeris-table void-moon-table" id="void-moon-table" aria-label="Períodos de Lua fora de curso"></table></div>
         <button type="button" class="print-button ephemeris-print" id="print-void"><span aria-hidden="true">⎙</span> Imprimir / salvar PDF</button>
       </section>
+
+      <section class="editorial-page view-panel about-editorial-page" id="quem-somos" hidden>
+        <article class="editorial-content about-page">
+          <header class="about-header">
+            <h1>Quem somos</h1>
+            <p class="editorial-eyebrow">A história por trás do Entre Estrelas</p>
+            <span class="about-divider" aria-hidden="true"></span>
+          </header>
+          <div class="about-story">
+            <section class="about-story-section" aria-labelledby="about-origin-title">
+              <h2 id="about-origin-title">O Entre Estrelas nasceu da vontade de juntar duas coisas que sempre caminharam juntas na minha vida: o céu e a tecnologia.</h2>
+              <p>Meu nome é Felipe. Sou formado em Ciência da Computação desde 2006, com pós-graduação em Marketing e Finanças.</p>
+              <p>Trabalhei em grandes empresas de tecnologia, como IBM e Microsoft — onde fiquei por dez anos — e ajudei organizações como Globo, Petrobras e a Bolsa de Valores a se transformarem digitalmente. Atuei em finanças, governo, educação, saúde e telecomunicações.</p>
+              <p>Mas sempre estudei astrologia. Há muitos anos. Fiz cursos, me aprofundei, aprendi a ler mapas, a entender ciclos, a olhar para o céu com outros olhos.</p>
+              <p>Em algum momento, percebi que podia unir as duas coisas.</p>
+            </section>
+            <section class="about-story-section" aria-labelledby="about-project-title">
+              <h2 id="about-project-title">Foi daí que surgiu o Entre Estrelas.</h2>
+              <p>A ideia é simples: criar uma comunidade onde qualquer pessoa possa ter acesso a análises de astrologia gratuitas, conteúdo de qualidade e uma rede de apoio.</p>
+              <p>Onde astrólogas com muito conhecimento e experiência possam ter suas próprias páginas, oferecendo cursos, mentorias, lives e atendimentos.</p>
+              <p>E onde a astrologia não seja tratada como determinismo, mas como linguagem simbólica, como bússola, como convite para olhar para dentro e para cima ao mesmo tempo.</p>
+            </section>
+            <section class="about-story-section about-principle" aria-labelledby="about-principle-title">
+              <h2 id="about-principle-title">Aqui, ninguém é mais importante que ninguém.</h2>
+              <p>Todos somos estrelas. Todas têm a sua luz. Todas têm o seu caminho.</p>
+            </section>
+            <section class="about-story-section" aria-labelledby="about-building-title">
+              <h2 id="about-building-title">O projeto está sendo construído aos poucos, com o cuidado que ele merece.</h2>
+              <p>A ferramenta de gerar o mapa da vida interpretado automaticamente já está sendo desenvolvida. As páginas das astrólogas parceiras estão por vir. A comunidade está começando a se formar.</p>
+              <p>E você pode fazer parte disso desde o começo.</p>
+            </section>
+          </div>
+          <section class="partner-section" aria-labelledby="partner-title">
+            <h2 class="editorial-section-title" id="partner-title">Astrólogas parceiras</h2>
+            <p>O <strong>Entre Estrelas</strong> está sendo construído para receber astrólogas com muito conhecimento e experiência. Profissionais que terão suas próprias páginas dentro do portal, oferecendo cursos, mentorias, lives e atendimentos, com espaço, visibilidade e respeito ao seu trabalho.</p>
+            <p>Cada uma com a sua voz, a sua metodologia e o seu jeito de olhar o céu.</p>
+            <p>Porque aqui ninguém é mais importante que ninguém — todas são estrelas.</p>
+          </section>
+          <blockquote class="about-signature">
+            <p>Todos somos feitos do pó de estrelas.</p>
+            <p>Por isso, <strong>Entre Estrelas.</strong></p>
+          </blockquote>
+          <div class="about-actions">
+            <a class="home-button" data-view="manifesto" href="#manifesto">Conheça nosso manifesto</a>
+            <a class="home-button home-button--outline" data-view="mapa" data-map-mode="life" href="#mapa">Gerar meu mapa da vida</a>
+          </div>
+        </article>
+      </section>
+
+      <section class="manifesto-page view-panel" id="manifesto" hidden>
+        <article class="manifesto">
+          <header class="manifesto-header">
+            <h1>Manifesto</h1>
+            <p class="manifesto-subtitle">Uma declaração de princípios.</p>
+          </header>
+
+          <section class="manifesto-section">
+            <h2>Todos somos feitos do pó de estrelas.</h2>
+            <p>Essa não é só uma frase bonita. É ciência. É espiritualidade. É verdade.</p>
+            <p>Os átomos que formam o seu corpo, o meu, o do seu vizinho, o de quem você ama e o de quem você nem conhece — todos nasceram no coração de estrelas que explodiram há bilhões de anos.</p>
+            <p>Somos, literalmente, filhos do cosmos. Poeira de estrela que aprendeu a pensar, a sentir, a olhar para o céu e se perguntar: quem sou eu?</p>
+          </section>
+
+          <hr>
+
+          <section class="manifesto-section">
+            <h2>O <strong>Entre Estrelas</strong> nasce desse lugar.</h2>
+            <p>Nasce da vontade de olhar para o céu e não ver distância, mas pertencimento. Nasce da certeza de que ninguém é mais importante que ninguém. Não importa se você aparece na mídia ou se ninguém conhece o seu nome.</p>
+            <p>Todos somos estrelas. Todas têm a sua luz. Todas têm o seu caminho.</p>
+          </section>
+
+          <hr>
+
+          <section class="manifesto-section">
+            <h2>Aqui, a astrologia não é determinismo.</h2>
+            <p>Não é sentença. Não é prisão.</p>
+            <p>É linguagem simbólica. É bússola. É convite para olhar para dentro e para cima ao mesmo tempo. É ferramenta de autoconhecimento, de reconexão com a natureza, com os ciclos, com o sagrado que existe em cada coisa.</p>
+          </section>
+
+          <hr>
+
+          <section class="manifesto-section">
+            <h2>Assim como os Reis Magos seguiram a luz das estrelas.</h2>
+            <p>Nós queremos te ajudar a reconhecer a luz que indica o seu caminho.</p>
+            <p>Não para te dizer quem você deve ser. Mas para te lembrar de quem você já é.</p>
+          </section>
+
+          <hr>
+
+          <section class="manifesto-section">
+            <h2>O <strong>Entre Estrelas</strong> é comunidade.</h2>
+            <p>É espaço de estudo, de troca, de apoio. É análise gratuita para quem precisa. É curso, é mentoria, é live, é produto — porque sustentabilidade também é sagrada. É respeito ao trabalho de quem cuida, ensina e orienta.</p>
+          </section>
+
+          <hr>
+
+          <section class="manifesto-section">
+            <h2>É também um chamado para olharmos para a natureza.</h2>
+            <p>Para entendermos que não estamos acima dela. Somos parte.</p>
+            <p>Somos o céu olhando para o céu. Somos a terra sonhando com as estrelas.</p>
+          </section>
+
+          <hr>
+
+          <section class="manifesto-section">
+            <h2>Que este espaço seja ponte.</h2>
+            <p>Para quem vem da fé e quer entender a astrologia sem medo.</p>
+            <p>Para quem vem da dúvida e quer encontrar sentido.</p>
+            <p>Para quem vem cansado e quer se reconectar.</p>
+            <p>Para quem vem sozinho e quer comunidade.</p>
+          </section>
+
+          <blockquote class="manifesto-highlight">
+            <p>Todos somos feitos do pó de estrelas.</p>
+            <p>Por isso, <strong>Entre Estrelas.</strong></p>
+          </blockquote>
+
+          <div class="editorial-actions manifesto-actions">
+            <a class="editorial-button" data-view="mapa" data-map-mode="life" href="#mapa">Gerar meu mapa da vida</a>
+            <a class="editorial-button editorial-button--outline" data-view="quem-somos" href="#quem-somos">Quem somos</a>
+          </div>
+        </article>
+      </section>
+
+      <section class="editorial-page view-panel help-page" id="servicos" hidden>
+        <article class="editorial-content">
+          <header class="editorial-header">
+            <h1>Como podemos te ajudar</h1>
+            <p class="editorial-eyebrow">Astrologia como bússola, não como sentença</p>
+          </header>
+
+          <section class="editorial-section help-opening" aria-labelledby="help-opening-title">
+            <h2 class="editorial-section-title" id="help-opening-title">A astrologia não serve para prever o futuro nem para dizer o que você deve fazer.</h2>
+            <p>Ela serve para te mostrar quem você é, quais são os seus ciclos e qual é o seu caminho. É como uma bússola. Você continua sendo quem segura o leme. Mas com mais clareza de onde está e para onde quer ir.</p>
+          </section>
+
+          <section class="editorial-section help-perspectives" aria-labelledby="help-perspectives-title">
+            <h2 class="editorial-section-title" id="help-perspectives-title">Trabalhamos com dois olhares.</h2>
+            <div class="help-perspective-grid">
+              <article>
+                <h3><span aria-hidden="true">✦</span> O mapa da sua vida</h3>
+                <p>Aquele que mostra quem você é desde sempre. Seus talentos, seus desafios, seu jeito de amar, de trabalhar, de sentir. É a sua bússola maior.</p>
+              </article>
+              <article>
+                <h3><span aria-hidden="true">✦</span> O mapa do seu ano</h3>
+                <p>Aquele que mostra o que está em movimento agora. O que pede atenção, o que pede pausa, o que pede coragem. É a bússola do momento, sempre respeitando a bússola maior.</p>
+              </article>
+            </div>
+            <p class="help-perspective-close">Com esses dois olhares, podemos te acompanhar em vários momentos da vida.</p>
+          </section>
+
+          <section class="editorial-section help-topic" aria-labelledby="help-children-title">
+            <h2 class="editorial-section-title" id="help-children-title">Para crianças e filhos</h2>
+            <p>Entender como a criança é, como ela brinca, como ela aprende.</p>
+            <p>Ajudar na escolha do melhor tipo de ensino, da professora, da escola.</p>
+            <p>Apoiar pais que querem conhecer melhor seus filhos e respeitar o tempo de cada um.</p>
+          </section>
+
+          <section class="editorial-section help-topic" aria-labelledby="help-career-title">
+            <h2 class="editorial-section-title" id="help-career-title">Para o trabalho e a carreira</h2>
+            <p>Descobrir suas habilidades específicas e como usá-las melhor.</p>
+            <p>Identificar períodos propícios para mudar de emprego, pedir aumento ou iniciar um projeto.</p>
+            <p>Escolher as melhores datas para lançar um produto, abrir um negócio ou fazer uma transição.</p>
+          </section>
+
+          <section class="editorial-section help-topic" aria-labelledby="help-relationships-title">
+            <h2 class="editorial-section-title" id="help-relationships-title">Para o amor e as relações</h2>
+            <p>Entender melhor a dinâmica entre um casal, o que aproxima e o que desafia.</p>
+            <p>Avaliar compatibilidades com respeito, sem julgamento.</p>
+            <p>Apoiar decisões importantes, como morar junto, casar ou seguir caminhos diferentes.</p>
+          </section>
+
+          <section class="editorial-section help-topic" aria-labelledby="help-family-title">
+            <h2 class="editorial-section-title" id="help-family-title">Para a família e a vida pessoal</h2>
+            <p>Identificar períodos mais favoráveis para engravidar.</p>
+            <p>Acompanhar mudanças de casa, de cidade, de fase.</p>
+            <p>Ajudar em decisões que envolvem filhos, pais, irmãos, família.</p>
+          </section>
+
+          <section class="editorial-section help-topic" aria-labelledby="help-self-knowledge-title">
+            <h2 class="editorial-section-title" id="help-self-knowledge-title">Para o autoconhecimento</h2>
+            <p>Reconhecer seus ciclos e respeitar seu tempo.</p>
+            <p>Entender por que certas coisas se repetem e como sair de padrões.</p>
+            <p>Olhar para si com mais gentileza e clareza.</p>
+          </section>
+
+          <p class="help-closing">Tudo isso com linguagem acessível, sem jargão, sem determinismo. Astrologia como ferramenta de liberdade, não de prisão.</p>
+
+          <section class="help-invitation" aria-labelledby="help-invitation-title">
+            <h2 id="help-invitation-title"><span aria-hidden="true">✦</span> Quer entender melhor algum desses pontos?</h2>
+            <p>Fale com a gente ou faça parte da comunidade. Estamos construindo esse espaço juntos.</p>
+            <div class="editorial-actions">
+              <a class="editorial-button" data-view="mapa" data-map-mode="life" href="#mapa">Gerar meu mapa da vida</a>
+              <a class="editorial-button editorial-button--outline" data-view="apoie" href="#apoie">Quero apoiar</a>
+            </div>
+          </section>
+        </article>
+      </section>
+
+      <section class="editorial-page view-panel community-page" id="comunidade" hidden>
+        <article class="editorial-content">
+          <header class="editorial-header">
+            <h1>Comunidade</h1>
+            <p class="editorial-eyebrow">Um espaço para aprender e caminhar junto</p>
+            <p class="editorial-deck">A astrologia faz mais sentido quando é vivida junto.</p>
+            <p>O Entre Estrelas não é só um site. É uma comunidade. Um espaço onde pessoas podem se encontrar, trocar, aprender e se apoiar. Onde ninguém precisa entender tudo sozinho.</p>
+            <p>Aqui, a astrologia não é tratada como espetáculo nem como segredo. É tratada como ferramenta de autoconhecimento, acessível a quem quer aprender, com respeito a quem ensina.</p>
+          </header>
+
+          <section class="editorial-section" aria-labelledby="community-offers-title">
+            <h2 class="editorial-section-title" id="community-offers-title">O que você encontra na comunidade</h2>
+            <div class="editorial-cards">
+              <article class="editorial-card">
+                <h3>Análises gratuitas</h3>
+                <p>Publicamos leituras do céu e análises abertas para todos. Um primeiro contato com a astrologia, sem custo, sem compromisso.</p>
+              </article>
+              <article class="editorial-card">
+                <h3>Conteúdo de qualidade</h3>
+                <p>Textos, vídeos e encontros ao vivo sobre ciclos, trânsitos e temas do cotidiano — escritos em linguagem clara, sem jargão, para quem está começando ou já estuda há anos.</p>
+              </article>
+              <article class="editorial-card">
+                <h3>Espaço para astrólogas parceiras</h3>
+                <p>O portal está sendo construído para receber astrólogas com muito conhecimento e experiência, que formarão o núcleo do projeto. Cada uma terá a sua própria página, com cursos, mentorias, lives e atendimentos. Cada uma com a sua voz, a sua metodologia e o seu jeito de olhar o céu.</p>
+              </article>
+              <article class="editorial-card">
+                <h3>Apoio mútuo</h3>
+                <p>Uma rede de pessoas que acreditam que astrologia é bússola, não sentença. Que se ajudam a entender os próprios ciclos e respeitar o tempo de cada um.</p>
+              </article>
+            </div>
+          </section>
+
+          <section class="editorial-section astrologer-section" aria-labelledby="community-astrologers-title">
+            <h2 class="editorial-section-title" id="community-astrologers-title">Para astrólogas</h2>
+            <p>O Entre Estrelas também é uma ferramenta de trabalho para astrólogas profissionais.</p>
+            <p>Além do núcleo de astrólogas parceiras, o portal terá um acesso específico para astrólogas que quiserem usar a plataforma no dia a dia do seu trabalho — com espaço para organizar sua base de dados de clientes, gerar mapas, acompanhar atendimentos e usar o site como ambiente profissional.</p>
+            <p>Esse acesso é um plano pago, com condições e recursos descritos na página de planos do portal. O espaço estará disponível em breve, à medida que o projeto for lançado.</p>
+          </section>
+
+          <section class="editorial-section participation-section" aria-labelledby="community-participation-title">
+            <h2 class="editorial-section-title" id="community-participation-title">Como participar</h2>
+            <p>Existem várias formas de fazer parte:</p>
+            <div class="participation-list">
+              <article>
+                <h3>Gerar seu mapa da vida</h3>
+                <p>Comece pelo começo. Conheça a sua bússola maior — quem você é desde sempre. É gratuito e leva poucos minutos.</p>
+                <a class="editorial-link" data-view="mapa" data-map-mode="life" href="#mapa">Gerar meu mapa da vida</a>
+              </article>
+              <article>
+                <h3>Apoiar a construção do projeto</h3>
+                <p>O portal está sendo construído aos poucos, com cuidado. Quem apoia recebe o mapa da vida interpretado, entra para a comunidade e ajuda a criar este espaço desde o início.</p>
+                <a class="editorial-link" data-view="apoie" href="#apoie">Quero apoiar</a>
+              </article>
+              <article>
+                <h3>Acompanhar nas redes</h3>
+                <p>Publicamos conteúdo aberto toda semana. Siga, comente, compartilhe. Comunidade se faz com presença. Os links das redes sociais estarão disponíveis em breve.</p>
+              </article>
+              <article>
+                <h3>Usar o portal como astróloga</h3>
+                <p>Se você é astróloga profissional e quer usar o Entre Estrelas como ferramenta de trabalho, o acesso estará disponível no plano específico para astrólogas.</p>
+              </article>
+            </div>
+          </section>
+
+          <p class="editorial-signature">Todos somos feitos do pó de estrelas. Por isso, Entre Estrelas.</p>
+          <div class="editorial-actions">
+            <a class="editorial-button" data-view="mapa" data-map-mode="life" href="#mapa">Gerar meu mapa da vida</a>
+            <a class="editorial-button editorial-button--outline" data-view="apoie" href="#apoie">Quero apoiar</a>
+          </div>
+        </article>
+      </section>
+
+      <section class="editorial-page view-panel" id="apoie" hidden>
+        <div class="editorial-content support-page">
+          <header class="editorial-header">
+            <h1>Apoie</h1>
+            <p class="editorial-eyebrow">Faça parte desde o começo</p>
+            <p class="editorial-deck">Estamos construindo o Entre Estrelas desde o começo. E você pode fazer parte disso.</p>
+            <p>Este projeto nasceu da vontade de juntar duas coisas que sempre caminharam juntas: o céu e a tecnologia. A ideia é criar uma comunidade de astrologia acessível, séria e acolhedora — onde ninguém precise pagar caro para ter o primeiro contato, e onde astrólogas possam viver do seu trabalho com dignidade.</p>
+            <p>Para isso, precisamos de investimento. E é por isso que estamos fazendo esta campanha.</p>
+          </header>
+
+          <section class="editorial-section" aria-labelledby="support-building-title">
+            <h2 class="editorial-section-title" id="support-building-title">O que estamos construindo</h2>
+            <div class="editorial-cards">
+              <article class="editorial-card">
+                <h3>A ferramenta de mapa da vida</h3>
+                <p>Um sistema que gera, de forma automática e interpretada, o seu mapa da vida — a bússola que mostra quem você é desde sempre. Desenvolvido por mim, Felipe, formado em Ciência da Computação e com mais de vinte anos de experiência em tecnologia.</p>
+              </article>
+              <article class="editorial-card">
+                <h3>O portal completo</h3>
+                <p>Com espaço para a comunidade, páginas para astrólogas parceiras, conteúdo gratuito e produtos específicos para quem quer se aprofundar.</p>
+              </article>
+              <article class="editorial-card">
+                <h3>A comunidade</h3>
+                <p>Um espaço vivo, com análises gratuitas, encontros ao vivo e uma rede de apoio entre pessoas que acreditam em astrologia como ferramenta de liberdade.</p>
+              </article>
+            </div>
+          </section>
+
+          <section class="editorial-section" aria-labelledby="support-how-title">
+            <h2 class="editorial-section-title" id="support-how-title">Como funciona o apoio</h2>
+            <p>A campanha tem valores definidos, organizados em faixas. Cada faixa recebe uma recompensa específica. Os valores e as recompensas estão detalhados na página da campanha.</p>
+            <div class="support-rewards">
+              <article><h3>Mapa da vida interpretado</h3><p>A partir da faixa de entrada, você recebe o mapa da vida interpretado automaticamente — assim que a ferramenta estiver pronta.</p></article>
+              <article><h3>Entrada na comunidade</h3><p>Todas as faixas incluem acesso à comunidade Entre Estrelas desde o início, com o conteúdo gratuito e os encontros.</p></article>
+              <article><h3>Nome nos agradecimentos</h3><p>A partir de determinada faixa, seu nome (se quiser) aparece na página de apoiadores fundadores do site.</p></article>
+              <article><h3>Sorteio da bolsa</h3><p>Entre todos os apoiadores a partir da faixa mínima, vamos sortear uma bolsa linda que recebemos de doação. Uma forma de retribuir, circular energia e celebrar quem acreditou no projeto desde o começo.</p></article>
+              <article><h3>Acesso antecipado</h3><p>A partir de determinada faixa, você entra no portal antes de todo mundo.</p></article>
+            </div>
+            <p class="editorial-note">Os valores exatos, as faixas e as recompensas completas estão descritos na campanha.</p>
+          </section>
+
+          <section class="editorial-section why-support-section" aria-labelledby="support-why-title">
+            <h2 class="editorial-section-title" id="support-why-title">Por que apoiar</h2>
+            <ul class="support-reasons">
+              <li>Porque astrologia séria não precisa ser caríssima.</li>
+              <li>Porque comunidade se constrói com quem chega primeiro.</li>
+              <li>Porque quem trabalha com o céu também merece viver do seu trabalho.</li>
+              <li>Porque todos somos feitos do pó de estrelas — e nenhum de nós deveria caminhar sozinho.</li>
+            </ul>
+          </section>
+
+          <section class="campaign-section" aria-labelledby="campaign-title">
+            <h2 id="campaign-title">Acesse a campanha</h2>
+            <p>A página da campanha estará disponível em breve.</p>
+            <button class="editorial-button" type="button" disabled>Ver a campanha e apoiar</button>
+            <div class="share-project">
+              <p><strong>Não pode apoiar financeiramente?</strong></p>
+              <p>Compartilhe. Divulgue. Fale do projeto para quem precisa. Comunidade também se faz assim.</p>
+              <button class="editorial-button editorial-button--outline" id="share-project" type="button">Compartilhar</button>
+              <p class="share-status" id="share-status" role="status" aria-live="polite"></p>
+            </div>
+          </section>
+
+          <p class="editorial-signature">Todos somos feitos do pó de estrelas. Por isso, Entre Estrelas.</p>
+          <div class="editorial-actions">
+            <a class="editorial-button" data-view="mapa" data-map-mode="life" href="#mapa">Gerar meu mapa da vida</a>
+            <a class="editorial-button editorial-button--outline" data-view="comunidade" href="#comunidade">Conhecer a comunidade</a>
+          </div>
+        </div>
+      </section>
     </main>
   </div>
   <dialog class="object-note" id="object-note" aria-labelledby="object-note-title">
@@ -207,7 +618,7 @@
     <p class="object-note-position" id="object-note-position"></p>
     <section aria-labelledby="object-note-aspects-title"><h3 id="object-note-aspects-title">Aspectos</h3><ul id="object-note-aspects"></ul></section>
   </dialog>
-  <script src="app.js?v=20261012-interpretation-layout"></script>
+  <script src="app.js?v=20261013-community-support"></script>
   <script type="module">
     window.astroWasmLoading = true;
     if (window.location.protocol !== 'file:') {
