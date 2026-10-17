@@ -82,42 +82,66 @@
 @media print {
   :root { color-scheme:light; }
   html,body { width:auto; min-width:0; color:#111; background:#fff; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
-  .sidebar,.control-column,.result-actions,.icon-button,.insights,.hero-section { display:none !important; }
+  .sidebar,.site-footer,.control-column,.result-actions,.icon-button,.insights,.hero-section { display:none !important; }
   .main-content { width:100%; max-width:none; margin:0; padding:0; }
   .workspace { display:block; margin:0; padding:0; border:0; }
-  .chart-panel { width:100%; margin:0; padding:0; border:0; }
-  .chart-header { margin:0 0 2mm; }
-  .chart-header h2 { font-size:18pt; }
-  .chart-metadata-grid { grid-template-columns:1fr; max-width:none; margin:0 0 2mm; gap:2mm; }
+  @page { size:A4; margin:10mm; }
+  .chart-panel { display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,1fr) minmax(0,2.2fr); grid-template-rows:auto auto auto auto minmax(0,1fr); column-gap:4mm; align-items:start; width:100%; margin:0; padding:0; border:0; }
+  .chart-panel > * { grid-column:1 / -1; min-width:0; }
+  .chart-panel > .planet-house-tables { display:contents; }
+  .chart-panel .planet-house-tables > .readout-group:first-child { grid-column:1; grid-row:span 2; }
+  .chart-panel .planet-house-tables > .readout-group:last-child { grid-column:2; }
+  .chart-panel > #natal-aspect-section { grid-column:3; grid-row:span 2; margin:0; }
+  .chart-panel > .balance-tables { grid-column:2; grid-template-columns:minmax(0,1fr); }
+  .chart-panel > .interpretation-panel { grid-row:auto; }
+  .chart-header { margin:0 0 1mm; }
+  .chart-header h2 { font-size:16pt; }
+  .chart-metadata-grid { grid-template-columns:1fr; max-width:none; margin:0 0 1mm; gap:2mm; }
   .chart-metadata-grid.solar-metadata { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .metadata-card { padding:2mm; background:#fff; }
-  .metadata-card h3 { margin-bottom:1.5mm; color:#333; }
-  .metadata-card dl { grid-template-columns:repeat(2,minmax(0,1fr)); gap:1mm 2mm; }
-  .metadata-card dt { font-size:7pt; color:#555; }
-  .metadata-card dd { font-size:8pt; color:#111; }
-  .chart-wrap { width:145mm; max-width:145mm; margin:0 auto 2mm; break-inside:avoid; page-break-inside:avoid; }
+  .metadata-card { padding:1.5mm 2mm; background:#fff; }
+  .metadata-card h3 { margin-bottom:1mm; color:#333; }
+  .metadata-card dl { grid-template-columns:.9fr .9fr .7fr 1.8fr .9fr .9fr .9fr; gap:1mm 2mm; }
+  .chart-metadata-grid.solar-metadata .metadata-card dl { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .metadata-card dt { font-size:6.5pt; color:#555; }
+  .metadata-card dd { font-size:8pt; color:#111; margin-top:.5mm; }
+  .main-content,.workspace,.chart-panel { background:#fff !important; }
+  .chart-wrap { width:96mm; max-width:96mm; margin:0 auto 1mm; break-inside:avoid; page-break-inside:avoid; }
+  .chart-legend { display:none; }
+  .planet-readout span,.house-readout span { align-items:center; padding:.5mm 1.5mm; font-size:8pt; line-height:1; background:#fff; border-bottom:.2pt solid #ddd; }
+  .planet-readout small,.house-readout small { padding:0; font-size:7.5pt; line-height:1; }
+  .planet-readout .readout-sign,.house-readout .readout-sign { vertical-align:baseline; line-height:1; }
+  .planet-readout i { font-size:12px; line-height:1; }
+  .aspect-matrix th,.aspect-matrix td { font-size:0 !important; line-height:0 !important; overflow:hidden; }
+  .aspect-matrix .aspect-mark { width:11px; height:11px; margin:0; vertical-align:top; }
+  .balance-tables section > div > div { padding:.8mm 1.5mm; font-size:7.5pt; background:#fff; }
+  .balance-tables .polarity-balance { padding:.8mm 1.5mm; gap:1mm; background:#fff; }
+  .balance-bar-row { padding:.4mm 1.5mm !important; gap:2mm; }
+  .balance-bar-meter,.polarity-balance-bar { height:3.2mm; }
+  .polarity-balance-legend { font-size:7pt; }
+  .balance-tables h3 { margin:1mm 0; font-size:7pt; }
   .solar-pair { width:100%; max-width:180mm; margin:0 auto 2mm; gap:4mm; break-inside:avoid; page-break-inside:avoid; }
   .solar-pair article { break-inside:avoid; page-break-inside:avoid; }
-  .chart-legend { margin:0 0 3mm; }
-  .planet-house-tables { grid-template-columns:minmax(0,1.35fr) minmax(0,.9fr); gap:3mm; margin-top:2mm; }
-  .readout-group .planet-readout { grid-template-columns:repeat(2,minmax(0,1fr)); margin-top:1mm; }
+  .chart-legend { margin:0 0 1mm; }
+  .planet-house-tables { grid-template-columns:minmax(0,1.3fr) minmax(0,1fr); gap:3mm; margin-top:0; }
+  .readout-group .planet-readout { grid-template-columns:minmax(0,1fr); margin-top:1mm; }
   .readout-group .house-readout { grid-template-columns:minmax(0,1fr); margin-top:1mm; }
   .planet-readout .readout-sign,.house-readout .readout-sign { font-size:11px; }
-  .readout-heading { margin-top:3mm; padding:2mm 1mm; }
+  .readout-heading { margin-top:0; padding:1mm; }
   .aspect-readout { grid-template-columns:repeat(2,minmax(0,1fr)); margin-top:1mm; }
   #aspect-readout { display:block; }
   .aspect-matrix-scroll { overflow:visible; }
   .aspect-matrix { width:100%; min-width:0; table-layout:fixed; }
   .aspect-matrix th,.aspect-matrix td { width:auto; min-width:0; height:4mm; }
   .aspect-matrix .aspect-matrix-corner,.aspect-matrix tbody th,.aspect-matrix tfoot th { width:8mm; min-width:8mm; }
-  .aspect-matrix .aspect-axis-glyph { font-size:9pt; }
+  .aspect-matrix .aspect-axis-glyph,.aspect-matrix .aspect-axis-label { display:flex; align-items:center; justify-content:center; height:4mm; line-height:1; }
+  .aspect-matrix .aspect-axis-glyph { font-size:8pt; }
   .aspect-matrix .aspect-axis-label { font-size:5pt; }
   .aspect-matrix .aspect-mark { transform:scale(.8); }
   .aspect-matrix-legend { gap:2mm 4mm; margin-top:1mm; font-size:6pt; }
-  .balance-tables { grid-template-columns:repeat(3,minmax(0,1fr)); margin-top:3mm; }
+  .balance-tables { grid-template-columns:repeat(3,minmax(0,1fr)); margin-top:2mm; gap:2mm; }
   .planet-readout span,.house-readout span,.aspect-readout span,.balance-tables section,.interpretation-card { break-inside:avoid; page-break-inside:avoid; }
-  .interpretation-panel,.interpretation-panel[hidden] { display:block !important; width:100%; max-width:none; margin-top:4mm; border-top:1px solid #999; }
-  .interpretation-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .interpretation-panel,.interpretation-panel[hidden] { display:block !important; width:100%; max-width:none; margin-top:0; border-top:0; break-before:page; page-break-before:always; }
+  .interpretation-grid { grid-template-columns:minmax(0,1fr); }
   .interpretation-card { padding:3mm; background:#fff; }
   .interpretation-card p { color:#333; }
   .readout-heading,.balance-tables h3 { color:#333; }

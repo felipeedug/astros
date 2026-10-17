@@ -461,118 +461,121 @@ function renderNatalInterpretation(content, chart) {
   if (!Number.isFinite(longitudes.Midheaven) && Number.isFinite(chart.midheaven)) longitudes.Midheaven = chart.midheaven;
   const houses = chart.houses.length === 12 ? chart.houses : Array.from({ length: 12 }, (_, index) => mod(chart.rising + index * 30));
   const aspects = chartAspects(longitudes);
-  const planetLabels = { Sun: 'Sol', Moon: 'Lua', Mercury: 'Mercúrio', Venus: 'Vênus', Mars: 'Marte', Jupiter: 'Júpiter', Saturn: 'Saturno', Uranus: 'Urano', Neptune: 'Netuno', Pluto: 'Plutão', Ascendant: 'Ascendente' };
-  const aspectSectionLabels = { Sun: 'Aspectos do Sol', Ascendant: 'Aspectos do Ascendente', Moon: 'Aspectos da Lua', Mercury: 'Aspectos do Mercúrio', Venus: 'Aspectos da Vênus', Mars: 'Aspectos de Marte', Jupiter: 'Aspectos de Júpiter', Saturn: 'Aspectos de Saturno', Uranus: 'Aspectos de Urano', Neptune: 'Aspectos de Netuno', Pluto: 'Aspectos de Plutão' };
-  const section = (title, cards) => `<section class="interpretation-topic"><h3 class="interpretation-subtitle">${title}</h3><div class="interpretation-grid">${cards.join('')}</div></section>`;
-  const interpretationSubsection = (title, cards) => `<section class="interpretation-subtopic"><h4>${title}</h4><div class="interpretation-grid">${cards.join('')}</div></section>`;
-  const card = (title, text) => {
-    const paragraphs = (Array.isArray(text) ? text : [text]).filter(Boolean);
-    return `<article class="interpretation-card"><h4>${escapeHtml(title)}</h4>${(paragraphs.length ? paragraphs : ['Interpretação indisponível.']).map((paragraph) => `<p>${formatInterpretationText(paragraph)}</p>`).join('')}</article>`;
+  const planetLabels = { Sun: 'Sol', Moon: 'Lua', Mercury: 'Mercúrio', Venus: 'Vênus', Mars: 'Marte', Jupiter: 'Júpiter', Saturn: 'Saturno', Uranus: 'Urano', Neptune: 'Netuno', Pluto: 'Plutão', Ascendant: 'Ascendente', Midheaven: 'Meio do Céu' };
+  const section = (title, introduction, cards) => `<section class="interpretation-topic"><h3 class="interpretation-subtitle">${title}</h3><p class="interpretation-introduction">${introduction}</p><div class="interpretation-grid">${cards.join('')}</div></section>`;
+  const housePlanets = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
+  const interpretationCard = (title, entries) => {
+    const paragraphs = entries.length
+      ? entries.map(({ text, symbols, label }) => {
+        const symbolMarkup = symbols.map(({ value, type, color }) => `<span class="interpretation-symbol interpretation-symbol--${type}"${color ? ` style="color:${color}"` : ''} aria-hidden="true">${escapeHtml(value)}</span>`).join('<span class="interpretation-symbol-separator" aria-hidden="true"> </span>');
+        const reference = `<span class="interpretation-symbol-reference" role="img" aria-label="${escapeHtml(label)}">${symbolMarkup}</span>`;
+        return `<p>${formatInterpretationText(text || 'Interpretação indisponível.')} ${reference}</p>`;
+      }).join('')
+      : '<p>Interpretação indisponível.</p>';
+    return `<article class="interpretation-card"><h4>${escapeHtml(title)}</h4>${paragraphs}</article>`;
   };
-  const symbolCard = (symbols, accessibleTitle, text, extraMarkup = '') => {
-    const paragraphs = (Array.isArray(text) ? text : [text]).filter(Boolean);
-    const symbolMarkup = symbols.map(({ value, type, color }) => `<span class="interpretation-symbol interpretation-symbol--${type}"${color ? ` style="color:${color}"` : ''} aria-hidden="true">${escapeHtml(value)}</span>`).join('<span class="interpretation-symbol-separator" aria-hidden="true"> </span>');
-    const reference = `<span class="interpretation-symbol-reference" role="img" aria-label="${escapeHtml(accessibleTitle)}">${symbolMarkup}</span>`;
-    const description = (paragraphs.length ? paragraphs : ['Interpretação indisponível.']).map((paragraph) => `<p>${formatInterpretationText(paragraph)} ${reference}</p>`).join('');
-    return `<article class="interpretation-card">${description}${extraMarkup}</article>`;
+  const signColor = (signId) => signColors[signElements[signId]] || colors.ink;
+  const planetGlyph = (planet) => ({
+    value: objectLabels[planet] || objectGlyphs[planet] || '',
+    type: objectLabels[planet] ? 'point-label' : 'mandala',
+    color: Number.isFinite(longitudes[planet]) ? signColor(signAt(longitudes[planet])) : colors.ink
+  });
+  const signGlyph = (signId) => ({ value: signGlyphs[signId], type: 'mandala', color: signColor(signId) });
+  const planetSignEntry = (planet) => {
+    const signId = signAt(longitudes[planet]);
+    return {
+      text: interpretationText('planetSigns', `${planetIds[planet]}:${signId}`),
+      label: `${planetLabels[planet] || objectNames[planet]} no signo ${signNames[signId]}`,
+      symbols: [planetGlyph(planet), signGlyph(signId)]
+    };
   };
-  const planetSignText = (planet, longitude) => {
-    const planetId = planetIds[planet];
-    const signId = signAt(longitude);
-    return interpretationText('planetSigns', `${planetId}:${signId}`);
-  };
-  const planetSignCard = (planet) => {
-    const longitude = longitudes[planet];
-    const signId = signAt(longitude);
-    return card(`${planetLabels[planet] || objectNames[planet]} no signo ${signNames[signId]}`, planetSignText(planet, longitude));
-  };
-  const symbolicPlanetSignCard = (planet) => {
-    const longitude = longitudes[planet];
-    const signId = signAt(longitude);
-    const label = `${planetLabels[planet] || objectNames[planet]} no signo ${signNames[signId]}`;
-    const color = signColors[signElements[signId]];
-    return symbolCard([
-      { value: objectGlyphs[planet], type: 'mandala', color },
-      { value: signGlyphs[signId], type: 'mandala', color }
-    ], label, planetSignText(planet, longitude), symbolicAspectsMarkup(planet));
-  };
-  const planetHouseCard = (planet) => {
-    const houseId = houseAtLongitude(longitudes[planet], houses);
-    const planetId = planetIds[planet];
-    const text = interpretationText('planetHouses', `${planetId}:${houseId}`) || interpretationText('houses', `${houseId}`);
-    return card(`${planetLabels[planet] || objectNames[planet]} na casa ${houseId}`, text);
-  };
-  const houseSignCard = (houseId) => {
+  const houseSignEntry = (houseId) => {
     const signId = signAt(houses[houseId - 1]);
-    return card(`Casa ${houseId} no signo ${signNames[signId]}`, interpretationText('houseSigns', `${signId}:${houseId}`));
+    return {
+      text: interpretationText('houseSigns', `${signId}:${houseId}`),
+      label: `Casa ${houseId} no signo ${signNames[signId]}`,
+      symbols: [
+        { value: `C${houseId}`, type: 'point-label', color: signColor(signId) },
+        signGlyph(signId)
+      ]
+    };
   };
-  const symbolicHouseSignCard = (houseId) => {
-    const signId = signAt(houses[houseId - 1]);
-    const color = signColors[signElements[signId]];
-    return symbolCard([
-      { value: objectLabels.Ascendant, type: 'point-label', color },
-      { value: signGlyphs[signId], type: 'mandala', color }
-    ], `Casa ${houseId} no signo ${signNames[signId]}`, interpretationText('houseSigns', `${signId}:${houseId}`), symbolicAspectsMarkup('Ascendant'));
-  };
-  const aspectsCard = (planet) => {
-    const planetId = planetIds[planet];
-    const related = aspects.filter((aspect) => aspect.firstPlanet === planet || aspect.secondPlanet === planet);
-    const paragraphs = related.map((aspect) => {
+  const aspectEntries = (planet, excludedPlanets = []) => aspects
+    .filter((aspect) => {
+      if (aspect.firstPlanet !== planet && aspect.secondPlanet !== planet) return false;
+      const otherPlanet = aspect.firstPlanet === planet ? aspect.secondPlanet : aspect.firstPlanet;
+      return !excludedPlanets.includes(otherPlanet);
+    })
+    .map((aspect) => {
       const aspectKey = Object.keys(aspectNames).find((key) => aspectNames[key] === aspect.name);
       const aspectId = ['conjunction', 'sextile', 'square', 'trine', 'opposition'].indexOf(aspectKey);
       const firstId = planetIds[aspect.firstPlanet];
       const secondId = planetIds[aspect.secondPlanet];
       const text = interpretationText('aspects', `${aspectId}:${firstId}:${secondId}`) || interpretationText('aspects', `${aspectId}:${secondId}:${firstId}`);
-      const otherPlanet = aspect.firstPlanet === planet ? aspect.secondPlanet : aspect.firstPlanet;
-      return `${objectNames[otherPlanet] || otherPlanet} · ${aspectGlyphNames[aspectKey]}${text ? `: ${text}` : ''}`;
+      const firstName = planetLabels[aspect.firstPlanet] || objectNames[aspect.firstPlanet] || aspect.firstPlanet;
+      const secondName = planetLabels[aspect.secondPlanet] || objectNames[aspect.secondPlanet] || aspect.secondPlanet;
+      return {
+        text,
+        label: `${firstName} ${aspectGlyphNames[aspectKey]} ${secondName}`,
+        symbols: [
+          planetGlyph(aspect.firstPlanet),
+          { value: aspectGlyphs[aspectKey] || '', type: 'aspect', color: aspectColors[aspectKey] },
+          planetGlyph(aspect.secondPlanet)
+        ]
+      };
     });
-    return card(aspectSectionLabels[planet] || `Aspectos de ${planetLabels[planet] || objectNames[planet]}`, paragraphs.length ? paragraphs : 'Nenhum aspecto selecionado dentro da orbe atual.');
-  };
-  const symbolicAspectsMarkup = (planet) => {
-    const related = aspects.filter((aspect) => {
-      if (aspect.firstPlanet !== planet && aspect.secondPlanet !== planet) return false;
-      const otherPlanet = aspect.firstPlanet === planet ? aspect.secondPlanet : aspect.firstPlanet;
-      return !(planet === 'Ascendant' && otherPlanet === 'Sun');
-    });
-    const descriptions = related.map((aspect) => {
-      const aspectKey = Object.keys(aspectNames).find((key) => aspectNames[key] === aspect.name);
-      const aspectId = ['conjunction', 'sextile', 'square', 'trine', 'opposition'].indexOf(aspectKey);
-      const firstId = planetIds[aspect.firstPlanet];
-      const secondId = planetIds[aspect.secondPlanet];
-      const text = interpretationText('aspects', `${aspectId}:${firstId}:${secondId}`) || interpretationText('aspects', `${aspectId}:${secondId}:${firstId}`) || '';
-      if (!text.trim()) return '';
-      const otherPlanet = aspect.firstPlanet === planet ? aspect.secondPlanet : aspect.firstPlanet;
-      const accessibleDescription = `${objectNames[planet] || planet} ${aspectGlyphNames[aspectKey]} ${objectNames[otherPlanet] || otherPlanet}`;
-      const planetSymbol = objectLabels[planet] || objectGlyphs[planet] || '';
-      const otherSymbol = objectLabels[otherPlanet] || objectGlyphs[otherPlanet] || '';
-      const planetColor = signColors[signElements[signAt(longitudes[planet])]] || signColors.air;
-      const otherColor = signColors[signElements[signAt(longitudes[otherPlanet])]] || signColors.air;
-      const symbolMarkup = [
-        `<span class="interpretation-symbol ${objectLabels[planet] ? 'interpretation-symbol--point-label' : 'interpretation-symbol--mandala'}" style="color:${planetColor}" aria-hidden="true">${escapeHtml(planetSymbol)}</span>`,
-        `<span class="interpretation-symbol interpretation-symbol--aspect" style="color:${aspectColors[aspectKey]}" aria-hidden="true">${escapeHtml(aspectGlyphs[aspectKey] || '')}</span>`,
-        `<span class="interpretation-symbol ${objectLabels[otherPlanet] ? 'interpretation-symbol--point-label' : 'interpretation-symbol--mandala'}" style="color:${otherColor}" aria-hidden="true">${escapeHtml(otherSymbol)}</span>`
-      ].join('<span class="interpretation-symbol-separator" aria-hidden="true"> </span>');
-      return `<p>${formatInterpretationText(text)} <span class="interpretation-aspect-symbols" role="img" aria-label="${escapeHtml(accessibleDescription)}">${symbolMarkup}</span></p>`;
-    }).filter(Boolean);
-    return descriptions.join('');
-  };
-  const dominantElement = () => {
-    const totals = { Fogo: 0, Terra: 0, Ar: 0, 'Água': 0 };
-    Object.entries(balanceBodies).forEach(([planet, points]) => {
-      if (!Number.isFinite(longitudes[planet])) return;
-      const signIndex = signAt(longitudes[planet]);
-      const element = ['Fogo', 'Terra', 'Ar', 'Água'][signIndex % 4];
-      totals[element] += points;
-    });
-    const highest = Math.max(...Object.values(totals));
-    return Object.entries(totals).filter(([, score]) => score === highest).map(([element]) => `${element} (${highest} pontos)`).join(' e ');
-  };
+  const housePlanetEntries = (houseId) => housePlanets
+    .filter((planet) => Number.isFinite(longitudes[planet]) && houseAtLongitude(longitudes[planet], houses) === houseId)
+    .map((planet) => ({
+      text: interpretationText('planetHouses', `${planetIds[planet]}:${houseId}`) || interpretationText('houses', `${houseId}`),
+      label: `${planetLabels[planet] || objectNames[planet]} na Casa ${houseId}`,
+      symbols: [
+        planetGlyph(planet),
+        { value: `C${houseId}`, type: 'point-label', color: signColor(signAt(houses[houseId - 1])) }
+      ]
+    }));
+  const planetTopicCard = (title, planet, excludedPlanets = []) => interpretationCard(title, [planetSignEntry(planet), ...aspectEntries(planet, excludedPlanets)]);
+  const houseTopicCard = (title, houseId, includePlanets = true) => interpretationCard(title, [
+    houseSignEntry(houseId),
+    ...(includePlanets ? housePlanetEntries(houseId) : [])
+  ]);
+  const houseAndAspectsTopicCard = (title, houseId, aspectPlanet) => interpretationCard(title, [
+    houseSignEntry(houseId),
+    ...aspectEntries(aspectPlanet),
+    ...housePlanetEntries(houseId)
+  ]);
 
-  const firstHouseSign = signAt(houses[0]);
-  const planetSection = (planet) => [planetSignCard(planet), planetHouseCard(planet), aspectsCard(planet)];
-
-  const motivationAndIdentity = `<section class="interpretation-topic"><h3 class="interpretation-subtitle">Identidade</h3>${interpretationSubsection('Motivação', [symbolicPlanetSignCard('Sun')])}${interpretationSubsection('Comportamentos e Atitudes', [symbolicHouseSignCard(1)])}</section>`;
-  content.innerHTML = `<h3 class="interpretation-subtitle">Interpretação do Mapa da vida</h3>${motivationAndIdentity}${section('Temperamento', [card('Elemento predominante', dominantElement())])}${section('Emocional', [planetSignCard('Moon'), planetHouseCard('Moon'), aspectsCard('Moon'), houseSignCard(4)])}${section('Forma de Pensar / Intelecto', [...planetSection('Mercury'), houseSignCard(3), houseSignCard(6)])}${section('Afetividade / Forma de Amar', [...planetSection('Venus'), houseSignCard(2), houseSignCard(7)])}${section('Força Interior / Força de Vontade', planetSection('Mars'))}${section('Oportunidades de Expansão e Crescimento', [...planetSection('Jupiter'), houseSignCard(9)])}${section('Desafios e Pontos Importantes', [...planetSection('Saturn'), houseSignCard(10)])}${section('Libertação e Revolução', [...planetSection('Uranus'), houseSignCard(11)])}${section('Espiritualidade e Acreditar em Si', [...planetSection('Neptune'), houseSignCard(12)])}${section('Transformação / Força Potencial', [...planetSection('Pluto'), houseSignCard(8)])}`;
+  content.innerHTML = `<h3 class="interpretation-subtitle">Interpretação do Mapa da Vida</h3>${section('1. Quem você é', 'Aqui começa tudo. Vamos olhar sua essência, sua personalidade e a forma como você se apresenta ao mundo. É o seu jeito de ser e agir no dia a dia.', [
+    planetTopicCard('O que te move', 'Sun'),
+    interpretationCard('Como o mundo te vê', [houseSignEntry(1), ...aspectEntries('Ascendant', ['Sun', 'Midheaven'])]),
+    planetTopicCard('Sua força de vontade', 'Mars', ['Sun', 'Ascendant', 'Moon', 'Mercury', 'Venus'])
+  ])}${section('2. Suas raízes', 'Esta parte fala da sua vida emocional, da sua família e do seu mundo interno. É onde você entende o que te dá segurança, o que te acolhe e de onde vêm seus sentimentos mais profundos.', [
+    planetTopicCard('O que você sente por dentro', 'Moon', ['Sun', 'Ascendant']),
+    houseTopicCard('Onde você se sente em casa', 4)
+  ])}${section('3. Sua mente', 'Aqui o assunto é o seu jeito de pensar, aprender e se comunicar. Como você processa informações, como estuda, como fala e como organiza as ideias.', [
+    planetTopicCard('Como você pensa e se comunica', 'Mercury', ['Sun', 'Ascendant', 'Moon']),
+    houseTopicCard('Como você aprende', 3)
+  ])}${section('4. Como você ama', 'Relacionamentos, afetos e prazer. Aqui você entende como você ama, o que te atrai, como se relaciona a dois e o que te dá alegria e criatividade.', [
+    planetTopicCard('O que te encanta e te dá prazer', 'Venus'),
+    houseTopicCard('Como você se relaciona a dois', 7),
+    houseTopicCard('Sua criança interior e sua criatividade', 5)
+  ])}${section('5. Seu propósito', 'Fé, espiritualidade e sentido de vida. Aqui você vai olhar o que te expande, no que você acredita, o que te conecta com algo maior e o que habita seu mundo interior.', [
+    planetTopicCard('O que te dá fé e expande', 'Jupiter', ['Sun', 'Ascendant', 'Moon', 'Mercury', 'Venus', 'Mars']),
+    houseTopicCard('Onde você busca sentido', 9),
+    planetTopicCard('Sua conexão com o invisível', 'Neptune', ['Sun', 'Ascendant', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus']),
+    houseTopicCard('O que habita seu mundo interior', 12)
+  ])}${section('6. O que você constrói', 'Trabalho, carreira, dinheiro, saúde e responsabilidades. Aqui você entende como realiza seus projetos, o que constrói na prática e como lida com valores e recursos.', [
+    planetTopicCard('Sua responsabilidade e maturidade', 'Saturn', ['Sun', 'Ascendant', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Midheaven']),
+    houseAndAspectsTopicCard('Sua vocação e lugar no mundo', 10, 'Midheaven'),
+    houseTopicCard('Seu dia a dia e sua saúde', 6),
+    houseTopicCard('Seus valores e recursos', 2)
+  ])}${section('7. Sua tribo e sua originalidade', 'Amizades, grupos, ideais e o que te torna único. Aqui você vê como se relaciona com o coletivo, quais são seus projetos de futuro e o que te faz diferente.', [
+    planetTopicCard('O que te torna único', 'Uranus', ['Sun', 'Ascendant', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Midheaven', 'Saturn']),
+    houseTopicCard('Sua tribo e seus ideais', 11)
+  ])}${section('8. Suas transformações', 'Crises, sexualidade, perdas e renascimentos. Aqui você mergulha no que te transforma por dentro, no que precisa morrer pra renascer e nas mudanças profundas da sua vida.', [
+    planetTopicCard('O que te transforma por dentro', 'Pluto'),
+    houseTopicCard('Suas crises, sexualidade e renascimentos', 8)
+  ])}`;
 }
 
 function renderInterpretation() {
