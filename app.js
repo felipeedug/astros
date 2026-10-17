@@ -8,7 +8,7 @@ const themeColor = (name) => getComputedStyle(document.documentElement).getPrope
 const signs = ['ARIES', 'TAURUS', 'GEMINI', 'CANCER', 'LEO', 'VIRGO', 'LIBRA', 'SCORPIO', 'SAGITTARIUS', 'CAPRICORN', 'AQUARIUS', 'PISCES'];
 const signNames = ['Áries', 'Touro', 'Gêmeos', 'Câncer', 'Leão', 'Virgem', 'Libra', 'Escorpião', 'Sagitário', 'Capricórnio', 'Aquário', 'Peixes'];
 const colors = { ink: themeColor('--azul-noite'), coral: themeColor('--rosa-queimado'), gold: themeColor('--dourado'), mint: themeColor('--azul-ceu'), line: themeColor('--cinza-azulado'), paper: themeColor('--off-white') };
-const signColors = { fire: '#e34234', earth: '#4b5320', air: '#f28c28', water: '#4169e1' };
+const signColors = { fire: '#C0392B', earth: '#4A5D23', air: '#E8B923', water: '#2E5BB8' };
 const signElements = ['fire', 'earth', 'air', 'water', 'fire', 'earth', 'air', 'water', 'fire', 'earth', 'air', 'water'];
 const elementColorKeys = { Fogo: 'fire', Terra: 'earth', Ar: 'air', 'Água': 'water' };
 const rhythmColors = { Cardeal: signColors.air, Fixo: signColors.fire, 'Mutável': signColors.water };
@@ -567,7 +567,7 @@ function renderNatalInterpretation(content, chart) {
     ...housePlanetEntries(houseId)
   ]);
 
-  const presentationMarkup = `<h2 class="interpretation-main-title">✨ MAPA DA VIDA | INTERPRETAÇÃO</h2><section class="interpretation-bookend interpretation-bookend--opening" aria-label="Apresentação do Mapa da Vida"><blockquote><p>“Quem olha para fora sonha, quem olha para dentro acorda.”</p><cite>— Jung</cite></blockquote><p>O Mapa da Vida é uma leitura do seu céu no momento em que você nasceu — mas, mais do que isso, é um convite pra você se olhar por dentro. Aqui, a astrologia não é sentença nem prisão: é linguagem simbólica. É bússola. É uma ferramenta de autoconhecimento que te ajuda a entender como você age, sente, pensa, ama e constrói a vida.</p><p>Assim como os Reis Magos seguiram a luz das estrelas, o Mapa da Vida é um convite pra você reconhecer a luz que indica o seu caminho — não pra te dizer quem você deve ser, mas pra te lembrar de quem você já é.</p><p>Respira. Lê com calma. Isso não é um manual de instruções — é um espelho.</p></section>`;
+  const presentationMarkup = `<h2 class="interpretation-main-title">✨ MAPA DA VIDA | INTERPRETAÇÃO</h2><section class="interpretation-bookend interpretation-bookend--opening" aria-label="Apresentação do Mapa da Vida"><blockquote><p>“Quem olha para fora sonha, quem olha para dentro acorda.”</p><cite>— Jung</cite></blockquote><p>O Mapa da Vida é uma leitura do seu céu no momento em que você nasceu — mas, mais do que isso, é um convite pra você se olhar por dentro. Aqui, a astrologia não é sentença nem prisão: é linguagem simbólica. É bússola. É uma ferramenta de autoconhecimento que te ajuda a entender como você age, sente, pensa, ama e constrói a vida.</p><p>Assim como os Reis Magos seguiram a luz das estrelas, o Mapa da Vida é um convite pra você reconhecer a luz que indica o seu caminho — não para te dizer quem você deve ser, mas pra te lembrar de quem você já é.</p><p>Respira. Lê com calma. Isso não é um manual de instruções — é um guia.</p><p class="interpretation-section-list-title"><strong>Seções do Mapa:</strong></p><ol class="interpretation-section-list"><li>Quem Você É</li><li>Suas Raízes</li><li>Sua Mente</li><li>Como Você Ama</li><li>Seu Propósito</li><li>O Que Você Constrói</li><li>Sua Tribo e Sua Originalidade</li><li>Suas Transformações</li></ol></section>`;
   const closingMarkup = `<section class="interpretation-bookend interpretation-bookend--closing" aria-labelledby="map-life-closing-title"><h3 id="map-life-closing-title">🌟 ENCERRAMENTO</h3><blockquote><p>“Que você siga sua estrela como os Reis Magos seguiram a deles — não com certeza absoluta, mas com confiança. Não com medo, mas com fé. Não pra te dizer quem você deve ser, mas pra te lembrar de quem você já é.”</p></blockquote></section>`;
   const temperamentText = interpretationText('temperament', dominantElementKey(longitudes));
   const temperamentCard = interpretationCard('Elemento predominante', [{ text: temperamentText, symbols: [], label: '' }]);
@@ -1405,6 +1405,7 @@ function renderNatalView() {
   const chartWrap = document.querySelector('#chart-wrap');
   const solarPair = document.querySelector('#solar-pair');
   const overlayCanvas = document.querySelector('#solar-overlay-chart');
+  document.querySelector('#chart-title').textContent = 'Mapa da Vida';
   if (chartWrap) chartWrap.hidden = false;
   if (solarPair) solarPair.hidden = true;
   if (overlayCanvas) overlayCanvas.hidden = true;
@@ -1428,7 +1429,7 @@ function renderSolarLayers() {
   const solarPair = document.querySelector('#solar-pair');
   const overlayCanvas = document.querySelector('#solar-overlay-chart');
 
-  document.querySelector('#chart-title').textContent = innerIsSolar ? 'Mapa do ano' : 'Seu mapa';
+  document.querySelector('#chart-title').textContent = 'Mapa do Ano';
   document.querySelector('#form-status').textContent = `Retorno do Mapa do ano: ${currentSolarChart.returnDate} ${currentSolarChart.returnTime} · ${currentSolarChart.returnPlace}`;
   renderBalanceTables(innerChart.longitudes);
   document.querySelector('#natal-aspect-section').hidden = false;
@@ -1545,7 +1546,7 @@ async function renderMap() {
   const result = await callAstroApi({ name, date, time, place });
   const chartData = result.longitudes ? result : buildFallbackChart({ name, date, time, place, daylightSaving: result.daylightSaving });
 
-  document.querySelector('#chart-title').textContent = mapType === 'solar' ? 'Mapa do ano' : 'Seu mapa';
+  document.querySelector('#chart-title').textContent = mapType === 'solar' ? 'Mapa do Ano' : 'Mapa da Vida';
   document.querySelector('#sun-sign').textContent = result.sunSign || chartData.sunSign;
   document.querySelector('#moon-sign').textContent = result.moonSign || chartData.moonSign;
   document.querySelector('#rising-sign').textContent = result.risingSign || chartData.risingSign;
@@ -1880,7 +1881,19 @@ document.querySelector('#print-chart')?.addEventListener('click', async () => {
     panel.hidden = false;
     renderInterpretation();
   }
+  const ownerName = currentNatalInput?.name || document.querySelector('#name')?.value.trim() || 'visitante';
+  const safeOwnerName = ownerName.replace(/[<>:"/\\|?*\u0000-\u001f]/g, '').trim().replace(/[. ]+$/g, '') || 'visitante';
+  const previousTitle = document.title;
+  document.title = `${safeOwnerName} - Interpretação Mapa da Vida`;
+  document.body.classList.add('map-life-print');
+  const restoreTitle = () => {
+    document.title = previousTitle;
+    document.body.classList.remove('map-life-print');
+    window.removeEventListener('afterprint', restoreTitle);
+  };
+  window.addEventListener('afterprint', restoreTitle);
   window.print();
+  restoreTitle();
 });
 
 renderMap();

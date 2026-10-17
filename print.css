@@ -82,6 +82,8 @@
 @media print {
   :root { color-scheme:light; }
   html,body { width:auto; min-width:0; color:#111; background:#fff; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
+  body.map-life-print::before { position:fixed; inset:0; z-index:0; content:""; background:url("fonts/Novo%20Design%20-%20COM%20texto.png") center center / 145mm auto no-repeat; filter:grayscale(1); opacity:.12; pointer-events:none; }
+  body.map-life-print .app-shell { position:relative; z-index:1; }
   .sidebar,.site-footer,.control-column,.result-actions,.icon-button,.insights,.hero-section { display:none !important; }
   .main-content { width:100%; max-width:none; margin:0; padding:0; }
   .workspace { display:block; margin:0; padding:0; border:0; }
@@ -104,6 +106,7 @@
   .metadata-card dt { font-size:6.5pt; color:#555; }
   .metadata-card dd { font-size:8pt; color:#111; margin-top:.5mm; }
   .main-content,.workspace,.chart-panel { background:#fff !important; }
+  body.map-life-print .main-content,body.map-life-print .workspace,body.map-life-print .chart-panel { background:transparent !important; }
   .chart-wrap { width:88mm; max-width:100%; margin:0 auto 1mm; break-inside:avoid; page-break-inside:avoid; }
   .chart-legend { display:none; }
   .planet-readout span,.house-readout span { align-items:center; padding:.5mm 1.5mm; font-size:8pt; line-height:1; background:#fff; border-bottom:.2pt solid #ddd; }
@@ -142,8 +145,10 @@
   .interpretation-panel,.interpretation-panel[hidden] { display:block !important; width:100%; max-width:none; margin-top:0; border-top:0; break-before:page; page-break-before:always; }
   .interpretation-grid { grid-template-columns:minmax(0,1fr); }
   .interpretation-introduction,.interpretation-bookend { background:#eaf1f6 !important; border-color:#9bb4c8 !important; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
+  body.map-life-print .interpretation-introduction,body.map-life-print .interpretation-bookend { background:rgba(234,241,246,.88) !important; }
   .interpretation-main-title { break-after:avoid; page-break-after:avoid; }
   .interpretation-card { padding:3mm; background:#fff !important; border-color:#ddd !important; }
+  body.map-life-print .interpretation-card,body.map-life-print .metadata-card,body.map-life-print .planet-readout span,body.map-life-print .house-readout span,body.map-life-print .balance-tables section > div > div,body.map-life-print .balance-tables .polarity-balance,body.map-life-print .aspect-matrix td { background:rgba(255,255,255,.86) !important; }
   .interpretation-card p { color:#333; }
   .readout-heading,.balance-tables h3 { color:#333; }
   .ephemerides-page { padding:0; page:calendar; }

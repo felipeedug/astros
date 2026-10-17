@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261016-print-aspect-layout">
-  <link rel="stylesheet" href="print.css?v=20261016-print-aspect-layout">
+  <link rel="stylesheet" href="styles.css?v=20261016-map-opening-sections">
+  <link rel="stylesheet" href="print.css?v=20261016-print-watermark">
 </head>
 <body>
   <div class="app-shell">
@@ -156,7 +156,7 @@
         </div>
 
         <div class="chart-panel" aria-label="Visualizacao do mapa da vida">
-          <div class="chart-header"><div><h2 id="chart-title">Seu mapa</h2></div><button class="icon-button" title="Compartilhar mapa" aria-label="Compartilhar mapa">↗</button></div>
+          <div class="chart-header"><div><h2 id="chart-title">Mapa da Vida</h2></div><button class="icon-button" title="Compartilhar mapa" aria-label="Compartilhar mapa">↗</button></div>
           <div class="chart-metadata-grid" id="chart-metadata" aria-label="Dados do mapa"></div>
           <div class="chart-wrap" id="chart-wrap"><canvas id="chart" width="620" height="620"></canvas><canvas id="solar-overlay-chart" width="620" height="620" aria-label="Camada externa do Mapa do ano"></canvas></div>
           <div class="solar-pair" id="solar-pair" hidden><article><canvas id="solar-pair-first" width="620" height="620"></canvas></article><article><canvas id="solar-pair-second" width="620" height="620"></canvas></article></div>
@@ -646,7 +646,7 @@
     <p class="object-note-position" id="object-note-position"></p>
     <section aria-labelledby="object-note-aspects-title"><h3 id="object-note-aspects-title">Aspectos</h3><ul id="object-note-aspects"></ul></section>
   </dialog>
-  <script src="app.js?v=20261016-map-life-final"></script>
+  <script src="app.js?v=20261016-print-watermark"></script>
   <script type="module">
     window.astroWasmLoading = true;
     if (window.location.protocol !== 'file:') {
