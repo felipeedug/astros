@@ -142,6 +142,8 @@
   .planet-readout span,.house-readout span,.aspect-readout span,.balance-tables section,.interpretation-card { break-inside:avoid; page-break-inside:avoid; }
   .interpretation-panel,.interpretation-panel[hidden] { display:block !important; width:100%; max-width:none; margin-top:0; border-top:0; break-before:page; page-break-before:always; }
   .interpretation-grid { grid-template-columns:minmax(0,1fr); }
+  .interpretation-introduction,.interpretation-bookend { background:#fff !important; border-color:#bbb !important; }
+  .interpretation-main-title { break-after:avoid; page-break-after:avoid; }
   .interpretation-card { padding:3mm; background:#fff; }
   .interpretation-card p { color:#333; }
   .readout-heading,.balance-tables h3 { color:#333; }

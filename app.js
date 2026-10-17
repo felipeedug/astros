@@ -425,13 +425,35 @@ function interpretationText(collection, key) {
   return interpretationData && interpretationData[collection] ? interpretationData[collection][key] : '';
 }
 
-function renderBalanceTables(longitudes) {
-  const totals = { elements: { Fogo: 0, Terra: 0, Ar: 0, 'Água': 0 }, rhythms: { Cardeal: 0, Fixo: 0, 'Mutável': 0 }, polarities: { Positivo: 0, Negativo: 0 } };
+function elementScores(longitudes) {
+  const totals = { Fogo: 0, Terra: 0, Ar: 0, 'Água': 0 };
   Object.entries(balanceBodies).forEach(([planet, points]) => {
     if (!Number.isFinite(longitudes[planet])) return;
     const signIndex = signAt(longitudes[planet]);
     const element = ['Fogo', 'Terra', 'Ar', 'Água'][signIndex % 4];
-    totals.elements[element] += points;
+    totals[element] += points;
+  });
+  return totals;
+}
+
+function dominantElementKey(longitudes) {
+  const scores = elementScores(longitudes);
+  const highest = Math.max(...Object.values(scores));
+  if (!highest) return '';
+  const tieOrder = ['Terra', 'Ar', 'Água', 'Fogo'];
+  return Object.entries(scores)
+    .filter(([, score]) => score === highest)
+    .map(([element]) => element)
+    .sort((first, second) => tieOrder.indexOf(first) - tieOrder.indexOf(second))
+    .slice(0, 2)
+    .join(' + ');
+}
+
+function renderBalanceTables(longitudes) {
+  const totals = { elements: elementScores(longitudes), rhythms: { Cardeal: 0, Fixo: 0, 'Mutável': 0 }, polarities: { Positivo: 0, Negativo: 0 } };
+  Object.entries(balanceBodies).forEach(([planet]) => {
+    if (!Number.isFinite(longitudes[planet])) return;
+    const signIndex = signAt(longitudes[planet]);
     totals.rhythms[signRhythms[signIndex].replace('Mutavel', 'Mutável')] += balanceQualities[planet];
     totals.polarities[signPolarities[signIndex]] += balanceQualities[planet];
   });
@@ -468,8 +490,8 @@ function renderNatalInterpretation(content, chart) {
     const paragraphs = entries.length
       ? entries.map(({ text, symbols, label }) => {
         const symbolMarkup = symbols.map(({ value, type, color }) => `<span class="interpretation-symbol interpretation-symbol--${type}"${color ? ` style="color:${color}"` : ''} aria-hidden="true">${escapeHtml(value)}</span>`).join('<span class="interpretation-symbol-separator" aria-hidden="true"> </span>');
-        const reference = `<span class="interpretation-symbol-reference" role="img" aria-label="${escapeHtml(label)}">${symbolMarkup}</span>`;
-        return `<p>${formatInterpretationText(text || 'Interpretação indisponível.')} ${reference}</p>`;
+        const reference = symbols.length ? ` <span class="interpretation-symbol-reference" role="img" aria-label="${escapeHtml(label)}">${symbolMarkup}</span>` : '';
+        return `<p>${formatInterpretationText(text || 'Interpretação indisponível.')}${reference}</p>`;
       }).join('')
       : '<p>Interpretação indisponível.</p>';
     return `<article class="interpretation-card"><h4>${escapeHtml(title)}</h4>${paragraphs}</article>`;
@@ -545,7 +567,11 @@ function renderNatalInterpretation(content, chart) {
     ...housePlanetEntries(houseId)
   ]);
 
-  content.innerHTML = `<h3 class="interpretation-subtitle">Interpretação do Mapa da Vida</h3>${section('1. Quem você é', 'Aqui começa tudo. Vamos olhar sua essência, sua personalidade e a forma como você se apresenta ao mundo. É o seu jeito de ser e agir no dia a dia.', [
+  const presentationMarkup = `<h2 class="interpretation-main-title">✨ MAPA DA VIDA | INTERPRETAÇÃO</h2><section class="interpretation-bookend interpretation-bookend--opening" aria-label="Apresentação do Mapa da Vida"><blockquote><p>“Quem olha para fora sonha, quem olha para dentro acorda.”</p><cite>— Jung</cite></blockquote><p>O Mapa da Vida é uma leitura do seu céu no momento em que você nasceu — mas, mais do que isso, é um convite pra você se olhar por dentro. Aqui, a astrologia não é sentença nem prisão: é linguagem simbólica. É bússola. É uma ferramenta de autoconhecimento que te ajuda a entender como você age, sente, pensa, ama e constrói a vida.</p><p>Assim como os Reis Magos seguiram a luz das estrelas, o Mapa da Vida é um convite pra você reconhecer a luz que indica o seu caminho — não pra te dizer quem você deve ser, mas pra te lembrar de quem você já é.</p><p>Respira. Lê com calma. Isso não é um manual de instruções — é um espelho.</p></section>`;
+  const closingMarkup = `<section class="interpretation-bookend interpretation-bookend--closing" aria-labelledby="map-life-closing-title"><h3 id="map-life-closing-title">🌟 ENCERRAMENTO</h3><blockquote><p>“Que você siga sua estrela como os Reis Magos seguiram a deles — não com certeza absoluta, mas com confiança. Não com medo, mas com fé. Não pra te dizer quem você deve ser, mas pra te lembrar de quem você já é.”</p></blockquote></section>`;
+  const temperamentText = interpretationText('temperament', dominantElementKey(longitudes));
+  const temperamentCard = interpretationCard('Elemento predominante', [{ text: temperamentText, symbols: [], label: '' }]);
+  content.innerHTML = `${presentationMarkup}${section('🔥 SEU TEMPERAMENTO', 'Antes de entrar nos detalhes, vamos ver o conjunto. Aqui você descobre qual elemento predomina em você — fogo, terra, ar ou água — e como essa mistura molda seu jeito de ser.', [temperamentCard])}${section('1. Quem você é', 'Aqui começa tudo. Vamos olhar sua essência, sua personalidade e a forma como você se apresenta ao mundo. É o seu jeito de ser e agir no dia a dia.', [
     planetTopicCard('O que te move', 'Sun'),
     interpretationCard('Como o mundo te vê', [houseSignEntry(1), ...aspectEntries('Ascendant', ['Sun', 'Midheaven'])]),
     planetTopicCard('Sua força de vontade', 'Mars', ['Sun', 'Ascendant', 'Moon', 'Mercury', 'Venus'])
@@ -575,7 +601,7 @@ function renderNatalInterpretation(content, chart) {
   ])}${section('8. Suas transformações', 'Crises, sexualidade, perdas e renascimentos. Aqui você mergulha no que te transforma por dentro, no que precisa morrer pra renascer e nas mudanças profundas da sua vida.', [
     planetTopicCard('O que te transforma por dentro', 'Pluto'),
     houseTopicCard('Suas crises, sexualidade e renascimentos', 8)
-  ])}`;
+  ])}${closingMarkup}`;
 }
 
 function renderInterpretation() {
@@ -1839,7 +1865,7 @@ if (orbControl) {
   });
 }
 
-const interpretationReady = fetch('./data/interpretations.json?v=20261012-astrovida-sign-symbols').then((response) => response.json()).then((data) => { interpretationData = data; if (!document.querySelector('#interpretation-panel')?.hidden) renderInterpretation(); return data; }).catch(() => null);
+const interpretationReady = fetch('./data/interpretations.json?v=20261016-temperament').then((response) => response.json()).then((data) => { interpretationData = data; if (!document.querySelector('#interpretation-panel')?.hidden) renderInterpretation(); return data; }).catch(() => null);
 document.querySelector('#interpret-button')?.addEventListener('click', () => {
   const panel = document.querySelector('#interpretation-panel');
   if (!panel) return;
