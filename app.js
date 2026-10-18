@@ -1732,7 +1732,7 @@ function showView(viewId) {
     'quem-somos': 'Quem somos | Entre Estrelas | Astrologia',
     servicos: 'Serviços | Entre Estrelas | Astrologia',
     comunidade: 'Comunidade | Entre Estrelas | Astrologia',
-    apoie: 'Apoie | Entre Estrelas | Astrologia'
+    apoie: 'Membro Fundador | Entre Estrelas | Astrologia'
   };
   document.title = pageTitles[viewId] || 'Entre Estrelas — Todos somos feitos do pó de estrelas.';
   navigationLinks.forEach((link) => {
