@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="styles.css?v=20261016-map-opening-sections">
   <style>
     body { min-height:100vh; background:#FAF8F5; }
-    .thanks-page { width:min(100% - 40px,760px); margin:0 auto; padding:clamp(32px,7vw,72px) 0 64px; }
+    .thanks-page { --editorial-bg:#FAF8F5; --editorial-ink:#1A1F2E; --editorial-secondary:#5A6270; --editorial-accent:#1E3A5F; --editorial-gold:#C9A227; --editorial-divider:#E0DDD8; width:min(100% - 40px,760px); margin:0 auto; padding:clamp(32px,7vw,72px) 0 64px; }
     .thanks-brand { display:block; margin-bottom:40px; color:#1E3A5F; font:700 13px var(--fonte-corpo); letter-spacing:.15em; text-align:center; text-decoration:none; text-transform:uppercase; }
     .thanks-header { padding-bottom:28px; border-bottom:1px solid #E0DDD8; text-align:center; }
     .thanks-alert { margin:0 auto 24px; padding:14px 18px; border:1px solid #C9A227; color:#1A1F2E; font:700 14px/1.6 var(--fonte-corpo); }
@@ -24,6 +24,7 @@
     .thanks-steps,.thanks-founders { display:grid; gap:0; margin:0; padding:0; list-style:none; }
     .thanks-steps li,.thanks-founders li { padding:12px 0; border-top:1px solid #E0DDD8; color:#5A6270; font:600 16px/1.6 var(--fonte-corpo); }
     .thanks-cta { margin-top:20px; text-align:center; }
+    .thanks-form-prompt { text-align:center; }
     .thanks-cta .editorial-button:disabled { opacity:.56; cursor:not-allowed; }
     .thanks-note { margin:12px 0 0!important; font-size:13px!important; font-style:italic; }
     .thanks-closing { padding-top:34px; color:#1E3A5F; font:700 clamp(1.4rem,4vw,2rem)/1.5 var(--fonte-titulo); text-align:center; }
@@ -49,7 +50,7 @@
     <section class="thanks-section" aria-labelledby="next-step-title">
       <h2 id="next-step-title">Próximo passo</h2>
       <p>Para que possamos gerar seu Mapa da Vida e registrar seus benefícios de fundador, precisamos de algumas informações.</p>
-      <p>👇 Clique no botão abaixo e preencha o formulário.</p>
+      <p class="thanks-form-prompt">👇 Clique no botão abaixo e preencha o formulário.</p>
       <div class="thanks-cta">
         <a class="editorial-button" href="https://forms.cloud.microsoft/r/bTHYRz9xri" target="_blank" rel="noopener noreferrer">Preencher meus dados</a>
       </div>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Acesso direto às ferramentas do Entre Estrelas.">
+  <title>Ferramentas | Entre Estrelas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20261016-map-opening-sections">
+  <style>
+    body { min-height:100vh; background:#FAF8F5; }
+    .tools-page { --editorial-bg:#FAF8F5; --editorial-ink:#1A1F2E; --editorial-secondary:#5A6270; --editorial-accent:#1E3A5F; --editorial-gold:#C9A227; --editorial-divider:#E0DDD8; width:min(100% - 40px,760px); margin:0 auto; padding:clamp(32px,7vw,72px) 0 64px; }
+    .tools-brand { display:block; margin-bottom:40px; color:#1E3A5F; font:700 13px var(--fonte-corpo); letter-spacing:.15em; text-align:center; text-decoration:none; text-transform:uppercase; }
+    .tools-header { padding-bottom:28px; border-bottom:1px solid #E0DDD8; text-align:center; }
+    .tools-header h1 { margin:0 0 12px; color:#1E3A5F; font:700 clamp(2.2rem,6vw,3.4rem)/1.12 var(--fonte-titulo); }
+    .tools-header p { margin:0; color:#5A6270; font:400 18px/1.7 var(--fonte-corpo); }
+    .tools-list { display:grid; gap:0; margin:0; padding:0; list-style:none; }
+    .tools-list li { border-bottom:1px solid #E0DDD8; }
+    .tools-list a { display:block; padding:20px 4px; color:#1E3A5F; font:700 17px/1.5 var(--fonte-corpo); text-decoration:none; }
+    .tools-list a:hover,.tools-list a:focus-visible { color:#9C7612; }
+    @media (max-width:600px) { .tools-page { width:min(100% - 32px,760px); }.tools-header p { font-size:16px; } }
+  </style>
+</head>
+<body>
+  <main class="tools-page">
+    <a class="tools-brand" href="index.html">Entre Estrelas</a>
+    <header class="tools-header">
+      <h1>Ferramentas</h1>
+      <p>Acesse diretamente os mapas e recursos do Entre Estrelas.</p>
+    </header>
+    <nav aria-label="Ferramentas do Entre Estrelas">
+      <ul class="tools-list">
+        <li><a href="index.html?acesso-mapas=1#ascendente">Ascendente</a></li>
+        <li><a href="index.html?acesso-mapas=1#efemerides">Efemérides</a></li>
+        <li><a href="index.html?acesso-mapas=1#mapa">Mapa da Vida</a></li>
+        <li><a href="index.html?acesso-mapas=1&amp;modo=ano#mapa">Mapa do Ano</a></li>
+        <li><a href="index.html?acesso-mapas=1#lua">Lua fora de curso</a></li>
+      </ul>
+    </nav>
+  </main>
+</body>
+</html>

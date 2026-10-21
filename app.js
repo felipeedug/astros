@@ -1818,8 +1818,19 @@ document.querySelector('#share-project')?.addEventListener('click', async () => 
     status.textContent = 'Não foi possível compartilhar automaticamente. Copie o endereço pela barra do navegador.';
   }
 });
-window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
-showView('inicio');
+const privateMapsAccess = new URLSearchParams(window.location.search).has('acesso-mapas');
+const requestedView = window.location.hash.slice(1);
+const privateMapViews = ['ascendente', 'efemerides', 'mapa', 'lua'];
+if (privateMapsAccess && privateMapViews.includes(requestedView)) {
+  if (requestedView === 'mapa') {
+    const requestedMode = new URLSearchParams(window.location.search).get('modo');
+    setMapMode(requestedMode === 'ano' ? 'year' : 'life');
+  }
+  showView(requestedView);
+} else {
+  window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+  showView('inicio');
+}
 
 ['map-type', 'solar-year', 'solar-place', 'solar-layout', 'solar-inner'].forEach((id) => {
   document.querySelector(`#${id}`)?.addEventListener('change', () => {
