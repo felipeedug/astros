@@ -1911,3 +1911,31 @@ document.querySelector('#print-chart')?.addEventListener('click', async () => {
 });
 
 renderMap();
+
+const bonusLightbox = document.querySelector('#bonus-lightbox');
+const bonusLightboxImage = bonusLightbox?.querySelector('img');
+if (bonusLightbox && bonusLightboxImage) {
+  const openBonusLightbox = (thumbnail) => {
+    bonusLightboxImage.src = thumbnail.currentSrc || thumbnail.src;
+    bonusLightboxImage.alt = thumbnail.alt;
+    bonusLightbox.showModal();
+  };
+
+  document.querySelectorAll('.bonus-gallery img').forEach((thumbnail) => {
+    thumbnail.tabIndex = 0;
+    thumbnail.setAttribute('role', 'button');
+    thumbnail.setAttribute('aria-label', `${thumbnail.alt}. Ampliar foto`);
+    thumbnail.addEventListener('click', () => openBonusLightbox(thumbnail));
+    thumbnail.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openBonusLightbox(thumbnail);
+      }
+    });
+  });
+
+  bonusLightbox.querySelector('.bonus-lightbox-close')?.addEventListener('click', () => bonusLightbox.close());
+  bonusLightbox.addEventListener('click', (event) => {
+    if (event.target === bonusLightbox) bonusLightbox.close();
+  });
+}

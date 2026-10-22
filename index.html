@@ -8,10 +8,17 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261016-map-opening-sections">
+  <link rel="stylesheet" href="styles.css?v=20261022-hero-spacing-2">
   <link rel="stylesheet" href="print.css?v=20261016-print-watermark">
 </head>
 <body>
+  <svg class="social-icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <symbol id="social-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.25" fill="currentColor"/></symbol>
+    <symbol id="social-linkedin" viewBox="0 0 24 24"><path fill="currentColor" d="M20 20h-3.5v-5.5c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V20H9V9h3.4v1.5h.1c.5-.9 1.6-1.8 3.3-1.8 3.5 0 4.2 2.3 4.2 5.2V20zM5.5 7.5a2 2 0 1 1 0-4 2 2 0 0 1 0 4zM7.3 20H3.8V9h3.5v11z"/></symbol>
+    <symbol id="social-tiktok" viewBox="0 0 24 24"><path fill="currentColor" d="M19.6 7.1a6.6 6.6 0 0 1-4.1-1.8v8.1a6.1 6.1 0 1 1-6.1-6.1c.4 0 .8 0 1.2.1v3.4a2.8 2.8 0 1 0 1.4 2.4V2.5h3.5c.2 2.2 1.8 4 4.1 4.3v3.5z"/></symbol>
+    <symbol id="social-youtube" viewBox="0 0 24 24"><path fill="currentColor" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12s0 3.4.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-2.4.5-5.8.5-5.8s0-3.4-.5-5.8zM9.6 15.6V8.4l6.2 3.6z"/></symbol>
+    <symbol id="social-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a9.8 9.8 0 0 0-8.4 14.9L2.3 22l5.2-1.3A9.9 9.9 0 1 0 12 2zm0 17.8a8 8 0 0 1-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3A8 8 0 1 1 12 19.8zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8.9-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.5.2-.4c.1-.2 0-.3 0-.5l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.8 2.8 4.3 3.8.6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .2-1.1 0-.1-.2-.2-.4-.3z"/></symbol>
+  </svg>
   <div class="app-shell">
     <header class="sidebar">
       <a class="brand" href="#inicio" aria-label="Entre Estrelas, início">
@@ -129,6 +136,13 @@
             <p class="home-eyebrow">Bônus</p>
             <h2 class="home-section-title">🎁 Presente para os primeiros fundadores</h2>
             <p>Entre os primeiros Membros Fundadores será sorteada uma bolsa exclusiva Santa Lolla, gentilmente oferecida para apoiar o lançamento do projeto.</p>
+            <div class="bonus-gallery" aria-label="Fotos da bolsa Santa Lolla que será sorteada">
+              <img src="images/bolsa/bolsa-1.jpg" alt="Bolsa dourada Santa Lolla em diferentes ângulos" loading="lazy" decoding="async">
+              <img src="images/bolsa/bolsa-2.jpg" alt="Bolsa dourada Santa Lolla em uma modelo" loading="lazy" decoding="async">
+              <img src="images/bolsa/bolsa-3.jpg" alt="Bolsa dourada Santa Lolla em uma modelo em ambiente externo" loading="lazy" decoding="async">
+              <img src="images/bolsa/bolsa-4.jpg" alt="Bolsa dourada Santa Lolla combinada com look claro" loading="lazy" decoding="async">
+              <img src="images/bolsa/bolsa-5.jpg" alt="Bolsa dourada Santa Lolla combinada com vestido azul" loading="lazy" decoding="async">
+            </div>
           </section>
 
           <section class="home-section final-cta-section">
@@ -310,8 +324,8 @@
           <div class="about-story">
             <section class="about-story-section" aria-labelledby="about-origin-title">
               <h2 id="about-origin-title">O Entre Estrelas nasceu da vontade de juntar duas coisas que sempre caminharam juntas na minha vida: o céu e a tecnologia.</h2>
-              <p>Meu nome é Felipe. Sou formado em Ciência da Computação desde 2006, com pós-graduação em Marketing e Finanças.</p>
-              <p>Trabalhei em grandes empresas de tecnologia, como IBM e Microsoft — onde fiquei por dez anos — e ajudei organizações como Globo, Petrobras e a Bolsa de Valores a se transformarem digitalmente. Atuei em finanças, governo, educação, saúde e telecomunicações.</p>
+              <p>Meu nome é Felipe Gonçalves. Sou formado em Ciência da Computação desde 2006, com pós-graduação em Marketing e Finanças.</p>
+              <p>Trabalhei em grandes empresas de tecnologia, como IBM e Microsoft, onde fiquei por mais de doze anos e ajudei organizações como Globo, Petrobras e a Bolsa de Valores a se transformarem digitalmente. Atuei em finanças, governo, educação, saúde e telecomunicações.</p>
               <p>Mas sempre estudei astrologia. Há muitos anos. Fiz cursos, me aprofundei, aprendi a ler mapas, a entender ciclos, a olhar para o céu com outros olhos.</p>
               <p>Em algum momento, percebi que podia unir as duas coisas.</p>
             </section>
@@ -324,18 +338,79 @@
             <section class="about-story-section about-principle" aria-labelledby="about-principle-title">
               <h2 id="about-principle-title">Aqui, ninguém é mais importante que ninguém.</h2>
               <p>Todos somos estrelas. Todas têm a sua luz. Todas têm o seu caminho.</p>
-            </section>
-            <section class="about-story-section" aria-labelledby="about-building-title">
-              <h2 id="about-building-title">O projeto está sendo construído aos poucos, com o cuidado que ele merece.</h2>
-              <p>A ferramenta de gerar o mapa da vida interpretado automaticamente já está sendo desenvolvida. As páginas das astrólogas parceiras estão por vir. A comunidade está começando a se formar.</p>
-              <p>E você pode fazer parte disso desde o começo.</p>
+              <p>E você pode fazer parte disso desde o início.</p>
             </section>
           </div>
-          <section class="partner-section" aria-labelledby="partner-title">
-            <h2 class="editorial-section-title" id="partner-title">Astrólogas parceiras</h2>
-            <p>O <strong>Entre Estrelas</strong> está sendo construído para receber astrólogas com muito conhecimento e experiência. Profissionais que terão suas próprias páginas dentro do portal, oferecendo cursos, mentorias, lives e atendimentos, com espaço, visibilidade e respeito ao seu trabalho.</p>
-            <p>Cada uma com a sua voz, a sua metodologia e o seu jeito de olhar o céu.</p>
-            <p>Porque aqui ninguém é mais importante que ninguém — todas são estrelas.</p>
+          <section class="participants-section" aria-labelledby="participants-title">
+            <h2 class="editorial-section-title" id="participants-title">Participantes</h2>
+            <p class="participants-intro">O Entre Estrelas reúne pessoas que olham para o céu com profundidade, respeito e voz própria. Cada participante tem seu espaço dentro do portal, com suas páginas, seus conteúdos, seus atendimentos e seu jeito de olhar a astrologia.</p>
+            <div class="participant-cards">
+              <article class="participant-card" aria-labelledby="participant-felipe-title">
+                <header class="participant-card-header">
+                  <img class="participant-photo" src="fonts/Felipe.jpeg" alt="Foto de Felipe Gonçalves" loading="lazy">
+                  <div class="participant-card-heading">
+                  <h3 id="participant-felipe-title">Felipe Gonçalves</h3>
+                  <p class="participant-role">Fundador do Entre Estrelas</p>
+                  </div>
+                </header>
+                <div class="participant-bio">
+                  <p>Formado em Ciência da Computação desde 2006, com pós-graduação em Marketing e Finanças. Atuou em grandes empresas de tecnologia, como IBM e Microsoft, e ajudou organizações como Globo, Petrobras e a Bolsa de Valores a se transformarem digitalmente.</p>
+                  <p>Está se formando em Psicanálise e já fez diversos treinamentos voltados para o autoconhecimento, como PNL Master e Astrologia Analítica. Atuou como coach de autoconhecimento e faz atendimentos desde o início dos estudos em astrologia — dado a facilidade com o tema, teve seus primeiros clientes ainda durante a formação. De lá pra cá, já somam mais de 500 atendimentos.</p>
+                  <p>Criou o Entre Estrelas para unir o céu e a tecnologia em uma comunidade acessível e acolhedora.</p>
+                </div>
+                <blockquote class="participant-quote">Assim como os reis magos se guiaram pelas estrelas até Jesus, que essas mesmas estrelas possam iluminar o seu caminho.</blockquote>
+                <nav class="participant-socials" aria-label="Redes sociais de Felipe Gonçalves">
+                  <a href="https://www.instagram.com/eufelipeedu/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Felipe Gonçalves">
+                    <svg aria-hidden="true"><use href="#social-instagram"></use></svg><span>@eufelipeedu</span>
+                  </a>
+                  <a href="https://www.linkedin.com/in/felipeeg/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Felipe Gonçalves">
+                    <svg aria-hidden="true"><use href="#social-linkedin"></use></svg><span>felipeeg</span>
+                  </a>
+                  <a href="https://www.tiktok.com/@felipe.eduardo985" target="_blank" rel="noopener noreferrer" aria-label="TikTok de Felipe Gonçalves">
+                    <svg aria-hidden="true"><use href="#social-tiktok"></use></svg><span>@felipe.eduardo985</span>
+                  </a>
+                </nav>
+              </article>
+
+              <article class="participant-card" aria-labelledby="participant-jussara-title">
+                <header class="participant-card-header">
+                  <img class="participant-photo" src="fonts/Jussara.jpeg" alt="Foto de Jussara Macedo" loading="lazy">
+                  <div class="participant-card-heading">
+                  <h3 id="participant-jussara-title">Jussara Macedo</h3>
+                  <p class="participant-role">Astróloga parceira</p>
+                  </div>
+                </header>
+                <div class="participant-bio">
+                  <p>Socióloga e pós-graduada em Sociopsicologia. Tenho enorme disposição em envolver-me nos processos reflexivos que buscam traduzir as relações construídas, sobretudo as que permitem observar a plenitude e a amplitude do ser humano em sua singularidade.</p>
+                  <p>Especialista em Mapa Infantil, Mapa do Ano e Mapa da Vida.</p>
+                </div>
+                <blockquote class="participant-quote">Entre tantas ferramentas de autoconhecimento, a astrologia é uma ferramenta muito potente!</blockquote>
+                <nav class="participant-socials" aria-label="Redes sociais de Jussara Macedo">
+                  <a href="https://www.instagram.com/usandoastrologia/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Jussara Macedo">
+                    <svg aria-hidden="true"><use href="#social-instagram"></use></svg><span>@usandoastrologia</span>
+                  </a>
+                </nav>
+              </article>
+
+              <article class="participant-card" aria-labelledby="participant-rosa-title">
+                <header class="participant-card-header">
+                  <img class="participant-photo" src="fonts/Rosa.jpeg" alt="Foto de Rosa Martinelli" loading="lazy">
+                  <div class="participant-card-heading">
+                    <h3 id="participant-rosa-title">Rosa Martinelli</h3>
+                  </div>
+                </header>
+                <div class="participant-bio">
+                  <p>Formação por escolas energéticas e humanistas. Mais de 6.000 consultas realizadas ao redor do mundo nos últimos 15 anos.</p>
+                  <p>Experiência em Mapa da Vida e Mapa do Ano, especializada na indicação de períodos propícios para lançamentos, novos negócios, eventos importantes, novos projetos e casamento.</p>
+                </div>
+                <blockquote class="participant-quote">Astrologia é uma ciência oculta, portanto é também sagrada.</blockquote>
+                <nav class="participant-socials" aria-label="Redes sociais de Rosa Martinelli">
+                  <a href="https://www.instagram.com/rosamartinelliastrologa" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Rosa Martinelli">
+                    <svg aria-hidden="true"><use href="#social-instagram"></use></svg><span>@rosamartinelliastrologa</span>
+                  </a>
+                </nav>
+              </article>
+            </div>
           </section>
           <section class="page-closing">
             <blockquote class="page-closing-message">
@@ -625,6 +700,13 @@
           <section class="editorial-section founder-bonus-intro" aria-labelledby="founder-bonus-title">
             <h2 class="editorial-section-title" id="founder-bonus-title">🎁 Bônus de Lançamento</h2>
             <p>Entre os primeiros Membros Fundadores será sorteada uma bolsa exclusiva Santa Lolla.</p>
+            <div class="bonus-gallery" aria-label="Fotos da bolsa Santa Lolla que será sorteada">
+              <img src="images/bolsa/bolsa-1.jpg" alt="Bolsa dourada Santa Lolla em diferentes ângulos" loading="lazy" decoding="async">
+              <img src="images/bolsa/bolsa-2.jpg" alt="Bolsa dourada Santa Lolla em uma modelo" loading="lazy" decoding="async">
+              <img src="images/bolsa/bolsa-3.jpg" alt="Bolsa dourada Santa Lolla em uma modelo em ambiente externo" loading="lazy" decoding="async">
+              <img src="images/bolsa/bolsa-4.jpg" alt="Bolsa dourada Santa Lolla combinada com look claro" loading="lazy" decoding="async">
+              <img src="images/bolsa/bolsa-5.jpg" alt="Bolsa dourada Santa Lolla combinada com vestido azul" loading="lazy" decoding="async">
+            </div>
           </section>
 
           <section class="editorial-section founder-price-section">
@@ -662,10 +744,10 @@
         <strong>Redes sociais</strong>
         <span class="footer-coming-soon">Em breve</span>
         <ul>
-          <li>Instagram</li>
-          <li>YouTube</li>
-          <li>TikTok</li>
-          <li>WhatsApp</li>
+          <li><svg aria-hidden="true"><use href="#social-instagram"></use></svg>Instagram</li>
+          <li><svg aria-hidden="true"><use href="#social-youtube"></use></svg>YouTube</li>
+          <li><svg aria-hidden="true"><use href="#social-tiktok"></use></svg>TikTok</li>
+          <li><svg aria-hidden="true"><use href="#social-whatsapp"></use></svg>WhatsApp</li>
         </ul>
       </div>
       <div class="footer-contact">
@@ -683,7 +765,11 @@
     <p class="object-note-position" id="object-note-position"></p>
     <section aria-labelledby="object-note-aspects-title"><h3 id="object-note-aspects-title">Aspectos</h3><ul id="object-note-aspects"></ul></section>
   </dialog>
-  <script src="app.js?v=20261016-print-watermark"></script>
+  <dialog class="bonus-lightbox" id="bonus-lightbox" aria-label="Foto ampliada da bolsa">
+    <button class="bonus-lightbox-close" type="button" aria-label="Fechar foto">×</button>
+    <img src="" alt="">
+  </dialog>
+  <script src="app.js?v=20261022-bonus-lightbox"></script>
   <script type="module">
     window.astroWasmLoading = true;
     if (window.location.protocol !== 'file:') {
