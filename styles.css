@@ -252,6 +252,8 @@ label { display:block; margin-top:20px; color:var(--muted); font-size:10px; font
 .home-section .home-eyebrow { max-width:760px; }
 .home-simple-list,.home-check-list { display:grid; gap:0; max-width:860px; margin:18px 0 0; padding:0; list-style:none; }
 .home-simple-list li,.home-check-list li { padding:12px 0; border-top:1px solid #E0DDD8; color:#5A6270; font:600 17px/1.6 var(--fonte-corpo); }
+.home-check-list--planned li,.support-reasons--planned li { display:flex; align-items:flex-start; gap:10px; }
+.home-check-list--planned li::before,.support-reasons--planned li::before { content:""; flex:0 0 10px; width:10px; height:10px; margin-top:.62em; background:#C9A227; }
 .home-simple-list li { padding-left:22px; position:relative; }
 .home-simple-list li::before { position:absolute; left:0; color:#C9A227; content:"•"; }
 .home-check-list--grid,.home-simple-list--grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 32px; }
@@ -400,6 +402,7 @@ label { display:block; margin-top:20px; color:var(--muted); font-size:10px; font
 .support-page .founder-after-payment { margin-top:16px; padding-top:14px; }
 .editorial-note { font-size:14px!important; font-style:italic; }
 .support-reasons { display:grid; gap:0; margin:0; padding:0; list-style:none; }
+.support-reasons--grid { grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:32px; }
 .support-reasons li { padding:16px 0; border-top:1px solid var(--editorial-divider); color:var(--editorial-secondary); font:600 18px/1.7 var(--fonte-titulo); }
 .campaign-section { margin-top:34px; padding:28px; border:1px solid var(--editorial-divider); text-align:center; }
 .campaign-section h2 { margin:0 0 12px; color:var(--editorial-accent); font:700 11px/1.5 var(--fonte-corpo); letter-spacing:.15em; text-transform:uppercase; }
@@ -427,6 +430,7 @@ label { display:block; margin-top:20px; color:var(--muted); font-size:10px; font
   .editorial-page { min-height:calc(100vh - 100px); margin:-36px -22px -45px; padding:38px 22px 54px; }
   .editorial-intro p,.editorial-section > p,.editorial-card p,.participation-list p,.support-rewards p,.campaign-section > p,.share-project p { font-size:16px; }
   .editorial-cards,.participation-list { grid-template-columns:1fr; gap:0; }
+  .support-reasons--grid { grid-template-columns:1fr; }
   .help-perspective-grid { grid-template-columns:1fr; gap:22px; }
   .help-perspective-grid h3 { font-size:20px; }
   .help-perspective-grid p,.help-perspective-close { font-size:16px; }
