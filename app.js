@@ -1820,12 +1820,15 @@ document.querySelector('#share-project')?.addEventListener('click', async () => 
 });
 const privateMapsAccess = new URLSearchParams(window.location.search).has('acesso-mapas');
 const requestedView = window.location.hash.slice(1);
+const publicViews = ['inicio', 'manifesto', 'quem-somos', 'servicos', 'comunidade', 'apoie'];
 const privateMapViews = ['ascendente', 'efemerides', 'mapa', 'lua'];
 if (privateMapsAccess && privateMapViews.includes(requestedView)) {
   if (requestedView === 'mapa') {
     const requestedMode = new URLSearchParams(window.location.search).get('modo');
     setMapMode(requestedMode === 'ano' ? 'year' : 'life');
   }
+  showView(requestedView);
+} else if (publicViews.includes(requestedView)) {
   showView(requestedView);
 } else {
   window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);

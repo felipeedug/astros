@@ -361,7 +361,7 @@ label { display:block; margin-top:20px; color:var(--muted); font-size:10px; font
 .support-rewards article { padding:18px 0; border-top:1px solid var(--editorial-divider); }
 .support-rewards h3 { font:700 17px/1.4 var(--fonte-corpo); }
 .support-rewards p { margin:0; font-size:16px; }
-.founder-bonus-intro .editorial-section-title { font:600 18px/1.7 var(--fonte-titulo); letter-spacing:0; text-transform:none; }
+.support-page .editorial-section-title { color:#1E3A5F; font:600 13px/1.5 var(--fonte-corpo); letter-spacing:.16em; text-transform:uppercase; }
 .editorial-section .founder-price-copy { margin:0; color:#1E3A5F; font:600 18px/1.7 var(--fonte-titulo); }
 .founder-price-section { text-align:left; }
 .support-page [aria-labelledby="founder-building-title"] { padding-bottom:16px; }
