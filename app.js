@@ -1939,3 +1939,9 @@ if (bonusLightbox && bonusLightboxImage) {
     if (event.target === bonusLightbox) bonusLightbox.close();
   });
 }
+
+document.querySelectorAll('[data-founder-checkout]').forEach((link) => {
+  link.addEventListener('click', () => {
+    window.open('https://mpago.la/2FXRDYD', '_blank', 'noopener,noreferrer');
+  });
+});
