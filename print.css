@@ -13,14 +13,14 @@
 .aspect-matrix th,.aspect-matrix td { box-sizing:border-box; width:21px; min-width:21px; height:21px; padding:0; border:1px solid var(--line); text-align:center; vertical-align:middle; }
 .aspect-matrix thead th,.aspect-matrix tbody th,.aspect-matrix tfoot th { background:rgba(251,249,244,.9); font-weight:400; }
 .aspect-matrix .aspect-matrix-corner,.aspect-matrix tbody th,.aspect-matrix tfoot th { width:30px; min-width:30px; }
-.aspect-matrix .aspect-axis-glyph { display:inline-block; color:inherit; font:13px/1 'Astrovida','Segoe UI Symbol',sans-serif; }
+.aspect-matrix .aspect-axis-glyph { display:inline-block; color:inherit; font:13px/1 'Astrovida','Noto Sans Symbols 2','Segoe UI Symbol',sans-serif; }
 .aspect-matrix .aspect-axis-label { display:inline-block; color:inherit; font:700 7px/1 'DM Mono',monospace; }
 .aspect-matrix td { background:#fff; }
 .aspect-matrix td.aspect-matrix-diagonal { background:rgba(32,37,43,.12); }
 .aspect-matrix .aspect-mark { position:relative; display:inline-block; width:15px; height:15px; padding:0; color:inherit; background:transparent; font:normal 15px/15px 'DM Mono',sans-serif; text-align:center; vertical-align:middle; }
-.aspect-mark--square::before { content:'□'; font:13px/15px 'Segoe UI Symbol',sans-serif; }
-.aspect-mark--trine::before { content:'△'; font:12px/15px 'Segoe UI Symbol',sans-serif; }
-.aspect-mark--sextile::before { content:'✳'; font:12px/15px 'Segoe UI Symbol',sans-serif; }
+.aspect-mark--square::before { content:'□'; font:13px/15px 'Noto Sans Symbols 2','Segoe UI Symbol',sans-serif; }
+.aspect-mark--trine::before { content:'△'; font:12px/15px 'Noto Sans Symbols 2','Segoe UI Symbol',sans-serif; }
+.aspect-mark--sextile::before { content:'✳'; font:12px/15px 'Noto Sans Symbols 2','Segoe UI Symbol',sans-serif; }
 .aspect-matrix .aspect-mark--conjunction { width:19px; background:linear-gradient(currentColor,currentColor) right center/12px 1px no-repeat; }
 .aspect-matrix .aspect-mark--conjunction::before { position:absolute; top:4px; left:1px; width:7px; height:7px; border:1.5px solid currentColor; border-radius:50%; background:#fff; content:''; }
 .aspect-matrix .aspect-mark--opposition { width:21px; background:linear-gradient(currentColor,currentColor) center/17px 2px no-repeat; }
@@ -35,7 +35,7 @@
 .aspect-matrix-legend .aspect-mark--opposition::before,.aspect-matrix-legend .aspect-mark--opposition::after { position:absolute; top:4px; width:7px; height:7px; border:1.5px solid currentColor; border-radius:50%; background:#fff; content:''; }
 .aspect-matrix-legend .aspect-mark--opposition::before { left:1px; }.aspect-matrix-legend .aspect-mark--opposition::after { right:1px; }
 .chart-panel > .balance-tables { margin-top:14px; }
-.planet-readout .readout-sign,.house-readout .readout-sign { display:inline-block; margin-left:2px; color:inherit; font:14px/1 'Astrovida','Segoe UI Symbol',sans-serif; vertical-align:-2px; }
+.planet-readout .readout-sign,.house-readout .readout-sign { display:inline-block; margin-left:2px; color:inherit; font:14px/1 'Astrovida','Noto Sans Symbols 2','Segoe UI Symbol',sans-serif; vertical-align:-2px; }
 .planet-readout i.readout-point-label { color:var(--ink); font:700 9px 'DM Mono',monospace; }
 .result-actions { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:10px; margin-top:14px; }
 .result-actions .interpret-button,.result-actions .print-button { width:100%; min-width:0; margin:0; padding:12px; border:1px solid var(--ink); color:var(--ink); background:transparent; font:700 10px Manrope,sans-serif; text-align:left; cursor:pointer; }

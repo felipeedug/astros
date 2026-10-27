@@ -561,46 +561,46 @@ function renderNatalInterpretation(content, chart) {
     houseSignEntry(houseId),
     ...(includePlanets ? housePlanetEntries(houseId) : [])
   ]);
-  const houseAndAspectsTopicCard = (title, houseId, aspectPlanet) => interpretationCard(title, [
+  const houseAndAspectsTopicCard = (title, houseId, aspectPlanet, excludedPlanets = []) => interpretationCard(title, [
     houseSignEntry(houseId),
-    ...aspectEntries(aspectPlanet),
+    ...aspectEntries(aspectPlanet, excludedPlanets),
     ...housePlanetEntries(houseId)
   ]);
 
-  const presentationMarkup = `<h2 class="interpretation-main-title">✨ MAPA DA VIDA | INTERPRETAÇÃO</h2><section class="interpretation-bookend interpretation-bookend--opening" aria-label="Apresentação do Mapa da Vida"><blockquote><p>“Quem olha para fora sonha, quem olha para dentro acorda.”</p><cite>— Jung</cite></blockquote><p>O Mapa da Vida é uma leitura do seu céu no momento em que você nasceu — mas, mais do que isso, é um convite pra você se olhar por dentro. Aqui, a astrologia não é sentença nem prisão: é linguagem simbólica. É bússola. É uma ferramenta de autoconhecimento que te ajuda a entender como você age, sente, pensa, ama e constrói a vida.</p><p>Assim como os Reis Magos seguiram a luz das estrelas, o Mapa da Vida é um convite pra você reconhecer a luz que indica o seu caminho — não para te dizer quem você deve ser, mas pra te lembrar de quem você já é.</p><p>Respira. Lê com calma. Isso não é um manual de instruções — é um guia.</p><p class="interpretation-section-list-title"><strong>Seções do Mapa:</strong></p><ol class="interpretation-section-list"><li>Quem Você É</li><li>Suas Raízes</li><li>Sua Mente</li><li>Como Você Ama</li><li>Seu Propósito</li><li>O Que Você Constrói</li><li>Sua Tribo e Sua Originalidade</li><li>Suas Transformações</li></ol></section>`;
-  const closingMarkup = `<section class="interpretation-bookend interpretation-bookend--closing" aria-labelledby="map-life-closing-title"><h3 id="map-life-closing-title">🌟 ENCERRAMENTO</h3><blockquote><p>“Que você siga sua estrela como os Reis Magos seguiram a deles — não com certeza absoluta, mas com confiança. Não com medo, mas com fé. Não pra te dizer quem você deve ser, mas pra te lembrar de quem você já é.”</p></blockquote></section>`;
+  const presentationMarkup = `<h2 class="interpretation-main-title">MAPA DA VIDA | INTERPRETAÇÃO</h2><section class="interpretation-bookend interpretation-bookend--opening" aria-label="Apresentação do Mapa da Vida"><blockquote><p>“Quem olha para fora sonha, quem olha para dentro acorda.”</p><cite>— Jung</cite></blockquote><p>O Mapa da Vida é uma leitura do seu céu no momento em que você nasceu — mas, mais do que isso, é um convite pra você se olhar por dentro. Aqui, a astrologia não é sentença nem prisão: é linguagem simbólica. É bússola. É uma ferramenta de autoconhecimento que te ajuda a entender como você age, sente, pensa, ama e constrói a vida.</p><p>Assim como os Reis Magos seguiram a luz das estrelas, o Mapa da Vida é um convite pra você reconhecer a luz que indica o seu caminho — não para te dizer quem você deve ser, mas pra te lembrar de quem você já é.</p><p class="interpretation-section-list-title"><strong>Seções do Mapa</strong></p><ol class="interpretation-section-list"><li>Quem Você É</li><li>Suas Raízes</li><li>Sua Mente</li><li>Como Você Ama</li><li>Seu Propósito</li><li>O Que Você Constrói</li><li>Sua Tribo e Sua Originalidade</li><li>Suas Transformações</li></ol></section>`;
+  const closingMarkup = `<section class="interpretation-bookend interpretation-bookend--closing" aria-labelledby="map-life-closing-title"><h3 id="map-life-closing-title">ENCERRAMENTO</h3><blockquote><p>Que você siga a sua estrela como os Reis Magos seguiram as deles: com confiança, sem medo e com fé. Que este mapa não sirva para te dizer quem você deve ser, mas sim para te lembrar do caminho para se tornar quem você é.</p></blockquote></section>`;
   const temperamentText = interpretationText('temperament', dominantElementKey(longitudes));
-  const temperamentCard = interpretationCard('Elemento predominante', [{ text: temperamentText, symbols: [], label: '' }]);
-  content.innerHTML = `${presentationMarkup}${section('🔥 SEU TEMPERAMENTO', 'Antes de entrar nos detalhes, vamos ver o conjunto. Aqui você descobre qual elemento predomina em você — fogo, terra, ar ou água — e como essa mistura molda seu jeito de ser.', [temperamentCard])}${section('1. Quem você é', 'Aqui começa tudo. Vamos olhar sua essência, sua personalidade e a forma como você se apresenta ao mundo. É o seu jeito de ser e agir no dia a dia.', [
-    planetTopicCard('O que te move', 'Sun'),
-    interpretationCard('Como o mundo te vê', [houseSignEntry(1), ...aspectEntries('Ascendant', ['Sun', 'Midheaven'])]),
-    planetTopicCard('Sua força de vontade', 'Mars', ['Sun', 'Ascendant', 'Moon', 'Mercury', 'Venus'])
-  ])}${section('2. Suas raízes', 'Esta parte fala da sua vida emocional, da sua família e do seu mundo interno. É onde você entende o que te dá segurança, o que te acolhe e de onde vêm seus sentimentos mais profundos.', [
-    planetTopicCard('O que você sente por dentro', 'Moon', ['Sun', 'Ascendant']),
-    houseTopicCard('Onde você se sente em casa', 4)
-  ])}${section('3. Sua mente', 'Aqui o assunto é o seu jeito de pensar, aprender e se comunicar. Como você processa informações, como estuda, como fala e como organiza as ideias.', [
-    planetTopicCard('Como você pensa e se comunica', 'Mercury', ['Sun', 'Ascendant', 'Moon']),
-    houseTopicCard('Como você aprende', 3)
-  ])}${section('4. Como você ama', 'Relacionamentos, afetos e prazer. Aqui você entende como você ama, o que te atrai, como se relaciona a dois e o que te dá alegria e criatividade.', [
-    planetTopicCard('O que te encanta e te dá prazer', 'Venus'),
-    houseTopicCard('Como você se relaciona a dois', 7),
-    houseTopicCard('Sua criança interior e sua criatividade', 5)
-  ])}${section('5. Seu propósito', 'Fé, espiritualidade e sentido de vida. Aqui você vai olhar o que te expande, no que você acredita, o que te conecta com algo maior e o que habita seu mundo interior.', [
-    planetTopicCard('O que te dá fé e expande', 'Jupiter', ['Sun', 'Ascendant', 'Moon', 'Mercury', 'Venus', 'Mars']),
-    houseTopicCard('Onde você busca sentido', 9),
-    planetTopicCard('Sua conexão com o invisível', 'Neptune', ['Sun', 'Ascendant', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus']),
-    houseTopicCard('O que habita seu mundo interior', 12)
-  ])}${section('6. O que você constrói', 'Trabalho, carreira, dinheiro, saúde e responsabilidades. Aqui você entende como realiza seus projetos, o que constrói na prática e como lida com valores e recursos.', [
-    planetTopicCard('Sua responsabilidade e maturidade', 'Saturn', ['Sun', 'Ascendant', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Midheaven']),
-    houseAndAspectsTopicCard('Sua vocação e lugar no mundo', 10, 'Midheaven'),
-    houseTopicCard('Seu dia a dia e sua saúde', 6),
-    houseTopicCard('Seus valores e recursos', 2)
-  ])}${section('7. Sua tribo e sua originalidade', 'Amizades, grupos, ideais e o que te torna único. Aqui você vê como se relaciona com o coletivo, quais são seus projetos de futuro e o que te faz diferente.', [
-    planetTopicCard('O que te torna único', 'Uranus', ['Sun', 'Ascendant', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Midheaven', 'Saturn']),
-    houseTopicCard('Sua tribo e seus ideais', 11)
-  ])}${section('8. Suas transformações', 'Crises, sexualidade, perdas e renascimentos. Aqui você mergulha no que te transforma por dentro, no que precisa morrer pra renascer e nas mudanças profundas da sua vida.', [
-    planetTopicCard('O que te transforma por dentro', 'Pluto'),
-    houseTopicCard('Suas crises, sexualidade e renascimentos', 8)
+  const temperamentCard = interpretationCard('ELEMENTO PREDOMINANTE', [{ text: temperamentText, symbols: [], label: '' }]);
+  content.innerHTML = `${presentationMarkup}${section('SEU TEMPERAMENTO', 'Antes de entrar nos detalhes, vamos olhar o conjunto. Aqui você descobre qual elemento predomina em você — fogo, terra, ar ou água — e como essa mistura molda o seu jeito de ser.', [temperamentCard])}${section('1. QUEM VOCÊ É', 'Aqui começa tudo. Vamos olhar sua essência, sua personalidade e a forma como você se apresenta ao mundo. É o seu jeito de ser e agir no dia a dia.', [
+    planetTopicCard('O QUE TE MOVE', 'Sun', ['Ascendant', 'Midheaven']),
+    interpretationCard('COMO O MUNDO TE VÊ', [houseSignEntry(1), ...aspectEntries('Ascendant', ['Midheaven'])]),
+    planetTopicCard('SUA FORÇA DE VONTADE', 'Mars', ['Sun', 'Ascendant', 'Moon', 'Mercury', 'Venus', 'Midheaven'])
+  ])}${section('2. SUAS RAÍZES', 'Esta parte fala da sua vida emocional, da sua família e do seu mundo interno. É onde você entende o que te dá segurança, o que te acolhe e de onde vêm seus sentimentos mais profundos.', [
+    planetTopicCard('O QUE VOCÊ SENTE POR DENTRO', 'Moon', ['Sun', 'Ascendant', 'Midheaven']),
+    houseTopicCard('ONDE VOCÊ SE SENTE EM CASA', 4)
+  ])}${section('3. SUA MENTE', 'Aqui o assunto é o seu jeito de pensar, aprender e se comunicar. Como você processa informações, como estuda, como fala e como organiza as ideias.', [
+    planetTopicCard('COMO VOCÊ PENSA E SE COMUNICA', 'Mercury', ['Sun', 'Ascendant', 'Moon', 'Midheaven']),
+    houseTopicCard('COMO VOCÊ APRENDE', 3)
+  ])}${section('4. COMO VOCÊ AMA', 'Relacionamentos, afetos e prazer. Aqui você entende como você ama, o que te atrai, como se relaciona a dois e o que te dá alegria e criatividade.', [
+    planetTopicCard('O QUE TE ENCANTA E TE DÁ PRAZER', 'Venus', ['Sun', 'Ascendant', 'Moon', 'Mercury', 'Midheaven']),
+    houseTopicCard('COMO VOCÊ SE RELACIONA A DOIS', 7),
+    houseTopicCard('PADRÕES HERDADOS DE SUA FAMÍLIA E PRAZER CRIATIVO', 5)
+  ])}${section('5. SEU PROPÓSITO', 'Fé, espiritualidade e sentido de vida. Aqui você vai olhar o que te expande, no que você acredita, o que te conecta com algo maior e o que habita seu mundo interior.', [
+    planetTopicCard('O QUE TE DÁ FÉ E EXPANDE', 'Jupiter', ['Sun', 'Ascendant', 'Moon', 'Mercury', 'Venus', 'Mars', 'Midheaven']),
+    houseTopicCard('ONDE VOCÊ BUSCA SENTIDO', 9),
+    planetTopicCard('SUA CONEXÃO COM O INVISÍVEL', 'Neptune', ['Sun', 'Ascendant', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Midheaven']),
+    houseTopicCard('O QUE HABITA SEU MUNDO INTERIOR', 12)
+  ])}${section('6. O QUE VOCÊ CONSTRÓI', 'Trabalho, carreira, dinheiro, saúde e responsabilidades. Aqui você entende como realiza seus projetos, o que constrói na prática e como lida com valores e recursos.', [
+    planetTopicCard('SUA RESPONSABILIDADE E MATURIDADE', 'Saturn', ['Sun', 'Ascendant', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Midheaven']),
+    houseAndAspectsTopicCard('SUA CARREIRA E LEGADO NO MUNDO', 10, 'Midheaven', ['Ascendant']),
+    houseTopicCard('SEU DIA A DIA E SUA SAÚDE', 6),
+    houseTopicCard('SEUS VALORES E RECURSOS', 2)
+  ])}${section('7. SUA TRIBO E SUA ORIGINALIDADE', 'Amizades, grupos, ideias e o que te torna único. Aqui você vê como se relaciona com o coletivo, quais são seus projetos de futuro e o que te faz diferente.', [
+    planetTopicCard('ORIGINALIDADE E MUDANÇAS REPENTINAS', 'Uranus', ['Sun', 'Ascendant', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Midheaven', 'Saturn']),
+    houseTopicCard('SUAS AMIZADES E SEUS PROJETOS', 11)
+  ])}${section('8. SUAS TRANSFORMAÇÕES', 'Crises, sexualidade, perdas e renascimentos. Aqui você mergulha no que te transforma por dentro, no que precisa morrer pra renascer e nas mudanças profundas da sua vida.', [
+    interpretationCard('O QUE TE TRANSFORMA POR DENTRO', [planetSignEntry('Pluto')]),
+    houseTopicCard('SUAS CRISES, SEXUALIDADE E RENASCIMENTOS', 8)
   ])}${closingMarkup}`;
 }
 
@@ -1164,7 +1164,7 @@ function drawChart(longitudes, rising, houses = [], targetCanvas = canvas, updat
     const signLongitude = boundaryLongitude + 15;
     const labelAngle = chartAngle(signLongitude);
     context.fillStyle = signColor;
-    context.font = '30px Astrovida, "Segoe UI Symbol", sans-serif';
+    context.font = '30px Astrovida, "Noto Sans Symbols 2", "Segoe UI Symbol", sans-serif';
     context.textAlign = 'center';
     context.textBaseline = 'middle';
     context.fillText(signGlyphs[index], center + Math.cos(labelAngle) * radius * 0.86, center + Math.sin(labelAngle) * radius * 0.86);
@@ -1321,7 +1321,7 @@ function drawChart(longitudes, rising, houses = [], targetCanvas = canvas, updat
     const y = center + Math.sin(angle) * symbolDistance;
     chartHitPoints.push({ planet, longitude, x, y });
     context.fillStyle = signColors[signElements[signAt(longitude)]];
-    context.font = objectLabels[planet] ? '700 12px "DM Mono"' : '22px Astrovida';
+    context.font = objectLabels[planet] ? '700 12px "DM Mono"' : '22px Astrovida, "Noto Sans Symbols 2", "Segoe UI Symbol", sans-serif';
     context.textAlign = 'center';
     context.textBaseline = 'middle';
     context.fillText(objectLabels[planet] || objectGlyphs[planet] || planet.slice(0, 3).toUpperCase(), x, y);
@@ -1697,7 +1697,16 @@ function initializeCalendarControls(prefix, render) {
   document.querySelector(`#${prefix}-next-month`)?.addEventListener('click', () => stepMonth(1));
 }
 
-function printCalendarPage(prefix) {
+async function waitForPdfFonts() {
+  await Promise.allSettled([
+    document.fonts.load('30px Astrovida'),
+    document.fonts.load('16px "Noto Sans Symbols 2"', '☉☽♀♈♉♊♋♌♍♎♏♐♑♒♓☿♂♃♄♅♆♇')
+  ]);
+  await document.fonts.ready;
+}
+
+async function printCalendarPage(prefix) {
+  await waitForPdfFonts();
   const month = ephemerisMonthNames[Number(document.querySelector(`#${prefix}-month`).value) - 1];
   const year = document.querySelector(`#${prefix}-year`).value;
   const place = document.querySelector(`#${prefix}-place`).value || 'São Paulo, SP, Brasil';
@@ -1880,7 +1889,7 @@ if (orbControl) {
   });
 }
 
-const interpretationReady = fetch('./data/interpretations.json?v=20261016-temperament').then((response) => response.json()).then((data) => { interpretationData = data; if (!document.querySelector('#interpretation-panel')?.hidden) renderInterpretation(); return data; }).catch(() => null);
+const interpretationReady = fetch('./data/interpretations.json?v=20261027-asc-virgo').then((response) => response.json()).then((data) => { interpretationData = data; if (!document.querySelector('#interpretation-panel')?.hidden) renderInterpretation(); return data; }).catch(() => null);
 document.querySelector('#interpret-button')?.addEventListener('click', () => {
   const panel = document.querySelector('#interpretation-panel');
   if (!panel) return;
@@ -1890,6 +1899,10 @@ document.querySelector('#interpret-button')?.addEventListener('click', () => {
 });
 document.querySelector('#print-chart')?.addEventListener('click', async () => {
   await interpretationReady;
+  await waitForPdfFonts();
+  if (currentChart && document.querySelector('#map-type')?.value !== 'solar') {
+    renderNatalView();
+  }
   const panel = document.querySelector('#interpretation-panel');
   if (panel && interpretationData) {
     panel.hidden = false;
