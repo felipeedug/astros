@@ -1,0 +1,2135 @@
+
+
+
+==============================================================================
+RESUMO: CASA NO SIGNO (144 combinações, 0 faltantes)
+==============================================================================
+
+[OK] Casa 1 em Áries (chave: 0:1)
+Sua imagem no mundo é baseada na iniciativa e autenticidade. Portanto, mostre a sua força agindo com franqueza e dinamismo, sem deixar a impaciência dominar.
+
+[OK] Casa 1 em Touro (chave: 1:1)
+Sua imagem no mundo é baseada na constância e segurança. Portanto, projete a sua força agindo com firmeza e praticidade, construindo bases sólidas.
+
+[OK] Casa 1 em Gêmeos (chave: 2:1)
+Sua imagem no mundo é baseada na flexibilidade e comunicação. Portanto, mostre a sua inteligência adaptando-se às situações e conectando ideias.
+
+[OK] Casa 1 em Câncer (chave: 3:1)
+Sua imagem no mundo é baseada na sensibilidade e cautela. Portanto, mostre a sua força acolhendo as pessoas, mas sem esquecer de se proteger primeiro.
+
+[OK] Casa 1 em Leão (chave: 4:1)
+Sua imagem no mundo é baseada na energia e generosidade. Portanto, projete a sua liderança sendo otimista e inspirando as pessoas com a sua luz.
+
+[OK] Casa 1 em Virgem (chave: 5:1)
+Sua imagem no mundo é baseada na organização e praticidade. Portanto, mostre a sua eficiência agindo com método, mas sem esquecer a espontaneidade.
+
+[OK] Casa 1 em Libra (chave: 6:1)
+Sua imagem no mundo é baseada na diplomacia e harmonia. Portanto, mostre a sua força usando a sua elegância para mediar conflitos e criar equilíbrio.
+
+[OK] Casa 1 em Escorpião (chave: 7:1)
+Sua imagem no mundo é baseada na intensidade e determinação. Portanto, projete a sua força agindo com persistência e usando o seu magnetismo para se regenerar.
+
+[OK] Casa 1 em Sagitário (chave: 8:1)
+Sua imagem no mundo é baseada no otimismo e entusiasmo. Portanto, mostre a sua força acreditando nos seus ideais e inspirando as pessoas com a sua alegria.
+
+[OK] Casa 1 em Capricórnio (chave: 9:1)
+Sua imagem no mundo é baseada na seriedade e responsabilidade. Portanto, mostre a sua força agindo com foco e estrutura, mas permita-se vivenciar a leveza.
+
+[OK] Casa 1 em Aquário (chave: 10:1)
+Sua imagem no mundo é baseada na originalidade e inovação. Portanto, mostre a sua força trazendo ideias novas e inspirando o coletivo com a sua visão de futuro.
+
+[OK] Casa 1 em Peixes (chave: 11:1)
+Sua imagem no mundo é baseada na intuição e sensibilidade. Portanto, mostre a sua força adaptando-se às situações e confiando na sua capacidade de superar limites.
+
+[OK] Casa 2 em Áries (chave: 0:2)
+Seus recursos são conquistados com ousadia. Portanto, valorize sua independência financeira, empreendendo e agindo com coragem, sem impulsividade.
+
+[OK] Casa 2 em Touro (chave: 1:2)
+Seus recursos são construídos com estabilidade. Portanto, administre seu dinheiro com paciência e foco na segurança material, sem avareza.
+
+[OK] Casa 2 em Gêmeos (chave: 2:2)
+Seus recursos vêm da comunicação e das ideias. Portanto, diversifique suas fontes de renda usando sua inteligência e flexibilidade.
+
+[OK] Casa 2 em Câncer (chave: 3:2)
+Seus recursos buscam segurança e proteção. Portanto, cuide das suas finanças com cautela, investindo no seu lar e na sua família.
+
+[OK] Casa 2 em Leão (chave: 4:2)
+Seus recursos buscam brilho e reconhecimento. Portanto, invista no seu talento e na sua criatividade, sem ostentação e com generosidade.
+
+[OK] Casa 2 em Virgem (chave: 5:2)
+Seus recursos são geridos com praticidade. Portanto, organize suas finanças com método e eficiência, mas sem medo excessivo da escassez.
+
+[OK] Casa 2 em Libra (chave: 6:2)
+Seus recursos buscam harmonia e parceria. Portanto, equilibre seus ganhos e gastos, valorizando acordos justos e a estética.
+
+[OK] Casa 2 em Escorpião (chave: 7:2)
+Seus recursos vêm da investigação e do poder. Portanto, transforme sua realidade financeira com estratégia, mas sem manipulação ou desconfiança.
+
+[OK] Casa 2 em Sagitário (chave: 8:2)
+Seus recursos buscam expansão e liberdade. Portanto, acredite na abundância e invista no seu crescimento, evitando exageros.
+
+[OK] Casa 2 em Capricórnio (chave: 9:2)
+Seus recursos são construídos com disciplina e ambição. Portanto, estruture suas finanças com responsabilidade e foco no longo prazo.
+
+[OK] Casa 2 em Aquário (chave: 10:2)
+Seus recursos vêm da inovação e do coletivo. Portanto, crie fontes de renda alternativas e invista em ideias que ajudem o próximo.
+
+[OK] Casa 2 em Peixes (chave: 11:2)
+Seus recursos vêm da intuição e da arte. Portanto, valorize seus talentos, mas tenha regras claras para não perder o que conquistou.
+
+[OK] Casa 3 em Áries (chave: 0:3)
+Sua mente é rápida e impulsiva. Portanto, comunique as suas ideias com coragem e franqueza, mas evite julgamentos precipitados.
+
+[OK] Casa 3 em Touro (chave: 1:3)
+Sua mente é prática e constante. Portanto, aprenda no seu próprio ritmo, absorvendo o conhecimento de forma sólida e realista.
+
+[OK] Casa 3 em Gêmeos (chave: 2:3)
+Sua mente é curiosa e ágil. Portanto, busque novos conhecimentos e comunique-se com versatilidade, evitando a dispersão.
+
+[OK] Casa 3 em Câncer (chave: 3:3)
+Sua mente é sensível e imaginativa. Portanto, aprenda através da intuição e da memória afetiva, sem se fechar para o novo.
+
+[OK] Casa 3 em Leão (chave: 4:3)
+Sua mente é criativa e líder. Portanto, aprenda e ensine com brilho, inspirando as pessoas com o seu conhecimento.
+
+[OK] Casa 3 em Virgem (chave: 5:3)
+Sua mente é analítica e lógica. Portanto, aprenda focando nos detalhes e na eficiência prática, sem se cobrar tanto.
+
+[OK] Casa 3 em Libra (chave: 6:3)
+Sua mente é diplomática e justa. Portanto, aprenda através do diálogo e busque o equilíbrio nas suas ideias e nas suas relações.
+
+[OK] Casa 3 em Escorpião (chave: 7:3)
+Sua mente é investigativa e profunda. Portanto, aprenda indo até o fim do raciocínio e busque a verdade oculta nas coisas.
+
+[OK] Casa 3 em Sagitário (chave: 8:3)
+Sua mente é filosófica e expansiva. Portanto, aprenda buscando o conhecimento amplo e compartilhe os seus ideais com otimismo.
+
+[OK] Casa 3 em Capricórnio (chave: 9:3)
+Sua mente é estruturada e focada. Portanto, aprenda com método e responsabilidade, construindo bases sólidas para o seu futuro.
+
+[OK] Casa 3 em Aquário (chave: 10:3)
+Sua mente é inovadora e livre. Portanto, aprenda com liberdade e traga ideias revolucionárias para o seu meio.
+
+[OK] Casa 3 em Peixes (chave: 11:3)
+Sua mente é intuitiva e imaginativa. Portanto, aprenda através da arte e da inspiração, sem se perder em ilusões.
+
+[OK] Casa 4 em Áries (chave: 0:4)
+Sua base familiar é marcada pela luta e independência. Portanto, construa sua segurança interior agindo com coragem, mas sem medo de mostrar sua vulnerabilidade.
+
+[OK] Casa 4 em Touro (chave: 1:4)
+Sua base familiar é voltada para a estabilidade e o conforto. Portanto, crie raízes sólidas, mas cuidado com a possessividade e a teimosia.
+
+[OK] Casa 4 em Gêmeos (chave: 2:4)
+Sua base familiar é baseada na comunicação e troca. Portanto, nutra suas raízes através do diálogo, da flexibilidade e da curiosidade.
+
+[OK] Casa 4 em Câncer (chave: 3:4)
+Sua base familiar é profundamente acolhedora e sensível. Portanto, crie um porto seguro onde você possa se nutrir e acolher as suas emoções.
+
+[OK] Casa 4 em Leão (chave: 4:4)
+Sua base familiar é voltada para a autoexpressão e o orgulho. Portanto, construa um lar onde você possa brilhar e ser valorizado, com muito afeto.
+
+[OK] Casa 4 em Virgem (chave: 5:4)
+Sua base familiar busca a ordem e a utilidade. Portanto, organize o seu espaço e a sua mente, permitindo-se ser acolhido sem tanta autocobrança.
+
+[OK] Casa 4 em Libra (chave: 6:4)
+Sua base familiar busca a harmonia e a justiça. Portanto, cultive a paz no seu lar, mas sem se anular ou deixar de colocar limites.
+
+[OK] Casa 4 em Escorpião (chave: 7:4)
+Sua base familiar é intensa e transformadora. Portanto, cure as feridas do passado e crie um lar onde as emoções fluam sem manipulação ou segredos.
+
+[OK] Casa 4 em Sagitário (chave: 8:4)
+Sua base familiar é expansiva e filosófica. Portanto, busque novos horizontes e construa um lar onde a fé e a liberdade são os alicerces.
+
+[OK] Casa 4 em Capricórnio (chave: 9:4)
+Sua base familiar é estruturada e responsável. Portanto, construa seu próprio alicerce com maturidade, permitindo-se viver a ternura e a leveza.
+
+[OK] Casa 4 em Aquário (chave: 10:4)
+Sua base familiar é original e independente. Portanto, libere-se de padrões tradicionais e crie um lar que respeite a sua singularidade e a sua liberdade.
+
+[OK] Casa 4 em Peixes (chave: 11:4)
+Sua base familiar é sensível e espiritual. Portanto, acolha-se com compaixão e encontre no seu interior o porto seguro que você busca no mundo.
+
+[OK] Casa 5 em Áries (chave: 0:5)
+Sua criança interior é vibrante e aventureira. Portanto, crie seus projetos com entusiasmo, mas sem deixar que a impulsividade gere conflitos.
+
+[OK] Casa 5 em Touro (chave: 1:5)
+Sua criança interior busca prazer, toque e estabilidade. Portanto, desfrute dos prazeres simples da vida com constância, sem possessividade ou ciúme.
+
+[OK] Casa 5 em Gêmeos (chave: 2:5)
+Sua criança interior é curiosa e comunicativa. Portanto, flerte e expresse seus sentimentos de forma leve, sem superficialidade ou malícia.
+
+[OK] Casa 5 em Câncer (chave: 3:5)
+Sua criança interior é sensível e busca proteção. Portanto, resgate suas memórias com carinho e permita-se ser cuidado sem medo do passado.
+
+[OK] Casa 5 em Leão (chave: 4:5)
+Sua criança interior é brilhante e afetuosa. Portanto, expresse seu amor com generosidade, brilhando sem precisar dominar o outro.
+
+[OK] Casa 5 em Virgem (chave: 5:5)
+Sua criança interior é reservada e analítica. Portanto, descubra a alegria nas pequenas coisas, soltando o controle e a autocrítica.
+
+[OK] Casa 5 em Libra (chave: 6:5)
+Sua criança interior busca harmonia e beleza. Portanto, una-se ao outro com elegância, evitando a indecisão e a busca por aprovação.
+
+[OK] Casa 5 em Escorpião (chave: 7:5)
+Sua criança interior é intensa e transformadora. Portanto, entregue-se aos prazeres com profundidade, transmutando a dor em renascimento.
+
+[OK] Casa 5 em Sagitário (chave: 8:5)
+Sua criança interior é livre e aventureira. Portanto, busque novas experiências com entusiasmo, sem sufocar a sua liberdade ou a do outro.
+
+[OK] Casa 5 em Capricórnio (chave: 9:5)
+Sua criança interior é séria e controlada. Portanto, permita-se ser leve e brincalhão, vivendo o prazer com espontaneidade e sem cobranças.
+
+[OK] Casa 5 em Aquário (chave: 10:5)
+Sua criança interior é original e amigável. Portanto, libere-se de padrões no amor, valorizando a amizade, a liberdade e a inovação.
+
+[OK] Casa 5 em Peixes (chave: 11:5)
+Sua criança interior é sensível e romântica. Portanto, acolha seus sonhos e fantasias, amando com devoção, mas sem se anular ou se perder em ilusões.
+
+[OK] Casa 6 em Áries (chave: 0:6)
+Sua rotina pede ação e movimento. Portanto, organize seu dia com foco em atividades físicas, mas evite a impulsividade e a irritação.
+
+[OK] Casa 6 em Touro (chave: 1:6)
+Sua rotina pede estabilidade e praticidade. Portanto, cuide dos seus hábitos com calma e constância, sem se deixar levar pela preguiça.
+
+[OK] Casa 6 em Gêmeos (chave: 2:6)
+Sua rotina é agitada e comunicativa. Portanto, equilibre a mente e o corpo, evitando a dispersão e o excesso de estímulos nervosos.
+
+[OK] Casa 6 em Câncer (chave: 3:6)
+Sua rotina está ligada às emoções. Portanto, proteja seu bem-estar emocional e crie um ambiente de trabalho acolhedor e seguro.
+
+[OK] Casa 6 em Leão (chave: 4:6)
+Sua rotina pede liderança e prazer. Portanto, cuide da sua saúde com atitudes que valorizem sua autoestima e alegria de viver.
+
+[OK] Casa 6 em Virgem (chave: 5:6)
+Sua rotina exige organização e precisão. Portanto, cuide dos detalhes da sua saúde, mas sem se cobrar pela perfeição e sem excesso de crítica.
+
+[OK] Casa 6 em Libra (chave: 6:6)
+Sua rotina busca equilíbrio. Portanto, harmonize o trabalho e o descanso, estabelecendo limites claros para não se sobrecarregar.
+
+[OK] Casa 6 em Escorpião (chave: 7:6)
+Sua rotina é intensa e transformadora. Portanto, regenera seu dia a dia, encarando os desafios como oportunidades de cura e renascimento.
+
+[OK] Casa 6 em Sagitário (chave: 8:6)
+Sua rotina precisa de liberdade e movimento. Portanto, flexibilize seus hábitos, buscando atividades ao ar livre e novas formas de cuidar do corpo.
+
+[OK] Casa 6 em Capricórnio (chave: 9:6)
+Sua rotina é estruturada e séria. Portanto, organize seus horários e responsabilidades, mas sem esquecer de incluir o descanso e o lazer na rotina.
+
+[OK] Casa 6 em Aquário (chave: 10:6)
+Sua rotina busca inovação e liberdade. Portanto, adapte seus hábitos ao seu estilo de vida, sem seguir padrões rígidos ou se sobrecarregar mentalmente.
+
+[OK] Casa 6 em Peixes (chave: 11:6)
+Sua rotina é sensível e intuitiva. Portanto, acolha seu corpo e sua mente, criando uma rotina flexível que respeite o seu ritmo e a sua espiritualidade.
+
+[OK] Casa 7 em Áries (chave: 0:7)
+Sua forma de se relacionar busca ação e independência. Portanto, relacione-se sem pressa, mas mantenha a sua identidade e coragem.
+
+[OK] Casa 7 em Touro (chave: 1:7)
+Sua forma de se relacionar busca estabilidade e prazer. Portanto, construa parcerias sólidas com paciência, cumplicidade e limites claros.
+
+[OK] Casa 7 em Gêmeos (chave: 2:7)
+Sua forma de se relacionar é mental e comunicativa. Portanto, conecte-se através do diálogo sincero, sem fugir da profundidade.
+
+[OK] Casa 7 em Câncer (chave: 3:7)
+Sua forma de se relacionar busca segurança e acolhimento. Portanto, nutra seus laços com afeto, mas sem se anular pelo outro.
+
+[OK] Casa 7 em Leão (chave: 4:7)
+Sua forma de se relacionar busca admiração e brilho. Portanto, compartilhe sua luz com generosidade, sem impor suas vontades.
+
+[OK] Casa 7 em Virgem (chave: 5:7)
+Sua forma de se relacionar é prática e analítica. Portanto, coopere nas parcerias, permitindo-se viver a espontaneidade sem tanta crítica.
+
+[OK] Casa 7 em Libra (chave: 6:7)
+Sua forma de se relacionar busca harmonia e justiça. Portanto, equilibre as parcerias com diplomacia, mas sem medo de dizer "não".
+
+[OK] Casa 7 em Escorpião (chave: 7:7)
+Sua forma de se relacionar é intensa e profunda. Portanto, entregue-se com confiança, deixando o controle e a desconfiança de lado.
+
+[OK] Casa 7 em Sagitário (chave: 8:7)
+Sua forma de se relacionar busca liberdade e crescimento. Portanto, compartilhe ideais e aventuras com o outro, sem perder a sua independência.
+
+[OK] Casa 7 em Capricórnio (chave: 9:7)
+Sua forma de se relacionar é séria e responsável. Portanto, estruture a parceria com maturidade, mas permita-se viver a ternura.
+
+[OK] Casa 7 em Aquário (chave: 10:7)
+Sua forma de se relacionar busca inovação e liberdade. Portanto, respeite a individualidade na parceria, construindo um laço de amizade e cumplicidade.
+
+[OK] Casa 7 em Peixes (chave: 11:7)
+Sua forma de se relacionar é sensível e devotada. Portanto, acolha as parcerias com compaixão, mas sem dependência ou anulação de si.
+
+[OK] Casa 8 em Áries (chave: 0:8)
+Suas crises e renascimentos pedem coragem. Portanto, transforme sua realidade seguindo o seu instinto e liberte-se da ansiedade e da pressa.
+
+[OK] Casa 8 em Touro (chave: 1:8)
+Suas crises e renascimentos pedem entrega. Portanto, renove seus prazeres e deixe de lado a teimosia e a possessividade para fluir.
+
+[OK] Casa 8 em Gêmeos (chave: 2:8)
+Suas crises e renascimentos pedem clareza. Portanto, comunique as suas dores e evite a fragmentação mental, vivendo o prazer no corpo e no presente.
+
+[OK] Casa 8 em Câncer (chave: 3:8)
+Suas crises e renascimentos pedem acolhimento. Portanto, cure as feridas do passado e permita-se viver o romantismo sem submissão ou dramaticidade.
+
+[OK] Casa 8 em Leão (chave: 4:8)
+Suas crises e renascimentos pedem humildade. Portanto, deixe morrer o orgulho e renasça com mais luz, criando seus próprios princípios e vivendo o prazer com vitalidade.
+
+[OK] Casa 8 em Virgem (chave: 5:8)
+Suas crises e renascimentos pedem libertação. Portanto, supere a autocrítica e os medos, permitindo-se viver o prazer sem a censura dos detalhes e do pudor.
+
+[OK] Casa 8 em Libra (chave: 6:8)
+Suas crises e renascimentos pedem equilíbrio. Portanto, harmonize as suas relações e supere a indecisão, vivendo a sexualidade com suavidade e refinamento.
+
+[OK] Casa 8 em Escorpião (chave: 7:8)
+Suas crises e renascimentos são profundos. Portanto, regenere-se com intensidade, liberte o rancor e viva o prazer como alimento para o corpo e a alma.
+
+[OK] Casa 8 em Sagitário (chave: 8:8)
+Suas crises e renascimentos pedem sinceridade. Portanto, renasça encarando as suas fraquezas e liberte a sua imaginação na sexualidade, sem exageros.
+
+[OK] Casa 8 em Capricórnio (chave: 9:8)
+Suas crises e renascimentos pedem flexibilidade. Portanto, permita-se viver novas situações e demonstre carinho e suavidade, sem tanta rigidez.
+
+[OK] Casa 8 em Aquário (chave: 10:8)
+Suas crises e renascimentos pedem desestruturação. Portanto, recicle as suas bases e liberte-se dos preconceitos, buscando o prazer com inovação.
+
+[OK] Casa 8 em Peixes (chave: 11:8)
+Suas crises e renascimentos pedem autocompaixão. Portanto, exprima a sua força interior e viva a sexualidade com fantasia, sem se anular ou abandonar a si mesmo.
+
+[OK] Casa 9 em Áries (chave: 0:9)
+Sua busca por sentido é corajosa e aventureira. Portanto, acredite no seu potencial e siga em frente com ousadia, sem medo de arriscar.
+
+[OK] Casa 9 em Touro (chave: 1:9)
+Sua busca por sentido é prática e segura. Portanto, construa sua fé com paciência, valorizando os resultados concretos e a estabilidade.
+
+[OK] Casa 9 em Gêmeos (chave: 2:9)
+Sua busca por sentido é intelectual e comunicativa. Portanto, aprenda sempre e compartilhe suas ideias, buscando a profundidade.
+
+[OK] Casa 9 em Câncer (chave: 3:9)
+Sua busca por sentido é emocional e reflexiva. Portanto, acolha a sua intuição e encontre na sua história a força para acreditar.
+
+[OK] Casa 9 em Leão (chave: 4:9)
+Sua busca por sentido é baseada na honra e na liderança. Portanto, brilhe com dignidade e busque a elevação espiritual com generosidade.
+
+[OK] Casa 9 em Virgem (chave: 5:9)
+Sua busca por sentido é prática e analítica. Portanto, busque a pureza e a verdade nas pequenas coisas, com discernimento e disciplina.
+
+[OK] Casa 9 em Libra (chave: 6:9)
+Sua busca por sentido é relacional e harmoniosa. Portanto, equilibre a sua fé com a diplomacia, buscando a justiça e a parceria.
+
+[OK] Casa 9 em Escorpião (chave: 7:9)
+Sua busca por sentido é profunda e transformadora. Portanto, transforme a sua dor em força e busque a verdade oculta com intensidade.
+
+[OK] Casa 9 em Sagitário (chave: 8:9)
+Sua busca por sentido é expansiva e filosófica. Portanto, expanda os seus horizontes e compartilhe o seu otimismo com o mundo.
+
+[OK] Casa 9 em Capricórnio (chave: 9:9)
+Sua busca por sentido é estruturada e madura. Portanto, construa seus ideais com responsabilidade e paciência, sem pressa.
+
+[OK] Casa 9 em Aquário (chave: 10:9)
+Sua busca por sentido é inovadora e coletiva. Portanto, renove a sua fé e busque a liberdade de pensamento para ajudar a humanidade.
+
+[OK] Casa 9 em Peixes (chave: 11:9)
+Sua busca por sentido é compassiva e espiritual. Portanto, entregue-se à sua intuição e ajude o próximo, sem se perder em ilusões.
+
+[OK] Casa 10 em Áries (chave: 0:10)
+Sua carreira é marcada pela iniciativa. Portanto, lidere seus projetos com coragem, mas evite a impulsividade e a impaciência.
+
+[OK] Casa 10 em Touro (chave: 1:10)
+Sua carreira exige estabilidade e resultados concretos. Portanto, construa seu legado com paciência, sem pressa e com foco na segurança.
+
+[OK] Casa 10 em Gêmeos (chave: 2:10)
+Sua carreira exige comunicação e variedade. Portanto, conecte ideias e pessoas com a sua agilidade mental, mas evite a dispersão.
+
+[OK] Casa 10 em Câncer (chave: 3:10)
+Sua carreira é pautada pelo cuidado e pela proteção. Portanto, realize seu trabalho com sensibilidade, nutrindo as pessoas e seus projetos.
+
+[OK] Casa 10 em Leão (chave: 4:10)
+Sua carreira é o seu palco. Portanto, brilhe e lidere com carisma, sem deixar que o orgulho ofusque a sua verdadeira autoridade.
+
+[OK] Casa 10 em Virgem (chave: 5:10)
+Sua carreira exige precisão e método. Portanto, organize e execute suas tarefas com eficiência, sem se cobrar pela perfeição inalcançável.
+
+[OK] Casa 10 em Libra (chave: 6:10)
+Sua carreira exige diplomacia e parcerias. Portanto, harmonize seu ambiente de trabalho e busque a justiça em suas negociações.
+
+[OK] Casa 10 em Escorpião (chave: 7:10)
+Sua carreira exige estratégia e transformação. Portanto, mergulhe fundo em seus objetivos e use seu poder de regeneração para superar crises.
+
+[OK] Casa 10 em Sagitário (chave: 8:10)
+Sua carreira busca expansão e sentido. Portanto, compartilhe conhecimento e inspire as pessoas com seu otimismo e sua visão de mundo.
+
+[OK] Casa 10 em Capricórnio (chave: 9:10)
+Sua carreira exige estrutura e ambição. Portanto, construa seu legado com responsabilidade e perseverança, respeitando o tempo das coisas.
+
+[OK] Casa 10 em Aquário (chave: 10:10)
+Sua carreira é voltada para a inovação. Portanto, revolucione seu ambiente com ideias à frente do tempo, focando no bem coletivo.
+
+[OK] Casa 10 em Peixes (chave: 11:10)
+Sua carreira exige sensibilidade e intuição. Portanto, acolha a sua criatividade e use o seu talento para inspirar e curar as pessoas.
+
+[OK] Casa 11 em Áries (chave: 0:11)
+Sua tribo e seus projetos pedem coragem. Portanto, lidere seus grupos com autenticidade e busque amigos que compartilhem da sua energia e sinceridade.
+
+[OK] Casa 11 em Touro (chave: 1:11)
+Sua tribo e seus projetos buscam estabilidade. Portanto, construa laços duradouros com amigos leais e projetos sólidos, sem pressa.
+
+[OK] Casa 11 em Gêmeos (chave: 2:11)
+Sua tribo e seus projetos buscam comunicação. Portanto, conecte-se com pessoas versáteis e ideias inovadoras, mas evite a dispersão.
+
+[OK] Casa 11 em Câncer (chave: 3:11)
+Sua tribo e seus projetos pedem acolhimento. Portanto, nutra os seus amigos com carinho e guarde os seus projetos para o momento certo.
+
+[OK] Casa 11 em Leão (chave: 4:11)
+Sua tribo e seus projetos buscam liderança. Portanto, inspire os seus grupos com carisma e busque amigos que celebrem as suas conquistas.
+
+[OK] Casa 11 em Virgem (chave: 5:11)
+Sua tribo e seus projetos buscam praticidade. Portanto, organize seus grupos e projetos com eficiência, permitindo-se abrir para amigos verdadeiros.
+
+[OK] Casa 11 em Libra (chave: 6:11)
+Sua tribo e seus projetos buscam harmonia. Portanto, una as pessoas em torno de propósitos comuns e busque parcerias justas e elegantes.
+
+[OK] Casa 11 em Escorpião (chave: 7:11)
+Sua tribo e seus projetos buscam transformação. Portanto, mergulhe fundo nos seus objetivos e valorize os amigos leais e intensos.
+
+[OK] Casa 11 em Sagitário (chave: 8:11)
+Sua tribo e seus projetos buscam expansão. Portanto, compartilhe ideais e aventuras com amigos otimistas que respeitem a sua liberdade.
+
+[OK] Casa 11 em Capricórnio (chave: 9:11)
+Sua tribo e seus projetos buscam estrutura. Portanto, construa alianças sérias e duradouras, valorizando amigos que trazem maturidade.
+
+[OK] Casa 11 em Aquário (chave: 10:11)
+Sua tribo e seus projetos buscam inovação. Portanto, revolucione seu coletivo com ideias futuristas e valorize a liberdade e a amizade.
+
+[OK] Casa 11 em Peixes (chave: 11:11)
+Sua tribo e seus projetos buscam espiritualidade. Portanto, acolha os seus amigos com compaixão e busque projetos que nutram a sua alma.
+
+[OK] Casa 12 em Áries (chave: 0:12)
+Seu mundo interior esconde uma força explosiva. Portanto, recarregue sua coragem na solidão e não reprima seus desejos e impulsos.
+
+[OK] Casa 12 em Touro (chave: 1:12)
+Seu mundo interior busca segurança e prazer. Portanto, proteja seu espaço e suas reservas, mas não deixe a rigidez te aprisionar.
+
+[OK] Casa 12 em Gêmeos (chave: 2:12)
+Seu mundo interior é um turbilhão de ideias. Portanto, silencie a mente e organize os pensamentos para acalmar seu sistema nervoso.
+
+[OK] Casa 12 em Câncer (chave: 3:12)
+Seu mundo interior busca aconchego e proteção. Portanto, refugie-se nos seus sonhos, mas não se esconda do mundo por medo de rejeição.
+
+[OK] Casa 12 em Leão (chave: 4:12)
+Seu mundo interior tem um brilho oculto. Portanto, aceite suas vulnerabilidades e não se isole por orgulho ou vaidade.
+
+[OK] Casa 12 em Virgem (chave: 5:12)
+Seu mundo interior é analítico e crítico. Portanto, observe a si mesmo com compaixão, sem se cobrar pela perfeição que não existe.
+
+[OK] Casa 12 em Libra (chave: 6:12)
+Seu mundo interior busca paz e harmonia. Portanto, coloque limites em suas relações, aprendendo a ser fiel a si mesmo.
+
+[OK] Casa 12 em Escorpião (chave: 7:12)
+Seu mundo interior é profundo e intenso. Portanto, perdoe e libere o rancor, usando a solidão como um portal para o renascimento.
+
+[OK] Casa 12 em Sagitário (chave: 8:12)
+Seu mundo interior busca liberdade e sentido. Portanto, conecte-se com sua intuição e aceite suas imperfeições, sem medo do julgamento.
+
+[OK] Casa 12 em Capricórnio (chave: 9:12)
+Seu mundo interior guarda uma seriedade que precisa ser curada. Portanto, permita-se sonhar e não transforme o isolamento em um refúgio de melancolia.
+
+[OK] Casa 12 em Aquário (chave: 10:12)
+Seu mundo interior é original, mas busca raízes. Portanto, libere-se de teimosias e encontre a verdadeira liberdade dentro de você.
+
+[OK] Casa 12 em Peixes (chave: 11:12)
+Seu mundo interior é um oceano de sensibilidade. Portanto, acolha suas emoções na solidão, mas não se deixe levar pela autopiedade ou ilusão.
+
+==============================================================================
+RESUMO: PLANETA NA CASA (252 combinações, 96 faltantes)
+==============================================================================
+
+[OK] Sol na Casa 1 (chave: 0:1)
+Sua alma é forte e magnética. Portanto, lidere seu próprio caminho com autoridade, mas sem deixar o egoísmo ou a prepotência ofuscarem sua luz.
+
+[OK] Sol na Casa 2 (chave: 0:2)
+Sua alma é construtora e próspera. Portanto, valorize seus recursos e seu próprio valor, buscando estabilidade sem se prender apenas ao prazer material.
+
+[OK] Sol na Casa 3 (chave: 0:3)
+Sua alma é comunicativa e brilhante. Portanto, expresse suas ideias com clareza e liderança, mas mantenha a mente aberta para aprender sempre.
+
+[OK] Sol na Casa 4 (chave: 0:4)
+Sua alma é protetora e enraizada. Portanto, construa seu espaço e sua segurança interna, brilhando e liderando no seu próprio lar.
+
+[OK] Sol na Casa 5 (chave: 0:5)
+Sua alma é criativa e apaixonada. Portanto, crie e ame com intensidade, expressando sua alegria e brilhando nos seus relacionamentos.
+
+[OK] Sol na Casa 6 (chave: 0:6)
+Sua alma é prestativa e organizada. Portanto, cuide da sua rotina, da sua saúde e sirva com excelência, encontrando o brilho no cotidiano.
+
+[OK] Sol na Casa 7 (chave: 0:7)
+Sua alma é relacional e parceira. Portanto, compartilhe sua luz através das parcerias, aprendendo com o outro sem perder a sua própria essência.
+
+[OK] Sol na Casa 8 (chave: 0:8)
+Sua alma é transformadora e profunda. Portanto, regenere-se nas crises, deixando o egoísmo de lado e renascendo com mais sabedoria e poder pessoal.
+
+[OK] Sol na Casa 9 (chave: 0:9)
+Sua alma é aventureira e filosófica. Portanto, busque a verdade e expanda seus horizontes, compartilhando seu conhecimento com o mundo.
+
+[OK] Sol na Casa 10 (chave: 0:10)
+Sua alma é líder e ambiciosa. Portanto, construa seu legado com autoridade e responsabilidade, brilhando no meio profissional.
+
+[OK] Sol na Casa 11 (chave: 0:11)
+Sua alma é coletiva e visionária. Portanto, conecte-se com seus amigos e grupos, liderando projetos que tragam esperança e evolução para todos.
+
+[OK] Sol na Casa 12 (chave: 0:12)
+Sua alma é profunda e espiritual. Portanto, silencie e cuide do seu mundo interior, brilhando nos bastidores e encontrando a força na introspecção.
+
+[OK] Lua na Casa 1 (chave: 1:1)
+Sua emoção é sensível e intuitiva. Portanto, acolha sua intuição, mas não deixe a dramaticidade e o humor flutuante ditarem quem você é.
+
+[OK] Lua na Casa 2 (chave: 1:2)
+Sua emoção busca segurança material. Portanto, valorize o que você já tem e encontre estabilidade nos seus recursos sem depender apenas do externo.
+
+[OK] Lua na Casa 3 (chave: 1:3)
+Sua emoção se expressa pela mente. Portanto, comunique o que sente, mas busque persistência mental para não se perder na inquietude.
+
+[OK] Lua na Casa 4 (chave: 1:4)
+Sua emoção está no lar e nas raízes. Portanto, proteja a si mesmo e crie o seu próprio porto seguro dentro da sua casa e do seu coração.
+
+[OK] Lua na Casa 5 (chave: 1:5)
+Sua emoção busca o prazer e o amor. Portanto, crie e ame com intensidade, sem gerar dependências ou se anular pelo outro.
+
+[OK] Lua na Casa 6 (chave: 1:6)
+Sua emoção está no cuidado e na rotina. Portanto, cuide do seu dia a dia e da sua saúde, servindo sem se sobrecarregar com os problemas alheios.
+
+[OK] Lua na Casa 7 (chave: 1:7)
+Sua emoção busca a parceria. Portanto, relacione-se com reciprocidade, sem perder a sua própria identidade no outro.
+
+[OK] Lua na Casa 8 (chave: 1:8)
+Sua emoção é transformadora. Portanto, regenere-se nas crises, deixando de lado o sacrifício e confiando na sua intuição profunda.
+
+[OK] Lua na Casa 9 (chave: 1:9)
+Sua emoção busca horizontes. Portanto, expanda sua fé e intuição, mas busque estabilidade nas suas opiniões e convicções.
+
+[OK] Lua na Casa 10 (chave: 1:10)
+Sua emoção está na carreira. Portanto, lidere com sensibilidade no seu trabalho, usando seu carisma sem se abalar pelas emoções hostis.
+
+[OK] Lua na Casa 11 (chave: 1:11)
+Sua emoção está no coletivo. Portanto, conecte-se com seus amigos, mas sem se submeter às influências e mantendo sua própria segurança.
+
+[OK] Lua na Casa 12 (chave: 1:12)
+Sua emoção busca o silêncio. Portanto, acolha-se na solidão e na espiritualidade, deixando de lado a autopiedade e a dor.
+
+[OK] Mercúrio na Casa 1 (chave: 2:1)
+Sua mente é ágil e expressiva. Portanto, comunique suas ideias com clareza, mas evite o nervosismo e a dispersão mental.
+
+[OK] Mercúrio na Casa 2 (chave: 2:2)
+Sua mente está voltada para as finanças. Portanto, use sua inteligência para gerar recursos, mas evite a negligência e os gastos impulsivos.
+
+[OK] Mercúrio na Casa 3 (chave: 2:3)
+Sua mente é flexível e comunicativa. Portanto, aprenda e ensine com curiosidade, mas evite a superficialidade e a manipulação da verdade.
+
+[OK] Mercúrio na Casa 4 (chave: 2:4)
+Sua mente se comunica no lar. Portanto, dialogue com a família e crie afinidades intelectuais no seu ambiente doméstico para gerar segurança.
+
+[OK] Mercúrio na Casa 5 (chave: 2:5)
+Sua mente busca prazer e romance. Portanto, flerte e divirta-se com inteligência, mas não racionalize demais os sentimentos.
+
+[OK] Mercúrio na Casa 6 (chave: 2:6)
+Sua mente está na rotina. Portanto, organize seu dia com variedade e precisão, cuidando da sua saúde mental e evitando o excesso de crítica.
+
+[OK] Mercúrio na Casa 7 (chave: 2:7)
+Sua mente busca parceria. Portanto, comunique-se nas relações com diplomacia, mas evite a inconstância e a frieza a dois.
+
+[OK] Mercúrio na Casa 8 (chave: 2:8)
+Sua mente é investigativa. Portanto, aprofunde-se nas verdades ocultas, mas evite a manipulação e as disputas de poder.
+
+[OK] Mercúrio na Casa 9 (chave: 2:9)
+Sua mente busca expansão. Portanto, estude e filosofe, mas não deixe as dúvidas atrapalharem sua fé e suas convicções.
+
+[OK] Mercúrio na Casa 10 (chave: 2:10)
+Sua mente está na carreira. Portanto, comunique e lidere no trabalho, mas sem dispersão e mantendo seus princípios éticos.
+
+[OK] Mercúrio na Casa 11 (chave: 2:11)
+Sua mente busca o coletivo. Portanto, conecte-se com amigos que estimulem suas ideias, mas sem superficialidade ou falsas esperanças.
+
+[OK] Mercúrio na Casa 12 (chave: 2:12)
+Sua mente é intuitiva e profunda. Portanto, silencie e escute a sua voz interior, permitindo expressar o que compreende sem medo.
+
+[OK] Vênus na Casa 1 (chave: 3:1)
+Sua forma de amar é charmosa e magnética. Portanto, seduza com a sua beleza e diplomacia, mas sem falsidade e buscando o equilíbrio.
+
+[OK] Vênus na Casa 2 (chave: 3:2)
+Sua forma de amar busca segurança e conforto. Portanto, valorize o que você tem e busque o refinamento, mas evite os gastos fúteis.
+
+[OK] Vênus na Casa 3 (chave: 3:3)
+Sua forma de amar é comunicativa. Portanto, encante através das palavras e da diplomacia, mantendo a harmonia nas suas conversas.
+
+[OK] Vênus na Casa 4 (chave: 3:4)
+Sua forma de amar é acolhedora e familiar. Portanto, crie um lar belo e harmonioso, nutrindo a sua segurança interior com afeto.
+
+[OK] Vênus na Casa 5 (chave: 3:5)
+Sua forma de amar é alegre e divertida. Portanto, viva o romance e a criatividade com prazer, mas evite a inconstância nos afetos.
+
+[OK] Vênus na Casa 6 (chave: 3:6)
+Sua forma de amar é prática e cuidadosa. Portanto, encontre prazer no seu trabalho e na rotina, cuidando da saúde e dos animais.
+
+[OK] Vênus na Casa 7 (chave: 3:7)
+Sua forma de amar busca a parceria. Portanto, compartilhe os seus sentimentos com o outro, mas sem criar dependência e mantendo a fidelidade a si mesmo.
+
+[OK] Vênus na Casa 8 (chave: 3:8)
+Sua forma de amar é profunda e intensa. Portanto, entregue-se com confiança e sem usar a sexualidade como moeda de troca.
+
+[OK] Vênus na Casa 9 (chave: 3:9)
+Sua forma de amar busca elevação. Portanto, expanda os seus horizontes e encontre o amor em ideias e culturas diferentes, com otimismo.
+
+[OK] Vênus na Casa 10 (chave: 3:10)
+Sua forma de amar está na carreira. Portanto, use o seu charme no profissional com ética, buscando o sucesso e o reconhecimento.
+
+[OK] Vênus na Casa 11 (chave: 3:11)
+Sua forma de amar é amigável e coletiva. Portanto, valorize os amigos e os projetos em grupo, buscando o amor e a amizade no mesmo lugar.
+
+[OK] Vênus na Casa 12 (chave: 3:12)
+Sua forma de amar é reservada e espiritual. Portanto, cuide do seu mundo interior e ame com devoção, mas sem se anular ou viver relações secretas.
+
+[OK] Marte na Casa 1 (chave: 4:1)
+Sua força é corajosa e audaciosa. Portanto, aja com determinação, mas controle a impulsividade e a agressividade.
+
+[OK] Marte na Casa 2 (chave: 4:2)
+Sua força busca conquistas materiais. Portanto, conquiste o seu dinheiro com dinamismo, mas evite os gastos impulsivos e a pressa.
+
+[OK] Marte na Casa 3 (chave: 4:3)
+Sua força está na palavra. Portanto, comunique suas ideias com ousadia, mas evite discussões e palavras agressivas.
+
+[OK] Marte na Casa 4 (chave: 4:4)
+Sua força está na família. Portanto, proteja o seu lar, mas evite as discussões e a impaciência no ambiente doméstico.
+
+[OK] Marte na Casa 5 (chave: 4:5)
+Sua força está na paixão. Portanto, ame e crie com intensidade, mas sem competir ou apressar os afetos.
+
+[OK] Marte na Casa 6 (chave: 4:6)
+Sua força está na rotina. Portanto, trabalhe com entusiasmo, mas evite a irritabilidade e as brigas no dia a dia.
+
+[OK] Marte na Casa 7 (chave: 4:7)
+Sua força está nas parcerias. Portanto, relacione-se com diplomacia, respeitando o tempo do outro e evitando conflitos.
+
+[OK] Marte na Casa 8 (chave: 4:8)
+Sua força é transformadora. Portanto, intensifique suas paixões, mas evite a pressa, a rivalidade e os riscos desnecessários.
+
+[OK] Marte na Casa 9 (chave: 4:9)
+Sua força está nos ideais. Portanto, lute pelo que acredita, mas evite o fanatismo e as discussões com pessoas próximas.
+
+[OK] Marte na Casa 10 (chave: 4:10)
+Sua força está na carreira. Portanto, lidere seu caminho profissional com coragem, mas evite a arrogância e os atritos com chefes.
+
+[OK] Marte na Casa 11 (chave: 4:11)
+Sua força está nos grupos. Portanto, atue com entusiasmo nas amizades, mas não queira dominar ou liderar tudo sozinho.
+
+[OK] Marte na Casa 12 (chave: 4:12)
+Sua força é interior. Portanto, direcione sua energia para a cura e o autoconhecimento, evitando reprimir seus desejos.
+
+[OK] Júpiter na Casa 1 (chave: 5:1)
+Sua expansão é otimista e confiante. Portanto, lidere com autoconfiança, mas evite o comodismo e as promessas exageradas.
+
+[OK] Júpiter na Casa 2 (chave: 5:2)
+Sua expansão atrai prosperidade. Portanto, multiplique seus recursos com fé, mas evite o perdulário e os gastos sem controle.
+
+[OK] Júpiter na Casa 3 (chave: 5:3)
+Sua expansão está no conhecimento. Portanto, estude e comunique com otimismo, mas evite falar demais e a preguiça mental.
+
+[OK] Júpiter na Casa 4 (chave: 5:4)
+Sua expansão está no lar. Portanto, acolha sua família com generosidade, mas evite a ostentação e o descuido com o patrimônio.
+
+[OK] Júpiter na Casa 5 (chave: 5:5)
+Sua expansão está nos prazeres. Portanto, aproveite os romances e a criatividade, mas evite os exageros emocionais e os jogos de azar.
+
+[OK] Júpiter na Casa 6 (chave: 5:6)
+Sua expansão está no trabalho. Portanto, sirva com boa vontade, mas evite a arrogância e a desordem na rotina.
+
+[OK] Júpiter na Casa 7 (chave: 5:7)
+Sua expansão está nas parcerias. Portanto, compartilhe a abundância, mas evite a hipocrisia e as relações por conveniência.
+
+[OK] Júpiter na Casa 8 (chave: 5:8)
+Sua expansão está na transformação. Portanto, confie na renovação e seja generoso, mas evite a negligência com bens alheios.
+
+[OK] Júpiter na Casa 9 (chave: 5:9)
+Sua expansão está na fé. Portanto, busque a verdade e a filosofia, mas evite o fanatismo e o exibicionismo intelectual.
+
+[OK] Júpiter na Casa 10 (chave: 5:10)
+Sua expansão está na carreira. Portanto, brilhe profissionalmente com ética, mas evite a falsidade e as promessas vazias.
+
+[OK] Júpiter na Casa 11 (chave: 5:11)
+Sua expansão está nas amizades. Portanto, realize seus sonhos com o grupo, mas evite os sonhos grandiosos demais e as falsas amizades.
+
+[OK] Júpiter na Casa 12 (chave: 5:12)
+Sua expansão está na espiritualidade. Portanto, ajude no anonimato, mas evite a indolência e as ilusões grandiosas.
+
+[OK] Saturno na Casa 1 (chave: 6:1)
+Sua responsabilidade é amadurecer cedo. Portanto, assuma sua autoridade com perseverança, mas sem esconder sua sensibilidade.
+
+[OK] Saturno na Casa 2 (chave: 6:2)
+Sua responsabilidade é construir estabilidade. Portanto, administre seus recursos com paciência, evitando o medo da escassez e a avareza.
+
+[OK] Saturno na Casa 3 (chave: 6:3)
+Sua responsabilidade é estruturar a mente. Portanto, estude com disciplina e foco, evitando o pessimismo e a rigidez de pensamento.
+
+[OK] Saturno na Casa 4 (chave: 6:4)
+Sua responsabilidade é amadurecer suas raízes. Portanto, estruture seu lar e sua segurança interior, sem se isolar da família.
+
+[OK] Saturno na Casa 5 (chave: 6:5)
+Sua responsabilidade é aprender a se entregar. Portanto, permita-se viver o amor e a diversão com seriedade, mas sem sufocar a criança interior.
+
+[OK] Saturno na Casa 6 (chave: 6:6)
+Sua responsabilidade é disciplinar a rotina. Portanto, trabalhe com perseverança e seriedade, mas evite o desgaste físico e a rigidez.
+
+[OK] Saturno na Casa 7 (chave: 6:7)
+Sua responsabilidade é amadurecer nas parcerias. Portanto, comprometa-se com maturidade, aprendendo a cooperar e a dividir responsabilidades.
+
+[OK] Saturno na Casa 8 (chave: 6:8)
+Sua responsabilidade é lidar com as crises. Portanto, entregue-se com maturidade às transformações, deixando o medo e a culpa de lado.
+
+[OK] Saturno na Casa 9 (chave: 6:9)
+Sua responsabilidade é estruturar a fé. Portanto, firme suas crenças com seriedade, mas sem restringir sua espiritualidade ou viver a fé como obrigação.
+
+[OK] Saturno na Casa 10 (chave: 6:10)
+Sua responsabilidade é construir a carreira. Portanto, persista com foco e seriedade no trabalho, mas sem deixar a ambição te tornar frio.
+
+[OK] Saturno na Casa 11 (chave: 6:11)
+Sua responsabilidade é concretizar os sonhos. Portanto, trabalhe pelos seus projetos em grupo com persistência, vencendo os medos e as desconfianças.
+
+[OK] Saturno na Casa 12 (chave: 6:12)
+Sua responsabilidade é curar o inconsciente. Portanto, aceite seus limites e medos, estruturando sua espiritualidade para encontrar a paz interior.
+
+[OK] Urano na Casa 1 (chave: 7:1)
+Sua originalidade é rebelde e independente. Portanto, libertar-se é a sua força, mas evite o individualismo extremo e a teimosia.
+
+[OK] Urano na Casa 2 (chave: 7:2)
+Sua originalidade está nos valores. Portanto, inove na forma de ganhar dinheiro, mas cuidado com as perdas repentinas e a instabilidade.
+
+[OK] Urano na Casa 3 (chave: 7:3)
+Sua originalidade está na mente. Portanto, pense fora da caixa, mas evite a dispersão e as ideias irracionais que geram tensões.
+
+[OK] Urano na Casa 4 (chave: 7:4)
+Sua originalidade está no lar. Portanto, renove sua base familiar, mas sem romper laços de forma brusca e impulsiva.
+
+[OK] Urano na Casa 5 (chave: 7:5)
+Sua originalidade está no amor. Portanto, expresse seus sentimentos com liberdade, mas evite a inconstância e as especulações emocionais.
+
+[OK] Urano na Casa 6 (chave: 7:6)
+Sua originalidade está no trabalho. Portanto, busque autonomia e inovação na rotina, mas sem rebeldia e indisciplina.
+
+[OK] Urano na Casa 7 (chave: 7:7)
+Sua originalidade está nas parcerias. Portanto, relacione-se com liberdade, mas cuidado com os rompimentos repentinos e a frieza.
+
+[OK] Urano na Casa 8 (chave: 7:8)
+Sua originalidade é transformadora. Portanto, regenere-se nas crises, mas evite a libertinagem e as perdas financeiras.
+
+[OK] Urano na Casa 9 (chave: 7:9)
+Sua originalidade está nas crenças. Portanto, busque novas filosofias, mas evite o fanatismo e as utopias.
+
+[OK] Urano na Casa 10 (chave: 7:10)
+Sua originalidade está na carreira. Portanto, inove profissionalmente, mas evite o crescimento descontrolado e o excêntrico.
+
+[OK] Urano na Casa 11 (chave: 7:11)
+Sua originalidade está nos grupos. Portanto, conecte-se com amigos diferentes, mas evite a falta de persistência e as falsas amizades.
+
+[OK] Urano na Casa 12 (chave: 7:12)
+Sua originalidade está no inconsciente. Portanto, libertar-se é a sua força, mas busque a liberdade interior e não a libertinagem.
+
+[OK] Netuno na Casa 1 (chave: 8:1)
+Sua espiritualidade está na imagem. Portanto, cuide da sua identidade, mas evite as ilusões e os escapismos.
+
+[OK] Netuno na Casa 2 (chave: 8:2)
+Sua espiritualidade está nos valores. Portanto, intua seus recursos, mas evite a desonestidade e as perdas financeiras.
+
+[OK] Netuno na Casa 3 (chave: 8:3)
+Sua espiritualidade está na mente. Portanto, imagine e crie com a mente, mas evite a confusão e a distração.
+
+[OK] Netuno na Casa 4 (chave: 8:4)
+Sua espiritualidade está no lar. Portanto, acolha sua família, mas evite a idealização e os segredos.
+
+[OK] Netuno na Casa 5 (chave: 8:5)
+Sua espiritualidade está nos prazeres. Portanto, ame com romantismo, mas evite as ilusões e os afetos problemáticos.
+
+[OK] Netuno na Casa 6 (chave: 8:6)
+Sua espiritualidade está na rotina. Portanto, sirva com intuição, mas evite a indolência e as influências externas.
+
+[OK] Netuno na Casa 7 (chave: 8:7)
+Sua espiritualidade está nas parcerias. Portanto, relacione-se com sensibilidade, mas evite a idealização e a dependência.
+
+[OK] Netuno na Casa 8 (chave: 8:8)
+Sua espiritualidade é transformadora. Portanto, regenere-se na fé, mas evite as dívidas e a vulnerabilidade à sedução.
+
+[OK] Netuno na Casa 9 (chave: 8:9)
+Sua espiritualidade está nas crenças. Portanto, busque a fé, mas evite o fanatismo e as utopias.
+
+[OK] Netuno na Casa 10 (chave: 8:10)
+Sua espiritualidade está na carreira. Portanto, inspire no trabalho, mas evite a desonestidade e as calúnias.
+
+[OK] Netuno na Casa 11 (chave: 8:11)
+Sua espiritualidade está nos grupos. Portanto, sonhe com os amigos, mas evite as decepções e as falsas esperanças.
+
+[OK] Netuno na Casa 12 (chave: 8:12)
+Sua espiritualidade está no inconsciente. Portanto, intua e acolha, mas evite a fuga da realidade e as somatizações.
+
+[OK] Plutão na Casa 1 (chave: 9:1)
+Sua transformação é poderosa. Portanto, regenere-se nas crises, mas evite a autodestruição e a dominação.
+
+[OK] Plutão na Casa 2 (chave: 9:2)
+Sua transformação está nos valores. Portanto, transforme seus recursos, mas evite o egoísmo e a exploração.
+
+[OK] Plutão na Casa 3 (chave: 9:3)
+Sua transformação está na mente. Portanto, investigue e compreenda, mas evite a manipulação e a deterioração das ideias.
+
+[OK] Plutão na Casa 4 (chave: 9:4)
+Sua transformação está no lar. Portanto, ressignifique suas raízes, mas evite as lutas de poder e o isolamento.
+
+[OK] Plutão na Casa 5 (chave: 9:5)
+Sua transformação está nos prazeres. Portanto, viva o amor e a criatividade com intensidade, mas evite a manipulação e as perdas.
+
+[OK] Plutão na Casa 6 (chave: 9:6)
+Sua transformação está no trabalho. Portanto, atue com profundidade, mas evite a desonestidade e os problemas de saúde.
+
+[OK] Plutão na Casa 7 (chave: 9:7)
+Sua transformação está nas parcerias. Portanto, mergulhe nas relações, mas evite os jogos de poder e o medo da solidão.
+
+[OK] Plutão na Casa 8 (chave: 9:8)
+Sua transformação é profunda. Portanto, regenere-se com o êxtase, mas evite a destruição e as obsessões.
+
+[OK] Plutão na Casa 9 (chave: 9:9)
+Sua transformação está nas crenças. Portanto, reformule sua filosofia, mas evite o fanatismo e a imposição de ideias.
+
+[OK] Plutão na Casa 10 (chave: 9:10)
+Sua transformação está na carreira. Portanto, lidere com ética, mas evite o autoritarismo e os escândalos.
+
+[OK] Plutão na Casa 11 (chave: 9:11)
+Sua transformação está nos grupos. Portanto, reorganize seus planos, mas evite os planos exagerados e a dominação pelos amigos.
+
+[OK] Plutão na Casa 12 (chave: 9:12)
+Sua transformação está no inconsciente. Portanto, encare seus medos, mas evite as fugas e as dependências.
+
+==============================================================================
+PLANETA NO SIGNO - RESUMO
+==============================================================================
+
+[OK] Sol em Áries (chave: 0:0)
+Sua alma é corajosa e com iniciativa. Portanto, construa sua autoridade de forma ágil e liderando pelo exemplo.
+
+[OK] Sol em Touro (chave: 0:1)
+Sua alma é estável e paciente. Portanto, construa sua autoridade valorizando o que é duradouro e confiando no seu próprio ritmo.
+
+[OK] Sol em Gêmeos (chave: 0:2)
+Sua alma é curiosa e comunicativa. Portanto, construa sua autoridade conectando ideias e mostrando ao mundo a sua leveza e adaptabilidade.
+
+[OK] Sol em Câncer (chave: 0:3)
+Sua alma é emocional e acolhedora. Portanto, exerça sua liderança iluminando o mundo com a sua sensibilidade e o seu dom natural de proteger quem ama.
+
+[OK] Sol em Leão (chave: 0:4)
+Sua alma é brilhante e criativa. Portanto, assuma o seu palco com carisma e inspire as pessoas com a sua alegria e generosidade.
+
+[OK] Sol em Virgem (chave: 0:5)
+Sua alma é detalhista e útil. Portanto, construa sua autoridade organizando e melhorando tudo ao seu redor com maestria.
+
+[OK] Sol em Libra (chave: 0:6)
+Sua alma é harmoniosa e parceira. Portanto, construa sua autoridade através do seu dom de mediar e conectar pessoas para criar um mundo mais justo e belo.
+
+[OK] Sol em Escorpião (chave: 0:7)
+Sua alma é intensa e verdadeira. Portanto, lidere através da sua capacidade de transformação e renascimento, levando os outros a fazerem o mesmo.
+
+[OK] Sol em Sagitário (chave: 0:8)
+Sua alma é expansiva e livre. Portanto, lidere mostrando o seu otimismo e a sua busca por sentido, inspirando outros a irem mais longe.
+
+[OK] Sol em Capricórnio (chave: 0:9)
+Sua alma é estruturada e ambiciosa. Portanto, construa o seu legado com responsabilidade, mostrando que é possível realizar grandes coisas com foco.
+
+[OK] Sol em Aquário (chave: 0:10)
+Sua alma é original e coletiva. Portanto, construa sua autoridade inovando e trazendo ideias à frente do tempo, cuidando do futuro de todos.
+
+[OK] Sol em Peixes (chave: 0:11)
+Sua alma é sensível e compassiva. Portanto, exerça a liderança com percepção, intuição e amor, levando aos outros cura e acolhimento.
+
+[OK] Lua em Áries (chave: 1:0)
+Suas raízes emocionais são intensas e impulsivas. Portanto, sinta de forma espontânea a todo instante e siga o seu instinto.
+
+[OK] Lua em Touro (chave: 1:1)
+Suas raízes emocionais são firmes e seguras. Portanto, acolha-se com o conforto que você valoriza e desfrute das coisas simples.
+
+[OK] Lua em Gêmeos (chave: 1:2)
+Suas raízes emocionais são racionais e curiosas. Portanto, expresse o que sente e conecte-se com as pessoas pela conversa.
+
+[OK] Lua em Câncer (chave: 1:3)
+Suas raízes emocionais são profundas e acolhedoras. Portanto, nutra a si mesmo e aos outros, criando um ninho seguro para quem ama.
+
+[OK] Lua em Leão (chave: 1:4)
+Suas raízes emocionais são calorosas e dramáticas. Portanto, acolha a sua necessidade de reconhecimento e permita-se brilhar no campo afetivo.
+
+[OK] Lua em Virgem (chave: 1:5)
+Suas raízes emocionais são reservadas e analíticas. Portanto, expresse o seu cuidado através de atitudes práticas e atenção aos detalhes.
+
+[OK] Lua em Libra (chave: 1:6)
+Suas raízes emocionais buscam paz e parceria. Portanto, harmonize os seus relacionamentos usando a sua diplomacia para criar laços acolhedores.
+
+[OK] Lua em Escorpião (chave: 1:7)
+Suas raízes emocionais são intensas e profundas. Portanto, sinta tudo com intensidade para se regenerar e curar feridas profundas.
+
+[OK] Lua em Sagitário (chave: 1:8)
+Suas raízes emocionais são otimistas e livres. Portanto, busque novas emoções e mantenha a sua fé e o seu bom humor diante da vida.
+
+[OK] Lua em Capricórnio (chave: 1:9)
+Suas raízes emocionais são contidas e maduras. Portanto, acolha a sua segurança e responsabilidade afetiva, sem esquecer de demonstrar carinho.
+
+[OK] Lua em Aquário (chave: 1:10)
+Suas raízes emocionais são independentes e sociais. Portanto, conecte-se de forma livre e fraterna, trazendo o seu desapego para os laços.
+
+[OK] Lua em Peixes (chave: 1:11)
+Suas raízes emocionais são sensíveis e universais. Portanto, acolha a dor do mundo com a sua empatia e traga amor para as suas relações.
+
+[OK] Mercúrio em Áries (chave: 2:0)
+Sua forma de pensar é rápida e direta. Portanto, comunique-se com coragem para falar o que pensa e defender as suas ideias.
+
+[OK] Mercúrio em Touro (chave: 2:1)
+Sua forma de pensar é prática e metódica. Portanto, valorize o seu conhecimento concreto e construa raciocínios sólidos.
+
+[OK] Mercúrio em Gêmeos (chave: 2:2)
+Sua forma de pensar é ágil e curiosa. Portanto, conecte ideias com facilidade e espalhe o seu conhecimento.
+
+[OK] Mercúrio em Câncer (chave: 2:3)
+Sua forma de pensar é emocional e intuitiva. Portanto, comunique-se com o coração, usando a sua memória afetiva e sensibilidade.
+
+[OK] Mercúrio em Leão (chave: 2:4)
+Sua forma de pensar é expressiva e brilhante. Portanto, expresse as suas ideias com liderança e use o seu poder de persuasão.
+
+[OK] Mercúrio em Virgem (chave: 2:5)
+Sua forma de pensar é analítica e detalhista. Portanto, pense com precisão e use a sua capacidade de organizar e resolver problemas.
+
+[OK] Mercúrio em Libra (chave: 2:6)
+Sua forma de pensar é diplomática e justa. Portanto, comunique-se com equilíbrio, vendo os dois lados para harmonizar as conversas.
+
+[OK] Mercúrio em Escorpião (chave: 2:7)
+Sua forma de pensar é investigativa e profunda. Portanto, raciocine com percepção aguçada para descobrir a verdade e ir além das aparências.
+
+[OK] Mercúrio em Sagitário (chave: 2:8)
+Sua forma de pensar é idealista e filosófica. Portanto, aprenda sempre e compartilhe a sua visão ampla e o seu otimismo.
+
+[OK] Mercúrio em Capricórnio (chave: 2:9)
+Sua forma de pensar é estruturada e realista. Portanto, raciocine com seriedade e foco para construir conhecimentos duradouros.
+
+[OK] Mercúrio em Aquário (chave: 2:10)
+Sua forma de pensar é inovadora e original. Portanto, pense fora da caixa e traga ideias revolucionárias para questionar o status quo.
+
+[OK] Mercúrio em Peixes (chave: 2:11)
+Sua forma de pensar é intuitiva e simbólica. Portanto, expresse a sua imaginação e a sua arte para tocar a alma das pessoas.
+
+[OK] Vênus em Áries (chave: 3:0)
+Sua forma de amar é intensa e corajosa. Portanto, ame com paixão e não tenha medo de ir atrás de quem deseja.
+
+[OK] Vênus em Touro (chave: 3:1)
+Sua forma de amar é sensual e estável. Portanto, valorize o toque, o afeto e a construção de um amor seguro e prazeroso.
+
+[OK] Vênus em Gêmeos (chave: 3:2)
+Sua forma de amar é mental e sedutora. Portanto, seduza com a sua conversa e inteligência para manter a chama acesa.
+
+[OK] Vênus em Câncer (chave: 3:3)
+Sua forma de amar é maternal e cuidadosa. Portanto, ame e dê carinho aos seus, sem se esquecer de também se acolher.
+
+[OK] Vênus em Leão (chave: 3:4)
+Sua forma de amar é leal e dramática. Portanto, entregue-se com generosidade e crie momentos mágicos para quem você ama.
+
+[OK] Vênus em Virgem (chave: 3:5)
+Sua forma de amar é reservada e prática. Portanto, demonstre o seu amor através de atitudes de cuidado e atenção aos detalhes.
+
+[OK] Vênus em Libra (chave: 3:6)
+Sua forma de amar é harmoniosa e elegante. Portanto, atraia a parceria ideal mostrando que o amor verdadeiro traz paz.
+
+[OK] Vênus em Escorpião (chave: 3:7)
+Sua forma de amar é profunda e passional. Portanto, entregue-se de corpo e alma e use a sua intensidade para curar e transformar.
+
+[OK] Vênus em Sagitário (chave: 3:8)
+Sua forma de amar é aventureira e livre. Portanto, ame com alegria e entusiasmo, buscando sempre crescer junto.
+
+[OK] Vênus em Capricórnio (chave: 3:9)
+Sua forma de amar é séria e leal. Portanto, valorize o compromisso, o respeito e a estabilidade na relação.
+
+[OK] Vênus em Aquário (chave: 3:10)
+Sua forma de amar é livre e amiga. Portanto, respeite a individualidade do outro e construa relações baseadas na confiança.
+
+[OK] Vênus em Peixes (chave: 3:11)
+Sua forma de amar é devotada e romântica. Portanto, ame incondicionalmente e use a sua compaixão para acolher o outro.
+
+[OK] Marte em Áries (chave: 4:0)
+Sua força se alimenta da coragem e da ação. Portanto, aja com determinação para conquistar o que deseja.
+
+[OK] Marte em Touro (chave: 4:1)
+Sua força se alimenta da persistência. Portanto, conquiste os seus objetivos com firmeza, indo até o fim.
+
+[OK] Marte em Gêmeos (chave: 4:2)
+Sua força se alimenta da mente e da comunicação. Portanto, aja com agilidade usando as suas palavras e ideias.
+
+[OK] Marte em Câncer (chave: 4:3)
+Sua força se alimenta da emoção e da proteção. Portanto, direcione sua energia para cuidar de quem você ama.
+
+[OK] Marte em Leão (chave: 4:4)
+Sua força se alimenta da paixão e do orgulho. Portanto, aja com coragem e assuma a liderança de forma inspiradora.
+
+[OK] Marte em Virgem (chave: 4:5)
+Sua força se alimenta de ações estratégicas. Portanto, direcione suas ações para a eficiência e resolução de problemas.
+
+[OK] Marte em Libra (chave: 4:6)
+Sua força se alimenta da diplomacia. Portanto, conquiste seus objetivos usando a sua habilidade de negociar e buscar a justiça.
+
+[OK] Marte em Escorpião (chave: 4:7)
+Sua força se alimenta da intensidade e do poder. Portanto, lute usando a sua energia de transformação para superar obstáculos.
+
+[OK] Marte em Sagitário (chave: 4:8)
+Sua força se alimenta da aventura e da fé. Portanto, aja lutando pelos seus ideais e inspirando com entusiasmo.
+
+[OK] Marte em Capricórnio (chave: 4:9)
+Sua força se alimenta da disciplina e da ambição. Portanto, conquiste com foco e perseverança, mostrando que pode alcançar tudo.
+
+[OK] Marte em Aquário (chave: 4:10)
+Sua força se alimenta da inovação e do coletivo. Portanto, aja lutando por causas maiores e transformando a sociedade.
+
+[OK] Marte em Peixes (chave: 4:11)
+Sua força se alimenta da intuição e da espiritualidade. Portanto, aja com fé e use a sua imaginação para inspirar e curar.
+
+[OK] Júpiter em Áries (chave: 5:0)
+Sua capacidade de expandir se manifesta na coragem. Portanto, acredite no seu potencial de liderar e abrir novos caminhos.
+
+[OK] Júpiter em Touro (chave: 5:1)
+Sua capacidade de expandir se manifesta na estabilidade. Portanto, busque a prosperidade e a construção de uma vida confortável.
+
+[OK] Júpiter em Gêmeos (chave: 5:2)
+Sua capacidade de expandir se manifesta no conhecimento. Portanto, cresça aprendendo sempre e compartilhando as suas ideias.
+
+[OK] Júpiter em Câncer (chave: 5:3)
+Sua capacidade de expandir se manifesta no acolhimento. Portanto, expanda o seu amor cuidando da família e criando proteção.
+
+[OK] Júpiter em Leão (chave: 5:4)
+Sua capacidade de expandir se manifesta na criatividade. Portanto, cresça brilhando e usando a sua generosidade para inspirar.
+
+[OK] Júpiter em Virgem (chave: 5:5)
+Sua capacidade de expandir se manifesta no trabalho. Portanto, busque a excelência e o serviço útil à sociedade.
+
+[OK] Júpiter em Libra (chave: 5:6)
+Sua capacidade de expandir se manifesta nas relações. Portanto, prospere construindo parcerias justas e equilibradas.
+
+[OK] Júpiter em Escorpião (chave: 5:7)
+Sua capacidade de expandir se manifesta na profundidade. Portanto, acredite no poder da transformação e na busca pela verdade.
+
+[OK] Júpiter em Sagitário (chave: 5:8)
+Sua capacidade de expandir se manifesta na liberdade. Portanto, creia no seu otimismo e na busca por um sentido maior.
+
+[OK] Júpiter em Capricórnio (chave: 5:9)
+Sua capacidade de expandir se manifesta na estrutura. Portanto, busque a realização profissional e a conquista de autoridade.
+
+[OK] Júpiter em Aquário (chave: 5:10)
+Sua capacidade de expandir se manifesta no coletivo. Portanto, cresça com o humanitarismo e a inovação para o bem de todos.
+
+[OK] Júpiter em Peixes (chave: 5:11)
+Sua capacidade de expandir se manifesta na espiritualidade. Portanto, acredite na compaixão e na conexão com algo maior.
+
+[OK] Saturno em Áries (chave: 6:0)
+Você amadurece através do autocontrole. Portanto, responsabilize-se por desenvolver a paciência e a confiança em si mesmo.
+
+[OK] Saturno em Touro (chave: 6:1)
+Você amadurece através da estabilidade. Portanto, responsabilize-se por construir uma base financeira e material segura.
+
+[OK] Saturno em Gêmeos (chave: 6:2)
+Você amadurece através da racionalidade. Portanto, responsabilize-se por desenvolver o foco e a estruturação dos pensamentos.
+
+[OK] Saturno em Câncer (chave: 6:3)
+Você amadurece através das emoções. Portanto, responsabilize-se por curar as feridas do passado e criar as suas próprias raízes.
+
+[OK] Saturno em Leão (chave: 6:4)
+Você amadurece através da expressão. Portanto, responsabilize-se por liderar com humildade e assumir o seu poder com sabedoria.
+
+[OK] Saturno em Virgem (chave: 6:5)
+Você amadurece através do trabalho. Portanto, responsabilize-se por ser eficiente e por aceitar as suas próprias imperfeições.
+
+[OK] Saturno em Libra (chave: 6:6)
+Você amadurece através das relações. Portanto, responsabilize-se por estabelecer limites claros e buscar a justiça nas parcerias.
+
+[OK] Saturno em Escorpião (chave: 6:7)
+Você amadurece através das crises. Portanto, responsabilize-se por transformar as suas dores e confiar na sua capacidade de renascer.
+
+[OK] Saturno em Sagitário (chave: 6:8)
+Você amadurece através da fé. Portanto, responsabilize-se por encontrar um propósito maior e dar estrutura aos seus ideais.
+
+[OK] Saturno em Capricórnio (chave: 6:9)
+Você amadurece através da carreira. Portanto, responsabilize-se por assumir as rédeas da sua vida e construir o seu legado.
+
+[OK] Saturno em Aquário (chave: 6:10)
+Você amadurece através do coletivo. Portanto, responsabilize-se por inovar com responsabilidade e pensar no bem comum.
+
+[OK] Saturno em Peixes (chave: 6:11)
+Você amadurece através da espiritualidade. Portanto, responsabilize-se por dar limites aos seus sonhos e cuidar da sua paz.
+
+[OK] Urano em Áries (chave: 7:0)
+Você se diferencia no mundo através da sua coragem. Portanto, rompa com o velho abrindo novos caminhos com autenticidade.
+
+[OK] Urano em Touro (chave: 7:1)
+Você se diferencia no mundo através dos seus valores. Portanto, inove na forma como lida com o material e com a economia.
+
+[OK] Urano em Gêmeos (chave: 7:2)
+Você se diferencia no mundo através da sua comunicação. Portanto, revolucione as suas ideias e a sua forma de pensar.
+
+[OK] Urano em Câncer (chave: 7:3)
+Você se diferencia no mundo através da sua família. Portanto, inove buscando novas formas de criar laços e cuidar das raízes.
+
+[OK] Urano em Leão (chave: 7:4)
+Você se diferencia no mundo através da sua expressão. Portanto, brilhe de forma autêntica, original e revolucionária.
+
+[OK] Urano em Virgem (chave: 7:5)
+Você se diferencia no mundo através do seu trabalho. Portanto, inove buscando novas formas de organizar a rotina e servir.
+
+[OK] Urano em Libra (chave: 7:6)
+Você se diferencia no mundo através das suas relações. Portanto, renove sempre a sua forma de se relacionar afetiva e comercialmente.
+
+[OK] Urano em Escorpião (chave: 7:7)
+Você se diferencia no mundo através da sua intensidade. Portanto, transforme-se profundamente e rompa com tudo que já não serve.
+
+[OK] Urano em Sagitário (chave: 7:8)
+Você se diferencia no mundo através das suas crenças. Portanto, busque novas verdades e expanda a sua visão de mundo.
+
+[OK] Urano em Capricórnio (chave: 7:9)
+Você se diferencia no mundo através da sua estrutura. Portanto, inove de forma consciente e quebre tradições obsoletas.
+
+[OK] Urano em Aquário (chave: 7:10)
+Você se diferencia no mundo através do seu coletivo. Portanto, revolucione mantendo a sua visão de futuro e pensando fora da caixa.
+
+[OK] Urano em Peixes (chave: 7:11)
+Você se diferencia no mundo através da sua espiritualidade. Portanto, busque novas formas de se conectar com o invisível.
+
+[OK] Netuno em Áries (chave: 8:0)
+Sua conexão espiritual é ativa. Portanto, conecte-se com a sua coragem interior para abrir caminhos e concretizar ideais.
+
+[OK] Netuno em Touro (chave: 8:1)
+Sua conexão espiritual é prática. Portanto, encontre o sagrado nas coisas simples e traga a arte para a sua rotina.
+
+[OK] Netuno em Gêmeos (chave: 8:2)
+Sua conexão espiritual é mental. Portanto, busque o místico através do conhecimento e da comunicação.
+
+[OK] Netuno em Câncer (chave: 8:3)
+Sua conexão espiritual é familiar. Portanto, conecte-se com as suas raízes e encontre a paz no seu lar.
+
+[OK] Netuno em Leão (chave: 8:4)
+Sua conexão espiritual é criativa. Portanto, expresse a sua fé através da arte e do seu brilho pessoal.
+
+[OK] Netuno em Virgem (chave: 8:5)
+Sua conexão espiritual é racional. Portanto, encontre o sagrado no cuidado com o corpo e na utilidade do dia a dia.
+
+[OK] Netuno em Libra (chave: 8:6)
+Sua conexão espiritual é relacional. Portanto, busque a paz interior e a justiça através dos seus laços afetivos.
+
+[OK] Netuno em Escorpião (chave: 8:7)
+Sua conexão espiritual é profunda. Portanto, busque a cura emocional e a regeneração nos mistérios da vida.
+
+[OK] Netuno em Sagitário (chave: 8:8)
+Sua conexão espiritual é expansiva. Portanto, busque a fé elevada e a verdade na filosofia e nas grandes ideias.
+
+[OK] Netuno em Capricórnio (chave: 8:9)
+Sua conexão espiritual precisa de estrutura. Portanto, dê forma aos seus sonhos e tenha disciplina para alcançá-los.
+
+[OK] Netuno em Aquário (chave: 8:10)
+Sua conexão espiritual é coletiva. Portanto, use o seu idealismo para evoluir e ajudar a humanidade.
+
+[OK] Netuno em Peixes (chave: 8:11)
+Sua conexão espiritual é universal. Portanto, entregue-se à compaixão e à conexão com o todo.
+
+OK] Plutão em Áries (chave: 9:0)
+Suas transformações acontecem pela força. Portanto, transforme a sua realidade recomeçando e abrindo novos caminhos.
+
+[OK] Plutão em Touro (chave: 9:1)
+Suas transformações acontecem pelos valores. Portanto, regenera a sua relação com o dinheiro e com os bens materiais.
+
+[OK] Plutão em Gêmeos (chave: 9:2)
+Suas transformações acontecem pela informação. Portanto, transforme as suas ideias e a sua forma de se comunicar.
+
+[OK] Plutão em Câncer (chave: 9:3)
+Suas transformações acontecem pela família. Portanto, cure as suas raízes e transforme a sua história familiar.
+
+[OK] Plutão em Leão (chave: 9:4)
+Suas transformações acontecem pela criatividade. Portanto, renove a sua autoestima e a forma como você se expressa.
+
+[OK] Plutão em Virgem (chave: 9:5)
+Suas transformações acontecem pelo trabalho. Portanto, mude a sua rotina e busque a cura do corpo e da mente.
+
+[OK] Plutão em Libra (chave: 9:6)
+Suas transformações acontecem pelas relações. Portanto, renove as suas parcerias e busque a justiça e o equilíbrio.
+
+[OK] Plutão em Escorpião (chave: 9:7)
+Suas transformações acontecem de forma profunda. Portanto, regenere-se, saiba lidar com o poder e esteja atento às verdades ocultas.
+
+[OK] Plutão em Sagitário (chave: 9:8)
+Suas transformações acontecem pela filosofia. Portanto, renove as suas crenças e busque um novo sentido para a vida.
+
+[OK] Plutão em Capricórnio (chave: 9:9)
+Suas transformações acontecem pela estrutura. Portanto, transforme as suas ambições e a sua forma de lidar com o poder.
+
+[OK] Plutão em Aquário (chave: 9:10)
+Suas transformações acontecem no coletivo. Portanto, revolucione usando a sua consciência para transformar a sociedade.
+
+[OK] Plutão em Peixes (chave: 9:11)
+Suas transformações acontecem na espiritualidade. Portanto, renove a sua fé e aprofunde a sua conexão com o invisível.
+
+==============================================================================
+ASPECTO 
+==============================================================================
+
+[OK] Conjunção Sol / Lua (chave: 0:0:1)
+Sua alma e emoção estão fundidas. Portanto, sinta e aja de acordo com a sua verdade interior, sem se perder no drama.
+
+[OK] Conjunção Sol / Mercúrio (chave: 0:0:2)
+Sua alma e mente estão alinhadas. Portanto, pense e comunique sua verdade com clareza e objetividade.
+
+[OK] Conjunção Sol / Vênus (chave: 0:0:3)
+Sua alma é charmosa e afetuosa. Portanto, ame e valorize-se, irradiando harmonia e beleza.
+
+[OK] Conjunção Sol / Marte (chave: 0:0:4)
+Sua alma é corajosa e audaciosa. Portanto, aja com determinação e lidere com coragem.
+
+[OK] Conjunção Sol / Júpiter (chave: 0:0:5)
+Sua alma busca a expansão. Portanto, acredite no seu potencial e cresça com otimismo e fé.
+
+[OK] Conjunção Sol / Saturno (chave: 0:0:6)
+Sua alma é estruturada e ambiciosa. Portanto, construa seu caminho com responsabilidade e maturidade.
+
+[OK] Conjunção Sol / Urano (chave: 0:0:7)
+Sua alma é original e livre. Portanto, inove e libertar-se de padrões, brilhando de forma única.
+
+[OK] Conjunção Sol / Netuno (chave: 0:0:8)
+Sua alma é sensível e espiritual. Portanto, sonhe e inspire, mantendo os pés no chão.
+
+[OK] Conjunção Sol / Plutão (chave: 0:0:9)
+Sua alma é transformadora. Portanto, regenere-se e lidere com poder pessoal e ética.
+
+[OK] Conjunção Sol / Ascendente (chave: 0:0:10)
+Sua alma e sua imagem estão alinhadas. Portanto, mostre ao mundo quem você é com autenticidade.
+
+[OK] Conjunção Sol / Meio do Céu (chave: 0:0:11)
+Sua alma está voltada para o sucesso. Portanto, assuma seus objetivos profissionais com autoridade.
+
+[OK] Conjunção Lua / Mercúrio (chave: 0:1:2)
+Sua emoção e mente estão unidas. Portanto, sinta e comunique o que vai na alma com clareza e intuição.
+
+[OK] Conjunção Lua / Vênus (chave: 0:1:3)
+Sua emoção e o amor estão unidos. Portanto, sinta o prazer e seduza com gentileza, sem se anular.
+
+[OK] Conjunção Lua / Marte (chave: 0:1:4)
+Sua emoção e a ação estão unidas. Portanto, sinta com coragem e lute pelo que ama, controlando a impulsividade.
+
+[OK] Conjunção Lua / Júpiter (chave: 0:1:5)
+Sua emoção e a expansão estão unidas. Portanto, sinta a generosidade e acolha com otimismo.
+
+[OK] Conjunção Lua / Saturno (chave: 0:1:6)
+Sua emoção e a disciplina estão unidas. Portanto, sinta com maturidade e estruture os seus sentimentos, sem reprimir.
+
+[OK] Conjunção Lua / Urano (chave: 0:1:7)
+Sua emoção e a liberdade estão unidas. Portanto, sinta de forma original e libertar-se da inconstância.
+
+[OK] Conjunção Lua / Netuno (chave: 0:1:8)
+Sua emoção e a espiritualidade estão unidas. Portanto, sinta a intuição e inspire-se, mantendo os pés no chão.
+
+[OK] Conjunção Lua / Plutão (chave: 0:1:9)
+Sua emoção e a transformação estão unidas. Portanto, sinta profundamente e regenere as suas emoções.
+
+[OK] Conjunção Lua / Ascendente (chave: 0:1:10)
+Sua emoção e a imagem estão unidas. Portanto, mostre a sua sensibilidade com autenticidade.
+
+[OK] Conjunção Lua / Meio do Céu (chave: 0:1:11)
+Sua emoção e a carreira estão unidas. Portanto, cuide do seu sucesso com afeto e intuição.
+
+[OK] Conjunção Mercúrio / Vênus (chave: 0:2:3)
+Sua mente e o amor estão unidos. Portanto, comunique com doçura e seduza com suas ideias.
+
+[OK] Conjunção Mercúrio / Marte (chave: 0:2:4)
+Sua mente e a ação estão unidas. Portanto, pense rápido e aja com coragem, mas evite discussões.
+
+[OK] Conjunção Mercúrio / Júpiter (chave: 0:2:5)
+Sua mente e a expansão estão unidas. Portanto, pense grande e compartilhe seu otimismo.
+
+[OK] Conjunção Mercúrio / Saturno (chave: 0:2:6)
+Sua mente e a estrutura estão unidas. Portanto, organize seus pensamentos e comunique-se com maturidade.
+
+[OK] Conjunção Mercúrio / Urano (chave: 0:2:7)
+Sua mente e a liberdade estão unidas. Portanto, inove e pense fora da caixa.
+
+[OK] Conjunção Mercúrio / Netuno (chave: 0:2:8)
+Sua mente e a intuição estão unidas. Portanto, imagine e crie, mas mantenha os pés no chão.
+
+[OK] Conjunção Mercúrio / Plutão (chave: 0:2:9)
+Sua mente e a transformação estão unidas. Portanto, pesquise e persuada com ética.
+
+[OK] Conjunção Mercúrio / Ascendente (chave: 0:2:10)
+Sua mente e sua imagem estão unidas. Portanto, mostre sua inteligência e lógica ao mundo.
+
+[OK] Conjunção Mercúrio / Meio do Céu (chave: 0:2:11)
+Sua mente e a carreira estão unidas. Portanto, comunique suas ideias com astúcia no trabalho.
+
+[OK] Conjunção Vênus / Marte (chave: 0:3:4)
+Seu amor e a ação estão unidos. Portanto, ame com paixão e aja com coragem.
+
+[OK] Conjunção Vênus / Júpiter (chave: 0:3:5)
+Seu amor e a expansão estão unidos. Portanto, ame com generosidade e celebre a vida.
+
+[OK] Conjunção Vênus / Saturno (chave: 0:3:6)
+Seu amor e a estrutura estão unidos. Portanto, ame com maturidade e segurança.
+
+[OK] Conjunção Vênus / Urano (chave: 0:3:7)
+Seu amor e a liberdade estão unidos. Portanto, permita-se viver amores diferentes e inovar.
+
+[OK] Conjunção Vênus / Netuno (chave: 0:3:8)
+Seu amor e a espiritualidade estão unidos. Portanto, ame com devoção e fantasia, sem ilusões.
+
+[OK] Conjunção Vênus / Plutão (chave: 0:3:9)
+Seu amor e a transformação estão unidos. Portanto, entregue-se à paixão profunda com consciência.
+
+[OK] Conjunção Vênus / Ascendente (chave: 0:3:10)
+Seu amor e sua imagem estão unidos. Portanto, encante com sua beleza e diplomacia.
+
+[OK] Conjunção Vênus / Meio do Céu (chave: 0:3:11)
+Seu amor e a carreira estão unidos. Portanto, brilhe profissionalmente com seu charme.
+
+[OK] Conjunção Marte / Júpiter (chave: 0:4:5)
+Sua ação e a expansão estão unidas. Portanto, lidere com coragem e conquiste com otimismo.
+
+[OK] Conjunção Marte / Saturno (chave: 0:4:6)
+Sua ação e a estrutura estão unidas. Portanto, aja com prudência e construa com resiliência.
+
+[OK] Conjunção Marte / Urano (chave: 0:4:7)
+Sua ação e a liberdade estão unidas. Portanto, inove e aja com coragem, sem medo de arriscar.
+
+[OK] Conjunção Marte / Netuno (chave: 0:4:8)
+Sua ação e a intuição estão unidas. Portanto, aja com fé, mas mantenha os desejos bem definidos.
+
+[OK] Conjunção Marte / Plutão (chave: 0:4:9)
+Sua ação e a transformação estão unidas. Portanto, use seu poder com ética e regenere-se.
+
+[OK] Conjunção Marte / Ascendente (chave: 0:4:10)
+Sua ação e sua imagem estão unidas. Portanto, mostre sua força com liderança, sem agressividade.
+
+[OK] Conjunção Marte / Meio do Céu (chave: 0:4:11)
+Sua ação e a carreira estão unidas. Portanto, lidere sua carreira com coragem e determinação.
+
+[OK] Conjunção Júpiter / Saturno (chave: 0:5:6)
+Sua expansão e a estrutura estão unidas. Portanto, equilibre otimismo e disciplina para construir.
+
+[OK] Conjunção Júpiter / Urano (chave: 0:5:7)
+Sua expansão e a liberdade estão unidas. Portanto, inove e busque novos horizontes.
+
+[OK] Conjunção Júpiter / Netuno (chave: 0:5:8)
+Sua expansão e a espiritualidade estão unidas. Portanto, inspire e acredite na sua intuição.
+
+[OK] Conjunção Júpiter / Plutão (chave: 0:5:9)
+Sua expansão e o poder estão unidos. Portanto, transforme a realidade com fé inabalável.
+
+[OK] Conjunção Júpiter / Ascendente (chave: 0:5:10)
+Sua expansão e sua imagem estão unidas. Portanto, mostre otimismo e autoconfiança ao mundo.
+
+[OK] Conjunção Júpiter / Meio do Céu (chave: 0:5:11)
+Sua expansão e a carreira estão unidas. Portanto, brilhe no social e profissional com generosidade.
+
+[OK] Conjunção Saturno / Urano (chave: 0:6:7)
+Sua estrutura e a liberdade estão unidas. Portanto, construa o novo rompendo barreiras com consciência.
+
+[OK] Conjunção Saturno / Netuno (chave: 0:6:8)
+Sua estrutura e a espiritualidade estão unidas. Portanto, dê forma aos seus sonhos com disciplina.
+
+[OK] Conjunção Saturno / Plutão (chave: 0:6:9)
+Sua estrutura e o poder estão unidos. Portanto, construa com resiliência e sabedoria.
+
+[OK] Conjunção Saturno / Ascendente (chave: 0:6:10)
+Sua estrutura e sua imagem estão unidas. Portanto, mostre maturidade e seriedade ao mundo.
+
+[OK] Conjunção Saturno / Meio do Céu (chave: 0:6:11)
+Sua estrutura e a carreira estão unidas. Portanto, construa seu legado com esforço e responsabilidade.
+
+[OK] Conjunção Urano / Netuno (chave: 0:7:8)
+Sua liberdade e a espiritualidade estão unidas. Portanto, inove e inspire o coletivo.
+
+[OK] Conjunção Urano / Plutão (chave: 0:7:9)
+Sua liberdade e o poder estão unidos. Portanto, transforme a sua realidade e a do mundo.
+
+[OK] Conjunção Urano / Ascendente (chave: 0:7:10)
+Sua liberdade e sua imagem estão unidas. Portanto, mostre sua originalidade ao mundo.
+
+[OK] Conjunção Urano / Meio do Céu (chave: 0:7:11)
+Sua liberdade e a carreira estão unidas. Portanto, inove no trabalho e busque seu próprio caminho.
+
+[OK] Conjunção Netuno / Plutão (chave: 0:8:9)
+Sua espiritualidade e o poder estão unidos. Portanto, regenere sua fé e busque a verdade interior.
+
+[OK] Conjunção Netuno / Ascendente (chave: 0:8:10)
+Sua espiritualidade e sua imagem estão unidas. Portanto, mostre sua sensibilidade e arte ao mundo.
+
+[OK] Conjunção Netuno / Meio do Céu (chave: 0:8:11)
+Sua espiritualidade e a carreira estão unidas. Portanto, inspire no trabalho e ajude o coletivo.
+
+[OK] Conjunção Plutão / Ascendente (chave: 0:9:10)
+Seu poder e sua imagem estão unidos. Portanto, exerça sua autoridade com ética e renove-se sempre.
+
+[OK] Conjunção Plutão / Meio do Céu (chave: 0:9:11)
+Seu poder e a carreira estão unidos. Portanto, lidere seu destino profissional sem abusar do poder.
+
+[OK] Sextil · Sol / Lua (chave: 1:0:1)
+Sua alma e emoção se harmonizam. Portanto, confie na sua intuição e equilibre razão e sentimento ao agir.
+
+[OK] Sextil · Sol / Vênus (chave: 1:0:3)
+Sua alma e o amor se harmonizam. Portanto, expresse seu carinho com naturalidade e valorize o que é belo ao seu redor.
+
+[OK] Sextil · Sol / Marte (chave: 1:0:4)
+Sua alma e a ação se harmonizam. Portanto, aja com coragem e franqueza, transformando desafios em oportunidades de crescimento.
+
+[OK] Sextil · Sol / Júpiter (chave: 1:0:5)
+Sua alma e a expansão se harmonizam. Portanto, use seu poder com ética e otimismo para crescer e ajudar quem está por perto.
+
+[OK] Sextil · Sol / Saturno (chave: 1:0:6)
+Sua alma e a estrutura se harmonizam. Portanto, conquiste seu espaço com esforço e responsabilidade, assumindo compromissos com maturidade.
+
+[OK] Sextil · Sol / Urano (chave: 1:0:7)
+Sua alma e a liberdade se harmonizam. Portanto, inove e lidere com originalidade, adaptando-se às novidades com entusiasmo.
+
+[OK] Sextil · Sol / Netuno (chave: 1:0:8)
+Sua alma e a espiritualidade se harmonizam. Portanto, confie nos seus sonhos e na sua intuição, trazendo essa sensibilidade para a vida prática.
+
+[OK] Sextil · Sol / Plutão (chave: 1:0:9)
+Sua alma e a transformação se harmonizam. Portanto, use sua força de vontade para se regenerar e recomeçar sempre que precisar.
+
+[OK] Sextil · Sol / Ascendente (chave: 1:0:10)
+Sua alma e sua imagem se harmonizam. Portanto, mostre sua autoconfiança e ambição de forma equilibrada e autêntica.
+
+[OK] Sextil · Sol / Meio do Céu (chave: 1:0:11)
+Sua alma e a carreira se harmonizam. Portanto, construa sua reputação com orgulho e esforço, valorizando cada passo da sua trajetória.
+
+[OK] Sextil · Lua / Mercúrio (chave: 1:1:2)
+Sua emoção e a mente se harmonizam. Portanto, comunique seus sentimentos com clareza, buscando variedade e movimento nos contatos.
+
+[OK] Sextil · Lua / Vênus (chave: 1:1:3)
+Sua emoção e o amor se harmonizam. Portanto, equilibre o afeto familiar e a paixão, navegando pelos sentimentos com graça.
+
+[OK] Sextil · Lua / Marte (chave: 1:1:4)
+Sua emoção e a ação se harmonizam. Portanto, canalize sua intensidade para proteger quem ama, usando a emoção como força motriz.
+
+[OK] Sextil · Lua / Júpiter (chave: 1:1:5)
+Sua emoção e a expansão se harmonizam. Portanto, acolha com otimismo e confie na vida, cultivando valores elevados.
+
+[OK] Sextil · Lua / Saturno (chave: 1:1:6)
+Sua emoção e a estrutura se harmonizam. Portanto, dê segurança aos seus sentimentos com responsabilidade, sem abrir mão da ternura.
+
+[OK] Sextil · Lua / Urano (chave: 1:1:7)
+Sua emoção e a liberdade se harmonizam. Portanto, renove-se emocionalmente, abraçando as mudanças com naturalidade e liberdade.
+
+[OK] Sextil · Lua / Netuno (chave: 1:1:8)
+Sua emoção e a espiritualidade se harmonizam. Portanto, confie na sua intuição e sensibilidade, mantendo os pés no chão.
+
+[OK] Sextil · Lua / Plutão (chave: 1:1:9)
+Sua emoção e a transformação se harmonizam. Portanto, regenere seus sentimentos com força de vontade, redirecionando-se quando necessário.
+
+[OK] Sextil · Lua / Ascendente (chave: 1:1:10)
+Sua emoção e sua imagem se harmonizam. Portanto, use sua sensibilidade e intuição para se afirmar e se conectar com o público.
+
+[OK] Sextil · Lua / Meio do Céu (chave: 1:1:11)
+Sua emoção e a carreira se harmonizam. Portanto, deixe a intuição guiar seu sucesso profissional, acolhendo o público com afeto.
+
+[OK] Sextil · Mercúrio / Vênus (chave: 1:2:3)
+Sua mente e o amor se harmonizam. Portanto, comunique-se com harmonia e charme, usando as palavras para criar laços e prosperar.
+
+[OK] Sextil · Mercúrio / Marte (chave: 1:2:4)
+Sua mente e a ação se harmonizam. Portanto, expresse suas ideias com coragem e convicção, aprendendo com o debate.
+
+[OK] Sextil · Mercúrio / Júpiter (chave: 1:2:5)
+Sua mente e a expansão se harmonizam. Portanto, explore ideias novas com integridade, ampliando seus conhecimentos.
+
+[OK] Sextil · Mercúrio / Saturno (chave: 1:2:6)
+Sua mente e a estrutura se harmonizam. Portanto, organize seus pensamentos com disciplina e responsabilidade, agindo com sensatez.
+
+[OK] Sextil · Mercúrio / Urano (chave: 1:2:7)
+Sua mente e a liberdade se harmonizam. Portanto, inove e pense com originalidade, buscando novas formas de aprender e ensinar.
+
+[OK] Sextil · Mercúrio / Netuno (chave: 1:2:8)
+Sua mente e a espiritualidade se harmonizam. Portanto, use sua imaginação e intuição para criar, conceituando com idealismo.
+
+[OK] Sextil · Mercúrio / Plutão (chave: 1:2:9)
+Sua mente e a transformação se harmonizam. Portanto, use sua força de vontade para compreender o que está oculto, concluindo suas ideias.
+
+[OK] Sextil · Mercúrio / Ascendente (chave: 1:2:10)
+Sua mente e sua imagem se harmonizam. Portanto, comunique-se com clareza e autenticidade, permitindo novos contatos.
+
+[OK] Sextil · Mercúrio / Meio do Céu (chave: 1:2:11)
+Sua mente e a carreira se harmonizam. Portanto, use a comunicação para impulsionar sua profissão, com foco e lucidez.
+
+[OK] Sextil · Vênus / Marte (chave: 1:3:4)
+Seu amor e a ação se harmonizam. Portanto, viva o afeto com alegria e delicadeza, equilibrando independência e ambição.
+
+[OK] Sextil · Vênus / Júpiter (chave: 1:3:5)
+Seu amor e a expansão se harmonizam. Portanto, ame com generosidade e legalidade, celebrando a vida com elegância.
+
+[OK] Sextil · Vênus / Saturno (chave: 1:3:6)
+Seu amor e a estrutura se harmonizam. Portanto, ame com maturidade e fidelidade, priorizando o que é prático e seguro.
+
+[OK] Sextil · Vênus / Urano (chave: 1:3:7)
+Seu amor e a liberdade se harmonizam. Portanto, expresse seus afetos com originalidade, aceitando os desejos diferentes.
+
+[OK] Sextil · Vênus / Netuno (chave: 1:3:8)
+Seu amor e a espiritualidade se harmonizam. Portanto, doe-se com compaixão e mantenha o sentido prático, sem confundir ilusão com sonho.
+
+[OK] Sextil · Vênus / Plutão (chave: 1:3:9)
+Seu amor e a transformação se harmonizam. Portanto, entregue-se às emoções profundas com consciência, usando o talento que surge naturalmente.
+
+[OK] Sextil · Vênus / Ascendente (chave: 1:3:10)
+Seu amor e sua imagem se harmonizam. Portanto, use sua simpatia para obter aprovação, vivendo romances felizes.
+
+[OK] Sextil · Vênus / Meio do Céu (chave: 1:3:11)
+Seu amor e a carreira se harmonizam. Portanto, una afeto e trabalho, usando a criatividade para colher o que quer.
+
+[OK] Sextil · Marte / Júpiter (chave: 1:4:5)
+Sua ação e a expansão se harmonizam. Portanto, aja com coragem e otimismo, liderando com força e fé.
+
+[OK] Sextil · Marte / Saturno (chave: 1:4:6)
+Sua ação e a estrutura se harmonizam. Portanto, aja com paciência e sangue-frio, calculando bem os passos.
+
+[OK] Sextil · Marte / Urano (chave: 1:4:7)
+Sua ação e a liberdade se harmonizam. Portanto, aja com originalidade e independência, buscando novas experiências.
+
+[OK] Sextil · Marte / Netuno (chave: 1:4:8)
+Sua ação e a espiritualidade se harmonizam. Portanto, lute pelos seus sonhos com fé, percebendo o que está ao seu redor.
+
+[OK] Sextil · Marte / Plutão (chave: 1:4:9)
+Sua ação e a transformação se harmonizam. Portanto, use sua energia de forma positiva, lutando pelo que é correto com força renovada.
+
+[OK] Sextil · Marte / Ascendente (chave: 1:4:10)
+Sua ação e sua imagem se harmonizam. Portanto, aja com franqueza e determinação, usando sua energia para conquistar.
+
+[OK] Sextil · Marte / Meio do Céu (chave: 1:4:11)
+Sua ação e a carreira se harmonizam. Portanto, lute com garra pela sua afirmação profissional, com decisões rápidas e firmes.
+
+[OK] Sextil · Júpiter / Saturno (chave: 1:5:6)
+Sua expansão e a estrutura se harmonizam. Portanto, aproveite as oportunidades com organização, agindo com integridade e senso do necessário.
+
+[OK] Sextil · Júpiter / Urano (chave: 1:5:7)
+Sua expansão e a liberdade se harmonizam. Portanto, renove-se e expanda seus horizontes, contando com boas influências e ideais.
+
+[OK] Sextil · Júpiter / Netuno (chave: 1:5:8)
+Sua expansão e a espiritualidade se harmonizam. Portanto, inspire-se e ajude os outros, usando a imaginação para o bem.
+
+[OK] Sextil · Júpiter / Plutão (chave: 1:5:9)
+Sua expansão e a transformação se harmonizam. Portanto, use sua fé e intuição para reorientar sua vida e o meio ao seu redor.
+
+[OK] Sextil · Júpiter / Ascendente (chave: 1:5:10)
+Sua expansão e sua imagem se harmonizam. Portanto, mostre otimismo e simpatia, com honestidade e boa saúde.
+
+[OK] Sextil · Júpiter / Meio do Céu (chave: 1:5:11)
+Sua expansão e a carreira se harmonizam. Portanto, avance com generosidade e boas proteções, alcançando os objetivos que deseja.
+
+[OK] Sextil · Saturno / Urano (chave: 1:6:7)
+Sua estrutura e a liberdade se harmonizam. Portanto, busque a liberdade com responsabilidade, afirmando sua identidade com autodisciplina.
+
+[OK] Sextil · Saturno / Netuno (chave: 1:6:8)
+Sua estrutura e a espiritualidade se harmonizam. Portanto, dê forma aos seus sonhos com lógica e criatividade, sendo um idealista prático.
+
+[OK] Sextil · Saturno / Plutão (chave: 1:6:9)
+Sua estrutura e a transformação se harmonizam. Portanto, use sua resistência e seriedade para alcançar seus objetivos com disciplina.
+
+[OK] Sextil · Saturno / Ascendente (chave: 1:6:10)
+Sua estrutura e sua imagem se harmonizam. Portanto, mostre seu caráter com autodisciplina, sem subestimar suas capacidades.
+
+[OK] Sextil · Saturno / Meio do Céu (chave: 1:6:11)
+Sua estrutura e a carreira se harmonizam. Portanto, construa seu legado com esforço e responsabilidade, respeitando o tempo e as tradições.
+
+[OK] Sextil · Urano / Netuno (chave: 1:7:8)
+Sua liberdade e a espiritualidade se harmonizam. Portanto, busque a liberdade com inovação, respeitando a sua própria verdade espiritual.
+
+[OK] Sextil · Urano / Plutão (chave: 1:7:9)
+Sua liberdade e a transformação se harmonizam. Portanto, renove-se e liberte-se de velhos padrões com consciência e vontade.
+
+[OK] Sextil · Urano / Ascendente (chave: 1:7:10)
+Sua liberdade e sua imagem se harmonizam. Portanto, mostre sua originalidade com disciplina, usando sua intuição para entender as pessoas.
+
+[OK] Sextil · Urano / Meio do Céu (chave: 1:7:11)
+Sua liberdade e a carreira se harmonizam. Portanto, inove no trabalho com confiança, construindo seu próprio caminho de forma surpreendente.
+
+[OK] Sextil · Netuno / Plutão (chave: 1:8:9)
+Sua espiritualidade e a transformação se harmonizam. Portanto, use sua fé para encontrar a paz interior, revisando seus valores com profundidade.
+
+[OK] Sextil · Netuno / Ascendente (chave: 1:8:10)
+Sua espiritualidade e sua imagem se harmonizam. Portanto, mostre sua sensibilidade e bom coração, buscando um ideal com firmeza nas decisões.
+
+[OK] Sextil · Netuno / Meio do Céu (chave: 1:8:11)
+Sua espiritualidade e a carreira se harmonizam. Portanto, canalize sua intuição para ajudar o coletivo, trazendo inspiração para sua profissão.
+
+[OK] Sextil · Plutão / Ascendente (chave: 1:9:10)
+Seu poder e sua imagem se harmonizam. Portanto, exerça sua força de vontade com respeito, encarando os desafios com realismo.
+
+[OK] Sextil · Plutão / Meio do Céu (chave: 1:9:11)
+Seu poder e a carreira se harmonizam. Portanto, use sua capacidade de reformular valores para alcançar o êxito social e profissional.
+
+[OK] Quadratura · Sol / Lua (chave: 2:0:1)
+Sua alma e emoção estão em tensão. Portanto, harmonize razão e sentimento, entendendo que os dois podem caminhar juntos sem se anularem.
+
+[OK] Quadratura · Sol / Vênus (chave: 2:0:3)
+Sua alma e o amor estão em tensão. Portanto, valorize-se por quem você é e evite relações que tragam mais dor do que prazer.
+
+[OK] Quadratura · Sol / Marte (chave: 2:0:4)
+Sua alma e a ação estão em tensão. Portanto, use sua coragem de forma construtiva, cuidando do corpo e evitando atritos desnecessários.
+
+[OK] Quadratura · Sol / Júpiter (chave: 2:0:5)
+Sua alma e a expansão estão em tensão. Portanto, desenvolva paciência e autodisciplina, olhando para dentro com a mesma atenção que olha para fora.
+
+[OK] Quadratura · Sol / Saturno (chave: 2:0:6)
+Sua alma e a estrutura estão em tensão. Portanto, encare as frustrações da infância com maturidade e não deixe o medo das responsabilidades te paralisar.
+
+[OK] Quadratura · Sol / Urano (chave: 2:0:7)
+Sua alma e a liberdade estão em tensão. Portanto, afirme-se sem rebeldia cega, buscando sua independência com consciência e cuidado com acidentes.
+
+[OK] Quadratura · Sol / Netuno (chave: 2:0:8)
+Sua alma e a espiritualidade estão em tensão. Portanto, mantenha os pés no chão para que seus sonhos não se tornem fugas da realidade.
+
+[OK] Quadratura · Sol / Plutão (chave: 2:0:9)
+Sua alma e a transformação estão em tensão. Portanto, aprenda a soltar o controle e transforme sua intensidade em poder de cura, não de destruição.
+
+[OK] Quadratura · Sol / Ascendente (chave: 2:0:10)
+Sua alma e sua imagem estão em tensão. Portanto, harmonize seu eu interior com o exterior, sendo mais autêntico e evitando a manipulação.
+
+[OK] Quadratura · Sol / Meio do Céu (chave: 2:0:11)
+Sua alma e a carreira estão em tensão. Portanto, reorganize-se com humildade para alcançar o sucesso que deseja, sem se sentir ameaçado por autoridades.
+
+[OK] Quadratura · Lua / Mercúrio (chave: 2:1:2)
+Sua emoção e a mente estão em tensão. Portanto, acalme a mente e não deixe o excesso de pensamentos atrapalhar seus sentimentos.
+
+[OK] Quadratura · Lua / Vênus (chave: 2:1:3)
+Sua emoção e o amor estão em tensão. Portanto, ame-se primeiro para não negligenciar suas próprias necessidades nem sofrer no campo afetivo.
+
+[OK] Quadratura · Lua / Marte (chave: 2:1:4)
+Sua emoção e a ação estão em tensão. Portanto, acalme a pressa interior e não agrida aquilo que poderia te trazer segurança.
+
+[OK] Quadratura · Lua / Júpiter (chave: 2:1:5)
+Sua emoção e a expansão estão em tensão. Portanto, busque o equilíbrio emocional e evite os excessos, especialmente no ambiente familiar.
+
+[OK] Quadratura · Lua / Saturno (chave: 2:1:6)
+Sua emoção e a estrutura estão em tensão. Portanto, ressignifique os vínculos do passado que limitaram suas emoções e aprenda a lidar com as frustrações.
+
+[OK] Quadratura · Lua / Urano (chave: 2:1:7)
+Sua emoção e a liberdade estão em tensão. Portanto, controle os excessos emocionais e as rupturas, especialmente com a figura feminina.
+
+[OK] Quadratura · Lua / Netuno (chave: 2:1:8)
+Sua emoção e a espiritualidade estão em tensão. Portanto, não subestime sua sensibilidade e busque ajuda para não fugir da realidade.
+
+[OK] Quadratura · Lua / Plutão (chave: 2:1:9)
+Sua emoção e a transformação estão em tensão. Portanto, cure a rejeição emocional inconsciente que gera frustrações e traumas psicológicos.
+
+[OK] Quadratura · Lua / Ascendente (chave: 2:1:10)
+Sua emoção e sua imagem estão em tensão. Portanto, não permita que a intuição negativa dificulte a sua forma de se expressar e se mostrar ao mundo.
+
+[OK] Quadratura · Lua / Meio do Céu (chave: 2:1:11)
+Sua emoção e a carreira estão em tensão. Portanto, separe a vida pessoal da profissional e busque estabilidade no trabalho, sem se deixar influenciar negativamente.
+
+[OK] Quadratura · Mercúrio / Vênus (chave: 2:2:3)
+Sua mente e o amor estão em tensão. Portanto, busque a verdade nas suas palavras, mantendo a harmonia sem precisar agradar a todos.
+
+[OK] Quadratura · Mercúrio / Marte (chave: 2:2:4)
+Sua mente e a ação estão em tensão. Portanto, tenha paciência para escutar os outros e use sua energia mental para construir, não para manipular.
+
+[OK] Quadratura · Mercúrio / Júpiter (chave: 2:2:5)
+Sua mente e a expansão estão em tensão. Portanto, busque mais objetividade e não divulgue informações nas horas ou para as pessoas erradas.
+
+[OK] Quadratura · Mercúrio / Saturno (chave: 2:2:6)
+Sua mente e a estrutura estão em tensão. Portanto, não remoa pensamentos negativos e aprenda a confiar na sua própria lucidez.
+
+[OK] Quadratura · Mercúrio / Urano (chave: 2:2:7)
+Sua mente e a liberdade estão em tensão. Portanto, não mude de direção rápido demais e tenha paciência para aprender, pois os estudos te abrem oportunidades.
+
+[OK] Quadratura · Mercúrio / Netuno (chave: 2:2:8)
+Sua mente e a espiritualidade estão em tensão. Portanto, busque clareza mental e não crie mentiras para si mesmo, mantendo os pés no chão.
+
+[OK] Quadratura · Mercúrio / Plutão (chave: 2:2:9)
+Sua mente e a transformação estão em tensão. Portanto, use sua poderosa mente para curar e não ferir, sem impor suas ideias à força.
+
+[OK] Quadratura · Mercúrio / Ascendente (chave: 2:2:10)
+Sua mente e sua imagem estão em tensão. Portanto, não seja insincero consigo mesmo e cuidado com o espírito de contradição.
+
+[OK] Quadratura · Mercúrio / Meio do Céu (chave: 2:2:11)
+Sua mente e a carreira estão em tensão. Portanto, coloque suas ideias com lucidez no trabalho, sem agressividade nem impaciência.
+
+[OK] Quadratura · Vênus / Marte (chave: 2:3:4)
+Seu amor e a ação estão em tensão. Portanto, traga mais afeto e consideração para a sua vida íntima, sem transformar o amor em competição.
+
+[OK] Quadratura · Vênus / Júpiter (chave: 2:3:5)
+Seu amor e a expansão estão em tensão. Portanto, não distancie o amor da ética e evite a vaidade e a hipocrisia emocional.
+
+[OK] Quadratura · Vênus / Saturno (chave: 2:3:6)
+Seu amor e a estrutura estão em tensão. Portanto, não viva os afetos de forma defensiva por medo de rejeição, abrindo-se para amar e ser amado.
+
+[OK] Quadratura · Vênus / Urano (chave: 2:3:7)
+Seu amor e a liberdade estão em tensão. Portanto, não confunda amor com amizade e cuide para não machucar o outro nem se cansar do que conquistou.
+
+[OK] Quadratura · Vênus / Netuno (chave: 2:3:8)
+Seu amor e a espiritualidade estão em tensão. Portanto, aprenda a ver o outro como ele é, sem idealizações, e não se deixe iludir.
+
+[OK] Quadratura · Vênus / Plutão (chave: 2:3:9)
+Seu amor e a transformação estão em tensão. Portanto, transforme sua intensidade em cura e não permita que o amor seja corrompido pelo financeiro.
+
+[OK] Quadratura · Vênus / Ascendente (chave: 2:3:10)
+Seu amor e sua imagem estão em tensão. Portanto, busque equilíbrio nas relações afetivas ou de sociedade (trabalho/negócios), sem buscar apenas o prazer momentâneo.
+
+[OK] Quadratura · Vênus / Meio do Céu (chave: 2:3:11)
+Seu amor e a carreira estão em tensão. Portanto, concilie afeto e trabalho com integridade, sem subornos nem insatisfações profissionais.
+
+[OK] Quadratura · Marte / Júpiter (chave: 2:4:5)
+Sua ação e a expansão estão em tensão. Portanto, controle a impaciência e a extravagância das ações, agindo com sabedoria e sem risco desnecessário.
+
+[OK] Quadratura · Marte / Saturno (chave: 2:4:6)
+Sua ação e a estrutura estão em tensão. Portanto, equilibre energia e apatia, fadiga e entusiasmo, com paciência e persistência.
+
+[OK] Quadratura · Marte / Urano (chave: 2:4:7)
+Sua ação e a liberdade estão em tensão. Portanto, busque previsibilidade nas ações e cuidado com acidentes, irritabilidade e impulsividade.
+
+[OK] Quadratura · Marte / Netuno (chave: 2:4:8)
+Sua ação e a espiritualidade estão em tensão. Portanto, busque mais realismo e lucidez, evitando dependências e decepções diante das ações.
+
+[OK] Quadratura · Marte / Plutão (chave: 2:4:9)
+Sua ação e a transformação estão em tensão. Portanto, use sua força de vontade em direção construtiva e transforme a intensidade em poder de regeneração.
+
+[OK] Quadratura · Marte / Ascendente (chave: 2:4:10)
+Sua ação e sua imagem estão em tensão. Portanto, seja gentil nas relações pessoais e leve seus projetos até o fim, canalizando a energia para ações construtivas.
+
+[OK] Quadratura · Marte / Meio do Céu (chave: 2:4:11)
+Sua ação e a carreira estão em tensão. Portanto, controle a agressividade no trabalho e desafie a autoridade de forma inteligente e diplomática.
+
+[OK] Quadratura · Júpiter / Saturno (chave: 2:5:6)
+Sua expansão e a estrutura estão em tensão. Portanto, não se entregue ao pessimismo e encontre o equilíbrio entre a fé e a realidade.
+
+[OK] Quadratura · Júpiter / Urano (chave: 2:5:7)
+Sua expansão e a liberdade estão em tensão. Portanto, cumpra o que promete e não coloque todo o entusiasmo em objetivos que vai abandonar em seguida.
+
+[OK] Quadratura · Júpiter / Netuno (chave: 2:5:8)
+Sua expansão e a espiritualidade estão em tensão. Portanto, busque a verdade e a concretude, sem construir castelos no ar nem usar a fé para obter poder.
+
+[OK] Quadratura · Júpiter / Plutão (chave: 2:5:9)
+Sua expansão e a transformação estão em tensão. Portanto, busque humildade e não queira conquistar poder por meios duvidosos ou arriscados.
+
+[OK] Quadratura · Júpiter / Ascendente (chave: 2:5:10)
+Sua expansão e sua imagem estão em tensão. Portanto, aprenda o autocontrole e divida seus grandes planos em etapas, sem ares de grandeza.
+
+[OK] Quadratura · Júpiter / Meio do Céu (chave: 2:5:11)
+Sua expansão e a carreira estão em tensão. Portanto, seja mais humilde no social e no profissional, alinhando suas capacidades às suas ambições.
+
+[OK] Quadratura · Saturno / Urano (chave: 2:6:7)
+Sua estrutura e a liberdade estão em tensão. Portanto, entenda que o recomeço é produtivo e evite o pessimismo que endurece as articulações.
+
+[OK] Quadratura · Saturno / Netuno (chave: 2:6:8)
+Sua estrutura e a espiritualidade estão em tensão. Portanto, busque autodisciplina e mantenha os pés no chão para não fugir da realidade.
+
+[OK] Quadratura · Saturno / Plutão (chave: 2:6:9)
+Sua estrutura e a transformação estão em tensão. Portanto, lembre-se de que a força para reconstruir está dentro de você, mesmo diante de perdas.
+
+[OK] Quadratura · Saturno / Ascendente (chave: 2:6:10)
+Sua estrutura e sua imagem estão em tensão. Portanto, adquira autoconfiança com o tempo e não recue diante das dificuldades, lutando com maturidade.
+
+[OK] Quadratura · Saturno / Meio do Céu (chave: 2:6:11)
+Sua estrutura e a carreira estão em tensão. Portanto, não sinta as responsabilidades como obstáculos opressores e tenha lucidez sobre as suas capacidades.
+
+[OK] Quadratura · Urano / Netuno (chave: 2:7:8)
+Sua liberdade e a espiritualidade estão em tensão. Portanto, tenha coragem para lutar pela liberdade que está camuflada e buscar a verdade espiritual com consciência.
+
+[OK] Quadratura · Urano / Plutão (chave: 2:7:9)
+Sua liberdade e a transformação estão em tensão. Portanto, aprenda a fluir com as mudanças drásticas, sem extremismos que levem à destruição.
+
+[OK] Quadratura · Urano / Ascendente (chave: 2:7:10)
+Sua liberdade e sua imagem estão em tensão. Portanto, não seja o rebelde pelo simples gosto de se rebelar, sendo responsável com as regras.
+
+[OK] Quadratura · Urano / Meio do Céu (chave: 2:7:11)
+Sua liberdade e a carreira estão em tensão. Portanto, busque a liberdade sem chocar o social e evite a perda súbita de poder ou trabalho.
+
+[OK] Quadratura · Netuno / Plutão (chave: 2:8:9)
+Sua espiritualidade e a transformação estão em tensão. Portanto, trabalhe a regeneração espiritual em meio à desordem, buscando a verdade interior.
+
+[OK] Quadratura · Netuno / Ascendente (chave: 2:8:10)
+Sua espiritualidade e sua imagem estão em tensão. Portanto, não se deixe influenciar negativamente pelo ambiente e defenda-se na hora certa.
+
+[OK] Quadratura · Netuno / Meio do Céu (chave: 2:8:11)
+Sua espiritualidade e a carreira estão em tensão. Portanto, tenha lucidez sobre suas verdadeiras capacidades e não deixe as questões domésticas prejudicarem seus objetivos.
+
+[OK] Quadratura · Plutão / Ascendente (chave: 2:9:10)
+Seu poder e sua imagem estão em tensão. Portanto, não seja agressivo nas condutas pessoais e use seu poder para construir pontes.
+
+[OK] Quadratura · Plutão / Meio do Céu (chave: 2:9:11)
+Seu poder e a carreira estão em tensão. Portanto, evite conflitos com quem detém autoridade e busque a transformação interior com consciência.
+
+[OK] Trígono · Sol / Lua (chave: 3:0:1)
+Sua alma e emoção se harmonizam com naturalidade. Portanto, confie na sua intuição e una razão e sentimento em busca de segurança interior.
+
+[OK] Trígono · Sol / Vênus (chave: 3:0:3)
+Sua alma e o amor fluem com naturalidade. Portanto, expresse seu carinho e encante-se com a vida, valorizando o que é belo ao seu redor.
+
+[OK] Trígono · Sol / Marte (chave: 3:0:4)
+Sua alma e a ação fluem com naturalidade. Portanto, aja com coragem e integridade, transformando desafios em oportunidades de crescimento.
+
+[OK] Trígono · Sol / Júpiter (chave: 3:0:5)
+Sua alma e a expansão fluem com naturalidade. Portanto, use seu poder com ética e otimismo, crescendo e ajudando quem está por perto.
+
+[OK] Trígono · Sol / Saturno (chave: 3:0:6)
+Sua alma e a estrutura fluem com naturalidade. Portanto, conquiste seu espaço com esforço e organização, assumindo responsabilidades com maturidade.
+
+[OK] Trígono · Sol / Urano (chave: 3:0:7)
+Sua alma e a liberdade fluem com naturalidade. Portanto, inove e lidere com originalidade, adaptando-se às novidades com entusiasmo.
+
+[OK] Trígono · Sol / Netuno (chave: 3:0:8)
+Sua alma e a espiritualidade fluem com naturalidade. Portanto, confie nos seus sonhos e na sua intuição, trazendo essa sensibilidade para a vida prática.
+
+[OK] Trígono · Sol / Plutão (chave: 3:0:9)
+Sua alma e a transformação fluem com naturalidade. Portanto, use sua força de vontade para se regenerar e recomeçar sempre que precisar.
+
+[OK] Trígono · Sol / Ascendente (chave: 3:0:10)
+Sua alma e sua imagem fluem com naturalidade. Portanto, mostre sua autoconfiança e ambição de forma equilibrada e autêntica.
+
+[OK] Trígono · Sol / Meio do Céu (chave: 3:0:11)
+Sua alma e a carreira fluem com naturalidade. Portanto, construa sua reputação com orgulho e esforço, valorizando cada passo da sua trajetória.
+
+[OK] Trígono · Lua / Mercúrio (chave: 3:1:2)
+Sua emoção e a mente fluem com naturalidade. Portanto, comunique seus sentimentos com clareza, buscando variedade e movimento nos contatos.
+
+[OK] Trígono · Lua / Vênus (chave: 3:1:3)
+Sua emoção e o amor fluem com naturalidade. Portanto, equilibre o afeto familiar e a paixão, navegando pelos sentimentos com graça.
+
+[OK] Trígono · Lua / Marte (chave: 3:1:4)
+Sua emoção e a ação fluem com naturalidade. Portanto, canalize sua intensidade para proteger quem ama, usando a emoção como força motriz.
+
+[OK] Trígono · Lua / Júpiter (chave: 3:1:5)
+Sua emoção e a expansão fluem com naturalidade. Portanto, acolha com otimismo e confie na vida, cultivando valores elevados.
+
+[OK] Trígono · Lua / Saturno (chave: 3:1:6)
+Sua emoção e a estrutura fluem com naturalidade. Portanto, dê segurança aos seus sentimentos com responsabilidade, sem abrir mão da ternura.
+
+[OK] Trígono · Lua / Urano (chave: 3:1:7)
+Sua emoção e a liberdade fluem com naturalidade. Portanto, renove-se emocionalmente, abraçando as mudanças com naturalidade e liberdade.
+
+[OK] Trígono · Lua / Netuno (chave: 3:1:8)
+Sua emoção e a espiritualidade fluem com naturalidade. Portanto, confie na sua intuição e sensibilidade, mantendo os pés no chão.
+
+[OK] Trígono · Lua / Plutão (chave: 3:1:9)
+Sua emoção e a transformação fluem com naturalidade. Portanto, regenere seus sentimentos com força de vontade, redirecionando-se quando necessário.
+
+[OK] Trígono · Lua / Ascendente (chave: 3:1:10)
+Sua emoção e sua imagem fluem com naturalidade. Portanto, use sua sensibilidade e intuição para se afirmar e se conectar com o público.
+
+[OK] Trígono · Lua / Meio do Céu (chave: 3:1:11)
+Sua emoção e a carreira fluem com naturalidade. Portanto, deixe a intuição guiar seu sucesso profissional, acolhendo o público com afeto.
+
+[OK] Trígono · Mercúrio / Vênus (chave: 3:2:3)
+Sua mente e o amor fluem com naturalidade. Portanto, comunique-se com harmonia e charme, usando as palavras para criar laços e prosperar.
+
+[OK] Trígono · Mercúrio / Marte (chave: 3:2:4)
+Sua mente e a ação fluem com naturalidade. Portanto, expresse suas ideias com coragem e convicção, aprendendo com o debate.
+
+[OK] Trígono · Mercúrio / Júpiter (chave: 3:2:5)
+Sua mente e a expansão fluem com naturalidade. Portanto, explore ideias novas com integridade, ampliando seus conhecimentos.
+
+[OK] Trígono · Mercúrio / Saturno (chave: 3:2:6)
+Sua mente e a estrutura fluem com naturalidade. Portanto, organize seus pensamentos com disciplina e responsabilidade, agindo com sensatez.
+
+[OK] Trígono · Mercúrio / Urano (chave: 3:2:7)
+Sua mente e a liberdade fluem com naturalidade. Portanto, inove e pense com originalidade, buscando novas formas de aprender e ensinar.
+
+[OK] Trígono · Mercúrio / Netuno (chave: 3:2:8)
+Sua mente e a espiritualidade fluem com naturalidade. Portanto, use sua imaginação e intuição para criar, conceituando com idealismo.
+
+[OK] Trígono · Mercúrio / Plutão (chave: 3:2:9)
+Sua mente e a transformação fluem com naturalidade. Portanto, use sua força de vontade para compreender o que está oculto, concluindo suas ideias.
+
+[OK] Trígono · Mercúrio / Ascendente (chave: 3:2:10)
+Sua mente e sua imagem fluem com naturalidade. Portanto, comunique-se com clareza e autenticidade, permitindo novos contatos.
+
+[OK] Trígono · Mercúrio / Meio do Céu (chave: 3:2:11)
+Sua mente e a carreira fluem com naturalidade. Portanto, use a comunicação para impulsionar sua profissão, com foco e lucidez.
+
+[OK] Trígono · Vênus / Marte (chave: 3:3:4)
+Seu amor e a ação fluem com naturalidade. Portanto, viva o afeto com alegria e delicadeza, equilibrando independência e ambição.
+
+[OK] Trígono · Vênus / Júpiter (chave: 3:3:5)
+Seu amor e a expansão fluem com naturalidade. Portanto, ame com generosidade e legalidade, celebrando a vida com elegância.
+
+[OK] Trígono · Vênus / Saturno (chave: 3:3:6)
+Seu amor e a estrutura fluem com naturalidade. Portanto, ame com maturidade e fidelidade, priorizando o que é prático e seguro.
+
+[OK] Trígono · Vênus / Urano (chave: 3:3:7)
+Seu amor e a liberdade fluem com naturalidade. Portanto, expresse seus afetos com originalidade, aceitando os desejos diferentes.
+
+[OK] Trígono · Vênus / Netuno (chave: 3:3:8)
+Seu amor e a espiritualidade fluem com naturalidade. Portanto, doe-se com compaixão e mantenha o sentido prático, sem confundir ilusão com sonho.
+
+[OK] Trígono · Vênus / Plutão (chave: 3:3:9)
+Seu amor e a transformação fluem com naturalidade. Portanto, entregue-se às emoções profundas com consciência, usando o talento que surge naturalmente.
+
+[OK] Trígono · Vênus / Ascendente (chave: 3:3:10)
+Seu amor e sua imagem fluem com naturalidade. Portanto, use sua simpatia para obter aprovação, vivendo romances felizes.
+
+[OK] Trígono · Vênus / Meio do Céu (chave: 3:3:11)
+Seu amor e a carreira fluem com naturalidade. Portanto, una afeto e trabalho, usando a criatividade para colher o que quer.
+
+[OK] Trígono · Marte / Júpiter (chave: 3:4:5)
+Sua ação e a expansão fluem com naturalidade. Portanto, aja com coragem e otimismo, liderando com força e fé.
+
+[OK] Trígono · Marte / Saturno (chave: 3:4:6)
+Sua ação e a estrutura fluem com naturalidade. Portanto, aja com paciência e sangue-frio, calculando bem os passos.
+
+[OK] Trígono · Marte / Urano (chave: 3:4:7)
+Sua ação e a liberdade fluem com naturalidade. Portanto, aja com originalidade e independência, buscando novas experiências.
+
+[OK] Trígono · Marte / Netuno (chave: 3:4:8)
+Sua ação e a espiritualidade fluem com naturalidade. Portanto, lute pelos seus sonhos com fé, percebendo o que está ao seu redor.
+
+[OK] Trígono · Marte / Plutão (chave: 3:4:9)
+Sua ação e a transformação fluem com naturalidade. Portanto, use sua energia de forma positiva, lutando pelo que é correto com força renovada.
+
+[OK] Trígono · Marte / Ascendente (chave: 3:4:10)
+Sua ação e sua imagem fluem com naturalidade. Portanto, aja com franqueza e determinação, usando sua energia para conquistar.
+
+[OK] Trígono · Marte / Meio do Céu (chave: 3:4:11)
+Sua ação e a carreira fluem com naturalidade. Portanto, lute com garra pela sua afirmação profissional, com decisões rápidas e firmes.
+
+[OK] Trígono · Júpiter / Saturno (chave: 3:5:6)
+Sua expansão e a estrutura fluem com naturalidade. Portanto, aproveite as oportunidades com organização, agindo com integridade e senso do necessário.
+
+[OK] Trígono · Júpiter / Urano (chave: 3:5:7)
+Sua expansão e a liberdade fluem com naturalidade. Portanto, renove-se e expanda seus horizontes, contando com boas influências e ideais.
+
+[OK] Trígono · Júpiter / Netuno (chave: 3:5:8)
+Sua expansão e a espiritualidade fluem com naturalidade. Portanto, inspire-se e ajude os outros, usando a imaginação para o bem.
+
+[OK] Trígono · Júpiter / Plutão (chave: 3:5:9)
+Sua expansão e a transformação fluem com naturalidade. Portanto, use sua fé e intuição para reorientar sua vida e o meio ao seu redor.
+
+[OK] Trígono · Júpiter / Ascendente (chave: 3:5:10)
+Sua expansão e sua imagem fluem com naturalidade. Portanto, mostre otimismo e simpatia, com honestidade e boa saúde.
+
+[OK] Trígono · Júpiter / Meio do Céu (chave: 3:5:11)
+Sua expansão e a carreira fluem com naturalidade. Portanto, avance com generosidade e boas proteções, alcançando os objetivos que deseja.
+
+[OK] Trígono · Saturno / Urano (chave: 3:6:7)
+Sua estrutura e a liberdade fluem com naturalidade. Portanto, busque a liberdade com responsabilidade, afirmando sua identidade com autodisciplina.
+
+[OK] Trígono · Saturno / Netuno (chave: 3:6:8)
+Sua estrutura e a espiritualidade fluem com naturalidade. Portanto, dê forma aos seus sonhos com lógica e criatividade, sendo um idealista prático.
+
+[OK] Trígono · Saturno / Plutão (chave: 3:6:9)
+Sua estrutura e a transformação fluem com naturalidade. Portanto, use sua resistência e seriedade para alcançar seus objetivos com disciplina.
+
+[OK] Trígono · Saturno / Ascendente (chave: 3:6:10)
+Sua estrutura e sua imagem fluem com naturalidade. Portanto, mostre seu caráter com autodisciplina, sem subestimar suas capacidades.
+
+[OK] Trígono · Saturno / Meio do Céu (chave: 3:6:11)
+Sua estrutura e a carreira fluem com naturalidade. Portanto, construa seu legado com esforço e responsabilidade, respeitando o tempo e as tradições.
+
+[OK] Trígono · Urano / Netuno (chave: 3:7:8)
+Sua liberdade e a espiritualidade fluem com naturalidade. Portanto, busque a liberdade com inovação, respeitando a sua própria verdade espiritual.
+
+[OK] Trígono · Urano / Plutão (chave: 3:7:9)
+Sua liberdade e a transformação fluem com naturalidade. Portanto, renove-se e liberte-se de velhos padrões com consciência e vontade.
+
+[OK] Trígono · Urano / Ascendente (chave: 3:7:10)
+Sua liberdade e sua imagem fluem com naturalidade. Portanto, mostre sua originalidade com disciplina, usando sua intuição para entender as pessoas.
+
+[OK] Trígono · Urano / Meio do Céu (chave: 3:7:11)
+Sua liberdade e a carreira fluem com naturalidade. Portanto, inove no trabalho com confiança, construindo seu próprio caminho de forma surpreendente.
+
+[OK] Trígono · Netuno / Plutão (chave: 3:8:9)
+Sua espiritualidade e a transformação fluem com naturalidade. Portanto, use sua fé para encontrar a paz interior, revisando seus valores com profundidade.
+
+[OK] Trígono · Netuno / Ascendente (chave: 3:8:10)
+Sua espiritualidade e sua imagem fluem com naturalidade. Portanto, mostre sua sensibilidade e bom coração, buscando um ideal com firmeza nas decisões.
+
+[OK] Trígono · Netuno / Meio do Céu (chave: 3:8:11)
+Sua espiritualidade e a carreira fluem com naturalidade. Portanto, canalize sua intuição para ajudar o coletivo, trazendo inspiração para sua profissão.
+
+[OK] Trígono · Plutão / Ascendente (chave: 3:9:10)
+Seu poder e sua imagem fluem com naturalidade. Portanto, exerça sua força de vontade com respeito, encarando os desafios com realismo.
+
+[OK] Trígono · Plutão / Meio do Céu (chave: 3:9:11)
+Seu poder e a carreira fluem com naturalidade. Portanto, use sua capacidade de reformular valores para alcançar o êxito social e profissional.
+
+[OK] Oposição · Sol / Lua (chave: 4:0:1)
+Sua alma e emoção estão em oposição. Portanto, integre razão e sentimento, entendendo que os dois precisam caminhar juntos para você encontrar equilíbrio interior.
+
+[OK] Oposição · Sol / Vênus (chave: 4:0:3)
+Sua alma e o amor estão em oposição. Portanto, valorize-se por quem você é e não busque aprovação externa de forma excessiva.
+
+[OK] Oposição · Sol / Marte (chave: 4:0:4)
+Sua alma e a ação estão em oposição. Portanto, use sua coragem de forma construtiva, protegendo o corpo e evitando conflitos com autoridades.
+
+[OK] Oposição · Sol / Júpiter (chave: 4:0:5)
+Sua alma e a expansão estão em oposição. Portanto, desenvolva paciência e autodisciplina, olhando para dentro com a mesma atenção que olha para fora.
+
+[OK] Oposição · Sol / Saturno (chave: 4:0:6)
+Sua alma e a estrutura estão em oposição. Portanto, encare as frustrações da infância com maturidade e não deixe o medo das responsabilidades te paralisar.
+
+[OK] Oposição · Sol / Urano (chave: 4:0:7)
+Sua alma e a liberdade estão em oposição. Portanto, afirme-se sem rebeldia cega, buscando sua independência com consciência e cuidado com acidentes.
+
+[OK] Oposição · Sol / Netuno (chave: 4:0:8)
+Sua alma e a espiritualidade estão em oposição. Portanto, mantenha os pés no chão para que seus sonhos não se tornem fugas da realidade.
+
+[OK] Oposição · Sol / Plutão (chave: 4:0:9)
+Sua alma e a transformação estão em oposição. Portanto, aprenda a soltar o controle e transforme sua intensidade em poder de cura, não de destruição.
+
+[OK] Oposição · Sol / Ascendente (chave: 4:0:10)
+Sua alma e sua imagem estão em oposição. Portanto, harmonize seu eu interior com o exterior, sendo mais autêntico e evitando a manipulação.
+
+[OK] Oposição · Sol / Meio do Céu (chave: 4:0:11)
+Sua alma e a carreira estão em oposição. Portanto, reorganize-se com humildade para alcançar o sucesso que deseja, sem se sentir ameaçado por autoridades.
+
+[OK] Oposição · Lua / Mercúrio (chave: 4:1:2)
+Sua emoção e a mente estão em oposição. Portanto, acalme a mente e busque clareza, não deixando o emocional prevalecer sobre o racional.
+
+[OK] Oposição · Lua / Vênus (chave: 4:1:3)
+Sua emoção e o amor estão em oposição. Portanto, ame-se primeiro para não negligenciar suas próprias necessidades nem sofrer no campo afetivo.
+
+[OK] Oposição · Lua / Marte (chave: 4:1:4)
+Sua emoção e a ação estão em oposição. Portanto, acalme a pressa interior e não agrida aquilo que poderia te trazer segurança.
+
+[OK] Oposição · Lua / Júpiter (chave: 4:1:5)
+Sua emoção e a expansão estão em oposição. Portanto, busque o equilíbrio emocional e evite os excessos, especialmente no ambiente familiar.
+
+[OK] Oposição · Lua / Saturno (chave: 4:1:6)
+Sua emoção e a estrutura estão em oposição. Portanto, ressignifique os vínculos do passado que limitaram suas emoções e aprenda a lidar com as frustrações.
+
+[OK] Oposição · Lua / Urano (chave: 4:1:7)
+Sua emoção e a liberdade estão em oposição. Portanto, controle os excessos emocionais e as rupturas, especialmente com a figura feminina.
+
+[OK] Oposição · Lua / Netuno (chave: 4:1:8)
+Sua emoção e a espiritualidade estão em oposição. Portanto, não subestime sua sensibilidade e busque ajuda para não fugir da realidade.
+
+[OK] Oposição · Lua / Plutão (chave: 4:1:9)
+Sua emoção e a transformação estão em oposição. Portanto, cure a rejeição emocional inconsciente que gera frustrações e traumas psicológicos.
+
+[OK] Oposição · Lua / Ascendente (chave: 4:1:10)
+Sua emoção e sua imagem estão em oposição. Portanto, não permita que a intuição negativa dificulte a sua forma de se expressar e se mostrar ao mundo.
+
+[OK] Oposição · Lua / Meio do Céu (chave: 4:1:11)
+Sua emoção e a carreira estão em oposição. Portanto, separe a vida pessoal da profissional e não deixe as questões familiares prejudicarem sua estabilidade no trabalho.
+
+[OK] Oposição · Mercúrio / Vênus (chave: 4:2:3)
+Sua mente e o amor estão em oposição. Portanto, busque a verdade nas suas palavras, mantendo a harmonia sem precisar agradar a todos.
+
+[OK] Oposição · Mercúrio / Marte (chave: 4:2:4)
+Sua mente e a ação estão em oposição. Portanto, tenha paciência para escutar os outros e use sua mente para construir pontes, não para manipular.
+
+[OK] Oposição · Mercúrio / Júpiter (chave: 4:2:5)
+Sua mente e a expansão estão em oposição. Portanto, busque mais objetividade e não divulgue informações nas horas ou para as pessoas erradas.
+
+[OK] Oposição · Mercúrio / Saturno (chave: 4:2:6)
+Sua mente e a estrutura estão em oposição. Portanto, não remoa pensamentos negativos e aprenda a confiar na sua própria lucidez.
+
+[OK] Oposição · Mercúrio / Urano (chave: 4:2:7)
+Sua mente e a liberdade estão em oposição. Portanto, não mude de direção rápido demais e tenha paciência para aprender, pois os estudos te abrem oportunidades.
+
+[OK] Oposição · Mercúrio / Netuno (chave: 4:2:8)
+Sua mente e a espiritualidade estão em oposição. Portanto, busque clareza mental e não crie mentiras para si mesmo, mantendo os pés no chão.
+
+[OK] Oposição · Mercúrio / Plutão (chave: 4:2:9)
+Sua mente e a transformação estão em oposição. Portanto, use sua poderosa mente para curar e não ferir, sem impor suas ideias à força.
+
+[OK] Oposição · Mercúrio / Ascendente (chave: 4:2:10)
+Sua mente e sua imagem estão em oposição. Portanto, não seja insincero consigo mesmo e cuidado com o espírito de contradição.
+
+[OK] Oposição · Mercúrio / Meio do Céu (chave: 4:2:11)
+Sua mente e a carreira estão em oposição. Portanto, coloque suas ideias com lucidez no trabalho, sem agressividade nem impaciência.
+
+[OK] Oposição · Vênus / Marte (chave: 4:3:4)
+Seu amor e a ação estão em oposição. Portanto, traga mais afeto e consideração para a sua vida íntima, sem transformar o amor em competição.
+
+[OK] Oposição · Vênus / Júpiter (chave: 4:3:5)
+Seu amor e a expansão estão em oposição. Portanto, não distancie o amor da ética e evite a vaidade e a hipocrisia emocional.
+
+[OK] Oposição · Vênus / Saturno (chave: 4:3:6)
+Seu amor e a estrutura estão em oposição. Portanto, não viva os afetos de forma defensiva por medo de rejeição, abrindo-se para amar e ser amado.
+
+[OK] Oposição · Vênus / Urano (chave: 4:3:7)
+Seu amor e a liberdade estão em oposição. Portanto, não confunda amor com amizade e cuide para não machucar o outro nem se cansar do que conquistou.
+
+[OK] Oposição · Vênus / Netuno (chave: 4:3:8)
+Seu amor e a espiritualidade estão em oposição. Portanto, aprenda a ver o outro como ele é, sem idealizações, e não se deixe iludir.
+
+[OK] Oposição · Vênus / Plutão (chave: 4:3:9)
+Seu amor e a transformação estão em oposição. Portanto, transforme sua intensidade em cura e não permita que o amor seja corrompido pelo financeiro.
+
+[OK] Oposição · Vênus / Ascendente (chave: 4:3:10)
+Seu amor e sua imagem estão em oposição. Portanto, busque equilíbrio nas relações afetivas ou de sociedade (trabalho/negócios), sem buscar apenas o prazer momentâneo.
+
+[OK] Oposição · Vênus / Meio do Céu (chave: 4:3:11)
+Seu amor e a carreira estão em oposição. Portanto, concilie afeto e trabalho com integridade, sem subornos nem insatisfações profissionais.
+
+[OK] Oposição · Marte / Júpiter (chave: 4:4:5)
+Sua ação e a expansão estão em oposição. Portanto, controle a impaciência e a extravagância das ações, agindo com sabedoria e sem risco desnecessário.
+
+[OK] Oposição · Marte / Saturno (chave: 4:4:6)
+Sua ação e a estrutura estão em oposição. Portanto, equilibre energia e apatia, fadiga e entusiasmo, com paciência e persistência.
+
+[OK] Oposição · Marte / Urano (chave: 4:4:7)
+Sua ação e a liberdade estão em oposição. Portanto, busque previsibilidade nas ações e cuidado com acidentes, irritabilidade e impulsividade.
+
+[OK] Oposição · Marte / Netuno (chave: 4:4:8)
+Sua ação e a espiritualidade estão em oposição. Portanto, busque mais realismo e lucidez, evitando dependências e decepções diante das ações.
+
+[OK] Oposição · Marte / Plutão (chave: 4:4:9)
+Sua ação e a transformação estão em oposição. Portanto, use sua força de vontade em direção construtiva e transforme a intensidade em poder de regeneração.
+
+[OK] Oposição · Marte / Ascendente (chave: 4:4:10)
+Sua ação e sua imagem estão em oposição. Portanto, seja gentil nas relações pessoais e leve seus projetos até o fim, canalizando a energia para ações construtivas.
+
+[OK] Oposição · Marte / Meio do Céu (chave: 4:4:11)
+Sua ação e a carreira estão em oposição. Portanto, controle a agressividade no trabalho e desafie a autoridade de forma inteligente e diplomática.
+
+[OK] Oposição · Júpiter / Saturno (chave: 4:5:6)
+Sua expansão e a estrutura estão em oposição. Portanto, não se entregue ao pessimismo e encontre o equilíbrio entre a fé e a realidade.
+
+[OK] Oposição · Júpiter / Urano (chave: 4:5:7)
+Sua expansão e a liberdade estão em oposição. Portanto, cumpra o que promete e não coloque todo o entusiasmo em objetivos que vai abandonar em seguida.
+
+[OK] Oposição · Júpiter / Netuno (chave: 4:5:8)
+Sua expansão e a espiritualidade estão em oposição. Portanto, busque a verdade e a concretude, sem construir castelos no ar nem usar a fé para obter poder.
+
+[OK] Oposição · Júpiter / Plutão (chave: 4:5:9)
+Sua expansão e a transformação estão em oposição. Portanto, busque humildade e não queira conquistar poder por meios duvidosos ou arriscados.
+
+[OK] Oposição · Júpiter / Ascendente (chave: 4:5:10)
+Sua expansão e sua imagem estão em oposição. Portanto, aprenda o autocontrole e divida seus grandes planos em etapas, sem ares de grandeza.
+
+[OK] Oposição · Júpiter / Meio do Céu (chave: 4:5:11)
+Sua expansão e a carreira estão em oposição. Portanto, seja mais humilde no social e no profissional, alinhando suas capacidades às suas ambições.
+
+[OK] Oposição · Saturno / Urano (chave: 4:6:7)
+Sua estrutura e a liberdade estão em oposição. Portanto, entenda que o recomeço é produtivo e evite o pessimismo que endurece as articulações.
+
+[OK] Oposição · Saturno / Netuno (chave: 4:6:8)
+Sua estrutura e a espiritualidade estão em oposição. Portanto, busque autodisciplina e mantenha os pés no chão para não fugir da realidade.
+
+[OK] Oposição · Saturno / Plutão (chave: 4:6:9)
+Sua estrutura e a transformação estão em oposição. Portanto, lembre-se de que a força para reconstruir está dentro de você, mesmo diante de perdas.
+
+[OK] Oposição · Saturno / Ascendente (chave: 4:6:10)
+Sua estrutura e sua imagem estão em oposição. Portanto, adquira autoconfiança com o tempo e não recue diante das dificuldades, lutando com maturidade.
+
+[OK] Oposição · Saturno / Meio do Céu (chave: 4:6:11)
+Sua estrutura e a carreira estão em oposição. Portanto, não sinta as responsabilidades como obstáculos opressores e tenha lucidez sobre as suas capacidades.
+
+[OK] Oposição · Urano / Netuno (chave: 4:7:8)
+Sua liberdade e a espiritualidade estão em oposição. Portanto, tenha coragem para lutar pela liberdade que está camuflada e buscar a verdade espiritual com consciência.
+
+[OK] Oposição · Urano / Plutão (chave: 4:7:9)
+Sua liberdade e a transformação estão em oposição. Portanto, aprenda a fluir com as mudanças drásticas, sem extremismos que levem à destruição.
+
+[OK] Oposição · Urano / Ascendente (chave: 4:7:10)
+Sua liberdade e sua imagem estão em oposição. Portanto, não seja o rebelde pelo simples gosto de se rebelar, sendo responsável com as regras.
+
+[OK] Oposição · Urano / Meio do Céu (chave: 4:7:11)
+Sua liberdade e a carreira estão em oposição. Portanto, busque a liberdade sem chocar o social e evite a perda súbita de poder ou trabalho.
+
+[OK] Oposição · Netuno / Plutão (chave: 4:8:9)
+Sua espiritualidade e a transformação estão em oposição. Portanto, trabalhe a regeneração espiritual em meio à desordem, buscando a verdade interior.
+
+[OK] Oposição · Netuno / Ascendente (chave: 4:8:10)
+Sua espiritualidade e sua imagem estão em oposição. Portanto, não se deixe influenciar negativamente pelo ambiente e defenda-se na hora certa.
+
+[OK] Oposição · Netuno / Meio do Céu (chave: 4:8:11)
+Sua espiritualidade e a carreira estão em oposição. Portanto, tenha lucidez sobre suas verdadeiras capacidades e não deixe as questões domésticas prejudicarem seus objetivos.
+
+[OK] Oposição · Plutão / Ascendente (chave: 4:9:10)
+Seu poder e sua imagem estão em oposição. Portanto, não seja agressivo nas condutas pessoais e use seu poder para construir pontes.
+
+[OK] Oposição · Plutão / Meio do Céu (chave: 4:9:11)
+Seu poder e a carreira estão em oposição. Portanto, evite conflitos com quem detém autoridade e busque a transformação interior com consciência.
+
+

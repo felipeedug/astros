@@ -412,11 +412,25 @@ function formatInterpretationText(value) {
   return escapeHtml(value).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
 }
 
-function houseAtLongitude(longitude, houses) {
+function houseAtLongitude(longitude, houses, cuspOrb = 0) {
+  const normalizedLongitude = mod(longitude);
+  let nearestCuspDistance = Infinity;
+  let nearestCuspHouse = null;
+
+  // A planet close to the next cusp is interpreted in the house that begins there.
+  for (let index = 0; index < 12; index += 1) {
+    const distanceToCusp = mod(mod(houses[index]) - normalizedLongitude);
+    if (distanceToCusp <= cuspOrb && distanceToCusp < nearestCuspDistance) {
+      nearestCuspDistance = distanceToCusp;
+      nearestCuspHouse = index + 1;
+    }
+  }
+  if (nearestCuspHouse !== null) return nearestCuspHouse;
+
   for (let index = 0; index < 12; index += 1) {
     const start = mod(houses[index]);
     const width = mod(houses[(index + 1) % 12] - start);
-    if (mod(longitude - start) < width || width === 0) return index + 1;
+    if (mod(normalizedLongitude - start) < width || width === 0) return index + 1;
   }
   return 1;
 }
@@ -477,6 +491,144 @@ function renderBalanceTables(longitudes) {
   polarityBalance.innerHTML = `<div class="polarity-balance" style="--polarity-negative:${signColors.water};--polarity-positive:${signColors.fire}"><div class="polarity-balance-bar" role="img" aria-label="${negativePoints} pontos negativos e ${positivePoints} positivos"><span class="polarity-balance-negative" style="width:${negativePercentage}%"></span><span class="polarity-balance-positive" style="width:${positivePercentage}%"></span></div><div class="polarity-balance-legend"><span><i class="polarity-swatch polarity-swatch-negative"></i>Negativo <strong>${negativePoints}</strong></span><span><i class="polarity-swatch polarity-swatch-positive"></i>Positivo <strong>${positivePoints}</strong></span></div></div>`;
 }
 
+const mapLifePlanetCopy = {
+  Sun: ['Sol', 'Essência / Alma', 'O que te move'],
+  Moon: ['Lua', 'Emoções / Raiz Psicológica', 'O que você sente por dentro'],
+  Mercury: ['Mercúrio', 'Forma de Pensar', 'Como você pensa e se comunica'],
+  Venus: ['Vênus', 'Forma de Amar', 'O que te encanta e te dá prazer'],
+  Mars: ['Marte', 'Força de Vontade / Ação', 'Sua força de vontade'],
+  Jupiter: ['Júpiter', 'Expansão / Fé', 'O que te dá fé e expande'],
+  Saturn: ['Saturno', 'Estrutura / Responsabilidade', 'Sua responsabilidade e maturidade'],
+  Uranus: ['Urano', 'Originalidade / Liberdade', 'Originalidade e mudanças repentinas'],
+  Neptune: ['Netuno', 'Espiritualidade / Intuição', 'Sua conexão com o invisível'],
+  Pluto: ['Plutão', 'Transformação / Poder', 'O que te transforma por dentro']
+};
+const mapLifeAreas = {
+  1: 'Como o Mundo te vê',
+  2: 'Seus valores e recursos',
+  3: 'Como você aprende',
+  4: 'Onde você se sente em casa',
+  5: 'Padrões herdados de sua família e prazer criativo',
+  6: 'Seu dia a dia e sua saúde',
+  7: 'Como você se relaciona a dois',
+  8: 'Suas crises, sexualidade e renascimentos',
+  9: 'Onde você busca sentido',
+  10: 'Sua carreira e legado no mundo',
+  11: 'Suas amizades e seus projetos',
+  12: 'O que habita seu mundo interior'
+};
+const mapLifeAspectGroups = {
+  facilidades: ['sextile', 'trine'],
+  desafios: ['conjunction', 'square', 'opposition']
+};
+
+function mapLifeAspectItem(aspect) {
+  const aspectKey = Object.keys(aspectNames).find((key) => aspectNames[key] === aspect.name);
+  if (!aspectKey) return null;
+  const aspectId = ['conjunction', 'sextile', 'square', 'trine', 'opposition'].indexOf(aspectKey);
+  const firstId = planetIds[aspect.firstPlanet];
+  const secondId = planetIds[aspect.secondPlanet];
+  const text = interpretationData?.summaries?.aspects?.[`${aspectId}:${firstId}:${secondId}`]
+    || interpretationData?.summaries?.aspects?.[`${aspectId}:${secondId}:${firstId}`];
+  if (!text) return null;
+  return { texto: text, tipo: aspectKey };
+}
+
+function createMapLifeDashboardData(chart) {
+  const corePlanets = Object.keys(mapLifePlanetCopy);
+  const longitudes = visibleLongitudes(chart.longitudes || {});
+  if (!Number.isFinite(longitudes.Ascendant) && Number.isFinite(chart.rising)) longitudes.Ascendant = chart.rising;
+  if (!Number.isFinite(longitudes.Midheaven) && Number.isFinite(chart.midheaven)) longitudes.Midheaven = chart.midheaven;
+  const houses = Array.isArray(chart.houses) && chart.houses.length === 12
+    ? chart.houses
+    : Number.isFinite(chart.rising) ? Array.from({ length: 12 }, (_, index) => mod(chart.rising + index * 30)) : [];
+  const aspectEntries = chartAspects(longitudes, [...corePlanets, 'Ascendant', 'Midheaven']);
+  const byGroup = (entries) => Object.fromEntries(Object.entries(mapLifeAspectGroups).map(([group, keys]) => [
+    group,
+    entries.filter((entry) => keys.includes(entry.tipo)).map(({ aspecto, texto }) => ({ aspecto, texto }))
+  ]));
+  const visao_planetas = corePlanets
+    .filter((planet) => Number.isFinite(longitudes[planet]))
+    .map((planet, originalOrder) => {
+      const signId = signAt(longitudes[planet]);
+      const linkedAspects = aspectEntries.filter((aspect) =>
+        (aspect.firstPlanet === planet && corePlanets.includes(aspect.secondPlanet))
+        || (aspect.secondPlanet === planet && corePlanets.includes(aspect.firstPlanet))
+      ).map(mapLifeAspectItem).filter(Boolean);
+      const grouped = byGroup(linkedAspects);
+      const aspectCount = grouped.facilidades.length + grouped.desafios.length;
+      return {
+        planeta: mapLifePlanetCopy[planet][0],
+        subtitulo: mapLifePlanetCopy[planet][2],
+        tema: mapLifePlanetCopy[planet][1],
+        aspectosRelevantes: aspectCount,
+        texto_signo: interpretationData?.summaries?.planetSigns?.[`${planetIds[planet]}:${signId}`] || '',
+        ...grouped,
+        _planet: planet,
+        _order: originalOrder,
+        _aspectCount: aspectCount
+      };
+    })
+    .filter((planet) => planet._planet === 'Moon' || planet._aspectCount > 0)
+    .sort((first, second) => second._aspectCount - first._aspectCount || first._order - second._order)
+    .slice(0, 4)
+    .map(({ _planet, _order, _aspectCount, ...planet }) => planet);
+  const visao_casas = houses.length ? Array.from({ length: 12 }, (_, index) => index + 1)
+    .map((houseId) => {
+      const planetsInHouse = corePlanets.filter((planet) => Number.isFinite(longitudes[planet]) && houseAtLongitude(longitudes[planet], houses, orbLimit) === houseId);
+      if (!planetsInHouse.length) return null;
+      const signId = signAt(houses[houseId - 1]);
+      const axis = houseId === 1 ? 'Ascendant' : houseId === 10 ? 'Midheaven' : null;
+      const axisAspects = axis ? aspectEntries.filter((aspect) => aspect.firstPlanet === axis || aspect.secondPlanet === axis)
+        .filter((aspect) => corePlanets.includes(aspect.firstPlanet === axis ? aspect.secondPlanet : aspect.firstPlanet))
+        .map(mapLifeAspectItem).filter(Boolean) : [];
+      return {
+        casa: houseId,
+        area: mapLifeAreas[houseId],
+        texto_signo: interpretationData?.summaries?.houseSigns?.[`${signId}:${houseId}`] || '',
+        influencias: planetsInHouse.map((planet) => mapLifePlanetCopy[planet][1]),
+        _influenceCount: planetsInHouse.length,
+        _houseOrder: houseId,
+        aspectos: axis ? byGroup(axisAspects) : null
+      };
+    }).filter(Boolean)
+    .sort((first, second) => second._influenceCount - first._influenceCount || first._houseOrder - second._houseOrder)
+    .slice(0, 4)
+    .map(({ _influenceCount, _houseOrder, ...house }) => house) : [];
+  return { visao_planetas, visao_casas };
+}
+
+function renderMapLifeAspectList(title, entries, tone) {
+  if (!entries?.length) return '';
+  return `<section class="map-life-aspect-group map-life-aspect-group--${tone}"><h5>${title}</h5><ul>${entries.map((entry) => `<li><p>${formatInterpretationText(entry.texto)}</p></li>`).join('')}</ul></section>`;
+}
+
+function renderMapLifeDashboard(data) {
+  const planetCards = (data.visao_planetas || []).map((planet) => `<article class="map-life-card map-life-card--planet">
+    <header class="map-life-card-heading"><div><h3>${escapeHtml(planet.subtitulo || '')}</h3><span class="map-life-card-count">${planet.aspectosRelevantes || 0} ${planet.aspectosRelevantes === 1 ? 'aspecto' : 'aspectos'}</span></div></header>
+    ${planet.texto_signo ? `<section class="map-life-base"><h4>Como isso aparece</h4><p>${formatInterpretationText(planet.texto_signo)}</p></section>` : ''}
+    ${renderMapLifeAspectList('Facilidades', planet.facilidades, 'easy')}
+    ${renderMapLifeAspectList('Pontos de atenção', planet.desafios, 'challenge')}
+  </article>`).join('');
+  const houseCards = (data.visao_casas || []).map((house) => {
+    const influenceCount = house.influencias?.length || 0;
+    return `<article class="map-life-card map-life-card--house">
+    <header class="map-life-card-heading"><div><h3>${escapeHtml(house.area || '')}</h3><span class="map-life-card-count">${influenceCount} ${influenceCount === 1 ? 'influência' : 'influências'}</span></div></header>
+    ${house.texto_signo ? `<section class="map-life-base"><h4>O que se destaca</h4><p>${formatInterpretationText(house.texto_signo)}</p></section>` : ''}
+    ${house.influencias?.length ? `<section class="map-life-house-planets"><h4>Temas presentes</h4><ul>${house.influencias.map((tema) => `<li>${escapeHtml(tema)}</li>`).join('')}</ul></section>` : ''}
+    ${house.aspectos ? `${renderMapLifeAspectList('Facilidades', house.aspectos.facilidades, 'easy')}${renderMapLifeAspectList('Pontos de atenção', house.aspectos.desafios, 'challenge')}` : ''}
+  </article>`;
+  }).join('');
+  const hasPlanets = Boolean(planetCards);
+  const hasHouses = Boolean(houseCards);
+  if (!hasPlanets && !hasHouses) return '';
+  return `<section class="map-life-dashboard" aria-label="Resumo visual do Mapa da Vida">
+    <div class="map-life-dashboard-intro"><p class="interpretation-eyebrow">SÍNTESE VISUAL</p><h2>Os pontos mais importantes ou que requerem mais atenção</h2><p>Veja os temas em destaque e as áreas da vida que reúnem mais influências.</p></div>
+    ${hasPlanets ? `<section class="map-life-view" aria-labelledby="map-life-focus-title"><h3 class="map-life-view-title" id="map-life-focus-title">Temas em destaque</h3><div class="map-life-card-grid">${planetCards}</div></section>` : ''}
+    ${hasHouses ? `<section class="map-life-view" aria-labelledby="map-life-areas-title"><h3 class="map-life-view-title" id="map-life-areas-title">Áreas da vida</h3><div class="map-life-card-grid">${houseCards}</div></section>` : ''}
+  </section>`;
+}
+
 function renderNatalInterpretation(content, chart) {
   const longitudes = visibleLongitudes(chart.longitudes || {});
   if (!Number.isFinite(longitudes.Ascendant) && Number.isFinite(chart.rising)) longitudes.Ascendant = chart.rising;
@@ -484,7 +636,7 @@ function renderNatalInterpretation(content, chart) {
   const houses = chart.houses.length === 12 ? chart.houses : Array.from({ length: 12 }, (_, index) => mod(chart.rising + index * 30));
   const aspects = chartAspects(longitudes);
   const planetLabels = { Sun: 'Sol', Moon: 'Lua', Mercury: 'Mercúrio', Venus: 'Vênus', Mars: 'Marte', Jupiter: 'Júpiter', Saturn: 'Saturno', Uranus: 'Urano', Neptune: 'Netuno', Pluto: 'Plutão', Ascendant: 'Ascendente', Midheaven: 'Meio do Céu' };
-  const section = (title, introduction, cards) => `<section class="interpretation-topic"><h3 class="interpretation-subtitle">${title}</h3><p class="interpretation-introduction">${introduction}</p><div class="interpretation-grid">${cards.join('')}</div></section>`;
+  const section = (title, introduction, cards, modifier = '', extraMarkup = '') => `<section class="interpretation-topic ${modifier}"><h3 class="interpretation-subtitle">${title}</h3><p class="interpretation-introduction">${introduction}</p><div class="interpretation-grid">${cards.join('')}${extraMarkup}</div></section>`;
   const housePlanets = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
   const interpretationCard = (title, entries) => {
     const paragraphs = entries.length
@@ -547,7 +699,7 @@ function renderNatalInterpretation(content, chart) {
       };
     });
   const housePlanetEntries = (houseId) => housePlanets
-    .filter((planet) => Number.isFinite(longitudes[planet]) && houseAtLongitude(longitudes[planet], houses) === houseId)
+    .filter((planet) => Number.isFinite(longitudes[planet]) && houseAtLongitude(longitudes[planet], houses, orbLimit) === houseId)
     .map((planet) => ({
       text: interpretationText('planetHouses', `${planetIds[planet]}:${houseId}`) || interpretationText('houses', `${houseId}`),
       label: `${planetLabels[planet] || objectNames[planet]} na Casa ${houseId}`,
@@ -567,41 +719,72 @@ function renderNatalInterpretation(content, chart) {
     ...housePlanetEntries(houseId)
   ]);
 
-  const presentationMarkup = `<h2 class="interpretation-main-title">MAPA DA VIDA | INTERPRETAÇÃO</h2><section class="interpretation-bookend interpretation-bookend--opening" aria-label="Apresentação do Mapa da Vida"><blockquote><p>“Quem olha para fora sonha, quem olha para dentro acorda.”</p><cite>— Jung</cite></blockquote><p>O Mapa da Vida é uma leitura do seu céu no momento em que você nasceu — mas, mais do que isso, é um convite pra você se olhar por dentro. Aqui, a astrologia não é sentença nem prisão: é linguagem simbólica. É bússola. É uma ferramenta de autoconhecimento que te ajuda a entender como você age, sente, pensa, ama e constrói a vida.</p><p>Assim como os Reis Magos seguiram a luz das estrelas, o Mapa da Vida é um convite pra você reconhecer a luz que indica o seu caminho — não para te dizer quem você deve ser, mas pra te lembrar de quem você já é.</p><p class="interpretation-section-list-title"><strong>Seções do Mapa</strong></p><ol class="interpretation-section-list"><li>Quem Você É</li><li>Suas Raízes</li><li>Sua Mente</li><li>Como Você Ama</li><li>Seu Propósito</li><li>O Que Você Constrói</li><li>Sua Tribo e Sua Originalidade</li><li>Suas Transformações</li></ol></section>`;
+  const presentationMarkup = `<h2 class="interpretation-main-title">MAPA DA VIDA | INTERPRETAÇÃO</h2><section class="interpretation-bookend interpretation-bookend--opening interpretation-topic--opening" aria-label="Apresentação do Mapa da Vida"><blockquote><p>“Quem olha para fora sonha, quem olha para dentro acorda.”</p><cite>— Jung</cite></blockquote><p>O Mapa da Vida é uma leitura do seu céu no momento em que você nasceu — mas, mais do que isso, é um convite pra você se olhar por dentro. Aqui, a astrologia não é sentença nem prisão: é linguagem simbólica. É bússola. É uma ferramenta de autoconhecimento que te ajuda a entender como você age, sente, pensa, ama e constrói a vida.</p><p>Assim como os Reis Magos seguiram a luz das estrelas, o Mapa da Vida é um convite pra você reconhecer a luz que indica o seu caminho — não para te dizer quem você deve ser, mas pra te lembrar de quem você já é.</p><p class="interpretation-section-list-title"><strong>Seções do Mapa</strong></p><ol class="interpretation-section-list"><li>Quem Você É</li><li>Suas Raízes</li><li>Sua Mente</li><li>Como Você Ama</li><li>Seu Propósito</li><li>O Que Você Constrói</li><li>Sua Tribo e Sua Originalidade</li><li>Suas Transformações</li></ol></section>`;
   const closingMarkup = `<section class="interpretation-bookend interpretation-bookend--closing" aria-labelledby="map-life-closing-title"><h3 id="map-life-closing-title">ENCERRAMENTO</h3><blockquote><p>Que você siga a sua estrela como os Reis Magos seguiram as deles: com confiança, sem medo e com fé. Que este mapa não sirva para te dizer quem você deve ser, mas sim para te lembrar do caminho para se tornar quem você é.</p></blockquote></section>`;
   const temperamentText = interpretationText('temperament', dominantElementKey(longitudes));
   const temperamentCard = interpretationCard('ELEMENTO PREDOMINANTE', [{ text: temperamentText, symbols: [], label: '' }]);
-  content.innerHTML = `${presentationMarkup}${section('SEU TEMPERAMENTO', 'Antes de entrar nos detalhes, vamos olhar o conjunto. Aqui você descobre qual elemento predomina em você — fogo, terra, ar ou água — e como essa mistura molda o seu jeito de ser.', [temperamentCard])}${section('1. QUEM VOCÊ É', 'Aqui começa tudo. Vamos olhar sua essência, sua personalidade e a forma como você se apresenta ao mundo. É o seu jeito de ser e agir no dia a dia.', [
+  const balanceTablesCopy = document.querySelector('.balance-tables')?.cloneNode(true);
+  if (balanceTablesCopy) {
+    balanceTablesCopy.classList.add('interpretation-temperament-graphic');
+    balanceTablesCopy.querySelectorAll('[id]').forEach((element) => element.removeAttribute('id'));
+  }
+  const reportCloneMarkup = (source, idSuffix) => {
+    const clone = source?.cloneNode(true);
+    if (!clone) return '';
+    const elements = [clone, ...clone.querySelectorAll('[id]')];
+    const idMap = new Map(elements.filter((element) => element.id).map((element) => [element.id, `${element.id}-${idSuffix}`]));
+    elements.forEach((element) => {
+      if (idMap.has(element.id)) element.id = idMap.get(element.id);
+      ['aria-labelledby', 'aria-describedby', 'aria-controls'].forEach((attribute) => {
+        const value = element.getAttribute(attribute);
+        if (value) element.setAttribute(attribute, value.split(/\s+/).map((id) => idMap.get(id) || id).join(' '));
+      });
+    });
+    return clone.outerHTML;
+  };
+  let mandalaMarkup = '';
+  try {
+    const mandalaImage = document.querySelector('#chart')?.toDataURL('image/png');
+    if (mandalaImage) mandalaMarkup = `<figure class="interpretation-final-mandala"><h4>MANDALA</h4><img src="${mandalaImage}" alt="Mandala astrológica do Mapa da Vida"><figcaption>Posições dos planetas, casas e aspectos</figcaption></figure>`;
+  } catch {
+    mandalaMarkup = '<p class="interpretation-final-mandala-note">A mandala não pôde ser preparada para impressão.</p>';
+  }
+  const planetHouseTablesMarkup = reportCloneMarkup(document.querySelector('.planet-house-tables'), 'report');
+  const aspectMatrixMarkup = reportCloneMarkup(document.querySelector('#natal-aspect-section'), 'report');
+  const finalVisualsMarkup = `<section class="interpretation-final-visuals" aria-labelledby="interpretation-final-visuals-title"><h3 class="interpretation-subtitle" id="interpretation-final-visuals-title">MANDALA E SÍNTESE DO MAPA</h3><div class="interpretation-final-overview">${mandalaMarkup}${planetHouseTablesMarkup}</div>${aspectMatrixMarkup}</section>`;
+  const temperamentGraphicMarkup = balanceTablesCopy ? `<div class="interpretation-temperament-chart">${balanceTablesCopy.outerHTML}</div>` : '';
+  const mapLifeDashboardMarkup = renderMapLifeDashboard(createMapLifeDashboardData(chart));
+  content.innerHTML = `${presentationMarkup}${section('SEU TEMPERAMENTO', 'Antes de entrar nos detalhes, vamos olhar o conjunto. Aqui você descobre qual elemento predomina em você — fogo, terra, ar ou água — e como essa mistura molda o seu jeito de ser.', [temperamentCard], 'interpretation-topic--temperament', temperamentGraphicMarkup)}${mapLifeDashboardMarkup}${section('1. QUEM VOCÊ É', 'Aqui começa tudo. Vamos olhar sua essência, sua personalidade e a forma como você se apresenta ao mundo. É o seu jeito de ser e agir no dia a dia.', [
     planetTopicCard('O QUE TE MOVE', 'Sun', ['Ascendant', 'Midheaven']),
     interpretationCard('COMO O MUNDO TE VÊ', [houseSignEntry(1), ...aspectEntries('Ascendant', ['Midheaven'])]),
     planetTopicCard('SUA FORÇA DE VONTADE', 'Mars', ['Sun', 'Ascendant', 'Moon', 'Mercury', 'Venus', 'Midheaven'])
-  ])}${section('2. SUAS RAÍZES', 'Esta parte fala da sua vida emocional, da sua família e do seu mundo interno. É onde você entende o que te dá segurança, o que te acolhe e de onde vêm seus sentimentos mais profundos.', [
+  ], 'interpretation-topic--chapter')}${section('2. SUAS RAÍZES', 'Esta parte fala da sua vida emocional, da sua família e do seu mundo interno. É onde você entende o que te dá segurança, o que te acolhe e de onde vêm seus sentimentos mais profundos.', [
     planetTopicCard('O QUE VOCÊ SENTE POR DENTRO', 'Moon', ['Sun', 'Ascendant', 'Midheaven']),
     houseTopicCard('ONDE VOCÊ SE SENTE EM CASA', 4)
-  ])}${section('3. SUA MENTE', 'Aqui o assunto é o seu jeito de pensar, aprender e se comunicar. Como você processa informações, como estuda, como fala e como organiza as ideias.', [
+  ], 'interpretation-topic--chapter')}${section('3. SUA MENTE', 'Aqui o assunto é o seu jeito de pensar, aprender e se comunicar. Como você processa informações, como estuda, como fala e como organiza as ideias.', [
     planetTopicCard('COMO VOCÊ PENSA E SE COMUNICA', 'Mercury', ['Sun', 'Ascendant', 'Moon', 'Midheaven']),
     houseTopicCard('COMO VOCÊ APRENDE', 3)
-  ])}${section('4. COMO VOCÊ AMA', 'Relacionamentos, afetos e prazer. Aqui você entende como você ama, o que te atrai, como se relaciona a dois e o que te dá alegria e criatividade.', [
+  ], 'interpretation-topic--chapter')}${section('4. COMO VOCÊ AMA', 'Relacionamentos, afetos e prazer. Aqui você entende como você ama, o que te atrai, como se relaciona a dois e o que te dá alegria e criatividade.', [
     planetTopicCard('O QUE TE ENCANTA E TE DÁ PRAZER', 'Venus', ['Sun', 'Ascendant', 'Moon', 'Mercury', 'Midheaven']),
     houseTopicCard('COMO VOCÊ SE RELACIONA A DOIS', 7),
     houseTopicCard('PADRÕES HERDADOS DE SUA FAMÍLIA E PRAZER CRIATIVO', 5)
-  ])}${section('5. SEU PROPÓSITO', 'Fé, espiritualidade e sentido de vida. Aqui você vai olhar o que te expande, no que você acredita, o que te conecta com algo maior e o que habita seu mundo interior.', [
+  ], 'interpretation-topic--chapter')}${section('5. SEU PROPÓSITO', 'Fé, espiritualidade e sentido de vida. Aqui você vai olhar o que te expande, no que você acredita, o que te conecta com algo maior e o que habita seu mundo interior.', [
     planetTopicCard('O QUE TE DÁ FÉ E EXPANDE', 'Jupiter', ['Sun', 'Ascendant', 'Moon', 'Mercury', 'Venus', 'Mars', 'Midheaven']),
     houseTopicCard('ONDE VOCÊ BUSCA SENTIDO', 9),
     planetTopicCard('SUA CONEXÃO COM O INVISÍVEL', 'Neptune', ['Sun', 'Ascendant', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Midheaven']),
     houseTopicCard('O QUE HABITA SEU MUNDO INTERIOR', 12)
-  ])}${section('6. O QUE VOCÊ CONSTRÓI', 'Trabalho, carreira, dinheiro, saúde e responsabilidades. Aqui você entende como realiza seus projetos, o que constrói na prática e como lida com valores e recursos.', [
+  ], 'interpretation-topic--chapter')}${section('6. O QUE VOCÊ CONSTRÓI', 'Trabalho, carreira, dinheiro, saúde e responsabilidades. Aqui você entende como realiza seus projetos, o que constrói na prática e como lida com valores e recursos.', [
     planetTopicCard('SUA RESPONSABILIDADE E MATURIDADE', 'Saturn', ['Sun', 'Ascendant', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Midheaven']),
     houseAndAspectsTopicCard('SUA CARREIRA E LEGADO NO MUNDO', 10, 'Midheaven', ['Ascendant']),
     houseTopicCard('SEU DIA A DIA E SUA SAÚDE', 6),
     houseTopicCard('SEUS VALORES E RECURSOS', 2)
-  ])}${section('7. SUA TRIBO E SUA ORIGINALIDADE', 'Amizades, grupos, ideias e o que te torna único. Aqui você vê como se relaciona com o coletivo, quais são seus projetos de futuro e o que te faz diferente.', [
+  ], 'interpretation-topic--chapter')}${section('7. SUA TRIBO E SUA ORIGINALIDADE', 'Amizades, grupos, ideias e o que te torna único. Aqui você vê como se relaciona com o coletivo, quais são seus projetos de futuro e o que te faz diferente.', [
     planetTopicCard('ORIGINALIDADE E MUDANÇAS REPENTINAS', 'Uranus', ['Sun', 'Ascendant', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Midheaven', 'Saturn']),
     houseTopicCard('SUAS AMIZADES E SEUS PROJETOS', 11)
-  ])}${section('8. SUAS TRANSFORMAÇÕES', 'Crises, sexualidade, perdas e renascimentos. Aqui você mergulha no que te transforma por dentro, no que precisa morrer pra renascer e nas mudanças profundas da sua vida.', [
+  ], 'interpretation-topic--shared-start')}${section('8. SUAS TRANSFORMAÇÕES', 'Crises, sexualidade, perdas e renascimentos. Aqui você mergulha no que te transforma por dentro, no que precisa morrer pra renascer e nas mudanças profundas da sua vida.', [
     interpretationCard('O QUE TE TRANSFORMA POR DENTRO', [planetSignEntry('Pluto')]),
     houseTopicCard('SUAS CRISES, SEXUALIDADE E RENASCIMENTOS', 8)
-  ])}${closingMarkup}`;
+  ], 'interpretation-topic--shared-follow')}${finalVisualsMarkup}${closingMarkup}`;
 }
 
 function renderInterpretation() {
@@ -617,7 +800,7 @@ function renderInterpretation() {
   const placementMarkup = entries.map(([planet, longitude]) => {
     const planetId = planetIds[planet];
     const signId = signAt(longitude);
-    const houseId = houseAtLongitude(longitude, houses);
+    const houseId = houseAtLongitude(longitude, houses, orbLimit);
     const signText = interpretationText('planetSigns', `${planetId}:${signId}`);
     const houseText = interpretationText('planetHouses', `${planetId}:${houseId}`) || interpretationText('houses', `${houseId}`);
     return `<article class="interpretation-card"><h3>${escapeHtml(objectNames[planet] || planet)} em ${escapeHtml(signNames[signId])}</h3><p>${formatInterpretationText(signText || 'Interpretação específica indisponível.')}</p><h4>Na casa ${houseId}</h4><p>${escapeHtml(houseText || 'Texto de planeta na casa indisponivel.')}</p></article>`;
@@ -1881,11 +2064,15 @@ document.querySelectorAll('[data-object-toggle]').forEach((control) => {
 const orbControl = document.querySelector('#aspect-orb');
 const orbValue = document.querySelector('#aspect-orb-value');
 if (orbControl) {
+  orbLimit = Number(orbControl.value);
   orbControl.addEventListener('input', () => {
     orbLimit = Number(orbControl.value);
     if (orbValue) orbValue.value = `${orbLimit}°`;
     if (orbValue) orbValue.textContent = `${orbLimit}°`;
-    if (currentChart) redrawActiveView();
+    if (currentChart) {
+      redrawActiveView();
+      if (!document.querySelector('#interpretation-panel')?.hidden) renderInterpretation();
+    }
   });
 }
 
@@ -1910,17 +2097,20 @@ document.querySelector('#print-chart')?.addEventListener('click', async () => {
   }
   const ownerName = currentNatalInput?.name || document.querySelector('#name')?.value.trim() || 'visitante';
   const safeOwnerName = ownerName.replace(/[<>:"/\\|?*\u0000-\u001f]/g, '').trim().replace(/[. ]+$/g, '') || 'visitante';
+  const mapType = document.querySelector('#map-type')?.value === 'solar' ? 'Mapa do Ano' : 'Mapa da Vida';
   const previousTitle = document.title;
-  document.title = `${safeOwnerName} - Interpretação Mapa da Vida`;
+  document.title = `${safeOwnerName} - ${mapType}`;
   document.body.classList.add('map-life-print');
+  let restoreTitleTimer;
   const restoreTitle = () => {
     document.title = previousTitle;
     document.body.classList.remove('map-life-print');
+    window.clearTimeout(restoreTitleTimer);
     window.removeEventListener('afterprint', restoreTitle);
   };
   window.addEventListener('afterprint', restoreTitle);
+  restoreTitleTimer = window.setTimeout(restoreTitle, 60000);
   window.print();
-  restoreTitle();
 });
 
 renderMap();

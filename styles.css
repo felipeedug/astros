@@ -492,3 +492,41 @@ label { display:block; margin-top:20px; color:var(--muted); font-size:10px; font
   .site-footer { grid-template-columns:repeat(3,minmax(0,1fr)); gap:32px; padding-right:5vw; padding-left:5vw; }
   .footer-brand { grid-column:1 / -1; }
 }
+
+/* Resumo visual do Mapa da Vida */
+.map-life-dashboard { margin:34px 0 42px; padding:clamp(20px,3vw,38px); border:1px solid rgba(44,62,80,.13); border-radius:24px; background:linear-gradient(145deg,rgba(255,255,255,.92),rgba(247,243,238,.88)); box-shadow:0 18px 50px rgba(13,27,42,.07); }
+.map-life-dashboard-intro { max-width:680px; margin:0 auto 24px; text-align:center; }
+.map-life-dashboard-intro .interpretation-eyebrow { margin:0 0 8px; color:#997d48; font:700 10px var(--fonte-corpo); letter-spacing:.16em; }
+.map-life-dashboard-intro h2 { margin:0; color:var(--azul-noite); font:500 clamp(24px,3vw,36px)/1.18 var(--fonte-titulo); }
+.map-life-dashboard-intro > p:last-child { margin:10px 0 0; color:var(--cinza-azulado); font:400 13px/1.65 var(--fonte-corpo); }
+.map-life-view { margin-top:26px; }
+.map-life-view-title { margin:0 0 14px; color:var(--azul-noite); font:500 21px/1.25 var(--fonte-titulo); }
+.map-life-card-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; align-items:stretch; }
+.map-life-card { min-width:0; padding:20px 21px; border:1px solid rgba(44,62,80,.11); border-radius:18px; background:rgba(255,255,255,.82); box-shadow:0 7px 24px rgba(13,27,42,.045); break-inside:avoid; }
+.map-life-card-heading { display:block; margin:0 0 15px; padding:0 0 13px; border-bottom:1px solid rgba(44,62,80,.11); }
+.map-life-card-heading h3 { margin:0; color:var(--azul-noite); font:500 27px/1.1 var(--fonte-titulo); }
+.map-life-card-heading p { margin:4px 0 0; color:#8b7044; font:700 10px/1.45 var(--fonte-corpo); letter-spacing:.025em; }
+.map-life-card-count { display:inline-flex; max-width:100%; margin-top:7px; padding:5px 8px; border-radius:999px; background:rgba(27,58,92,.07); color:var(--cinza-azulado); font:700 9px/1.2 var(--fonte-corpo); white-space:normal; }
+.map-life-card h4,.map-life-aspect-group h5 { margin:0 0 7px; color:#687782; font:700 9px/1.4 var(--fonte-corpo); letter-spacing:.12em; text-transform:uppercase; }
+.map-life-base { margin:0 0 15px; }
+.map-life-base p,.map-life-aspect-group li p { margin:0; color:#334553; font:400 12px/1.65 var(--fonte-corpo); }
+.map-life-aspect-group { margin-top:14px; padding:12px 13px 13px; border-left:3px solid; border-radius:0 10px 10px 0; }
+.map-life-aspect-group--easy { border-color:#8dad91; background:rgba(141,173,145,.12); }
+.map-life-aspect-group--easy h5 { color:#527459; }
+.map-life-aspect-group--challenge { border-color:#d28c75; background:rgba(210,140,117,.12); }
+.map-life-aspect-group--challenge h5 { color:#9a5c49; }
+.map-life-aspect-group--neutral { border-color:#c2a65e; background:rgba(194,166,94,.12); }
+.map-life-aspect-group--neutral h5 { color:#806a32; }
+.map-life-aspect-group ul,.map-life-house-planets ul { display:grid; gap:11px; margin:0; padding:0; list-style:none; }
+.map-life-aspect-group li strong { display:block; margin:0 0 3px; color:var(--azul-noite); font:700 10px/1.45 var(--fonte-corpo); }
+.map-life-house-planets { margin:0 0 15px; }
+.map-life-house-planets ul { display:flex; flex-wrap:wrap; gap:6px; }
+.map-life-house-planets li { padding:6px 9px; border-radius:999px; background:rgba(27,58,92,.08); color:var(--azul-ceu); font:700 10px var(--fonte-corpo); }
+@media (min-width:1100px) { .map-life-card-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+@media (max-width:600px) {
+  .map-life-dashboard { margin:26px -8px 32px; padding:20px 13px; border-radius:18px; }
+  .map-life-view { margin-top:22px; }
+  .map-life-view-title { font-size:19px; }
+  .map-life-card-grid { grid-template-columns:1fr; gap:12px; }
+  .map-life-card { padding:17px 16px; }
+}

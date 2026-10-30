@@ -1,0 +1,988 @@
+
+
+==============================================================================
+ASPECTO 
+==============================================================================
+
+[OK] Conjunção Sol / Lua (chave: 0:0:1)
+A sua consciência e as suas emoções estão fundidas. Existe uma forte dificuldade em separar o que você pensa do que sente, e o seu grande desafio é somar essas duas forças em vez de deixá-las em conflito. Você sente tudo como um todo. Essa fusão traz um grande crescimento interior, mas exige que você não se perca na escuridão das próprias emoções. A sua identidade está totalmente ligada ao seu mundo emocional.
+
+[OK] Conjunção Sol / Mercúrio (chave: 0:0:2)
+A sua identidade e a sua mente estão profundamente conectadas. Você tem uma facilidade enorme para expressar o seu ego através das palavras, do raciocínio e das ideias. O seu grande desafio é não deixar que a sua subjetividade ofusque a sua inteligência. Quando se distancia um pouco das próprias emoções, você se torna mais objetivo. Existe uma facilidade para os estudos e para a comunicação, mas evite o nervosismo e a dificuldade em aceitar conselhos.
+
+[OK] Conjunção Sol / Vênus (chave: 0:0:3)
+A sua essência está unida ao amor, à arte e ao prazer. Você tem um charme natural e uma necessidade profunda de harmonia e de beleza. O seu grande desafio é não se deixar levar apenas pela vaidade ou por prazeres superficiais. Essa fusão traz facilidade para as relações e um magnetismo pessoal muito forte. Você brilha quando ama e quando se sente valorizado.
+
+[OK] Conjunção Sol / Marte (chave: 0:0:4)
+A sua energia é direcionada para a ação, a coragem e a conquista. Você tem uma força de vontade poderosa e não foge dos desafios. O seu grande desafio é usar essa agressividade de forma construtiva, sem gerar brigas e irritações. Você tem um impulso sexual forte e uma grande capacidade de se afirmar. A sua vida é cheia de movimento.
+
+[OK] Conjunção Sol / Júpiter (chave: 0:0:5)
+A sua essência busca a expansão, o crescimento e a fé. Você tem uma confiança natural e atrai oportunidades de crescimento. O seu grande desafio é não exagerar nas ambições e não querer ser recompensado apenas pela coragem, sem o devido esforço. Você tem sorte direcionada para a área onde essa fusão ocorre.
+
+[OK] Conjunção Sol / Saturno (chave: 0:0:6)
+A sua consciência caminha junto com o rigor, a disciplina e a ambição. Você aprende a assumir responsabilidades desde cedo, mas o seu grande desafio é não deixar o peso da cobrança (muitas vezes vindo da figura paterna) te paralisar. Se você amadurecer com consciência, constrói bases sólidas. Evite o excesso de autocobrança.
+
+[OK] Conjunção Sol / Urano (chave: 0:0:7)
+A sua individualidade é marcada pela rebeldia, pela originalidade e pela independência. Você tem uma necessidade de sobressair e de quebrar padrões. O seu grande desafio é lidar com a impulsividade e com a inquietude. Você precisa de liberdade para ser quem é e tem uma energia nervosa muito forte.
+
+[OK] Conjunção Sol / Netuno (chave: 0:0:8)
+A sua essência é idealista, sensível e espiritual. Você tem uma forte conexão com o místico e com as artes. O seu grande desafio é não se perder em ilusões ou depender excessivamente do mundo da fantasia. O seu sentido prático é pequeno, mas a sua inspiração é enorme. Mantenha os pés no chão para que os seus sonhos se realizem.
+
+[OK] Conjunção Sol / Plutão (chave: 0:0:9)
+A sua identidade está unida a um poder de transformação profundo. Você tem uma força de vontade inabalável e uma grande capacidade de regeneração. O seu grande desafio é usar esse poder com ética, sem manipular ou dominar os outros. A sua vida passa por ciclos de mortes e renascimentos constantes.
+
+[OK] Conjunção Sol / Ascendente (chave: 0:0:10)
+A sua personalidade e a sua imagem externa estão alinhadas. Você é forte, autoconfiante e sabe mostrar ao mundo quem realmente é. O seu grande desafio é não parecer arrogante ou autoritário. A sua presença é marcante e você busca, naturalmente, poder e influência.
+
+[OK] Conjunção Sol / Meio do Céu (chave: 0:0:11)
+A sua identidade está voltada para as suas ambições profissionais e sociais. Você sempre se impõe nos objetivos que quer atingir e tem uma necessidade de salientar o seu ego e os seus valores. O seu grande desafio é não deixar a carreira consumir a sua vida pessoal. Você quer deixar a sua marca no mundo.
+
+[OK] Conjunção Lua / Mercúrio (chave: 0:1:2)
+A sua emoção e a sua mente estão unidas. Você tem uma facilidade enorme para expressar o que sente através da palavra. Existe um equilíbrio entre o consciente e o inconsciente, trazendo uma percepção aguçada. O seu grande desafio é não deixar que a racionalidade excessiva bloqueie a sua intuição. O seu pensamento tem uma rápida resposta emocional.
+
+[OK] Conjunção Lua / Vênus (chave: 0:1:3)
+A sua emoção está unida ao amor e ao prazer. Você sente necessidade de usar o charme, a gentileza e a sedução para conseguir o que quer. O seu grande desafio é lidar com a flutuação dos sentimentos e evitar o padrão maternal excessivo nos afetos. Você sabe se fazer popular e não gosta de confrontos.
+
+[OK] Conjunção Lua / Marte (chave: 0:1:4)
+A sua sensibilidade está unida à ação e à coragem. Você luta pelo equilíbrio familiar e emocional com muita intensidade. O seu grande desafio é controlar as reações emocionais impulsivas e pouco reflexivas. Você pode vivenciar paixões intensas e tem uma força interior poderosa para defender quem ama.
+
+[OK] Conjunção Lua / Júpiter (chave: 0:1:5)
+A sua emoção busca a expansão e a generosidade. Você tem uma facilidade enorme para proteger, acolher e ser sociável. O seu grande desafio é não exagerar nas emoções e evitar a tendência a engordar por conta da busca pelo conforto. Você confia na vida e tem uma fé inabalável.
+
+[OK] Conjunção Lua / Saturno (chave: 0:1:6)
+A sua emoção está unida à disciplina e à reserva. Você aprendeu a controlar os sentimentos desde cedo, muitas vezes por uma educação mais rígida ou austera. O seu grande desafio é não reprimir o que sente e não deixar a timidez ou a frieza afastarem as pessoas. Existe uma consciência forte do dever de proteger.
+
+[OK] Conjunção Lua / Urano (chave: 0:1:7)
+A sua emoção é diferenciada, explosiva e original. Você tem uma necessidade de liberdade emocional e busca conhecer o passado de formas inovadoras. O seu grande desafio é lidar com a inconstância dos sentimentos. As suas emoções são arrebatadoras, mas passam rápido, o que evita sofrimentos prolongados.
+
+[OK] Conjunção Lua / Netuno (chave: 0:1:8)
+A sua sensibilidade é grande, profunda e submetida ao ambiente. Você é muito impressionável e tem fortes tendências espirituais e artísticas. O seu grande desafio é separar o sonho da realidade e não criar ilusões com as figuras femininas da sua vida. A sua imaginação é mais fértil à noite.
+
+[OK] Conjunção Lua / Plutão (chave: 0:1:9)
+A sua sensibilidade está ligada ao inconsciente e aos mistérios da vida. A imagem da mãe é muito importante e influencia o seu próprio papel de cuidador. O seu grande desafio é lidar com a intensidade extrema dos sentimentos. Você não quer só o corpo, quer a alma. Tudo o que sente é profundo e transformador.
+
+[OK] Conjunção Lua / Ascendente (chave: 0:1:10)
+A sua emoção e a sua imagem estão alinhadas. Você tem uma boa popularidade e facilidade para refletir o que os outros querem. O seu grande desafio é não se perder na imagem que os outros fazem de você. A sua vida está muito ligada à família e aos artigos de primeira necessidade.
+
+[OK] Conjunção Lua / Meio do Céu (chave: 0:1:11)
+A sua emoção está voltada para a carreira e o reconhecimento público. Você tem uma facilidade para lidar com o público feminino e boas influências da mãe na sua realização profissional. O seu grande desafio é não misturar a necessidade de afeto com o profissionalismo. Você pode trabalhar com alimentação, história ou infância.
+
+[OK] Conjunção Mercúrio / Vênus (chave: 0:2:3)
+A sua mente e o seu coração estão unidos. Você tem uma grande facilidade para se comunicar com diplomacia, tato e suavidade. A sua fala é charmosa e você sabe exatamente a hora certa de falar. O seu grande desafio é não usar essa habilidade apenas para agradar, mas para expressar a sua verdade. A sua comunicação é uma fonte de prazer e pode ser uma grande aliada na sua vida financeira.
+
+[OK] Conjunção Mercúrio / Marte (chave: 0:2:4)
+A sua mente e a sua ação estão fundidas. O seu raciocínio é rápido, audacioso e corajoso. Você tem uma energia mental muito forte e adora um desafio intelectual. O seu grande desafio é controlar a pressa e o gosto pela competição, que podem gerar estresse e dores de cabeça. A sua mente é incisiva e excelente para discussões e para atividades que exigem rapidez e precisão.
+
+[OK] Conjunção Mercúrio / Júpiter (chave: 0:2:5)
+A sua mente e a sua expansão caminham juntas. Você adora pensar grande, aprender coisas novas e tem uma visão otimista e tolerante do mundo. O seu grande desafio é não se perder em ideias grandiosas e desenvolver a autodisciplina. Você tem facilidade para ensinar e verbalizar os seus conhecimentos, sendo uma pessoa muito inspiradora.
+
+[OK] Conjunção Mercúrio / Saturno (chave: 0:2:6)
+A sua mente e a sua estrutura estão unidas. Você tem uma capacidade de concentração excelente, pensa de forma prática e organizada. O seu grande desafio é não ser rígido ou conservador demais nos seus pensamentos. Você aprende com o tempo a ser mais original, e a sua maturidade mental é construída com esforço e foco.
+
+[OK] Conjunção Mercúrio / Urano (chave: 0:2:7)
+A sua mente e a sua liberdade estão fundidas. Você tem ideias originais, independentes e progressistas. O seu grande desafio é não ser teimoso ou isolado nas suas ideias. A sua mente é muito rápida, e você adora aprender técnicas avançadas e investigar conceitos por si mesmo, sem que ninguém interfira.
+
+[OK] Conjunção Mercúrio / Netuno (chave: 0:2:8)
+A sua mente e a sua intuição estão conectadas. Você tem uma imaginação muito fértil e uma facilidade enorme para a música, as artes e as questões espirituuais. O seu grande desafio é não se deixar levar pela fantasia ou pela ilusão. Mantenha os pés no chão para que as suas ideias se tornem reais.
+
+[OK] Conjunção Mercúrio / Plutão (chave: 0:2:9)
+A sua mente e a sua transformação estão unidas. Você tem uma mente investigativa e um poder de persuasão muito forte. O seu grande desafio é não usar a sua inteligência para manipular os outros. A sua curiosidade é um dom e a sua capacidade de pesquisar e eliminar o que não te interessa é cirúrgica.
+
+[OK] Conjunção Mercúrio / Ascendente (chave: 0:2:10)
+A sua mente e a sua imagem estão alinhadas. Você quer que o mundo veja a sua inteligência e a sua lógica. O seu grande desafio é controlar o sistema nervoso tenso, pensando bem antes de agir ou falar. Você quer influenciar o ambiente e tem total capacidade para isso.
+
+[OK] Conjunção Mercúrio / Meio do Céu (chave: 0:2:11)
+A sua mente e a sua carreira estão unidas. A comunicação é a sua grande ferramenta profissional. O seu grande desafio é não se dispersar no trabalho. Você precisa de estímulos mentais constantes e usa a astúcia para se destacar profissionalmente.
+
+[OK] Conjunção Vênus / Marte (chave: 0:3:4)
+O seu amor e a sua ação estão fundidos. Você vive a paixão com muita intensidade, franqueza e lealdade. A atração é espontânea e instintiva. O seu grande desafio é não deixar que a paixão se torne uma competição ou que a impulsividade estrague a relação. Existe um magnetismo muito forte e um grande entusiasmo na forma de amar.
+
+[OK] Conjunção Vênus / Júpiter (chave: 0:3:5)
+O seu amor e a sua expansão estão unidos. Você é popular, generoso e tem relações harmônicas. O seu grande desafio é não exagerar nos prazeres e nos gastos. Você ama o conforto, a vida social e acredita que o amor deve ser vivido com alegria e moralidade.
+
+[OK] Conjunção Vênus / Saturno (chave: 0:3:6)
+O seu amor e a sua estrutura estão unidos. Você leva os relacionamentos muito a sério, buscando segurança e estabilidade. O seu grande desafio é não ser frio, calculado ou resistente demais ao prazer. O amor autodisciplinado te dá segurança, mas você precisa aprender a se soltar mais.
+
+[OK] Conjunção Vênus / Urano (chave: 0:3:7)
+O seu amor e a sua liberdade estão fundidos. Você vive paixões fulminantes e toma decisões afetivas rápidas. O seu grande desafio é lidar com o inconformismo e a inconstância no amor. Você tem um talento artístico nato e se encanta por amores não convencionais, humanitários e altruístas.
+
+[OK] Conjunção Vênus / Netuno (chave: 0:3:8)
+O seu amor e a sua espiritualidade estão conectados. Você idealiza muito os relacionamentos e vive o amor de forma mística, poética e fantasiosa. O seu grande desafio é não se decepcionar com as ilusões que cria. O seu afeto é sentido como uma fé, mas você precisa ver as pessoas como elas realmente são.
+
+[OK] Conjunção Vênus / Plutão (chave: 0:3:9)
+O seu amor e a sua transformação estão unidos. As suas emoções são profundas, intensas e magnéticas. O seu grande desafio é não ser fanático, possessivo ou exagerado nas relações. O amor para você é uma experiência de fusão e renascimento. Cuidado com o "Complexo de Pigmaleão" (querer moldar o outro).
+
+[OK] Conjunção Vênus / Ascendente (chave: 0:3:10)
+O seu amor e a sua imagem estão alinhados. Você tem muito charme, desejo de agradar e um gosto apurado para a moda, perfumes e elegância. O seu grande desafio é não viver apenas em função da aparência e da aprovação dos outros.
+
+[OK] Conjunção Vênus / Meio do Céu (chave: 0:3:11)
+O seu amor e a sua carreira estão unidos. Você é amada no ambiente de trabalho e tem talento para relações públicas e diplomacia. O seu grande desafio é não misturar a busca por afeto com a busca por status. Você tem facilidade para o reconhecimento social.
+
+[OK] Conjunção Marte / Júpiter (chave: 0:4:5)
+A sua ação e a sua expansão estão unidas. Você tem uma energia conquistadora e uma confiança inabalável. O seu grande desafio é não ser voluntarioso e arrogante. Você tem o "dom do comando", uma coragem imensa para enfrentar desafios e adora uma aventura. O seu temperamento é batalhador e ativo, e você faz tudo com muita alegria.
+
+[OK] Conjunção Marte / Saturno (chave: 0:4:6)
+A sua ação e a sua estrutura estão unidas. Existe um conflito entre a vontade de agir e a necessidade de conter. O seu grande desafio é não viver no padrão de "correr parado", sentindo que faz muito esforço e não sai do lugar. Você tem prudência e coragem racional, sendo excelente para ações persistentes e trabalhos que exigem precisão e corte.
+
+[OK] Conjunção Marte / Urano (chave: 0:4:7)
+A sua ação e a sua liberdade estão fundidas. Você é enérgico, rebelde e original. O seu grande desafio é a falta de prudência e o gosto pelo risco extremo. Você tem uma capacidade incrível para a mecânica e para conduzir grupos com iniciativa. Você se motiva pela conquista e não tem medo de quebrar regras.
+
+[OK] Conjunção Marte / Netuno (chave: 0:4:8)
+A sua ação e a sua intuição estão conectadas. Você sente dificuldade para expressar a sua criatividade e o seu idealismo. O seu grande desafio é não se deixar levar pelo excesso de fantasia. Os seus desejos podem ficar pouco definidos, por isso é importante dar forma ao que você quer. Cuidado com a sublimação dos desejos físicos, que podem gerar frustração.
+
+[OK] Conjunção Marte / Plutão (chave: 0:4:9)
+A sua ação e a sua transformação estão unidas. Você tem um poder de dominação e conquista muito forte. O seu grande desafio é aprender a conviver com esse poder de forma construtiva, sem destruir. Você tem coragem para encarar o perigo e uma força de vontade inabalável para se regenerar. A sua energia é concentrada e implacável.
+
+[OK] Conjunção Marte / Ascendente (chave: 0:4:10)
+A sua ação e a sua imagem estão alinhadas. Você tem um comportamento enérgico, resistência física e uma liderança nata. O seu grande desafio é controlar o padrão provocativo e autoritário que você às vezes emana. A sua força é contagiante e você impõe respeito.
+
+[OK] Conjunção Marte / Meio do Céu (chave: 0:4:11)
+A sua ação e a sua carreira estão unidas. A sua coragem e energia facilitam o sucesso profissional. O seu grande desafio é não ser tão competitivo e agressivo a ponto de criar inimizades no trabalho. Você tem aptidão para carreiras que exigem ação, liderança e coragem.
+
+[OK] Conjunção Júpiter / Saturno (chave: 0:5:6)
+A sua expansão está unida à estrutura. Você tem a habilidade de aliar o otimismo à disciplina. É uma pessoa prática, estável e que acredita na ordem e na justiça. O seu grande desafio é não deixar que o peso das responsabilidades apague a sua fé, nem que o excesso de otimismo ignore os limites da realidade. Você tem a paciência necessária para construir coisas duradouras e a sabedoria para vencer obstáculos.
+
+[OK] Conjunção Júpiter / Urano (chave: 0:5:7)
+A sua expansão está unida à liberdade. Você é uma pessoa que busca novos horizontes e tem ideias à frente do seu tempo. Existe um forte desejo de independência e um grande humanitarismo. O seu grande desafio é focar a sua energia, pois pode se dispersar com muitas novidades ao mesmo tempo. Você tem um talento nativo para inovar, ensinar novas filosofias e inspirar as pessoas com a sua visão de futuro.
+
+[OK] Conjunção Júpiter / Netuno (chave: 0:5:8)
+A sua fé está unida à intuição. A sua imaginação é riquíssima, e você tem um grande amor pelas artes, pela música e pela espiritualidade. O seu grande desafio é não se perder em ilusões ou viver apenas em um mundo de fantasias. Use a sua inspiração e a sua conexão com o invisível para criar algo concreto no mundo real. Você tem o poder de curar através da sua sensibilidade.
+
+[OK] Conjunção Júpiter / Plutão (chave: 0:5:9)
+A sua expansão está unida ao poder transformador. Você tem uma fé inabalável e uma força de vontade imensa. O seu grande desafio é aprender a usar o seu poder e a sua ambição de forma construtiva, sem querer submeter tudo e todos à sua vontade. Você não aceita a derrota facilmente e possui a força necessária para se regenerar e vencer as limitações que aparecem na sua vida.
+
+[OK] Conjunção Júpiter / Ascendente (chave: 0:5:10)
+A sua expansão está na sua imagem. O mundo vê você como alguém otimista, autoconfiante e sortudo. Você transmite uma energia de crescimento e busca por conhecimento. O seu grande desafio é não parecer arrogante ou orgulhoso demais. Você tem facilidade para atrair boas oportunidades e pessoas que te ajudam a crescer.
+
+[OK] Conjunção Júpiter / Meio do Céu (chave: 0:5:11)
+A sua expansão está na carreira. Você tem facilidade para alcançar prestígio e reconhecimento profissional, muitas vezes com pouco esforço. O seu grande desafio é não se acomodar ou agir com falsidade no ambiente de trabalho. Você tem uma reputação sólida e conta com a proteção de pessoas influentes para ascender socialmente.
+
+[OK] Conjunção Saturno / Urano (chave: 0:6:7)
+A sua estrutura está unida à liberdade. Existe em você uma tensão constante entre a vontade de inovar, quebrar regras e ser independente, e a necessidade de manter a ordem e a segurança. O seu grande desafio é encontrar o equilíbrio entre a tradição e a revolução. Você tem a capacidade de criar novas estruturas duradouras e de reformar aquilo que já não serve mais.
+
+[OK] Conjunção Saturno / Netuno (chave: 0:6:8)
+A sua estrutura está unida à espiritualidade. Você busca dar forma concreta aos seus sonhos, à sua arte e à sua intuição. O seu grande desafio é não deixar que o medo, a rigidez ou a decepção apaguem a sua fé e a sua inspiração. Você aprende, ao longo da vida, a ter disciplina para manifestar o que a sua alma deseja, sem se perder em ilusões.
+
+[OK] Conjunção Saturno / Plutão (chave: 0:6:9)
+A sua estrutura está unida ao poder transformador. É uma fusão de grande força, resistência e profunda transformação. Você tem uma capacidade incrível de enfrentar crises e de se reconstruir do zero. O seu grande desafio é não se tornar uma pessoa controladora, fria ou autoritária. Use a sua força e a sua ambição para construir algo que transforme a sua realidade para melhor.
+
+[OK] Conjunção Saturno / Ascendente (chave: 0:6:10)
+A sua estrutura está na sua imagem. O mundo vê você como alguém sério, reservado, maduro e muito responsável. Você pode parecer distante ou frio, mas isso esconde uma grande sensibilidade. O seu grande desafio é não duvidar do seu próprio valor e não se fechar para as pessoas. A sua maturidade e confiabilidade são os seus maiores trunfos.
+
+[OK] Conjunção Saturno / Meio do Céu (chave: 0:6:11)
+A sua estrutura está na carreira. A sua trajetória profissional é construída com muito esforço, disciplina e responsabilidade. Você não busca atalhos e quer construir uma reputação sólida. O seu grande desafio é não deixar a ambição ou o orgulho te tornarem uma pessoa excessivamente rígida, severa ou autoritária no trabalho. O seu legado é construído passo a passo.
+
+[OK] Conjunção Urano / Netuno (chave: 0:7:8)
+A sua liberdade está unida à espiritualidade. Você está conectado ao progresso e às transformações do seu tempo. É uma pessoa que une a intuição e a sensibilidade com o desejo de inovar e de melhorar a sociedade. O seu grande desafio é manter os pés no chão e não se perder em utopias ou em idealizações. A sua genialidade e a sua conexão espiritual são mais úteis quando servem ao coletivo.
+
+[OK] Conjunção Urano / Plutão (chave: 0:7:9)
+A sua liberdade está unida ao poder transformador. Você tem uma energia transformadora muito poderosa. É uma pessoa que busca a liberdade a qualquer custo e que tem a capacidade de destruir velhos padrões para criar algo totalmente novo. O seu grande desafio é lidar com os excessos e com a intensidade das suas emoções. Use a sua força e a sua rebeldia para se libertar internamente e respeitar a liberdade de todos.
+
+[OK] Conjunção Urano / Ascendente (chave: 0:7:10)
+A sua liberdade está na sua imagem. O mundo vê você como alguém original, independente e que não segue as regras tradicionais. Você precisa de liberdade para ser quem é. O seu grande desafio é não ser tão rebelde ou impessoal, permitindo que as pessoas se aproximem e se conectem com você. A sua imagem é de alguém que está sempre à frente do tempo.
+
+[OK] Conjunção Urano / Meio do Céu (chave: 0:7:11)
+A sua liberdade está na carreira. A sua trajetória profissional está voltada para o futuro, para a tecnologia, para a ciência e para a inovação. Você tem grandes ideias e a capacidade de executá-las. O seu grande desafio é lidar com as mudanças repentinas e os reveses na profissão, sem desistir ou se tornar excessivamente rebelde com os superiores. O seu legado é a inovação.
+
+[OK] Conjunção Netuno / Plutão (chave: 0:8:9)
+A sua espiritualidade está unida ao poder transformador. Você tem a capacidade de compreender o profundo e o invisível. É uma pessoa que passa por uma "morte" das ilusões, permitindo que a sua fé e a sua espiritualidade sejam reformuladas. O seu grande desafio é não se perder em confusões mentais ou em escapismos. Você tem um dom para o autoconhecimento profundo e para curar as dores da alma.
+
+[OK] Conjunção Netuno / Ascendente (chave: 0:8:10)
+A sua espiritualidade está na sua imagem. O mundo vê você como alguém sensível, artístico, empático e até um pouco enigmático. Você transmite uma aura de suavidade e mistério. O seu grande desafio é não parecer frágil ou se fechar no seu próprio mundo. Mostre a sua arte e a sua intuição de forma prática, sem medo de ser julgado e mantendo os pés no chão.
+
+[OK] Conjunção Netuno / Meio do Céu (chave: 0:8:11)
+A sua espiritualidade está na carreira. A sua trajetória profissional está unida à inspiração, à arte, à cura ou a causas humanitárias. Você pode ter dificuldades em estruturar a sua vida profissional de forma tradicional, mas o seu talento artístico e a sua intuição são as suas ferramentas. O seu grande desafio é não se deixar levar pela ilusão ou pela falta de foco, construindo um caminho que alimente a sua alma e traga realização.
+
+[OK] Conjunção · Plutão / Ascendente (chave: 0:9:10)
+O mundo vê você como alguém com muita autoridade pessoal e uma força de vontade inabalável. Você tem fibra e não verga com facilidade. Você exerce uma influência sutil, mas poderosa, em qualquer ambiente em que estiver. A sua capacidade de intuição é grande, quase como um raio-X. As suas condutas são misteriosas e sempre numa dimensão mais elevada. Você vivencia ciclos de forma constante, o que te permite experimentar sempre novos começos e a destruição do que já está gasto: é a sua grande oportunidade de renovação constante.
+
+[OK] Conjunção · Plutão / Meio do Céu (chave: 0:9:11)
+Na sua carreira e legado, existe uma luta constante por um objetivo ou por uma causa social. Você constrói o seu próprio destino profissional e tem uma habilidade incrível para influenciar as pessoas. Atenção: é muito importante tomar cuidado para não haver abuso de poder no ambiente de trabalho. As suas técnicas são muito pessoais e possuem sempre uma conotação de mistério. Esta posição também pode indicar um líder espiritual ou alguém com uma missão espiritual muito forte na sua trajetória profissional.
+
+
+
+
+[OK] Sextil · Sol / Lua (chave: 1:0:1)
+Você tem um equilíbrio psicológico muito bonito, onde a sensibilidade e a imaginação caminham juntas, somando forças e proporcionando uma busca constante por segurança interior. Você tem o dom de harmonizar os opostos: consegue equilibrar o seu ego e as suas emoções, e também traz essa harmonia para as relações entre as figuras paterna e materna na sua vida.
+
+[OK] Sextil · Sol / Vênus (chave: 1:0:3)
+A sua expressão pessoal flui lindamente através dos afetos. Você tem uma facilidade natural para perceber o real valor das coisas e das situações, e sente um grande prazer pelo conforto e pela beleza em todos os níveis. O seu brilho está na sua capacidade de amar e de se encantar com a vida.
+
+[OK] Sextil · Sol / Marte (chave: 1:0:4)
+Você tem um grande senso de integridade, toma decisões rápidas e é muito franco ao dar opiniões. Busca os seus objetivos com audácia e coragem. O seu lado pessoal é dinâmico e adora conquistar, transformando desafios em oportunidades de crescimento.
+
+[OK] Sextil · Sol / Júpiter (chave: 1:0:5)
+Existe uma harmonia muito grande entre o seu poder pessoal e o seu orgulho, o que gera um otimismo contagiante na sua vontade de vencer. Você tem um forte senso de superioridade moral e social, mas busca sempre agir com ética e respeito às leis. O seu desejo é de um poder benevolente, que te faz sentir grande e capaz de ajudar.
+
+[OK] Sextil · Sol / Saturno (chave: 1:0:6)
+O seu sucesso na vida vem através dos seus próprios esforços, tendo a concentração e a organização como grandes aliadas. Você é como quem chega ao "cume da montanha": conquista o poder através da realização e está sempre pronto para assumir responsabilidades. O seu forte senso de dever te faz adaptar às limitações com maturidade.
+
+[OK] Sextil · Sol / Urano (chave: 1:0:7)
+A sua capacidade inventiva é excelente. Você tem uma liderança natural, um certo nervosismo criativo e uma forte tendência a querer reformar as coisas à sua volta. O seu entusiasmo é contagiante e a sua afirmação é ousada. Adapta-se com facilidade à vida moderna e às inovações, apaixonando-se pelas novidades com reações vivas e rápidas.
+
+[OK] Sextil · Sol / Netuno (chave: 1:0:8)
+A sua sensibilidade, criatividade, imaginação e percepção estão muito aguçadas. A sua essência busca o romantismo e a ternura, e o seu lado espiritual sempre te protege. Os seus sonhos são muito significativos e devem ser levados em conta, pois você tem uma visão interna que te permite canalizar os processos de pensamento antes mesmo de eles acontecerem.
+
+[OK] Sextil · Sol / Plutão (chave: 1:0:9)
+Você possui uma força de vontade enorme e uma capacidade incrível de se regenerar, extraindo da natureza as forças necessárias para recomeçar. Tem interesses por práticas como ioga e meditação. Você sabe exatamente onde, como e quando atuar para produzir mudanças positivas, podendo recomeçar em qualquer setor da vida.
+
+[OK] Sextil · Sol / Ascendente (chave: 1:0:10)
+Você gosta de ser uma pessoa dominante e é ambicioso. Tem uma boa energia física e sabe da importância que a autoconfiança produz para concretizar os seus projetos e propósitos. Tudo é exercido de forma mais branda, sem muita manipulação, mas sempre com a vontade de se afirmar.
+
+[OK] Sextil · Sol / Meio do Céu (chave: 1:0:11)
+Você tem uma boa capacidade de vencer graças aos seus esforços pessoais ou à ajuda exterior. Você se orgulha sempre do trabalho que realiza e da sua trajetória, construindo uma reputação sólida e merecida.
+
+[OK] Sextil · Lua / Mercúrio (chave: 1:1:2)
+A sua emoção e a sua mente se estimulam através do contato com muita gente. Você precisa de variedade e de movimento, e pensa muito no passado e em assuntos de família. Adaptar-se à família aciona a sua segurança interior, e a sua comunicação está sempre ligada aos sentimentos.
+
+[OK] Sextil · Lua / Vênus (chave: 1:1:3)
+Você busca os dois polos da afetividade em uma mesma pessoa: o amor-família e o amor-paixão. Você sabe equilibrar essas buscas sem se ferir. Sente os sentimentos e a afetividade flutuarem, mas consegue navegar por essas águas com graça e harmonia.
+
+[OK] Sextil · Lua / Marte (chave: 1:1:4)
+Você sabe da necessidade de canalizar a sua energia pessoal através das emoções, e isso gera segurança interior. No seu interior e junto à família, você é intensamente emotivo. O seu emocional possui uma força enorme para suportar tensões e lutar pelo que ama.
+
+[OK] Sextil · Lua / Júpiter (chave: 1:1:5)
+As emoções protetoras incentivam o seu crescimento. É um aspecto que indica muita sorte, com facilidade para ganhar processos judiciais desde que estejam aliados ao passado e à família. Você busca sempre valores morais e éticos elevados.
+
+[OK] Sextil · Lua / Saturno (chave: 1:1:6)
+A sua família é a sua busca por segurança. A razão muitas vezes atrasa os movimentos da sua emoção. Existe uma fidelidade muito forte aos valores familiares, mas uma certa rejeição à ternura. Você tem uma forte tendência a querer ter imóveis ou uma base material sólida para acalmar os seus sentimentos de rejeição.
+
+[OK] Sextil · Lua / Urano (chave: 1:1:7)
+A sua vida familiar e a sua segurança interior sofrem mudanças constantes. A liberdade emocional é mais exigida. Existe um interesse pela intuição, desde que esteja apoiada no científico. Você busca para a emoção o sentido de renovação, reciclagem e liberdade.
+
+[OK] Sextil · Lua / Netuno (chave: 1:1:8)
+Existe uma linda harmonia entre o seu sentimento e a sua espiritualidade. Forte interesse pela psicologia e facilidade para a mediunidade. A análise e o cálculo são um pouco estranhos para você. Como a sua emoção e a sua intuição são muito fortes, você tende a sonhar mais do que o normal ou "viajar" mais do que lhe é permitido. Forte atração pela arte e pela música.
+
+[OK] Sextil · Lua / Plutão (chave: 1:1:9)
+Os seus sentimentos são mais controlados, mesmo que manifestados com poder. As mudanças e reavaliações se produzem sem muita dificuldade. Os sentimentos e as emoções são fortalecidos com o uso da força de vontade e a renovação da sensibilidade. Você tem um padrão emotivo e sensível, mas consegue sempre se redirecionar quando precisa.
+
+[OK] Sextil · Lua / Ascendente (chave: 1:1:10)
+Você tem uma boa habilidade para tratar com o público, e a sua família ajuda a vencer. A emoção e o passado são encarados de forma a dar oportunidade para um maior desenvolvimento da personalidade. A sensibilidade, a intuição e a dramaticidade podem ser usados para afirmar quem você é.
+
+[OK] Sextil · Lua / Meio do Céu (chave: 1:1:11)
+A figura feminina e o público ajudam a se afirmar na profissão. A sua reputação é boa. A intuição e o passado ajudam o sucesso profissional e social. O público te leva ao êxito, social ou profissional, com algumas flutuações no trabalho (muito ou pouco).
+
+[OK] Sextil · Mercúrio / Vênus (chave: 1:2:3)
+Os seus valores pessoais ou financeiros são ganhos através da comunicação e das ideias que expressa. Os sentimentos são influenciados pela razão e vice-versa. As antipatias e simpatias são imediatas. A sua forma de falar tem um estilo harmônico e negociador, encantando com as palavras.
+
+[OK] Sextil · Mercúrio / Marte (chave: 1:2:4)
+A sua mente tem coragem para expressar as ideias. Existe a vontade de começar novos aprendizados. A sua forma de falar é convincente. A lucidez de pensamento se alimenta de mais ousadia e sentido de competição. Ao debater as ideias, pode ter um padrão de discussão, mas que na verdade é apenas o seu entusiasmo em ação.
+
+[OK] Sextil · Mercúrio / Júpiter (chave: 1:2:5)
+Você domina bem o reino das ideias abstratas. Tem facilidade para o entendimento de leis, de conceitos abstratos e culturas diferentes. Precisa sempre ter integridade e honestidade nos procederes pessoais. Gosta das viagens, pois elas ampliam os conhecimentos e dão asas para a criatividade e a imaginação.
+
+[OK] Sextil · Mercúrio / Saturno (chave: 1:2:6)
+A sua mente tem facilidade para organizar e administrar as ideias e os conceitos. Quando precisa, tem reserva e sangue-frio, mas depois pode desmoronar, porque exigiu do emocional mais do que ele podia dar. Tem habilidade para lidar com situações que exigem praticidade. A mente aprende disciplina, sensatez e responsabilidade.
+
+[OK] Sextil · Mercúrio / Urano (chave: 1:2:7)
+A sua mente busca progresso técnico ou pessoal. É curiosa, com facilidade para buscar o alternativo e fazer reciclagens. Tem boa presença de espírito, independência e originalidade nas ideias. A intuição é desperta. A mente é impaciente diante da ignorância e sabe buscar novas formas de pensamento, educação, literatura e psicologia.
+
+[OK] Sextil · Mercúrio / Netuno (chave: 1:2:8)
+A sua mente é fértil e a sua espiritualidade é forte. Existe uma visualização interna que facilita ver as situações com detalhes. Você sabe pensar ou conceituar com idealismo. O seu mental tem facilidade diante das experiências espirituais. Existe um conhecimento mediúnico em você e um lado racional que entende os sonhos.
+
+[OK] Sextil · Mercúrio / Plutão (chave: 1:2:9)
+Você tem habilidade para compreender as energias que se acham na natureza e nas situações, seja do ponto de vista científico ou espiritual. Os impulsos inconscientes afetam o sistema nervoso, e você sabe que não se reorientar significa um sistema nervoso tenso. A sua mente sabe que precisa acionar a força de vontade para concluir as ideias.
+
+[OK] Sextil · Mercúrio / Ascendente (chave: 1:2:10)
+Você tem facilidades nas expressões mentais e na comunicação. É importante se permitir contatos sempre novos e em situações "leves". A comunicação precisa sempre ter a direção escolhida por você. A lucidez mental está em cima daquilo que você considera importante e quer que seja resolvido.
+
+[OK] Sextil · Mercúrio / Meio do Céu (chave: 1:2:11)
+A comunicação é quem gera facilidades para a profissão. Os seus contatos não podem ser ou ficar dispersos. As ideias precisam ser colocadas com lucidez. Você pode escrever sobre os aprendizados que acontecem no trabalho e fazer disso uma publicação específica.
+
+[OK] Sextil · Vênus / Marte (chave: 1:3:4)
+Você busca a independência dos afetos e a ambição junto aos afetos. A relação a dois é vivenciada de forma alegre e feliz. Facilidade tanto para buscar o entusiasmo quanto para ganhar dinheiro. O afeto e o sexo são vivenciados com delicadeza e tato, com condutas afetivas direcionadas ao refinamento.
+
+[OK] Sextil · Vênus / Júpiter (chave: 1:3:5)
+Você é conformista na forma de conduzir a vida afetiva. As relações afetivas possuem uma certa multiplicidade e as sociedades trazem benefícios. Gosto pela elegância e grande facilidade para fazer dinheiro. O amor precisa ser vivido na legalidade e com respeito.
+
+[OK] Sextil · Vênus / Saturno (chave: 1:3:6)
+Os afetos e sentimentos são vivenciados com limitações e seriedade, podendo impor o sacrifício dos desejos físicos, fazendo com que o dever fale mais forte do que a sensualidade. É o conhecido "amor inteligente, prático e ambicioso". A fidelidade acontece mais pela conveniência. Muitas vezes existe a opção pelo celibato, dedicando-se ao trabalho. As relações tendem a acontecer mais tarde na vida.
+
+[OK] Sextil · Vênus / Urano (chave: 1:3:7)
+Existe segurança diante do charme que você tem e do impacto que pode causar. É original para expressar os afetos e ama tanto as diversões como os amigos. No afeto, há estranhos desejos e gostos. Boa capacidade artística, indo além dos padrões normais. O ciúme é mais teórico do que físico.
+
+[OK] Sextil · Vênus / Netuno (chave: 1:3:8)
+Você tem uma boa capacidade de doação afetiva e de compaixão. Precisa de um maior sentido prático nos afetos e tem um forte sentimento pelo que é mágico. Gosto pela moda e pelo estético. Facilidade para o crescimento espiritual. Só precisa ter cuidado para não se perder no mundo da ilusão, a fim de não confundir ilusão com sonho.
+
+[OK] Sextil · Vênus / Plutão (chave: 1:3:9)
+As emoções possuem um grande papel na sua vida, modificando as formas de expressão. O impulso sexual é forte. Você sente ciúmes, possessividade financeira ou afetiva. Facilidade para manobras afetivas ou financeiras, e é onde o talento surge natural e espontaneamente.
+
+[OK] Sextil · Vênus / Ascendente (chave: 1:3:10)
+Os seus desejos são fortes, e você pode usar a simpatia pessoal para obter a aprovação do que quer. Popularidade e romances felizes. Habilidades para música, dança, arte, finanças e especulações.
+
+[OK] Sextil · Vênus / Meio do Céu (chave: 1:3:11)
+O êxito chega através do setor de conveniência. Você tem criatividade no trabalho e no social para colher o que quer. A arte, as finanças ou o afeto se encontram dentro da sua profissão. Amor e trabalho se mesclam.
+
+[OK] Sextil · Marte / Júpiter (chave: 1:4:5)
+As ações levam ao crescimento e ao êxito. Você tem força tanto muscular quanto sexual. Facilidade para dirigir, tomar atitudes, vencer adversários, liderar e se voltar para a política ou área judicial, onde a competição é mais exercida.
+
+[OK] Sextil · Marte / Saturno (chave: 1:4:6)
+Os propósitos são sérios e as atividades bem calculadas. A paciência e a força de vontade são as suas maiores virtudes. Facilidade para controlar os impulsos sexuais e para ser tanto o bom estrategista quanto quem usa o "sangue-frio" a seu favor.
+
+[OK] Sextil · Marte / Urano (chave: 1:4:7)
+As atividades são originais, independentes, desembaraçadas e engenhosas. A sua energia é inesgotável e o nervosismo é controlado. A energia sexual é mais aproveitada e dinâmica. A independência e a liberdade pessoais são sempre vivenciadas. É a constante busca tanto por empreitadas novas como por novas experiências.
+
+[OK] Sextil · Marte / Netuno (chave: 1:4:8)
+Você luta para conquistar os sonhos sem o gosto por muito trabalho, pois as lutas são idealistas. As suas ações influem na forma de agir. Sabe perceber o que está errado ou a pouca sinceridade dos que estão ao redor, porém nem sempre usa isso para si. A sua espiritualidade é entusiasta, com pressa para se manifestar.
+
+[OK] Sextil · Marte / Plutão (chave: 1:4:9)
+É o uso da energia sempre de forma positiva. As forças inconscientes atuam melhor do que as decisões conscientes. Você luta sem descanso pelo que considera correto. Bom aspecto para cirurgiões. Habilidade para extrair energia "superior" e reparar as forças do corpo.
+
+[OK] Sextil · Marte / Ascendente (chave: 1:4:10)
+É a energia da franqueza, indo direto ao assunto. Boa capacidade de decisão e excelente forma física. As respostas são rápidas, diretas e francas; a competição é sempre estimulada. A sua iniciativa leva aos ganhos.
+
+[OK] Sextil · Marte / Meio do Céu (chave: 1:4:11)
+Você luta sem descanso pela afirmação social ou profissional. Pressa para alcançar os objetivos e tomar decisões. A competição é mais estimulada e a força de vontade mais exercida. Facilidade para as áreas militares ou para as que lidam com fogo, ferro, sangue e competição.
+
+[OK] Sextil · Júpiter / Saturno (chave: 1:5:6)
+O seu sentido do necessário é mais aguçado. Fortes influências do passado bem como interesses em política e justiça. Facilidade para ser o "pilar" de situações, para administrar e organizar. Habilidades para aproveitar as oportunidades e para ganhar a proteção de pessoas mais velhas. Existe honestidade e integridade nas condutas. O temperamento é filosófico, portanto, não se deixa levar pelo exagero.
+
+[OK] Sextil · Júpiter / Urano (chave: 1:5:7)
+Facilidade para se livrar das limitações e obstáculos que impedem as renovações. Os amigos exercem boas influências; facilidade para grupos, equipes e clubes. Êxitos nas áreas de Magistratura, Advocacia, Pedagogia e junto às editoras. Fortes pressentimentos de sorte e bons ideais democráticos. Boas habilidades tanto para a criatividade como para a expansão associada à técnica.
+
+[OK] Sextil · Júpiter / Netuno (chave: 1:5:8)
+Forte interesse pelo metafísico e recebimento de ajuda. A imaginação e o sonho ajudam nos recursos financeiros ou facilitam os negócios. Bom aspecto para publicidade, religiosidade e Educação com conotações artísticas. A capacidade mediúnica fica mais acentuada. Gosto pela hospitalidade. O comportamento é humano e bondoso, com facilidade para a caridade.
+
+[OK] Sextil · Júpiter / Plutão (chave: 1:5:9)
+É a energia espiritual associada à transformação que leva a reorientação de toda e qualquer situação na vida ou no meio ambiente ao redor. É a facilidade da reorientação espiritual que atua de forma construtiva tanto no setor psicológico quanto no físico. Capacidade para saber de forma correta o que é certo ou errado.
+
+[OK] Sextil · Júpiter / Ascendente (chave: 1:5:10)
+Atitudes construtivas que se direcionam à personalidade, à simpatia pessoal e ao otimismo. Facilidade para lidar com o público, uma vez que possui honestidade e sinceridade nos procederes. Boa saúde e facilidade para alcançar as ambições.
+
+[OK] Sextil · Júpiter / Meio do Céu (chave: 1:5:11)
+O social ajuda nas honras e posições de destaque e este êxito está ligado às proteções. Você consegue alcançar os objetivos a que se propõe. Profissão de lucro fácil e certo, mesmo sem muito merecimento.
+
+[OK] Sextil · Saturno / Urano (chave: 1:6:7)
+A união da restrição com o inconformismo leva você a buscar a liberdade através da responsabilidade: quanto mais autodisciplina e vontade de romper com barreiras, mais você se afirma enquanto indivíduo. O realismo e a praticidade são vivenciados de forma original; a evolução e a organização se associam para obter melhores resultados. Há uma alternância entre o inesperado, o progresso, a segurança e o tempo.
+
+[OK] Sextil · Saturno / Netuno (chave: 1:6:8)
+É a intuição sendo sustentada pela lógica e a criatividade ligada às organizações e estruturas. Os ideais possuem propósitos definidos. Facilidades para detectar quem engana, quem foge da realidade e quem é desonesto. É o "idealista prático", que só busca sonhos realizáveis e com um propósito claro.
+
+[OK] Sextil · Saturno / Plutão (chave: 1:6:9)
+É a soma da energia oculta com a estrutura e a disciplina, fazendo com que você tenha mais resistência do que o normal. Você suporta tudo, desde que alcance seus fins e objetivos. Toda e qualquer reorientação é feita buscando estrutura. Existe seriedade e reserva, impondo respeito tanto a superiores quanto a subalternos. É o gosto acentuado pelo poder.
+
+[OK] Sextil · Saturno / Ascendente (chave: 1:6:10)
+O caráter é conservador e busca condutas autodisciplinadas. Existe timidez e dúvidas sobre o próprio valor. Gosto por sempre passar despercebido. A forte tendência à reserva é interpretada como indiferença e desapego, quando na realidade você está tentando apenas ser prática. Precisa ter cuidado para não subestimar suas próprias capacidades. Há responsabilidade e você nunca deixa de fazer algo que depende de si.
+
+[OK] Sextil · Saturno / Meio do Céu (chave: 1:6:11)
+O êxito acontece através de esforço, administração e ambição. Existe bastante responsabilidade frente à profissão e ao social. É importante atuar com tempo e previsão. Facilidade para receber ajuda de pessoas mais velhas ou mesmo do pai, como também lidar com estruturas físicas, psicológicas ou materiais. Muita ênfase no passado e nas tradições.
+
+[OK] Sextil · Urano / Netuno (chave: 1:7:8)
+Você sente uma desconfiança natural de governos e de qualquer autoridade muito rígida. A sua espiritualidade encontra espaço nos grupos e equipes, e você não tolera religiões que tentem limitar a sua liberdade. Você busca a liberdade pessoal e coletiva, explorando o misticismo de forma livre e inovadora.
+
+[OK] Sextil · Urano / Plutão (chave: 1:7:9)
+É a vontade de regenerar a sociedade e o seu próprio interior. A reforma é necessária para liberar as potencialidades. É o uso positivo das forças do inconsciente para a liberdade e a técnica progressista. Busca-se um sentido maior para usar a vida, o desejo ou a força de vontade. É a necessidade de ter liberdade para conhecer o mundo oculto do mistério e da regeneração, que permite se libertar de velhos conceitos e padrões.
+
+[OK] Sextil · Urano / Ascendente (chave: 1:7:10)
+Existem impaciência e rebeldia junto aos conceitos tradicionais. Temperamento voluntarioso e batalhador, bom magnetismo pessoal com um certo grau de clarividência e intuição. O potencial criativo só precisa de autodisciplina para ser usado. Você entende as pessoas melhor do que elas possam imaginar.
+
+[OK] Sextil · Urano / Meio do Céu (chave: 1:7:11)
+As iniciativas dentro do trabalho são originais, e o talento e o reconhecimento chegam de formas rápida e surpreendente. Existe apoio dos amigos. As esperanças são sempre renovadas, a tecnologia é utilizada, há interesse pelas novidades e a reputação é a de um excêntrico. Necessidade de fazer seu próprio caminho.
+
+[OK] Sextil · Netuno / Plutão (chave: 1:8:9)
+Você usa a sua fé para encontrar a paz interior e transcender as próprias limitações. A crença em vidas passadas (ou padrões herdados) é buscada para conseguir o equilíbrio interno. Você sempre fará uma revisão com mais profundidade nos conceitos, nas ideias, na filosofia de vida, nos valores pessoais e nas relações humanas.
+
+[OK] Sextil · Netuno / Ascendente (chave: 1:8:10)
+Você busca por um ideal; é romântico por natureza e a imaginação é fértil. Sabe captar o estado de ânimo dos que estão ao seu redor. Nas tomadas de decisões, falta mais firmeza. Nunca pode achar que precisa fazer algo a mais para receber reconhecimento, pois obterá pessoas tirando vantagens do bom coração.
+
+[OK] Sextil · Netuno / Meio do Céu (chave: 1:8:11)
+Você sabe captar o estado de ânimo dos que estão ao seu redor. O público reconhece o valor. A espiritualidade é canalizada de forma a ajudar o coletivo, trazendo inspiração para a sua carreira.
+
+[OK] Sextil · Plutão / Ascendente (chave: 1:9:10)
+A concentração e a percepção são boas. A força de vontade modifica qualquer forma de ação, situação ou expressão. Você inspira respeito pela forma realista de ver as coisas. Existe gosto pelos desafios, principalmente quando os adversários estão à sua altura. Não consegue ser manso e diplomático, na maioria das vezes acaba sendo brusco e descortês, mesmo sem o querer.
+
+[OK] Sextil · Plutão / Meio do Céu (chave: 1:9:11)
+Você sabe captar as necessidades dos demais. Existe iniciativa no social, no cotidiano ou junto aos valores. O êxito social e profissional chega mais fácil através da reformulação dos valores.
+
+
+[OK] Quadratura · Sol / Lua (chave: 2:0:1)
+Existe um conflito interno entre o que você deseja (seu ego) e o que você sente (suas emoções). É como se o presente e o passado, a subjetividade e a objetividade, estivessem em lados opostos. Você sente uma divisão entre o seu mundo exterior e o seu interior, o que gera atitudes contraditórias, inseguranças e frustrações. O seu grande aprendizado é harmonizar essas duas forças, entendendo que razão e emoção podem caminhar juntas sem se anularem.
+
+[OK] Quadratura · Sol / Vênus (chave: 2:0:3)
+Você sente a necessidade de usar o seu valor pessoal e o seu charme para se relacionar com os outros. O seu grande desafio é encontrar a harmonia entre a sua personalidade e os seus desejos afetivos, pois essa falta de sintonia pode gerar desilusões ou feridas nos seus relacionamentos. Atenção: você pode ter a tendência de se auto sabotar afetivamente ou de se envolver em relações que trazem mais dor do que prazer. Aprenda a se valorizar por quem você é.
+
+[OK] Quadratura · Sol / Marte (chave: 2:0:4)
+Existe uma tensão entre a sua vontade de agir e a forma como você expressa a sua força. Você pode sentir um gosto pelo risco e uma facilidade para se envolver em conflitos com figuras de autoridade. Atenção: esta tensão aumenta a sua propensão a febres, inflamações e acidentes. Além disso, você pode ter medo de competir ou apresentar um padrão de rebeldia que gera atritos desnecessários. Use a sua coragem de forma construtiva e cuidadosa com o seu corpo.
+
+[OK] Quadratura · Sol / Júpiter (chave: 2:0:5)
+O seu grande desafio é desenvolver a paciência e a autodisciplina. Você pode acabar entrando em choque com pessoas que detêm autoridade sobre você. Existe uma tendência a ser muito exigente na análise dos outros, mas pouco exigente consigo mesmo, o que pode gerar exageros. Aprenda a olhar para dentro com a mesma atenção que olha para fora.
+
+[OK] Quadratura · Sol / Saturno (chave: 2:0:6)
+Você sente a necessidade de lutar muito para vencer as limitações e os atrasos que aparecem na sua vida. Existe uma forte tendência ao pessimismo, aos medos e às inibições. Atenção: o seu coração e o seu sistema ósseo podem sofrer com limitações ou restrições. O seu ego tem medo das responsabilidades. A figura paterna pode ter sido sentida como fria, distante ou bloqueada emocionalmente. As frustrações da infância precisam ser encaradas na maturidade.
+
+[OK] Quadratura · Sol / Urano (chave: 2:0:7)
+Você tem uma energia intensa e um gosto por se afirmar de formas indiretas. Isso pode gerar estados de irritabilidade e precipitação. Existe uma rebeldia natural contra qualquer tipo de autoridade, o que pode afastar a rotina e criar tensões nas amizades. Atenção: há um risco maior de acidentes envolvendo eletricidade ou situações modernas. O seu grande desafio é lidar com a separação do modelo paterno e não se revoltar com a própria vida.
+
+[OK] Quadratura · Sol / Netuno (chave: 2:0:8)
+É muito importante que você tome cuidado para não ser vítima da própria imaginação. Você pode se apaixonar pelos mistérios, mas o seu comportamento pode se tornar confuso e inadaptável. Atenção: a sua espiritualidade pode causar tensões quando não é bem compreendida. Cuidado com o autoengano. Mantenha os pés no chão para que os seus sonhos não se tornem fugas da realidade.
+
+[OK] Quadratura · Sol / Plutão (chave: 2:0:9)
+Existem dificuldades nos seus processos de eliminação, seja no campo físico, emocional ou psicológico. Atenção: você pode ter a tendência de impor a sua vontade aos outros de forma agressiva, especialmente com o sexo oposto. O seu grande desafio é aprender a fluir e a soltar o controle, transformando a sua intensidade em poder de cura e não de destruição.
+
+[OK] Quadratura · Sol / Ascendente (chave: 2:0:10)
+A imagem que você passa para o mundo pode ser vista como autoritária, arrogante ou conflituosa, pois você pode ter a tendência de subestimar os outros. Existem tensões com figuras masculinas e um certo engano em relação à imagem que você transmite. O seu grande desafio é harmonizar o seu "eu interior" com o "eu exterior", evitando a manipulação e sendo mais autêntico.
+
+[OK] Quadratura · Sol / Meio do Céu (chave: 2:0:11)
+Você pode enfrentar grandes dificuldades para ver o seu valor reconhecido no mundo. Existe uma arrogância em relação ao status que adquire, o que pode levar a fracassos sociais e profissionais. O seu grande desafio é lidar com hierarquias e autoridades sem se sentir ameaçado. Aprenda a se reorganizar com humildade para alcançar o sucesso que deseja.
+
+[OK] Quadratura · Lua / Mercúrio (chave: 2:1:2)
+Você pode ser injusto ao deixar que as emoções prevaleçam sobre a razão. A sua mente pode ficar vacilante e agitada, gerando ansiedade. O seu sistema nervoso é tenso e isso está ligado a questões emocionais ou familiares do passado. O seu grande desafio é acalmar a mente e buscar ajuda se a ansiedade for muito forte, não deixando que o excesso de pensamentos atrapalhe os seus sentimentos.
+
+[OK] Quadratura · Lua / Vênus (chave: 2:1:3)
+Você busca os dois lados da afetividade em uma mesma pessoa: o amor-família e o amor-paixão, o que é difícil de encontrar. Você pode ter dificuldades para expressar os seus afetos ou sentir falta de harmonia nos relacionamentos. O seu grande desafio é não tolerar demais nem sofrer no campo afetivo por negligenciar as suas próprias necessidades. Aprenda a se amar primeiro para não se auto gratificar de forma errada.
+
+[OK] Quadratura · Lua / Marte (chave: 2:1:4)
+Nada na sua família ou na sua segurança interior pode ser impulsivo; tudo pede autocontrole. Você pode ter vivenciado a figura materna de forma agressiva e defensiva. Existe muita impaciência e agressividade no ambiente familiar, o que pode ferir os seus sentimentos. O seu grande desafio é acalmar essa pressa interior e não agredir aquilo que poderia te trazer segurança.
+
+[OK] Quadratura · Lua / Júpiter (chave: 2:1:5)
+Existe uma insatisfação com o que você obtém, o que pode gerar uma tendência à extravagância e a confiar demais na sorte. As suas condutas exageradas podem gerar perdas e tensões, especialmente em processos que envolvem a família. Atenção: há uma forte tendência a comer demais (ganho de peso). O seu grande desafio é encontrar o equilíbrio emocional e evitar os excessos.
+
+[OK] Quadratura · Lua / Saturno (chave: 2:1:6)
+Este é um indicativo de traumas emocionais vividos na infância. As suas reações emocionais podem ser limitadas, gerando melancolia e frustração. Existe uma forte tendência a desilusões emocionais, e as carências afetivas aumentam o sentimento de solidão. As relações com as figuras femininas são difíceis. O seu grande desafio é aprender a lidar com as frustrações e ressignificar os vínculos do passado que limitaram as suas emoções.
+
+[OK] Quadratura · Lua / Urano (chave: 2:1:7)
+Você pode usar a imaginação de forma a se proteger ou até agredir os outros. A sua vida familiar sofre altos e baixos e é sentida como incerta. Existe uma tensão entre a sua sensibilidade e a necessidade de progresso. O seu grande desafio é controlar os excessos emocionais e as rupturas, especialmente com a figura feminina (a começar pela mãe ou pela sua própria feminilidade).
+
+[OK] Quadratura · Lua / Netuno (chave: 2:1:8)
+As suas emoções são instáveis, resultando em confusões e enganos. Existe uma forte tendência a se distanciar da realidade e a se refugiar em depressões ou escapismos. Atenção: há uma forte tendência ao uso de drogas e bebida para fugir da realidade. A sua vida familiar pode ser confusa. O seu grande desafio é não subestimar a sua sensibilidade, buscar ajuda e não usar o seu emocional de forma negativa.
+
+[OK] Quadratura · Lua / Plutão (chave: 2:1:9)
+A sua emoção pode ser bloqueada ou a sua sensibilidade criativa pode se sentir presa. Existe a necessidade de voltar ao passado para destruir vínculos afetivos que limitaram a sua sensibilidade. O afeto com a mãe pode ser limitado ou bloqueado, indicando uma recusa do modelo materno. O seu grande desafio é curar a rejeição emocional inconsciente que gera grandes frustrações e traumas psicológicos.
+
+[OK] Quadratura · Lua / Ascendente (chave: 2:1:10)
+A flutuação nos sentimentos é mais sentida, assim como os altos e baixos na sua popularidade e reputação. Existem problemas emocionais com a família e uma grande facilidade para se deixar influenciar. O seu grande desafio é não permitir que a intuição negativa dificulte a sua forma de se expressar e de se mostrar ao mundo.
+
+[OK] Quadratura · Lua / Meio do Céu (chave: 2:1:11)
+Existe uma dificuldade em atividades políticas ou voltadas para o público e a família. Fortes problemas emocionais familiares afetam a sua profissão, e a sua família sofre com os obstáculos profissionais. O seu grande desafio é separar a vida pessoal da profissional, evitar escândalos e buscar estabilidade no trabalho, sem ser influenciado negativamente pelas figuras femininas.
+
+[OK] Quadratura · Mercúrio / Vênus (chave: 2:2:3)
+É muito importante buscar a discrição ao se colocar, tanto mental quanto afetivamente. O seu grande desafio é dominar a hipocrisia ao falar e buscar sempre a verdade nas suas palavras, mantendo a harmonia sem precisar agradar a todos.
+
+[OK] Quadratura · Mercúrio / Marte (chave: 2:2:4)
+Você sabe discutir quando precisa e sabe usar a franqueza. No entanto, a sua tensão nervosa afeta o seu sistema nervoso. Sempre que deixa as emoções interferirem, acaba sendo parcial nas opiniões. O seu grande desafio é ter paciência para escutar os outros e não manipular a verdade, usando a sua energia mental para construir.
+
+[OK] Quadratura · Mercúrio / Júpiter (chave: 2:2:5)
+Quando a sua mente é ampla demais, você pode perder o foco daquilo que era importante, gerando um padrão de perda. Você tem a necessidade de falar sobre coisas grandes para se sentir superior. O seu grande desafio é não divulgar informações para as pessoas ou nas horas erradas. Busque mais sentido comum e objetividade.
+
+[OK] Quadratura · Mercúrio / Saturno (chave: 2:2:6)
+A sua mente muitas vezes tem pouca autoconfiança e duvida da própria capacidade. A solidão mental é resultado de medos inconscientes. As suas ideias são boas, mas nem sempre são aceitas. O seu grande desafio é não remoer pensamentos negativos e não ficar preso a conceitos frios. Aprenda a confiar na sua própria lucidez.
+
+[OK] Quadratura · Mercúrio / Urano (chave: 2:2:7)
+As suas ideias extremistas ou excêntricas podem levar a perdas. Você tem muitas iniciativas, mas elas nem sempre são proveitosas. A sua mente é rebelde e precisa de uma causa. O seu grande desafio é não mudar de direção rápido demais, o que gera instabilidade. Tenha paciência para aprender, pois os estudos são o que mais te dão oportunidades.
+
+[OK] Quadratura · Mercúrio / Netuno (chave: 2:2:8)
+O seu pensamento pode ser distraído e desatento, precisando de mais objetividade. O seu sistema nervoso se desequilibra com facilidade. O seu grande desafio é afastar-se das ilusões e das fantasias, não criar mentiras para si mesmo e não imaginar mais do que realiza. Atenção: você pode ter uma tendência a esquecer o que não gosta, mascarando a realidade. Busque clareza mental.
+
+[OK] Quadratura · Mercúrio / Plutão (chave: 2:2:9)
+Você pode ser duro ao falar sem considerar os outros. O seu grande desafio é não deixar-se levar por padrões de vingança ou destruição. Muitas vezes fala o que não queria, o que leva a perdas e tensões nervosas. Não queira que os outros aceitem as suas ideias à força. Aprenda a usar a sua poderosa mente para curar e não ferir.
+
+[OK] Quadratura · Mercúrio / Ascendente (chave: 2:2:10)
+Nem sempre você consegue se expressar como gostaria, e isso não pode trazer frustração. Existem desacordos com o meio ambiente próximo, e você pode estar sempre em meio a mal-entendidos. O seu grande desafio é não ser insincero consigo mesmo e não mentir para si. Cuidado com o "espírito de contradição".
+
+[OK] Quadratura · Mercúrio / Meio do Céu (chave: 2:2:11)
+A forma de se comunicar no trabalho não pode ser agressiva nem impaciente. O seu grande desafio é não deixar que o trabalho represente tensão e fragmentação, prejudicando o seu sistema nervoso e gerando indecisão. Coloque as suas ideias com lucidez no ambiente profissional.
+
+[OK] Quadratura · Vênus / Marte (chave: 2:3:4)
+O amor e a ternura são vivenciados de forma tensa e conflitante. Existe uma defasagem entre o físico e o sentimental junto de quem você ama. O amor pode ser vivenciado como uma competição, com um vencido e um vencedor. Atenção: o sexo pode ferir, machucar e até destruir. Existem impulsos eróticos pouco refinados e o risco de se auto gratificar sexualmente sem pensar no outro. O seu grande desafio é trazer mais afeto e consideração para a sua vida íntima.
+
+[OK] Quadratura · Vênus / Júpiter (chave: 2:3:5)
+Você pode vivenciar extravagâncias afetivas e financeiras, gostando do fácil e sofrendo com insatisfações. O seu grande desafio é não distanciar o amor da legalidade e da ética, e não querer ou perder ligado ao afeto ou ao financeiro. Atenção: há uma facilidade para se sentir abandonado ou sofrer infidelidades. Aprenda a lidar com a hipocrisia emocional e a vaidade.
+
+[OK] Quadratura · Vênus / Saturno (chave: 2:3:6)
+Os afetos são difíceis de ser expressos, levando a uma forte tendência à solidão. Os desejos são mais frios, e os afetos podem trazer tristezas e depressões. Atenção: existe um risco maior de impotência ou esterilidade, seja no campo físico ou emocional. O seu grande desafio é não viver os afetos de forma defensiva por medo de rejeição, abrindo-se para amar e ser amado.
+
+[OK] Quadratura · Vênus / Urano (chave: 2:3:7)
+Você tem a necessidade de liberdade para sentir e vivenciar o prazer, mas experimenta sentimentos repentinos de insegurança. O inusual te fascina. O seu grande desafio é não confundir o amor com a amizade e lidar com as mudanças repentinas no sentir. Atenção: existe o perigo de se sentir violentado fisicamente, emocional ou psicologicamente. Cuidado para não machucar facilmente o outro e não se cansar do que conquistou.
+
+[OK] Quadratura · Vênus / Netuno (chave: 2:3:8)
+Podem ser sentidos desvios sociais ou emocionais, com uma incapacidade de amar alguém por inteiro. Você pode se relacionar com pessoas comprometidas ou que não te valorizam. Atenção: existe o perigo de se sentir violentado psicologicamente. O seu grande desafio é não se deixar iludir. Aprenda a ver o outro como ele é, sem idealizações.
+
+[OK] Quadratura · Vênus / Plutão (chave: 2:3:9)
+As paixões podem ser destrutivas e mórbidas, com bloqueios inconscientes. Você espera tudo do amor. Existem fortes desejos de riqueza material que podem te levar a riscos. Atenção: o amor pode ser corrompido pelo financeiro, com risco de traições e complicações psicológicas ligadas à luxúria. O seu grande desafio é transformar a sua intensidade em cura.
+
+[OK] Quadratura · Vênus / Ascendente (chave: 2:3:10)
+Existe uma facilidade para a sedução, mas também relações desarmônicas, desilusões e excesso de sensibilidade. O seu grande desafio é resolver os problemas com a família ou com as relações afetivas e comerciais, buscando equilíbrio e não apenas o prazer momentâneo.
+
+[OK] Quadratura · Vênus / Meio do Céu (chave: 2:3:11)
+Existe uma vaidade sobre o status que você adquire. O seu grande desafio é conciliar o afeto com o trabalho e a profissão, sem insatisfação no meio profissional ou tendências ao suborno. A verdadeira beleza está na integridade.
+
+[OK] Quadratura · Marte / Júpiter (chave: 2:4:5)
+As suas atividades podem ser agressivas, gerando problemas legais e lutas contra as regras. O seu grande desafio é controlar a impaciência e a extravagância das ações, não sendo materialista nem hipócrita. Atenção: há um gosto pelo risco e pela violência. Se envolver dinheiro de outros, pode haver desconsideração ou roubo. Busque agir com sabedoria.
+
+[OK] Quadratura · Marte / Saturno (chave: 2:4:6)
+Existe uma luta em tudo o que você começa, mas com dificuldade. As suas ações sofrem adiamentos, dando lugar a ressentimentos e sensações de incapacidade e bloqueio. O seu grande desafio é equilibrar a energia e a apatia, a fadiga e o entusiasmo. A relação com a figura masculina pode ser difícil, exigindo paciência.
+
+[OK] Quadratura · Marte / Urano (chave: 2:4:7)
+São os atos precipitados que levam a perdas. O seu grande desafio é não conquistar os objetivos em cima de erros, buscando previsibilidade nas ações. Atenção: o risco de acidentes aumenta consideravelmente. Cuidado com a irritabilidade, a excentricidade e a impulsividade. Tenha atenção redobrada com armas de fogo e descargas elétricas.
+
+[OK] Quadratura · Marte / Netuno (chave: 2:4:8)
+As suas lutas podem ser por "moinhos de vento", precisando de mais realismo e lucidez. Existe uma forte atração pelo impossível e os seus desejos podem ser reprimidos. Atenção: as dependências (química, emocional) representam uma autoagressão. Tenha cautela com tranquilizantes, remédios fortes e com a água. Evite decepções diante das ações.
+
+[OK] Quadratura · Marte / Plutão (chave: 2:4:9)
+Existe uma facilidade para acionar padrões destrutivos e dificuldades em controlar as energias, chegando facilmente aos extremos. O seu grande desafio é usar a sua grande força de vontade em direção construtiva, e não violenta. Atenção: há predisposição a enfermidades degenerativas e risco de morte violenta. Aprenda a transformar a sua intensidade em poder de regeneração.
+
+[OK] Quadratura · Marte / Ascendente (chave: 2:4:10)
+O seu comportamento pode ser impaciente, impulsivo e combativo. O seu grande desafio é não ser agressivo nas relações pessoais e aprender a ser gentil, levando os projetos até o fim. Atenção: facilidade para inflamações, cortes, febres, ferimentos e acidentes. Canalize a sua energia para a ação construtiva.
+
+[OK] Quadratura · Marte / Meio do Céu (chave: 2:4:11)
+Existem conflitos e discussões no trabalho que podem afetar a sua reputação. O seu grande desafio é controlar a agressividade e a impaciência, que levam a perdas e rivalidades. Não leve os problemas pessoais para o trabalho e vice-versa. Aprenda a desafiar a autoridade de forma inteligente e diplomática.
+
+[OK] Quadratura · Júpiter / Saturno (chave: 2:5:6)
+Existem dificuldades em aceitar responsabilidades e limitações, gerando desconfiança e opressão por parte de figuras de autoridade. Atenção: há facilidade para problemas legais, ações pouco honestas, depressões e pessimismo. O seu grande desafio é não se entregar ao pessimismo, encontrando o equilíbrio entre a fé e a realidade.
+
+[OK] Quadratura · Júpiter / Urano (chave: 2:5:7)
+Você pode ter pouco tato para atuar, com impulsos extravagantes e muito idealismo. Atenção: há facilidade para perdas nas especulações, nos processos judiciais e nos jogos. O gosto pelo poder pode ser descontrolado. Cumpra o que promete e não coloque todo o entusiasmo em objetivos que vai abandonar em seguida.
+
+[OK] Quadratura · Júpiter / Netuno (chave: 2:5:8)
+O seu grande desafio é não cair na falsa moral e no escapismo, construindo "castelos no ar". A sua vida precisa de um rumo mais definido. Não use a fé para obter poder ou autoridade. Atenção: há risco de sonhos fantasiosos, gosto pelo jogo, escândalos e abusos financeiros. Busque a verdade e a concretude.
+
+[OK] Quadratura · Júpiter / Plutão (chave: 2:5:9)
+Existe uma tendência a querer fazer justiça com as próprias mãos, destruindo regras sociais e pessoais. Atenção: do ponto de vista físico, há um forte indício de tumores malignos ou de grandes proporções. Há também a tendência de conquistar poderes por meios duvidosos ou arriscados, querer enriquecer rapidamente usando meios ilícitos, falsa importância, falta de humildade e gastos excessivos.
+
+[OK] Quadratura · Júpiter / Ascendente (chave: 2:5:10)
+Existe uma tendência a comportamentos evasivos e pretensiosos, com riscos de excessos. Atenção: risco de obesidade. O seu grande desafio é aprender o autocontrole, dividindo os seus grandes planos em etapas. Não espere receber dinheiro de forma fácil. Tenha cuidado com ares de grandeza, que podem prejudicar todas as suas relações.
+
+[OK] Quadratura · Júpiter / Meio do Céu (chave: 2:5:11)
+A família pode dificultar a sua profissão, e você pode ter problemas sociais e profissionais por atitudes de superioridade. O seu grande desafio é ser mais humilde e não usar a arrogância, a vaidade ou a hipocrisia no social e no profissional. Atenção: há facilidade para má reputação ou perda de posição. Alinhe as suas capacidades às suas ambições.
+
+[OK] Quadratura · Saturno / Urano (chave: 2:6:7)
+Existe um conflito entre o conservadorismo e o reformismo. Você tem dificuldades para romper com o passado, mas o futuro depende disso. O seu grande desafio é lidar com a agressividade frente às figuras de autoridade. É o constante "subir e descer a montanha", entendendo que o recomeço é produtivo. Atenção: o pessimismo pode levar ao endurecimento das articulações.
+
+[OK] Quadratura · Saturno / Netuno (chave: 2:6:8)
+Existe um conflito entre a imaginação e a razão, o sonho e a realidade. O seu grande desafio é buscar a autodisciplina, que pode escapar o tempo todo. Você pode ter medos de pobreza, perda de status ou fracasso. Atenção: a vontade de fugir da realidade pode levar a buscar dependências e fugas. Há risco de depressão crônica e neuroses. Busque ajuda se precisar e mantenha os pés no chão.
+
+[OK] Quadratura · Saturno / Plutão (chave: 2:6:9)
+As responsabilidades podem produzir frustrações e desilusões. O seu grande desafio é lidar com circunstâncias misteriosas que parecem levar a perdas ou a caminhos mais difíceis, fazendo você se sentir um "perdedor". Lembre-se de que a força para reconstruir está dentro de você.
+
+[OK] Quadratura · Saturno / Ascendente (chave: 2:6:10)
+Existem dificuldades para se colocar nas situações, o que pode gerar frustração. Você precisa de tempo para adquirir autoconfiança. Atenção: há dificuldade para manifestar afeto ou o querer pessoal. Fortes sensações de bloqueio diante de pessoas mais velhas, estados de depressão, pessimismo e timidez. Pode haver tendências à avareza. Não recue diante das dificuldades, lute.
+
+[OK] Quadratura · Saturno / Meio do Céu (chave: 2:6:11)
+A forma como você atua frente à profissão e ao social pode ser dura e negativa, com relações complicadas com superiores ou com quem detém a autoridade. O seu grande desafio é não sentir as responsabilidades como obstáculos opressores. Atenção: é o aspecto típico da queda profissional ou social, perda de status ou propriedades, com a honra comprometida. Tenha lucidez sobre as suas capacidades.
+
+[OK] Quadratura · Urano / Netuno (chave: 2:7:8)
+Você pode ter dificuldades para admitir os próprios erros e defeitos. O seu grande desafio é encontrar a liberdade que está camuflada, tendo coragem para lutar por ela. Atenção: há uma forte tendência a pertencer a organizações secretas. A espiritualidade e o ocultismo podem ser fontes de tensões se não forem bem compreendidos.
+
+[OK] Quadratura · Urano / Plutão (chave: 2:7:9)
+A sua liberdade pessoal pode vivenciar cortes e limitações, e as mudanças afetam você mais do que demonstra. O seu grande desafio é lidar com o extremismo que leva à destruição ou à morte de uma crença pessoal ou coletiva. As mudanças serão drásticas, e você precisa aprender a fluir com elas.
+
+[OK] Quadratura · Urano / Ascendente (chave: 2:7:10)
+Existe um inconformismo, irritação e frequentes mudanças de humor. Atenção: há uma predisposição ao divórcio dos desejos e da própria liberdade. As condutas podem ser excêntricas e levar a perdas. O seu grande desafio é não ser o rebelde pelo simples gosto de se rebelar, nem ser irresponsável com as regras.
+
+[OK] Quadratura · Urano / Meio do Céu (chave: 2:7:11)
+As mudanças, tanto familiares quanto profissionais, acontecem pelo seu próprio temperamento. Atenção: a rebeldia pode fazer você viver à margem da lei ou ter constantes problemas com a mesma. Há choques com figuras de autoridade. O seu grande desafio é não viver a rotina e evitar a perda súbita de poder ou trabalho. Busque a liberdade sem chocar o social.
+
+[OK] Quadratura · Netuno / Plutão (chave: 2:8:9)
+A sua espiritualidade e as pulsões interiores podem ter um efeito desequilibrante, apagando as suas luzes interiores. O seu grande desafio é trabalhar a regeneração espiritual em meio à desordem, buscando a verdade interior.
+
+[OK] Quadratura · Netuno / Ascendente (chave: 2:8:10)
+Você pode ser muito sensível às críticas e sofrer fracassos por não se defender na hora certa. Atenção: pode haver pouca dignidade para cumprir os compromissos assumidos, com relações de pouca fidelidade ou seriedade. O seu grande desafio é não se deixar influenciar negativamente pelo ambiente.
+
+[OK] Quadratura · Netuno / Meio do Céu (chave: 2:8:11)
+Existe uma falta de confiança nas obrigações profissionais, originada na família. Atenção: as questões domésticas confusas podem prejudicar os objetivos profissionais. Há dificuldade na escolha do caminho a seguir, com pouca lucidez sobre as verdadeiras capacidades. Podem ocorrer má reputação, descrédito e calúnia.
+
+[OK] Quadratura · Plutão / Ascendente (chave: 2:9:10)
+Existem atitudes rudes ou ditatoriais e uma busca por exercer controle no ambiente. O seu grande desafio é não estar sempre insatisfeito com tudo ao seu redor. Atenção: não seja agressivo nas condutas pessoais nem antissocial nas relações afetivas ou sociais. Use o seu poder para construir pontes.
+
+[OK] Quadratura · Plutão / Meio do Céu (chave: 2:9:11)
+Você pode se sentir desconforme consigo mesmo e ter dificuldade em aceitar a regeneração e a autoavaliação. O seu grande desafio é evitar conflitos com quem detém autoridade e poder. Atenção: as tendências revolucionárias internas podem levar a perdas, sem que você saiba o motivo. Busque a transformação interior com consciência.
+
+
+
+[OK] Trígono · Sol / Lua (chave: 3:0:1)
+Você tem um equilíbrio psicológico muito bonito, onde a sensibilidade e a imaginação caminham juntas, somando forças e proporcionando uma busca constante por segurança interior. Você tem o dom de harmonizar os opostos: consegue equilibrar o seu ego e as suas emoções, e também traz essa harmonia para as relações entre as figuras paterna e materna na sua vida.
+
+[OK] Trígono · Sol / Vênus (chave: 3:0:3)
+A sua expressão pessoal flui lindamente através dos afetos. Você tem uma facilidade natural para perceber o real valor das coisas e das situações, e sente um grande prazer pelo conforto e pela beleza em todos os níveis. O seu brilho está na sua capacidade de amar e de se encantar com a vida.
+
+[OK] Trígono · Sol / Marte (chave: 3:0:4)
+Você tem um grande senso de integridade, toma decisões rápidas e é muito franco ao dar opiniões. Busca os seus objetivos com audácia e coragem. O seu lado pessoal é dinâmico e adora conquistar, transformando desafios em oportunidades de crescimento.
+
+[OK] Trígono · Sol / Júpiter (chave: 3:0:5)
+Existe uma harmonia muito grande entre o seu poder pessoal e o seu orgulho, o que gera um otimismo contagiante na sua vontade de vencer. Você tem um forte senso de superioridade moral e social, mas busca sempre agir com ética e respeito às leis. O seu desejo é de um poder benevolente, que te faz sentir grande e capaz de ajudar.
+
+[OK] Trígono · Sol / Saturno (chave: 3:0:6)
+O seu sucesso na vida vem através dos seus próprios esforços, tendo a concentração e a organização como grandes aliadas. Você é como quem chega ao "cume da montanha": conquista o poder através da realização e está sempre pronto para assumir responsabilidades. O seu forte senso de dever te faz adaptar às limitações com maturidade.
+
+[OK] Trígono · Sol / Urano (chave: 3:0:7)
+A sua capacidade inventiva é excelente. Você tem uma liderança natural, um certo nervosismo criativo e uma forte tendência a querer reformar as coisas à sua volta. O seu entusiasmo é contagiante e a sua afirmação é ousada. Adapta-se com facilidade à vida moderna e às inovações, apaixonando-se pelas novidades com reações vivas e rápidas.
+
+[OK] Trígono · Sol / Netuno (chave: 3:0:8)
+A sua sensibilidade, criatividade, imaginação e percepção estão muito aguçadas. A sua essência busca o romantismo e a ternura, e o seu lado espiritual sempre te protege. Os seus sonhos são muito significativos e devem ser levados em conta, pois você tem uma visão interna que te permite canalizar os processos de pensamento antes mesmo de eles acontecerem.
+
+[OK] Trígono · Sol / Plutão (chave: 3:0:9)
+Você possui uma força de vontade enorme e uma capacidade incrível de se regenerar, extraindo da natureza as forças necessárias para recomeçar. Tem interesses por práticas como ioga e meditação. Você sabe exatamente onde, como e quando atuar para produzir mudanças positivas, podendo recomeçar em qualquer setor da vida.
+
+[OK] Trígono · Sol / Ascendente (chave: 3:0:10)
+Você gosta de ser uma pessoa dominante e é ambicioso. Tem uma boa energia física e sabe da importância que a autoconfiança produz para concretizar os seus projetos e propósitos. Tudo é exercido de forma mais branda, sem muita manipulação, mas sempre com a vontade de se afirmar.
+
+[OK] Trígono · Sol / Meio do Céu (chave: 3:0:11)
+Você tem uma boa capacidade de vencer graças aos seus esforços pessoais ou à ajuda exterior. Você se orgulha sempre do trabalho que realiza e da sua trajetória, construindo uma reputação sólida e merecida.
+
+[OK] Trígono · Lua / Mercúrio (chave: 3:1:2)
+A sua emoção e a sua mente se estimulam através do contato com muita gente. Você precisa de variedade e de movimento, e pensa muito no passado e em assuntos de família. Adaptar-se à família aciona a sua segurança interior, e a sua comunicação está sempre ligada aos sentimentos.
+
+[OK] Trígono · Lua / Vênus (chave: 3:1:3)
+Você busca os dois polos da afetividade em uma mesma pessoa: o amor-família e o amor-paixão. Você sabe equilibrar essas buscas sem se ferir. Sente os sentimentos e a afetividade flutuarem, mas consegue navegar por essas águas com graça e harmonia.
+
+[OK] Trígono · Lua / Marte (chave: 3:1:4)
+Você sabe da necessidade de canalizar a sua energia pessoal através das emoções, e isso gera segurança interior. No seu interior e junto à família, você é intensamente emotivo. O seu emocional possui uma força enorme para suportar tensões e lutar pelo que ama.
+
+[OK] Trígono · Lua / Júpiter (chave: 3:1:5)
+As emoções protetoras incentivam o seu crescimento. É um indicativo de muita sorte, com facilidade para ganhar processos judiciais desde que estejam aliados ao passado e à família. Você busca sempre valores morais e éticos elevados.
+
+[OK] Trígono · Lua / Saturno (chave: 3:1:6)
+A sua família é a sua busca por segurança. A razão muitas vezes atrasa os movimentos da sua emoção. Existe uma fidelidade muito forte aos valores familiares, mas uma certa rejeição à ternura. Você tem uma forte tendência a querer ter imóveis ou uma base material sólida para acalmar os seus sentimentos de rejeição.
+
+[OK] Trígono · Lua / Urano (chave: 3:1:7)
+A sua vida familiar e a sua segurança interior sofrem mudanças constantes. A liberdade emocional é mais exigida. Existe um interesse pela intuição, desde que esteja apoiada no científico. Você busca para a emoção o sentido de renovação, reciclagem e liberdade.
+
+[OK] Trígono · Lua / Netuno (chave: 3:1:8)
+Existe uma linda harmonia entre o seu sentimento e a sua espiritualidade. Forte interesse pela psicologia e facilidade para a mediunidade. A análise e o cálculo são um pouco estranhos para você. Como a sua emoção e a sua intuição são muito fortes, você tende a sonhar mais do que o normal ou "viajar" mais do que lhe é permitido. Forte atração pela arte e pela música.
+
+[OK] Trígono · Lua / Plutão (chave: 3:1:9)
+Os seus sentimentos são mais controlados, mesmo que manifestados com poder. As mudanças e reavaliações se produzem sem muita dificuldade. Os sentimentos e as emoções são fortalecidos com o uso da força de vontade e a renovação da sensibilidade. Você tem um padrão emotivo e sensível, mas consegue sempre se redirecionar quando precisa.
+
+[OK] Trígono · Lua / Ascendente (chave: 3:1:10)
+Você tem uma boa habilidade para tratar com o público, e a sua família ajuda a vencer. A emoção e o passado são encarados de forma a dar oportunidade para um maior desenvolvimento da personalidade. A sensibilidade, a intuição e a dramaticidade podem ser usados para afirmar quem você é.
+
+[OK] Trígono · Lua / Meio do Céu (chave: 3:1:11)
+A figura feminina e o público ajudam a se afirmar na profissão. A sua reputação é boa. A intuição e o passado ajudam o sucesso profissional e social. O público te leva ao êxito, social ou profissional, com algumas flutuações no trabalho (muito ou pouco).
+
+[OK] Trígono · Mercúrio / Vênus (chave: 3:2:3)
+Os seus valores pessoais ou financeiros são ganhos através da comunicação e das ideias que expressa. Os sentimentos são influenciados pela razão e vice-versa. As antipatias e simpatias são imediatas. A sua forma de falar tem um estilo harmônico e negociador, encantando com as palavras.
+
+[OK] Trígono · Mercúrio / Marte (chave: 3:2:4)
+A sua mente tem coragem para expressar as ideias. Existe a vontade de começar novos aprendizados. A sua forma de falar é convincente. A lucidez de pensamento se alimenta de mais ousadia e sentido de competição. Ao debater as ideias, pode ter um padrão de discussão, mas que na verdade é apenas o seu entusiasmo em ação.
+
+[OK] Trígono · Mercúrio / Júpiter (chave: 3:2:5)
+Você domina bem o reino das ideias abstratas. Tem facilidade para o entendimento de leis, de conceitos abstratos e culturas diferentes. Precisa sempre ter integridade e honestidade nos procederes pessoais. Gosta das viagens, pois elas ampliam os conhecimentos e dão asas para a criatividade e a imaginação.
+
+[OK] Trígono · Mercúrio / Saturno (chave: 3:2:6)
+A sua mente tem facilidade para organizar e administrar as ideias e os conceitos. Quando precisa, tem reserva e sangue-frio, mas depois pode desmoronar, porque exigiu do emocional mais do que ele podia dar. Tem habilidade para lidar com situações que exigem praticidade. A mente aprende disciplina, sensatez e responsabilidade.
+
+[OK] Trígono · Mercúrio / Urano (chave: 3:2:7)
+A sua mente busca progresso técnico ou pessoal. É curiosa, com facilidade para buscar o alternativo e fazer reciclagens. Tem boa presença de espírito, independência e originalidade nas ideias. A intuição é desperta. A mente é impaciente diante da ignorância e sabe buscar novas formas de pensamento, educação, literatura e psicologia.
+
+[OK] Trígono · Mercúrio / Netuno (chave: 3:2:8)
+A sua mente é fértil e a sua espiritualidade é forte. Existe uma visualização interna que facilita ver as situações com detalhes. Você sabe pensar ou conceituar com idealismo. O seu mental tem facilidade diante das experiências espirituais. Existe um conhecimento mediúnico em você e um lado racional que entende os sonhos.
+
+[OK] Trígono · Mercúrio / Plutão (chave: 3:2:9)
+Você tem habilidade para compreender as energias que se acham na natureza e nas situações, seja do ponto de vista científico ou espiritual. Os impulsos inconscientes afetam o sistema nervoso, e você sabe que não se reorientar significa um sistema nervoso tenso. A sua mente sabe que precisa acionar a força de vontade para concluir as ideias.
+
+[OK] Trígono · Mercúrio / Ascendente (chave: 3:2:10)
+Você tem facilidades nas expressões mentais e na comunicação. É importante se permitir contatos sempre novos e em situações "leves". A comunicação precisa sempre ter a direção escolhida por você. A lucidez mental está em cima daquilo que você considera importante e quer que seja resolvido.
+
+[OK] Trígono · Mercúrio / Meio do Céu (chave: 3:2:11)
+A comunicação é quem gera facilidades para a profissão. Os seus contatos não podem ser ou ficar dispersos. As ideias precisam ser colocadas com lucidez. Você pode escrever sobre os aprendizados que acontecem no trabalho e fazer disso uma publicação específica.
+
+[OK] Trígono · Vênus / Marte (chave: 3:3:4)
+Você busca a independência dos afetos e a ambição junto aos afetos. A relação a dois é vivenciada de forma alegre e feliz. Facilidade tanto para buscar o entusiasmo quanto para ganhar dinheiro. O afeto e o sexo são vivenciados com delicadeza e tato, com condutas afetivas direcionadas ao refinamento.
+
+[OK] Trígono · Vênus / Júpiter (chave: 3:3:5)
+Você é conformista na forma de conduzir a vida afetiva. As relações afetivas possuem uma certa multiplicidade e as sociedades trazem benefícios. Gosto pela elegância e grande facilidade para fazer dinheiro. O amor precisa ser vivido na legalidade e com respeito.
+
+[OK] Trígono · Vênus / Saturno (chave: 3:3:6)
+Os afetos e sentimentos são vivenciados com limitações e seriedade, podendo impor o sacrifício dos desejos físicos, fazendo com que o dever fale mais forte do que a sensualidade. É o conhecido "amor inteligente, prático e ambicioso". A fidelidade acontece mais pela conveniência. Muitas vezes existe a opção pelo celibato, dedicando-se ao trabalho. As relações tendem a acontecer mais tarde na vida. Existe muito ciúme, porém disfarçado.
+
+[OK] Trígono · Vênus / Urano (chave: 3:3:7)
+Existe segurança diante do charme que você tem e do impacto que pode causar. É original para expressar os afetos e ama tanto as diversões como os amigos. No afeto, há estranhos desejos e gostos. Boa capacidade artística, indo além dos padrões normais. O ciúme é mais teórico do que físico.
+
+[OK] Trígono · Vênus / Netuno (chave: 3:3:8)
+Você tem uma boa capacidade de doação afetiva e de compaixão. Precisa de um maior sentido prático nos afetos e tem um forte sentimento pelo que é mágico. Gosto pela moda e pelo estético. Facilidade para o crescimento espiritual. Só precisa ter cuidado para não se perder no mundo da ilusão, a fim de não confundir ilusão com sonho.
+
+[OK] Trígono · Vênus / Plutão (chave: 3:3:9)
+As emoções possuem um grande papel na sua vida, modificando as formas de expressão. O impulso sexual é forte. Você sente ciúmes, possessividade financeira ou afetiva. Facilidade para manobras afetivas ou financeiras, e é onde o talento surge natural e espontaneamente.
+
+[OK] Trígono · Vênus / Ascendente (chave: 3:3:10)
+Os seus desejos são fortes, e você pode usar a simpatia pessoal para obter a aprovação do que quer. Popularidade e romances felizes. Habilidades para música, dança, arte, finanças e especulações.
+
+[OK] Trígono · Vênus / Meio do Céu (chave: 3:3:11)
+O êxito chega através do setor de conveniência. Você tem criatividade no trabalho e no social para colher o que quer. A arte, as finanças ou o afeto se encontram dentro da sua profissão. Amor e trabalho se mesclam.
+
+[OK] Trígono · Marte / Júpiter (chave: 3:4:5)
+As ações levam ao crescimento e ao êxito. Você tem força tanto muscular quanto sexual. Facilidade para dirigir, tomar atitudes, vencer adversários, liderar e se voltar para a política ou área judicial, onde a competição é mais exercida.
+
+[OK] Trígono · Marte / Saturno (chave: 3:4:6)
+Os propósitos são sérios e as atividades bem calculadas. A paciência e a força de vontade são as suas maiores virtudes. Facilidade para controlar os impulsos sexuais e para ser tanto o bom estrategista quanto quem usa o "sangue-frio" a seu favor.
+
+[OK] Trígono · Marte / Urano (chave: 3:4:7)
+As atividades são originais, independentes, desembaraçadas e engenhosas. A sua energia é inesgotável e o nervosismo é controlado. A energia sexual é mais aproveitada e dinâmica. A independência e a liberdade pessoais são sempre vivenciadas. É a constante busca tanto por empreitadas novas como por novas experiências.
+
+[OK] Trígono · Marte / Netuno (chave: 3:4:8)
+Você luta para conquistar os sonhos sem o gosto por muito trabalho, pois as lutas são idealistas. As suas ações influem na forma de agir. Sabe perceber o que está errado ou a pouca sinceridade dos que estão ao redor, porém nem sempre usa isso para si. A sua espiritualidade é entusiasta, com pressa para se manifestar.
+
+[OK] Trígono · Marte / Plutão (chave: 3:4:9)
+É o uso da energia sempre de forma positiva. As forças inconscientes atuam melhor do que as decisões conscientes. Você luta sem descanso pelo que considera correto. Bom aspecto para cirurgiões. Habilidade para extrair energia "superior" e reparar as forças do corpo.
+
+[OK] Trígono · Marte / Ascendente (chave: 3:4:10)
+É a energia da franqueza, indo direto ao assunto. Boa capacidade de decisão e excelente forma física. As respostas são rápidas, diretas e francas; a competição é sempre estimulada. A sua iniciativa leva aos ganhos.
+
+[OK] Trígono · Marte / Meio do Céu (chave: 3:4:11)
+Você luta sem descanso pela afirmação social ou profissional. Pressa para alcançar os objetivos e tomar decisões. A competição é mais estimulada e a força de vontade mais exercida. Facilidade para as áreas militares ou para as que lidam com fogo, ferro, sangue e competição.
+
+[OK] Trígono · Júpiter / Saturno (chave: 3:5:6)
+O seu sentido do necessário é mais aguçado. Fortes influências do passado bem como interesses em política e justiça. Facilidade para ser o "pilar" de situações, para administrar e organizar. Habilidades para aproveitar as oportunidades e para ganhar a proteção de pessoas mais velhas. Existe honestidade e integridade nas condutas. O temperamento é filosófico, portanto, não se deixa levar pelo exagero.
+
+[OK] Trígono · Júpiter / Urano (chave: 3:5:7)
+Facilidade para se livrar das limitações e obstáculos que impedem as renovações. Os amigos exercem boas influências; facilidade para grupos, equipes e clubes. Êxitos nas áreas de Magistratura, Advocacia, Pedagogia e junto às editoras. Fortes pressentimentos de sorte e bons ideais democráticos. Boas habilidades tanto para a criatividade como para a expansão associada à técnica.
+
+[OK] Trígono · Júpiter / Netuno (chave: 3:5:8)
+Forte interesse pelo metafísico e recebimento de ajuda. A imaginação e o sonho ajudam nos recursos financeiros ou facilitam os negócios. Bom aspecto para publicidade, religiosidade e Educação com conotações artísticas. A capacidade mediúnica fica mais acentuada. Gosto pela hospitalidade. O comportamento é humano e bondoso, com facilidade para a caridade.
+
+[OK] Trígono · Júpiter / Plutão (chave: 3:5:9)
+É a energia espiritual associada à transformação que leva a reorientação de toda e qualquer situação na vida ou no meio ambiente ao redor. É a facilidade da reorientação espiritual que atua de forma construtiva tanto no setor psicológico quanto no físico. Capacidade para saber de forma correta o que é certo ou errado.
+
+[OK] Trígono · Júpiter / Ascendente (chave: 3:5:10)
+Atitudes construtivas que se direcionam à personalidade, à simpatia pessoal e ao otimismo. Facilidade para lidar com o público, uma vez que possui honestidade e sinceridade nos procederes. Boa saúde e facilidade para alcançar as ambições.
+
+[OK] Trígono · Júpiter / Meio do Céu (chave: 3:5:11)
+O social ajuda nas honras e posições de destaque e este êxito está ligado às proteções. Você consegue alcançar os objetivos a que se propõe. Profissão de lucro fácil e certo, mesmo sem muito merecimento.
+
+[OK] Trígono · Saturno / Urano (chave: 3:6:7)
+A união da restrição com o inconformismo leva você a buscar a liberdade através da responsabilidade: quanto mais autodisciplina e vontade de romper com barreiras, mais você se afirma enquanto indivíduo. O realismo e a praticidade são vivenciados de forma original; a evolução e a organização se associam para obter melhores resultados. Há uma alternância entre o inesperado, o progresso, a segurança e o tempo.
+
+[OK] Trígono · Saturno / Netuno (chave: 3:6:8)
+É a intuição sendo sustentada pela lógica e a criatividade ligada às organizações e estruturas. Os ideais possuem propósitos definidos. Facilidades para detectar quem engana, quem foge da realidade e quem é desonesto. É o "idealista prático", que só busca sonhos realizáveis e com um propósito claro.
+
+[OK] Trígono · Saturno / Plutão (chave: 3:6:9)
+É a soma da energia oculta com a estrutura e a disciplina, fazendo com que você tenha mais resistência do que o normal. Você suporta tudo, desde que alcance seus fins e objetivos. Toda e qualquer reorientação é feita buscando estrutura. Existe seriedade e reserva, impondo respeito tanto a superiores quanto a subalternos. É o gosto acentuado pelo poder.
+
+[OK] Trígono · Saturno / Ascendente (chave: 3:6:10)
+O caráter é conservador e busca condutas autodisciplinadas. Existe timidez e dúvidas sobre o próprio valor. Gosto por sempre passar despercebido. A forte tendência à reserva é interpretada como indiferença e desapego, quando na realidade você está tentando apenas ser prática. Precisa ter cuidado para não subestimar suas próprias capacidades. Há responsabilidade e você nunca deixa de fazer algo que depende de si.
+
+[OK] Trígono · Saturno / Meio do Céu (chave: 3:6:11)
+O êxito acontece através de esforço, administração e ambição. Existe bastante responsabilidade frente à profissão e ao social. É importante atuar com tempo e previsão. Facilidade para receber ajuda de pessoas mais velhas ou mesmo do pai, como também lidar com estruturas físicas, psicológicas ou materiais. Muita ênfase no passado e nas tradições.
+
+[OK] Trígono · Urano / Netuno (chave: 3:7:8)
+Você sente uma desconfiança natural de governos e de qualquer autoridade muito rígida. A sua espiritualidade encontra espaço nos grupos e equipes, e você não tolera religiões que tentem limitar a sua liberdade. Você busca a liberdade pessoal e coletiva, explorando o misticismo de forma livre e inovadora.
+
+[OK] Trígono · Urano / Plutão (chave: 3:7:9)
+É a vontade de regenerar a sociedade e o seu próprio interior. A reforma é necessária para liberar as potencialidades. É o uso positivo das forças do inconsciente para a liberdade e a técnica progressista. Busca-se um sentido maior para usar a vida, o desejo ou a força de vontade. É a necessidade de ter liberdade para conhecer o mundo oculto do mistério e da regeneração, que permite se libertar de velhos conceitos e padrões.
+
+[OK] Trígono · Urano / Ascendente (chave: 3:7:10)
+Existem impaciência e rebeldia junto aos conceitos tradicionais. Temperamento voluntarioso e batalhador, bom magnetismo pessoal com um certo grau de clarividência e intuição. O potencial criativo só precisa de autodisciplina para ser usado. Você entende as pessoas melhor do que elas possam imaginar.
+
+[OK] Trígono · Urano / Meio do Céu (chave: 3:7:11)
+As iniciativas dentro do trabalho são originais, e o talento e o reconhecimento chegam de formas rápida e surpreendente. Existe apoio dos amigos. As esperanças são sempre renovadas, a tecnologia é utilizada, há interesse pelas novidades e a reputação é a de um excêntrico. Necessidade de fazer seu próprio caminho.
+
+[OK] Trígono · Netuno / Plutão (chave: 3:8:9)
+Você usa a sua fé para encontrar a paz interior e transcender as próprias limitações. A crença em vidas passadas (ou padrões herdados) é buscada para conseguir o equilíbrio interno. Você sempre fará uma revisão com mais profundidade nos conceitos, nas ideias, na filosofia de vida, nos valores pessoais e nas relações humanas.
+
+[OK] Trígono · Netuno / Ascendente (chave: 3:8:10)
+Você busca por um ideal; é romântico por natureza e a imaginação é fértil. Sabe captar o estado de ânimo dos que estão ao seu redor. Nas tomadas de decisões, falta mais firmeza. Nunca pode achar que precisa fazer algo a mais para receber reconhecimento, pois obterá pessoas tirando vantagens do bom coração.
+
+[OK] Trígono · Netuno / Meio do Céu (chave: 3:8:11)
+Você sabe captar o estado de ânimo dos que estão ao seu redor. O público reconhece o valor. A espiritualidade é canalizada de forma a ajudar o coletivo, trazendo inspiração para a sua carreira.
+
+[OK] Trígono · Plutão / Ascendente (chave: 3:9:10)
+A concentração e a percepção são boas. A força de vontade modifica qualquer forma de ação, situação ou expressão. Você inspira respeito pela forma realista de ver as coisas. Existe gosto pelos desafios, principalmente quando os adversários estão à sua altura. Não consegue ser manso e diplomático, na maioria das vezes acaba sendo brusco e descortês, mesmo sem o querer.
+
+[OK] Trígono · Plutão / Meio do Céu (chave: 3:9:11)
+Você sabe captar as necessidades dos demais. Existe iniciativa no social, no cotidiano ou junto aos valores. O êxito social e profissional chega mais fácil através da reformulação dos valores.
+
+
+
+[OK] Oposição · Sol / Lua (chave: 4:0:1)
+Existe um conflito interno entre o que você deseja (seu ego) e o que você sente (suas emoções). É como se o presente e o passado, a subjetividade e a objetividade, estivessem em lados opostos, gerando uma divisão entre o seu mundo exterior e o seu interior. O seu grande desafio é lidar com as atitudes contraditórias, inseguranças e frustrações que isso gera. Aprenda a integrar essas duas forças, entendendo que a razão e a emoção precisam caminhar juntas.
+
+[OK] Oposição · Sol / Vênus (chave: 4:0:3)
+Você sente a necessidade de usar o seu valor pessoal e o seu charme para se relacionar com os outros. O seu grande desafio é encontrar a harmonia entre a sua personalidade e os seus desejos afetivos, pois essa falta de sintonia pode gerar desilusões ou feridas nos seus relacionamentos. Atenção: há uma tendência a buscar aprovação externa de forma excessiva. Aprenda a se valorizar por quem você é, e não apenas pelo que pode oferecer.
+
+[OK] Oposição · Sol / Marte (chave: 4:0:4)
+Existe uma tensão entre a sua vontade de agir e a forma como expressa a força. Você pode sentir um gosto pelo risco e uma facilidade para se envolver em conflitos com figuras de autoridade. Atenção: este é um indicativo de propensão a febres, inflamações e acidentes. Além disso, existe um forte medo inconsciente de competir, o que pode gerar uma rebeldia contra tudo o que representa autoridade. Use a sua coragem de forma construtiva e proteja o seu corpo.
+
+[OK] Oposição · Sol / Júpiter (chave: 4:0:5)
+O seu grande desafio é desenvolver a paciência e a autodisciplina. Existe uma forte tendência a entrar em choque com as pessoas que detêm autoridade sobre você. Você pode ser muito exigente na análise dos outros, mas pouco exigente consigo mesmo. Aprenda a olhar para dentro com a mesma atenção que olha para fora, evitando o excesso de autoconfiança.
+
+[OK] Oposição · Sol / Saturno (chave: 4:0:6)
+Você sente a necessidade de lutar muito para vencer as limitações e os atrasos na sua vida. Existe uma forte tendência ao pessimismo, aos medos e às inibições. Atenção: o seu coração e o seu sistema ósseo podem sofrer com restrições. As frustrações da infância precisam ser encaradas na maturidade. O seu ego tem medo das responsabilidades. A figura paterna pode ter sido sentida como fria, distante ou bloqueada emocionalmente.
+
+[OK] Oposição · Sol / Urano (chave: 4:0:7)
+Você tem uma energia intensa e um gosto por se afirmar por caminhos indiretos, o que pode gerar estados de irritabilidade e precipitação. Existe uma rebeldia natural contra qualquer tipo de autoridade, o que afasta a rotina e cria tensões nas amizades, que podem ser poucas ou até destrutivas. Atenção: há um risco maior de acidentes envolvendo eletricidade ou o moderno. O seu grande desafio é lidar com a separação do modelo paterno sem se revoltar com a própria vida.
+
+[OK] Oposição · Sol / Netuno (chave: 4:0:8)
+É muito importante que você tome cuidado para não ser vítima da própria imaginação e fantasia. Você pode se apaixonar pelos mistérios, mas o seu comportamento pode se tornar confuso e inadaptável. Atenção: a sua espiritualidade pode causar tensões e problemas quando não é bem compreendida. Cuidado com o autoengano. Mantenha os pés no chão para que os seus sonhos não se tornem fugas da realidade.
+
+[OK] Oposição · Sol / Plutão (chave: 4:0:9)
+Existem dificuldades nos seus processos de eliminação, seja no campo físico, emocional, psicológico ou espiritual. Atenção: você pode ter a tendência de impor a sua vontade aos outros e ser agressivo com o sexo oposto. O seu grande desafio é aprender a fluir e a soltar o controle, transformando a sua intensidade em poder de cura e não de destruição.
+
+[OK] Oposição · Sol / Ascendente (chave: 4:0:10)
+A imagem que você passa para o mundo pode ser vista como autoritária, arrogante ou conflituosa, pois você pode ter a tendência de subestimar os outros. Existem tensões com figuras masculinas e um certo engano em relação à imagem que transmite. O seu grande desafio é harmonizar o seu "eu interior" com o "eu exterior", evitando a manipulação e sendo mais autêntico.
+
+[OK] Oposição · Sol / Meio do Céu (chave: 4:0:11)
+Você pode enfrentar grandes dificuldades para ver o seu valor reconhecido no mundo. Existe uma arrogância em relação ao status que adquire, o que pode levar a fracassos sociais e profissionais. O seu grande desafio é lidar com hierarquias e autoridades sem se sentir ameaçado. Aprenda a se reorganizar com humildade para alcançar o sucesso que deseja.
+
+[OK] Oposição · Lua / Mercúrio (chave: 4:1:2)
+Você pode ser injusto ao deixar que o emocional prevaleça sobre o racional. A sua mente pode ficar vacilante ou agitada, gerando ansiedade, e você pode precisar buscar ajuda externa para se acalmar. O seu sistema nervoso é tenso, ligado a questões emocionais ou familiares do passado. O seu grande desafio é acalmar a mente e buscar clareza e equilíbrio.
+
+[OK] Oposição · Lua / Vênus (chave: 4:1:3)
+Você busca os dois polos da afetividade em uma mesma pessoa: o amor-família e o amor-paixão, o que é difícil de encontrar. Você pode ter dificuldades para expressar os afetos ou sentir falta de harmonia nos relacionamentos. O seu grande desafio é não tolerar demais nem sofrer no campo afetivo por negligenciar as suas próprias necessidades. Aprenda a se amar primeiro.
+
+[OK] Oposição · Lua / Marte (chave: 4:1:4)
+Nada na sua família ou na sua segurança interior pode ser impulsivo; tudo pede autocontrole. Você pode ter vivenciado a figura materna de forma agressiva e defensiva. Existe muita impaciência e agressividade no ambiente familiar, o que fere os seus sentimentos. O seu grande desafio é acalmar essa pressa interior e não agredir aquilo que poderia te trazer segurança.
+
+[OK] Oposição · Lua / Júpiter (chave: 4:1:5)
+Existe uma insatisfação com o que você obtém, o que pode gerar uma tendência à extravagância e a confiar demais na sorte, gerando perdas e tensões. As suas condutas exageradas podem prejudicar processos que envolvem a família. Atenção: há uma forte tendência a comer demais. O seu grande desafio é encontrar o equilíbrio emocional e evitar os excessos.
+
+[OK] Oposição · Lua / Saturno (chave: 4:1:6)
+Este é um indicativo de traumas emocionais vividos na infância. As suas reações emocionais podem ser limitadas, gerando melancolia e frustração. Existe uma forte tendência a desilusões emocionais, e as carências afetivas aumentam o sentimento de solidão. As relações com as figuras femininas são difíceis. O seu grande desafio é aprender a lidar com as frustrações e ressignificar os vínculos do passado.
+
+[OK] Oposição · Lua / Urano (chave: 4:1:7)
+Você pode usar a imaginação de forma a se proteger ou até agredir os outros. A sua vida familiar sofre altos e baixos e é sentida como incerta. Existe uma tensão entre a sua sensibilidade e a necessidade de progresso. O seu grande desafio é controlar os excessos emocionais e as rupturas, especialmente com a figura feminina (a começar pela mãe ou pela sua própria feminilidade).
+
+[OK] Oposição · Lua / Netuno (chave: 4:1:8)
+As suas emoções são instáveis, resultando em confusões e enganos. Existe uma forte tendência a se distanciar da realidade e a se refugiar em depressões ou escapismos. A sua vida familiar pode ser confusa e depressiva. Atenção: há uma forte tendência ao uso de drogas e bebida para fugir da realidade. O seu grande desafio é não subestimar a sua sensibilidade, buscar ajuda e não usar o seu emocional de forma negativa.
+
+[OK] Oposição · Lua / Plutão (chave: 4:1:9)
+A sua emoção pode ser bloqueada ou a sua sensibilidade criativa pode se sentir presa. Existe a necessidade de voltar ao passado para destruir vínculos afetivos que limitaram a sua sensibilidade. O afeto com a mãe pode ser limitado ou bloqueado, indicando uma recusa do modelo materno. O seu grande desafio é curar a rejeição emocional inconsciente que gera grandes frustrações e traumas psicológicos.
+
+[OK] Oposição · Lua / Ascendente (chave: 4:1:10)
+A flutuação nos sentimentos é mais sentida, assim como os altos e baixos na sua popularidade e reputação. Existem problemas emocionais com a família e uma grande facilidade para se deixar influenciar. O seu grande desafio é não permitir que a intuição negativa dificulte a sua forma de se expressar e de se mostrar ao mundo.
+
+[OK] Oposição · Lua / Meio do Céu (chave: 4:1:11)
+Existe uma dificuldade em atividades políticas ou voltadas para o público e a família. Fortes problemas emocionais familiares afetam a sua profissão, e a sua família sofre com os obstáculos profissionais. Atenção: há uma péssima influência das figuras femininas, com facilidade para escândalos e instabilidade profissional. O seu grande desafio é separar a vida pessoal da profissional.
+
+[OK] Oposição · Mercúrio / Vênus (chave: 4:2:3)
+É muito importante buscar a discrição ao se colocar, tanto mental quanto afetivamente. O seu grande desafio é dominar a hipocrisia ao falar e buscar sempre a verdade nas suas palavras, mantendo a harmonia sem precisar agradar a todos.
+
+[OK] Oposição · Mercúrio / Marte (chave: 4:2:4)
+Você sabe discutir e usar a franqueza quando precisa, mas a sua tensão nervosa afeta o seu sistema nervoso. Sempre que deixa as emoções interferirem, acaba sendo parcial nas opiniões. O seu grande desafio é ter paciência para escutar os outros e não manipular a verdade. Use a sua mente para construir pontes.
+
+[OK] Oposição · Mercúrio / Júpiter (chave: 4:2:5)
+Quando a sua mente é ampla demais, você pode perder o foco daquilo que era importante, gerando um padrão de perda. Você tem a necessidade de falar sobre coisas grandes para se sentir superior. Atenção: cuidado para não divulgar informações para as pessoas ou nas horas erradas. Busque mais sentido comum e objetividade.
+
+[OK] Oposição · Mercúrio / Saturno (chave: 4:2:6)
+A sua mente muitas vezes tem pouca autoconfiança e duvida da própria capacidade. A solidão mental é resultado de medos inconscientes. As suas ideias são boas, mas nem sempre são aceitas. O seu grande desafio é não remoer pensamentos negativos e não ficar preso a conceitos frios. Aprenda a confiar na sua própria lucidez.
+
+[OK] Oposição · Mercúrio / Urano (chave: 4:2:7)
+As suas ideias extremistas ou excêntricas podem levar a perdas. Você tem muitas iniciativas, mas elas nem sempre são proveitosas. A sua mente é rebelde e precisa de uma causa. O seu grande desafio é não mudar de direção rápido demais, o que gera instabilidade. Tenha paciência para aprender, pois os estudos são o que mais te dão oportunidades.
+
+[OK] Oposição · Mercúrio / Netuno (chave: 4:2:8)
+O seu pensamento pode ser distraído e desatento, precisando de mais objetividade. O seu sistema nervoso se desequilibra com facilidade. O seu grande desafio é afastar-se das ilusões e das fantasias, não criar mentiras para si mesmo e não imaginar mais do que realiza. Atenção: você pode ter uma tendência a esquecer o que não gosta, mascarando a realidade. Busque clareza mental.
+
+[OK] Oposição · Mercúrio / Plutão (chave: 4:2:9)
+Você pode ser duro ao falar sem considerar os outros. O seu grande desafio é não deixar-se levar por padrões de vingança ou destruição. Muitas vezes fala o que não queria, o que leva a perdas e tensões nervosas. Não queira que os outros aceitem as suas ideias à força. Atenção: existe uma necessidade compulsiva de falar. Aprenda a usar a sua poderosa mente para curar e não ferir.
+
+[OK] Oposição · Mercúrio / Ascendente (chave: 4:2:10)
+Nem sempre você consegue se expressar como gostaria, e isso não pode trazer frustração. Existem desacordos com o meio ambiente próximo, e você pode estar sempre em meio a mal-entendidos. O seu grande desafio é não ser insincero consigo mesmo e não mentir para si. Cuidado com o "espírito de contradição".
+
+[OK] Oposição · Mercúrio / Meio do Céu (chave: 4:2:11)
+A forma de se comunicar no trabalho não pode ser agressiva nem impaciente, pois isso cria obstáculos. O seu grande desafio é não deixar que o trabalho represente tensão e fragmentação, prejudicando o seu sistema nervoso e gerando indecisão. Coloque as suas ideias com lucidez no ambiente profissional.
+
+[OK] Oposição · Vênus / Marte (chave: 4:3:4)
+O amor e a ternura são vivenciados de forma tensa e conflitante. Existe uma defasagem entre o físico e o sentimental junto de quem você ama. O amor pode ser vivenciado como uma competição, com um vencido e um vencedor. Atenção: o sexo pode ferir, machucar e até destruir. Existem impulsos eróticos pouco refinados e o risco de se auto gratificar sexualmente sem pensar no outro. O seu grande desafio é trazer mais afeto e consideração para a sua vida íntima.
+
+[OK] Oposição · Vênus / Júpiter (chave: 4:3:5)
+Você pode vivenciar extravagâncias afetivas e financeiras, gostando do fácil e sofrendo com insatisfações. O seu grande desafio é não distanciar o amor da legalidade e da ética, e não querer ou perder ligado ao afeto ou ao financeiro. Atenção: há uma facilidade para se sentir abandonado ou sofrer infidelidades. Aprenda a lidar com a hipocrisia emocional e a vaidade.
+
+[OK] Oposição · Vênus / Saturno (chave: 4:3:6)
+Os afetos são difíceis de ser expressos, levando a uma forte tendência à solidão. Os desejos são mais frios, e os afetos podem trazer tristezas e depressões. Atenção: existe um risco maior de impotência ou esterilidade, seja no campo físico ou emocional. O seu grande desafio é não viver os afetos de forma defensiva por medo de rejeição, abrindo-se para amar e ser amado.
+
+[OK] Oposição · Vênus / Urano (chave: 4:3:7)
+Você tem a necessidade de liberdade para sentir e vivenciar o prazer, mas experimenta sentimentos repentinos de insegurança. O inusual te fascina. O seu grande desafio é não confundir o amor com a amizade e lidar com as mudanças repentinas no sentir. Atenção: existe o perigo de se sentir violentado fisicamente, emocional ou psicologicamente. Cuidado para não machucar facilmente o outro e não se cansar do que conquistou.
+
+[OK] Oposição · Vênus / Netuno (chave: 4:3:8)
+Podem ser sentidos desvios sociais ou emocionais, com uma incapacidade de amar alguém por inteiro. Você pode se relacionar com pessoas comprometidas ou que não te valorizam. Atenção: existe o perigo de se sentir violentado psicologicamente, emocionalmente ou fisicamente. O seu grande desafio é não se deixar iludir. Aprenda a ver o outro como ele é, sem idealizações.
+
+[OK] Oposição · Vênus / Plutão (chave: 4:3:9)
+As paixões podem ser destrutivas e mórbidas, com bloqueios inconscientes. Você espera tudo do amor. Existem fortes desejos de riqueza material que podem te levar a riscos. Atenção: o amor pode ser corrompido pelo financeiro, com risco de traições e complicações psicológicas ligadas à luxúria. O seu grande desafio é transformar a sua intensidade em cura.
+
+[OK] Oposição · Vênus / Ascendente (chave: 4:3:10)
+Existe uma facilidade para a sedução, mas também relações desarmônicas, desilusões e excesso de sensibilidade. O seu grande desafio é resolver os problemas com a família ou com as relações afetivas e comerciais, buscando equilíbrio e não apenas o prazer momentâneo.
+
+[OK] Oposição · Vênus / Meio do Céu (chave: 4:3:11)
+Existe uma vaidade sobre o status que você adquire. O seu grande desafio é conciliar o afeto com o trabalho e a profissão, sem insatisfação no meio profissional ou tendências ao suborno. A verdadeira beleza está na integridade.
+
+[OK] Oposição · Marte / Júpiter (chave: 4:4:5)
+As suas atividades podem ser agressivas, gerando problemas legais e lutas contra as regras. O seu grande desafio é controlar a impaciência e a extravagância das ações, não sendo materialista nem hipócrita. Atenção: há um gosto pelo risco e pela violência. Se envolver dinheiro de outros, pode haver desconsideração ou roubo. Busque agir com sabedoria.
+
+[OK] Oposição · Marte / Saturno (chave: 4:4:6)
+Existe uma luta em tudo o que você começa, mas com dificuldade. As suas ações sofrem adiamentos, dando lugar a ressentimentos e sensações de incapacidade e bloqueio. O seu grande desafio é equilibrar a energia e a apatia, a fadiga e o entusiasmo. A relação com a figura masculina pode ser difícil, exigindo paciência.
+
+[OK] Oposição · Marte / Urano (chave: 4:4:7)
+São os atos precipitados que levam a perdas. O seu grande desafio é não conquistar os objetivos em cima de erros, buscando previsibilidade nas ações. Atenção: o risco de acidentes aumenta consideravelmente. Cuidado com a irritabilidade, a excentricidade e a impulsividade. Tenha atenção redobrada com armas de fogo e descargas elétricas.
+
+[OK] Oposição · Marte / Netuno (chave: 4:4:8)
+As suas lutas podem ser por "moinhos de vento", precisando de mais realismo e lucidez. Existe uma forte atração pelo impossível e os seus desejos podem ser reprimidos. Atenção: as dependências (química, emocional) representam uma autoagressão. Tenha cautela com tranquilizantes, remédios fortes e com a água. Evite decepções diante das ações.
+
+[OK] Oposição · Marte / Plutão (chave: 4:4:9)
+Existe uma facilidade para acionar padrões destrutivos e dificuldades em controlar as energias, chegando facilmente aos extremos. O seu grande desafio é usar a sua grande força de vontade em direção construtiva, e não violenta. Atenção: há predisposição a enfermidades degenerativas e risco de morte violenta. Aprenda a transformar a sua intensidade em poder de regeneração.
+
+[OK] Oposição · Marte / Ascendente (chave: 4:4:10)
+O seu comportamento pode ser impaciente, impulsivo e combativo. O seu grande desafio é não ser agressivo nas relações pessoais e aprender a ser gentil, levando os projetos até o fim. Atenção: facilidade para inflamações, cortes, febres, ferimentos e acidentes. Canalize a sua energia para a ação construtiva.
+
+[OK] Oposição · Marte / Meio do Céu (chave: 4:4:11)
+Existem conflitos e discussões no trabalho que podem afetar a sua reputação. O seu grande desafio é controlar a agressividade e a impaciência, que levam a perdas e rivalidades. Não leve os problemas pessoais para o trabalho e vice-versa. Aprenda a desafiar a autoridade de forma inteligente e diplomática.
+
+[OK] Oposição · Júpiter / Saturno (chave: 4:5:6)
+Existem dificuldades em aceitar responsabilidades e limitações, gerando desconfiança e opressão por parte de figuras de autoridade. Atenção: há facilidade para problemas legais, ações pouco honestas, depressões e pessimismo. O seu grande desafio é não se entregar ao pessimismo, encontrando o equilíbrio entre a fé e a realidade.
+
+[OK] Oposição · Júpiter / Urano (chave: 4:5:7)
+Você pode ter pouco tato para atuar, com impulsos extravagantes e muito idealismo. Atenção: há facilidade para perdas nas especulações, nos processos judiciais e nos jogos. O gosto pelo poder pode ser descontrolado. Cumpra o que promete e não coloque todo o entusiasmo em objetivos que vai abandonar em seguida.
+
+[OK] Oposição · Júpiter / Netuno (chave: 4:5:8)
+O seu grande desafio é não cair na falsa moral e no escapismo, construindo "castelos no ar". A sua vida precisa de um rumo mais definido. Não use a fé para obter poder ou autoridade. Atenção: há risco de sonhos fantasiosos, gosto pelo jogo, escândalos e abusos financeiros. Busque a verdade e a concretude.
+
+[OK] Oposição · Júpiter / Plutão (chave: 4:5:9)
+Existe uma tendência a querer fazer justiça com as próprias mãos, destruindo regras sociais e pessoais. Atenção: do ponto de vista físico, há um forte indício de tumores malignos ou de grandes proporções. Há também a tendência de conquistar poderes por meios duvidosos ou arriscados, querer enriquecer rapidamente usando meios ilícitos, falsa importância, falta de humildade e gastos excessivos.
+
+[OK] Oposição · Júpiter / Ascendente (chave: 4:5:10)
+Existe uma tendência a comportamentos evasivos e pretensiosos, com riscos de excessos. Atenção: risco de obesidade. O seu grande desafio é aprender o autocontrole, dividindo os seus grandes planos em etapas. Não espere receber dinheiro de forma fácil. Tenha cuidado com ares de grandeza, que podem prejudicar todas as suas relações.
+
+[OK] Oposição · Júpiter / Meio do Céu (chave: 4:5:11)
+A família pode dificultar a sua profissão, e você pode ter problemas sociais e profissionais por atitudes de superioridade. O seu grande desafio é ser mais humilde e não usar a arrogância, a vaidade ou a hipocrisia no social e no profissional. Atenção: há facilidade para má reputação ou perda de posição. Alinhe as suas capacidades às suas ambições.
+
+[OK] Oposição · Saturno / Urano (chave: 4:6:7)
+Existe um conflito entre o conservadorismo e o reformismo. Você tem dificuldades para romper com o passado, mas o futuro depende disso. O seu grande desafio é lidar com a agressividade frente às figuras de autoridade. É o constante "subir e descer a montanha", entendendo que o recomeço é produtivo. Atenção: o pessimismo pode levar ao endurecimento das articulações.
+
+[OK] Oposição · Saturno / Netuno (chave: 4:6:8)
+Existe um conflito entre a imaginação e a razão, o sonho e a realidade. O seu grande desafio é buscar a autodisciplina, que pode escapar o tempo todo. Você pode ter medos de pobreza, perda de status ou fracasso. Atenção: a vontade de fugir da realidade pode levar a buscar dependências e fugas. Há risco de depressão crônica e neuroses. Busque ajuda se precisar e mantenha os pés no chão.
+
+[OK] Oposição · Saturno / Plutão (chave: 4:6:9)
+As responsabilidades podem produzir frustrações e desilusões. O seu grande desafio é lidar com circunstâncias misteriosas que parecem levar a perdas ou a caminhos mais difíceis, fazendo você se sentir um "perdedor". Lembre-se de que a força para reconstruir está dentro de você.
+
+[OK] Oposição · Saturno / Ascendente (chave: 4:6:10)
+Existem dificuldades para se colocar nas situações, o que pode gerar frustração. Você precisa de tempo para adquirir autoconfiança. Atenção: há dificuldade para manifestar afeto ou o querer pessoal. Fortes sensações de bloqueio diante de pessoas mais velhas, estados de depressão, pessimismo e timidez. Pode haver tendências à avareza. Não recue diante das dificuldades, lute.
+
+[OK] Oposição · Saturno / Meio do Céu (chave: 4:6:11)
+A forma como você atua frente à profissão e ao social pode ser dura e negativa, com relações complicadas com superiores ou com quem detém a autoridade. O seu grande desafio é não sentir as responsabilidades como obstáculos opressores. Atenção: é o aspecto típico da queda profissional ou social, perda de status ou propriedades, com a honra comprometida. Tenha lucidez sobre as suas capacidades.
+
+[OK] Oposição · Urano / Netuno (chave: 4:7:8)
+Você pode ter dificuldades para admitir os próprios erros e defeitos. O seu grande desafio é encontrar a liberdade que está camuflada, tendo coragem para lutar por ela. Atenção: há uma forte tendência a pertencer a organizações secretas. A espiritualidade e o ocultismo podem ser fontes de tensões se não forem bem compreendidos.
+
+[OK] Oposição · Urano / Plutão (chave: 4:7:9)
+A sua liberdade pessoal pode vivenciar cortes e limitações, e as mudanças afetam você mais do que demonstra. O seu grande desafio é lidar com o extremismo que leva à destruição ou à morte de uma crença pessoal ou coletiva. As mudanças serão drásticas, e você precisa aprender a fluir com elas.
+
+[OK] Oposição · Urano / Ascendente (chave: 4:7:10)
+Existe um inconformismo, irritação e frequentes mudanças de humor. Atenção: há uma predisposição ao divórcio dos desejos e da própria liberdade. As condutas podem ser excêntricas e levar a perdas. O seu grande desafio é não ser o rebelde pelo simples gosto de se rebelar, nem ser irresponsável com as regras.
+
+[OK] Oposição · Urano / Meio do Céu (chave: 4:7:11)
+As mudanças, tanto familiares quanto profissionais, acontecem pelo seu próprio temperamento. Atenção: a rebeldia pode fazer você viver à margem da lei ou ter constantes problemas com a mesma. Há choques com figuras de autoridade. O seu grande desafio é não viver a rotina e evitar a perda súbita de poder ou trabalho. Busque a liberdade sem chocar o social.
+
+[OK] Oposição · Netuno / Plutão (chave: 4:8:9)
+A sua espiritualidade e as pulsões interiores podem ter um efeito desequilibrante, apagando as suas luzes interiores. O seu grande desafio é trabalhar a regeneração espiritual em meio à desordem, buscando a verdade interior.
+
+[OK] Oposição · Netuno / Ascendente (chave: 4:8:10)
+Você pode ser muito sensível às críticas e sofrer fracassos por não se defender na hora certa. Atenção: pode haver pouca dignidade para cumprir os compromissos assumidos, com relações de pouca fidelidade ou seriedade. O seu grande desafio é não se deixar influenciar negativamente pelo ambiente.
+
+[OK] Oposição · Netuno / Meio do Céu (chave: 4:8:11)
+Existe uma falta de confiança nas obrigações profissionais, originada na família. Atenção: as questões domésticas confusas podem prejudicar os objetivos profissionais. Há dificuldade na escolha do caminho a seguir, com pouca lucidez sobre as verdadeiras capacidades. Podem ocorrer má reputação, descrédito e calúnia.
+
+[OK] Oposição · Plutão / Ascendente (chave: 4:9:10)
+Existem atitudes rudes ou ditatoriais e uma busca por exercer controle no ambiente. O seu grande desafio é não estar sempre insatisfeito com tudo ao seu redor. Atenção: não seja agressivo nas condutas pessoais nem antissocial nas relações afetivas ou sociais. Use o seu poder para construir pontes.
+
+[OK] Oposição · Plutão / Meio do Céu (chave: 4:9:11)
+Você pode se sentir desconforme consigo mesmo e ter dificuldade em aceitar a regeneração e a autoavaliação. O seu grande desafio é evitar conflitos com quem detém autoridade e poder. Atenção: as tendências revolucionárias internas podem levar a perdas, sem que você saiba o motivo. Busque a transformação interior com consciência.
+
+
+
+
+
+
+
+
+
+
+
+
