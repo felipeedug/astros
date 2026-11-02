@@ -105,6 +105,8 @@
   .chart-metadata-grid.solar-metadata .metadata-card dl { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .metadata-card dt { font-size:6.5pt; color:#555; }
   .metadata-card dd { font-size:8pt; color:#111; margin-top:.5mm; }
+  body.map-life-print .interpretation-report-metadata { display:grid !important; max-width:none; margin:0 0 2mm; break-inside:avoid; page-break-inside:avoid; }
+  body.map-life-print .interpretation-report-metadata.solar-metadata { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .main-content,.workspace,.chart-panel { background:#fff !important; }
   body.map-life-print .main-content,body.map-life-print .workspace,body.map-life-print .chart-panel { background:transparent !important; }
   .chart-wrap { width:88mm; max-width:100%; margin:0 auto 1mm; break-inside:avoid; page-break-inside:avoid; }
@@ -150,6 +152,8 @@
   .interpretation-card { padding:3mm; background:#fff !important; border-color:#ddd !important; }
   body.map-life-print .interpretation-card,body.map-life-print .metadata-card,body.map-life-print .planet-readout span,body.map-life-print .house-readout span,body.map-life-print .balance-tables section > div > div,body.map-life-print .balance-tables .polarity-balance,body.map-life-print .aspect-matrix td { background:rgba(255,255,255,.86) !important; }
   .interpretation-card p { color:#333; }
+  .interpretation-aspect-group--easy { background:rgba(93,155,114,.1) !important; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
+  .interpretation-aspect-group--challenge { background:rgba(201,130,57,.11) !important; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
   .readout-heading,.balance-tables h3 { color:#333; }
   .ephemerides-page { padding:0; page:calendar; }
   .ephemerides-page .section-heading { margin-bottom:1mm; }
@@ -666,13 +670,20 @@
     margin-top: 4mm;
   }
 
+  body.map-life-print .map-life-view[aria-labelledby="map-life-areas-title"] {
+    break-before: page;
+    page-break-before: always;
+  }
+
   body.map-life-print .map-life-view-title {
     margin-bottom: 2mm;
     font-size: 12pt;
+    break-after: avoid-page;
+    page-break-after: avoid;
   }
 
   body.map-life-print .map-life-card-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 3mm;
   }
 
