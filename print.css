@@ -42,6 +42,8 @@
 .result-actions .interpret-button:hover,.result-actions .print-button:hover { color:#fff; background:var(--ink); }
 .print-button { display:flex; align-items:center; justify-content:space-between; gap:8px; }
 .print-button span { font-size:17px; }
+.interpretation-bookend--closing .interpretation-print-footer { max-width:320px; margin:22px auto 0; padding:12px 14px; border:1px solid var(--ink); color:var(--ink); background:transparent; font:700 10px var(--fonte-corpo); cursor:pointer; }
+.interpretation-bookend--closing .interpretation-print-footer:hover { color:var(--off-white); background:var(--ink); }
 .interpretation-panel { margin-top:14px; }
 .solar-pair[hidden] { display:none !important; }
 .chart-metadata-grid { display:grid; grid-template-columns:minmax(0,1fr); gap:8px; width:100%; max-width:640px; margin:10px auto 0; }
@@ -84,7 +86,7 @@
   html,body { width:auto; min-width:0; color:#111; background:#fff; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
   body.map-life-print::before { position:fixed; inset:0; z-index:0; content:""; background:url("fonts/Novo%20Design%20-%20COM%20texto.png") center center / 145mm auto no-repeat; filter:grayscale(1); opacity:.12; pointer-events:none; }
   body.map-life-print .app-shell { position:relative; z-index:1; }
-  .sidebar,.site-footer,.control-column,.result-actions,.icon-button,.insights,.hero-section { display:none !important; }
+  .sidebar,.site-footer,.control-column,.result-actions,.icon-button,.insights,.hero-section,.interpretation-print-footer { display:none !important; }
   .main-content { width:100%; max-width:none; margin:0; padding:0; }
   .workspace { display:block; margin:0; padding:0; border:0; }
   @page { size:A4 portrait; margin:10mm; }
@@ -153,7 +155,12 @@
   body.map-life-print .interpretation-card,body.map-life-print .metadata-card,body.map-life-print .planet-readout span,body.map-life-print .house-readout span,body.map-life-print .balance-tables section > div > div,body.map-life-print .balance-tables .polarity-balance,body.map-life-print .aspect-matrix td { background:rgba(255,255,255,.86) !important; }
   .interpretation-card p { color:#333; }
   .interpretation-aspect-group--easy { background:rgba(93,155,114,.1) !important; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
-  .interpretation-aspect-group--challenge { background:rgba(201,130,57,.11) !important; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
+  .interpretation-aspect-group--challenge { background:rgba(210,140,117,.17) !important; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
+  .interpretation-aspect-legend { justify-content:flex-start; gap:2mm 5mm; margin:0 0 3mm; font-size:7pt; }
+  .interpretation-aspect-legend--chapter { justify-content:flex-end; gap:1mm 4mm; margin:2mm 0 0; font-size:6.5pt; }
+  .interpretation-aspect-legend-label--challenge { color:#9a5c49 !important; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
+  .interpretation-aspect-legend-label--easy { color:#527459 !important; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
+  .interpretation-aspect-legend-swatch { width:2.5mm; height:2.5mm; }
   .readout-heading,.balance-tables h3 { color:#333; }
   .ephemerides-page { padding:0; page:calendar; }
   .ephemerides-page .section-heading { margin-bottom:1mm; }
@@ -638,6 +645,76 @@
 }
 
 @media print {
+  body.map-life-print .map-life-summary {
+    display: block !important;
+    margin: 0;
+    break-before: page;
+    page-break-before: always;
+  }
+
+  body.map-life-print .map-life-summary > .interpretation-subtitle,
+  body.map-life-print .map-life-summary-chapter-title {
+    break-after: avoid-page;
+    page-break-after: avoid;
+  }
+
+  body.map-life-print .map-life-summary > .interpretation-subtitle {
+    margin-top: 0;
+  }
+
+  body.map-life-print .map-life-summary > .interpretation-introduction {
+    margin: 2mm 0 4mm;
+    font-size: 8pt;
+  }
+
+  body.map-life-print .map-life-summary-chapter {
+    margin-top: 4mm;
+  }
+
+  body.map-life-print .map-life-summary-chapter-title {
+    margin-bottom: 2mm;
+    font-size: 11pt;
+  }
+
+  body.map-life-print .map-life-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2mm;
+  }
+
+  body.map-life-print .map-life-summary-card {
+    padding: 2.5mm;
+    border-radius: 2mm;
+    background: #fff;
+    box-shadow: none;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  body.map-life-print .map-life-summary-card > h4 {
+    margin-bottom: 1.5mm;
+    font-size: 9pt;
+  }
+
+  body.map-life-print .map-life-summary-card > p,
+  body.map-life-print .map-life-summary-card .interpretation-aspect-group p {
+    font-size: 7.5pt;
+    line-height: 1.35;
+  }
+
+  body.map-life-print .map-life-summary-themes {
+    margin-top: 2mm;
+  }
+
+  body.map-life-print .map-life-summary-themes h5 {
+    margin-bottom: 1mm;
+    font-size: 6.5pt;
+  }
+
+  body.map-life-print .map-life-summary-themes li {
+    padding: 1mm 1.5mm;
+    font-size: 6.5pt;
+  }
+
   body.map-life-print .map-life-dashboard {
     display: block !important;
     margin: 0;

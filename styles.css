@@ -163,7 +163,19 @@ label { display:block; margin-top:20px; color:var(--muted); font-size:10px; font
 .interpretation-report-metadata { display:none !important; }
 .interpretation-bookend { margin:18px 0; padding:16px 18px; border:1px solid var(--line); border-left:3px solid var(--azul-ceu); border-radius:4px; background:#eaf1f6; }.interpretation-bookend h3 { margin:0 0 12px; color:var(--ink); font:600 16px var(--fonte-titulo); }.interpretation-bookend p { margin:0 0 10px; color:var(--muted); font-size:12px; line-height:1.75; }.interpretation-bookend p:last-child { margin-bottom:0; }.interpretation-bookend blockquote { margin:0 0 12px; padding-left:12px; border-left:2px solid var(--gold); color:var(--ink); font:italic 14px/1.65 var(--fonte-titulo); }.interpretation-bookend blockquote p { margin:0; color:inherit; font:inherit; }.interpretation-bookend cite { display:block; margin-top:4px; color:var(--muted); font:normal 11px var(--fonte-corpo); }.interpretation-bookend--closing { margin-top:22px; }
 .interpretation-card p { text-align:justify; }
-.interpretation-aspect-group { margin-top:11px; padding:10px 12px; border-left:2px solid; border-radius:0 8px 8px 0; print-color-adjust:exact; -webkit-print-color-adjust:exact; }.interpretation-aspect-group--easy { border-color:#5d9b72; background:rgba(93,155,114,.1); }.interpretation-aspect-group--challenge { border-color:#c98239; background:rgba(201,130,57,.11); }.interpretation-aspect-group h5 { margin:0 0 6px; color:var(--ink); font:700 9px var(--fonte-corpo); letter-spacing:.08em; text-transform:uppercase; }.interpretation-aspect-group p+p { margin-top:7px; }
+.interpretation-aspect-group { margin-top:11px; padding:10px 12px; border-left:2px solid; border-radius:0 8px 8px 0; print-color-adjust:exact; -webkit-print-color-adjust:exact; }.interpretation-aspect-group--easy { border-color:#5d9b72; background:rgba(93,155,114,.1); }.interpretation-aspect-group--challenge { border-color:#be6953; background:rgba(210,140,117,.17); }.interpretation-aspect-group p+p { margin-top:7px; }
+.interpretation-house-planet-entry { margin-top:11px; }
+.interpretation-aspect-legend { display:flex; flex-wrap:wrap; justify-content:center; gap:8px 18px; margin:0 0 16px; color:var(--cinza-azulado); font:700 10px/1.4 var(--fonte-corpo); }
+.interpretation-aspect-legend > span { display:inline-flex; align-items:center; gap:7px; }
+.interpretation-aspect-legend-swatch { width:11px; height:11px; border-radius:50%; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
+.interpretation-aspect-legend-swatch--challenge { background:#be6953; }
+.interpretation-aspect-legend-swatch--easy { background:#5d9b72; }
+.interpretation-aspect-legend--chapter { justify-content:flex-end; gap:5px 14px; margin:10px 0 2px; font-size:9px; }
+.interpretation-aspect-legend-label--challenge { color:#9a5c49; }
+.interpretation-aspect-legend-label--easy { color:#527459; }
+.interpretation-entry-text { print-color-adjust:exact; -webkit-print-color-adjust:exact; }
+.interpretation-entry-text--easy { color:#527459!important; }
+.interpretation-entry-text--challenge { color:#9a5c49!important; }
 .interpretation-section-list-title { margin-bottom:4px !important; }
 .interpretation-section-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:3px 18px; margin:0; padding-left:24px; color:var(--muted); font-size:11px; line-height:1.5; }
 @media (max-width:600px) { .interpretation-section-list { grid-template-columns:minmax(0,1fr); } }
@@ -523,7 +535,22 @@ label { display:block; margin-top:20px; color:var(--muted); font-size:10px; font
 .map-life-aspect-group li strong { display:block; margin:0 0 3px; color:var(--azul-noite); font:700 10px/1.45 var(--fonte-corpo); }
 .map-life-house-planets { margin:0 0 15px; }
 .map-life-house-planets ul { display:flex; flex-wrap:wrap; gap:6px; }
-.map-life-house-planets li { padding:6px 9px; border-radius:999px; background:rgba(27,58,92,.08); color:var(--azul-ceu); font:700 10px var(--fonte-corpo); }
+.map-life-house-planets li { padding:6px 9px; border:1px solid transparent; border-radius:999px; font:700 10px var(--fonte-corpo); }
+.map-life-house-theme--easy,.map-life-summary-theme--easy { border-color:rgba(93,139,104,.22)!important; background:rgba(141,173,145,.16)!important; color:#527459!important; }
+.map-life-house-theme--challenge,.map-life-summary-theme--challenge { border-color:rgba(190,105,83,.24)!important; background:rgba(210,140,117,.17)!important; color:#9a5c49!important; }
+.map-life-summary { margin:36px 0; }
+.map-life-summary > .interpretation-subtitle { margin-top:0; }
+.map-life-summary > .interpretation-introduction { max-width:none; }
+.map-life-summary-chapter { margin-top:22px; }
+.map-life-summary-chapter-title { margin:0 0 10px; color:var(--azul-noite); font:500 20px/1.25 var(--fonte-titulo); }
+.map-life-summary-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.map-life-summary-card { min-width:0; border:1px solid rgba(44,62,80,.1); border-radius:10px; background:rgba(255,255,255,.72); }
+.map-life-summary-card > h4 { margin:0 0 8px; color:var(--azul-noite); font:500 18px/1.2 var(--fonte-titulo); letter-spacing:0; text-transform:none; }
+.map-life-summary-card > p+p { margin-top:7px; }
+.map-life-summary-themes { margin-top:10px; }
+.map-life-summary-themes h5 { margin:0 0 6px; color:#687782; font:700 9px var(--fonte-corpo); letter-spacing:.1em; text-transform:uppercase; }
+.map-life-summary-themes ul { display:flex; flex-wrap:wrap; gap:5px; margin:0; padding:0; list-style:none; }
+.map-life-summary-themes li { padding:5px 8px; border-radius:999px; background:rgba(27,58,92,.08); color:var(--azul-ceu); font:700 9px/1.3 var(--fonte-corpo); }
 @media (min-width:900px) { .map-life-card-grid { grid-template-columns:repeat(4,minmax(0,1fr)); } }
 @media (max-width:600px) {
   .map-life-dashboard { margin:26px -8px 32px; padding:20px 13px; border-radius:18px; }
@@ -531,4 +558,6 @@ label { display:block; margin-top:20px; color:var(--muted); font-size:10px; font
   .map-life-view-title { font-size:19px; }
   .map-life-card-grid { grid-template-columns:1fr; gap:12px; }
   .map-life-card { padding:17px 16px; }
+  .map-life-summary-grid { grid-template-columns:1fr; }
+  .map-life-summary-chapter-title { font-size:18px; }
 }
