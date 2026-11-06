@@ -649,9 +649,19 @@ function renderNatalInterpretation(content, chart) {
   const aspects = chartAspects(longitudes);
   const planetLabels = { Sun: 'Sol', Moon: 'Lua', Mercury: 'Mercúrio', Venus: 'Vênus', Mars: 'Marte', Jupiter: 'Júpiter', Saturn: 'Saturno', Uranus: 'Urano', Neptune: 'Netuno', Pluto: 'Plutão', Ascendant: 'Ascendente', Midheaven: 'Meio do Céu' };
   const chapterAspectLegend = `<div class="interpretation-aspect-legend interpretation-aspect-legend--chapter" aria-label="Desafios em vermelho; Facilidades em verde"><span class="interpretation-aspect-legend-label--challenge">Desafios</span><span class="interpretation-aspect-legend-label--easy">Facilidades</span></div>`;
+  const appendChapterLegendToLastCard = (cards) => {
+    const items = cards.filter(Boolean);
+    if (!items.length) return '';
+    const lastCardIndex = items.length - 1;
+    const closingTagIndex = items[lastCardIndex].lastIndexOf('</article>');
+    if (closingTagIndex < 0) items[lastCardIndex] += chapterAspectLegend;
+    else items[lastCardIndex] = `${items[lastCardIndex].slice(0, closingTagIndex)}${chapterAspectLegend}${items[lastCardIndex].slice(closingTagIndex)}`;
+    return items.join('');
+  };
   const section = (title, introduction, cards, modifier = '', extraMarkup = '') => {
     const isChapter = ['interpretation-topic--chapter', 'interpretation-topic--shared-start', 'interpretation-topic--shared-follow'].some((className) => modifier.includes(className));
-    return `<section class="interpretation-topic ${modifier}"><h3 class="interpretation-subtitle">${title}</h3><p class="interpretation-introduction">${introduction}</p><div class="interpretation-grid">${cards.join('')}${extraMarkup}</div>${isChapter ? chapterAspectLegend : ''}</section>`;
+    const cardMarkup = isChapter ? appendChapterLegendToLastCard(cards) : cards.join('');
+    return `<section class="interpretation-topic ${modifier}"><h3 class="interpretation-subtitle">${title}</h3><p class="interpretation-introduction">${introduction}</p><div class="interpretation-grid">${cardMarkup}${extraMarkup}</div></section>`;
   };
   const housePlanets = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
   const interpretationCard = (title, entries, groupedAspects = null) => {
@@ -846,7 +856,7 @@ function renderNatalInterpretation(content, chart) {
     const linkedAspects = aspectPoint ? summaryAspectEntries(aspectPoint, excludedPlanets) : [];
     return summaryCard(title, [{ text }], aspectPoint ? aspectGroups(linkedAspects) : null, themesMarkup);
   };
-  const summaryChapter = (title, cards) => `<section class="map-life-summary-chapter"><h4 class="map-life-summary-chapter-title">${title}</h4><div class="map-life-summary-grid">${cards.filter(Boolean).join('')}</div>${chapterAspectLegend}</section>`;
+  const summaryChapter = (title, cards) => `<section class="map-life-summary-chapter"><h4 class="map-life-summary-chapter-title">${title}</h4><div class="map-life-summary-grid">${appendChapterLegendToLastCard(cards)}</div></section>`;
   const summaryMarkup = `<section class="map-life-summary" aria-labelledby="map-life-summary-title"><h3 class="interpretation-subtitle" id="map-life-summary-title">RESUMO DO MAPA DA VIDA</h3><p class="interpretation-introduction">Uma visão rápida dos temas e aspectos presentes nos capítulos do seu mapa.</p>${summaryChapter('1. QUEM VOCÊ É', [
     summaryPlanetCard('MOTIVAÇÃO', 'Sun', ['Ascendant', 'Midheaven']),
     summaryHouseCard('COMO O MUNDO TE VÊ / COMO VÊ O MUNDO', 1, 'Ascendant', ['Midheaven'], false),
