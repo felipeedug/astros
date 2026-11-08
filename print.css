@@ -109,6 +109,9 @@
   .metadata-card dd { font-size:8pt; color:#111; margin-top:.5mm; }
   body.map-life-print .interpretation-report-metadata { display:grid !important; max-width:none; margin:0 0 2mm; break-inside:avoid; page-break-inside:avoid; }
   body.map-life-print .interpretation-report-metadata.solar-metadata { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  body.map-life-print .interpretation-report-metadata:not(.solar-metadata) .metadata-card dl { grid-template-columns:repeat(4,minmax(0,1fr)); }
+  body.map-life-print .interpretation-report-metadata:not(.solar-metadata) .metadata-card dl > div:first-child,
+  body.map-life-print .interpretation-report-metadata:not(.solar-metadata) .metadata-card dl > div:nth-child(4) { grid-column:span 2; }
   .main-content,.workspace,.chart-panel { background:#fff !important; }
   body.map-life-print .main-content,body.map-life-print .workspace,body.map-life-print .chart-panel { background:transparent !important; }
   .chart-wrap { width:88mm; max-width:100%; margin:0 auto 1mm; break-inside:avoid; page-break-inside:avoid; }
@@ -179,10 +182,26 @@
   .void-moon-table { font-size:10pt; }
   .view-panel[hidden],.chart-wrap[hidden],.solar-pair[hidden] { display:none !important; }
 }
-/* Mapa da Vida: composição editorial em páginas A4 paisagem. */
+/* Mapa da Vida: composição editorial em páginas A4 retrato. */
 @page map-life {
-  size: A4 landscape;
-  margin: 10mm;
+  size: A4 portrait;
+  margin: 12mm 14mm 17mm;
+
+  @bottom-left {
+    content: "Entre Estrelas";
+    padding-top: 2mm;
+    border-top: .4pt solid #d5dce1;
+    color: #536473;
+    font: 8pt 'Montserrat', sans-serif;
+  }
+
+  @bottom-right {
+    content: counter(page) " / " counter(pages);
+    padding-top: 2mm;
+    border-top: .4pt solid #d5dce1;
+    color: #536473;
+    font: 8pt 'Montserrat', sans-serif;
+  }
 }
 
 @media print {
@@ -234,23 +253,27 @@
   }
 
   body.map-life-print .interpretation-topic--temperament {
-    break-after: page;
-    page-break-after: always;
+    break-before: auto;
+    page-break-before: auto;
+    break-after: auto;
+    page-break-after: auto;
+    break-inside: avoid-page;
+    page-break-inside: avoid;
   }
 
   body.map-life-print .interpretation-topic--chapter,
   body.map-life-print .interpretation-topic--shared-start {
-    break-before: page;
-    page-break-before: always;
+    break-before: auto;
+    page-break-before: auto;
   }
 
   body.map-life-print .interpretation-topic--chapter .interpretation-grid,
   body.map-life-print .interpretation-topic--shared-start .interpretation-grid,
   body.map-life-print .interpretation-topic--shared-follow .interpretation-grid {
     display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-columns: minmax(0, 1fr) !important;
     align-items: start;
-    gap: 7mm;
+    gap: 4mm;
   }
 
   body.map-life-print .interpretation-topic--chapter .interpretation-card,
@@ -263,6 +286,8 @@
   body.map-life-print .interpretation-final-visuals {
     break-before: page;
     page-break-before: always;
+    break-inside: avoid-page;
+    page-break-inside: avoid;
   }
 
   body.map-life-print .interpretation-final-visuals__top {
@@ -291,8 +316,8 @@
   }
 
   body.map-life-print .interpretation-bookend--closing {
-    break-before: page;
-    page-break-before: always;
+    break-before: auto;
+    page-break-before: auto;
   }
 
   /* As subseções devem fluir dentro do capítulo, sem iniciar páginas próprias. */
@@ -314,9 +339,9 @@
   body.map-life-print .interpretation-topic--shared-start .interpretation-grid,
   body.map-life-print .interpretation-topic--shared-follow .interpretation-grid {
     display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-columns: minmax(0, 1fr) !important;
     align-items: start;
-    gap: 6mm;
+    gap: 4mm;
     break-inside: auto !important;
     page-break-inside: auto !important;
   }
@@ -330,6 +355,19 @@
     page-break-inside: avoid !important;
   }
 
+  body.map-life-print .interpretation-topic--chapter .interpretation-card p,
+  body.map-life-print .interpretation-topic--shared-start .interpretation-card p,
+  body.map-life-print .interpretation-topic--shared-follow .interpretation-card p {
+    font-size: 9pt;
+    line-height: 1.45;
+  }
+
+  body.map-life-print .interpretation-topic--chapter .interpretation-card h4,
+  body.map-life-print .interpretation-topic--shared-start .interpretation-card h4,
+  body.map-life-print .interpretation-topic--shared-follow .interpretation-card h4 {
+    font-size: 9pt;
+  }
+
   body.map-life-print .interpretation-topic--chapter > :first-child,
   body.map-life-print .interpretation-topic--chapter > .interpretation-introduction,
   body.map-life-print .interpretation-topic--shared-start > :first-child,
@@ -338,6 +376,13 @@
   body.map-life-print .interpretation-topic--shared-follow > .interpretation-introduction {
     break-after: avoid !important;
     page-break-after: avoid !important;
+  }
+
+  body.map-life-print .interpretation-topic--chapter > .interpretation-introduction,
+  body.map-life-print .interpretation-topic--shared-start > .interpretation-introduction,
+  body.map-life-print .interpretation-topic--shared-follow > .interpretation-introduction {
+    break-inside: avoid-page !important;
+    page-break-inside: avoid !important;
   }
 
   body.map-life-print .interpretation-temperament-chart { margin-top: 4mm; }
@@ -354,14 +399,19 @@
     min-width: 0;
   }
 
+  body.map-life-print .interpretation-temperament-graphic .balance-bar-row {
+    grid-template-columns: minmax(12mm, 1fr) 7mm minmax(18mm, 1.2fr) !important;
+  }
+
   body.map-life-print .interpretation-main-title {
     margin-bottom: 2mm;
     font-size: 16pt;
+    white-space: nowrap;
   }
 
   body.map-life-print .interpretation-bookend--opening {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr);
     align-items: start;
     gap: 2mm 6mm;
     margin: 0 0 3mm;
@@ -369,7 +419,7 @@
   }
 
   body.map-life-print .interpretation-bookend--opening > blockquote {
-    grid-column: 1 / -1;
+    grid-column: 1;
     margin: 0;
     padding-left: 3mm;
     font-size: 11pt;
@@ -382,12 +432,12 @@
   }
 
   body.map-life-print .interpretation-bookend--opening .interpretation-section-list-title {
-    align-self: end;
+    align-self: start;
   }
 
   body.map-life-print .interpretation-bookend--opening .interpretation-section-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1mm 4mm;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1mm;
     padding-left: 5mm;
     font-size: 8pt;
     line-height: 1.3;
@@ -396,7 +446,9 @@
   body.map-life-print .interpretation-topic--temperament {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: 1.5mm 5mm;
+    gap: 0 5mm;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
   }
 
   body.map-life-print .interpretation-topic--temperament > .interpretation-subtitle,
@@ -418,9 +470,10 @@
 
   body.map-life-print .interpretation-topic--temperament > .interpretation-grid {
     display: grid !important;
-    grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr) !important;
+    grid-template-columns: minmax(0, 1fr) !important;
     align-items: start;
-    gap: 5mm;
+    gap: 0;
+    margin: 0;
   }
 
   body.map-life-print .interpretation-topic--temperament .interpretation-card {
@@ -438,7 +491,11 @@
   }
 
   body.map-life-print .interpretation-temperament-chart {
-    margin: 0;
+    margin: 0 !important;
+  }
+
+  body.map-life-print .interpretation-topic--temperament + .interpretation-topic--chapter {
+    margin-top: 0 !important;
   }
 
   /* Evita que os capítulos longos deixem título ou introdução isolados. */
@@ -446,22 +503,41 @@
   body.map-life-print .interpretation-topic--shared-start .interpretation-grid,
   body.map-life-print .interpretation-topic--shared-follow .interpretation-grid {
     display: block !important;
-    columns: 2;
-    column-gap: 6mm;
-    column-fill: auto;
-    break-before: avoid-page;
-    page-break-before: avoid;
+    break-before: auto;
+    page-break-before: auto;
   }
 
   body.map-life-print .interpretation-topic--chapter .interpretation-grid > *,
   body.map-life-print .interpretation-topic--shared-start .interpretation-grid > *,
   body.map-life-print .interpretation-topic--shared-follow .interpretation-grid > * {
-    display: inline-block;
+    display: block;
     width: 100%;
     margin: 0 0 3mm;
-    vertical-align: top;
-    break-inside: avoid;
-    page-break-inside: avoid;
+    break-inside: auto !important;
+    page-break-inside: auto !important;
+  }
+
+  body.map-life-print .interpretation-topic--chapter .interpretation-card,
+  body.map-life-print .interpretation-topic--shared-start .interpretation-card,
+  body.map-life-print .interpretation-topic--shared-follow .interpretation-card {
+    break-inside: auto !important;
+    page-break-inside: auto !important;
+  }
+
+  body.map-life-print .interpretation-topic--chapter .interpretation-card h4,
+  body.map-life-print .interpretation-topic--shared-start .interpretation-card h4,
+  body.map-life-print .interpretation-topic--shared-follow .interpretation-card h4 {
+    break-after: avoid-page;
+    page-break-after: avoid;
+  }
+
+  body.map-life-print .interpretation-topic--chapter .interpretation-card p,
+  body.map-life-print .interpretation-topic--shared-start .interpretation-card p,
+  body.map-life-print .interpretation-topic--shared-follow .interpretation-card p {
+    break-inside: auto !important;
+    page-break-inside: auto !important;
+    orphans: 3;
+    widows: 3;
   }
 
   /* A página de síntese reúne a mandala, as tabelas e a matriz de aspectos. */
@@ -583,15 +659,21 @@
     align-items: start;
     column-gap: 6mm;
     row-gap: 3mm;
-    height: 178mm;
-    min-height: 178mm;
+    height: auto;
+    min-height: 0;
     box-sizing: border-box;
+    break-before: page;
+    page-break-before: always;
+    break-inside: avoid-page;
+    page-break-inside: avoid;
   }
 
   body.map-life-print .interpretation-final-visuals > .interpretation-subtitle {
     grid-column: 1 / -1;
     grid-row: 1;
     margin: 0;
+    break-after: avoid-page;
+    page-break-after: avoid;
   }
 
   body.map-life-print .interpretation-final-overview {
@@ -648,8 +730,8 @@
   body.map-life-print .map-life-summary {
     display: block !important;
     margin: 0;
-    break-before: page;
-    page-break-before: always;
+    break-before: auto;
+    page-break-before: auto;
   }
 
   body.map-life-print .map-life-summary > .interpretation-subtitle,
@@ -663,42 +745,70 @@
   }
 
   body.map-life-print .map-life-summary > .interpretation-introduction {
-    margin: 2mm 0 4mm;
+    margin: 0;
     font-size: 8pt;
+    line-height: 1.15;
   }
 
   body.map-life-print .map-life-summary-chapter {
-    margin-top: 4mm;
+    margin-top: 2mm;
+    padding-top: 1.5mm;
+    border-top: .5pt solid #d5dce1;
+    break-inside: auto !important;
+    page-break-inside: auto !important;
   }
 
   body.map-life-print .map-life-summary-chapter-title {
-    margin-bottom: 2mm;
-    font-size: 11pt;
+    margin: 0 0 1mm;
+    color: #263d50;
+    font: 700 10.5pt/1.2 'Montserrat', sans-serif;
+    letter-spacing: .025em;
+    break-after: avoid-page;
+    page-break-after: avoid;
   }
 
   body.map-life-print .map-life-summary-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2mm;
+    display: block !important;
   }
 
   body.map-life-print .map-life-summary-card {
-    padding: 2.5mm;
-    border-radius: 2mm;
-    background: #fff;
+    display: block;
+    margin: 0 0 1.5mm;
+    padding: 0 0 1mm;
+    border: 0;
+    border-bottom: .25pt solid #e3e7ea;
+    border-radius: 0;
+    background: transparent;
     box-shadow: none;
-    break-inside: avoid;
-    page-break-inside: avoid;
+    break-inside: auto !important;
+    page-break-inside: auto !important;
   }
 
   body.map-life-print .map-life-summary-card > h4 {
-    margin-bottom: 1.5mm;
-    font-size: 9pt;
+    margin: 0 0 .5mm;
+    color: #263d50;
+    font: 700 9.5pt/1.25 'Montserrat', sans-serif;
+    text-transform: none;
+    letter-spacing: 0;
+    break-after: avoid-page;
+    page-break-after: avoid;
   }
 
   body.map-life-print .map-life-summary-card > p,
   body.map-life-print .map-life-summary-card .interpretation-aspect-group p {
-    font-size: 7.5pt;
-    line-height: 1.35;
+    margin: 0 0 .8mm;
+    font-size: 9.5pt !important;
+    line-height: 1.3 !important;
+    break-inside: auto !important;
+    page-break-inside: auto !important;
+    orphans: 3;
+    widows: 3;
+  }
+
+  body.map-life-print .map-life-summary-card .interpretation-aspect-group {
+    margin: 1mm 0;
+    padding: 1mm 2mm;
+    border-radius: 1mm;
   }
 
   body.map-life-print .map-life-summary-themes {
@@ -707,12 +817,12 @@
 
   body.map-life-print .map-life-summary-themes h5 {
     margin-bottom: 1mm;
-    font-size: 6.5pt;
+    font-size: 7.5pt;
   }
 
   body.map-life-print .map-life-summary-themes li {
     padding: 1mm 1.5mm;
-    font-size: 6.5pt;
+    font-size: 7.5pt;
   }
 
   body.map-life-print .map-life-dashboard {
@@ -724,18 +834,23 @@
     background: transparent;
     box-shadow: none;
     break-before: page;
-    break-after: page;
+    break-after: auto;
     page-break-before: always;
-    page-break-after: always;
+    page-break-after: auto;
   }
 
   body.map-life-print .map-life-dashboard-intro {
     max-width: none;
     margin: 0 auto 4mm;
+    break-after: avoid-page;
+    page-break-after: avoid;
   }
 
   body.map-life-print .map-life-dashboard-intro h2 {
-    font-size: 17pt;
+    margin: 0;
+    font-size: 14pt;
+    line-height: 1.25;
+    text-wrap: balance;
   }
 
   body.map-life-print .map-life-dashboard-intro > p:last-child {
@@ -748,29 +863,117 @@
   }
 
   body.map-life-print .map-life-view[aria-labelledby="map-life-areas-title"] {
-    break-before: page;
-    page-break-before: always;
+    break-before: auto;
+    page-break-before: auto;
   }
 
   body.map-life-print .map-life-view-title {
     margin-bottom: 2mm;
-    font-size: 12pt;
+    font-size: 13pt;
     break-after: avoid-page;
     page-break-after: avoid;
   }
 
+  body.map-life-print .map-life-view--focus {
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  body.map-life-print .map-life-dashboard-legend {
+    justify-content: flex-end;
+    margin: 4mm 0 0;
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+  }
+
+  body.map-life-print .interpretation-topic--chapter > .interpretation-subtitle,
+  body.map-life-print .interpretation-topic--temperament > .interpretation-subtitle {
+    margin: 3mm 0 1.5mm;
+    font-size: 14pt !important;
+    line-height: 1.2;
+    break-after: avoid-page;
+    page-break-after: avoid;
+    text-wrap: balance;
+  }
+
+  body.map-life-print .interpretation-topic--temperament > .interpretation-subtitle {
+    margin-top: 0;
+  }
+
+  body.map-life-print .interpretation-topic--temperament + .interpretation-topic--chapter > .interpretation-subtitle {
+    margin-top: 1mm;
+  }
+
+  body.map-life-print .interpretation-temperament-chart {
+    margin-top: 2mm;
+    margin-bottom: 0;
+  }
+
   body.map-life-print .map-life-card-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 3mm;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4mm;
   }
 
   body.map-life-print .map-life-card {
-    padding: 3mm;
+    padding: 4mm;
     border-radius: 2mm;
     background: #fff;
     box-shadow: none;
     break-inside: avoid;
     page-break-inside: avoid;
+  }
+
+  /* Os quatro cards mantêm todas as interpretações, com espaçamento compacto para impressão. */
+  body.map-life-print .map-life-view--focus .map-life-aspect-group {
+    display: block !important;
+    margin-top: 1.5mm;
+    padding: 1.5mm 2mm;
+  }
+
+  body.map-life-print .map-life-view--focus .map-life-aspect-group ul {
+    gap: 1mm;
+  }
+
+  body.map-life-print .map-life-view--focus .map-life-aspect-group li p {
+    font-size: 8.5pt !important;
+    line-height: 1.3 !important;
+  }
+
+  body.map-life-print .map-life-view--focus .map-life-card {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-content: start;
+    gap: 1.5mm 2mm;
+    padding: 2.5mm;
+  }
+
+  body.map-life-print .map-life-view--focus .map-life-card-heading {
+    grid-column: 1 / -1;
+    margin-bottom: 1mm;
+    padding-bottom: 1mm;
+  }
+
+  body.map-life-print .map-life-view--focus .map-life-base {
+    grid-column: 1 / -1;
+    margin: 0;
+  }
+
+  body.map-life-print .map-life-view--focus .map-life-aspect-group {
+    margin: 0;
+    padding: 1mm 1.5mm;
+  }
+
+  body.map-life-print .map-life-view--focus .map-life-aspect-group li p {
+    font-size: 9pt !important;
+    line-height: 1.25 !important;
+  }
+
+  body.map-life-print .map-life-view--focus .map-life-base p {
+    margin: 0;
+    font-size: 9pt !important;
+    line-height: 1.3 !important;
   }
 
   body.map-life-print .map-life-card-heading {
@@ -779,24 +982,25 @@
   }
 
   body.map-life-print .map-life-card-heading h3 {
-    font-size: 15pt;
+    font-size: 11pt;
+    line-height: 1.2;
   }
 
   body.map-life-print .map-life-card-heading p,
   body.map-life-print .map-life-card-count {
-    font-size: 7pt;
+    font-size: 8pt;
   }
 
   body.map-life-print .map-life-card h4,
   body.map-life-print .map-life-aspect-group h5 {
     margin-bottom: 1mm;
-    font-size: 6.5pt;
+    font-size: 7.5pt;
   }
 
   body.map-life-print .map-life-base p,
   body.map-life-print .map-life-aspect-group li p {
-    font-size: 7.5pt;
-    line-height: 1.35;
+    font-size: 8.5pt;
+    line-height: 1.4;
   }
 
   body.map-life-print .map-life-base,
@@ -816,6 +1020,209 @@
 
   body.map-life-print .map-life-house-planets li {
     padding: 1mm 2mm;
-    font-size: 7pt;
+    font-size: 8pt;
+  }
+
+  /* Tipografia ampliada para leitura confortável no PDF, inclusive em telas menores. */
+  body.map-life-print .metadata-card dt { font-size: 8pt; }
+  body.map-life-print .metadata-card dd { font-size: 9.5pt; }
+
+  body.map-life-print .interpretation-bookend--opening > blockquote {
+    font-size: 13pt;
+    line-height: 1.5;
+  }
+
+  body.map-life-print .interpretation-bookend--opening > p,
+  body.map-life-print .interpretation-topic--temperament > .interpretation-introduction {
+    font-size: 11pt;
+    line-height: 1.5;
+  }
+
+  body.map-life-print .interpretation-bookend--opening .interpretation-section-list {
+    font-size: 10pt;
+    line-height: 1.45;
+  }
+
+  body.map-life-print .interpretation-topic--chapter .interpretation-card p,
+  body.map-life-print .interpretation-topic--shared-start .interpretation-card p,
+  body.map-life-print .interpretation-topic--shared-follow .interpretation-card p,
+  body.map-life-print .interpretation-topic--temperament .interpretation-card p,
+  body.map-life-print .map-life-summary-card > p,
+  body.map-life-print .map-life-summary-card .interpretation-aspect-group p,
+  body.map-life-print .map-life-base p,
+  body.map-life-print .map-life-aspect-group li p {
+    font-size: 11pt;
+    line-height: 1.55;
+  }
+
+  body.map-life-print .interpretation-topic--chapter .interpretation-card h4,
+  body.map-life-print .interpretation-topic--shared-start .interpretation-card h4,
+  body.map-life-print .interpretation-topic--shared-follow .interpretation-card h4,
+  body.map-life-print .interpretation-topic--temperament .interpretation-card h4,
+  body.map-life-print .map-life-summary-card > h4,
+  body.map-life-print .map-life-card h4,
+  body.map-life-print .map-life-aspect-group h5 {
+    font-size: 10pt;
+  }
+
+  body.map-life-print .map-life-summary-themes h5,
+  body.map-life-print .map-life-summary-themes li,
+  body.map-life-print .map-life-house-planets li,
+  body.map-life-print .map-life-card-heading p,
+  body.map-life-print .map-life-card-count {
+    font-size: 9.5pt;
+  }
+
+  body.map-life-print .interpretation-aspect-legend { font-size: 9pt; }
+  body.map-life-print .interpretation-aspect-legend--chapter { font-size: 8pt; }
+
+  body.map-life-print .map-life-summary-card > p,
+  body.map-life-print .map-life-summary-card .interpretation-aspect-group p {
+    font-size: 9.5pt !important;
+    line-height: 1.3 !important;
+  }
+
+  /* Margem impressa dentro do conteúdo: independe da margem mínima do diálogo. */
+  body.map-life-print .interpretation-panel {
+    box-sizing: border-box;
+    padding: 0 !important;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+}
+
+@media print {
+  /* Mantém os dados da pessoa junto da apresentação que os antecede na página 1. */
+  body.map-life-print .interpretation-bookend--opening {
+    break-after: avoid-page;
+    page-break-after: avoid;
+  }
+
+  body.map-life-print .interpretation-report-metadata {
+    break-before: avoid-page;
+    page-break-before: avoid;
+  }
+
+  /* Evita deixar o título da síntese sem o texto e o início do conteúdo. */
+  body.map-life-print .map-life-dashboard-intro {
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+  }
+
+  body.map-life-print .map-life-view--focus {
+    break-inside: auto !important;
+    page-break-inside: auto !important;
+  }
+
+  body.map-life-print .map-life-view--focus > .map-life-view-title {
+    break-after: avoid-page;
+    page-break-after: avoid;
+  }
+
+  /* Separa visualmente o próximo capítulo do fechamento do temperamento. */
+  body.map-life-print .interpretation-topic--temperament + .interpretation-topic--chapter > .interpretation-subtitle {
+    margin-top: 5mm;
+  }
+}
+
+@media print {
+  /* O resumo vem depois da mandala e abre uma página nova. */
+  body.map-life-print .map-life-summary {
+    column-count: 2;
+    column-gap: 8mm;
+    column-fill: balance;
+    margin: 0;
+    break-before: page;
+    page-break-before: always;
+    break-after: auto;
+    page-break-after: auto;
+  }
+
+  body.map-life-print .map-life-summary > .interpretation-subtitle,
+  body.map-life-print .map-life-summary > .interpretation-introduction {
+    column-span: all;
+  }
+
+  body.map-life-print .map-life-summary > .interpretation-subtitle {
+    margin: 0 0 2mm;
+    font-size: 14pt;
+  }
+
+  body.map-life-print .map-life-summary > .interpretation-introduction {
+    margin: 0 0 2mm;
+    padding: 1.5mm 2.5mm;
+    font-size: 8.5pt;
+    line-height: 1.25;
+  }
+
+  body.map-life-print .map-life-summary-chapter {
+    display: inline-block;
+    width: 100%;
+    margin: 0 0 2.5mm;
+    padding-top: 1.5mm;
+    border-top: .5pt solid #d5dce1;
+    break-inside: avoid-column;
+    page-break-inside: avoid;
+  }
+
+  body.map-life-print .map-life-summary-chapter-title {
+    margin: 0 0 1mm;
+    font-size: 8.5pt !important;
+    line-height: 1.2;
+    break-after: avoid-column;
+    page-break-after: avoid;
+  }
+
+  body.map-life-print .map-life-summary-grid {
+    display: block !important;
+  }
+
+  body.map-life-print .map-life-summary-card {
+    display: block;
+    margin: 0 0 1.5mm;
+    padding: 0 0 1mm;
+    border: 0;
+    border-bottom: .25pt solid #e3e7ea;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    break-inside: avoid-column;
+    page-break-inside: avoid;
+  }
+
+  body.map-life-print .map-life-summary-card > h4 {
+    margin: 0 0 .5mm;
+    font-size: 7.5pt !important;
+    line-height: 1.2;
+    break-after: avoid-column;
+    page-break-after: avoid;
+  }
+
+  body.map-life-print .map-life-summary-card > p,
+  body.map-life-print .map-life-summary-card .interpretation-aspect-group p {
+    margin: 0 0 .7mm;
+    font-size: 8pt !important;
+    line-height: 1.25 !important;
+    orphans: 2;
+    widows: 2;
+  }
+
+  body.map-life-print .map-life-summary-card .interpretation-aspect-group {
+    margin: .8mm 0;
+    padding: .8mm 1.2mm;
+  }
+
+  body.map-life-print .map-life-summary-themes {
+    margin-top: 1mm;
+  }
+
+  body.map-life-print .map-life-summary-themes h5 {
+    margin-bottom: .5mm;
+    font-size: 7pt !important;
+  }
+
+  body.map-life-print .map-life-summary-themes li {
+    padding: .6mm 1mm;
+    font-size: 7pt !important;
   }
 }

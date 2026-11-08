@@ -412,6 +412,10 @@ function formatInterpretationText(value) {
   return escapeHtml(value).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
 }
 
+function formatAspectInterpretationText(value) {
+  return escapeHtml(value).replace(/\*\*(.+?)\*\*/g, '$1');
+}
+
 function houseAtLongitude(longitude, houses, cuspOrb = 0) {
   const normalizedLongitude = mod(longitude);
   let nearestCuspDistance = Infinity;
@@ -463,7 +467,7 @@ function dominantElementKey(longitudes) {
     .join(' + ');
 }
 
-function renderBalanceTables(longitudes) {
+function balanceTablesContentMarkup(longitudes) {
   const totals = { elements: elementScores(longitudes), rhythms: { Cardeal: 0, Fixo: 0, 'Mutável': 0 }, polarities: { Positivo: 0, Negativo: 0 } };
   Object.entries(balanceBodies).forEach(([planet]) => {
     if (!Number.isFinite(longitudes[planet])) return;
@@ -480,15 +484,20 @@ function renderBalanceTables(longitudes) {
     }).join('');
   };
   const elementColors = Object.fromEntries(Object.entries(elementColorKeys).map(([element, colorKey]) => [element, signColors[colorKey]]));
-  document.querySelector('#element-balance').innerHTML = renderBarRows(totals.elements, elementColors);
-  document.querySelector('#rhythm-balance').innerHTML = renderBarRows(totals.rhythms, rhythmColors);
+  const elementRows = renderBarRows(totals.elements, elementColors);
+  const rhythmRows = renderBarRows(totals.rhythms, rhythmColors);
   const negativePoints = totals.polarities.Negativo;
   const positivePoints = totals.polarities.Positivo;
   const polarityTotal = negativePoints + positivePoints;
   const negativePercentage = polarityTotal ? negativePoints / polarityTotal * 100 : 0;
   const positivePercentage = polarityTotal ? positivePoints / polarityTotal * 100 : 0;
-  const polarityBalance = document.querySelector('#polarity-balance');
-  polarityBalance.innerHTML = `<div class="polarity-balance" style="--polarity-negative:${signColors.water};--polarity-positive:${signColors.fire}"><div class="polarity-balance-bar" role="img" aria-label="${negativePoints} pontos negativos e ${positivePoints} positivos"><span class="polarity-balance-negative" style="width:${negativePercentage}%"></span><span class="polarity-balance-positive" style="width:${positivePercentage}%"></span></div><div class="polarity-balance-legend"><span><i class="polarity-swatch polarity-swatch-negative"></i>Negativo <strong>${negativePoints}</strong></span><span><i class="polarity-swatch polarity-swatch-positive"></i>Positivo <strong>${positivePoints}</strong></span></div></div>`;
+  const polarityMarkup = `<div class="polarity-balance" style="--polarity-negative:${signColors.water};--polarity-positive:${signColors.fire}"><div class="polarity-balance-bar" role="img" aria-label="${negativePoints} pontos negativos e ${positivePoints} positivos"><span class="polarity-balance-negative" style="width:${negativePercentage}%"></span><span class="polarity-balance-positive" style="width:${positivePercentage}%"></span></div><div class="polarity-balance-legend"><span><i class="polarity-swatch polarity-swatch-negative"></i>Negativo <strong>${negativePoints}</strong></span><span><i class="polarity-swatch polarity-swatch-positive"></i>Positivo <strong>${positivePoints}</strong></span></div></div>`;
+  return `<section><h3>Elementos</h3><div>${elementRows}</div></section><section><h3>Ritmos</h3><div>${rhythmRows}</div></section><section><h3>Pólos</h3><div>${polarityMarkup}</div></section>`;
+}
+
+function renderBalanceTables(longitudes) {
+  const balanceTables = document.querySelector('.chart-panel > .balance-tables');
+  if (balanceTables) balanceTables.innerHTML = balanceTablesContentMarkup(longitudes);
 }
 
 const mapLifePlanetCopy = {
@@ -612,7 +621,7 @@ function createMapLifeDashboardData(chart) {
 function renderMapLifeAspectList(entries, tone) {
   if (!entries?.length) return '';
   const label = tone === 'easy' ? 'Facilidades' : 'Desafios';
-  return `<section class="map-life-aspect-group map-life-aspect-group--${tone}" aria-label="${label}"><ul>${entries.map((entry) => `<li><p>${formatInterpretationText(entry.texto)}</p></li>`).join('')}</ul></section>`;
+  return `<section class="map-life-aspect-group map-life-aspect-group--${tone}" aria-label="${label}"><ul>${entries.map((entry) => `<li><p>${formatAspectInterpretationText(entry.texto)}</p></li>`).join('')}</ul></section>`;
 }
 
 function renderMapLifeDashboard(data) {
@@ -634,10 +643,10 @@ function renderMapLifeDashboard(data) {
   const hasHouses = Boolean(houseCards);
   if (!hasPlanets && !hasHouses) return '';
   return `<section class="map-life-dashboard" aria-label="Resumo visual do Mapa da Vida">
-    <div class="map-life-dashboard-intro"><p class="interpretation-eyebrow">SÍNTESE VISUAL</p><h2>Os pontos mais importantes ou que requerem mais atenção</h2><p>Veja os temas em destaque e as áreas da vida que reúnem mais influências.</p></div>
-    <div class="interpretation-aspect-legend" aria-label="Legenda de cores dos aspectos"><span><i class="interpretation-aspect-legend-swatch interpretation-aspect-legend-swatch--challenge" aria-hidden="true"></i>Vermelho = Desafios</span><span><i class="interpretation-aspect-legend-swatch interpretation-aspect-legend-swatch--easy" aria-hidden="true"></i>Verde = Facilidades</span></div>
+    <div class="map-life-dashboard-intro"><h2>Os pontos mais importantes ou que requerem mais atenção</h2><p>Veja os temas em destaque e as áreas da vida que reúnem mais influências.</p></div>
     ${hasPlanets ? `<section class="map-life-view map-life-view--focus" aria-labelledby="map-life-focus-title"><h3 class="map-life-view-title" id="map-life-focus-title">Temas em destaque</h3><div class="map-life-card-grid">${planetCards}</div></section>` : ''}
     ${hasHouses ? `<section class="map-life-view" aria-labelledby="map-life-areas-title"><h3 class="map-life-view-title" id="map-life-areas-title">Áreas da vida</h3><div class="map-life-card-grid">${houseCards}</div></section>` : ''}
+    <div class="interpretation-aspect-legend interpretation-aspect-legend--chapter map-life-dashboard-legend" aria-label="Temas em vermelho indicam desafios; temas em verde indicam facilidades"><span class="interpretation-aspect-legend-label--challenge"><i class="interpretation-aspect-legend-swatch interpretation-aspect-legend-swatch--challenge" aria-hidden="true"></i>Desafios</span><span class="interpretation-aspect-legend-label--easy"><i class="interpretation-aspect-legend-swatch interpretation-aspect-legend-swatch--easy" aria-hidden="true"></i>Facilidades</span></div>
   </section>`;
 }
 
@@ -693,7 +702,7 @@ function renderNatalInterpretation(content, chart) {
       const paragraphs = entries.map(({ text, symbols, label }) => {
         const symbolMarkup = symbols.map(({ value, type, color }) => `<span class="interpretation-symbol interpretation-symbol--${type}"${color ? ` style="color:${color}"` : ''} aria-hidden="true">${escapeHtml(value)}</span>`).join('<span class="interpretation-symbol-separator" aria-hidden="true"> </span>');
         const reference = symbols.length ? ` <span class="interpretation-symbol-reference" role="img" aria-label="${escapeHtml(label)}">${symbolMarkup}</span>` : '';
-        return `<p>${formatInterpretationText(text || 'Interpretação indisponível.')}${reference}</p>`;
+        return `<p>${formatAspectInterpretationText(text || 'Interpretação indisponível.')}${reference}</p>`;
       }).join('');
       const label = tone === 'easy' ? 'Facilidades' : 'Desafios';
       return `<section class="interpretation-aspect-group interpretation-aspect-group--${tone}" aria-label="${label}">${paragraphs}</section>`;
@@ -775,15 +784,11 @@ function renderNatalInterpretation(content, chart) {
     return interpretationCard(title, [houseSignEntry(houseId), ...housePlanetEntries(houseId)], aspectGroups(linkedAspects));
   };
 
-  const presentationMarkup = `<h2 class="interpretation-main-title">MAPA DA VIDA | INTERPRETAÇÃO</h2><section class="interpretation-bookend interpretation-bookend--opening interpretation-topic--opening" aria-label="Apresentação do Mapa da Vida"><blockquote><p>“Quem olha para fora sonha, quem olha para dentro acorda.”</p><cite>— Jung</cite></blockquote><p>O Mapa da Vida é uma leitura do seu céu no momento em que você nasceu — mas, mais do que isso, é um convite pra você se olhar por dentro. Aqui, a astrologia não é sentença nem prisão: é linguagem simbólica. É bússola. É uma ferramenta de autoconhecimento que te ajuda a entender como você age, sente, pensa, ama e constrói a vida.</p><p>Assim como os Reis Magos seguiram a luz das estrelas, o Mapa da Vida é um convite pra você reconhecer a luz que indica o seu caminho — não para te dizer quem você deve ser, mas pra te lembrar de quem você já é.</p><p class="interpretation-section-list-title"><strong>Seções do Mapa</strong></p><ol class="interpretation-section-list"><li>Quem Você É</li><li>Suas Raízes Psicológicas</li><li>Sua Mente</li><li>Amor e Relacionamentos</li><li>Propósito e Espiritualidade</li><li>O Que Constrói e Carreira</li><li>Tribo e Originalidade</li><li>Transformações</li></ol></section>`;
+  const interpretationTitleMarkup = '<h2 class="interpretation-main-title">MAPA DA VIDA | INTERPRETAÇÃO</h2>';
+  const presentationMarkup = `<section class="interpretation-bookend interpretation-bookend--opening interpretation-topic--opening" aria-label="Apresentação do Mapa da Vida"><blockquote><p>“Quem olha para fora sonha, quem olha para dentro acorda.”</p><cite>— Jung</cite></blockquote><p>O Mapa da Vida é uma leitura do seu céu no momento em que você nasceu — mas, mais do que isso, é um convite pra você se olhar por dentro. Aqui, a astrologia não é sentença nem prisão: é linguagem simbólica. É bússola. É uma ferramenta de autoconhecimento que te ajuda a entender como você age, sente, pensa, ama e constrói a vida.</p><p>Assim como os Reis Magos seguiram a luz das estrelas, o Mapa da Vida é um convite pra você reconhecer a luz que indica o seu caminho — não para te dizer quem você deve ser, mas pra te lembrar de quem você já é.</p><p class="interpretation-section-list-title"><strong>Seções do Mapa</strong></p><ol class="interpretation-section-list"><li>Quem Você É</li><li>Suas Raízes Psicológicas</li><li>Sua Mente</li><li>Amor e Relacionamentos</li><li>Propósito e Espiritualidade</li><li>O Que Constrói e Carreira</li><li>Tribo e Originalidade</li><li>Transformações</li></ol></section>`;
   const closingMarkup = `<section class="interpretation-bookend interpretation-bookend--closing" aria-labelledby="map-life-closing-title"><h3 id="map-life-closing-title">ENCERRAMENTO</h3><blockquote><p>Que você siga a sua estrela como os Reis Magos seguiram as deles: com confiança, sem medo e com fé. Que este mapa não sirva para te dizer quem você deve ser, mas sim para te lembrar do caminho para se tornar quem você é.</p></blockquote><button type="button" class="print-button interpretation-print-footer" id="print-chart-footer"><span aria-hidden="true">⎙</span> Imprimir / salvar PDF</button></section>`;
   const temperamentText = interpretationText('temperament', dominantElementKey(longitudes));
   const temperamentCard = interpretationCard('ELEMENTO PREDOMINANTE', [{ text: temperamentText, symbols: [], label: '' }]);
-  const balanceTablesCopy = document.querySelector('.balance-tables')?.cloneNode(true);
-  if (balanceTablesCopy) {
-    balanceTablesCopy.classList.add('interpretation-temperament-graphic');
-    balanceTablesCopy.querySelectorAll('[id]').forEach((element) => element.removeAttribute('id'));
-  }
   const reportCloneMarkup = (source, idSuffix, extraClass = '') => {
     const clone = source?.cloneNode(true);
     if (!clone) return '';
@@ -810,7 +815,7 @@ function renderNatalInterpretation(content, chart) {
   const planetHouseTablesMarkup = reportCloneMarkup(document.querySelector('.planet-house-tables'), 'report');
   const aspectMatrixMarkup = reportCloneMarkup(document.querySelector('#natal-aspect-section'), 'report');
   const finalVisualsMarkup = `<section class="interpretation-final-visuals" aria-labelledby="interpretation-final-visuals-title"><h3 class="interpretation-subtitle" id="interpretation-final-visuals-title">MANDALA E SÍNTESE DO MAPA</h3><div class="interpretation-final-overview">${mandalaMarkup}${planetHouseTablesMarkup}</div>${aspectMatrixMarkup}</section>`;
-  const temperamentGraphicMarkup = balanceTablesCopy ? `<div class="interpretation-temperament-chart">${balanceTablesCopy.outerHTML}</div>` : '';
+  const temperamentGraphicMarkup = `<div class="interpretation-temperament-chart"><div class="balance-tables interpretation-temperament-graphic" aria-label="Distribuição de elementos, ritmos e pólos">${balanceTablesContentMarkup(longitudes)}</div></div>`;
   const mapLifeDashboardMarkup = renderMapLifeDashboard(createMapLifeDashboardData(chart));
   const summaryAspectEntries = (planet, excludedPlanets = []) => aspects
     .filter((aspect) => {
@@ -888,7 +893,7 @@ function renderNatalInterpretation(content, chart) {
     summaryPlanetCard('FORMA DE SE TRANSFORMAR', 'Pluto', [], false),
     summaryHouseCard('SEXUALIDADE, CRISES E RENASCIMENTOS', 8)
   ])}</section>`;
-  content.innerHTML = `${reportMetadataMarkup}${presentationMarkup}${section('SEU TEMPERAMENTO', 'Antes de entrar nos detalhes, vamos olhar o conjunto. Aqui você descobre qual elemento predomina em você — fogo, terra, ar ou água — e como essa mistura molda o seu jeito de ser.', [temperamentCard], 'interpretation-topic--temperament', temperamentGraphicMarkup)}${mapLifeDashboardMarkup}${section('1. QUEM VOCÊ É', 'Aqui começa tudo. Vamos olhar sua essência, sua personalidade e a forma como você se apresenta ao mundo. É o seu jeito de ser e agir no dia a dia.', [
+  content.innerHTML = `${interpretationTitleMarkup}${presentationMarkup}${reportMetadataMarkup}${mapLifeDashboardMarkup}${section('SEU TEMPERAMENTO', 'Antes de entrar nos detalhes, vamos olhar o conjunto. Aqui você descobre qual elemento predomina em você — fogo, terra, ar ou água — e como essa mistura molda o seu jeito de ser.', [temperamentCard], 'interpretation-topic--temperament', temperamentGraphicMarkup)}${section('1. QUEM VOCÊ É', 'Aqui começa tudo. Vamos olhar sua essência, sua personalidade e a forma como você se apresenta ao mundo. É o seu jeito de ser e agir no dia a dia.', [
     planetTopicCard('MOTIVAÇÃO', 'Sun', ['Ascendant', 'Midheaven']),
     interpretationCard('COMO O MUNDO TE VÊ / COMO VÊ O MUNDO', [houseSignEntry(1)], aspectGroups(aspectEntries('Ascendant', ['Midheaven']))),
     planetTopicCard('FORÇA DE VONTADE', 'Mars', ['Sun', 'Ascendant', 'Moon', 'Mercury', 'Venus', 'Midheaven'])
@@ -918,7 +923,7 @@ function renderNatalInterpretation(content, chart) {
   ], 'interpretation-topic--shared-start')}${section('8. TRANSFORMAÇÕES', 'Crises, sexualidade, perdas e renascimentos. Aqui você mergulha no que te transforma por dentro, no que precisa morrer pra renascer e nas mudanças profundas da sua vida.', [
     interpretationCard('FORMA DE SE TRANSFORMAR', [planetSignEntry('Pluto')]),
     houseTopicCard('CRISES, SEXUALIDADE E RENASCIMENTOS', 8)
-  ], 'interpretation-topic--shared-follow')}${summaryMarkup}${finalVisualsMarkup}${closingMarkup}`;
+  ], 'interpretation-topic--shared-follow')}${finalVisualsMarkup}${summaryMarkup}${closingMarkup}`;
 }
 
 function renderInterpretation() {
