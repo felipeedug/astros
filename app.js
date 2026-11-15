@@ -2310,6 +2310,6 @@ if (bonusLightbox && bonusLightboxImage) {
 
 document.querySelectorAll('[data-founder-checkout]').forEach((link) => {
   link.addEventListener('click', () => {
-    window.open('https://mpago.la/2FXRDYD', '_blank', 'noopener,noreferrer');
+    window.open('https://mpago.la/1dRbAsq', '_blank', 'noopener,noreferrer');
   });
 });
