@@ -573,22 +573,3 @@ label { display:block; margin-top:20px; color:var(--muted); font-size:10px; font
   .map-life-summary-grid { grid-template-columns:1fr; }
   .map-life-summary-chapter-title { font-size:18px; }
 }
-
-.planet-readout small,.house-readout small { display:flex; align-items:center; gap:3px; }
-.readout-sign-name { color:var(--muted); font-size:8px; font-weight:500; }
-.readout-retrograde { display:inline-grid; place-items:center; width:12px; height:12px; border:1px solid currentColor; border-radius:50%; color:var(--coral); font:700 7px/1 var(--fonte-corpo); }
-.interpretation-retrograde-legend { margin:2mm 0 0; color:#536575; font:8pt/1.3 var(--fonte-corpo); }
-.interpretation-retrograde-legend strong { display:inline-grid; place-items:center; width:4mm; height:4mm; margin-right:1mm; border:1px solid currentColor; border-radius:50%; font-size:7pt; }
-.interpretation-finance-subtopic { grid-column:1 / -1; margin-top:5px; }
-.interpretation-finance-subtopic > h4 { margin:0 0 8px; padding:6px 10px; border-top:1px solid var(--line); color:var(--muted); font:700 10px var(--fonte-corpo); letter-spacing:.08em; }
-.planet-readout > .readout-item,.house-readout > .readout-item { flex-direction:column; align-items:flex-start; justify-content:center; gap:2px; min-width:0; }
-.planet-readout .readout-item b > .readout-object-name { display:inline; padding:0; border:0; background:transparent; }
-.planet-readout .readout-item small,.house-readout .readout-item small { justify-content:flex-start; gap:4px; white-space:nowrap; }
-.planet-readout .readout-item small > span,.house-readout .readout-item small > span { display:inline; padding:0; border:0; background:transparent; color:inherit; line-height:inherit; }
-.planet-readout .readout-item small > .readout-retrograde { display:inline-grid; place-items:center; padding:0; border:1px solid currentColor; border-radius:50%; background:transparent; }
-.readout-sign-name { white-space:nowrap; }
-.interpretation-retrograde-legend { display:flex; flex-wrap:wrap; gap:1mm 4mm; }
-.interpretation-retrograde-legend > span { display:inline-flex; align-items:center; gap:1mm; }
-.interpretation-sign-legend { grid-column:1 / -1; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:4px 8px; margin-top:8px; padding-top:8px; border-top:1px solid var(--line); }
-.interpretation-sign-legend > span { display:inline-flex; align-items:center; gap:5px; min-width:0; color:var(--muted); font:500 9px/1.2 var(--fonte-corpo); }
-.interpretation-sign-legend-glyph { flex:0 0 auto; font:14px/1 'Astrovida','Noto Sans Symbols 2','Segoe UI Symbol',sans-serif; }

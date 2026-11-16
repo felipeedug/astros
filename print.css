@@ -116,15 +116,9 @@
   body.map-life-print .main-content,body.map-life-print .workspace,body.map-life-print .chart-panel { background:transparent !important; }
   .chart-wrap { width:88mm; max-width:100%; margin:0 auto 1mm; break-inside:avoid; page-break-inside:avoid; }
   .chart-legend { display:none; }
-  .planet-readout > .readout-item,.house-readout > .readout-item { align-items:flex-start; justify-content:center; gap:.4mm; min-width:0; padding:.7mm 1.2mm; font-size:7.5pt; line-height:1.1; background:#fff; border-bottom:.2pt solid #ddd; }
-  .planet-readout .readout-item small,.house-readout .readout-item small { display:flex; align-items:center; gap:.8mm; width:100%; padding:0; font-size:7pt; line-height:1.1; }
-  .planet-readout .readout-item small > span,.house-readout .readout-item small > span { padding:0; border:0; background:transparent; line-height:inherit; }
-  .planet-readout .readout-item b > .readout-object-name { padding:0; border:0; background:transparent; }
-  .planet-readout .readout-item small > .readout-retrograde { display:inline-grid; place-items:center; flex:0 0 auto; width:3mm; height:3mm; padding:0; border:1px solid currentColor; border-radius:50%; background:transparent; font-size:6pt; }
+  .planet-readout span,.house-readout span { align-items:center; padding:.5mm 1.5mm; font-size:8pt; line-height:1; background:#fff; border-bottom:.2pt solid #ddd; }
+  .planet-readout small,.house-readout small { padding:0; font-size:7.5pt; line-height:1; }
   .planet-readout .readout-sign,.house-readout .readout-sign { vertical-align:baseline; line-height:1; }
-  .readout-sign-name { font-size:7pt !important; white-space:nowrap; }
-  .readout-retrograde { flex:0 0 auto; width:3mm; height:3mm; padding:0 !important; font-size:6pt; }
-  body.map-life-print .interpretation-retrograde-legend { margin:1.5mm 0 0; font-size:7pt; }
   .planet-readout i { font-size:12px; line-height:1; }
   .aspect-matrix th,.aspect-matrix td { font-size:0 !important; line-height:0 !important; overflow:hidden; }
   .aspect-matrix .aspect-mark { width:11px; height:11px; margin:0; vertical-align:top; }
@@ -154,14 +148,14 @@
   .aspect-matrix .aspect-mark { transform:scale(.8); }
   .aspect-matrix-legend { gap:2mm 4mm; margin-top:1mm; font-size:6pt; }
   .balance-tables { grid-template-columns:minmax(0,1fr); margin-top:2mm; gap:1mm; }
-  .planet-readout > .readout-item,.house-readout > .readout-item,.aspect-readout span,.balance-tables section,.interpretation-card { break-inside:avoid; page-break-inside:avoid; }
+  .planet-readout span,.house-readout span,.aspect-readout span,.balance-tables section,.interpretation-card { break-inside:avoid; page-break-inside:avoid; }
   .interpretation-panel,.interpretation-panel[hidden] { display:block !important; width:100%; max-width:none; margin-top:0; border-top:0; break-before:page; page-break-before:always; }
   .interpretation-grid { grid-template-columns:minmax(0,1fr); }
   .interpretation-introduction,.interpretation-bookend { background:#eaf1f6 !important; border-color:#9bb4c8 !important; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
   body.map-life-print .interpretation-introduction,body.map-life-print .interpretation-bookend { background:rgba(234,241,246,.88) !important; }
   .interpretation-main-title { break-after:avoid; page-break-after:avoid; }
   .interpretation-card { padding:3mm; background:#fff !important; border-color:#ddd !important; }
-  body.map-life-print .interpretation-card,body.map-life-print .metadata-card,body.map-life-print .planet-readout > .readout-item,body.map-life-print .house-readout > .readout-item,body.map-life-print .balance-tables section > div > div,body.map-life-print .balance-tables .polarity-balance,body.map-life-print .aspect-matrix td { background:rgba(255,255,255,.86) !important; }
+  body.map-life-print .interpretation-card,body.map-life-print .metadata-card,body.map-life-print .planet-readout span,body.map-life-print .house-readout span,body.map-life-print .balance-tables section > div > div,body.map-life-print .balance-tables .polarity-balance,body.map-life-print .aspect-matrix td { background:rgba(255,255,255,.86) !important; }
   .interpretation-card p { color:#333; }
   .interpretation-aspect-group--easy { background:rgba(93,155,114,.1) !important; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
   .interpretation-aspect-group--challenge { background:rgba(210,140,117,.17) !important; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
@@ -573,32 +567,8 @@
     min-width: 0;
   }
 
-  body.map-life-print .interpretation-sign-legend {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1mm 2mm;
-    margin-top: 1mm;
-    padding-top: 1mm;
-    border-top: .35pt solid #d5dce1;
-  }
-
-  body.map-life-print .interpretation-sign-legend > span {
-    display: inline-flex;
-    align-items: center;
-    gap: 1mm;
-    min-width: 0;
-    color: #536575;
-    font: 6.5pt/1.1 'Montserrat', sans-serif;
-  }
-
-  body.map-life-print .interpretation-sign-legend-glyph {
-    flex: 0 0 auto;
-    font: 10pt/1 'Astrovida', 'Noto Sans Symbols 2', 'Segoe UI Symbol', sans-serif;
-  }
-
-  body.map-life-print .interpretation-final-visuals .planet-readout > .readout-item,
-  body.map-life-print .interpretation-final-visuals .house-readout > .readout-item {
+  body.map-life-print .interpretation-final-visuals .planet-readout span,
+  body.map-life-print .interpretation-final-visuals .house-readout span {
     min-width: 0;
     padding: .45mm 1mm;
     gap: 1mm;
@@ -607,17 +577,17 @@
     white-space: nowrap;
   }
 
-  body.map-life-print .interpretation-final-visuals .planet-readout > .readout-item b,
-  body.map-life-print .interpretation-final-visuals .planet-readout > .readout-item small,
-  body.map-life-print .interpretation-final-visuals .house-readout > .readout-item b,
-  body.map-life-print .interpretation-final-visuals .house-readout > .readout-item small {
+  body.map-life-print .interpretation-final-visuals .planet-readout span b,
+  body.map-life-print .interpretation-final-visuals .planet-readout span small,
+  body.map-life-print .interpretation-final-visuals .house-readout span b,
+  body.map-life-print .interpretation-final-visuals .house-readout span small {
     font-size: inherit;
     line-height: inherit;
     white-space: nowrap;
   }
 
-  body.map-life-print .interpretation-final-visuals .planet-readout > .readout-item small,
-  body.map-life-print .interpretation-final-visuals .house-readout > .readout-item small {
+  body.map-life-print .interpretation-final-visuals .planet-readout span small,
+  body.map-life-print .interpretation-final-visuals .house-readout span small {
     flex: 0 0 auto;
   }
 
@@ -1186,12 +1156,13 @@
   }
 
   body.map-life-print .map-life-summary-chapter {
-    display: block;
+    display: inline-block;
+    width: 100%;
     margin: 0 0 2.5mm;
     padding-top: 1.5mm;
     border-top: .5pt solid #d5dce1;
-    break-inside: auto;
-    page-break-inside: auto;
+    break-inside: avoid-column;
+    page-break-inside: avoid;
   }
 
   body.map-life-print .map-life-summary-chapter-title {
@@ -1215,8 +1186,8 @@
     border-radius: 0;
     background: transparent;
     box-shadow: none;
-    break-inside: auto;
-    page-break-inside: auto;
+    break-inside: avoid-column;
+    page-break-inside: avoid;
   }
 
   body.map-life-print .map-life-summary-card > h4 {
@@ -1253,29 +1224,5 @@
   body.map-life-print .map-life-summary-themes li {
     padding: .6mm 1mm;
     font-size: 7pt !important;
-  }
-}
-
-@media print {
-  body.map-life-print .interpretation-bookend--opening .interpretation-section-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: repeat(6, auto);
-    grid-auto-flow: column;
-    gap: .5mm 5mm;
-    font-size: 7.5pt;
-    line-height: 1.25;
-  }
-
-  body.map-life-print .interpretation-bookend--opening .interpretation-section-list-closing {
-    grid-column: 1 / -1;
-    margin: 1.5mm 0 0;
-    padding-top: 1.5mm;
-    border-top: .5pt solid #d5dce1;
-    color: #536575;
-    font-size: 8pt;
-    font-weight: 700;
-    letter-spacing: .08em;
-    line-height: 1.2;
-    text-transform: uppercase;
   }
 }
