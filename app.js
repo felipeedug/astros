@@ -2310,6 +2310,6 @@ if (bonusLightbox && bonusLightboxImage) {
 
 document.querySelectorAll('[data-founder-checkout]').forEach((link) => {
   link.addEventListener('click', () => {
-    window.open('https://mpago.la/1dRbAsq', '_blank', 'noopener,noreferrer');
+    window.open('https://loja.infinitepay.io/entreestrelas/sku-4e2f1e3019fb-membro-fundador', '_blank', 'noopener,noreferrer');
   });
 });
