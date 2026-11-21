@@ -808,6 +808,13 @@ function renderNatalInterpretation(content, chart) {
     const linkedAspects = aspectEntries(planet, excludedPlanets);
     return interpretationCard(title, [planetSignEntry(planet)], aspectGroups(linkedAspects));
   };
+  const sunAscendantWhoYouAreCard = () => {
+    const sunSignId = signAt(longitudes.Sun);
+    const ascendantSignId = signAt(houses[0]);
+    const entry = interpretationData?.sunAscendantInterpretations?.[`${sunSignId}:${ascendantSignId}`];
+    if (!entry) return interpretationCard('QUEM VOCÊ É', [planetSignEntry('Sun'), houseSignEntry(1)]);
+    return `<article class="interpretation-card interpretation-sun-ascendant-card"><h4>QUEM VOCÊ É</h4><p><strong>Chave:</strong> ${escapeHtml(entry.key)}</p><section><h5>Quem Você É</h5><p>${formatInterpretationText(entry.whoYouAre)}</p></section><section><h5>Seus Desafios e Sombras</h5><p>${formatInterpretationText(entry.challenges)}</p></section></article>`;
+  };
   const houseTopicCard = (title, houseId, includePlanets = true) => interpretationCard(title, [
     houseSignEntry(houseId),
     ...(includePlanets ? housePlanetEntries(houseId) : [])
@@ -965,7 +972,7 @@ function renderNatalInterpretation(content, chart) {
     ])
   ])}</section>`;
   content.innerHTML = `${interpretationTitleMarkup}${presentationMarkup}${reportMetadataMarkup}${mapLifeDashboardMarkup}${section('2. TEMPERAMENTO', 'Antes de entrar nos detalhes, vamos olhar o conjunto. Aqui você descobre qual elemento predomina em você — fogo, terra, ar ou água — e como essa mistura molda o seu jeito de ser.', [temperamentCard], 'interpretation-topic--temperament', temperamentGraphicMarkup)}${section('3. QUEM VOCÊ É', 'Aqui começa tudo. Vamos olhar sua essência, sua personalidade e a forma como você se apresenta ao mundo. É o seu jeito de ser e agir no dia a dia.', [
-    interpretationCard('QUEM VOCÊ É', [planetSignEntry('Sun'), houseSignEntry(1)]),
+    sunAscendantWhoYouAreCard(),
     planetTopicCard('MOTIVAÇÃO', 'Sun', ['Ascendant', 'Midheaven']),
     interpretationCard('COMO O MUNDO TE VÊ / COMO VÊ O MUNDO', [houseSignEntry(1)], aspectGroups(aspectEntries('Ascendant', ['Midheaven']))),
     planetTopicCard('FORÇA DE VONTADE', 'Mars', ['Sun', 'Ascendant', 'Moon', 'Mercury', 'Venus', 'Midheaven'])
@@ -2378,9 +2385,10 @@ if (orbControl) {
 const interpretationReady = Promise.all([
   fetch('./data/interpretations.json?v=20261027-asc-virgo').then((response) => response.json()),
   fetch('./data/financial-interpretations.json?v=20261121').then((response) => response.json()),
-  fetch('./data/house8-interpretations.json?v=20261121').then((response) => response.json())
-]).then(([data, financialPlanetSigns, house8Interpretations]) => {
-  interpretationData = { ...data, financialPlanetSigns, house8Interpretations };
+  fetch('./data/house8-interpretations.json?v=20261121').then((response) => response.json()),
+  fetch('./data/sun-ascendant-interpretations.json?v=20261121').then((response) => response.json())
+]).then(([data, financialPlanetSigns, house8Interpretations, sunAscendantInterpretations]) => {
+  interpretationData = { ...data, financialPlanetSigns, house8Interpretations, sunAscendantInterpretations };
   if (!document.querySelector('#interpretation-panel')?.hidden) renderInterpretation();
   return interpretationData;
 }).catch(() => null);
