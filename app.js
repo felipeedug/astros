@@ -744,6 +744,30 @@ function renderNatalInterpretation(content, chart) {
       ]
     };
   };
+  const house8Entry = (collection) => {
+    const signId = signAt(houses[7]);
+    return {
+      text: interpretationData?.house8Interpretations?.[collection]?.[`${signId}:8`]
+        || interpretationText('houseSigns', `${signId}:8`),
+      label: `Casa VIII no signo ${signNames[signId]}`,
+      symbols: [
+        { value: romanNumeral(8), type: 'point-label', color: signColor(signId) },
+        signGlyph(signId)
+      ]
+    };
+  };
+  const libidoEntry = () => {
+    if (!Number.isFinite(longitudes.Venus) || !Number.isFinite(longitudes.Mars)) {
+      return { text: '', label: '', symbols: [] };
+    }
+    const distance = Math.min(mod(longitudes.Venus - longitudes.Mars), mod(longitudes.Mars - longitudes.Venus));
+    const category = distance <= 90 ? 'interiorizada' : 'exteriorizada';
+    return {
+      text: interpretationData?.house8Interpretations?.libido?.[category] || '',
+      label: `Libido ${category} · distância Vênus e Marte: ${distance.toFixed(1)}°`,
+      symbols: [planetGlyph('Venus'), planetGlyph('Mars')]
+    };
+  };
   const aspectEntries = (planet, excludedPlanets = []) => aspects
     .filter((aspect) => {
       if (aspect.firstPlanet !== planet && aspect.secondPlanet !== planet) return false;
@@ -787,6 +811,10 @@ function renderNatalInterpretation(content, chart) {
   const houseTopicCard = (title, houseId, includePlanets = true) => interpretationCard(title, [
     houseSignEntry(houseId),
     ...(includePlanets ? housePlanetEntries(houseId) : [])
+  ]);
+  const house8TopicCard = (title, collection, includePlanets = true) => interpretationCard(title, [
+    house8Entry(collection),
+    ...(includePlanets ? housePlanetEntries(8) : [])
   ]);
   const houseAndAspectsTopicCard = (title, houseId, aspectPlanet, excludedPlanets = []) => {
     const linkedAspects = aspectEntries(aspectPlanet, excludedPlanets);
@@ -857,6 +885,22 @@ function renderNatalInterpretation(content, chart) {
     const linkedAspects = includeAspects ? summaryAspectEntries(planet, excludedPlanets) : [];
     return summaryCard(title, [{ text }], aspectGroups(linkedAspects));
   };
+  const financialSummaryCard = (title, planet) => {
+    const signId = signAt(longitudes[planet]);
+    const text = interpretationData?.financialPlanetSigns?.summaries?.[`${planet}:${signId}`] || '';
+    return summaryCard(title, [{ text }]);
+  };
+  const house8SummaryCard = (title, collection) => {
+    const signId = signAt(houses[7]);
+    const text = interpretationData?.house8Interpretations?.summaries?.[collection]?.[`${signId}:8`] || '';
+    return summaryCard(title, [{ text }]);
+  };
+  const libidoSummaryEntry = () => {
+    if (!Number.isFinite(longitudes.Venus) || !Number.isFinite(longitudes.Mars)) return { text: '' };
+    const distance = Math.min(mod(longitudes.Venus - longitudes.Mars), mod(longitudes.Mars - longitudes.Venus));
+    const category = distance <= 90 ? 'interiorizada' : 'exteriorizada';
+    return { text: interpretationData?.house8Interpretations?.summaries?.libido?.[category] || '' };
+  };
   const summaryHouseCard = (title, houseId, aspectPoint = null, excludedPlanets = [], includeHouseThemes = true) => {
     const signId = signAt(houses[houseId - 1]);
     const text = interpretationData?.summaries?.houseSigns?.[`${signId}:${houseId}`] || '';
@@ -875,9 +919,6 @@ function renderNatalInterpretation(content, chart) {
     return summaryCard(title, [{ text }], aspectPoint ? aspectGroups(linkedAspects) : null, themesMarkup);
   };
   const summaryChapter = (title, cards) => `<section class="map-life-summary-chapter"><h4 class="map-life-summary-chapter-title">${title}</h4><div class="map-life-summary-grid">${appendChapterLegendToLastCard(cards)}</div></section>`;
-  const venusMarsDistance = Number.isFinite(longitudes.Venus) && Number.isFinite(longitudes.Mars)
-    ? `${Math.min(mod(longitudes.Venus - longitudes.Mars), mod(longitudes.Mars - longitudes.Venus)).toFixed(1)}°`
-    : 'indisponível';
   const summaryMarkup = `<section class="map-life-summary" aria-labelledby="map-life-summary-title"><h3 class="interpretation-subtitle" id="map-life-summary-title">12. RESUMO</h3><p class="interpretation-introduction">Uma versão resumida da interpretação do seu Mapa da Vida.</p>${summaryChapter('1. PONTOS MAIS IMPORTANTES DO SEU MAPA', [
     summaryCard('TEMAS EM DESTAQUE', [{ text: mapLifeDashboardData.visao_planetas.map(({ subtitulo, aspectosRelevantes }) => `${subtitulo} (${aspectosRelevantes} ${aspectosRelevantes === 1 ? 'aspecto' : 'aspectos'})`).join(' · ') || 'Nenhum tema em destaque identificado.' }]),
     summaryCard('ÁREAS DA VIDA', [{ text: mapLifeDashboardData.visao_casas.map(({ area }) => area).join(' · ') || 'Nenhuma área com influências identificada.' }])
@@ -909,16 +950,19 @@ function renderNatalInterpretation(content, chart) {
     summaryHouseCard('CARREIRA, METAS E REALIZAÇÕES', 10, 'Midheaven', ['Ascendant']),
     summaryHouseCard('ROTINA, SAÚDE E PRIORIDADES', 6),
     summaryHouseCard('VALORES PESSOAIS', 2),
-    summaryPlanetCard('DINHEIRO REGISTRADO', 'Venus', [], false),
-    summaryPlanetCard('DINHEIRO NÃO REGISTRADO', 'Mercury', [], false),
-    summaryPlanetCard('INVESTIMENTOS', 'Jupiter', [], false)
+    financialSummaryCard('DINHEIRO REGISTRADO', 'Venus'),
+    financialSummaryCard('DINHEIRO NÃO REGISTRADO', 'Mercury'),
+    financialSummaryCard('DINHEIRO DE INVESTIMENTO', 'Jupiter')
   ])}${summaryChapter('9. TRIBO E ORIGINALIDADE', [
     summaryPlanetCard('FORMA DE SE DIFERENCIAR E SE ATUALIZAR', 'Uranus', ['Sun', 'Ascendant', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Midheaven', 'Saturn']),
     summaryHouseCard('AMIZADES, GRUPOS E OBJETIVOS', 11)
   ])}${summaryChapter('10. TRANSFORMAÇÕES E SEXUALIDADE', [
     summaryPlanetCard('FORMA DE SE TRANSFORMAR', 'Pluto', [], false),
-    summaryHouseCard('CRISES, RESSIGNIFICAÇÕES E RENASCIMENTOS', 8),
-    summaryCard('SEXUALIDADE E LIBIDO', [{ text: `Casa 8 em ${signNames[signAt(houses[7])]} · distância angular entre Vênus e Marte: ${venusMarsDistance}.` }])
+    house8SummaryCard('CRISES, RESSIGNIFICAÇÕES E RENASCIMENTOS', 'crises'),
+    summaryCard('SEXUALIDADE E LIBIDO', [
+      { text: interpretationData?.house8Interpretations?.summaries?.sexuality?.[`${signAt(houses[7])}:8`] || '' },
+      libidoSummaryEntry()
+    ])
   ])}</section>`;
   content.innerHTML = `${interpretationTitleMarkup}${presentationMarkup}${reportMetadataMarkup}${mapLifeDashboardMarkup}${section('2. TEMPERAMENTO', 'Antes de entrar nos detalhes, vamos olhar o conjunto. Aqui você descobre qual elemento predomina em você — fogo, terra, ar ou água — e como essa mistura molda o seu jeito de ser.', [temperamentCard], 'interpretation-topic--temperament', temperamentGraphicMarkup)}${section('3. QUEM VOCÊ É', 'Aqui começa tudo. Vamos olhar sua essência, sua personalidade e a forma como você se apresenta ao mundo. É o seu jeito de ser e agir no dia a dia.', [
     interpretationCard('QUEM VOCÊ É', [planetSignEntry('Sun'), houseSignEntry(1)]),
@@ -950,8 +994,8 @@ function renderNatalInterpretation(content, chart) {
     houseTopicCard('AMIZADES, GRUPOS E OBJETIVOS', 11)
   ], 'interpretation-topic--shared-start')}${section('10. TRANSFORMAÇÕES E SEXUALIDADE', 'Crises, sexualidade, perdas e renascimentos. Aqui você mergulha no que te transforma por dentro, no que precisa morrer pra renascer e nas mudanças profundas da sua vida.', [
     interpretationCard('FORMA DE SE TRANSFORMAR', [planetSignEntry('Pluto')]),
-    houseTopicCard('CRISES, RESSIGNIFICAÇÕES E RENASCIMENTOS', 8),
-    interpretationCard('SEXUALIDADE E LIBIDO', [houseSignEntry(8), { text: `Distância angular entre Vênus e Marte: ${venusMarsDistance}.`, symbols: [planetGlyph('Venus'), planetGlyph('Mars')], label: 'Vênus e Marte' }])
+    house8TopicCard('CRISES, RESSIGNIFICAÇÕES E RENASCIMENTOS', 'crises'),
+    interpretationCard('SEXUALIDADE E LIBIDO', [house8Entry('sexuality'), libidoEntry()])
   ], 'interpretation-topic--shared-follow')}${finalVisualsMarkup}${summaryMarkup}${closingMarkup}`;
 }
 
@@ -2333,9 +2377,10 @@ if (orbControl) {
 
 const interpretationReady = Promise.all([
   fetch('./data/interpretations.json?v=20261027-asc-virgo').then((response) => response.json()),
-  fetch('./data/financial-interpretations.json?v=20261121').then((response) => response.json())
-]).then(([data, financialPlanetSigns]) => {
-  interpretationData = { ...data, financialPlanetSigns };
+  fetch('./data/financial-interpretations.json?v=20261121').then((response) => response.json()),
+  fetch('./data/house8-interpretations.json?v=20261121').then((response) => response.json())
+]).then(([data, financialPlanetSigns, house8Interpretations]) => {
+  interpretationData = { ...data, financialPlanetSigns, house8Interpretations };
   if (!document.querySelector('#interpretation-panel')?.hidden) renderInterpretation();
   return interpretationData;
 }).catch(() => null);
