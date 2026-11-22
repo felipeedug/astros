@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css">
+  <link rel="stylesheet" href="css/portal.css?v=20261122-logo-grande">
 </head>
 <body>
   <header class="portal-topo">
@@ -34,7 +34,7 @@
 
       <section class="cartao topo-duplo" id="cartao-topo" hidden>
         <div class="topo-destaques" id="bloco-destaques" hidden>
-          <h2>✦ Em breve</h2>
+          <h2>★ Em breve</h2>
           <div id="lista-destaques"></div>
         </div>
         <div class="topo-calendario">
@@ -55,7 +55,7 @@
 
       <section class="cartao" id="cartao-agenda" hidden>
         <div class="cabecalho-area" style="margin-bottom:.4rem">
-          <h2 style="margin:0">✦ Lives e encontros</h2>
+          <h2 style="margin:0">★ Lives e encontros</h2>
         </div>
         <p class="suave">Lives, colunas com nossas astrólogas e encontros das próximas semanas. Inscreva-se nos que te interessam.</p>
         <div id="agenda-dias"></div>
@@ -66,7 +66,7 @@
       </section>
 
       <section class="cartao" id="cartao-em-breve" hidden>
-        <h2>✦ O que vem pela frente</h2>
+        <h2>★ O que vem pela frente</h2>
         <p class="suave">O que estamos preparando para a sua jornada. Inscreva-se para receber as informações e participar.</p>
         <div class="produtos" id="lista-em-breve"></div>
       </section>
@@ -173,7 +173,7 @@
               ${p.versao ? `<span class="produto-versao">Versão ${escapar(p.versao)}${dataVersao ? ` · ${escapar(dataVersao)}` : ''}</span>` : ''}
             </div>
           </div>
-          ${p.nova_versao ? '<span class="selo-nova-versao">✦ Nova versão</span>' : ''}
+          ${p.nova_versao ? '<span class="selo-nova-versao">★ Nova versão</span>' : ''}
           <p>${escapar(p.descricao || '')}</p>
           ${novidades.length ? `<details class="produto-novidades" ${p.nova_versao ? 'open' : ''}>
             <summary>O que há de novo${p.versao ? ` na versão ${escapar(p.versao)}` : ''}</summary>
@@ -198,7 +198,7 @@
             <span>No dia, o botão para entrar aparece aqui, 30 minutos antes. Também avisamos por WhatsApp e e-mail.</span></div>
             <button class="botao botao-leve botao-pequeno" data-cancelar-evento="${e.id}">Cancelar inscrição</button>`;
         if (!e.inscricoes_abertas) return '<span class="selo selo-cinza">Inscrições encerradas</span>';
-        return `<button class="botao botao-dourado" data-inscrever-evento="${e.id}">✦ Quero participar</button>`;
+        return `<button class="botao botao-dourado" data-inscrever-evento="${e.id}">★ Quero participar</button>`;
       };
       const chaveDia = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
       let desenharCalendario = () => {}; // definido depois do Em breve
@@ -272,7 +272,7 @@
                  <span>Você não precisa fazer mais nada. Antes ${p.previsao ? `de ${escapar(quando)}` : 'do lançamento'}, vamos te enviar por WhatsApp e e-mail as informações para participar.</span>
                </div>
                <button class="botao botao-leve botao-pequeno" data-cancelar="${p.id}">Cancelar inscrição</button>`
-            : `<button class="botao botao-dourado" data-inscrever="${p.id}">✦ Quero participar</button>`;
+            : `<button class="botao botao-dourado" data-inscrever="${p.id}">★ Quero participar</button>`;
         return `<article class="produto produto-em-breve">
           <div class="produto-topo">
             ${iconeProduto(p.icone || 'estrela')}
@@ -341,10 +341,10 @@
           if (tipo === 'evento') {
             acao = !item.pode_participar ? `<span class="selo selo-cinza">${item.produto_nome ? `Incluído no ${escapar(item.produto_nome)}` : 'Exclusivo para membros'}</span>`
               : item.inscrito ? '<span class="destaque-ok">✓ Inscrição confirmada</span>'
-              : item.inscricoes_abertas ? `<button class="botao botao-dourado botao-pequeno" data-destaque-evento="${item.id}">✦ Quero participar</button>` : '';
+              : item.inscricoes_abertas ? `<button class="botao botao-dourado botao-pequeno" data-destaque-evento="${item.id}">★ Quero participar</button>` : '';
           } else {
             acao = item.inscrito ? '<span class="destaque-ok">✓ Inscrição confirmada</span>'
-              : item.inscricoes_abertas ? `<button class="botao botao-dourado botao-pequeno" data-destaque-lancamento="${item.id}">✦ Quero participar</button>` : '';
+              : item.inscricoes_abertas ? `<button class="botao botao-dourado botao-pequeno" data-destaque-lancamento="${item.id}">★ Quero participar</button>` : '';
           }
           return `<article class="destaque">
             ${iconeProduto(item.icone || 'estrela')}

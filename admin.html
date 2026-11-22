@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css">
+  <link rel="stylesheet" href="css/portal.css?v=20261122-logo-grande">
 </head>
 <body>
   <header class="portal-topo">
@@ -28,7 +28,7 @@
       </div>
 
       <section class="cartao" id="cartao-agenda-admin" hidden>
-        <h2>✦ Agenda</h2>
+        <h2>★ Agenda</h2>
         <details>
           <summary class="botao botao-dourado" style="display:inline-flex">+ Novo evento</summary>
           <form id="form-evento" class="grade-form" style="margin-top:1rem">
@@ -48,7 +48,7 @@
             </label>
             <label>Link da live <input id="ev-link" type="url" placeholder="https://… (pode colocar depois)"></label>
             <label style="grid-column:1/-1">Descrição <textarea id="ev-descricao" placeholder="O que a pessoa vai ver ou aprender."></textarea></label>
-            <label class="caixa-consentimento"><input id="ev-destaque" type="checkbox"> ✦ Destacar no "Em breve" do topo da Minha área</label>
+            <label class="caixa-consentimento"><input id="ev-destaque" type="checkbox"> ★ Destacar no "Em breve" do topo da Minha área</label>
             <div style="margin-bottom:1rem"><button class="botao" type="submit">Criar evento</button></div>
           </form>
         </details>
@@ -57,7 +57,7 @@
       </section>
 
       <section class="cartao" id="cartao-lancamentos" hidden>
-        <h2>✦ Lançamentos e inscrições</h2>
+        <h2>★ Lançamentos e inscrições</h2>
         <p class="suave" style="font-size:.88rem">Quem clicou em "Quero participar". Para criar um lançamento: Supabase → Table Editor → produtos, com status <code>em_breve</code> e inscricoes_abertas ligado.</p>
         <div id="lista-lancamentos"></div>
       </section>
@@ -112,7 +112,7 @@
 
     <dialog id="dialogo-fundador" class="cartao" style="max-width:420px">
       <form method="dialog">
-        <h2>✦ Tornar Fundador</h2>
+        <h2>★ Tornar Fundador</h2>
         <p class="suave" id="fundador-cliente"></p>
         <label>Motivo <select id="fundador-motivo" data-motivos></select></label>
         <div style="display:flex;gap:.5rem;justify-content:flex-end">
@@ -175,7 +175,7 @@
           <td><div class="acoes">
             ${fundador
               ? `<button class="botao botao-leve botao-pequeno" data-acao="cancelar-fundador" data-id="${fundador.id}">Remover Fundador</button>`
-              : `<button class="botao botao-dourado botao-pequeno" data-acao="fundador" data-id="${c.id}">✦ Tornar Fundador</button>`}
+              : `<button class="botao botao-dourado botao-pequeno" data-acao="fundador" data-id="${c.id}">★ Tornar Fundador</button>`}
             <button class="botao botao-leve botao-pequeno" data-acao="compra" data-id="${c.id}">Registrar compra</button>
             <a class="botao botao-leve botao-pequeno" href="index.html?cliente=${encodeURIComponent(c.id)}#mapa">${temNascimento ? 'Ver mapa' : 'Cadastrar nascimento'}</a>
           </div></td>
@@ -211,7 +211,7 @@
             · ${escapar(e.titulo)}${e.apresentadora ? ` <span class="suave">com ${escapar(e.apresentadora)}</span>` : ''}
             · <span class="selo">${inscritos.length} ${inscritos.length === 1 ? 'inscrito' : 'inscritos'}</span>
             <span class="selo selo-cinza">${escapar(tiposEvento[e.tipo] || e.tipo)}${e.publico === 'membros' ? ' · membros' : ''}</span>
-            ${e.destaque ? '<span class="selo">✦ destaque</span>' : ''}
+            ${e.destaque ? '<span class="selo">★ destaque</span>' : ''}
             ${!e.ativo ? '<span class="selo selo-cinza">cancelado</span>' : passado ? '<span class="selo selo-cinza">realizado</span>' : ''}
           </summary>
           <div class="grade-form">
@@ -223,7 +223,7 @@
             <label>Link da live <input data-campo="link_acesso" type="url" value="${escapar(e.link_acesso || '')}"></label>
             <label>Link da gravação <input data-campo="link_gravacao" type="url" value="${escapar(e.link_gravacao || '')}" placeholder="Depois do evento"></label>
             <label class="caixa-consentimento"><input data-campo="inscricoes_abertas" type="checkbox" ${e.inscricoes_abertas ? 'checked' : ''}> Inscrições abertas</label>
-            ${'destaque' in e ? `<label class="caixa-consentimento"><input data-campo="destaque" type="checkbox" ${e.destaque ? 'checked' : ''}> ✦ Destacar no "Em breve" do topo</label>` : ''}
+            ${'destaque' in e ? `<label class="caixa-consentimento"><input data-campo="destaque" type="checkbox" ${e.destaque ? 'checked' : ''}> ★ Destacar no "Em breve" do topo</label>` : ''}
             <label class="caixa-consentimento"><input data-campo="ativo" type="checkbox" ${e.ativo ? 'checked' : ''}> Evento ativo (desmarque para cancelar)</label>
             <div style="margin-bottom:1rem;display:flex;gap:.5rem;flex-wrap:wrap">
               <button class="botao botao-pequeno" data-salvar-evento="${e.id}">Salvar</button>
