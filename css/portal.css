@@ -324,3 +324,38 @@ td .acoes { display: flex; flex-wrap: wrap; gap: .35rem; }
   font: 600 1.6rem/1 var(--fonte-corpo); letter-spacing: .4em; text-align: center;
 }
 .portal-entrada-nota a { color: var(--dourado); }
+/* Card de produto com ícone, versão e "O que há de novo" */
+.produto-topo { display: flex; align-items: center; gap: .8rem; }
+.produto-topo h3 { margin: 0; }
+.produto-icone {
+  flex: none;
+  width: 52px; height: 52px; padding: 6px;
+  border-radius: 14px;
+  color: var(--dourado-marca);
+  background: linear-gradient(135deg, #FFFDF7, #FBF1D3);
+  border: 1px solid rgba(201, 162, 39, .35);
+}
+.produto-versao { display: block; margin-top: .15rem; color: var(--texto); font-size: .78rem; }
+.selo-nova-versao {
+  align-self: flex-start;
+  padding: .3rem .75rem;
+  border-radius: 999px;
+  background: var(--azul-marca);
+  color: #FAF8F5;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .03em;
+}
+.produto-novo { border-color: rgba(201, 162, 39, .55); box-shadow: 0 6px 20px rgba(201, 162, 39, .12); }
+@media (min-width: 720px) { .produto-novo { grid-column: span 2; } }
+.produto-novidades {
+  padding: .7rem .9rem;
+  border-radius: 10px;
+  background: #FBF7EC;
+  border: 1px solid rgba(201, 162, 39, .25);
+  font-size: .88rem;
+}
+.produto-novidades summary { cursor: pointer; font-weight: 700; color: var(--azul-marca); }
+.produto-novidades ul { margin: .6rem 0 0; padding-left: 1.1rem; color: var(--texto); }
+.produto-novidades li { margin: .3rem 0; }
+.produto-novidades li::marker { content: '✦  '; color: var(--dourado-marca); }
