@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css">
+  <link rel="stylesheet" href="css/portal.css?v=20261122-logo-grande">
 </head>
 <body class="pagina-portal">
   <header class="portal-topo">
@@ -17,8 +17,17 @@
 
   <!-- Tela sugerida por uma participante: "Um portal para dentro de você." -->
   <main class="portal-entrada">
+    <!-- "Vidro da nave": céu com estrelas e silhuetas de planetas passando devagar -->
+    <div class="ceu" aria-hidden="true">
+      <div class="ceu-estrelas ceu-estrelas--longe"></div>
+      <div class="ceu-estrelas ceu-estrelas--perto"></div>
+      <div class="ceu-planeta ceu-planeta--grande"></div>
+      <div class="ceu-planeta ceu-planeta--anel"></div>
+      <div class="ceu-planeta ceu-planeta--pequeno"></div>
+      <div class="ceu-vidro"></div>
+    </div>
     <div class="portal-entrada-conteudo">
-      <p class="portal-entrada-selo"><span aria-hidden="true">✦</span> Entre Estrelas <span aria-hidden="true">✦</span></p>
+      <img class="portal-entrada-logo" src="fonts/Logo%205%20Pontas%20Horizontal.png" alt="Entre Estrelas">
       <h1>Um portal para dentro de você.</h1>
       <p class="portal-entrada-pergunta">E se você pudesse compreender melhor quem você é, seus talentos, seus desafios e o que dá sentido à sua vida?</p>
       <hr class="portal-entrada-linha">
@@ -41,7 +50,7 @@
         <label for="email">Seu e-mail</label>
         <input id="email" type="email" autocomplete="email" placeholder="seu@email.com" required>
         <label class="portal-entrada-consentimento">
-          <input id="novidades" type="checkbox">
+          <input id="novidades" type="checkbox" checked>
           <span>Quero receber novidades e conteúdos do Entre Estrelas.</span>
         </label>
         <button class="portal-entrada-botao portal-entrada-botao--principal" type="submit" id="botao-enviar">Receber meu link de acesso</button>
@@ -84,9 +93,8 @@
       mostrar('O login ainda está sendo configurado. Volte em breve.', 'info');
     } else if (await sessaoAtual()) {
       location.replace(destino);
-    } else if (pedido) {
-      abrirFormulario(); // veio de uma ferramenta: vai direto para o e-mail
     }
+    // Sempre começa pela tela "Comece sua jornada"; o e-mail aparece depois do clique.
 
     document.querySelector('#comecar').addEventListener('click', abrirFormulario);
 

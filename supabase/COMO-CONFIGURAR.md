@@ -36,7 +36,7 @@ Em **Authentication → Sign In / Providers → Email**, deixe **Email** ligado.
 Em **Authentication → Email Templates → Magic Link**, traduza o e-mail. Sugestão:
 
 ```html
-<h2>Seu acesso ao Entre Estrelas ✦</h2>
+<h2>Seu acesso ao Entre Estrelas ★</h2>
 <p>Clique no botão abaixo para entrar. O link vale por 1 hora.</p>
 <p><a href="{{ .ConfirmationURL }}">Entrar no Entre Estrelas</a></p>
 <p>Está em outro aparelho? Digite este código na tela de entrar:</p>
