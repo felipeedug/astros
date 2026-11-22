@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Entre Estrelas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/portal.css?v=20261122-paginas">
+</head>
+<body>
+  <header class="portal-topo">
+    <a href="index.html" aria-label="Entre Estrelas, início"><img src="fonts/Novo%20Design%20-%20COM%20texto.png" alt="Entre Estrelas"></a>
+    <nav>
+      <a href="index.html">Site</a>
+      <a href="minha-area.html" id="link-area">Minha área</a>
+    </nav>
+  </header>
+
+  <section class="pagina-produto-topo">
+    <div class="ceu" aria-hidden="true">
+      <div class="ceu-estrelas ceu-estrelas--longe"></div>
+      <div class="ceu-estrelas ceu-estrelas--perto"></div>
+      <div class="ceu-planeta ceu-planeta--anel"></div>
+      <div class="ceu-planeta ceu-planeta--pequeno"></div>
+      <div class="ceu-vidro"></div>
+    </div>
+    <div class="pagina-produto-chamada" id="chamada">
+      <p class="pagina-produto-tipo">Carregando…</p>
+    </div>
+  </section>
+
+  <main class="pagina-produto-corpo">
+    <article class="cartao pagina-produto-texto" id="texto" hidden></article>
+    <p class="aviso" id="aviso" role="status"></p>
+  </main>
+
+  <script type="module">
+    import {
+      configurado, sessaoAtual, meuCadastro, meusProdutos, minhasAssinaturas, inscrever, cancelarInscricao,
+      produtoDaPagina, textoDaPagina, iconeProduto, escapar, formatarPreco
+    } from './js/portal.js';
+
+    const parametros = new URLSearchParams(location.search);
+    const slug = (parametros.get('p') || '').trim();
+    const chamada = document.querySelector('#chamada');
+    const aviso = document.querySelector('#aviso');
+    const mostrar = (texto, tipo) => { aviso.textContent = texto; aviso.className = `aviso aviso-${tipo}`; };
+    const tipos = { live: 'Live', aula: 'Aula', produto: 'Novidade', ferramenta: 'Ferramenta' };
+    const aqui = `produto.html?p=${encodeURIComponent(slug)}`;
+    const entrarE = (destino) => `entrar.html?voltar=${encodeURIComponent(destino)}`;
+
+    async function iniciar() {
+      if (!configurado) return mostrar('O portal está sendo configurado. Volte em breve.', 'info');
+      const p = slug ? await produtoDaPagina(slug) : null;
+      if (!p) {
+        chamada.innerHTML = '<h1>Página não encontrada</h1><p class="pagina-produto-slogan">Confira se o link foi copiado inteiro.</p>';
+        return;
+      }
+      document.title = `${p.nome} — Entre Estrelas`;
+
+      // Quem já entrou: vê se já está inscrito(a) ou se já tem o produto
+      const logado = Boolean(await sessaoAtual());
+      let cliente = null, meu = null, membro = false;
+      if (logado) {
+        cliente = await meuCadastro().catch(() => null);
+        if (cliente) {
+          const [produtos, assinaturas] = await Promise.all([
+            meusProdutos().catch(() => []), minhasAssinaturas(cliente.id).catch(() => [])
+          ]);
+          meu = produtos.find((x) => x.id === p.id) || null;
+          membro = assinaturas.length > 0;
+        }
+      }
+
+      const emBreve = p.status === 'em_breve';
+      const quando = p.previsao
+        ? new Date(`${p.previsao}T00:00:00`).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long' })
+        : '';
+
+      // Inscrição automática quando a pessoa clicou em "Quero participar" antes de entrar
+      if (emBreve && cliente && !meu?.inscrito &&p.inscricoes_abertas && parametros.get('participar') === '1') {
+        await inscrever(cliente.id, p.id).then(() => { meu.inscrito = true; }).catch(() => {});
+        history.replaceState(null, '', aqui);
+      }
+
+      const acoes = () => {
+        if (emBreve) {
+          if (!p.inscricoes_abertas) return '<span class="pagina-produto-selo">Inscrições em breve</span>';
+          if (meu?.inscrito) {
+            return `<div class="inscricao-ok" role="status"><strong>✓ Inscrição confirmada!</strong>
+              <span>Antes ${quando ? `de ${escapar(quando)}` : 'do lançamento'}, vamos te enviar por WhatsApp e e-mail as informações para participar.</span></div>
+              <button class="pagina-produto-link" data-cancelar>Cancelar inscrição</button>`;
+          }
+          return cliente
+            ? '<button class="portal-entrada-botao portal-entrada-botao--principal" data-participar>★ Quero participar</button>'
+            : `<a class="portal-entrada-botao portal-entrada-botao--principal" href="${entrarE(`${aqui}&participar=1`)}">★ Quero participar</a>`;
+        }
+        const botoes = [];
+        if (meu?.liberado) {
+          botoes.push('<a class="portal-entrada-botao portal-entrada-botao--principal" href="minha-area.html">✓ Já faz parte da sua jornada</a>');
+        } else if (p.preco_centavos) {
+          const destino = `minha-area.html?comprar=${encodeURIComponent(p.slug)}`;
+          botoes.push(`<a class="portal-entrada-botao portal-entrada-botao--principal" href="${cliente ? destino : entrarE(destino)}">Quero este · ${formatarPreco(p.preco_centavos)}</a>`);
+        }
+        if (p.permite_presente && p.preco_centavos) {
+          const preco = membro && p.preco_presente_membro_centavos ? p.preco_presente_membro_centavos : p.preco_centavos;
+          const destino = `minha-area.html?presentear=${encodeURIComponent(p.slug)}`;
+          botoes.push(`<a class="portal-entrada-botao portal-entrada-botao--contorno" href="${cliente ? destino : entrarE(destino)}">🎁 Dar de presente · ${formatarPreco(preco)}</a>`);
+        }
+        return botoes.join('');
+      };
+
+      const desenhar = () => {
+        const linhaTipo = emBreve
+          ? `${escapar(tipos[p.tipo] || 'Novidade')}${quando ? ` · ${escapar(quando)}` : ''}`
+          : (p.versao ? `Versão ${escapar(p.versao)}` : 'Entre Estrelas');
+        chamada.innerHTML = `
+          <div class="pagina-produto-icone">${iconeProduto(p.icone || 'estrela')}</div>
+          <p class="pagina-produto-tipo">${linhaTipo}</p>
+          <h1>${escapar(p.nome)}</h1>
+          ${p.slogan ? `<p class="pagina-produto-slogan">${escapar(p.slogan)}</p>` : ''}
+          ${p.descricao ? `<p class="pagina-produto-resumo">${escapar(p.descricao)}</p>` : ''}
+          <div class="pagina-produto-acoes">${acoes()}</div>`;
+      };
+      desenhar();
+
+      // Texto longo (ou, se ainda não houver, as novidades da versão)
+      const novidades = String(p.novidades || '').split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
+      const corpo = p.pagina
+        ? textoDaPagina(p.pagina)
+        : novidades.length ? `<h2>O que há de novo</h2><ul>${novidades.map((n) => `<li>${escapar(n)}</li>`).join('')}</ul>` : '';
+      if (corpo) {
+        const texto = document.querySelector('#texto');
+        texto.innerHTML = corpo + `<div class="pagina-produto-fim"><div class="pagina-produto-acoes">${acoes()}</div></div>`;
+        texto.hidden = false;
+      }
+
+      document.body.addEventListener('click', async (evento) => {
+        const alvo = evento.target.closest('[data-participar], [data-cancelar]');
+        if (!alvo || !cliente) return;
+        alvo.disabled = true;
+        try {
+          if (alvo.hasAttribute('data-participar')) await inscrever(cliente.id, p.id);
+          else await cancelarInscricao(cliente.id, p.id);
+          meu = { ...(meu || {}), inscrito: alvo.hasAttribute('data-participar') };
+          desenhar();
+          const fim = document.querySelector('.pagina-produto-fim .pagina-produto-acoes');
+          if (fim) fim.innerHTML = acoes();
+        } catch (e) {
+          mostrar(e.message, 'erro');
+          alvo.disabled = false;
+        }
+      });
+    }
+
+    iniciar().catch((e) => mostrar(e.message, 'erro'));
+  </script>
+</body>
+</html>

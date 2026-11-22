@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css?v=20261122-presentes">
+  <link rel="stylesheet" href="css/portal.css?v=20261122-paginas">
 </head>
 <body>
   <header class="portal-topo">
@@ -179,7 +179,10 @@
           <a class="botao botao-dourado botao-pequeno" href="index.html?meu-mapa=1#mapa">Cadastrar meus dados</a>`;
       }
 
-      const arquivosPorSlug = Object.fromEntries((await produtosAVenda().catch(() => [])).filter((x) => x.arquivo_caminho).map((x) => [x.slug, x.arquivo_caminho]));
+      const aVenda = await produtosAVenda().catch(() => []);
+      const comPagina = new Set(aVenda.filter((x) => x.pagina).map((x) => x.slug));
+      const saibaMais = (slug) => comPagina.has(slug) ? `<a class="produto-saiba-mais" href="produto.html?p=${encodeURIComponent(slug)}">Saiba mais</a>` : '';
+      const arquivosPorSlug = Object.fromEntries(aVenda.filter((x) => x.arquivo_caminho).map((x) => [x.slug, x.arquivo_caminho]));
       const cartaoProduto = (p, mostrarSelo) => {
         const arquivo = arquivosPorSlug[p.slug];
         const acao = p.liberado
@@ -211,6 +214,7 @@
             <summary>O que há de novo${p.versao ? ` na versão ${escapar(p.versao)}` : ''}</summary>
             <ul>${novidades.map((n) => `<li>${escapar(n)}</li>`).join('')}</ul>
           </details>` : ''}
+          ${saibaMais(p.slug)}
           ${mostrarSelo && p.liberado ? '<span class="selo">Liberado</span>' : ''}
           ${acao}
         </article>`;
@@ -314,6 +318,7 @@
             </div>
           </div>
           <p>${escapar(p.descricao || '')}</p>
+          ${saibaMais(p.slug)}
           <div class="em-breve-acoes">${botao}</div>
         </article>`;
       };
@@ -442,7 +447,6 @@
 
       // ---------------- Comprar, presentear, baixar
       const sou_membro = assinaturas.length > 0;
-      const aVenda = await produtosAVenda().catch(() => []);
       const porSlug = Object.fromEntries(aVenda.map((p) => [p.slug, p]));
       const reais = (c) => formatarPreco(c);
       const precoPara = (p, presente) => (presente && sou_membro && p.preco_presente_membro_centavos) ? p.preco_presente_membro_centavos : p.preco_centavos;
@@ -457,6 +461,7 @@
             <span class="produto-versao">de presente para alguém especial</span></div></div>
           <p>${escapar(p.descricao || '')}</p>
           <p class="preco-presente">${comDesconto ? `<s>${reais(p.preco_centavos)}</s> ` : ''}<strong>${reais(preco)}</strong>${comDesconto ? ' <span class="selo">preço de membro</span>' : ''}</p>
+          ${saibaMais(p.slug)}
           <button class="botao botao-dourado" data-presentear="${escapar(p.slug)}">★ Presentear</button>
         </article>`;
       }).join('');
@@ -530,6 +535,12 @@
         const b = evento.target.closest('[data-presentear]');
         if (b) abrirPedido(b.dataset.presentear, true);
       });
+      // Vindo da página de um produto: abre o pedido direto
+      const vindoDaPagina = new URLSearchParams(location.search);
+      if (vindoDaPagina.get('comprar') || vindoDaPagina.get('presentear')) {
+        history.replaceState(null, '', 'minha-area.html');
+        abrirPedido(vindoDaPagina.get('presentear') || vindoDaPagina.get('comprar'), Boolean(vindoDaPagina.get('presentear')));
+      }
       // Comprar para si / baixar arquivo, nos cards da Minha jornada
       document.querySelector('#lista-produtos').addEventListener('click', async (evento) => {
         const comprar = evento.target.closest('[data-comprar]');
