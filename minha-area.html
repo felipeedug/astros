@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css?v=20261122-precos">
+  <link rel="stylesheet" href="css/portal.css?v=20261122-festivo">
 </head>
 <body>
   <header class="portal-topo">
@@ -53,9 +53,17 @@
         <div class="produtos" id="lista-produtos"></div>
       </section>
 
-      <section class="cartao" id="cartao-presentear" hidden>
-        <h2>★ Presentear alguém</h2>
-        <p class="suave">Dê autoconhecimento de presente. Você paga, recebe um link e envia para quem quiser: a pessoa abre, entra com o próprio e-mail e recebe.</p>
+      <section class="cartao" id="cartao-em-breve" hidden>
+        <h2>★ O que vem pela frente</h2>
+        <p class="suave">O que estamos preparando para a sua jornada. Inscreva-se para receber as informações e participar.</p>
+        <div class="produtos" id="lista-em-breve"></div>
+      </section>
+
+      <section class="cartao cartao-festivo" id="cartao-presentear" hidden>
+        <div class="festivo-laco" aria-hidden="true"></div>
+        <p class="festivo-chamada">Black Friday · presentes com preço de membro</p>
+        <h2>🎁 Presentear alguém</h2>
+        <p class="festivo-texto">Dê autoconhecimento de presente. Você paga, recebe um link e envia para quem quiser: a pessoa abre, entra com o próprio e-mail e recebe.</p>
         <div class="produtos" id="lista-presentear"></div>
         <div id="bloco-meus-presentes" hidden>
           <h3 class="agenda-subtitulo">Meus presentes</h3>
@@ -88,12 +96,6 @@
           <h3 class="agenda-subtitulo">Gravações</h3>
           <div id="agenda-lista-gravacoes"></div>
         </div>
-      </section>
-
-      <section class="cartao" id="cartao-em-breve" hidden>
-        <h2>★ O que vem pela frente</h2>
-        <p class="suave">O que estamos preparando para a sua jornada. Inscreva-se para receber as informações e participar.</p>
-        <div class="produtos" id="lista-em-breve"></div>
       </section>
 
       <section class="cartao" id="cartao-gratuitas" hidden>
@@ -319,6 +321,7 @@
               <span class="produto-versao">${escapar(tiposLancamento[p.tipo] || 'Novidade')} · ${escapar(quando)}</span>
             </div>
           </div>
+          ${p.preco_centavos && p.liberado ? '<span class="selo selo-incluido">✓ Incluído para você, sem custo</span>' : ''}
           <p>${escapar(p.descricao || '')}</p>
           ${saibaMais(p.slug)}
           <div class="em-breve-acoes">${botao}</div>
@@ -471,6 +474,7 @@
         </article>`;
       }).join('');
       document.querySelector('#cartao-presentear').hidden = presenteaveis.length === 0;
+      document.querySelector('.festivo-chamada').hidden = !presenteaveis.some((p) => precoPara(p, true) < p.preco_centavos);
 
       // Meus presentes (links para enviar)
       const desenharMeusPresentes = async () => {
