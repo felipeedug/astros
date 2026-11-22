@@ -139,11 +139,50 @@ export async function atualizarMeuCadastro(clienteId, { nome, whatsapp, aceita_n
   falha(error, 'Não foi possível salvar seu cadastro.');
 }
 
+// ------------------------------------------------------------------ indicações
+// Link de parceira: qualquer página com ?indicacao=CODIGO guarda o código no navegador;
+// quando a pessoa entra, a Minha área associa a indicação (só na primeira vez).
+const CHAVE_INDICACAO = 'ee-indicacao';
+try {
+  const codigoNoLink = new URLSearchParams(location.search).get('indicacao');
+  if (codigoNoLink && /^[\w-]{2,40}$/.test(codigoNoLink)) localStorage.setItem(CHAVE_INDICACAO, codigoNoLink);
+} catch { /* navegador sem localStorage */ }
+
+export async function registrarIndicacaoPendente() {
+  let codigo = null;
+  try { codigo = localStorage.getItem(CHAVE_INDICACAO); } catch { return; }
+  if (!codigo || !configurado) return;
+  const { data, error } = await supabase.rpc('registrar_indicacao', { p_codigo: codigo });
+  if (!error && data !== 'entre_primeiro') localStorage.removeItem(CHAVE_INDICACAO);
+}
+
+export function linkDeIndicacao(codigo) {
+  return urlDoSite(`./?indicacao=${encodeURIComponent(codigo)}`);
+}
+
+export async function admDefinirIndicacao(clienteId, indicadoPor) {
+  exigirConfiguracao();
+  const { error } = await supabase.from('clientes').update({ indicado_por: indicadoPor || null }).eq('id', clienteId);
+  falha(error, 'Não foi possível salvar a indicação.');
+}
+
+// Admin envia para a pessoa o e-mail de acesso (link + código), o mesmo da tela de entrar.
+// Não mexe na sessão de quem está no Painel.
+export async function admEnviarAcesso(email) {
+  exigirConfiguracao();
+  const { error } = await supabase.auth.signInWithOtp({
+    email: email.trim().toLowerCase(),
+    options: { emailRedirectTo: urlDoSite('minha-area.html'), shouldCreateUser: true, data: { origem: 'painel' } }
+  });
+  falha(error, 'Não foi possível enviar o e-mail de acesso.');
+}
+
 // Admin completa o cadastro de qualquer pessoa (nome, WhatsApp, papel e observações)
-export async function admEditarCliente(clienteId, { nome, whatsapp, papel, observacoes }) {
+export async function admEditarCliente(clienteId, { nome, whatsapp, papel, observacoes, indicado_por, parceiro, codigo_indicacao }) {
   exigirConfiguracao();
   const { error } = await supabase.from('clientes')
-    .update({ nome: nome || null, whatsapp: whatsapp || null, papel, observacoes: observacoes || null })
+    .update({ nome: nome || null, whatsapp: whatsapp || null, papel, observacoes: observacoes || null,
+              indicado_por: indicado_por || null, parceiro: Boolean(parceiro), codigo_indicacao: codigo_indicacao || null })
     .eq('id', clienteId);
   falha(error, 'Não foi possível salvar o cadastro.');
 }
@@ -372,9 +411,10 @@ export async function admListarClientes() {
   exigirConfiguracao();
   const { data, error } = await supabase
     .from('clientes')
-    .select(`id, email, nome, whatsapp, papel, observacoes, user_id, criado_em,
-             assinaturas(id, plano_id, status, fim, origem),
-             compras(id, status, produto_id, pago_em, origem, produtos(nome)),
+    .select(`id, email, nome, whatsapp, papel, observacoes, user_id, criado_em, indicado_por, parceiro, codigo_indicacao,
+             assinaturas(id, plano_id, status, fim, origem, referencia_externa),
+             compras(id, status, produto_id, pago_em, origem, valor_centavos, referencia_externa, produtos(nome)),
+             pedidos(id, status, total_centavos, valor_pago_centavos),
              mapas_nascimento(id, proprio, nome)`)
     .order('criado_em', { ascending: false });
   falha(error, 'Não foi possível carregar os clientes.');

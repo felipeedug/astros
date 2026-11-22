@@ -2548,8 +2548,14 @@ if (bonusLightbox && bonusLightboxImage) {
   });
 }
 
+// Link de indicação de parceira (?indicacao=CODIGO): guarda para associar quando a pessoa entrar.
+try {
+  const codigoIndicacao = new URLSearchParams(location.search).get('indicacao');
+  if (codigoIndicacao && /^[\w-]{2,40}$/.test(codigoIndicacao)) localStorage.setItem('ee-indicacao', codigoIndicacao);
+} catch { /* sem localStorage */ }
+
+// Membro Fundador: a pessoa entra com o e-mail e paga dentro do portal;
+// o plano é liberado sozinho quando o pagamento é aprovado.
 document.querySelectorAll('[data-founder-checkout]').forEach((link) => {
-  link.addEventListener('click', () => {
-    window.open('https://loja.infinitepay.io/entreestrelas/sku-4e2f1e3019fb-membro-fundador', '_blank', 'noopener,noreferrer');
-  });
+  link.setAttribute('href', 'minha-area.html?comprar=membro-fundador');
 });

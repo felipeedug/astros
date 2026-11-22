@@ -43,12 +43,12 @@ Deno.serve(async (req) => {
   if (!escolhidos.length) return resposta({ erro: 'Nenhum item escolhido.' }, 400);
 
   const { data: produtos } = await servidor.from('produtos')
-    .select('id, slug, nome, preco_centavos, preco_membro_centavos, preco_presente_membro_centavos, permite_presente, ativo')
+    .select('id, slug, nome, preco_centavos, preco_membro_centavos, preco_presente_membro_centavos, permite_presente, ativo, concede_plano, venda_ate')
     .in('slug', escolhidos.map((i) => i.slug)).eq('ativo', true);
 
   // Membro = plano ativo (Fundador/Comunidade): paga o preço de membro nos presentes
   const { data: planos } = await servidor.from('assinaturas')
-    .select('id, fim').eq('cliente_id', cliente.id).eq('status', 'ativa');
+    .select('id, fim, plano_id').eq('cliente_id', cliente.id).eq('status', 'ativa');
   const membro = (planos || []).some((p) => !p.fim || new Date(p.fim) > new Date());
 
   // 3) Preços calculados no servidor
@@ -58,6 +58,8 @@ Deno.serve(async (req) => {
     if (!p) return resposta({ erro: `Item indisponível: ${escolha.slug}` }, 400);
     const presente = Boolean(escolha.presente);
     if (presente && !p.permite_presente) return resposta({ erro: `${p.nome} não pode ser dado de presente.` }, 400);
+    if (p.venda_ate && new Date(p.venda_ate) < new Date()) return resposta({ erro: `As vendas de ${p.nome} foram encerradas.` }, 400);
+    if (p.concede_plano && (planos || []).some((a) => a.plano_id === p.concede_plano)) return resposta({ erro: `Você já é ${p.nome}.` }, 400);
     // Membro paga o preço de membro: para presentear (se houver) ou para si
     const precoMembro = presente ? (p.preco_presente_membro_centavos || p.preco_membro_centavos) : p.preco_membro_centavos;
     const preco = membro && precoMembro ? precoMembro : p.preco_centavos;

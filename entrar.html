@@ -36,7 +36,7 @@
 
       <div class="portal-entrada-acoes" id="acoes">
         <button type="button" class="portal-entrada-botao portal-entrada-botao--principal" id="comecar">Comece sua jornada</button>
-        <a class="portal-entrada-botao portal-entrada-botao--contorno" href="https://loja.infinitepay.io/entreestrelas/sku-4e2f1e3019fb-membro-fundador" target="_blank" rel="noopener noreferrer">Seja Membro Fundador</a>
+        <a class="portal-entrada-botao portal-entrada-botao--contorno" href="minha-area.html?comprar=membro-fundador" id="seja-fundador">Seja Membro Fundador</a>
       </div>
 
       <form id="form-entrar" class="portal-entrada-form" hidden>
@@ -82,6 +82,15 @@
     const destino = /^[\w-]+\.html([?#][\w\-=&#.%]*)?$/.test(pedido) ? pedido : 'minha-area.html';
     // Por onde a pessoa chegou (para saber quais ferramentas atraem mais gente).
     const origem = destino.includes('#') ? destino.split('#').pop() : destino.replace('.html', '');
+
+    // Veio para se tornar Membro Fundador: explica o caminho
+    if (destino.includes('comprar=membro-fundador')) {
+      document.querySelector('.portal-entrada-subtitulo').textContent = '★ Seja Membro Fundador';
+      document.querySelector('.portal-entrada-texto').textContent =
+        'Entre com o seu e-mail para começar. Em seguida, você paga por Pix ou cartão (R$ 49,85, valor único) e o seu acesso é liberado na hora, já com o seu Mapa da Vida.';
+      document.querySelector('#comecar').textContent = 'Continuar com meu e-mail';
+      document.querySelector('#seja-fundador').hidden = true;
+    }
 
     function abrirFormulario() {
       document.querySelector('#acoes').hidden = true;

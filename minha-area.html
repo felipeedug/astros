@@ -133,8 +133,8 @@
       configurado, sessaoAtual, sair, meuCadastro, meusProdutos, minhasAssinaturas,
       mapaProprio, atualizarMeuCadastro, escapar, formatarPreco, seloFundador, iconeProduto,
       inscrever, cancelarInscricao, minhaAgenda, inscreverEvento, cancelarEvento,
-      produtosAVenda, irParaPagamento, meusPresentes, linkDePresente, linkDoArquivo
-    } from './js/portal.js';
+      produtosAVenda, irParaPagamento, meusPresentes, linkDePresente, linkDoArquivo, registrarIndicacaoPendente
+    } from './js/portal.js?v=20261122-indicacoes';
 
     const carregando = document.querySelector('#carregando');
     const erro = (texto) => { carregando.textContent = texto; carregando.className = 'aviso aviso-erro'; };
@@ -142,9 +142,12 @@
     async function iniciar() {
       if (!configurado) return erro('O login ainda está sendo configurado. Volte em breve.');
       const sessao = await sessaoAtual();
-      if (!sessao) return location.replace('entrar.html');
+      // Sem login: entra e volta para cá (com o pedido, se houver: ex. ?comprar=membro-fundador)
+      if (!sessao) return location.replace(location.search
+        ? `entrar.html?voltar=${encodeURIComponent('minha-area.html' + location.search)}` : 'entrar.html');
 
       const cliente = await meuCadastro();
+      registrarIndicacaoPendente().catch(() => {}); // veio pelo link de uma parceira
       if (!cliente) return erro('Não encontramos seu cadastro. Saia e entre de novo, ou fale com a gente pelo WhatsApp.');
 
       const [produtos, assinaturas, nascimento] = await Promise.all([
@@ -450,7 +453,7 @@
         }
       });
 
-      const disponiveis = produtos.filter((p) => p.status !== 'em_breve');
+      const disponiveis = produtos.filter((p) => p.status !== 'em_breve' && !porSlug[p.slug]?.concede_plano); // planos não aparecem como produto
       const pagos = disponiveis.filter((p) => (p.nivel || 'pago') === 'pago');
       const gratuitos = disponiveis.filter((p) => p.nivel && p.nivel !== 'pago');
       document.querySelector('#lista-produtos').innerHTML = pagos.map((p) => cartaoProduto(p, true)).join('')
@@ -551,7 +554,18 @@
       });
       // Vindo da página de um produto: abre o pedido direto
       const vindoDaPagina = new URLSearchParams(location.search);
-      const jaTenho = produtos.some((x) => x.slug === vindoDaPagina.get('comprar') && x.liberado);
+      const planoPedido = porSlug[vindoDaPagina.get('comprar')]?.concede_plano;
+      const jaTenho = planoPedido
+        ? assinaturas.some((a) => a.plano_id === planoPedido)
+        : produtos.some((x) => x.slug === vindoDaPagina.get('comprar') && x.liberado);
+      if (planoPedido && jaTenho) {
+        history.replaceState(null, '', 'minha-area.html');
+        const aviso = document.querySelector('#carregando');
+        aviso.textContent = '★ Você já é Membro Fundador! Tudo o que está incluído no seu pacote aparece aqui na sua área.';
+        aviso.className = 'aviso aviso-ok';
+        aviso.hidden = false;
+        document.querySelector('#area').prepend(aviso);
+      }
       if ((vindoDaPagina.get('comprar') && !jaTenho) || vindoDaPagina.get('presentear')) {
         history.replaceState(null, '', 'minha-area.html');
         abrirPedido(vindoDaPagina.get('presentear') || vindoDaPagina.get('comprar'), Boolean(vindoDaPagina.get('presentear')));
