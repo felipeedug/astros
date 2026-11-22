@@ -90,6 +90,10 @@ update public.clientes set papel = 'admin' where email = 'seu@email.com';
   Depois disso ela não consegue alterar (para que uma compra não sirva para gerar mapas de várias pessoas).
   Correções são feitas por você, no botão **Ver mapa** do Painel.
 - **Produto novo:** no Supabase, **Table Editor → produtos → Insert row**. Fundadores ganham acesso automaticamente.
+- **Página do produto:** cada produto tem a página `produto.html?p=SLUG` (ex.: `produto.html?p=natal-2026`).
+  Preencha as colunas **slogan** (frase de chamada) e **pagina** (texto longo) no Table Editor. No texto:
+  `## Título`, `- item`, `> frase em destaque`, `**negrito**` e uma linha em branco entre parágrafos.
+  Quando a coluna **pagina** está preenchida, aparece o link "Saiba mais" no cartão da Minha área.
 
 ## Pagamentos pela InfinitePay (Checkout Integrado)
 

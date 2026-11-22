@@ -188,10 +188,36 @@ export async function admListarLancamentos() {
 export async function produtosAVenda() {
   exigirConfiguracao();
   const { data, error } = await supabase.from('produtos')
-    .select('id, slug, nome, descricao, icone, preco_centavos, preco_presente_membro_centavos, permite_presente, extra_slug, arquivo_caminho, ativo')
+    .select('*')
     .eq('ativo', true);
   falha(error, 'Não foi possível carregar as opções.');
   return data || [];
+}
+
+// Um produto, para a página de divulgação (produto.html?p=slug). Aberta a todos.
+export async function produtoDaPagina(slug) {
+  exigirConfiguracao();
+  const { data, error } = await supabase.from('produtos')
+    .select('*')
+    .eq('slug', slug)
+    .eq('ativo', true)
+    .maybeSingle();
+  falha(error, 'Não foi possível carregar esta página.');
+  return data;
+}
+
+// Texto da página do produto, num jeito simples de escrever:
+// "## Título", "- item", "> destaque", "**negrito**" e linha em branco entre parágrafos.
+export function textoDaPagina(texto) {
+  const enfeitar = (linha) => escapar(linha).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  return String(texto || '').replace(/\r\n/g, '\n').trim().split(/\n\s*\n/).map((bloco) => {
+    const linhas = bloco.split('\n').map((l) => l.trim()).filter(Boolean);
+    if (!linhas.length) return '';
+    if (linhas.length === 1 && linhas[0].startsWith('## ')) return `<h2>${enfeitar(linhas[0].slice(3))}</h2>`;
+    if (linhas.every((l) => l.startsWith('- '))) return `<ul>${linhas.map((l) => `<li>${enfeitar(l.slice(2))}</li>`).join('')}</ul>`;
+    if (linhas.every((l) => l.startsWith('> '))) return `<blockquote>${linhas.map((l) => enfeitar(l.slice(2))).join(' ')}</blockquote>`;
+    return `<p>${linhas.map(enfeitar).join(' ')}</p>`;
+  }).join('\n');
 }
 
 // Cria o pagamento na InfinitePay e leva a pessoa para pagar. itens: [{ slug, presente }]
