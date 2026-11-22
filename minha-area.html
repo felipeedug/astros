@@ -47,8 +47,30 @@
         <div id="nascimento-conteudo"></div>
       </section>
 
+      <section class="cartao" id="cartao-agenda" hidden>
+        <div class="cabecalho-area" style="margin-bottom:.4rem">
+          <h2 style="margin:0">✦ Agenda</h2>
+          <span class="suave" id="agenda-resumo"></span>
+        </div>
+        <p class="suave">Lives, colunas com nossas astrólogas e encontros das próximas semanas. Inscreva-se nos que te interessam.</p>
+        <div class="mini-calendario" id="mini-calendario" aria-label="Calendário das próximas duas semanas"></div>
+        <p class="mini-calendario-legenda"><span class="ponto ponto-evento"></span> tem evento <span class="ponto ponto-inscrito"></span> você está inscrito(a)</p>
+        <div id="agenda-dias"></div>
+        <div id="agenda-gravacoes" hidden>
+          <h3 class="agenda-subtitulo">Gravações</h3>
+          <div id="agenda-lista-gravacoes"></div>
+        </div>
+      </section>
+
+      <section class="cartao" id="cartao-em-breve" hidden>
+        <h2>✦ Em breve</h2>
+        <p class="suave">Os próximos lançamentos do Entre Estrelas. Inscreva-se para receber as informações e participar.</p>
+        <div class="produtos" id="lista-em-breve"></div>
+      </section>
+
       <section class="cartao">
-        <h2>Meus produtos</h2>
+        <h2>Minha jornada</h2>
+        <p class="suave">Seus mapas, leituras e encontros de autoconhecimento.</p>
         <div class="produtos" id="lista-produtos"></div>
       </section>
 
@@ -74,7 +96,8 @@
   <script type="module">
     import {
       configurado, sessaoAtual, sair, meuCadastro, meusProdutos, minhasAssinaturas,
-      mapaProprio, atualizarMeuCadastro, escapar, formatarPreco, seloFundador, iconeProduto
+      mapaProprio, atualizarMeuCadastro, escapar, formatarPreco, seloFundador, iconeProduto,
+      inscrever, cancelarInscricao, minhaAgenda, inscreverEvento, cancelarEvento
     } from './js/portal.js';
 
     const carregando = document.querySelector('#carregando');
@@ -148,10 +171,157 @@
           ${acao}
         </article>`;
       };
-      const pagos = produtos.filter((p) => (p.nivel || 'pago') === 'pago');
-      const gratuitos = produtos.filter((p) => p.nivel && p.nivel !== 'pago');
+      // ---------------- Agenda (lives, colunas, aulas, encontros)
+      const agenda = await minhaAgenda(14);
+      const tiposEvento = { live: 'Live', coluna: 'Coluna', aula: 'Aula', encontro: 'Encontro' };
+      const fimDe = (e) => new Date(new Date(e.inicio).getTime() + e.duracao_min * 60000);
+      const acaoEvento = (e) => {
+        if (!e.pode_participar && e.produto_id) {
+          return `<span class="selo selo-cinza">Incluído no ${escapar(e.produto_nome || 'produto')}</span>`
+            + (e.produto_link_pagamento ? ` <a class="botao botao-dourado botao-pequeno" href="${escapar(e.produto_link_pagamento)}" target="_blank" rel="noopener noreferrer">Quero este</a>` : '');
+        }
+        if (!e.pode_participar) return '<span class="selo selo-cinza">Exclusivo para membros</span>';
+        if (e.link_acesso) return `<a class="botao botao-dourado" href="${escapar(e.link_acesso)}" target="_blank" rel="noopener noreferrer">▶ Entrar agora</a>`;
+        if (e.inscrito) return `<div class="inscricao-ok" role="status"><strong>✓ Inscrição confirmada!</strong>
+            <span>No dia, o botão para entrar aparece aqui, 30 minutos antes. Também avisamos por WhatsApp e e-mail.</span></div>
+            <button class="botao botao-leve botao-pequeno" data-cancelar-evento="${e.id}">Cancelar inscrição</button>`;
+        if (!e.inscricoes_abertas) return '<span class="selo selo-cinza">Inscrições encerradas</span>';
+        return `<button class="botao botao-dourado" data-inscrever-evento="${e.id}">✦ Quero participar</button>`;
+      };
+      const desenharAgenda = () => {
+        const agora = new Date();
+        const proximos = agenda.filter((e) => fimDe(e) > agora);
+        const gravacoes = agenda.filter((e) => fimDe(e) <= agora && e.link_gravacao).reverse();
+        const inscritos = proximos.filter((e) => e.inscrito).length;
+        document.querySelector('#agenda-resumo').textContent = inscritos
+          ? `Você está inscrito(a) em ${inscritos} ${inscritos === 1 ? 'evento' : 'eventos'}` : '';
+        const chaveDia = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+        const porDia = new Map();
+        proximos.forEach((e) => {
+          const chave = chaveDia(new Date(e.inicio));
+          if (!porDia.has(chave)) porDia.set(chave, []);
+          porDia.get(chave).push(e);
+        });
+
+        // Mini calendário: esta semana e a próxima (domingo a sábado)
+        const hoje = new Date(); hoje.setHours(0, 0, 0, 0);
+        const primeiro = new Date(hoje); primeiro.setDate(hoje.getDate() - hoje.getDay());
+        const letras = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
+        const celulas = Array.from({ length: 14 }, (_, i) => {
+          const d = new Date(primeiro); d.setDate(primeiro.getDate() + i);
+          const chave = chaveDia(d);
+          const doDia = porDia.get(chave) || [];
+          const classes = ['mini-dia'];
+          if (d < hoje) classes.push('mini-dia--passado');
+          if (chave === chaveDia(hoje)) classes.push('mini-dia--hoje');
+          if (doDia.length) classes.push('mini-dia--evento');
+          if (doDia.some((e) => e.inscrito)) classes.push('mini-dia--inscrito');
+          const rotulo = d.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' })
+            + (doDia.length ? ` — ${doDia.length} ${doDia.length === 1 ? 'evento' : 'eventos'}` : '');
+          return `<button type="button" class="${classes.join(' ')}" ${doDia.length ? `data-ir-dia="${chave}"` : 'disabled'} aria-label="${escapar(rotulo)}">
+            <span>${d.getDate()}</span></button>`;
+        });
+        document.querySelector('#mini-calendario').innerHTML =
+          letras.map((l) => `<span class="mini-cabecalho">${l}</span>`).join('') + celulas.join('');
+
+        document.querySelector('#agenda-dias').innerHTML = [...porDia].map(([chave, eventos]) => `
+          <div class="agenda-dia" id="dia-${chave}">
+            <h3 class="agenda-data">${escapar(new Date(`${chave}T12:00:00`).toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' }))}</h3>
+            ${eventos.map((e) => `<article class="agenda-evento ${e.inscrito ? 'agenda-evento--inscrito' : ''}">
+              <div class="agenda-hora">${new Date(e.inicio).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}</div>
+              <div class="agenda-info">
+                <span class="agenda-tipo">${escapar(tiposEvento[e.tipo] || 'Evento')}${e.publico === 'membros' ? ' · Membros' : ''}${e.produto_nome ? ` · ${escapar(e.produto_nome)}` : ''}</span>
+                <h4>${escapar(e.titulo)}</h4>
+                ${e.apresentadora ? `<p class="agenda-com">com ${escapar(e.apresentadora)}</p>` : ''}
+                ${e.descricao ? `<p>${escapar(e.descricao)}</p>` : ''}
+                <div class="em-breve-acoes">${acaoEvento(e)}</div>
+              </div>
+            </article>`).join('')}
+          </div>`).join('') || '<p class="suave">Nenhum evento marcado para as próximas semanas.</p>';
+        document.querySelector('#agenda-lista-gravacoes').innerHTML = gravacoes.map((e) => `
+          <div class="agenda-gravacao">
+            <span>${escapar(e.titulo)} <span class="suave">· ${new Date(e.inicio).toLocaleDateString('pt-BR')}</span></span>
+            <a class="botao botao-leve botao-pequeno" href="${escapar(e.link_gravacao)}" target="_blank" rel="noopener noreferrer">▶ Assistir</a>
+          </div>`).join('');
+        document.querySelector('#agenda-gravacoes').hidden = gravacoes.length === 0;
+        document.querySelector('#cartao-agenda').hidden = agenda.length === 0;
+      };
+      desenharAgenda();
+      document.querySelector('#mini-calendario').addEventListener('click', (evento) => {
+        const dia = evento.target.closest('[data-ir-dia]');
+        if (dia) document.querySelector(`#dia-${dia.dataset.irDia}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      document.querySelector('#agenda-dias').addEventListener('click', async (evento) => {
+        const alvo = evento.target.closest('[data-inscrever-evento], [data-cancelar-evento]');
+        if (!alvo) return;
+        const id = alvo.dataset.inscreverEvento || alvo.dataset.cancelarEvento;
+        alvo.disabled = true;
+        try {
+          if (alvo.dataset.inscreverEvento) await inscreverEvento(cliente.id, id);
+          else await cancelarEvento(cliente.id, id);
+          agenda.find((e) => e.id === id).inscrito = Boolean(alvo.dataset.inscreverEvento);
+          desenharAgenda();
+        } catch (e) {
+          alert(e.message);
+          alvo.disabled = false;
+        }
+      });
+
+      // Lançamentos "Em breve" com botão de inscrição
+      const emBreve = produtos.filter((p) => p.status === 'em_breve');
+      const tiposLancamento = { live: 'Live', aula: 'Aula', produto: 'Lançamento', ferramenta: 'Ferramenta' };
+      const cartaoEmBreve = (p) => {
+        const quando = p.previsao
+          ? new Date(`${p.previsao}T00:00:00`).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long' })
+          : 'Data a confirmar';
+        const botao = !p.inscricoes_abertas
+          ? '<span class="selo selo-cinza">Inscrições em breve</span>'
+          : p.inscrito
+            ? `<div class="inscricao-ok" role="status">
+                 <strong>✓ Inscrição confirmada!</strong>
+                 <span>Você não precisa fazer mais nada. Antes ${p.previsao ? `de ${escapar(quando)}` : 'do lançamento'}, vamos te enviar por WhatsApp e e-mail as informações para participar.</span>
+               </div>
+               <button class="botao botao-leve botao-pequeno" data-cancelar="${p.id}">Cancelar inscrição</button>`
+            : `<button class="botao botao-dourado" data-inscrever="${p.id}">✦ Quero participar</button>`;
+        return `<article class="produto produto-em-breve">
+          <div class="produto-topo">
+            ${iconeProduto(p.icone || 'estrela')}
+            <div>
+              <h3>${escapar(p.nome)}</h3>
+              <span class="produto-versao">${escapar(tiposLancamento[p.tipo] || 'Lançamento')} · ${escapar(quando)}</span>
+            </div>
+          </div>
+          <p>${escapar(p.descricao || '')}</p>
+          <div class="em-breve-acoes">${botao}</div>
+        </article>`;
+      };
+      const desenharEmBreve = () => {
+        document.querySelector('#lista-em-breve').innerHTML = emBreve.map(cartaoEmBreve).join('');
+        document.querySelector('#cartao-em-breve').hidden = emBreve.length === 0;
+      };
+      desenharEmBreve();
+      document.querySelector('#lista-em-breve').addEventListener('click', async (evento) => {
+        const alvo = evento.target.closest('[data-inscrever], [data-cancelar]');
+        if (!alvo) return;
+        const id = alvo.dataset.inscrever || alvo.dataset.cancelar;
+        const item = emBreve.find((p) => p.id === id);
+        alvo.disabled = true;
+        try {
+          if (alvo.dataset.inscrever) await inscrever(cliente.id, id);
+          else await cancelarInscricao(cliente.id, id);
+          item.inscrito = Boolean(alvo.dataset.inscrever);
+          desenharEmBreve();
+        } catch (e) {
+          alert(e.message);
+          alvo.disabled = false;
+        }
+      });
+
+      const disponiveis = produtos.filter((p) => p.status !== 'em_breve');
+      const pagos = disponiveis.filter((p) => (p.nivel || 'pago') === 'pago');
+      const gratuitos = disponiveis.filter((p) => p.nivel && p.nivel !== 'pago');
       document.querySelector('#lista-produtos').innerHTML = pagos.map((p) => cartaoProduto(p, true)).join('')
-        || '<p class="suave">Nenhum produto disponível ainda.</p>';
+        || '<p class="suave">Sua jornada começa em breve: assim que algo for liberado para você, aparece aqui.</p>';
       if (gratuitos.length) {
         document.querySelector('#lista-gratuitas').innerHTML = gratuitos.map((p) => cartaoProduto(p, false)).join('');
         document.querySelector('#cartao-gratuitas').hidden = false;

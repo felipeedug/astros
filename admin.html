@@ -27,6 +27,40 @@
         </div>
       </div>
 
+      <section class="cartao" id="cartao-agenda-admin" hidden>
+        <h2>✦ Agenda</h2>
+        <details>
+          <summary class="botao botao-dourado" style="display:inline-flex">+ Novo evento</summary>
+          <form id="form-evento" class="grade-form" style="margin-top:1rem">
+            <label>Título <input id="ev-titulo" required placeholder="Ex.: Live de explicação do Mapa da Vida"></label>
+            <label>Tipo
+              <select id="ev-tipo"><option value="live">Live</option><option value="coluna">Coluna</option><option value="aula">Aula</option><option value="encontro">Encontro</option></select>
+            </label>
+            <label>Com quem <input id="ev-apresentadora" placeholder="Ex.: Mara Muniz"></label>
+            <label>Data <input id="ev-data" type="date" required></label>
+            <label>Hora <input id="ev-hora" type="time" required></label>
+            <label>Duração (min) <input id="ev-duracao" type="number" min="15" step="15" value="60"></label>
+            <label>Para quem
+              <select id="ev-publico"><option value="cadastro">Todos com cadastro</option><option value="membros">Só membros (Fundadores/Comunidade)</option></select>
+            </label>
+            <label>Faz parte de um produto?
+              <select id="ev-produto"><option value="">Não (evento independente)</option></select>
+            </label>
+            <label>Link da live <input id="ev-link" type="url" placeholder="https://… (pode colocar depois)"></label>
+            <label style="grid-column:1/-1">Descrição <textarea id="ev-descricao" placeholder="O que a pessoa vai ver ou aprender."></textarea></label>
+            <div style="margin-bottom:1rem"><button class="botao" type="submit">Criar evento</button></div>
+          </form>
+        </details>
+        <p class="aviso" id="aviso-agenda" role="status"></p>
+        <div id="lista-eventos" style="margin-top:1rem"></div>
+      </section>
+
+      <section class="cartao" id="cartao-lancamentos" hidden>
+        <h2>✦ Lançamentos e inscrições</h2>
+        <p class="suave" style="font-size:.88rem">Quem clicou em "Quero participar". Para criar um lançamento: Supabase → Table Editor → produtos, com status <code>em_breve</code> e inscricoes_abertas ligado.</p>
+        <div id="lista-lancamentos"></div>
+      </section>
+
       <section class="cartao">
         <h2>Cadastrar cliente</h2>
         <p class="suave" style="font-size:.88rem">Cadastre quem comprou ou quem vai ganhar um produto. Quando a pessoa entrar com este e-mail, ela já verá o que foi liberado.</p>
@@ -91,7 +125,8 @@
   <script type="module">
     import {
       configurado, sessaoAtual, meuCadastro, admListarClientes, admListarProdutos, admCriarCliente,
-      admTornarFundador, admCancelarAssinatura, admRegistrarCompra, escapar, seloFundador, MOTIVOS_LIBERACAO
+      admTornarFundador, admCancelarAssinatura, admRegistrarCompra, escapar, seloFundador, MOTIVOS_LIBERACAO,
+      admListarLancamentos, admListarEventos, admSalvarEvento
     } from './js/portal.js';
 
     // Opções de motivo (pagamento, equipe/cofundadora, doação, cortesia) em todos os seletores.
@@ -150,7 +185,178 @@
     async function recarregar() {
       clientes = await admListarClientes();
       desenhar();
+      await desenharLancamentos();
+      await desenharEventos();
     }
+
+    // ---------------- Agenda
+    const tiposEvento = { live: 'Live', coluna: 'Coluna', aula: 'Aula', encontro: 'Encontro' };
+    let eventos = [];
+    async function desenharEventos() {
+      try {
+        eventos = await admListarEventos();
+      } catch {
+        return; // o 005 ainda não foi rodado no Supabase
+      }
+      document.querySelector('#cartao-agenda-admin').hidden = false;
+      document.querySelector('#lista-eventos').innerHTML = eventos.map((e) => {
+        const inicio = new Date(e.inicio);
+        const passado = inicio.getTime() + e.duracao_min * 60000 < Date.now();
+        const inscritos = e.inscricoes_eventos || [];
+        return `<details class="evento-admin" data-evento="${e.id}">
+          <summary>
+            <strong>${inicio.toLocaleDateString('pt-BR', { weekday: 'short', day: '2-digit', month: '2-digit' })} ${inicio.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}</strong>
+            · ${escapar(e.titulo)}${e.apresentadora ? ` <span class="suave">com ${escapar(e.apresentadora)}</span>` : ''}
+            · <span class="selo">${inscritos.length} ${inscritos.length === 1 ? 'inscrito' : 'inscritos'}</span>
+            <span class="selo selo-cinza">${escapar(tiposEvento[e.tipo] || e.tipo)}${e.publico === 'membros' ? ' · membros' : ''}</span>
+            ${!e.ativo ? '<span class="selo selo-cinza">cancelado</span>' : passado ? '<span class="selo selo-cinza">realizado</span>' : ''}
+          </summary>
+          <div class="grade-form">
+            <label>Título <input data-campo="titulo" value="${escapar(e.titulo)}" required></label>
+            <label>Com quem <input data-campo="apresentadora" value="${escapar(e.apresentadora || '')}"></label>
+            <label style="grid-column:1/-1">Descrição <textarea data-campo="descricao">${escapar(e.descricao || '')}</textarea></label>
+            <label>Link da live <input data-campo="link_acesso" type="url" value="${escapar(e.link_acesso || '')}"></label>
+            <label>Link da gravação <input data-campo="link_gravacao" type="url" value="${escapar(e.link_gravacao || '')}" placeholder="Depois do evento"></label>
+            <label class="caixa-consentimento"><input data-campo="inscricoes_abertas" type="checkbox" ${e.inscricoes_abertas ? 'checked' : ''}> Inscrições abertas</label>
+            <label class="caixa-consentimento"><input data-campo="ativo" type="checkbox" ${e.ativo ? 'checked' : ''}> Evento ativo (desmarque para cancelar)</label>
+            <div style="margin-bottom:1rem"><button class="botao botao-pequeno" data-salvar-evento="${e.id}">Salvar</button></div>
+          </div>
+          ${inscritos.length ? `<div style="display:flex;gap:.4rem;margin:.2rem 0 .6rem">
+              <button class="botao botao-leve botao-pequeno" data-copiar-evento="${e.id}">Copiar e-mails</button>
+              <button class="botao botao-leve botao-pequeno" data-baixar-evento="${e.id}">Baixar planilha (CSV)</button>
+            </div>
+            <div class="tabela-wrap"><table><thead><tr><th>Nome</th><th>E-mail</th><th>WhatsApp</th></tr></thead><tbody>
+            ${inscritos.map((i) => `<tr><td>${escapar(i.clientes?.nome || '—')}</td><td>${escapar(i.clientes?.email || '')}</td><td>${escapar(i.clientes?.whatsapp || '')}</td></tr>`).join('')}
+            </tbody></table></div>` : '<p class="suave">Ninguém inscrito ainda.</p>'}
+        </details>`;
+      }).join('') || '<p class="suave">Nenhum evento nos últimos 30 dias ou nos próximos.</p>';
+    }
+
+    function exportarInscritos(botao, nome, pessoas, copiar) {
+      if (copiar) {
+        navigator.clipboard.writeText(pessoas.map((c) => c.email).filter(Boolean).join(', '));
+        botao.textContent = 'E-mails copiados ✓';
+        return;
+      }
+      const csv = ['email,first_name,whatsapp']
+        .concat(pessoas.map((c) => [c.email, (c.nome || '').split(' ')[0], c.whatsapp || '']
+          .map((v) => `"${String(v || '').replace(/"/g, '""')}"`).join(',')))
+        .join('\n');
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+      link.download = `inscritos - ${nome}.csv`;
+      link.click();
+    }
+
+    document.querySelector('#form-evento').addEventListener('submit', async (evento) => {
+      evento.preventDefault();
+      const aviso = document.querySelector('#aviso-agenda');
+      const valor = (id) => document.querySelector(id).value.trim();
+      const botaoCriar = evento.target.querySelector('button[type="submit"]');
+      botaoCriar.disabled = true; // evita criar o mesmo evento duas vezes
+      const tituloNovo = valor('#ev-titulo');
+      const quandoNovo = new Date(`${valor('#ev-data')}T${valor('#ev-hora')}`);
+      try {
+        await admSalvarEvento({
+          titulo: valor('#ev-titulo'),
+          tipo: valor('#ev-tipo'),
+          apresentadora: valor('#ev-apresentadora') || null,
+          inicio: new Date(`${valor('#ev-data')}T${valor('#ev-hora')}`).toISOString(),
+          duracao_min: Number(valor('#ev-duracao')) || 60,
+          publico: valor('#ev-publico'),
+          ...(valor('#ev-produto') ? { produto_id: valor('#ev-produto') } : {}),
+          link_acesso: valor('#ev-link') || null,
+          descricao: valor('#ev-descricao') || null
+        });
+        evento.target.reset();
+        evento.target.closest('details').open = false; // fecha o formulário
+        await desenharEventos();
+        const quandoTexto = `${quandoNovo.toLocaleDateString('pt-BR', { weekday: 'long', day: '2-digit', month: '2-digit' })} às ${quandoNovo.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}`;
+        avisar(aviso, `✓ Evento criado: "${tituloNovo}" (${quandoTexto}). Ele está na lista abaixo e já aparece na agenda das pessoas.`, 'ok');
+        // destaca o evento novo na lista
+        const novo = eventos.find((x) => x.titulo === tituloNovo && Math.abs(new Date(x.inicio) - quandoNovo) < 60000);
+        const bloco = novo && document.querySelector(`[data-evento="${novo.id}"]`);
+        if (bloco) {
+          bloco.classList.add('evento-recem-criado');
+          bloco.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      } catch (e) {
+        avisar(aviso, e.message, 'erro');
+      } finally {
+        botaoCriar.disabled = false;
+      }
+    });
+
+    document.querySelector('#lista-eventos').addEventListener('click', async (evento) => {
+      const botao = evento.target.closest('[data-salvar-evento], [data-copiar-evento], [data-baixar-evento]');
+      if (!botao) return;
+      evento.preventDefault();
+      const id = botao.dataset.salvarEvento || botao.dataset.copiarEvento || botao.dataset.baixarEvento;
+      const ev = eventos.find((x) => x.id === id);
+      if (!botao.dataset.salvarEvento) {
+        exportarInscritos(botao, ev.titulo, (ev.inscricoes_eventos || []).map((i) => i.clientes || {}), Boolean(botao.dataset.copiarEvento));
+        return;
+      }
+      const bloco = botao.closest('[data-evento]');
+      const campos = {};
+      bloco.querySelectorAll('[data-campo]').forEach((c) => {
+        campos[c.dataset.campo] = c.type === 'checkbox' ? c.checked : (c.value.trim() || null);
+      });
+      const aviso = document.querySelector('#aviso-agenda');
+      try {
+        await admSalvarEvento({ id, ...campos });
+        avisar(aviso, `"${ev.titulo}" atualizado.`, 'ok');
+        await desenharEventos();
+      } catch (e) {
+        avisar(aviso, e.message, 'erro');
+      }
+    });
+
+    let lancamentos = [];
+    async function desenharLancamentos() {
+      try {
+        lancamentos = await admListarLancamentos();
+      } catch {
+        return; // o 004 ainda não foi rodado no Supabase
+      }
+      document.querySelector('#cartao-lancamentos').hidden = lancamentos.length === 0;
+      document.querySelector('#lista-lancamentos').innerHTML = lancamentos.map((l) => {
+        const quando = l.previsao ? new Date(`${l.previsao}T00:00:00`).toLocaleDateString('pt-BR') : 'sem data';
+        const inscritos = l.inscricoes || [];
+        return `<details class="lancamento">
+          <summary><strong>${escapar(l.nome)}</strong> · ${escapar(quando)} ·
+            <span class="selo">${inscritos.length} ${inscritos.length === 1 ? 'inscrito' : 'inscritos'}</span>
+            ${l.inscricoes_abertas ? '' : '<span class="selo selo-cinza">inscrições fechadas</span>'}</summary>
+          ${inscritos.length ? `<div class="acoes" style="display:flex;gap:.4rem;margin:.6rem 0">
+              <button class="botao botao-leve botao-pequeno" data-copiar="${l.id}">Copiar e-mails</button>
+              <button class="botao botao-leve botao-pequeno" data-baixar="${l.id}">Baixar planilha (CSV)</button>
+            </div>
+            <div class="tabela-wrap"><table><thead><tr><th>Nome</th><th>E-mail</th><th>WhatsApp</th><th>Inscrição</th></tr></thead><tbody>
+            ${inscritos.map((i) => `<tr><td>${escapar(i.clientes?.nome || '—')}</td><td>${escapar(i.clientes?.email || '')}</td><td>${escapar(i.clientes?.whatsapp || '')}</td><td>${new Date(i.criado_em).toLocaleString('pt-BR')}</td></tr>`).join('')}
+            </tbody></table></div>` : '<p class="suave">Ninguém inscrito ainda.</p>'}
+        </details>`;
+      }).join('');
+    }
+
+    document.querySelector('#lista-lancamentos').addEventListener('click', async (evento) => {
+      const botao = evento.target.closest('[data-copiar], [data-baixar]');
+      if (!botao) return;
+      const l = lancamentos.find((x) => x.id === (botao.dataset.copiar || botao.dataset.baixar));
+      const linhas = (l.inscricoes || []).map((i) => i.clientes || {});
+      if (botao.dataset.copiar) {
+        await navigator.clipboard.writeText(linhas.map((c) => c.email).filter(Boolean).join(', '));
+        botao.textContent = 'E-mails copiados ✓';
+        return;
+      }
+      const csv = ['email,first_name,whatsapp']
+        .concat(linhas.map((c) => [c.email, (c.nome || '').split(' ')[0], c.whatsapp || '']
+          .map((v) => `"${String(v || '').replace(/"/g, '""')}"`).join(',')))
+        .join('\n');
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+      link.download = `inscritos - ${l.nome}.csv`;
+      link.click();
+    });
 
     async function iniciar() {
       if (!configurado) return erroGeral('O Supabase ainda não foi configurado (js/supabase-config.js).');
@@ -161,6 +367,10 @@
       produtos = await admListarProdutos();
       document.querySelector('#compra-produto').innerHTML = produtos
         .map((p) => `<option value="${p.id}">${escapar(p.nome)}${p.ativo ? '' : ' (inativo)'}</option>`).join('');
+      // Produto ao qual um evento pertence (ex.: a live do Árvore de Natal)
+      document.querySelector('#ev-produto').insertAdjacentHTML('beforeend', produtos
+        .filter((p) => p.ativo && (p.nivel || 'pago') === 'pago')
+        .map((p) => `<option value="${p.id}">${escapar(p.nome)}</option>`).join(''));
       // "Liberar" no cadastro: Fundador (tudo) ou um produto pago avulso (ex.: só o Mapa da Vida).
       document.querySelector('#novo-liberar').insertAdjacentHTML('beforeend', produtos
         .filter((p) => (p.nivel || 'pago') === 'pago' && p.ativo)

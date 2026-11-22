@@ -359,3 +359,64 @@ td .acoes { display: flex; flex-wrap: wrap; gap: .35rem; }
 .produto-novidades ul { margin: .6rem 0 0; padding-left: 1.1rem; color: var(--texto); }
 .produto-novidades li { margin: .3rem 0; }
 .produto-novidades li::marker { content: '✦  '; color: var(--dourado-marca); }
+/* Lançamentos "Em breve" */
+.produto-em-breve { background: linear-gradient(160deg, #FFFFFF 55%, #FBF4E2); }
+.em-breve-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin-top: auto; }
+.inscricao-ok { display: grid; gap: .3rem; width: 100%; padding: .8rem 1rem; border-radius: 10px; background: #e8f4ea; color: #1d5a2c; font-size: 1rem; line-height: 1.45; }
+.inscricao-ok strong { font-size: 1.1rem; }
+.lancamento { padding: .8rem 1rem; border: 1px solid var(--linha); border-radius: 12px; background: #FFFDF7; }
+.lancamento + .lancamento { margin-top: .6rem; }
+.lancamento summary { cursor: pointer; }
+/* Agenda (Minha área) */
+.agenda-dia + .agenda-dia { margin-top: 1.2rem; }
+.agenda-data { margin: 0 0 .5rem; font: 700 .85rem var(--fonte-corpo); letter-spacing: .05em; text-transform: uppercase; color: var(--dourado-marca); }
+.agenda-data::first-letter { text-transform: uppercase; }
+.agenda-evento {
+  display: grid; grid-template-columns: 72px 1fr; gap: 1rem;
+  padding: 1rem; border: 1px solid var(--linha); border-radius: 12px; background: #fff;
+}
+.agenda-evento + .agenda-evento { margin-top: .6rem; }
+.agenda-evento--inscrito { border-color: rgba(29, 90, 44, .35); background: #F7FBF7; }
+.agenda-hora { font: 700 1.25rem var(--fonte-corpo); color: var(--azul-marca); }
+.agenda-info h4 { margin: .15rem 0 .2rem; font: 700 1.1rem var(--fonte-titulo); color: var(--azul-marca); }
+.agenda-info p { margin: 0 0 .5rem; color: var(--texto); font-size: .95rem; }
+.agenda-tipo { font-size: .75rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--texto); }
+.agenda-com { font-style: italic; }
+.agenda-subtitulo { margin: 1.5rem 0 .6rem; font-size: 1.1rem; }
+.agenda-gravacao { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: .6rem 0; border-bottom: 1px solid var(--linha); }
+@media (max-width: 560px) { .agenda-evento { grid-template-columns: 1fr; gap: .3rem; } }
+
+/* Agenda (Painel) */
+.evento-admin { padding: .8rem 1rem; border: 1px solid var(--linha); border-radius: 12px; background: #fff; }
+.evento-admin + .evento-admin { margin-top: .6rem; }
+.evento-admin summary { cursor: pointer; }
+.evento-admin .grade-form { margin-top: .8rem; }
+textarea { font: inherit; font-weight: 400; padding: .7rem .8rem; border: 1px solid var(--linha); border-radius: 9px; min-height: 70px; resize: vertical; }
+.evento-recem-criado { border-color: var(--dourado-marca); box-shadow: 0 0 0 3px rgba(240, 199, 94, .35); animation: recem-criado 2.5s ease-out; }
+@keyframes recem-criado { 0% { background: #FDF3D0; } 100% { background: #fff; } }
+/* Mini calendário de 2 semanas (Agenda) */
+.mini-calendario {
+  display: grid; grid-template-columns: repeat(7, 1fr); gap: .35rem;
+  max-width: 420px; margin: .4rem 0 .4rem;
+}
+.mini-cabecalho { text-align: center; font-size: .72rem; font-weight: 700; color: var(--texto); }
+.mini-dia {
+  position: relative; aspect-ratio: 1; display: grid; place-items: center;
+  border: 1px solid var(--linha); border-radius: 10px; background: #fff;
+  font: 600 .95rem var(--fonte-corpo); color: var(--azul-marca);
+}
+.mini-dia[disabled] { cursor: default; }
+.mini-dia--passado { opacity: .4; }
+.mini-dia--hoje { border: 2px solid var(--azul-marca); }
+.mini-dia--evento { cursor: pointer; }
+.mini-dia--evento::after {
+  content: ""; position: absolute; bottom: 5px; width: 5px; height: 5px; border-radius: 50%; background: var(--dourado-marca);
+}
+.mini-dia--inscrito { background: var(--dourado); border-color: var(--dourado-marca); color: var(--azul-marca); }
+.mini-dia--inscrito::after { background: var(--azul-marca); }
+.mini-dia--evento:hover { transform: translateY(-1px); box-shadow: 0 4px 10px rgba(201, 162, 39, .25); }
+.mini-calendario-legenda { display: flex; align-items: center; gap: .4rem; margin: 0 0 1rem; font-size: .8rem; color: var(--texto); }
+.ponto { display: inline-block; width: 10px; height: 10px; border-radius: 50%; }
+.ponto-evento { background: var(--dourado-marca); }
+.ponto-inscrito { margin-left: .6rem; background: var(--dourado); border: 1px solid var(--dourado-marca); }
+.agenda-dia { scroll-margin-top: 1rem; }
