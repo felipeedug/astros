@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css?v=20261122-paginas">
+  <link rel="stylesheet" href="css/portal.css?v=20261122-precos">
 </head>
 <body>
   <header class="portal-topo">
@@ -86,16 +86,27 @@
       }
 
       const acoes = () => {
+        const presentear = () => {
+          if (!p.permite_presente || !p.preco_centavos) return '';
+          const preco = membro && p.preco_presente_membro_centavos ? p.preco_presente_membro_centavos : p.preco_centavos;
+          const destino = `minha-area.html?presentear=${encodeURIComponent(p.slug)}`;
+          return `<a class="portal-entrada-botao portal-entrada-botao--contorno" href="${cliente ? destino : entrarE(destino)}">🎁 Dar de presente · ${formatarPreco(preco)}</a>`;
+        };
+        // Lançamento pago para quem ainda não tem: compra (que já inscreve) ou presente
+        if (emBreve && p.preco_centavos && cliente && !meu?.liberado) {
+          return `<a class="portal-entrada-botao portal-entrada-botao--principal" href="minha-area.html?comprar=${encodeURIComponent(p.slug)}">★ Quero participar · ${formatarPreco(p.preco_centavos)}</a>${presentear()}`;
+        }
         if (emBreve) {
           if (!p.inscricoes_abertas) return '<span class="pagina-produto-selo">Inscrições em breve</span>';
           if (meu?.inscrito) {
             return `<div class="inscricao-ok" role="status"><strong>✓ Inscrição confirmada!</strong>
               <span>Antes ${quando ? `de ${escapar(quando)}` : 'do lançamento'}, vamos te enviar por WhatsApp e e-mail as informações para participar.</span></div>
-              <button class="pagina-produto-link" data-cancelar>Cancelar inscrição</button>`;
+              <button class="pagina-produto-link" data-cancelar>Cancelar inscrição</button>${presentear()}`;
           }
           return cliente
-            ? '<button class="portal-entrada-botao portal-entrada-botao--principal" data-participar>★ Quero participar</button>'
-            : `<a class="portal-entrada-botao portal-entrada-botao--principal" href="${entrarE(`${aqui}&participar=1`)}">★ Quero participar</a>`;
+            ? `<button class="portal-entrada-botao portal-entrada-botao--principal" data-participar>★ Quero participar</button>${presentear()}`
+            :`<a class="portal-entrada-botao portal-entrada-botao--principal" href="${entrarE(`${aqui}&participar=1`)}">★ Quero participar${p.preco_centavos ? ` · ${formatarPreco(p.preco_centavos)}` : ''}</a>${presentear()}
+               ${p.preco_centavos ? '<p class="pagina-produto-nota">Membro Fundador? Entre com o seu e-mail: para você já está incluído.</p>' : ''}`;
         }
         const botoes = [];
         if (meu?.liberado) {
@@ -104,11 +115,7 @@
           const destino = `minha-area.html?comprar=${encodeURIComponent(p.slug)}`;
           botoes.push(`<a class="portal-entrada-botao portal-entrada-botao--principal" href="${cliente ? destino : entrarE(destino)}">Quero este · ${formatarPreco(p.preco_centavos)}</a>`);
         }
-        if (p.permite_presente && p.preco_centavos) {
-          const preco = membro && p.preco_presente_membro_centavos ? p.preco_presente_membro_centavos : p.preco_centavos;
-          const destino = `minha-area.html?presentear=${encodeURIComponent(p.slug)}`;
-          botoes.push(`<a class="portal-entrada-botao portal-entrada-botao--contorno" href="${cliente ? destino : entrarE(destino)}">🎁 Dar de presente · ${formatarPreco(preco)}</a>`);
-        }
+        botoes.push(presentear());
         return botoes.join('');
       };
 

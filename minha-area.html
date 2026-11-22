@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css?v=20261122-paginas">
+  <link rel="stylesheet" href="css/portal.css?v=20261122-precos">
 </head>
 <body>
   <header class="portal-topo">
@@ -300,7 +300,9 @@
         const quando = p.previsao
           ? new Date(`${p.previsao}T00:00:00`).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long' })
           : 'Data a confirmar';
-        const botao = !p.inscricoes_abertas
+        const botao = (p.preco_centavos && !p.liberado)
+          ? `<button class="botao botao-dourado" data-comprar="${escapar(p.slug)}">★ Quero participar · ${formatarPreco(p.preco_centavos)}</button>`
+          : !p.inscricoes_abertas
           ? '<span class="selo selo-cinza">Inscrições em breve</span>'
           : p.inscrito
             ? `<div class="inscricao-ok" role="status">
@@ -381,6 +383,7 @@
               : item.inscricoes_abertas ? `<button class="botao botao-dourado botao-pequeno" data-destaque-evento="${item.id}">★ Quero participar</button>` : '';
           } else {
             acao = item.inscrito ? '<span class="destaque-ok">✓ Inscrição confirmada</span>'
+              : (item.preco_centavos && !item.liberado) ? `<a class="botao botao-dourado botao-pequeno" href="produto.html?p=${encodeURIComponent(item.slug)}">★ Quero participar</a>`
               : item.inscricoes_abertas ? `<button class="botao botao-dourado botao-pequeno" data-destaque-lancamento="${item.id}">★ Quero participar</button>` : '';
           }
           return `<article class="destaque">
@@ -418,6 +421,8 @@
       });
       desenharEmBreve();
       document.querySelector('#lista-em-breve').addEventListener('click', async (evento) => {
+        const comprar = evento.target.closest('[data-comprar]');
+        if (comprar) { abrirPedido(comprar.dataset.comprar, false); return; }
         const alvo = evento.target.closest('[data-inscrever], [data-cancelar]');
         if (!alvo) return;
         const id = alvo.dataset.inscrever || alvo.dataset.cancelar;
@@ -537,7 +542,8 @@
       });
       // Vindo da página de um produto: abre o pedido direto
       const vindoDaPagina = new URLSearchParams(location.search);
-      if (vindoDaPagina.get('comprar') || vindoDaPagina.get('presentear')) {
+      const jaTenho = produtos.some((x) => x.slug === vindoDaPagina.get('comprar') && x.liberado);
+      if ((vindoDaPagina.get('comprar') && !jaTenho) || vindoDaPagina.get('presentear')) {
         history.replaceState(null, '', 'minha-area.html');
         abrirPedido(vindoDaPagina.get('presentear') || vindoDaPagina.get('comprar'), Boolean(vindoDaPagina.get('presentear')));
       }
