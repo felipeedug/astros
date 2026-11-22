@@ -106,14 +106,15 @@
           return cliente
             ? `<button class="portal-entrada-botao portal-entrada-botao--principal" data-participar>★ Quero participar</button>${presentear()}`
             :`<a class="portal-entrada-botao portal-entrada-botao--principal" href="${entrarE(`${aqui}&participar=1`)}">★ Quero participar${p.preco_centavos ? ` · ${formatarPreco(p.preco_centavos)}` : ''}</a>${presentear()}
-               ${p.preco_centavos ? '<p class="pagina-produto-nota">Membro Fundador? Entre com o seu e-mail: para você já está incluído.</p>' : ''}`;
+               ${p.preco_centavos ? '<p class="pagina-produto-nota">Membro Fundador? Entre com o seu e-mail: já está incluído no seu pacote de Membro Fundador.</p>' : ''}`;
         }
         const botoes = [];
         if (meu?.liberado) {
           botoes.push('<a class="portal-entrada-botao portal-entrada-botao--principal" href="minha-area.html">✓ Já faz parte da sua jornada</a>');
         } else if (p.preco_centavos) {
           const destino = `minha-area.html?comprar=${encodeURIComponent(p.slug)}`;
-          botoes.push(`<a class="portal-entrada-botao portal-entrada-botao--principal" href="${cliente ? destino : entrarE(destino)}">Quero este · ${formatarPreco(p.preco_centavos)}</a>`);
+          const meuPreco = membro && p.preco_membro_centavos ? p.preco_membro_centavos : p.preco_centavos;
+          botoes.push(`<a class="portal-entrada-botao portal-entrada-botao--principal" href="${cliente ? destino : entrarE(destino)}">Quero este · ${formatarPreco(meuPreco)}</a>`);
         }
         botoes.push(presentear());
         return botoes.join('');

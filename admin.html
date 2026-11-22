@@ -110,6 +110,27 @@
       </form>
     </dialog>
 
+    <dialog id="dialogo-editar" class="cartao" style="max-width:460px">
+      <form method="dialog">
+        <h2>Editar cadastro</h2>
+        <p class="suave" id="editar-email"></p>
+        <label>Nome completo <input id="editar-nome" type="text" autocomplete="off"></label>
+        <label>WhatsApp <input id="editar-whatsapp" type="tel" placeholder="(11) 90000-0000"></label>
+        <label>Papel
+          <select id="editar-papel">
+            <option value="cliente">Cliente</option>
+            <option value="astrologa">Astróloga (gera mapas pela Área da equipe)</option>
+            <option value="admin">Administrador(a) (acessa este Painel)</option>
+          </select>
+        </label>
+        <label>Observações (só a equipe vê) <textarea id="editar-observacoes" rows="3"></textarea></label>
+        <div style="display:flex;gap:.5rem;justify-content:flex-end">
+          <button class="botao botao-leve" value="cancelar" formnovalidate>Cancelar</button>
+          <button class="botao" value="ok">Salvar</button>
+        </div>
+      </form>
+    </dialog>
+
     <dialog id="dialogo-fundador" class="cartao" style="max-width:420px">
       <form method="dialog">
         <h2>★ Tornar Fundador</h2>
@@ -126,9 +147,9 @@
   <script type="module">
     import {
       configurado, sessaoAtual, meuCadastro, admListarClientes, admListarProdutos, admCriarCliente,
-      admTornarFundador, admCancelarAssinatura, admRegistrarCompra, escapar, seloFundador, MOTIVOS_LIBERACAO,
+      admTornarFundador, admCancelarAssinatura, admRegistrarCompra, admEditarCliente, escapar, seloFundador, MOTIVOS_LIBERACAO,
       admListarLancamentos, admListarEventos, admSalvarEvento, admExcluirEvento
-    } from './js/portal.js';
+    } from './js/portal.js?v=20261122-editar';
 
     // Opções de motivo (pagamento, equipe/cofundadora, doação, cortesia) em todos os seletores.
     document.querySelectorAll('select[data-motivos]').forEach((select) => {
@@ -176,6 +197,7 @@
             ${fundador
               ? `<button class="botao botao-leve botao-pequeno" data-acao="cancelar-fundador" data-id="${fundador.id}">Remover Fundador</button>`
               : `<button class="botao botao-dourado botao-pequeno" data-acao="fundador" data-id="${c.id}">★ Tornar Fundador</button>`}
+            <button class="botao botao-leve botao-pequeno" data-acao="editar" data-id="${c.id}">${c.nome ? 'Editar cadastro' : '✎ Completar cadastro'}</button>
             <button class="botao botao-leve botao-pequeno" data-acao="compra" data-id="${c.id}">Registrar compra</button>
             <a class="botao botao-leve botao-pequeno" href="index.html?cliente=${encodeURIComponent(c.id)}#mapa">${temNascimento ? 'Ver mapa' : 'Cadastrar nascimento'}</a>
           </div></td>
@@ -446,6 +468,27 @@
       }
     });
 
+    let clienteEmEdicao = null;
+    const dialogoEditar = document.querySelector('#dialogo-editar');
+    dialogoEditar.addEventListener('close', async () => {
+      if (dialogoEditar.returnValue !== 'ok' || !clienteEmEdicao) return;
+      const papel = document.querySelector('#editar-papel').value;
+      if (papel === 'admin' && clienteEmEdicao.papel !== 'admin'
+          && !confirm(`Dar acesso ao Painel para ${clienteEmEdicao.email}? A pessoa poderá ver e alterar todos os clientes.`)) return;
+      try {
+        await admEditarCliente(clienteEmEdicao.id, {
+          nome: document.querySelector('#editar-nome').value.trim(),
+          whatsapp: document.querySelector('#editar-whatsapp').value.trim(),
+          papel,
+          observacoes: document.querySelector('#editar-observacoes').value.trim()
+        });
+        avisar(avisoLista, `Cadastro de ${document.querySelector('#editar-nome').value.trim() || clienteEmEdicao.email} atualizado.`, 'ok');
+        await recarregar();
+      } catch (e) {
+        avisar(avisoLista, e.message, 'erro');
+      }
+    });
+
     let clienteDoFundador = null;
     const dialogoFundador = document.querySelector('#dialogo-fundador');
     dialogoFundador.addEventListener('close', async () => {
@@ -474,6 +517,16 @@
           if (!confirm('Remover o plano Fundador desta pessoa? Ela perde o acesso aos produtos do plano.')) return;
           await admCancelarAssinatura(id);
           avisar(avisoLista, 'Plano Fundador removido.', 'ok');
+        } else if (acao === 'editar') {
+          clienteEmEdicao = clientes.find((c) => c.id === id);
+          const proprio = clienteEmEdicao.mapas_nascimento.find((m) => m.proprio);
+          document.querySelector('#editar-email').textContent = clienteEmEdicao.email;
+          document.querySelector('#editar-nome').value = clienteEmEdicao.nome || proprio?.nome || '';
+          document.querySelector('#editar-whatsapp').value = clienteEmEdicao.whatsapp || '';
+          document.querySelector('#editar-papel').value = clienteEmEdicao.papel || 'cliente';
+          document.querySelector('#editar-observacoes').value = clienteEmEdicao.observacoes || '';
+          dialogoEditar.showModal();
+          return;
         } else if (acao === 'compra') {
           clienteDaCompra = clientes.find((c) => c.id === id);
           document.querySelector('#compra-cliente').textContent = clienteDaCompra.nome || clienteDaCompra.email;

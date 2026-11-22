@@ -182,6 +182,14 @@
       }
 
       const aVenda = await produtosAVenda().catch(() => []);
+      const sou_membro = assinaturas.length > 0;
+      const porSlug = Object.fromEntries(aVenda.map((p) => [p.slug, p]));
+      // Mesmo cálculo do servidor: membro paga o preço de membro (para presentear ou para si)
+      const precoPara = (p, presente) => {
+        const cheio = porSlug[p.slug] || p;
+        const membro = presente ? (cheio.preco_presente_membro_centavos || cheio.preco_membro_centavos) : cheio.preco_membro_centavos;
+        return sou_membro && membro ? membro : cheio.preco_centavos;
+      };
       const comPagina = new Set(aVenda.filter((x) => x.pagina).map((x) => x.slug));
       const saibaMais = (slug) => comPagina.has(slug) ? `<a class="produto-saiba-mais" href="produto.html?p=${encodeURIComponent(slug)}">Saiba mais</a>` : '';
       const arquivosPorSlug = Object.fromEntries(aVenda.filter((x) => x.arquivo_caminho).map((x) => [x.slug, x.arquivo_caminho]));
@@ -194,7 +202,7 @@
               ? `<a class="botao" href="${escapar(p.link_acesso)}">Acessar</a>`
               : '<span class="selo selo-cinza">Em breve</span>')
           : p.preco_centavos
-            ? `<button class="botao botao-leve" data-comprar="${escapar(p.slug)}">Quero este · ${formatarPreco(p.preco_centavos)}</button>`
+            ? `<button class="botao botao-leve" data-comprar="${escapar(p.slug)}">Quero este · ${formatarPreco(precoPara(p, false))}</button>`
             : p.link_pagamento
               ? `<a class="botao botao-leve" href="${escapar(p.link_pagamento)}" target="_blank" rel="noopener noreferrer">Quero este</a>`
               : '<span class="selo selo-cinza">Em breve</span>';
@@ -303,7 +311,7 @@
           ? new Date(`${p.previsao}T00:00:00`).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long' })
           : 'Data a confirmar';
         const botao = (p.preco_centavos && !p.liberado)
-          ? `<button class="botao botao-dourado" data-comprar="${escapar(p.slug)}">★ Quero participar · ${formatarPreco(p.preco_centavos)}</button>`
+          ? `<button class="botao botao-dourado" data-comprar="${escapar(p.slug)}">★ Quero participar · ${formatarPreco(precoPara(p, false))}</button>`
           : !p.inscricoes_abertas
           ? '<span class="selo selo-cinza">Inscrições em breve</span>'
           : p.inscrito
@@ -321,7 +329,7 @@
               <span class="produto-versao">${escapar(tiposLancamento[p.tipo] || 'Novidade')} · ${escapar(quando)}</span>
             </div>
           </div>
-          ${p.preco_centavos && p.liberado ? '<span class="selo selo-incluido">✓ Incluído para você, sem custo</span>' : ''}
+          ${p.preco_centavos && p.liberado ? `<span class="selo selo-incluido">${assinaturas.some((a) => a.plano_id === 'fundador') ? '✓ Incluído no seu pacote de Membro Fundador' : sou_membro ? '✓ Incluído no seu pacote de membro' : '✓ Já é seu'}</span>` : ''}
           <p>${escapar(p.descricao || '')}</p>
           ${saibaMais(p.slug)}
           <div class="em-breve-acoes">${botao}</div>
@@ -454,10 +462,7 @@
       document.querySelector('#contato-novidades').checked = Boolean(cliente.aceita_novidades);
 
       // ---------------- Comprar, presentear, baixar
-      const sou_membro = assinaturas.length > 0;
-      const porSlug = Object.fromEntries(aVenda.map((p) => [p.slug, p]));
       const reais = (c) => formatarPreco(c);
-      const precoPara = (p, presente) => (presente && sou_membro && p.preco_presente_membro_centavos) ? p.preco_presente_membro_centavos : p.preco_centavos;
 
       // Cards de presente
       const presenteaveis = aVenda.filter((p) => p.permite_presente && p.preco_centavos);
@@ -512,12 +517,12 @@
         document.querySelector('#pedido-extra').innerHTML = extra ? `
           <label class="pedido-extra">
             <input type="checkbox" id="pedido-levar-extra" value="${escapar(extra.slug)}">
-            <span><strong>Leve também: ${escapar(extra.nome)}</strong> por ${reais(extra.preco_centavos)}<br>
+            <span><strong>Leve também: ${escapar(extra.nome)}</strong> por ${reais(precoPara(extra, false))}${precoPara(extra, false) < extra.preco_centavos ? ' <span class="selo">preço de membro</span>' : ''}<br>
             <span class="suave">${escapar(extra.descricao || '')}</span></span>
           </label>` : '';
         const atualizarTotal = () => {
           const comExtra = document.querySelector('#pedido-levar-extra')?.checked;
-          document.querySelector('#pedido-total').textContent = reais(precoPara(p, presente) + (comExtra ? extra.preco_centavos : 0));
+          document.querySelector('#pedido-total').textContent = reais(precoPara(p, presente) + (comExtra ? precoPara(extra, false) : 0));
         };
         document.querySelector('#pedido-levar-extra')?.addEventListener('change', atualizarTotal);
         atualizarTotal();
