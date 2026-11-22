@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css?v=20261122-logo-grande">
+  <link rel="stylesheet" href="css/portal.css?v=20261122-presentes">
 </head>
 <body>
   <header class="portal-topo">
@@ -52,6 +52,31 @@
         <p class="suave">Seus mapas, leituras e encontros de autoconhecimento.</p>
         <div class="produtos" id="lista-produtos"></div>
       </section>
+
+      <section class="cartao" id="cartao-presentear" hidden>
+        <h2>★ Presentear alguém</h2>
+        <p class="suave">Dê autoconhecimento de presente. Você paga, recebe um link e envia para quem quiser: a pessoa abre, entra com o próprio e-mail e recebe.</p>
+        <div class="produtos" id="lista-presentear"></div>
+        <div id="bloco-meus-presentes" hidden>
+          <h3 class="agenda-subtitulo">Meus presentes</h3>
+          <div id="lista-meus-presentes"></div>
+        </div>
+      </section>
+
+      <dialog id="dialogo-pedido" class="cartao dialogo-pedido">
+        <form method="dialog" id="form-pedido">
+          <h2>Seu pedido</h2>
+          <div id="pedido-itens"></div>
+          <div id="pedido-extra"></div>
+          <p class="pedido-total">Total <strong id="pedido-total"></strong></p>
+          <p class="aviso" id="aviso-pedido" role="status"></p>
+          <div class="pedido-acoes">
+            <button class="botao botao-leve" value="cancelar" formnovalidate>Voltar</button>
+            <button class="botao botao-dourado" type="button" id="ir-pagar">Ir para o pagamento</button>
+          </div>
+          <p class="suave" style="font-size:.8rem;margin-top:.8rem">O pagamento é feito na InfinitePay, por Pix ou cartão.</p>
+        </form>
+      </dialog>
 
       <section class="cartao" id="cartao-agenda" hidden>
         <div class="cabecalho-area" style="margin-bottom:.4rem">
@@ -105,7 +130,8 @@
     import {
       configurado, sessaoAtual, sair, meuCadastro, meusProdutos, minhasAssinaturas,
       mapaProprio, atualizarMeuCadastro, escapar, formatarPreco, seloFundador, iconeProduto,
-      inscrever, cancelarInscricao, minhaAgenda, inscreverEvento, cancelarEvento
+      inscrever, cancelarInscricao, minhaAgenda, inscreverEvento, cancelarEvento,
+      produtosAVenda, irParaPagamento, meusPresentes, linkDePresente, linkDoArquivo
     } from './js/portal.js';
 
     const carregando = document.querySelector('#carregando');
@@ -153,14 +179,20 @@
           <a class="botao botao-dourado botao-pequeno" href="index.html?meu-mapa=1#mapa">Cadastrar meus dados</a>`;
       }
 
+      const arquivosPorSlug = Object.fromEntries((await produtosAVenda().catch(() => [])).filter((x) => x.arquivo_caminho).map((x) => [x.slug, x.arquivo_caminho]));
       const cartaoProduto = (p, mostrarSelo) => {
+        const arquivo = arquivosPorSlug[p.slug];
         const acao = p.liberado
-          ? (p.link_acesso
-            ? `<a class="botao" href="${escapar(p.link_acesso)}">Acessar</a>`
-            : '<span class="selo selo-cinza">Em breve</span>')
-          : p.link_pagamento
-            ? `<a class="botao botao-leve" href="${escapar(p.link_pagamento)}" target="_blank" rel="noopener noreferrer">Quero este${p.preco_centavos ? ` · ${formatarPreco(p.preco_centavos)}` : ''}</a>`
-            : '<span class="selo selo-cinza">Em breve</span>';
+          ? (arquivo
+            ? `<button class="botao" data-baixar="${escapar(arquivo)}">Baixar (PDF)</button>`
+            : p.link_acesso
+              ? `<a class="botao" href="${escapar(p.link_acesso)}">Acessar</a>`
+              : '<span class="selo selo-cinza">Em breve</span>')
+          : p.preco_centavos
+            ? `<button class="botao botao-leve" data-comprar="${escapar(p.slug)}">Quero este · ${formatarPreco(p.preco_centavos)}</button>`
+            : p.link_pagamento
+              ? `<a class="botao botao-leve" href="${escapar(p.link_pagamento)}" target="_blank" rel="noopener noreferrer">Quero este</a>`
+              : '<span class="selo selo-cinza">Em breve</span>';
         const novidades = String(p.novidades || '').split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
         const dataVersao = p.versao_data
           ? new Date(`${p.versao_data}T00:00:00`).toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' })
@@ -407,6 +439,110 @@
         document.querySelector('#cartao-gratuitas').hidden = false;
       }
       document.querySelector('#contato-novidades').checked = Boolean(cliente.aceita_novidades);
+
+      // ---------------- Comprar, presentear, baixar
+      const sou_membro = assinaturas.length > 0;
+      const aVenda = await produtosAVenda().catch(() => []);
+      const porSlug = Object.fromEntries(aVenda.map((p) => [p.slug, p]));
+      const reais = (c) => formatarPreco(c);
+      const precoPara = (p, presente) => (presente && sou_membro && p.preco_presente_membro_centavos) ? p.preco_presente_membro_centavos : p.preco_centavos;
+
+      // Cards de presente
+      const presenteaveis = aVenda.filter((p) => p.permite_presente && p.preco_centavos);
+      document.querySelector('#lista-presentear').innerHTML = presenteaveis.map((p) => {
+        const preco = precoPara(p, true);
+        const comDesconto = preco < p.preco_centavos;
+        return `<article class="produto produto-presente">
+          <div class="produto-topo">${iconeProduto('presente')}<div><h3>${escapar(p.nome)}</h3>
+            <span class="produto-versao">de presente para alguém especial</span></div></div>
+          <p>${escapar(p.descricao || '')}</p>
+          <p class="preco-presente">${comDesconto ? `<s>${reais(p.preco_centavos)}</s> ` : ''}<strong>${reais(preco)}</strong>${comDesconto ? ' <span class="selo">preço de membro</span>' : ''}</p>
+          <button class="botao botao-dourado" data-presentear="${escapar(p.slug)}">★ Presentear</button>
+        </article>`;
+      }).join('');
+      document.querySelector('#cartao-presentear').hidden = presenteaveis.length === 0;
+
+      // Meus presentes (links para enviar)
+      const desenharMeusPresentes = async () => {
+        const presentes = await meusPresentes().catch(() => []);
+        document.querySelector('#bloco-meus-presentes').hidden = presentes.length === 0;
+        document.querySelector('#lista-meus-presentes').innerHTML = presentes.map((g) => {
+          const link = linkDePresente(g.codigo);
+          const texto = encodeURIComponent(`Tenho um presente para você ★ ${g.produto_nome}, do Entre Estrelas. Abra este link para receber: ${link}`);
+          return `<div class="meu-presente">
+            <div><strong>${escapar(g.produto_nome)}</strong><br>
+              <span class="suave">${g.resgatado ? `✓ Recebido${g.para_quem ? ` por ${escapar(g.para_quem)}` : ''}` : 'Aguardando você enviar'}</span></div>
+            ${g.resgatado ? '' : `<div class="meu-presente-acoes">
+              <a class="botao botao-dourado botao-pequeno" href="https://wa.me/?text=${texto}" target="_blank" rel="noopener noreferrer">Enviar pelo WhatsApp</a>
+              <button class="botao botao-leve botao-pequeno" data-copiar-presente="${escapar(link)}">Copiar link</button></div>`}
+          </div>`;
+        }).join('');
+      };
+      await desenharMeusPresentes();
+      document.querySelector('#lista-meus-presentes').addEventListener('click', async (evento) => {
+        const b = evento.target.closest('[data-copiar-presente]');
+        if (!b) return;
+        await navigator.clipboard.writeText(b.dataset.copiarPresente);
+        b.textContent = 'Link copiado ✓';
+      });
+
+      // Diálogo do pedido, com o "leve também"
+      const dialogo = document.querySelector('#dialogo-pedido');
+      let pedidoAtual = [];
+      const abrirPedido = (slug, presente) => {
+        const p = porSlug[slug];
+        if (!p) return;
+        pedidoAtual = [{ slug, presente }];
+        const extra = p.extra_slug && porSlug[p.extra_slug] && porSlug[p.extra_slug].preco_centavos ? porSlug[p.extra_slug] : null;
+        document.querySelector('#pedido-itens').innerHTML = `<div class="pedido-linha"><span>★ ${escapar(p.nome)}${presente ? ' <em>(presente)</em>' : ''}</span><strong>${reais(precoPara(p, presente))}</strong></div>`;
+        document.querySelector('#pedido-extra').innerHTML = extra ? `
+          <label class="pedido-extra">
+            <input type="checkbox" id="pedido-levar-extra" value="${escapar(extra.slug)}">
+            <span><strong>Leve também: ${escapar(extra.nome)}</strong> por ${reais(extra.preco_centavos)}<br>
+            <span class="suave">${escapar(extra.descricao || '')}</span></span>
+          </label>` : '';
+        const atualizarTotal = () => {
+          const comExtra = document.querySelector('#pedido-levar-extra')?.checked;
+          document.querySelector('#pedido-total').textContent = reais(precoPara(p, presente) + (comExtra ? extra.preco_centavos : 0));
+        };
+        document.querySelector('#pedido-levar-extra')?.addEventListener('change', atualizarTotal);
+        atualizarTotal();
+        document.querySelector('#aviso-pedido').className = 'aviso';
+        document.querySelector('#aviso-pedido').textContent = '';
+        dialogo.showModal();
+      };
+      document.querySelector('#ir-pagar').addEventListener('click', async (evento) => {
+        const botao = evento.currentTarget;
+        const extra = document.querySelector('#pedido-levar-extra');
+        const itens = [...pedidoAtual, ...(extra?.checked ? [{ slug: extra.value, presente: false }] : [])];
+        botao.disabled = true;
+        botao.textContent = 'Abrindo o pagamento…';
+        try {
+          await irParaPagamento(itens);
+        } catch (e) {
+          const aviso = document.querySelector('#aviso-pedido');
+          aviso.textContent = e.message; aviso.className = 'aviso aviso-erro';
+          botao.disabled = false;
+          botao.textContent = 'Ir para o pagamento';
+        }
+      });
+      document.querySelector('#lista-presentear').addEventListener('click', (evento) => {
+        const b = evento.target.closest('[data-presentear]');
+        if (b) abrirPedido(b.dataset.presentear, true);
+      });
+      // Comprar para si / baixar arquivo, nos cards da Minha jornada
+      document.querySelector('#lista-produtos').addEventListener('click', async (evento) => {
+        const comprar = evento.target.closest('[data-comprar]');
+        if (comprar) { evento.preventDefault(); abrirPedido(comprar.dataset.comprar, false); return; }
+        const baixar = evento.target.closest('[data-baixar]');
+        if (baixar) {
+          evento.preventDefault();
+          baixar.disabled = true;
+          try { window.location.href = await linkDoArquivo(baixar.dataset.baixar); }
+          catch (e) { alert(e.message); }
+          finally { baixar.disabled = false; }
+        }
+      });
 
       document.querySelector('#form-contato').addEventListener('submit', async (evento) => {
         evento.preventDefault();

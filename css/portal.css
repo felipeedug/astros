@@ -517,3 +517,18 @@ textarea { font: inherit; font-weight: 400; padding: .7rem .8rem; border: 1px so
   .ceu-planeta--grande { width: 340px; height: 340px; right: -160px; bottom: -150px; }
   .ceu-planeta--anel { width: 90px; height: 90px; left: -20px; }
 }
+
+/* Presentear, pedido e meus presentes */
+.produto-presente { background: linear-gradient(160deg, #FFFFFF 55%, #FBF1D3); border-color: rgba(201, 162, 39, .45); }
+.preco-presente { font-size: 1.15rem; color: var(--azul-marca); }
+.preco-presente s { color: var(--texto); font-size: .95rem; margin-right: .2rem; }
+.preco-presente .selo { margin-left: .3rem; vertical-align: middle; }
+.meu-presente { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .8rem; padding: .8rem 0; border-bottom: 1px solid var(--linha); }
+.meu-presente-acoes { display: flex; flex-wrap: wrap; gap: .4rem; }
+.dialogo-pedido { width: min(480px, 94vw); border: 0; padding: 1.6rem; }
+.dialogo-pedido::backdrop { background: rgba(13, 27, 42, .55); }
+.pedido-linha { display: flex; justify-content: space-between; gap: 1rem; padding: .6rem 0; border-bottom: 1px solid var(--linha); font-size: 1.02rem; }
+.pedido-extra { display: flex; gap: .7rem; align-items: flex-start; margin: 1rem 0 0; padding: .9rem 1rem; border: 1.5px dashed var(--dourado-marca); border-radius: 12px; background: #FFFBEF; font-weight: 400; cursor: pointer; }
+.pedido-extra input { width: 1.2rem; height: 1.2rem; margin-top: .2rem; accent-color: var(--dourado-marca); }
+.pedido-total { display: flex; justify-content: space-between; margin: 1.1rem 0 .4rem; font-size: 1.15rem; }
+.pedido-acoes { display: flex; justify-content: flex-end; gap: .6rem; flex-wrap: wrap; }

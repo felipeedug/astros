@@ -90,3 +90,29 @@ update public.clientes set papel = 'admin' where email = 'seu@email.com';
   Depois disso ela não consegue alterar (para que uma compra não sirva para gerar mapas de várias pessoas).
   Correções são feitas por você, no botão **Ver mapa** do Painel.
 - **Produto novo:** no Supabase, **Table Editor → produtos → Insert row**. Fundadores ganham acesso automaticamente.
+
+## Pagamentos pela InfinitePay (Checkout Integrado)
+
+O site cria um pagamento só com o que a pessoa escolheu (sem o catálogo da loja). Quando o
+pagamento é aprovado, a InfinitePay avisa o sistema, que **confere** com a InfinitePay e libera
+sozinho: a compra aparece na Minha jornada; o presente gera um link para enviar.
+
+1. **Banco:** rode [`008_pedidos_e_presentes.sql`](008_pedidos_e_presentes.sql) no SQL Editor.
+2. **InfinitePay:** em Configurações do Checkout, ative **"Habilitar checkout integrado"**.
+3. **Funções do servidor** (Supabase → Edge Functions → *Deploy a new function* → *Via Editor*):
+   - nome **`criar-pagamento`**: cole o conteúdo de `functions/criar-pagamento/index.ts`.
+   - nome **`aviso-infinitepay`**: cole `functions/aviso-infinitepay/index.ts` e, nas configurações
+     dela, **desligue "Verify JWT"** (a InfinitePay não envia login).
+4. **Segredos** (Edge Functions → Secrets):
+   - `INFINITEPAY_HANDLE` = sua InfiniteTag, sem o $ (ex.: `entreestrelas`)
+   - `SITE_URL` = endereço do site sem barra no fim (ex.: `https://felipeedug.github.io/astros`;
+     para testar no computador, `http://localhost:8000`)
+5. **Teste real** (não existe ambiente de teste na InfinitePay): mude por alguns minutos o preço de
+   presente para R$ 1,00 (`update public.produtos set preco_presente_membro_centavos = 100 where slug = 'mapa-da-vida';`),
+   compre, confira se o presente aparece em "Meus presentes", estorne pelo app e volte o preço (`2690`).
+
+### Livro digital da Mara
+- Envie o PDF em **Storage → arquivos → pasta `livros`** com o nome
+  `astrologia-e-o-poder-de-comer-sem-culpa.pdf`.
+- Defina o preço e ative: `update public.produtos set preco_centavos = 0000, ativo = true where slug = 'livro-mara-digital';`
+- Ele aparece como "Leve também" no pagamento do Mapa da Vida e **não** vem incluído no plano Fundador.

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Você ganhou um presente — Entre Estrelas</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/portal.css?v=20261122-presentes">
+</head>
+<body class="pagina-portal">
+  <header class="portal-topo">
+    <a href="index.html" aria-label="Entre Estrelas, início"><img src="fonts/Novo%20Design%20-%20COM%20texto.png" alt="Entre Estrelas"></a>
+    <nav><a href="index.html">Conhecer o Entre Estrelas</a></nav>
+  </header>
+
+  <main class="portal-entrada">
+    <div class="ceu" aria-hidden="true">
+      <div class="ceu-estrelas ceu-estrelas--longe"></div>
+      <div class="ceu-estrelas ceu-estrelas--perto"></div>
+      <div class="ceu-planeta ceu-planeta--grande"></div>
+      <div class="ceu-planeta ceu-planeta--anel"></div>
+      <div class="ceu-planeta ceu-planeta--pequeno"></div>
+      <div class="ceu-vidro"></div>
+    </div>
+    <div class="portal-entrada-conteudo">
+      <img class="portal-entrada-logo" src="fonts/Logo%205%20Pontas%20Horizontal.png" alt="Entre Estrelas">
+      <div id="presente-conteudo">
+        <p class="portal-entrada-pergunta">Abrindo o seu presente…</p>
+      </div>
+      <p class="aviso" id="aviso" role="status"></p>
+    </div>
+  </main>
+
+  <script type="module">
+    import { configurado, sessaoAtual, verPresente, resgatarPresente, escapar } from './js/portal.js';
+
+    const codigo = (new URLSearchParams(location.search).get('c') || '').trim().toUpperCase();
+    const area = document.querySelector('#presente-conteudo');
+    const aviso = document.querySelector('#aviso');
+    const mostrar = (texto, tipo) => { aviso.textContent = texto; aviso.className = `aviso aviso-${tipo}`; };
+    const destinoDoMapa = 'index.html?meu-mapa=1#mapa';
+
+    async function iniciar() {
+      if (!configurado) return mostrar('O portal está sendo configurado. Tente de novo em breve.', 'info');
+      if (!/^[A-Z0-9]{6,16}$/.test(codigo)) {
+        area.innerHTML = '<h1>Presente não encontrado</h1><p class="portal-entrada-pergunta">Confira se o link foi copiado inteiro.</p>';
+        return;
+      }
+      const presente = await verPresente(codigo);
+      if (!presente) {
+        area.innerHTML = '<h1>Presente não encontrado</h1><p class="portal-entrada-pergunta">Confira se o link foi copiado inteiro.</p>';
+        return;
+      }
+
+      const logado = await sessaoAtual();
+      if (logado) {
+        // Já entrou: recebe na hora
+        const resultado = await resgatarPresente(codigo);
+        if (resultado === 'ok' || resultado === 'ja_e_seu') {
+          area.innerHTML = `
+            <h1>Seu presente chegou! ★</h1>
+            <p class="portal-entrada-pergunta"><strong>${escapar(presente.produto_nome)}</strong> agora faz parte da sua jornada.</p>
+            <hr class="portal-entrada-linha">
+            <p class="portal-entrada-texto">Para preparar o seu mapa, vamos pedir a data, a hora e a cidade em que você nasceu, uma única vez.</p>
+            <div class="portal-entrada-acoes"><a class="portal-entrada-botao portal-entrada-botao--principal" href="${destinoDoMapa}">Ver meu presente</a></div>`;
+          return;
+        }
+        const mensagens = {
+          ja_resgatado: 'Este presente já foi recebido por outra pessoa.',
+          proprio_comprador: 'Este é um presente que você comprou para outra pessoa. Envie o link para ela!',
+          codigo_invalido: 'Presente não encontrado.'
+        };
+        area.innerHTML = `<h1>Ops!</h1><p class="portal-entrada-pergunta">${escapar(mensagens[resultado] || 'Não foi possível receber este presente.')}</p>
+          <div class="portal-entrada-acoes"><a class="portal-entrada-botao portal-entrada-botao--contorno" href="minha-area.html">Ir para a minha área</a></div>`;
+        return;
+      }
+
+      if (presente.resgatado) {
+        area.innerHTML = '<h1>Este presente já foi recebido</h1><p class="portal-entrada-pergunta">Se foi você, é só entrar na sua área.</p><div class="portal-entrada-acoes"><a class="portal-entrada-botao portal-entrada-botao--principal" href="entrar.html">Entrar</a></div>';
+        return;
+      }
+
+      area.innerHTML = `
+        <h1>${escapar(presente.de_quem)} te deu um presente ★</h1>
+        <p class="portal-entrada-pergunta"><strong>${escapar(presente.produto_nome)}</strong></p>
+        <p class="portal-entrada-texto">${escapar(presente.produto_descricao || '')}</p>
+        <hr class="portal-entrada-linha">
+        <p class="portal-entrada-texto">Para receber, entre com o seu e-mail. Não precisa de senha: enviamos um link de acesso.</p>
+        <div class="portal-entrada-acoes">
+          <a class="portal-entrada-botao portal-entrada-botao--principal" href="entrar.html?voltar=${encodeURIComponent(`presente.html?c=${codigo}`)}">Receber meu presente</a>
+        </div>`;
+    }
+
+    iniciar().catch((e) => mostrar(e.message, 'erro'));
+  </script>
+</body>
+</html>
