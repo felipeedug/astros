@@ -74,7 +74,7 @@
   <script type="module">
     import {
       configurado, sessaoAtual, sair, meuCadastro, meusProdutos, minhasAssinaturas,
-      mapaProprio, atualizarMeuCadastro, escapar, formatarPreco, seloFundador
+      mapaProprio, atualizarMeuCadastro, escapar, formatarPreco, seloFundador, iconeProduto
     } from './js/portal.js';
 
     const carregando = document.querySelector('#carregando');
@@ -126,9 +126,24 @@
           : p.link_pagamento
             ? `<a class="botao botao-leve" href="${escapar(p.link_pagamento)}" target="_blank" rel="noopener noreferrer">Quero este${p.preco_centavos ? ` · ${formatarPreco(p.preco_centavos)}` : ''}</a>`
             : '<span class="selo selo-cinza">Em breve</span>';
-        return `<article class="produto ${p.liberado ? '' : 'produto-bloqueado'}">
-          <h3>${escapar(p.nome)}</h3>
+        const novidades = String(p.novidades || '').split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
+        const dataVersao = p.versao_data
+          ? new Date(`${p.versao_data}T00:00:00`).toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' })
+          : '';
+        return `<article class="produto ${p.liberado ? '' : 'produto-bloqueado'} ${p.nova_versao ? 'produto-novo' : ''}">
+          <div class="produto-topo">
+            ${iconeProduto(p.icone)}
+            <div>
+              <h3>${escapar(p.nome)}</h3>
+              ${p.versao ? `<span class="produto-versao">Versão ${escapar(p.versao)}${dataVersao ? ` · ${escapar(dataVersao)}` : ''}</span>` : ''}
+            </div>
+          </div>
+          ${p.nova_versao ? '<span class="selo-nova-versao">✦ Nova versão</span>' : ''}
           <p>${escapar(p.descricao || '')}</p>
+          ${novidades.length ? `<details class="produto-novidades" ${p.nova_versao ? 'open' : ''}>
+            <summary>O que há de novo${p.versao ? ` na versão ${escapar(p.versao)}` : ''}</summary>
+            <ul>${novidades.map((n) => `<li>${escapar(n)}</li>`).join('')}</ul>
+          </details>` : ''}
           ${mostrarSelo && p.liberado ? '<span class="selo">Liberado</span>' : ''}
           ${acao}
         </article>`;

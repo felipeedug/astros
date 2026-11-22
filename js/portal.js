@@ -266,6 +266,20 @@ export function escapar(valor) {
 
 const ESTRELA_SVG = '<svg class="estrela" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0c.9 6.6 4.4 10.6 12 12-7.6 1.4-11.1 5.4-12 12-.9-6.6-4.4-10.6-12-12C7.6 10.6 11.1 6.6 12 0Z"/></svg>';
 
+// Ícones dos produtos (coluna "icone" da tabela produtos).
+const ICONES = {
+  bussola: '<circle cx="24" cy="24" r="19" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="24" cy="24" r="14.5" fill="none" stroke="currentColor" stroke-width="1" opacity=".45"/><path d="M24 7v4M24 37v4M7 24h4M37 24h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M24 12l4.2 12L24 36l-4.2-12z" fill="currentColor" opacity=".9"/><path d="M24 12l4.2 12h-8.4z" fill="#1E3A5F"/><circle cx="24" cy="24" r="2" fill="#FAF8F5"/>',
+  calendario: '<rect x="8" y="11" width="32" height="29" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 19h32M16 7v8M32 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M24 24l1.6 3.4 3.7.4-2.8 2.5.8 3.7-3.3-1.9-3.3 1.9.8-3.7-2.8-2.5 3.7-.4z" fill="currentColor"/>',
+  lua: '<path d="M30 8a16 16 0 1 0 10 26A13 13 0 0 1 30 8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M36 10l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9z" fill="currentColor"/>',
+  mandala: '<circle cx="24" cy="24" r="18" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="24" cy="24" r="11" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M24 6v36M6 24h36M11.3 11.3l25.4 25.4M36.7 11.3L11.3 36.7" stroke="currentColor" stroke-width="1" opacity=".5"/>',
+  estrela: '<path d="M24 5c1.6 11.2 7.6 17.2 19 19-11.4 1.8-17.4 7.8-19 19-1.6-11.2-7.6-17.2-19-19C16.4 22.2 22.4 16.2 24 5z" fill="currentColor"/>'
+};
+
+export function iconeProduto(chave) {
+  const desenho = ICONES[chave] || ICONES.estrela;
+  return `<svg class="produto-icone" viewBox="0 0 48 48" aria-hidden="true">${desenho}</svg>`;
+}
+
 // Selo do Membro Fundador (estrela dourada). tamanho: 'normal' ou 'pequeno'.
 export function seloFundador(tamanho = 'normal') {
   const classe = tamanho === 'pequeno' ? 'selo-fundador selo-fundador--pequeno' : 'selo-fundador';
