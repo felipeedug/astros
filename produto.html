@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css?v=20261122-festivo">
+  <link rel="stylesheet" href="css/portal.css?v=20261122-arvore">
 </head>
 <body>
   <header class="portal-topo">
@@ -59,6 +59,7 @@
         return;
       }
       document.title = `${p.nome} — Entre Estrelas`;
+      document.body.classList.add(`pagina-produto--${p.slug}`); // arte própria de cada produto (ver portal.css)
 
       // Quem já entrou: vê se já está inscrito(a) ou se já tem o produto
       const logado = Boolean(await sessaoAtual());

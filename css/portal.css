@@ -604,3 +604,22 @@ textarea { font: inherit; font-weight: 400; padding: .7rem .8rem; border: 1px so
   .festivo-laco { right: -10px; width: 56px; height: 40px; }
   .festivo-laco::before, .festivo-laco::after { width: 26px; height: 20px; border-width: 5px; }
 }
+
+/* Arte da Árvore de Natal com Raízes no céu da página */
+.pagina-produto--natal-2026 .pagina-produto-topo::after {
+  content: ""; position: absolute; z-index: 1; pointer-events: none;
+  right: max(2rem, calc(50% - 560px)); bottom: 0; height: 92%; aspect-ratio: 300 / 430;
+  background: url("../images/arvore-com-raizes.svg") center bottom / contain no-repeat;
+  animation: arvore-brilhar 5s ease-in-out infinite alternate;
+}
+.pagina-produto--natal-2026 .pagina-produto-topo::before {
+  content: ""; position: absolute; z-index: 1; pointer-events: none;
+  left: max(2rem, calc(50% - 560px)); bottom: 0; height: 70%; aspect-ratio: 300 / 430; opacity: .45;
+  background: url("../images/arvore-com-raizes.svg") center bottom / contain no-repeat;
+}
+@keyframes arvore-brilhar { from { filter: drop-shadow(0 0 4px rgba(240, 199, 94, .15)); } to { filter: drop-shadow(0 0 14px rgba(240, 199, 94, .4)); } }
+@media (max-width: 900px) {
+  .pagina-produto--natal-2026 .pagina-produto-topo::before { display: none; }
+  .pagina-produto--natal-2026 .pagina-produto-topo::after { right: 50%; transform: translateX(50%); height: 78%; opacity: .32; }
+}
+@media (prefers-reduced-motion: reduce) { .pagina-produto--natal-2026 .pagina-produto-topo::after { animation: none; } }
