@@ -60,12 +60,18 @@
         // Já entrou: recebe na hora
         const resultado = await resgatarPresente(codigo);
         if (resultado === 'ok' || resultado === 'ja_e_seu') {
-          area.innerHTML = `
+          const ehMapa = !presente.produto_slug || presente.produto_slug === 'mapa-da-vida';
+          area.innerHTML = ehMapa ? `
             <h1>Seu presente chegou! ★</h1>
             <p class="portal-entrada-pergunta"><strong>${escapar(presente.produto_nome)}</strong> agora faz parte da sua jornada.</p>
             <hr class="portal-entrada-linha">
             <p class="portal-entrada-texto">Para preparar o seu mapa, vamos pedir a data, a hora e a cidade em que você nasceu, uma única vez.</p>
-            <div class="portal-entrada-acoes"><a class="portal-entrada-botao portal-entrada-botao--principal" href="${destinoDoMapa}">Ver meu presente</a></div>`;
+            <div class="portal-entrada-acoes"><a class="portal-entrada-botao portal-entrada-botao--principal" href="${destinoDoMapa}">Ver meu presente</a></div>` : `
+            <h1>Seu presente chegou! ★</h1>
+            <p class="portal-entrada-pergunta"><strong>${escapar(presente.produto_nome)}</strong> agora faz parte da sua jornada.</p>
+            <hr class="portal-entrada-linha">
+            <p class="portal-entrada-texto">Sua inscrição já está feita. Antes do encontro, vamos te enviar por WhatsApp e e-mail as informações para participar.</p>
+            <div class="portal-entrada-acoes"><a class="portal-entrada-botao portal-entrada-botao--principal" href="produto.html?p=${encodeURIComponent(presente.produto_slug)}">Ver o meu presente</a></div>`;
           return;
         }
         const mensagens = {

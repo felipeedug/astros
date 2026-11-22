@@ -562,3 +562,4 @@ textarea { font: inherit; font-weight: 400; padding: .7rem .8rem; border: 1px so
   background: radial-gradient(ellipse at 50% 40%, #16304D 0%, #0F2238 70%); color: #FAF8F5; }
 .produto-saiba-mais { align-self: flex-start; color: var(--azul-marca); font-size: .88rem; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 .produto-saiba-mais:hover { color: var(--dourado-marca); }
+.pagina-produto-nota { margin: .2rem 0 0; font-size: .88rem; opacity: .8; }
