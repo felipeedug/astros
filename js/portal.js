@@ -158,6 +158,74 @@ export async function minhasAssinaturas(clienteId) {
   return (data || []).filter((a) => !a.fim || new Date(a.fim).getTime() > agora);
 }
 
+// Lançamentos "Em breve": a pessoa se inscreve para receber as informações.
+export async function inscrever(clienteId, produtoId) {
+  exigirConfiguracao();
+  const { error } = await supabase.from('inscricoes').insert({ cliente_id: clienteId, produto_id: produtoId });
+  if (error && !/duplicate/i.test(error.message)) falha(error, 'Não foi possível registrar sua inscrição.');
+}
+
+export async function cancelarInscricao(clienteId, produtoId) {
+  exigirConfiguracao();
+  const { error } = await supabase.from('inscricoes').delete().eq('cliente_id', clienteId).eq('produto_id', produtoId);
+  falha(error, 'Não foi possível cancelar sua inscrição.');
+}
+
+export async function admListarLancamentos() {
+  exigirConfiguracao();
+  const { data, error } = await supabase
+    .from('produtos')
+    .select('id, nome, tipo, previsao, inscricoes_abertas, ativo, inscricoes(criado_em, clientes(nome, email, whatsapp))')
+    .eq('status', 'em_breve')
+    .order('previsao', { ascending: true, nullsFirst: false });
+  falha(error, 'Não foi possível carregar os lançamentos.');
+  return data || [];
+}
+
+// ------------------------------------------------------------- agenda
+
+export async function minhaAgenda(dias = 14) {
+  exigirConfiguracao();
+  const { data, error } = await supabase.rpc('minha_agenda', { p_dias: dias });
+  if (error && /minha_agenda|does not exist|schema cache/i.test(error.message)) return []; // 005 ainda não rodado
+  falha(error, 'Não foi possível carregar a agenda.');
+  return data || [];
+}
+
+export async function inscreverEvento(clienteId, eventoId) {
+  exigirConfiguracao();
+  const { error } = await supabase.from('inscricoes_eventos').insert({ cliente_id: clienteId, evento_id: eventoId });
+  if (error && !/duplicate/i.test(error.message)) falha(error, 'Não foi possível registrar sua inscrição.');
+}
+
+export async function cancelarEvento(clienteId, eventoId) {
+  exigirConfiguracao();
+  const { error } = await supabase.from('inscricoes_eventos').delete().eq('cliente_id', clienteId).eq('evento_id', eventoId);
+  falha(error, 'Não foi possível cancelar sua inscrição.');
+}
+
+export async function admListarEventos() {
+  exigirConfiguracao();
+  const desde = new Date(Date.now() - 30 * 86400000).toISOString();
+  const { data, error } = await supabase
+    .from('eventos')
+    .select('*, inscricoes_eventos(criado_em, clientes(nome, email, whatsapp))')
+    .gte('inicio', desde)
+    .order('inicio');
+  falha(error, 'Não foi possível carregar os eventos.');
+  return data || [];
+}
+
+export async function admSalvarEvento(evento) {
+  exigirConfiguracao();
+  const { id, ...campos } = evento;
+  const consulta = id
+    ? supabase.from('eventos').update(campos).eq('id', id)
+    : supabase.from('eventos').insert(campos);
+  const { error } = await consulta;
+  falha(error, 'Não foi possível salvar o evento.');
+}
+
 export async function clienteTemAcesso(clienteId, produtoSlug) {
   exigirConfiguracao();
   const { data, error } = await supabase.rpc('cliente_tem_acesso', { p_cliente: clienteId, p_produto_slug: produtoSlug });
