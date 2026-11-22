@@ -226,6 +226,13 @@ export async function admSalvarEvento(evento) {
   falha(error, 'Não foi possível salvar o evento.');
 }
 
+// Exclui o evento de vez (as inscrições dele também são apagadas).
+export async function admExcluirEvento(eventoId) {
+  exigirConfiguracao();
+  const { error } = await supabase.from('eventos').delete().eq('id', eventoId);
+  falha(error, 'Não foi possível excluir o evento.');
+}
+
 export async function clienteTemAcesso(clienteId, produtoSlug) {
   exigirConfiguracao();
   const { data, error } = await supabase.rpc('cliente_tem_acesso', { p_cliente: clienteId, p_produto_slug: produtoSlug });

@@ -27,9 +27,55 @@
         <div>
           <h1 id="saudacao">Olá!</h1>
           <p class="suave" id="email-usuario"></p>
+          <div class="nascimento-topo" id="nascimento-conteudo"></div>
         </div>
         <div id="selos"></div>
       </div>
+
+      <section class="cartao topo-duplo" id="cartao-topo" hidden>
+        <div class="topo-destaques" id="bloco-destaques" hidden>
+          <h2>✦ Em breve</h2>
+          <div id="lista-destaques"></div>
+        </div>
+        <div class="topo-calendario">
+          <div class="cabecalho-area" style="margin-bottom:.4rem">
+            <h2 style="margin:0">Meu calendário</h2>
+            <span class="suave" id="agenda-resumo"></span>
+          </div>
+          <div class="mini-calendario" id="mini-calendario" aria-label="Calendário das próximas duas semanas"></div>
+          <p class="mini-calendario-legenda"><span class="ponto ponto-evento"></span> tem atividade <span class="ponto ponto-inscrito"></span> você está inscrito(a)</p>
+        </div>
+      </section>
+
+      <section class="cartao">
+        <h2>Minha jornada</h2>
+        <p class="suave">Seus mapas, leituras e encontros de autoconhecimento.</p>
+        <div class="produtos" id="lista-produtos"></div>
+      </section>
+
+      <section class="cartao" id="cartao-agenda" hidden>
+        <div class="cabecalho-area" style="margin-bottom:.4rem">
+          <h2 style="margin:0">✦ Lives e encontros</h2>
+        </div>
+        <p class="suave">Lives, colunas com nossas astrólogas e encontros das próximas semanas. Inscreva-se nos que te interessam.</p>
+        <div id="agenda-dias"></div>
+        <div id="agenda-gravacoes" hidden>
+          <h3 class="agenda-subtitulo">Gravações</h3>
+          <div id="agenda-lista-gravacoes"></div>
+        </div>
+      </section>
+
+      <section class="cartao" id="cartao-em-breve" hidden>
+        <h2>✦ O que vem pela frente</h2>
+        <p class="suave">O que estamos preparando para a sua jornada. Inscreva-se para receber as informações e participar.</p>
+        <div class="produtos" id="lista-em-breve"></div>
+      </section>
+
+      <section class="cartao" id="cartao-gratuitas" hidden>
+        <h2>Ferramentas de apoio</h2>
+        <p class="suave">Incluídas no seu cadastro no Entre Estrelas.</p>
+        <div class="produtos" id="lista-gratuitas"></div>
+      </section>
 
       <section class="cartao" id="cartao-equipe" hidden>
         <h2>Área da equipe</h2>
@@ -40,44 +86,6 @@
           <a class="botao botao-leve" href="index.html?acesso-mapas=1#efemerides">Efemérides</a>
           <a class="botao botao-leve" href="index.html?acesso-mapas=1#lua">Lua fora de curso</a>
         </div>
-      </section>
-
-      <section class="cartao" id="cartao-nascimento">
-        <h2>Seus dados de nascimento</h2>
-        <div id="nascimento-conteudo"></div>
-      </section>
-
-      <section class="cartao" id="cartao-agenda" hidden>
-        <div class="cabecalho-area" style="margin-bottom:.4rem">
-          <h2 style="margin:0">✦ Agenda</h2>
-          <span class="suave" id="agenda-resumo"></span>
-        </div>
-        <p class="suave">Lives, colunas com nossas astrólogas e encontros das próximas semanas. Inscreva-se nos que te interessam.</p>
-        <div class="mini-calendario" id="mini-calendario" aria-label="Calendário das próximas duas semanas"></div>
-        <p class="mini-calendario-legenda"><span class="ponto ponto-evento"></span> tem evento <span class="ponto ponto-inscrito"></span> você está inscrito(a)</p>
-        <div id="agenda-dias"></div>
-        <div id="agenda-gravacoes" hidden>
-          <h3 class="agenda-subtitulo">Gravações</h3>
-          <div id="agenda-lista-gravacoes"></div>
-        </div>
-      </section>
-
-      <section class="cartao" id="cartao-em-breve" hidden>
-        <h2>✦ Em breve</h2>
-        <p class="suave">Os próximos lançamentos do Entre Estrelas. Inscreva-se para receber as informações e participar.</p>
-        <div class="produtos" id="lista-em-breve"></div>
-      </section>
-
-      <section class="cartao">
-        <h2>Minha jornada</h2>
-        <p class="suave">Seus mapas, leituras e encontros de autoconhecimento.</p>
-        <div class="produtos" id="lista-produtos"></div>
-      </section>
-
-      <section class="cartao" id="cartao-gratuitas" hidden>
-        <h2>Ferramentas gratuitas</h2>
-        <p class="suave">Disponíveis para quem tem cadastro no Entre Estrelas.</p>
-        <div class="produtos" id="lista-gratuitas"></div>
       </section>
 
       <section class="cartao">
@@ -130,15 +138,19 @@
       const nascimentoConteudo = document.querySelector('#nascimento-conteudo');
       if (nascimento) {
         const data = new Date(`${nascimento.data_nascimento}T00:00:00`).toLocaleDateString('pt-BR');
+        const local = `${escapar(nascimento.cidade)}${nascimento.regiao ? ` — ${escapar(nascimento.regiao)}` : ''}, ${escapar(nascimento.pais)}`;
         nascimentoConteudo.innerHTML = `
-          <p><strong>${escapar(nascimento.nome)}</strong><br>
-          ${data} às ${escapar(nascimento.hora_nascimento.slice(0, 5))}<br>
-          ${escapar(nascimento.cidade)}${nascimento.regiao ? ` — ${escapar(nascimento.regiao)}` : ''}, ${escapar(nascimento.pais)}</p>
-          <p class="suave" style="font-size:.85rem">Algum dado errado? Fale com a gente pelo WhatsApp que corrigimos para você.</p>`;
+          <span class="nascimento-rotulo">Seus dados de nascimento</span>
+          <span class="nascimento-dados">
+            <span>📅 ${data}</span><span>🕐 ${escapar(nascimento.hora_nascimento.slice(0, 5))}</span><span>📍 ${local}</span>
+          </span>
+          <span class="nascimento-nota">Estes dados são essenciais para muitas das análises que fazemos para você. Algum dado errado? Fale com a gente pelo WhatsApp que corrigimos.</span>`;
       } else {
+        nascimentoConteudo.classList.add('nascimento-topo--faltando');
         nascimentoConteudo.innerHTML = `
-          <p>Para gerar seus mapas, precisamos dos seus dados de nascimento. Você preenche <strong>uma única vez</strong>.</p>
-          <a class="botao botao-dourado" href="index.html?meu-mapa=1#mapa">Cadastrar meus dados</a>`;
+          <span class="nascimento-rotulo">Falta um passo: seus dados de nascimento</span>
+          <span class="nascimento-nota">A data, a hora e a cidade em que você nasceu são essenciais para muitas das análises que fazemos para você. Você preenche <strong>uma única vez</strong>.</span>
+          <a class="botao botao-dourado botao-pequeno" href="index.html?meu-mapa=1#mapa">Cadastrar meus dados</a>`;
       }
 
       const cartaoProduto = (p, mostrarSelo) => {
@@ -188,41 +200,18 @@
         if (!e.inscricoes_abertas) return '<span class="selo selo-cinza">Inscrições encerradas</span>';
         return `<button class="botao botao-dourado" data-inscrever-evento="${e.id}">✦ Quero participar</button>`;
       };
+      const chaveDia = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+      let desenharCalendario = () => {}; // definido depois do Em breve
       const desenharAgenda = () => {
         const agora = new Date();
         const proximos = agenda.filter((e) => fimDe(e) > agora);
         const gravacoes = agenda.filter((e) => fimDe(e) <= agora && e.link_gravacao).reverse();
-        const inscritos = proximos.filter((e) => e.inscrito).length;
-        document.querySelector('#agenda-resumo').textContent = inscritos
-          ? `Você está inscrito(a) em ${inscritos} ${inscritos === 1 ? 'evento' : 'eventos'}` : '';
-        const chaveDia = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
         const porDia = new Map();
         proximos.forEach((e) => {
           const chave = chaveDia(new Date(e.inicio));
           if (!porDia.has(chave)) porDia.set(chave, []);
           porDia.get(chave).push(e);
         });
-
-        // Mini calendário: esta semana e a próxima (domingo a sábado)
-        const hoje = new Date(); hoje.setHours(0, 0, 0, 0);
-        const primeiro = new Date(hoje); primeiro.setDate(hoje.getDate() - hoje.getDay());
-        const letras = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
-        const celulas = Array.from({ length: 14 }, (_, i) => {
-          const d = new Date(primeiro); d.setDate(primeiro.getDate() + i);
-          const chave = chaveDia(d);
-          const doDia = porDia.get(chave) || [];
-          const classes = ['mini-dia'];
-          if (d < hoje) classes.push('mini-dia--passado');
-          if (chave === chaveDia(hoje)) classes.push('mini-dia--hoje');
-          if (doDia.length) classes.push('mini-dia--evento');
-          if (doDia.some((e) => e.inscrito)) classes.push('mini-dia--inscrito');
-          const rotulo = d.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' })
-            + (doDia.length ? ` — ${doDia.length} ${doDia.length === 1 ? 'evento' : 'eventos'}` : '');
-          return `<button type="button" class="${classes.join(' ')}" ${doDia.length ? `data-ir-dia="${chave}"` : 'disabled'} aria-label="${escapar(rotulo)}">
-            <span>${d.getDate()}</span></button>`;
-        });
-        document.querySelector('#mini-calendario').innerHTML =
-          letras.map((l) => `<span class="mini-cabecalho">${l}</span>`).join('') + celulas.join('');
 
         document.querySelector('#agenda-dias').innerHTML = [...porDia].map(([chave, eventos]) => `
           <div class="agenda-dia" id="dia-${chave}">
@@ -245,11 +234,12 @@
           </div>`).join('');
         document.querySelector('#agenda-gravacoes').hidden = gravacoes.length === 0;
         document.querySelector('#cartao-agenda').hidden = agenda.length === 0;
+        desenharCalendario();
       };
       desenharAgenda();
       document.querySelector('#mini-calendario').addEventListener('click', (evento) => {
-        const dia = evento.target.closest('[data-ir-dia]');
-        if (dia) document.querySelector(`#dia-${dia.dataset.irDia}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const dia = evento.target.closest('[data-ir]');
+        if (dia) document.querySelector(dia.dataset.ir)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
       document.querySelector('#agenda-dias').addEventListener('click', async (evento) => {
         const alvo = evento.target.closest('[data-inscrever-evento], [data-cancelar-evento]');
@@ -269,7 +259,7 @@
 
       // Lançamentos "Em breve" com botão de inscrição
       const emBreve = produtos.filter((p) => p.status === 'em_breve');
-      const tiposLancamento = { live: 'Live', aula: 'Aula', produto: 'Lançamento', ferramenta: 'Ferramenta' };
+      const tiposLancamento = { live: 'Live', aula: 'Aula', produto: 'Novidade', ferramenta: 'Ferramenta' };
       const cartaoEmBreve = (p) => {
         const quando = p.previsao
           ? new Date(`${p.previsao}T00:00:00`).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long' })
@@ -288,7 +278,7 @@
             ${iconeProduto(p.icone || 'estrela')}
             <div>
               <h3>${escapar(p.nome)}</h3>
-              <span class="produto-versao">${escapar(tiposLancamento[p.tipo] || 'Lançamento')} · ${escapar(quando)}</span>
+              <span class="produto-versao">${escapar(tiposLancamento[p.tipo] || 'Novidade')} · ${escapar(quando)}</span>
             </div>
           </div>
           <p>${escapar(p.descricao || '')}</p>
@@ -298,7 +288,97 @@
       const desenharEmBreve = () => {
         document.querySelector('#lista-em-breve').innerHTML = emBreve.map(cartaoEmBreve).join('');
         document.querySelector('#cartao-em-breve').hidden = emBreve.length === 0;
+        desenharCalendario();
       };
+
+      // ---------------- Meu calendário: lives/encontros + lançamentos, esta semana e a próxima
+      desenharCalendario = () => {
+        const agora = new Date();
+        const hoje = new Date(); hoje.setHours(0, 0, 0, 0);
+        const itens = new Map(); // chave do dia → [{ inscrito, destino }]
+        const adicionar = (chave, item) => { if (!itens.has(chave)) itens.set(chave, []); itens.get(chave).push(item); };
+        agenda.filter((e) => fimDe(e) > agora).forEach((e) => {
+          const chave = chaveDia(new Date(e.inicio));
+          adicionar(chave, { inscrito: e.inscrito, destino: `#dia-${chave}`, tipo: 'evento' });
+        });
+        emBreve.filter((p) => p.previsao).forEach((p) => {
+          adicionar(p.previsao, { inscrito: p.inscrito, destino: '#cartao-em-breve', tipo: 'lancamento' });
+        });
+        const inscritos = [...itens.values()].flat().filter((i) => i.inscrito).length;
+        document.querySelector('#agenda-resumo').textContent = inscritos
+          ? `Você está inscrito(a) em ${inscritos} ${inscritos === 1 ? 'atividade' : 'atividades'}` : '';
+        const primeiro = new Date(hoje); primeiro.setDate(hoje.getDate() - hoje.getDay());
+        const letras = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
+        const celulas = Array.from({ length: 14 }, (_, i) => {
+          const d = new Date(primeiro); d.setDate(primeiro.getDate() + i);
+          const chave = chaveDia(d);
+          const doDia = itens.get(chave) || [];
+          const classes = ['mini-dia'];
+          if (d < hoje) classes.push('mini-dia--passado');
+          if (chave === chaveDia(hoje)) classes.push('mini-dia--hoje');
+          if (doDia.length) classes.push('mini-dia--evento');
+          if (doDia.some((x) => x.inscrito)) classes.push('mini-dia--inscrito');
+          const destino = (doDia.find((x) => x.tipo === 'evento') || doDia[0])?.destino;
+          const rotulo = d.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' })
+            + (doDia.length ? ` — ${doDia.length} ${doDia.length === 1 ? 'atividade' : 'atividades'}` : '');
+          return `<button type="button" class="${classes.join(' ')}" ${destino ? `data-ir="${destino}"` : 'disabled'} aria-label="${escapar(rotulo)}"><span>${d.getDate()}</span></button>`;
+        });
+        document.querySelector('#mini-calendario').innerHTML =
+          letras.map((l) => `<span class="mini-cabecalho">${l}</span>`).join('') + celulas.join('');
+
+        // Destaques do "Em breve": lançamentos + eventos marcados como destaque (até 2)
+        const candidatos = [
+          ...emBreve.map((p) => ({ tipo: 'lancamento', item: p, data: p.previsao ? new Date(`${p.previsao}T12:00:00`) : null })),
+          ...agenda.filter((e) => e.destaque && fimDe(e) > agora).map((e) => ({ tipo: 'evento', item: e, data: new Date(e.inicio) }))
+        ].sort((x, y) => (x.data?.getTime() ?? Infinity) - (y.data?.getTime() ?? Infinity)).slice(0, 2);
+        document.querySelector('#lista-destaques').innerHTML = candidatos.map(({ tipo, item, data }) => {
+          const quando = data
+            ? data.toLocaleDateString('pt-BR', { day: 'numeric', month: 'long' })
+              + (tipo === 'evento' ? ` · ${data.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}` : '')
+            : 'Data a confirmar';
+          const rotuloTipo = tipo === 'evento' ? (tiposEvento[item.tipo] || 'Evento') : (tiposLancamento[item.tipo] || 'Novidade');
+          let acao;
+          if (tipo === 'evento') {
+            acao = !item.pode_participar ? `<span class="selo selo-cinza">${item.produto_nome ? `Incluído no ${escapar(item.produto_nome)}` : 'Exclusivo para membros'}</span>`
+              : item.inscrito ? '<span class="destaque-ok">✓ Inscrição confirmada</span>'
+              : item.inscricoes_abertas ? `<button class="botao botao-dourado botao-pequeno" data-destaque-evento="${item.id}">✦ Quero participar</button>` : '';
+          } else {
+            acao = item.inscrito ? '<span class="destaque-ok">✓ Inscrição confirmada</span>'
+              : item.inscricoes_abertas ? `<button class="botao botao-dourado botao-pequeno" data-destaque-lancamento="${item.id}">✦ Quero participar</button>` : '';
+          }
+          return `<article class="destaque">
+            ${iconeProduto(item.icone || 'estrela')}
+            <div class="destaque-info">
+              <span class="agenda-tipo">${escapar(rotuloTipo)} · ${escapar(quando)}</span>
+              <h3>${escapar(item.titulo || item.nome)}</h3>
+              ${acao}
+            </div>
+          </article>`;
+        }).join('');
+        document.querySelector('#bloco-destaques').hidden = candidatos.length === 0;
+        document.querySelector('#cartao-topo').hidden = itens.size === 0 && agenda.length === 0 && candidatos.length === 0;
+      };
+
+      // Cliques nos destaques do topo
+      document.querySelector('#lista-destaques').addEventListener('click', async (evento) => {
+        const alvo = evento.target.closest('[data-destaque-evento], [data-destaque-lancamento]');
+        if (!alvo) return;
+        alvo.disabled = true;
+        try {
+          if (alvo.dataset.destaqueEvento) {
+            await inscreverEvento(cliente.id, alvo.dataset.destaqueEvento);
+            agenda.find((e) => e.id === alvo.dataset.destaqueEvento).inscrito = true;
+            desenharAgenda();
+          } else {
+            await inscrever(cliente.id, alvo.dataset.destaqueLancamento);
+            emBreve.find((p) => p.id === alvo.dataset.destaqueLancamento).inscrito = true;
+            desenharEmBreve();
+          }
+        } catch (e) {
+          alert(e.message);
+          alvo.disabled = false;
+        }
+      });
       desenharEmBreve();
       document.querySelector('#lista-em-breve').addEventListener('click', async (evento) => {
         const alvo = evento.target.closest('[data-inscrever], [data-cancelar]');

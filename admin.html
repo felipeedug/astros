@@ -48,6 +48,7 @@
             </label>
             <label>Link da live <input id="ev-link" type="url" placeholder="https://… (pode colocar depois)"></label>
             <label style="grid-column:1/-1">Descrição <textarea id="ev-descricao" placeholder="O que a pessoa vai ver ou aprender."></textarea></label>
+            <label class="caixa-consentimento"><input id="ev-destaque" type="checkbox"> ✦ Destacar no "Em breve" do topo da Minha área</label>
             <div style="margin-bottom:1rem"><button class="botao" type="submit">Criar evento</button></div>
           </form>
         </details>
@@ -126,7 +127,7 @@
     import {
       configurado, sessaoAtual, meuCadastro, admListarClientes, admListarProdutos, admCriarCliente,
       admTornarFundador, admCancelarAssinatura, admRegistrarCompra, escapar, seloFundador, MOTIVOS_LIBERACAO,
-      admListarLancamentos, admListarEventos, admSalvarEvento
+      admListarLancamentos, admListarEventos, admSalvarEvento, admExcluirEvento
     } from './js/portal.js';
 
     // Opções de motivo (pagamento, equipe/cofundadora, doação, cortesia) em todos os seletores.
@@ -191,6 +192,7 @@
 
     // ---------------- Agenda
     const tiposEvento = { live: 'Live', coluna: 'Coluna', aula: 'Aula', encontro: 'Encontro' };
+    const dataLocal = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
     let eventos = [];
     async function desenharEventos() {
       try {
@@ -209,17 +211,24 @@
             · ${escapar(e.titulo)}${e.apresentadora ? ` <span class="suave">com ${escapar(e.apresentadora)}</span>` : ''}
             · <span class="selo">${inscritos.length} ${inscritos.length === 1 ? 'inscrito' : 'inscritos'}</span>
             <span class="selo selo-cinza">${escapar(tiposEvento[e.tipo] || e.tipo)}${e.publico === 'membros' ? ' · membros' : ''}</span>
+            ${e.destaque ? '<span class="selo">✦ destaque</span>' : ''}
             ${!e.ativo ? '<span class="selo selo-cinza">cancelado</span>' : passado ? '<span class="selo selo-cinza">realizado</span>' : ''}
           </summary>
           <div class="grade-form">
             <label>Título <input data-campo="titulo" value="${escapar(e.titulo)}" required></label>
             <label>Com quem <input data-campo="apresentadora" value="${escapar(e.apresentadora || '')}"></label>
+            <label>Data <input data-quando="data" type="date" value="${dataLocal(inicio)}"></label>
+            <label>Hora <input data-quando="hora" type="time" value="${inicio.toTimeString().slice(0, 5)}"></label>
             <label style="grid-column:1/-1">Descrição <textarea data-campo="descricao">${escapar(e.descricao || '')}</textarea></label>
             <label>Link da live <input data-campo="link_acesso" type="url" value="${escapar(e.link_acesso || '')}"></label>
             <label>Link da gravação <input data-campo="link_gravacao" type="url" value="${escapar(e.link_gravacao || '')}" placeholder="Depois do evento"></label>
             <label class="caixa-consentimento"><input data-campo="inscricoes_abertas" type="checkbox" ${e.inscricoes_abertas ? 'checked' : ''}> Inscrições abertas</label>
+            ${'destaque' in e ? `<label class="caixa-consentimento"><input data-campo="destaque" type="checkbox" ${e.destaque ? 'checked' : ''}> ✦ Destacar no "Em breve" do topo</label>` : ''}
             <label class="caixa-consentimento"><input data-campo="ativo" type="checkbox" ${e.ativo ? 'checked' : ''}> Evento ativo (desmarque para cancelar)</label>
-            <div style="margin-bottom:1rem"><button class="botao botao-pequeno" data-salvar-evento="${e.id}">Salvar</button></div>
+            <div style="margin-bottom:1rem;display:flex;gap:.5rem;flex-wrap:wrap">
+              <button class="botao botao-pequeno" data-salvar-evento="${e.id}">Salvar</button>
+              <button class="botao botao-leve botao-pequeno botao-perigo" data-excluir-evento="${e.id}">Excluir evento</button>
+            </div>
           </div>
           ${inscritos.length ? `<div style="display:flex;gap:.4rem;margin:.2rem 0 .6rem">
               <button class="botao botao-leve botao-pequeno" data-copiar-evento="${e.id}">Copiar e-mails</button>
@@ -265,6 +274,7 @@
           duracao_min: Number(valor('#ev-duracao')) || 60,
           publico: valor('#ev-publico'),
           ...(valor('#ev-produto') ? { produto_id: valor('#ev-produto') } : {}),
+          ...(document.querySelector('#ev-destaque').checked ? { destaque: true } : {}),
           link_acesso: valor('#ev-link') || null,
           descricao: valor('#ev-descricao') || null
         });
@@ -288,11 +298,26 @@
     });
 
     document.querySelector('#lista-eventos').addEventListener('click', async (evento) => {
-      const botao = evento.target.closest('[data-salvar-evento], [data-copiar-evento], [data-baixar-evento]');
+      const botao = evento.target.closest('[data-salvar-evento], [data-copiar-evento], [data-baixar-evento], [data-excluir-evento]');
       if (!botao) return;
       evento.preventDefault();
-      const id = botao.dataset.salvarEvento || botao.dataset.copiarEvento || botao.dataset.baixarEvento;
+      const id = botao.dataset.salvarEvento || botao.dataset.copiarEvento || botao.dataset.baixarEvento || botao.dataset.excluirEvento;
       const ev = eventos.find((x) => x.id === id);
+      if (botao.dataset.excluirEvento) {
+        const qtd = (ev.inscricoes_eventos || []).length;
+        const aviso = qtd
+          ? `\n\nAtenção: ${qtd} ${qtd === 1 ? 'pessoa está inscrita' : 'pessoas estão inscritas'} e não ${qtd === 1 ? 'será avisada' : 'serão avisadas'} automaticamente.`
+          : '';
+        if (!confirm(`Excluir o evento "${ev.titulo}"? Isso não pode ser desfeito.${aviso}`)) return;
+        try {
+          await admExcluirEvento(id);
+          avisar(document.querySelector('#aviso-agenda'), `Evento "${ev.titulo}" excluído.`, 'ok');
+          await desenharEventos();
+        } catch (e) {
+          avisar(document.querySelector('#aviso-agenda'), e.message, 'erro');
+        }
+        return;
+      }
       if (!botao.dataset.salvarEvento) {
         exportarInscritos(botao, ev.titulo, (ev.inscricoes_eventos || []).map((i) => i.clientes || {}), Boolean(botao.dataset.copiarEvento));
         return;
@@ -302,6 +327,9 @@
       bloco.querySelectorAll('[data-campo]').forEach((c) => {
         campos[c.dataset.campo] = c.type === 'checkbox' ? c.checked : (c.value.trim() || null);
       });
+      const novaData = bloco.querySelector('[data-quando="data"]')?.value;
+      const novaHora = bloco.querySelector('[data-quando="hora"]')?.value;
+      if (novaData && novaHora) campos.inicio = new Date(`${novaData}T${novaHora}`).toISOString();
       const aviso = document.querySelector('#aviso-agenda');
       try {
         await admSalvarEvento({ id, ...campos });
