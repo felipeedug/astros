@@ -813,7 +813,7 @@ function renderNatalInterpretation(content, chart) {
     const ascendantSignId = signAt(houses[0]);
     const entry = interpretationData?.sunAscendantInterpretations?.[`${sunSignId}:${ascendantSignId}`];
     if (!entry) return interpretationCard('QUEM VOCÊ É', [planetSignEntry('Sun'), houseSignEntry(1)]);
-    return `<article class="interpretation-card interpretation-sun-ascendant-card"><h4>QUEM VOCÊ É</h4><p><strong>Chave:</strong> ${escapeHtml(entry.key)}</p><section><h5>Quem Você É</h5><p>${formatInterpretationText(entry.whoYouAre)}</p></section><section><h5>Seus Desafios e Sombras</h5><p>${formatInterpretationText(entry.challenges)}</p></section></article>`;
+    return `<article class="interpretation-card interpretation-sun-ascendant-card"><h4>QUEM VOCÊ É</h4><p><strong>Chave:</strong> ${escapeHtml(entry.key)}</p><section><h5>Quem Você É</h5><p>${formatInterpretationText(entry.whoYouAre)}</p></section><section><h5 class="interpretation-entry-text--challenge">Dificuldades e Sombras</h5><p>${formatInterpretationText(entry.challenges)}</p></section></article>`;
   };
   const houseTopicCard = (title, houseId, includePlanets = true) => interpretationCard(title, [
     houseSignEntry(houseId),
@@ -849,6 +849,11 @@ function renderNatalInterpretation(content, chart) {
     return clone.outerHTML;
   };
   const reportMetadataMarkup = reportCloneMarkup(document.querySelector('#chart-metadata'), 'report', 'interpretation-report-metadata');
+  const sunAscendantEntry = interpretationData?.sunAscendantInterpretations?.[`${signAt(longitudes.Sun)}:${signAt(houses[0])}`];
+  const coverPreviewText = sunAscendantEntry?.summary?.whoYouAre || sunAscendantEntry?.whoYouAre?.match(/^[\s\S]*?[.!?](?=\s|$)/)?.[0] || '';
+  const coverPreviewMarkup = coverPreviewText
+    ? `<section class="interpretation-cover-preview" aria-label="Prévia de Quem Você É"><h3>Um pouco sobre você</h3><p>${formatInterpretationText(coverPreviewText)}</p></section>`
+    : '';
   let mandalaMarkup = '';
   try {
     const mandalaImage = document.querySelector('#chart')?.toDataURL('image/png');
@@ -930,10 +935,15 @@ function renderNatalInterpretation(content, chart) {
     summaryCard('TEMAS EM DESTAQUE', [{ text: mapLifeDashboardData.visao_planetas.map(({ subtitulo, aspectosRelevantes }) => `${subtitulo} (${aspectosRelevantes} ${aspectosRelevantes === 1 ? 'aspecto' : 'aspectos'})`).join(' · ') || 'Nenhum tema em destaque identificado.' }]),
     summaryCard('ÁREAS DA VIDA', [{ text: mapLifeDashboardData.visao_casas.map(({ area }) => area).join(' · ') || 'Nenhuma área com influências identificada.' }])
   ])}${summaryChapter('2. TEMPERAMENTO', [summaryCard('ELEMENTO PREDOMINANTE', [{ text: temperamentText || 'Não foi possível determinar o elemento predominante.' }])])}${summaryChapter('3. QUEM VOCÊ É', [
-    summaryCard('QUEM VOCÊ É', [
-      { text: interpretationData?.summaries?.planetSigns?.[`${planetIds.Sun}:${signAt(longitudes.Sun)}`] || '' },
-      { text: interpretationData?.summaries?.houseSigns?.[`${signAt(houses[0])}:1`] || '' }
-    ]),
+    (() => {
+      const sunSignId = signAt(longitudes.Sun);
+      const ascendantSignId = signAt(houses[0]);
+      const combinedSummary = interpretationData?.sunAscendantInterpretations?.[`${sunSignId}:${ascendantSignId}`]?.summary;
+      return summaryCard('QUEM VOCÊ É', combinedSummary ? [
+        { text: combinedSummary.whoYouAre || '' },
+        { text: combinedSummary.challenges || '' }
+      ] : []);
+    })(),
     summaryPlanetCard('MOTIVAÇÃO', 'Sun', ['Ascendant', 'Midheaven']),
     summaryHouseCard('COMO O MUNDO TE VÊ / COMO VÊ O MUNDO', 1, 'Ascendant', ['Midheaven'], false),
     summaryPlanetCard('FORÇA DE VONTADE', 'Mars', ['Sun', 'Ascendant', 'Moon', 'Mercury', 'Venus', 'Midheaven'])
@@ -971,7 +981,7 @@ function renderNatalInterpretation(content, chart) {
       libidoSummaryEntry()
     ])
   ])}</section>`;
-  content.innerHTML = `${interpretationTitleMarkup}${presentationMarkup}${reportMetadataMarkup}${mapLifeDashboardMarkup}${section('2. TEMPERAMENTO', 'Antes de entrar nos detalhes, vamos olhar o conjunto. Aqui você descobre qual elemento predomina em você — fogo, terra, ar ou água — e como essa mistura molda o seu jeito de ser.', [temperamentCard], 'interpretation-topic--temperament', temperamentGraphicMarkup)}${section('3. QUEM VOCÊ É', 'Aqui começa tudo. Vamos olhar sua essência, sua personalidade e a forma como você se apresenta ao mundo. É o seu jeito de ser e agir no dia a dia.', [
+  content.innerHTML = `${interpretationTitleMarkup}${presentationMarkup}${reportMetadataMarkup}${coverPreviewMarkup}${mapLifeDashboardMarkup}${section('2. TEMPERAMENTO', 'Antes de entrar nos detalhes, vamos olhar o conjunto. Aqui você descobre qual elemento predomina em você — fogo, terra, ar ou água — e como essa mistura molda o seu jeito de ser.', [temperamentCard], 'interpretation-topic--temperament', temperamentGraphicMarkup)}${section('3. QUEM VOCÊ É', 'Aqui começa tudo. Vamos olhar sua essência, sua personalidade e a forma como você se apresenta ao mundo. É o seu jeito de ser e agir no dia a dia.', [
     sunAscendantWhoYouAreCard(),
     planetTopicCard('MOTIVAÇÃO', 'Sun', ['Ascendant', 'Midheaven']),
     interpretationCard('COMO O MUNDO TE VÊ / COMO VÊ O MUNDO', [houseSignEntry(1)], aspectGroups(aspectEntries('Ascendant', ['Midheaven']))),
@@ -2386,7 +2396,7 @@ const interpretationReady = Promise.all([
   fetch('./data/interpretations.json?v=20261027-asc-virgo').then((response) => response.json()),
   fetch('./data/financial-interpretations.json?v=20261121').then((response) => response.json()),
   fetch('./data/house8-interpretations.json?v=20261121').then((response) => response.json()),
-  fetch('./data/sun-ascendant-interpretations.json?v=20261121').then((response) => response.json())
+  fetch('./data/sun-ascendant-interpretations.json?v=20261122-summary').then((response) => response.json())
 ]).then(([data, financialPlanetSigns, house8Interpretations, sunAscendantInterpretations]) => {
   interpretationData = { ...data, financialPlanetSigns, house8Interpretations, sunAscendantInterpretations };
   if (!document.querySelector('#interpretation-panel')?.hidden) renderInterpretation();
