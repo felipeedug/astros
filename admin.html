@@ -85,8 +85,8 @@
 
       <section class="cartao" id="cartao-indicacoes">
         <h2>Indicações e repasses</h2>
-        <p class="suave" style="font-size:.88rem">Quanto cada parceira(o) trouxe e a metade a repassar. Fundadores cadastrados à mão contam como R$ 49,85;
-          pagamentos pelo portal contam pelo valor pago. Para tornar alguém parceira(o), use <strong>Editar cadastro</strong> na lista de clientes.</p>
+        <p class="suave" style="font-size:.88rem">Repasse de 50% sobre a associação de <strong>Membro Fundador</strong> das pessoas indicadas (cadastradas à mão contam como R$ 49,85).
+          As outras compras aparecem só como informação, sem repasse definido. Para tornar alguém parceira(o), use <strong>Editar cadastro</strong> na lista de clientes.</p>
         <div id="lista-indicacoes"></div>
       </section>
 
@@ -161,7 +161,7 @@
       configurado, sessaoAtual, meuCadastro, admListarClientes, admListarProdutos, admCriarCliente,
       admTornarFundador, admCancelarAssinatura, admRegistrarCompra, admEditarCliente, admEnviarAcesso, admDefinirIndicacao, linkDeIndicacao, escapar, seloFundador, MOTIVOS_LIBERACAO,
       admListarLancamentos, admListarEventos, admSalvarEvento, admExcluirEvento
-    } from './js/portal.js?v=20261122-indicacoes';
+    } from './js/portal.js?v=20261122-repasse';
 
     // Opções de motivo (pagamento, equipe/cofundadora, doação, cortesia) em todos os seletores.
     document.querySelectorAll('select[data-motivos]').forEach((select) => {
@@ -225,14 +225,19 @@
     };
     const reaisAdm = (c) => (c / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     const PRECO_FUNDADOR = 4985;
-    // Quanto a pessoa pagou: pedidos pelo portal + compras e Fundador registrados à mão como "Pagamento"
-    function valorPago(c) {
-      const portal = (c.pedidos || []).filter((p) => p.status === 'pago')
-        .reduce((s, p) => s + (p.valor_pago_centavos || p.total_centavos || 0), 0);
-      const comprasManuais = c.compras.filter((x) => x.status === 'pago' && x.origem === 'pagamento' && !x.referencia_externa)
+    // Repasse de 50% só sobre a associação de Membro Fundador (combinado).
+    // As demais compras aparecem só como informação, sem repasse, até a conta de custos ser definida.
+    const itensPagos = (c) => (c.pedidos || []).filter((p) => p.status === 'pago').flatMap((p) => p.itens || []);
+    function valorFundador(c) {
+      const peloPortal = itensPagos(c).filter((i) => i.slug === 'membro-fundador').reduce((s, i) => s + (i.preco_centavos || 0), 0);
+      const aMao = c.assinaturas.filter((a) => a.plano_id === 'fundador' && a.origem === 'pagamento' && !a.referencia_externa).length * PRECO_FUNDADOR;
+      return peloPortal + aMao;
+    }
+    function valorOutros(c) {
+      const peloPortal = itensPagos(c).filter((i) => i.slug !== 'membro-fundador').reduce((s, i) => s + (i.preco_centavos || 0), 0);
+      const aMao = c.compras.filter((x) => x.status === 'pago' && x.origem === 'pagamento' && !x.referencia_externa)
         .reduce((s, x) => s + (x.valor_centavos || 0), 0);
-      const fundadorManual = c.assinaturas.filter((a) => a.plano_id === 'fundador' && a.origem === 'pagamento' && !a.referencia_externa).length * PRECO_FUNDADOR;
-      return portal + comprasManuais + fundadorManual;
+      return peloPortal + aMao;
     }
     function preencherParceiros() {
       const parceiros = clientes.filter((c) => c.parceiro).sort((a, b) => nomeDe(a.id).localeCompare(nomeDe(b.id)));
@@ -249,16 +254,18 @@
       }
       lista.innerHTML = parceiros.map((p) => {
         const indicados = clientes.filter((c) => c.indicado_por === p.id);
-        const total = indicados.reduce((s, c) => s + valorPago(c), 0);
+        const totalFundador = indicados.reduce((s, c) => s + valorFundador(c), 0);
+        const totalOutros = indicados.reduce((s, c) => s + valorOutros(c), 0);
         const fundadores = indicados.filter(fundadorAtivo).length;
         const link = p.codigo_indicacao ? linkDeIndicacao(p.codigo_indicacao) : '';
         return `<details class="evento-admin">
           <summary><strong>${escapar(nomeDe(p.id))}</strong> · ${indicados.length} ${indicados.length === 1 ? 'indicação' : 'indicações'} (${fundadores} ${fundadores === 1 ? 'fundador' : 'fundadores'})
-            · pago ${reaisAdm(total)} · <strong>repasse ${reaisAdm(Math.round(total / 2))}</strong></summary>
+            · Fundador ${reaisAdm(totalFundador)} · <strong>repasse ${reaisAdm(Math.round(totalFundador / 2))}</strong>
+            ${totalOutros ? `<span class="suave"> · outras compras ${reaisAdm(totalOutros)} (sem repasse definido)</span>` : ''}</summary>
           ${link ? `<p style="margin:.6rem 0">Link de indicação: <code>${escapar(link)}</code>
             <button class="botao botao-leve botao-pequeno" data-copiar-link="${escapar(link)}">Copiar link</button></p>`
             : '<p class="suave">Sem código de link ainda (Editar cadastro → Código do link).</p>'}
-          ${indicados.length ? `<ul>${indicados.map((c) => `<li>${escapar(nomeDe(c.id))} <span class="suave">(${escapar(c.email)})</span>${fundadorAtivo(c) ? ' ★' : ''} — ${reaisAdm(valorPago(c))}</li>`).join('')}</ul>`
+          ${indicados.length ? `<ul>${indicados.map((c) => `<li>${escapar(nomeDe(c.id))} <span class="suave">(${escapar(c.email)})</span>${fundadorAtivo(c) ? ' ★' : ''} — Fundador ${reaisAdm(valorFundador(c))}${valorOutros(c) ? `, outras compras ${reaisAdm(valorOutros(c))}` : ''}</li>`).join('')}</ul>`
             : '<p class="suave">Ninguém associado ainda.</p>'}
         </details>`;
       }).join('');
