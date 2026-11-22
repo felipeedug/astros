@@ -76,9 +76,18 @@
             </select>
           </label>
           <label>Motivo <select id="novo-motivo" data-motivos></select></label>
+          <label>Indicado(a) por <select id="novo-indicado-por" data-parceiros></select></label>
+          <label class="caixa-consentimento" style="grid-column:1/-1"><input id="novo-enviar-acesso" type="checkbox" checked> Enviar agora o e-mail de acesso (link e código para entrar)</label>
           <div style="margin-bottom:1rem"><button class="botao" type="submit">Cadastrar</button></div>
         </form>
         <p class="aviso" id="aviso-novo" role="status"></p>
+      </section>
+
+      <section class="cartao" id="cartao-indicacoes">
+        <h2>Indicações e repasses</h2>
+        <p class="suave" style="font-size:.88rem">Quanto cada parceira(o) trouxe e a metade a repassar. Fundadores cadastrados à mão contam como R$ 49,85;
+          pagamentos pelo portal contam pelo valor pago. Para tornar alguém parceira(o), use <strong>Editar cadastro</strong> na lista de clientes.</p>
+        <div id="lista-indicacoes"></div>
       </section>
 
       <section class="cartao">
@@ -123,6 +132,9 @@
             <option value="admin">Administrador(a) (acessa este Painel)</option>
           </select>
         </label>
+        <label>Indicado(a) por <select id="editar-indicado-por" data-parceiros></select></label>
+        <label class="caixa-consentimento"><input id="editar-parceiro" type="checkbox"> Parceira(o) de indicação (recebe metade do que suas indicações pagarem)</label>
+        <label id="editar-codigo-rotulo">Código do link de indicação <input id="editar-codigo" type="text" placeholder="ex.: mara" pattern="[A-Za-z0-9_-]{2,40}"></label>
         <label>Observações (só a equipe vê) <textarea id="editar-observacoes" rows="3"></textarea></label>
         <div style="display:flex;gap:.5rem;justify-content:flex-end">
           <button class="botao botao-leve" value="cancelar" formnovalidate>Cancelar</button>
@@ -147,9 +159,9 @@
   <script type="module">
     import {
       configurado, sessaoAtual, meuCadastro, admListarClientes, admListarProdutos, admCriarCliente,
-      admTornarFundador, admCancelarAssinatura, admRegistrarCompra, admEditarCliente, escapar, seloFundador, MOTIVOS_LIBERACAO,
+      admTornarFundador, admCancelarAssinatura, admRegistrarCompra, admEditarCliente, admEnviarAcesso, admDefinirIndicacao, linkDeIndicacao, escapar, seloFundador, MOTIVOS_LIBERACAO,
       admListarLancamentos, admListarEventos, admSalvarEvento, admExcluirEvento
-    } from './js/portal.js?v=20261122-editar';
+    } from './js/portal.js?v=20261122-indicacoes';
 
     // Opções de motivo (pagamento, equipe/cofundadora, doação, cortesia) em todos os seletores.
     document.querySelectorAll('select[data-motivos]').forEach((select) => {
@@ -188,7 +200,7 @@
         const proprio = c.mapas_nascimento.find((m) => m.proprio);
         const temNascimento = Boolean(proprio);
         return `<tr>
-          <td><strong>${escapar(c.nome || proprio?.nome || '—')}</strong><br><span class="suave">${escapar(c.email)}</span>${c.whatsapp ? `<br><span class="suave">${escapar(c.whatsapp)}</span>` : ''}${c.papel !== 'cliente' ? `<br><span class="selo selo-cinza">${escapar(c.papel)}</span>` : ''}</td>
+          <td><strong>${escapar(c.nome || proprio?.nome || '—')}</strong><br><span class="suave">${escapar(c.email)}</span>${c.whatsapp ? `<br><span class="suave">${escapar(c.whatsapp)}</span>` : ''}${c.papel !== 'cliente' ? `<br><span class="selo selo-cinza">${escapar(c.papel)}</span>` : ''}${c.parceiro ? ' <span class="selo">parceira(o)</span>' : ''}${c.indicado_por ? `<br><span class="suave" style="font-size:.8rem">↳ indicado(a) por <strong>${escapar(nomeDe(c.indicado_por))}</strong></span>` : ''}</td>
           <td>${fundador ? seloFundador('pequeno') : ''}${fundador && fundador.origem && fundador.origem !== 'pagamento' && rotuloMotivo(fundador.origem) ? `<br><span class="suave" style="font-size:.78rem">${escapar(rotuloMotivo(fundador.origem))}</span>` : ''}${outrosPlanos.map((p) => `<span class="selo selo-cinza">${escapar(p)}</span>`).join(' ')}</td>
           <td>${compras || '<span class="suave">—</span>'}</td>
           <td>${temNascimento ? '✅' : '<span class="suave">falta</span>'}</td>
@@ -199,14 +211,69 @@
               : `<button class="botao botao-dourado botao-pequeno" data-acao="fundador" data-id="${c.id}">★ Tornar Fundador</button>`}
             <button class="botao botao-leve botao-pequeno" data-acao="editar" data-id="${c.id}">${c.nome ? 'Editar cadastro' : '✎ Completar cadastro'}</button>
             <button class="botao botao-leve botao-pequeno" data-acao="compra" data-id="${c.id}">Registrar compra</button>
+            <button class="botao botao-leve botao-pequeno" data-acao="acesso" data-id="${c.id}">✉ Enviar acesso</button>
             <a class="botao botao-leve botao-pequeno" href="index.html?cliente=${encodeURIComponent(c.id)}#mapa">${temNascimento ? 'Ver mapa' : 'Cadastrar nascimento'}</a>
           </div></td>
         </tr>`;
       }).join('') || '<tr><td colspan="6" class="suave">Nenhum cliente encontrado.</td></tr>';
     }
 
+    // ---------------- Indicações
+    const nomeDe = (id) => {
+      const c = clientes.find((x) => x.id === id);
+      return c ? (c.nome || c.mapas_nascimento.find((m) => m.proprio)?.nome || c.email) : '—';
+    };
+    const reaisAdm = (c) => (c / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    const PRECO_FUNDADOR = 4985;
+    // Quanto a pessoa pagou: pedidos pelo portal + compras e Fundador registrados à mão como "Pagamento"
+    function valorPago(c) {
+      const portal = (c.pedidos || []).filter((p) => p.status === 'pago')
+        .reduce((s, p) => s + (p.valor_pago_centavos || p.total_centavos || 0), 0);
+      const comprasManuais = c.compras.filter((x) => x.status === 'pago' && x.origem === 'pagamento' && !x.referencia_externa)
+        .reduce((s, x) => s + (x.valor_centavos || 0), 0);
+      const fundadorManual = c.assinaturas.filter((a) => a.plano_id === 'fundador' && a.origem === 'pagamento' && !a.referencia_externa).length * PRECO_FUNDADOR;
+      return portal + comprasManuais + fundadorManual;
+    }
+    function preencherParceiros() {
+      const parceiros = clientes.filter((c) => c.parceiro).sort((a, b) => nomeDe(a.id).localeCompare(nomeDe(b.id)));
+      const opcoes = '<option value="">— ninguém / não sei —</option>'
+        + parceiros.map((p) => `<option value="${p.id}">${escapar(nomeDe(p.id))}</option>`).join('');
+      document.querySelectorAll('select[data-parceiros]').forEach((s) => { const v = s.value; s.innerHTML = opcoes; s.value = v; });
+    }
+    function desenharIndicacoes() {
+      const parceiros = clientes.filter((c) => c.parceiro);
+      const lista = document.querySelector('#lista-indicacoes');
+      if (!parceiros.length) {
+        lista.innerHTML = '<p class="suave">Nenhuma parceira cadastrada ainda. Em <strong>Editar cadastro</strong>, marque "Parceira(o) de indicação" e dê um código (ex.: mara).</p>';
+        return;
+      }
+      lista.innerHTML = parceiros.map((p) => {
+        const indicados = clientes.filter((c) => c.indicado_por === p.id);
+        const total = indicados.reduce((s, c) => s + valorPago(c), 0);
+        const fundadores = indicados.filter(fundadorAtivo).length;
+        const link = p.codigo_indicacao ? linkDeIndicacao(p.codigo_indicacao) : '';
+        return `<details class="evento-admin">
+          <summary><strong>${escapar(nomeDe(p.id))}</strong> · ${indicados.length} ${indicados.length === 1 ? 'indicação' : 'indicações'} (${fundadores} ${fundadores === 1 ? 'fundador' : 'fundadores'})
+            · pago ${reaisAdm(total)} · <strong>repasse ${reaisAdm(Math.round(total / 2))}</strong></summary>
+          ${link ? `<p style="margin:.6rem 0">Link de indicação: <code>${escapar(link)}</code>
+            <button class="botao botao-leve botao-pequeno" data-copiar-link="${escapar(link)}">Copiar link</button></p>`
+            : '<p class="suave">Sem código de link ainda (Editar cadastro → Código do link).</p>'}
+          ${indicados.length ? `<ul>${indicados.map((c) => `<li>${escapar(nomeDe(c.id))} <span class="suave">(${escapar(c.email)})</span>${fundadorAtivo(c) ? ' ★' : ''} — ${reaisAdm(valorPago(c))}</li>`).join('')}</ul>`
+            : '<p class="suave">Ninguém associado ainda.</p>'}
+        </details>`;
+      }).join('');
+    }
+    document.querySelector('#lista-indicacoes').addEventListener('click', async (evento) => {
+      const b = evento.target.closest('[data-copiar-link]');
+      if (!b) return;
+      await navigator.clipboard.writeText(b.dataset.copiarLink);
+      b.textContent = 'Link copiado ✓';
+    });
+
     async function recarregar() {
       clientes = await admListarClientes();
+      preencherParceiros();
+      desenharIndicacoes();
       desenhar();
       await desenharLancamentos();
       await desenharEventos();
@@ -443,10 +510,17 @@
         });
         const liberar = document.querySelector('#novo-liberar').value;
         const motivo = document.querySelector('#novo-motivo').value;
+        const indicadoPor = document.querySelector('#novo-indicado-por').value;
+        if (indicadoPor) await admDefinirIndicacao(novo.id, indicadoPor);
         if (liberar === 'fundador') await admTornarFundador(novo.id, motivo);
         else if (liberar.startsWith('produto:')) await admRegistrarCompra(novo.id, liberar.slice(8), null, motivo);
+        let enviado = '';
+        if (document.querySelector('#novo-enviar-acesso').checked) {
+          try { await admEnviarAcesso(novo.email); enviado = ' E-mail de acesso enviado ✉'; }
+          catch (e) { enviado = ` (O e-mail de acesso não foi enviado: ${e.message})`; }
+        }
         evento.target.reset();
-        avisar(aviso, `Cliente ${novo.email} cadastrado.`, 'ok');
+        avisar(aviso, `Cliente ${novo.email} cadastrado.${enviado}`, 'ok');
         await recarregar();
       } catch (e) {
         avisar(aviso, e.message.includes('duplicate') ? 'Já existe um cliente com este e-mail.' : e.message, 'erro');
@@ -480,7 +554,10 @@
           nome: document.querySelector('#editar-nome').value.trim(),
           whatsapp: document.querySelector('#editar-whatsapp').value.trim(),
           papel,
-          observacoes: document.querySelector('#editar-observacoes').value.trim()
+          observacoes: document.querySelector('#editar-observacoes').value.trim(),
+          indicado_por: document.querySelector('#editar-indicado-por').value,
+          parceiro: document.querySelector('#editar-parceiro').checked,
+          codigo_indicacao: document.querySelector('#editar-codigo').value.trim().toLowerCase()
         });
         avisar(avisoLista, `Cadastro de ${document.querySelector('#editar-nome').value.trim() || clienteEmEdicao.email} atualizado.`, 'ok');
         await recarregar();
@@ -517,6 +594,14 @@
           if (!confirm('Remover o plano Fundador desta pessoa? Ela perde o acesso aos produtos do plano.')) return;
           await admCancelarAssinatura(id);
           avisar(avisoLista, 'Plano Fundador removido.', 'ok');
+        } else if (acao === 'acesso') {
+          const pessoa = clientes.find((c) => c.id === id);
+          if (!confirm(`Enviar para ${pessoa.email} o e-mail com o link e o código de acesso?`)) return;
+          botao.disabled = true;
+          await admEnviarAcesso(pessoa.email);
+          avisar(avisoLista, `E-mail de acesso enviado para ${pessoa.email} ✉`, 'ok');
+          botao.disabled = false;
+          return;
         } else if (acao === 'editar') {
           clienteEmEdicao = clientes.find((c) => c.id === id);
           const proprio = clienteEmEdicao.mapas_nascimento.find((m) => m.proprio);
@@ -525,6 +610,11 @@
           document.querySelector('#editar-whatsapp').value = clienteEmEdicao.whatsapp || '';
           document.querySelector('#editar-papel').value = clienteEmEdicao.papel || 'cliente';
           document.querySelector('#editar-observacoes').value = clienteEmEdicao.observacoes || '';
+          document.querySelector('#editar-indicado-por').value = clienteEmEdicao.indicado_por || '';
+          [...document.querySelector('#editar-indicado-por').options].forEach((o) => { o.disabled = o.value === clienteEmEdicao.id; });
+          document.querySelector('#editar-parceiro').checked = Boolean(clienteEmEdicao.parceiro);
+          document.querySelector('#editar-codigo').value = clienteEmEdicao.codigo_indicacao
+            || (clienteEmEdicao.nome || '').split(' ')[0].normalize('NFD').replace(/[^\w]/g, '').toLowerCase();
           dialogoEditar.showModal();
           return;
         } else if (acao === 'compra') {
