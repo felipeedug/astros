@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pagamento — Entre Estrelas</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/portal.css?v=20261122-presentes">
+</head>
+<body class="pagina-portal">
+  <header class="portal-topo">
+    <a href="index.html" aria-label="Entre Estrelas, início"><img src="fonts/Novo%20Design%20-%20COM%20texto.png" alt="Entre Estrelas"></a>
+    <nav><a href="minha-area.html">Minha área</a></nav>
+  </header>
+
+  <main class="portal-principal">
+    <section class="cartao cartao-estreito" style="text-align:center">
+      <div id="conteudo">
+        <h1>Confirmando seu pagamento…</h1>
+        <p class="suave">Isso leva só alguns segundos.</p>
+      </div>
+    </section>
+  </main>
+
+  <script type="module">
+    import { configurado, confirmarPagamento } from './js/portal.js';
+
+    // A InfinitePay devolve: order_nsu, transaction_nsu, slug, capture_method, receipt_url
+    const q = new URLSearchParams(location.search);
+    const dados = {
+      order_nsu: q.get('order_nsu') || '',
+      transaction_nsu: q.get('transaction_nsu') || '',
+      slug: q.get('slug') || q.get('invoice_slug') || '',
+      capture_method: q.get('capture_method') || '',
+      receipt_url: q.get('receipt_url') || ''
+    };
+    const conteudo = document.querySelector('#conteudo');
+    const recibo = dados.receipt_url && /^https:\/\//.test(dados.receipt_url)
+      ? `<p style="margin-top:1rem"><a href="${dados.receipt_url.replace(/"/g, '')}" target="_blank" rel="noopener noreferrer">Ver comprovante</a></p>` : '';
+
+    const sucesso = () => {
+      conteudo.innerHTML = `
+        <h1>Pagamento confirmado! ★</h1>
+        <p>Obrigado! Tudo o que você comprou já está na sua área.</p>
+        <p class="suave">Se comprou um presente, o link para enviar está em <strong>Meus presentes</strong>.</p>
+        <p style="margin-top:1.2rem"><a class="botao botao-dourado" href="minha-area.html">Ir para a minha área</a></p>${recibo}`;
+    };
+    const aguardando = () => {
+      conteudo.innerHTML = `
+        <h1>Pagamento recebido</h1>
+        <p>Estamos finalizando a confirmação. Em alguns minutos tudo aparece na sua área.</p>
+        <p class="suave">Pagou por Pix? A confirmação pode levar um pouquinho mais.</p>
+        <p style="margin-top:1.2rem"><a class="botao" href="minha-area.html">Ir para a minha área</a></p>${recibo}`;
+    };
+
+    async function iniciar() {
+      if (!configurado || !dados.order_nsu || !dados.transaction_nsu || !dados.slug) return aguardando();
+      for (let tentativa = 0; tentativa < 4; tentativa++) {
+        const r = await confirmarPagamento(dados).catch(() => ({}));
+        if (r.ok) return sucesso();
+        await new Promise((ok) => setTimeout(ok, 2500));
+      }
+      aguardando();
+    }
+    iniciar();
+  </script>
+</body>
+</html>

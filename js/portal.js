@@ -182,6 +182,71 @@ export async function admListarLancamentos() {
   return data || [];
 }
 
+// ------------------------------------------------------------- compras e presentes
+
+// Produtos à venda (preços para mostrar; o preço final é sempre calculado no servidor)
+export async function produtosAVenda() {
+  exigirConfiguracao();
+  const { data, error } = await supabase.from('produtos')
+    .select('id, slug, nome, descricao, icone, preco_centavos, preco_presente_membro_centavos, permite_presente, extra_slug, arquivo_caminho, ativo')
+    .eq('ativo', true);
+  falha(error, 'Não foi possível carregar as opções.');
+  return data || [];
+}
+
+// Cria o pagamento na InfinitePay e leva a pessoa para pagar. itens: [{ slug, presente }]
+export async function irParaPagamento(itens) {
+  exigirConfiguracao();
+  const { data, error } = await supabase.functions.invoke('criar-pagamento', { body: { itens } });
+  if (error || !data?.url) {
+    let mensagem = 'Não foi possível iniciar o pagamento. Tente de novo em instantes.';
+    try { mensagem = (await error.context.json()).erro || mensagem; } catch { /* mantém a padrão */ }
+    throw new Error(mensagem);
+  }
+  window.location.href = data.url;
+}
+
+// Confirma o pagamento na volta da InfinitePay (caso o aviso automático atrase)
+export async function confirmarPagamento(dados) {
+  exigirConfiguracao();
+  const { data } = await supabase.functions.invoke('aviso-infinitepay', { body: dados });
+  return data || {};
+}
+
+export async function meusPresentes() {
+  exigirConfiguracao();
+  const { data, error } = await supabase.rpc('meus_presentes');
+  if (error && /meus_presentes|does not exist|schema cache/i.test(error.message)) return [];
+  falha(error, 'Não foi possível carregar seus presentes.');
+  return data || [];
+}
+
+export async function verPresente(codigo) {
+  exigirConfiguracao();
+  const { data, error } = await supabase.rpc('ver_presente', { p_codigo: codigo });
+  falha(error, 'Não foi possível abrir o presente.');
+  return (data || [])[0] || null;
+}
+
+export async function resgatarPresente(codigo) {
+  exigirConfiguracao();
+  const { data, error } = await supabase.rpc('resgatar_presente', { p_codigo: codigo });
+  falha(error, 'Não foi possível receber o presente.');
+  return data;
+}
+
+// Link temporário (5 min) para baixar um arquivo comprado (ex.: livro em PDF)
+export async function linkDoArquivo(caminho) {
+  exigirConfiguracao();
+  const { data, error } = await supabase.storage.from('arquivos').createSignedUrl(caminho, 300, { download: true });
+  falha(error, 'Não foi possível preparar o download.');
+  return data.signedUrl;
+}
+
+export function linkDePresente(codigo) {
+  return urlDoSite(`presente.html?c=${encodeURIComponent(codigo)}`);
+}
+
 // ------------------------------------------------------------- agenda
 
 export async function minhaAgenda(dias = 14) {
@@ -347,6 +412,8 @@ const ICONES = {
   calendario: '<rect x="8" y="11" width="32" height="29" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 19h32M16 7v8M32 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M24 24l1.6 3.4 3.7.4-2.8 2.5.8 3.7-3.3-1.9-3.3 1.9.8-3.7-2.8-2.5 3.7-.4z" fill="currentColor"/>',
   lua: '<path d="M30 8a16 16 0 1 0 10 26A13 13 0 0 1 30 8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linejoin="round" d="M36.5 8.5l1.4 2.9 3.2.4-2.3 2.2.6 3.1-2.9-1.6-2.9 1.6.6-3.1-2.3-2.2 3.2-.4z"/>',
   mandala: '<circle cx="24" cy="24" r="18" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="24" cy="24" r="11" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M24 6v36M6 24h36M11.3 11.3l25.4 25.4M36.7 11.3L11.3 36.7" stroke="currentColor" stroke-width="1" opacity=".5"/>',
+  livro: '<path d="M8 10c5-2 11-2 16 1 5-3 11-3 16-1v27c-5-2-11-2-16 1-5-3-11-3-16-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M24 11v27" stroke="currentColor" stroke-width="2"/>',
+  presente: '<rect x="8" y="18" width="32" height="22" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 13h36v6H6zM24 13v27" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M24 13c-3-6-10-6-10-2s7 2 10 2c3 0 10 2 10-2s-7-4-10 2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>',
   estrela: '<path fill="currentColor" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" d="M24 6l5.5 11.8 12.9 1.5-9.5 8.9 2.5 12.8L24 34.6l-11.4 6.4 2.5-12.8-9.5-8.9 12.9-1.5z"/>'
 };
 
