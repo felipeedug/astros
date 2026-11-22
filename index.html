@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Noto+Sans+Symbols+2&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20261107-dashboard-title-v18">
+<link rel="stylesheet" href="styles.css?v=20261122-pdf-sem-faixa">
 <link rel="stylesheet" href="print.css?v=20261108-summary-two-columns-v33">
 </head>
 <body>
@@ -26,21 +26,12 @@
         <span class="brand-home-label">Início</span>
       </a>
       <nav class="nav" aria-label="Navegação principal">
+        <a class="nav-link" href="minha-area.html">Minha área</a>
         <a class="nav-link" data-view="manifesto" href="#manifesto">Manifesto</a>
         <a class="nav-link" data-view="quem-somos" href="#quem-somos">Quem somos</a>
         <a class="nav-link" data-view="servicos" href="#servicos">Serviços</a>
         <a class="nav-link" data-view="comunidade" href="#comunidade">Comunidade</a>
         <a class="nav-link" data-view="apoie" href="#apoie"><span aria-hidden="true">⭐</span> Membro Fundador</a>
-        <div class="nav-item nav-item--dropdown">
-          <button class="nav-link nav-menu-toggle" id="maps-menu-toggle" type="button" aria-expanded="false" aria-controls="maps-menu"><span class="map-star" aria-hidden="true">★</span> Mapas <span class="nav-chevron" aria-hidden="true">⌄</span></button>
-          <div class="nav-submenu" id="maps-menu" hidden>
-            <a class="nav-link" data-view="ascendente" href="#ascendente">Ascendente</a>
-            <a class="nav-link" data-view="efemerides" href="#efemerides">Efemérides</a>
-            <a class="nav-link" data-view="mapa" data-map-mode="life" href="#mapa">Mapa da vida</a>
-            <a class="nav-link" data-view="mapa" data-map-mode="year" href="#mapa">Mapa do ano</a>
-            <a class="nav-link" data-view="lua" href="#lua">Lua fora de curso</a>
-          </div>
-        </div>
       </nav>
     </header>
 
@@ -861,7 +852,7 @@
       </div>
       <div class="footer-contact">
         <strong>Contato</strong>
-        <a href="mailto:estreestrelasastrologia@outlook.com">estreestrelasastrologia@outlook.com</a>
+        <a href="mailto:entreestrelasastrologia@outlook.com">entreestrelasastrologia@outlook.com</a>
       </div>
       <p class="footer-copyright"><span>© 2026 Entre Estrelas. Todos os direitos reservados.</span><span>Feito com propósito, tecnologia e pó de estrelas.</span></p>
     </footer>
@@ -878,7 +869,11 @@
     <button class="bonus-lightbox-close" type="button" aria-label="Fechar foto">×</button>
     <img src="" alt="">
   </dialog>
-<script src="app.js?v=20261107-dashboard-heading-v23"></script>
+<script src="app.js?v=20261122-area-cliente-v4"></script>
+  <script type="module">
+    const parametrosConta = new URLSearchParams(window.location.search);
+    if (['meu-mapa', 'cliente', 'ferramenta', 'acesso-mapas'].some((p) => parametrosConta.has(p))) import('./js/mapa-conta.js');
+  </script>
   <script type="module">
     window.astroWasmLoading = true;
     if (window.location.protocol !== 'file:') {

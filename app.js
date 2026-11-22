@@ -51,6 +51,7 @@ const cityCatalogPromise = window.location.protocol === 'file:'
     return null;
   });
 let locationPickersReady = Promise.resolve();
+const locationPickerControls = {};
 const brazilianStateNames = Object.entries({ acre: 'AC', alagoas: 'AL', amapa: 'AP', amazonas: 'AM', bahia: 'BA', ceara: 'CE', 'distrito federal': 'DF', 'espirito santo': 'ES', goias: 'GO', maranhao: 'MA', 'mato grosso do sul': 'MS', 'mato grosso': 'MT', 'minas gerais': 'MG', paraiba: 'PB', parana: 'PR', pernambuco: 'PE', piaui: 'PI', 'rio de janeiro': 'RJ', 'rio grande do norte': 'RN', 'rio grande do sul': 'RS', rondonia: 'RO', roraima: 'RR', 'santa catarina': 'SC', 'sao paulo': 'SP', sergipe: 'SE', tocantins: 'TO', para: 'PA' }).sort(([first], [second]) => second.length - first.length);
 const brazilianCityStates = { 'sao paulo': 'SP', 'rio de janeiro': 'RJ', brasilia: 'DF' };
 const brazilDstRulesPromise = window.location.protocol === 'file:'
@@ -313,6 +314,27 @@ async function initializeLocationPickers() {
         appendSuggestions();
       }
     });
+
+    // Permite que a área de clientes (js/mapa-conta.js) preencha a cidade salva.
+    locationPickerControls[prefix] = {
+      async select(countryName, regionCode, cityName, latitude, longitude) {
+        const country = countries.find((item) => normalizePlace(item.name) === normalizePlace(countryName));
+        if (!country) return false;
+        countrySelect.value = country.id;
+        await loadCountry(country.id, regionCode || '', cityName);
+        if (Number.isFinite(latitude) && Number.isFinite(longitude)) {
+          const exact = regionRecords().find((record) => normalizePlace(record[0]) === normalizePlace(cityName)
+            && Math.abs(record[2] - latitude) < 1e-4 && Math.abs(record[3] - longitude) < 1e-4);
+          if (exact) chooseCity(exact);
+        }
+        return Boolean(placeInput.value);
+      },
+      setDisabled(disabled) {
+        countrySelect.disabled = disabled;
+        regionSelect.disabled = disabled;
+        cityInput.disabled = disabled;
+      }
+    };
 
     const defaultCountry = countries.find((country) => normalizePlace(country.name) === normalizePlace(defaultCountryName));
     countrySelect.value = defaultCountry?.id || '';
@@ -2048,6 +2070,54 @@ form.addEventListener('submit', async (event) => {
   await renderMap();
 });
 
+// Ponte para a área de clientes (js/mapa-conta.js): preencher os dados
+// salvos no cadastro, ler o que foi digitado e gerar o mapa.
+window.entreEstrelasMapa = {
+  ready: () => locationPickersReady,
+  async fill({ nome, data_nascimento, hora_nascimento, pais, regiao, cidade, latitude, longitude }) {
+    await locationPickersReady;
+    document.querySelector('#name').value = nome || '';
+    document.querySelector('#date').value = data_nascimento || '';
+    document.querySelector('#time').value = (hora_nascimento || '').slice(0, 5);
+    return locationPickerControls.birth?.select(pais, regiao, cidade, latitude, longitude) ?? false;
+  },
+  read() {
+    const place = document.querySelector('#place').value;
+    const location = place ? cityData(place) : null;
+    if (!location || location.length < 6) return null;
+    const [latitude, longitude, , regionCode, countryName, cityName] = location;
+    return {
+      nome: document.querySelector('#name').value.trim(),
+      data_nascimento: document.querySelector('#date').value,
+      hora_nascimento: document.querySelector('#time').value,
+      pais: countryName,
+      regiao: regionCode || null,
+      cidade: cityName,
+      latitude: Number(latitude),
+      longitude: Number(longitude)
+    };
+  },
+  setLocked(locked) {
+    ['#name', '#date', '#time'].forEach((selector) => { document.querySelector(selector).disabled = locked; });
+    locationPickerControls.birth?.setDisabled(locked);
+    const submit = form.querySelector('button[type="submit"]');
+    if (submit) submit.hidden = locked;
+    // "Preencha os dados..." não faz sentido quando o mapa já vem do cadastro.
+    const fillHint = form.closest('.input-panel')?.querySelector(':scope > p.muted');
+    if (fillHint) fillHint.hidden = locked;
+  },
+  render: () => renderMap(),
+  // Abre a interpretação já pronta (sem o cliente precisar clicar).
+  async showInterpretation() {
+    await interpretationReady;
+    const panel = document.querySelector('#interpretation-panel');
+    if (!panel) return;
+    panel.hidden = false;
+    renderInterpretation();
+  }
+};
+window.dispatchEvent(new Event('entre-estrelas-mapa-ready'));
+
 const navigationLinks = [...document.querySelectorAll('[data-view]')];
 const viewPanels = [...document.querySelectorAll('.view-panel')];
 const mapsMenuToggle = document.querySelector('#maps-menu-toggle');
@@ -2326,7 +2396,10 @@ document.querySelector('#share-project')?.addEventListener('click', async () => 
     status.textContent = 'Não foi possível compartilhar automaticamente. Copie o endereço pela barra do navegador.';
   }
 });
-const privateMapsAccess = new URLSearchParams(window.location.search).has('acesso-mapas');
+const accessParams = new URLSearchParams(window.location.search);
+// Todos exigem login (js/mapa-conta.js): meu-mapa = cliente; ferramenta = ferramentas
+// gratuitas com cadastro; cliente e acesso-mapas = só administradores.
+const privateMapsAccess = ['acesso-mapas', 'meu-mapa', 'cliente', 'ferramenta'].some((param) => accessParams.has(param));
 const requestedView = window.location.hash.slice(1);
 const publicViews = ['inicio', 'manifesto', 'quem-somos', 'servicos', 'comunidade', 'apoie'];
 const privateMapViews = ['ascendente', 'efemerides', 'mapa', 'lua'];

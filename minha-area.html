@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Minha área — Entre Estrelas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/portal.css">
+</head>
+<body>
+  <header class="portal-topo">
+    <a href="index.html" aria-label="Entre Estrelas, início"><img src="fonts/Novo%20Design%20-%20COM%20texto.png" alt="Entre Estrelas"></a>
+    <nav>
+      <a href="index.html">Site</a>
+      <a href="admin.html" id="link-admin" hidden>Painel</a>
+      <a href="#" id="sair" hidden>Sair</a>
+    </nav>
+  </header>
+
+  <main class="portal-principal">
+    <p class="aviso aviso-info" id="carregando">Carregando sua área…</p>
+
+    <div id="area" hidden>
+      <div class="cabecalho-area">
+        <div>
+          <h1 id="saudacao">Olá!</h1>
+          <p class="suave" id="email-usuario"></p>
+        </div>
+        <div id="selos"></div>
+      </div>
+
+      <section class="cartao" id="cartao-equipe" hidden>
+        <h2>Área da equipe</h2>
+        <p class="suave">Gere o mapa de qualquer pessoa, com todas as configurações e a interpretação.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:.6rem">
+          <a class="botao botao-dourado" href="index.html?acesso-mapas=1#mapa">Gerar Mapa da Vida</a>
+          <a class="botao botao-leve" href="index.html?acesso-mapas=1&amp;modo=ano#mapa">Mapa do Ano</a>
+          <a class="botao botao-leve" href="index.html?acesso-mapas=1#efemerides">Efemérides</a>
+          <a class="botao botao-leve" href="index.html?acesso-mapas=1#lua">Lua fora de curso</a>
+        </div>
+      </section>
+
+      <section class="cartao" id="cartao-nascimento">
+        <h2>Seus dados de nascimento</h2>
+        <div id="nascimento-conteudo"></div>
+      </section>
+
+      <section class="cartao">
+        <h2>Meus produtos</h2>
+        <div class="produtos" id="lista-produtos"></div>
+      </section>
+
+      <section class="cartao" id="cartao-gratuitas" hidden>
+        <h2>Ferramentas gratuitas</h2>
+        <p class="suave">Disponíveis para quem tem cadastro no Entre Estrelas.</p>
+        <div class="produtos" id="lista-gratuitas"></div>
+      </section>
+
+      <section class="cartao">
+        <h2>Contato</h2>
+        <form id="form-contato" class="grade-form">
+          <label>Nome <input id="contato-nome" type="text" autocomplete="name"></label>
+          <label>WhatsApp <input id="contato-whatsapp" type="tel" autocomplete="tel" placeholder="(11) 90000-0000"></label>
+          <label class="caixa-consentimento"><input id="contato-novidades" type="checkbox"> Quero receber novidades e conteúdos do Entre Estrelas.</label>
+          <div style="margin-bottom:1rem"><button class="botao botao-leve" type="submit">Salvar</button></div>
+        </form>
+        <p class="aviso" id="aviso-contato" role="status"></p>
+      </section>
+    </div>
+  </main>
+
+  <script type="module">
+    import {
+      configurado, sessaoAtual, sair, meuCadastro, meusProdutos, minhasAssinaturas,
+      mapaProprio, atualizarMeuCadastro, escapar, formatarPreco, seloFundador
+    } from './js/portal.js';
+
+    const carregando = document.querySelector('#carregando');
+    const erro = (texto) => { carregando.textContent = texto; carregando.className = 'aviso aviso-erro'; };
+
+    async function iniciar() {
+      if (!configurado) return erro('O login ainda está sendo configurado. Volte em breve.');
+      const sessao = await sessaoAtual();
+      if (!sessao) return location.replace('entrar.html');
+
+      const cliente = await meuCadastro();
+      if (!cliente) return erro('Não encontramos seu cadastro. Saia e entre de novo, ou fale com a gente pelo WhatsApp.');
+
+      const [produtos, assinaturas, nascimento] = await Promise.all([
+        meusProdutos(), minhasAssinaturas(cliente.id), mapaProprio(cliente.id)
+      ]);
+
+      const nomeExibido = cliente.nome || nascimento?.nome || '';
+      document.querySelector('#saudacao').textContent = nomeExibido ? `Olá, ${nomeExibido.split(' ')[0]}!` : 'Olá!';
+      document.querySelector('#email-usuario').textContent = cliente.email;
+      document.querySelector('#contato-nome').value = nomeExibido;
+      document.querySelector('#contato-whatsapp').value = cliente.whatsapp || '';
+      document.querySelector('#selos').innerHTML = assinaturas
+        .map((a) => a.plano_id === 'fundador'
+          ? seloFundador()
+          : `<span class="selo">${escapar(a.planos?.nome || a.plano_id)}</span>`).join(' ');
+      if (cliente.papel === 'admin') document.querySelector('#link-admin').hidden = false;
+      if (['admin', 'astrologa'].includes(cliente.papel)) document.querySelector('#cartao-equipe').hidden = false;
+
+      const nascimentoConteudo = document.querySelector('#nascimento-conteudo');
+      if (nascimento) {
+        const data = new Date(`${nascimento.data_nascimento}T00:00:00`).toLocaleDateString('pt-BR');
+        nascimentoConteudo.innerHTML = `
+          <p><strong>${escapar(nascimento.nome)}</strong><br>
+          ${data} às ${escapar(nascimento.hora_nascimento.slice(0, 5))}<br>
+          ${escapar(nascimento.cidade)}${nascimento.regiao ? ` — ${escapar(nascimento.regiao)}` : ''}, ${escapar(nascimento.pais)}</p>
+          <p class="suave" style="font-size:.85rem">Algum dado errado? Fale com a gente pelo WhatsApp que corrigimos para você.</p>`;
+      } else {
+        nascimentoConteudo.innerHTML = `
+          <p>Para gerar seus mapas, precisamos dos seus dados de nascimento. Você preenche <strong>uma única vez</strong>.</p>
+          <a class="botao botao-dourado" href="index.html?meu-mapa=1#mapa">Cadastrar meus dados</a>`;
+      }
+
+      const cartaoProduto = (p, mostrarSelo) => {
+        const acao = p.liberado
+          ? (p.link_acesso
+            ? `<a class="botao" href="${escapar(p.link_acesso)}">Acessar</a>`
+            : '<span class="selo selo-cinza">Em breve</span>')
+          : p.link_pagamento
+            ? `<a class="botao botao-leve" href="${escapar(p.link_pagamento)}" target="_blank" rel="noopener noreferrer">Quero este${p.preco_centavos ? ` · ${formatarPreco(p.preco_centavos)}` : ''}</a>`
+            : '<span class="selo selo-cinza">Em breve</span>';
+        return `<article class="produto ${p.liberado ? '' : 'produto-bloqueado'}">
+          <h3>${escapar(p.nome)}</h3>
+          <p>${escapar(p.descricao || '')}</p>
+          ${mostrarSelo && p.liberado ? '<span class="selo">Liberado</span>' : ''}
+          ${acao}
+        </article>`;
+      };
+      const pagos = produtos.filter((p) => (p.nivel || 'pago') === 'pago');
+      const gratuitos = produtos.filter((p) => p.nivel && p.nivel !== 'pago');
+      document.querySelector('#lista-produtos').innerHTML = pagos.map((p) => cartaoProduto(p, true)).join('')
+        || '<p class="suave">Nenhum produto disponível ainda.</p>';
+      if (gratuitos.length) {
+        document.querySelector('#lista-gratuitas').innerHTML = gratuitos.map((p) => cartaoProduto(p, false)).join('');
+        document.querySelector('#cartao-gratuitas').hidden = false;
+      }
+      document.querySelector('#contato-novidades').checked = Boolean(cliente.aceita_novidades);
+
+      document.querySelector('#form-contato').addEventListener('submit', async (evento) => {
+        evento.preventDefault();
+        const aviso = document.querySelector('#aviso-contato');
+        try {
+          await atualizarMeuCadastro(cliente.id, {
+            nome: document.querySelector('#contato-nome').value.trim() || null,
+            whatsapp: document.querySelector('#contato-whatsapp').value.trim() || null,
+            aceita_novidades: document.querySelector('#contato-novidades').checked
+          });
+          aviso.textContent = 'Dados salvos.'; aviso.className = 'aviso aviso-ok';
+        } catch (e) {
+          aviso.textContent = e.message; aviso.className = 'aviso aviso-erro';
+        }
+      });
+
+      const botaoSair = document.querySelector('#sair');
+      botaoSair.hidden = false;
+      botaoSair.addEventListener('click', async (evento) => {
+        evento.preventDefault();
+        await sair();
+        location.replace('index.html');
+      });
+
+      carregando.hidden = true;
+      document.querySelector('#area').hidden = false;
+    }
+
+    iniciar().catch((e) => erro(e.message));
+  </script>
+</body>
+</html>
