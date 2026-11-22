@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 430" role="img" aria-label="Árvore de Natal com raízes">
+  <defs>
+    <linearGradient id="copa" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9DB8D9" stop-opacity=".34"/>
+      <stop offset="1" stop-color="#7AA0CC" stop-opacity=".14"/>
+    </linearGradient>
+    <linearGradient id="raiz" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F0C75E" stop-opacity=".85"/>
+      <stop offset="1" stop-color="#F0C75E" stop-opacity=".05"/>
+    </linearGradient>
+    <radialGradient id="brilho">
+      <stop offset="0" stop-color="#F0C75E" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#F0C75E" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- copa: o céu -->
+  <g fill="url(#copa)" stroke="#BFD3EA" stroke-opacity=".18" stroke-width="1">
+    <path d="M150 205 L40 315 Q150 334 260 315 Z"/>
+    <path d="M150 150 L62 250 Q150 266 238 250 Z"/>
+    <path d="M150 100 L85 185 Q150 198 215 185 Z"/>
+    <path d="M150 62 L105 125 Q150 135 195 125 Z"/>
+  </g>
+
+  <!-- tronco: a nossa estrutura -->
+  <rect x="139" y="318" width="22" height="40" rx="3" fill="#7AA0CC" fill-opacity=".22"/>
+
+  <!-- luzes -->
+  <g fill="#F0C75E">
+    <circle cx="132" cy="112" r="2.2" opacity=".9"/>
+    <circle cx="170" cy="120" r="1.8" opacity=".7"/>
+    <circle cx="112" cy="172" r="2.2" opacity=".85"/>
+    <circle cx="160" cy="165" r="2" opacity=".75"/>
+    <circle cx="196" cy="178" r="1.8" opacity=".7"/>
+    <circle cx="92" cy="238" r="2.2" opacity=".8"/>
+    <circle cx="140" cy="226" r="1.9" opacity=".7"/>
+    <circle cx="188" cy="240" r="2.3" opacity=".9"/>
+    <circle cx="70" cy="302" r="2" opacity=".75"/>
+    <circle cx="118" cy="290" r="2.3" opacity=".9"/>
+    <circle cx="166" cy="296" r="1.9" opacity=".7"/>
+    <circle cx="222" cy="304" r="2.2" opacity=".85"/>
+  </g>
+
+  <!-- chão -->
+  <path d="M14 359 Q150 349 286 359" fill="none" stroke="#BFD3EA" stroke-opacity=".22" stroke-width="1.5"/>
+
+  <!-- raízes: a nossa ancestralidade -->
+  <g fill="none" stroke="url(#raiz)" stroke-width="2.4" stroke-linecap="round">
+    <path d="M150 356 L150 424"/>
+    <path d="M148 358 C146 382 124 392 96 414"/>
+    <path d="M152 358 C154 384 174 396 206 416"/>
+    <path d="M145 360 C128 372 92 372 58 394"/>
+    <path d="M155 360 C176 370 214 372 246 390"/>
+    <path d="M118 400 C110 410 102 414 88 418" stroke-width="1.4"/>
+    <path d="M184 404 C194 412 204 414 220 420" stroke-width="1.4"/>
+    <path d="M86 380 C76 388 66 390 50 404" stroke-width="1.4"/>
+    <path d="M222 378 C232 386 244 392 262 404" stroke-width="1.4"/>
+    <path d="M150 396 C142 404 138 412 136 424" stroke-width="1.3"/>
+  </g>
+
+  <!-- estrela no topo: a ligação com o divino -->
+  <circle cx="150" cy="40" r="34" fill="url(#brilho)"/>
+  <path d="M150 18 L155.29 32.72 L170.92 33.2 L158.56 42.78 L162.93 57.8 L150 49 L137.07 57.8 L141.44 42.78 L129.08 33.2 L144.71 32.72 Z" fill="#F0C75E"/>
+</svg>
