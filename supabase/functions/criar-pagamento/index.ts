@@ -43,7 +43,7 @@ Deno.serve(async (req) => {
   if (!escolhidos.length) return resposta({ erro: 'Nenhum item escolhido.' }, 400);
 
   const { data: produtos } = await servidor.from('produtos')
-    .select('id, slug, nome, preco_centavos, preco_presente_membro_centavos, permite_presente, ativo')
+    .select('id, slug, nome, preco_centavos, preco_membro_centavos, preco_presente_membro_centavos, permite_presente, ativo')
     .in('slug', escolhidos.map((i) => i.slug)).eq('ativo', true);
 
   // Membro = plano ativo (Fundador/Comunidade): paga o preço de membro nos presentes
@@ -58,7 +58,9 @@ Deno.serve(async (req) => {
     if (!p) return resposta({ erro: `Item indisponível: ${escolha.slug}` }, 400);
     const presente = Boolean(escolha.presente);
     if (presente && !p.permite_presente) return resposta({ erro: `${p.nome} não pode ser dado de presente.` }, 400);
-    const preco = presente && membro && p.preco_presente_membro_centavos ? p.preco_presente_membro_centavos : p.preco_centavos;
+    // Membro paga o preço de membro: para presentear (se houver) ou para si
+    const precoMembro = presente ? (p.preco_presente_membro_centavos || p.preco_membro_centavos) : p.preco_membro_centavos;
+    const preco = membro && precoMembro ? precoMembro : p.preco_centavos;
     if (!preco || preco < 100) return resposta({ erro: `${p.nome} ainda não tem preço.` }, 400);
     itens.push({ produto_id: p.id, slug: p.slug, nome: p.nome, presente, preco_centavos: preco });
   }

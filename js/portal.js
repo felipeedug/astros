@@ -139,6 +139,15 @@ export async function atualizarMeuCadastro(clienteId, { nome, whatsapp, aceita_n
   falha(error, 'Não foi possível salvar seu cadastro.');
 }
 
+// Admin completa o cadastro de qualquer pessoa (nome, WhatsApp, papel e observações)
+export async function admEditarCliente(clienteId, { nome, whatsapp, papel, observacoes }) {
+  exigirConfiguracao();
+  const { error } = await supabase.from('clientes')
+    .update({ nome: nome || null, whatsapp: whatsapp || null, papel, observacoes: observacoes || null })
+    .eq('id', clienteId);
+  falha(error, 'Não foi possível salvar o cadastro.');
+}
+
 export async function meusProdutos() {
   exigirConfiguracao();
   const { data, error } = await supabase.rpc('meus_produtos');
@@ -363,7 +372,7 @@ export async function admListarClientes() {
   exigirConfiguracao();
   const { data, error } = await supabase
     .from('clientes')
-    .select(`id, email, nome, whatsapp, papel, user_id, criado_em,
+    .select(`id, email, nome, whatsapp, papel, observacoes, user_id, criado_em,
              assinaturas(id, plano_id, status, fim, origem),
              compras(id, status, produto_id, pago_em, origem, produtos(nome)),
              mapas_nascimento(id, proprio, nome)`)
