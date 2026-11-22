@@ -15,3 +15,8 @@ wasm/astro_legacy_wasm_v4.wasm
 wasm/astro_legacy_wasm_v4.data
 *.o
 __pycache__/
+
+# Dados pessoais de clientes: nunca vão para o GitHub
+privado/
+fonts/*Mapa da Vida*.pdf
+fonts/*Interpreta*.pdf

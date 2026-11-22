@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Painel — Entre Estrelas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/portal.css">
+</head>
+<body>
+  <header class="portal-topo">
+    <a href="index.html" aria-label="Entre Estrelas, início"><img src="fonts/Novo%20Design%20-%20COM%20texto.png" alt="Entre Estrelas"></a>
+    <nav><a href="minha-area.html">Minha área</a><a href="index.html">Site</a></nav>
+  </header>
+
+  <main class="portal-principal">
+    <p class="aviso aviso-info" id="carregando">Carregando painel…</p>
+
+    <div id="painel" hidden>
+      <div class="cabecalho-area">
+        <div>
+          <h1>Painel</h1>
+          <p class="suave" id="resumo"></p>
+        </div>
+      </div>
+
+      <section class="cartao">
+        <h2>Cadastrar cliente</h2>
+        <p class="suave" style="font-size:.88rem">Cadastre quem comprou ou quem vai ganhar um produto. Quando a pessoa entrar com este e-mail, ela já verá o que foi liberado.</p>
+        <form id="form-novo" class="grade-form">
+          <label>E-mail <input id="novo-email" type="email" required></label>
+          <label>Nome <input id="novo-nome" type="text"></label>
+          <label>WhatsApp <input id="novo-whatsapp" type="tel"></label>
+          <label>Liberar
+            <select id="novo-liberar">
+              <option value="">Nada por enquanto</option>
+              <option value="fundador">Membro Fundador (tudo)</option>
+            </select>
+          </label>
+          <label>Motivo <select id="novo-motivo" data-motivos></select></label>
+          <div style="margin-bottom:1rem"><button class="botao" type="submit">Cadastrar</button></div>
+        </form>
+        <p class="aviso" id="aviso-novo" role="status"></p>
+      </section>
+
+      <section class="cartao">
+        <div class="cabecalho-area" style="margin-bottom:.5rem">
+          <h2 style="margin:0">Clientes</h2>
+          <label style="margin:0;min-width:260px">Buscar <input id="busca" type="search" placeholder="Nome, e-mail ou WhatsApp"></label>
+        </div>
+        <p class="aviso" id="aviso-lista" role="status"></p>
+        <div class="tabela-wrap">
+          <table>
+            <thead><tr><th>Cliente</th><th>Plano</th><th>Compras</th><th>Nascimento</th><th>Login</th><th>Ações</th></tr></thead>
+            <tbody id="linhas"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <dialog id="dialogo-compra" class="cartao" style="max-width:420px">
+      <form method="dialog" id="form-compra">
+        <h2>Registrar compra</h2>
+        <p class="suave" id="compra-cliente"></p>
+        <label>Produto <select id="compra-produto" required></select></label>
+        <label>Motivo <select id="compra-motivo" data-motivos></select></label>
+        <label>Valor pago (R$) <input id="compra-valor" type="text" inputmode="decimal" placeholder="49,85"></label>
+        <div style="display:flex;gap:.5rem;justify-content:flex-end">
+          <button class="botao botao-leve" value="cancelar" formnovalidate>Cancelar</button>
+          <button class="botao" value="ok">Registrar</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="dialogo-fundador" class="cartao" style="max-width:420px">
+      <form method="dialog">
+        <h2>✦ Tornar Fundador</h2>
+        <p class="suave" id="fundador-cliente"></p>
+        <label>Motivo <select id="fundador-motivo" data-motivos></select></label>
+        <div style="display:flex;gap:.5rem;justify-content:flex-end">
+          <button class="botao botao-leve" value="cancelar" formnovalidate>Cancelar</button>
+          <button class="botao botao-dourado" value="ok">Liberar</button>
+        </div>
+      </form>
+    </dialog>
+  </main>
+
+  <script type="module">
+    import {
+      configurado, sessaoAtual, meuCadastro, admListarClientes, admListarProdutos, admCriarCliente,
+      admTornarFundador, admCancelarAssinatura, admRegistrarCompra, escapar, seloFundador, MOTIVOS_LIBERACAO
+    } from './js/portal.js';
+
+    // Opções de motivo (pagamento, equipe/cofundadora, doação, cortesia) em todos os seletores.
+    document.querySelectorAll('select[data-motivos]').forEach((select) => {
+      select.innerHTML = Object.entries(MOTIVOS_LIBERACAO).map(([valor, rotulo]) => `<option value="${valor}">${rotulo}</option>`).join('');
+    });
+    const rotuloMotivo = (origem) => MOTIVOS_LIBERACAO[origem] || '';
+
+    const carregando = document.querySelector('#carregando');
+    const erroGeral = (texto) => { carregando.textContent = texto; carregando.className = 'aviso aviso-erro'; carregando.hidden = false; };
+    const avisoLista = document.querySelector('#aviso-lista');
+    const avisar = (el, texto, tipo) => { el.textContent = texto; el.className = `aviso aviso-${tipo}`; };
+
+    let clientes = [];
+    let produtos = [];
+
+    const fundadorAtivo = (c) => c.assinaturas.find((a) => a.plano_id === 'fundador' && a.status === 'ativa' && (!a.fim || new Date(a.fim) > new Date()));
+
+    function desenhar() {
+      const termo = document.querySelector('#busca').value.trim().toLowerCase();
+      const visiveis = clientes.filter((c) => !termo || [c.email, c.nome, c.whatsapp].some((v) => (v || '').toLowerCase().includes(termo)));
+      const fundadores = clientes.filter(fundadorAtivo).length;
+      const contar = (n, um, varios) => `${n} ${n === 1 ? um : varios}`;
+      const entraram = clientes.filter((c) => c.user_id).length;
+      document.querySelector('#resumo').textContent = [
+        contar(clientes.length, 'cliente', 'clientes'),
+        contar(fundadores, 'fundador', 'fundadores'),
+        `${entraram} ${entraram === 1 ? 'já entrou' : 'já entraram'} no portal`
+      ].join(' · ');
+      document.querySelector('#linhas').innerHTML = visiveis.map((c) => {
+        const fundador = fundadorAtivo(c);
+        const outrosPlanos = c.assinaturas.filter((a) => a.status === 'ativa' && a.plano_id !== 'fundador').map((a) => a.plano_id);
+        const compras = c.compras.filter((x) => x.status === 'pago').map((x) => {
+          const motivo = x.origem && x.origem !== 'pagamento' ? rotuloMotivo(x.origem) : '';
+          return escapar(x.produtos?.nome || 'produto') + (motivo ? ` <span class="suave" style="font-size:.78rem">(${escapar(motivo)})</span>` : '');
+        }).join(', ');
+        const proprio = c.mapas_nascimento.find((m) => m.proprio);
+        const temNascimento = Boolean(proprio);
+        return `<tr>
+          <td><strong>${escapar(c.nome || proprio?.nome || '—')}</strong><br><span class="suave">${escapar(c.email)}</span>${c.whatsapp ? `<br><span class="suave">${escapar(c.whatsapp)}</span>` : ''}${c.papel !== 'cliente' ? `<br><span class="selo selo-cinza">${escapar(c.papel)}</span>` : ''}</td>
+          <td>${fundador ? seloFundador('pequeno') : ''}${fundador && fundador.origem && fundador.origem !== 'pagamento' && rotuloMotivo(fundador.origem) ? `<br><span class="suave" style="font-size:.78rem">${escapar(rotuloMotivo(fundador.origem))}</span>` : ''}${outrosPlanos.map((p) => `<span class="selo selo-cinza">${escapar(p)}</span>`).join(' ')}</td>
+          <td>${compras || '<span class="suave">—</span>'}</td>
+          <td>${temNascimento ? '✅' : '<span class="suave">falta</span>'}</td>
+          <td>${c.user_id ? '✅' : '<span class="suave">ainda não</span>'}</td>
+          <td><div class="acoes">
+            ${fundador
+              ? `<button class="botao botao-leve botao-pequeno" data-acao="cancelar-fundador" data-id="${fundador.id}">Remover Fundador</button>`
+              : `<button class="botao botao-dourado botao-pequeno" data-acao="fundador" data-id="${c.id}">✦ Tornar Fundador</button>`}
+            <button class="botao botao-leve botao-pequeno" data-acao="compra" data-id="${c.id}">Registrar compra</button>
+            <a class="botao botao-leve botao-pequeno" href="index.html?cliente=${encodeURIComponent(c.id)}#mapa">${temNascimento ? 'Ver mapa' : 'Cadastrar nascimento'}</a>
+          </div></td>
+        </tr>`;
+      }).join('') || '<tr><td colspan="6" class="suave">Nenhum cliente encontrado.</td></tr>';
+    }
+
+    async function recarregar() {
+      clientes = await admListarClientes();
+      desenhar();
+    }
+
+    async function iniciar() {
+      if (!configurado) return erroGeral('O Supabase ainda não foi configurado (js/supabase-config.js).');
+      if (!(await sessaoAtual())) return location.replace('entrar.html?voltar=admin.html');
+      const eu = await meuCadastro();
+      if (eu?.papel !== 'admin') return erroGeral('Esta página é só para administradores.');
+
+      produtos = await admListarProdutos();
+      document.querySelector('#compra-produto').innerHTML = produtos
+        .map((p) => `<option value="${p.id}">${escapar(p.nome)}${p.ativo ? '' : ' (inativo)'}</option>`).join('');
+      // "Liberar" no cadastro: Fundador (tudo) ou um produto pago avulso (ex.: só o Mapa da Vida).
+      document.querySelector('#novo-liberar').insertAdjacentHTML('beforeend', produtos
+        .filter((p) => (p.nivel || 'pago') === 'pago' && p.ativo)
+        .map((p) => `<option value="produto:${p.id}">Só ${escapar(p.nome)}</option>`).join(''));
+      await recarregar();
+      carregando.hidden = true;
+      document.querySelector('#painel').hidden = false;
+    }
+
+    document.querySelector('#busca').addEventListener('input', desenhar);
+
+    document.querySelector('#form-novo').addEventListener('submit', async (evento) => {
+      evento.preventDefault();
+      const aviso = document.querySelector('#aviso-novo');
+      try {
+        const novo = await admCriarCliente({
+          email: document.querySelector('#novo-email').value,
+          nome: document.querySelector('#novo-nome').value.trim(),
+          whatsapp: document.querySelector('#novo-whatsapp').value.trim()
+        });
+        const liberar = document.querySelector('#novo-liberar').value;
+        const motivo = document.querySelector('#novo-motivo').value;
+        if (liberar === 'fundador') await admTornarFundador(novo.id, motivo);
+        else if (liberar.startsWith('produto:')) await admRegistrarCompra(novo.id, liberar.slice(8), null, motivo);
+        evento.target.reset();
+        avisar(aviso, `Cliente ${novo.email} cadastrado.`, 'ok');
+        await recarregar();
+      } catch (e) {
+        avisar(aviso, e.message.includes('duplicate') ? 'Já existe um cliente com este e-mail.' : e.message, 'erro');
+      }
+    });
+
+    let clienteDaCompra = null;
+    const dialogo = document.querySelector('#dialogo-compra');
+    dialogo.addEventListener('close', async () => {
+      if (dialogo.returnValue !== 'ok' || !clienteDaCompra) return;
+      const texto = document.querySelector('#compra-valor').value.replace(/\./g, '').replace(',', '.');
+      const valor = texto ? Math.round(Number(texto) * 100) : null;
+      try {
+        await admRegistrarCompra(clienteDaCompra.id, document.querySelector('#compra-produto').value, Number.isFinite(valor) ? valor : null, document.querySelector('#compra-motivo').value);
+        avisar(avisoLista, `Compra registrada para ${clienteDaCompra.email}.`, 'ok');
+        await recarregar();
+      } catch (e) {
+        avisar(avisoLista, e.message, 'erro');
+      }
+    });
+
+    let clienteDoFundador = null;
+    const dialogoFundador = document.querySelector('#dialogo-fundador');
+    dialogoFundador.addEventListener('close', async () => {
+      if (dialogoFundador.returnValue !== 'ok' || !clienteDoFundador) return;
+      try {
+        await admTornarFundador(clienteDoFundador.id, document.querySelector('#fundador-motivo').value);
+        avisar(avisoLista, `Plano Fundador liberado para ${clienteDoFundador.nome || clienteDoFundador.email}.`, 'ok');
+        await recarregar();
+      } catch (e) {
+        avisar(avisoLista, e.message, 'erro');
+      }
+    });
+
+    document.querySelector('#linhas').addEventListener('click', async (evento) => {
+      const botao = evento.target.closest('button[data-acao]');
+      if (!botao) return;
+      const { acao, id } = botao.dataset;
+      try {
+        if (acao === 'fundador') {
+          clienteDoFundador = clientes.find((c) => c.id === id);
+          document.querySelector('#fundador-cliente').textContent = clienteDoFundador.nome || clienteDoFundador.email;
+          document.querySelector('#fundador-motivo').value = 'pagamento';
+          dialogoFundador.showModal();
+          return;
+        } else if (acao === 'cancelar-fundador') {
+          if (!confirm('Remover o plano Fundador desta pessoa? Ela perde o acesso aos produtos do plano.')) return;
+          await admCancelarAssinatura(id);
+          avisar(avisoLista, 'Plano Fundador removido.', 'ok');
+        } else if (acao === 'compra') {
+          clienteDaCompra = clientes.find((c) => c.id === id);
+          document.querySelector('#compra-cliente').textContent = clienteDaCompra.nome || clienteDaCompra.email;
+          document.querySelector('#compra-valor').value = '';
+          dialogo.showModal();
+          return;
+        }
+        await recarregar();
+      } catch (e) {
+        avisar(avisoLista, e.message, 'erro');
+      }
+    });
+
+    iniciar().catch((e) => erroGeral(e.message));
+  </script>
+</body>
+</html>

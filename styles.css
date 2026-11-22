@@ -604,3 +604,31 @@ label { display:block; margin-top:20px; color:var(--muted); font-size:10px; font
 .interpretation-sign-legend { grid-column:1 / -1; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:4px 8px; margin-top:8px; padding-top:8px; border-top:1px solid var(--line); }
 .interpretation-sign-legend > span { display:inline-flex; align-items:center; gap:5px; min-width:0; color:var(--muted); font:500 9px/1.2 var(--fonte-corpo); }
 .interpretation-sign-legend-glyph { flex:0 0 auto; font:14px/1 'Astrovida','Noto Sans Symbols 2','Segoe UI Symbol',sans-serif; }
+
+/* Faixa da área de clientes na página do mapa (js/mapa-conta.js) */
+.faixa-conta {
+  margin: 0 0 1rem;
+  padding: .8rem 1rem;
+  border-radius: 10px;
+  background: #fdf6e0;
+  color: #4a3a0c;
+  font-size: .9rem;
+  line-height: 1.45;
+}
+.faixa-conta[hidden] { display: none; }
+.faixa-conta a { color: inherit; font-weight: 700; }
+
+/* Cliente vendo o próprio Mapa da Vida (js/mapa-conta.js): só a interpretação.
+   Vale só para a tela; a impressão/PDF continua com as regras do print.css. */
+@media screen {
+  body.so-interpretacao #mapa:not([hidden]) { display:block !important; }
+  body.so-interpretacao #mapa .control-column,
+  body.so-interpretacao #mapa .chart-panel > :not(.interpretation-panel):not(.result-actions):not(.faixa-conta),
+  body.so-interpretacao #mapa .interpret-button { display:none !important; }
+  body.so-interpretacao #mapa .chart-panel { max-width:1100px; margin:0 auto; }
+  body.so-interpretacao #mapa .result-actions { display:flex; justify-content:flex-end; margin:0 0 16px; }
+}
+/* O aviso da área de clientes ("Voltar à minha área" etc.) é só para a tela, nunca no PDF. */
+@media print {
+  .faixa-conta { display:none !important; }
+}
