@@ -642,3 +642,12 @@ textarea { font: inherit; font-weight: 400; padding: .7rem .8rem; border: 1px so
 .aniversario-assinatura { margin: 0; color: var(--dourado); font: italic 600 1.15rem/1.4 var(--fonte-titulo); }
 .aniversario-assinatura small { font: 500 .85rem var(--fonte-corpo); color: rgba(250, 248, 245, .8); font-style: normal; }
 .cartao-aniversario h2 em { color: var(--dourado); font-style: italic; }
+
+/* Aniversariantes do mês (Painel e Área da equipe) */
+.lista-aniversarios { list-style: none; margin: 0; padding: 0; }
+.aniversario-item { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1rem; padding: .6rem .4rem; border-bottom: 1px solid var(--linha); }
+.aniversario-dia { min-width: 3.4rem; font-weight: 700; color: var(--azul-marca); }
+.aniversario-nome { flex: 1; min-width: 12rem; }
+.aniversario-item--hoje { background: #FFF6DC; border-radius: 10px; border-bottom-color: transparent; }
+.aniversario-item--hoje .aniversario-dia { color: #A8841C; }
+.aniversario-item--passou { opacity: .55; }

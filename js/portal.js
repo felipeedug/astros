@@ -105,7 +105,7 @@ export async function meuCadastro() {
   if (!sessao) return null;
   const { data, error } = await supabase
     .from('clientes')
-    .select('id, email, nome, whatsapp, papel, aceita_novidades, origem')
+    .select('id, email, nome, whatsapp, papel, aceita_novidades, origem, parceiro')
     .eq('user_id', sessao.user.id)
     .maybeSingle();
   falha(error, 'Não foi possível carregar seu cadastro.');
@@ -164,6 +164,37 @@ export async function admDefinirIndicacao(clienteId, indicadoPor) {
   exigirConfiguracao();
   const { error } = await supabase.from('clientes').update({ indicado_por: indicadoPor || null }).eq('id', clienteId);
   falha(error, 'Não foi possível salvar a indicação.');
+}
+
+// ------------------------------------------------------------------ aniversariantes (equipe)
+export async function aniversariantesDoMes(mes = null) {
+  exigirConfiguracao();
+  const { data, error } = await supabase.rpc('aniversariantes_do_mes', { p_mes: mes });
+  falha(error, 'Não foi possível carregar os aniversariantes.');
+  return data || [];
+}
+
+// Lista pronta para mostrar: hoje em destaque, próximos dias, e quem já fez aniversário no mês.
+export function htmlAniversariantes(lista, assinatura = 'Felipe e Mara, do Entre Estrelas') {
+  if (!lista.length) return '<p class="suave">Ninguém com aniversário cadastrado neste mês.</p>';
+  const hoje = new Date();
+  const diaHoje = hoje.getDate();
+  const linha = (p) => {
+    const [ano, mes, dia] = p.data_nascimento.split('-').map(Number);
+    const idade = hoje.getFullYear() - ano;
+    const primeiro = (p.nome || '').split(' ')[0];
+    const numero = String(p.whatsapp || '').replace(/\D/g, '');
+    const fone = numero.length >= 10 && numero.length <= 11 ? `55${numero}` : numero;
+    const texto = encodeURIComponent(`${primeiro}, feliz aniversário! ★ Hoje o Sol volta ao ponto exato do céu em que você nasceu, e a gente quis estar presente nesse momento. Que seu novo ciclo seja lindo! Com carinho, ${assinatura} 💛`);
+    const quando = dia === diaHoje ? 'hoje' : dia < diaHoje ? 'passou' : 'vem';
+    return `<li class="aniversario-item aniversario-item--${quando}">
+      <span class="aniversario-dia">${String(dia).padStart(2, '0')}/${String(mes).padStart(2, '0')}</span>
+      <span class="aniversario-nome"><strong>${escapar(p.nome || p.email)}</strong>${p.fundador ? ' ★' : ''}
+        <span class="suave"> · ${idade} anos${quando === 'hoje' ? ' · <strong>é hoje! 🎂</strong>' : ''}</span>${p.madrinha ? `<br><span class="suave" style="font-size:.82rem">madrinha: ${escapar(p.madrinha)}</span>` : ''}</span>
+      ${fone ? `<a class="botao botao-leve botao-pequeno" href="https://wa.me/${fone}?text=${texto}" target="_blank" rel="noopener noreferrer">WhatsApp</a>` : '<span class="suave" style="font-size:.8rem">sem WhatsApp</span>'}
+    </li>`;
+  };
+  return `<ul class="lista-aniversarios">${lista.map(linha).join('')}</ul>`;
 }
 
 // Repasses pagos às parceiras (só admin)

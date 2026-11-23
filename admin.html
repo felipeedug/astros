@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css?v=20261122-presentes">
+  <link rel="stylesheet" href="css/portal.css?v=20261122-aniversarios">
 </head>
 <body>
   <header class="portal-topo">
@@ -81,6 +81,11 @@
           <div style="margin-bottom:1rem"><button class="botao" type="submit">Cadastrar</button></div>
         </form>
         <p class="aviso" id="aviso-novo" role="status"></p>
+      </section>
+
+      <section class="cartao" id="cartao-aniversarios">
+        <h2 id="titulo-aniversarios">🎂 Aniversariantes do mês</h2>
+        <div id="lista-aniversarios"><p class="suave">Carregando…</p></div>
       </section>
 
       <section class="cartao" id="cartao-indicacoes">
@@ -162,9 +167,9 @@
   <script type="module">
     import {
       configurado, sessaoAtual, meuCadastro, admListarClientes, admListarProdutos, admCriarCliente,
-      admTornarFundador, admCancelarAssinatura, admRegistrarCompra, admEditarCliente, admEnviarAcesso, admDefinirIndicacao, linkDeIndicacao, admRegistrarRepasse, admExcluirRepasse, escapar, seloFundador, MOTIVOS_LIBERACAO,
+      admTornarFundador, admCancelarAssinatura, admRegistrarCompra, admEditarCliente, admEnviarAcesso, admDefinirIndicacao, linkDeIndicacao, admRegistrarRepasse, admExcluirRepasse, aniversariantesDoMes, htmlAniversariantes, escapar, seloFundador, MOTIVOS_LIBERACAO,
       admListarLancamentos, admListarEventos, admSalvarEvento, admExcluirEvento
-    } from './js/portal.js?v=20261122-repasses2';
+    } from './js/portal.js?v=20261122-aniversarios';
 
     // Opções de motivo (pagamento, equipe/cofundadora, doação, cortesia) em todos os seletores.
     document.querySelectorAll('select[data-motivos]').forEach((select) => {
@@ -352,8 +357,19 @@
       preencherParceiros();
       desenharIndicacoes();
       desenhar();
+      desenharAniversarios();
       await desenharLancamentos();
       await desenharEventos();
+    }
+
+    async function desenharAniversarios() {
+      const mesNome = new Date().toLocaleDateString('pt-BR', { month: 'long' });
+      document.querySelector('#titulo-aniversarios').textContent = `🎂 Aniversariantes de ${mesNome}`;
+      try {
+        document.querySelector('#lista-aniversarios').innerHTML = htmlAniversariantes(await aniversariantesDoMes());
+      } catch (e) {
+        document.querySelector('#lista-aniversarios').innerHTML = `<p class="suave">${escapar(e.message)}</p>`;
+      }
     }
 
     // ---------------- Agenda
