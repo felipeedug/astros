@@ -179,8 +179,17 @@
         const [, mes, dia] = nascimento.data_nascimento.split('-').map(Number);
         const hoje = new Date();
         const bissexto = (a) => (a % 4 === 0 && a % 100 !== 0) || a % 400 === 0;
-        const diaDaFesta = (mes === 2 && dia === 29 && !bissexto(hoje.getFullYear())) ? 28 : dia;
-        if (hoje.getMonth() + 1 === mes && hoje.getDate() === diaDaFesta) {
+        // O cartão fica 7 dias: do dia do aniversário até 6 dias depois (vale também na virada do ano)
+        const inicioDoDia = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate());
+        const aniversarioEm = (ano) => new Date(ano, mes - 1, (mes === 2 && dia === 29 && !bissexto(ano)) ? 28 : dia);
+        let festa = aniversarioEm(hoje.getFullYear());
+        if (festa > inicioDoDia) festa = aniversarioEm(hoje.getFullYear() - 1);
+        const diasDepois = Math.round((inicioDoDia - festa) / 86400000);
+        if (diasDepois >= 0 && diasDepois <= 6) {
+          if (diasDepois > 0) {
+            document.querySelector('.aniversario-texto').textContent =
+              `No dia ${festa.toLocaleDateString('pt-BR', { day: 'numeric', month: 'long' })}, o Sol voltou exatamente ao ponto do céu em que você nasceu. Que este novo ciclo traga luz, crescimento e encontros que façam sentido para a sua jornada.`;
+          }
           const primeiroNome = (nomeExibido || '').split(' ')[0];
           document.querySelector('#aniversario-titulo').innerHTML = primeiroNome
             ? `Feliz aniversário, <em>${escapar(primeiroNome)}!</em>` : 'Feliz aniversário!';
