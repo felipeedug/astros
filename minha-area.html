@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css?v=20261122-aniversario">
+  <link rel="stylesheet" href="css/portal.css?v=20261122-aniversarios">
 </head>
 <body>
   <header class="portal-topo">
@@ -112,6 +112,12 @@
         <div class="produtos" id="lista-gratuitas"></div>
       </section>
 
+      <section class="cartao" id="cartao-madrinha" hidden>
+        <h2 id="titulo-aniversarios-madrinha">🎂 Aniversariantes das suas indicações</h2>
+        <p class="suave">As pessoas que você trouxe para o Entre Estrelas e fazem aniversário este mês. Que tal mandar um carinho?</p>
+        <div id="lista-aniversarios-madrinha"></div>
+      </section>
+
       <section class="cartao" id="cartao-equipe" hidden>
         <h2>Área da equipe</h2>
         <p class="suave">Gere o mapa de qualquer pessoa, com todas as configurações e a interpretação.</p>
@@ -121,6 +127,8 @@
           <a class="botao botao-leve" href="index.html?acesso-mapas=1#efemerides">Efemérides</a>
           <a class="botao botao-leve" href="index.html?acesso-mapas=1#lua">Lua fora de curso</a>
         </div>
+        <h3 class="agenda-subtitulo" id="titulo-aniversarios-equipe" style="margin-top:1.4rem">🎂 Aniversariantes do mês</h3>
+        <div id="lista-aniversarios-equipe"><p class="suave">Carregando…</p></div>
       </section>
 
       <section class="cartao">
@@ -141,8 +149,8 @@
       configurado, sessaoAtual, sair, meuCadastro, meusProdutos, minhasAssinaturas,
       mapaProprio, atualizarMeuCadastro, escapar, formatarPreco, seloFundador, iconeProduto,
       inscrever, cancelarInscricao, minhaAgenda, inscreverEvento, cancelarEvento,
-      produtosAVenda, irParaPagamento, meusPresentes, linkDePresente, linkDoArquivo, registrarIndicacaoPendente
-    } from './js/portal.js?v=20261122-indicacoes';
+      produtosAVenda, irParaPagamento, meusPresentes, linkDePresente, linkDoArquivo, registrarIndicacaoPendente, aniversariantesDoMes, htmlAniversariantes
+    } from './js/portal.js?v=20261122-aniversarios';
 
     const carregando = document.querySelector('#carregando');
     const erro = (texto) => { carregando.textContent = texto; carregando.className = 'aviso aviso-erro'; };
@@ -172,7 +180,24 @@
           ? seloFundador()
           : `<span class="selo">${escapar(a.planos?.nome || a.plano_id)}</span>`).join(' ');
       if (cliente.papel === 'admin') document.querySelector('#link-admin').hidden = false;
-      if (['admin', 'astrologa'].includes(cliente.papel)) document.querySelector('#cartao-equipe').hidden = false;
+      if (['admin', 'astrologa'].includes(cliente.papel)) {
+        document.querySelector('#cartao-equipe').hidden = false;
+        document.querySelector('#titulo-aniversarios-equipe').textContent =
+          `🎂 Aniversariantes de ${new Date().toLocaleDateString('pt-BR', { month: 'long' })}`;
+        aniversariantesDoMes()
+          .then((lista) => { document.querySelector('#lista-aniversarios-equipe').innerHTML = htmlAniversariantes(lista); })
+          .catch((e) => { document.querySelector('#lista-aniversarios-equipe').innerHTML = `<p class="suave">${escapar(e.message)}</p>`; });
+      } else if (cliente.parceiro) {
+        // Madrinha: vê só quem ela indicou (aparece se houver alguém fazendo aniversário no mês)
+        aniversariantesDoMes().then((lista) => {
+          if (!lista.length) return;
+          document.querySelector('#titulo-aniversarios-madrinha').textContent =
+            `🎂 Aniversariantes de ${new Date().toLocaleDateString('pt-BR', { month: 'long' })} das suas indicações`;
+          const minhaAssinatura = `${(nomeExibido || '').split(' ')[0] || 'Equipe'} e toda a família Entre Estrelas`;
+          document.querySelector('#lista-aniversarios-madrinha').innerHTML = htmlAniversariantes(lista, minhaAssinatura);
+          document.querySelector('#cartao-madrinha').hidden = false;
+        }).catch(() => {});
+      }
 
       // Parabéns no dia do aniversário (29/02 comemora em 28/02 nos anos comuns)
       if (nascimento?.data_nascimento) {
