@@ -166,6 +166,20 @@ export async function admDefinirIndicacao(clienteId, indicadoPor) {
   falha(error, 'Não foi possível salvar a indicação.');
 }
 
+// Repasses pagos às parceiras (só admin)
+export async function admRegistrarRepasse(parceiroId, valorCentavos, pagoEm, observacao) {
+  exigirConfiguracao();
+  const { error } = await supabase.from('repasses')
+    .insert({ parceiro_id: parceiroId, valor_centavos: valorCentavos, pago_em: pagoEm, observacao: observacao || null });
+  falha(error, 'Não foi possível registrar o repasse.');
+}
+
+export async function admExcluirRepasse(id) {
+  exigirConfiguracao();
+  const { error } = await supabase.from('repasses').delete().eq('id', id);
+  falha(error, 'Não foi possível excluir o repasse.');
+}
+
 // Admin envia para a pessoa o e-mail de acesso (link + código), o mesmo da tela de entrar.
 // Não mexe na sessão de quem está no Painel.
 export async function admEnviarAcesso(email) {
@@ -178,11 +192,12 @@ export async function admEnviarAcesso(email) {
 }
 
 // Admin completa o cadastro de qualquer pessoa (nome, WhatsApp, papel e observações)
-export async function admEditarCliente(clienteId, { nome, whatsapp, papel, observacoes, indicado_por, parceiro, codigo_indicacao }) {
+export async function admEditarCliente(clienteId, { nome, whatsapp, papel, observacoes, indicado_por, parceiro, codigo_indicacao, valor_fundador_centavos }) {
   exigirConfiguracao();
   const { error } = await supabase.from('clientes')
     .update({ nome: nome || null, whatsapp: whatsapp || null, papel, observacoes: observacoes || null,
-              indicado_por: indicado_por || null, parceiro: Boolean(parceiro), codigo_indicacao: codigo_indicacao || null })
+              indicado_por: indicado_por || null, parceiro: Boolean(parceiro), codigo_indicacao: codigo_indicacao || null,
+              valor_fundador_centavos: Number.isInteger(valor_fundador_centavos) ? valor_fundador_centavos : null })
     .eq('id', clienteId);
   falha(error, 'Não foi possível salvar o cadastro.');
 }
@@ -411,7 +426,8 @@ export async function admListarClientes() {
   exigirConfiguracao();
   const { data, error } = await supabase
     .from('clientes')
-    .select(`id, email, nome, whatsapp, papel, observacoes, user_id, criado_em, indicado_por, parceiro, codigo_indicacao,
+    .select(`id, email, nome, whatsapp, papel, observacoes, user_id, criado_em, indicado_por, parceiro, codigo_indicacao, valor_fundador_centavos,
+             repasses(id, valor_centavos, pago_em, observacao),
              assinaturas(id, plano_id, status, fim, origem, referencia_externa),
              compras(id, status, produto_id, pago_em, origem, valor_centavos, referencia_externa, produtos(nome)),
              pedidos(id, status, total_centavos, valor_pago_centavos, itens),
