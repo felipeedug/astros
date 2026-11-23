@@ -133,6 +133,9 @@
           </select>
         </label>
         <label>Indicado(a) por <select id="editar-indicado-por" data-parceiros></select></label>
+        <label>Valor recebido pelo Membro Fundador (R$)
+          <input id="editar-valor-fundador" type="text" inputmode="decimal" placeholder="vazio = 49,85 (ou o valor pago pelo portal)">
+        </label>
         <label class="caixa-consentimento"><input id="editar-parceiro" type="checkbox"> Parceira(o) de indicação (recebe metade do que suas indicações pagarem)</label>
         <label id="editar-codigo-rotulo">Código do link de indicação <input id="editar-codigo" type="text" placeholder="ex.: mara" pattern="[A-Za-z0-9_-]{2,40}"></label>
         <label>Observações (só a equipe vê) <textarea id="editar-observacoes" rows="3"></textarea></label>
@@ -159,9 +162,9 @@
   <script type="module">
     import {
       configurado, sessaoAtual, meuCadastro, admListarClientes, admListarProdutos, admCriarCliente,
-      admTornarFundador, admCancelarAssinatura, admRegistrarCompra, admEditarCliente, admEnviarAcesso, admDefinirIndicacao, linkDeIndicacao, escapar, seloFundador, MOTIVOS_LIBERACAO,
+      admTornarFundador, admCancelarAssinatura, admRegistrarCompra, admEditarCliente, admEnviarAcesso, admDefinirIndicacao, linkDeIndicacao, admRegistrarRepasse, admExcluirRepasse, escapar, seloFundador, MOTIVOS_LIBERACAO,
       admListarLancamentos, admListarEventos, admSalvarEvento, admExcluirEvento
-    } from './js/portal.js?v=20261122-repasse';
+    } from './js/portal.js?v=20261122-repasses2';
 
     // Opções de motivo (pagamento, equipe/cofundadora, doação, cortesia) em todos os seletores.
     document.querySelectorAll('select[data-motivos]').forEach((select) => {
@@ -219,6 +222,7 @@
     }
 
     // ---------------- Indicações
+    let meuId = null;
     const nomeDe = (id) => {
       const c = clientes.find((x) => x.id === id);
       return c ? (c.nome || c.mapas_nascimento.find((m) => m.proprio)?.nome || c.email) : '—';
@@ -228,7 +232,15 @@
     // Repasse de 50% só sobre a associação de Membro Fundador (combinado).
     // As demais compras aparecem só como informação, sem repasse, até a conta de custos ser definida.
     const itensPagos = (c) => (c.pedidos || []).filter((p) => p.status === 'pago').flatMap((p) => p.itens || []);
+    // "49,85" / "R$ 1.234,50" → centavos; vazio → null
+    const centavosDe = (texto) => {
+      const limpo = String(texto || '').replace(/[^\d,.-]/g, '').replace(/\./g, '').replace(',', '.');
+      if (!limpo) return null;
+      const n = Math.round(Number(limpo) * 100);
+      return Number.isFinite(n) && n >= 0 ? n : null;
+    };
     function valorFundador(c) {
+      if (Number.isInteger(c.valor_fundador_centavos)) return c.valor_fundador_centavos; // valor real informado por você
       const peloPortal = itensPagos(c).filter((i) => i.slug === 'membro-fundador').reduce((s, i) => s + (i.preco_centavos || 0), 0);
       const aMao = c.assinaturas.filter((a) => a.plano_id === 'fundador' && a.origem === 'pagamento' && !a.referencia_externa).length * PRECO_FUNDADOR;
       return peloPortal + aMao;
@@ -252,16 +264,35 @@
         lista.innerHTML = '<p class="suave">Nenhuma parceira cadastrada ainda. Em <strong>Editar cadastro</strong>, marque "Parceira(o) de indicação" e dê um código (ex.: mara).</p>';
         return;
       }
-      lista.innerHTML = parceiros.map((p) => {
+      const souParceiro = parceiros.some((p) => p.id === meuId);
+      const semIndicacao = clientes.filter((c) => !c.indicado_por && c.id !== meuId);
+      const botaoAtribuir = souParceiro && semIndicacao.length
+        ? `<p style="margin:0 0 1rem"><button class="botao botao-leve botao-pequeno" data-atribuir-a-mim>Marcar como minhas as ${semIndicacao.length} pessoas sem indicação</button>
+             <span class="suave" style="font-size:.82rem">Depois você ainda pode trocar uma por uma em Editar cadastro.</span></p>`
+        : (!souParceiro ? '<p class="suave" style="font-size:.85rem">Para ter o seu próprio link, marque-se como parceiro em <strong>Editar cadastro</strong> no seu nome.</p>' : '');
+      lista.innerHTML = botaoAtribuir + parceiros.map((p) => {
         const indicados = clientes.filter((c) => c.indicado_por === p.id);
         const totalFundador = indicados.reduce((s, c) => s + valorFundador(c), 0);
         const totalOutros = indicados.reduce((s, c) => s + valorOutros(c), 0);
         const fundadores = indicados.filter(fundadorAtivo).length;
         const link = p.codigo_indicacao ? linkDeIndicacao(p.codigo_indicacao) : '';
+        const devido = Math.round(totalFundador / 2);
+        const pagos = (p.repasses || []).slice().sort((a, b) => a.pago_em.localeCompare(b.pago_em));
+        const jaPago = pagos.reduce((s, r) => s + r.valor_centavos, 0);
+        const falta = devido - jaPago;
+        const dataBR = (d) => new Date(`${d}T12:00:00`).toLocaleDateString('pt-BR');
         return `<details class="evento-admin">
           <summary><strong>${escapar(nomeDe(p.id))}</strong> · ${indicados.length} ${indicados.length === 1 ? 'indicação' : 'indicações'} (${fundadores} ${fundadores === 1 ? 'fundador' : 'fundadores'})
-            · Fundador ${reaisAdm(totalFundador)} · <strong>repasse ${reaisAdm(Math.round(totalFundador / 2))}</strong>
+            · Fundador ${reaisAdm(totalFundador)} · repasse ${reaisAdm(devido)} · já pago ${reaisAdm(jaPago)}
+            · <strong>${falta > 0 ? `falta pagar ${reaisAdm(falta)}` : falta < 0 ? `pago a mais ${reaisAdm(-falta)}` : 'em dia ✓'}</strong>
             ${totalOutros ? `<span class="suave"> · outras compras ${reaisAdm(totalOutros)} (sem repasse definido)</span>` : ''}</summary>
+          <div style="margin:.6rem 0">
+            <strong>Repasses pagos</strong>
+            ${pagos.length ? `<ul>${pagos.map((r) => `<li>${dataBR(r.pago_em)} — ${reaisAdm(r.valor_centavos)}${r.observacao ? ` <span class="suave">(${escapar(r.observacao)})</span>` : ''}
+              <button class="botao botao-leve botao-pequeno botao-perigo" data-excluir-repasse="${r.id}">Excluir</button></li>`).join('')}</ul>`
+              : '<p class="suave" style="margin:.3rem 0">Nenhum repasse registrado ainda.</p>'}
+            <button class="botao botao-pequeno" data-registrar-repasse="${p.id}" data-sugestao="${falta > 0 ? falta : ''}">+ Registrar repasse pago</button>
+          </div>
           ${link ? `<p style="margin:.6rem 0">Link de indicação: <code>${escapar(link)}</code>
             <button class="botao botao-leve botao-pequeno" data-copiar-link="${escapar(link)}">Copiar link</button></p>`
             : '<p class="suave">Sem código de link ainda (Editar cadastro → Código do link).</p>'}
@@ -271,6 +302,45 @@
       }).join('');
     }
     document.querySelector('#lista-indicacoes').addEventListener('click', async (evento) => {
+      const atribuir = evento.target.closest('[data-atribuir-a-mim]');
+      if (atribuir) {
+        const semIndicacao = clientes.filter((c) => !c.indicado_por && c.id !== meuId);
+        if (!confirm(`Marcar ${semIndicacao.length} pessoas como indicadas por você? Quem já tem indicação não muda.`)) return;
+        atribuir.disabled = true;
+        atribuir.textContent = 'Salvando…';
+        try {
+          for (const c of semIndicacao) await admDefinirIndicacao(c.id, meuId);
+          avisar(avisoLista, `${semIndicacao.length} pessoas marcadas como indicadas por você.`, 'ok');
+        } catch (e) {
+          avisar(avisoLista, e.message, 'erro');
+        }
+        await recarregar();
+        return;
+      }
+      const registrar = evento.target.closest('[data-registrar-repasse]');
+      if (registrar) {
+        const sugestao = registrar.dataset.sugestao ? (Number(registrar.dataset.sugestao) / 100).toFixed(2).replace('.', ',') : '';
+        const valor = centavosDe(prompt(`Valor pago a ${nomeDe(registrar.dataset.registrarRepasse)} (R$):`, sugestao));
+        if (!valor) return;
+        const hoje = new Date().toLocaleDateString('pt-BR');
+        const dataTexto = prompt('Data do pagamento (dd/mm/aaaa):', hoje);
+        const m = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.exec((dataTexto || '').trim());
+        if (!m) return alert('Data inválida. Use dd/mm/aaaa.');
+        const obs = prompt('Observação (opcional, ex.: Pix, referente a novembro):', '') || '';
+        try {
+          await admRegistrarRepasse(registrar.dataset.registrarRepasse, valor, `${m[3]}-${m[2].padStart(2, '0')}-${m[1].padStart(2, '0')}`, obs.trim());
+          avisar(avisoLista, 'Repasse registrado.', 'ok');
+          await recarregar();
+        } catch (e) { avisar(avisoLista, e.message, 'erro'); }
+        return;
+      }
+      const excluir = evento.target.closest('[data-excluir-repasse]');
+      if (excluir) {
+        if (!confirm('Excluir este repasse registrado?')) return;
+        try { await admExcluirRepasse(excluir.dataset.excluirRepasse); await recarregar(); }
+        catch (e) { avisar(avisoLista, e.message, 'erro'); }
+        return;
+      }
       const b = evento.target.closest('[data-copiar-link]');
       if (!b) return;
       await navigator.clipboard.writeText(b.dataset.copiarLink);
@@ -487,6 +557,7 @@
       if (!(await sessaoAtual())) return location.replace('entrar.html?voltar=admin.html');
       const eu = await meuCadastro();
       if (eu?.papel !== 'admin') return erroGeral('Esta página é só para administradores.');
+      meuId = eu.id;
 
       produtos = await admListarProdutos();
       document.querySelector('#compra-produto').innerHTML = produtos
@@ -564,7 +635,8 @@
           observacoes: document.querySelector('#editar-observacoes').value.trim(),
           indicado_por: document.querySelector('#editar-indicado-por').value,
           parceiro: document.querySelector('#editar-parceiro').checked,
-          codigo_indicacao: document.querySelector('#editar-codigo').value.trim().toLowerCase()
+          codigo_indicacao: document.querySelector('#editar-codigo').value.trim().toLowerCase(),
+          valor_fundador_centavos: centavosDe(document.querySelector('#editar-valor-fundador').value)
         });
         avisar(avisoLista, `Cadastro de ${document.querySelector('#editar-nome').value.trim() || clienteEmEdicao.email} atualizado.`, 'ok');
         await recarregar();
@@ -620,6 +692,8 @@
           document.querySelector('#editar-indicado-por').value = clienteEmEdicao.indicado_por || '';
           [...document.querySelector('#editar-indicado-por').options].forEach((o) => { o.disabled = o.value === clienteEmEdicao.id; });
           document.querySelector('#editar-parceiro').checked = Boolean(clienteEmEdicao.parceiro);
+          document.querySelector('#editar-valor-fundador').value = Number.isInteger(clienteEmEdicao.valor_fundador_centavos)
+            ? (clienteEmEdicao.valor_fundador_centavos / 100).toFixed(2).replace('.', ',') : '';
           document.querySelector('#editar-codigo').value = clienteEmEdicao.codigo_indicacao
             || (clienteEmEdicao.nome || '').split(' ')[0].normalize('NFD').replace(/[^\w]/g, '').toLowerCase();
           dialogoEditar.showModal();
