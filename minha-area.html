@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css?v=20261122-festivo">
+  <link rel="stylesheet" href="css/portal.css?v=20261122-aniversario">
 </head>
 <body>
   <header class="portal-topo">
@@ -31,6 +31,14 @@
         </div>
         <div id="selos"></div>
       </div>
+
+      <section class="cartao cartao-aniversario" id="cartao-aniversario" hidden>
+        <div class="aniversario-ceu" aria-hidden="true"></div>
+        <p class="aniversario-chamada">☉ Feliz Revolução Solar</p>
+        <h2 id="aniversario-titulo">Feliz aniversário!</h2>
+        <p class="aniversario-texto">Hoje o Sol volta exatamente ao ponto do céu em que você nasceu. Que este novo ciclo traga luz, crescimento e encontros que façam sentido para a sua jornada.</p>
+        <p class="aniversario-assinatura">Com carinho, Felipe e Mara<br><small>e toda a família Entre Estrelas ★</small></p>
+      </section>
 
       <section class="cartao topo-duplo" id="cartao-topo" hidden>
         <div class="topo-destaques" id="bloco-destaques" hidden>
@@ -165,6 +173,20 @@
           : `<span class="selo">${escapar(a.planos?.nome || a.plano_id)}</span>`).join(' ');
       if (cliente.papel === 'admin') document.querySelector('#link-admin').hidden = false;
       if (['admin', 'astrologa'].includes(cliente.papel)) document.querySelector('#cartao-equipe').hidden = false;
+
+      // Parabéns no dia do aniversário (29/02 comemora em 28/02 nos anos comuns)
+      if (nascimento?.data_nascimento) {
+        const [, mes, dia] = nascimento.data_nascimento.split('-').map(Number);
+        const hoje = new Date();
+        const bissexto = (a) => (a % 4 === 0 && a % 100 !== 0) || a % 400 === 0;
+        const diaDaFesta = (mes === 2 && dia === 29 && !bissexto(hoje.getFullYear())) ? 28 : dia;
+        if (hoje.getMonth() + 1 === mes && hoje.getDate() === diaDaFesta) {
+          const primeiroNome = (nomeExibido || '').split(' ')[0];
+          document.querySelector('#aniversario-titulo').innerHTML = primeiroNome
+            ? `Feliz aniversário, <em>${escapar(primeiroNome)}!</em>` : 'Feliz aniversário!';
+          document.querySelector('#cartao-aniversario').hidden = false;
+        }
+      }
 
       const nascimentoConteudo = document.querySelector('#nascimento-conteudo');
       if (nascimento) {
