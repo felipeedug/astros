@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Compare dois mapas natais com detalhes dos aspectos e das casas ativadas.">
+  <title>Sinastria | Entre Estrelas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20261124-mapas-layout">
+  <link rel="stylesheet" href="css/location-picker.css?v=20261124-location-picker2">
+  <link rel="stylesheet" href="css/sinastria.css?v=20261124-global-layout">
+</head>
+<body class="synastry-page">
+  <div class="app-shell">
+    <header class="sidebar">
+      <a class="brand" href="index.html" aria-label="Entre Estrelas, início">
+        <img class="brand-logo" src="fonts/Logo%205%20Pontas%20COM%20texto.png" alt="Entre Estrelas">
+        <span class="brand-home-label">Início</span>
+      </a>
+      <nav class="nav" aria-label="Navegação principal">
+        <a class="nav-link" href="minha-area.html">Minha área</a>
+        <a class="nav-link" href="mapas.html" aria-current="page">Mapas</a>
+        <a class="nav-link" href="index.html#manifesto">Manifesto</a>
+        <a class="nav-link" href="index.html#quem-somos">Quem somos</a>
+        <a class="nav-link" href="index.html#servicos">Serviços</a>
+        <a class="nav-link" href="index.html#comunidade">Comunidade</a>
+        <a class="nav-link" href="index.html#apoie"><span aria-hidden="true">⭐</span> Membro Fundador</a>
+      </nav>
+    </header>
+    <main class="main-content synastry-shell">
+    <header class="topbar synastry-header">
+      <div><p class="kicker">COMPARAÇÃO DE MAPAS NATAIS</p><h1>Sinastria</h1></div>
+      <button class="synastry-back" type="button" data-back>← Voltar</button>
+    </header>
+
+    <section class="synastry-card synastry-method-note" aria-labelledby="method-title">
+      <h2 id="method-title">Como este cálculo está configurado</h2>
+      <p>Os dois mapas são calculados pelo núcleo natal legado do Astrovida. Os aspectos cruzados e as orbes usam, por enquanto, os critérios do comparador de mapas que já existe no Entre Estrelas; não foi encontrada evidência de que estes critérios sejam os usados pela sinastria original.</p>
+      <p>Os resultados abaixo mostram posições e geometria. Interpretações de relacionamento e pontuação de compatibilidade aguardam textos ou relatórios originais de sinastria.</p>
+    </section>
+
+    <form id="synastry-form" class="synastry-card">
+      <div class="synastry-people">
+        <fieldset class="person-fields" data-person="one">
+          <legend><span>01</span> Pessoa A</legend>
+          <label>Nome <input name="name" type="text" autocomplete="name" placeholder="Nome" required></label>
+          <div class="saved-map-picker" data-saved-map-picker>
+            <label for="saved-map-a-query">Usar dados de uma pessoa cadastrada (opcional)</label>
+            <input id="saved-map-a-query" data-saved-map-query type="search" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="saved-map-a-options" placeholder="Buscar pessoa ou mapa cadastrado" autocomplete="off">
+            <div id="saved-map-a-options" class="saved-map-options" data-saved-map-options role="listbox" hidden></div>
+            <p class="saved-map-status" data-saved-map-status aria-live="polite">Carregando mapas disponíveis…</p>
+            <button class="saved-map-clear" data-saved-map-clear type="button" hidden>Remover seleção · preencher manualmente</button>
+          </div>
+          <div class="synastry-field-row">
+            <label>Data de nascimento <input name="date" type="date" required></label>
+            <label>Hora local <input name="time" type="time" required></label>
+          </div>
+          <p class="synastry-help">Data, horário e local são necessários para calcular posições, ângulos e casas. Se o horário não for conhecido, não gere o mapa: ascendente, Meio do Céu e sobreposições de casas dependem dele.</p>
+          <div class="location-picker">
+            <label>País <select id="synastry-a-country" name="country" required></select></label>
+            <label class="region-field location-region-field" for="synastry-a-region" hidden>Estado / região <select id="synastry-a-region" name="region"></select></label>
+            <label>Cidade de nascimento <input id="synastry-a-city" name="city" type="search" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="synastry-a-city-options" autocomplete="off" required placeholder="Digite para buscar ou selecione na lista"></label>
+            <div id="synastry-a-city-options" class="city-suggestions" role="listbox" hidden></div>
+            <input name="place" type="hidden">
+          </div>
+          <p class="chosen-location" aria-live="polite"></p>
+            <p class="dst-note">O horário de verão histórico será verificado automaticamente.</p>
+        </fieldset>
+
+        <fieldset class="person-fields" data-person="two">
+          <legend><span>02</span> Pessoa B</legend>
+          <label>Nome <input name="name" type="text" autocomplete="name" placeholder="Nome" required></label>
+          <div class="saved-map-picker" data-saved-map-picker>
+            <label for="saved-map-b-query">Usar dados de uma pessoa cadastrada (opcional)</label>
+            <input id="saved-map-b-query" data-saved-map-query type="search" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="saved-map-b-options" placeholder="Buscar pessoa ou mapa cadastrado" autocomplete="off">
+            <div id="saved-map-b-options" class="saved-map-options" data-saved-map-options role="listbox" hidden></div>
+            <p class="saved-map-status" data-saved-map-status aria-live="polite">Carregando mapas disponíveis…</p>
+            <button class="saved-map-clear" data-saved-map-clear type="button" hidden>Remover seleção · preencher manualmente</button>
+          </div>
+          <div class="synastry-field-row">
+            <label>Data de nascimento <input name="date" type="date" required></label>
+            <label>Hora local <input name="time" type="time" required></label>
+          </div>
+          <p class="synastry-help">Data, horário e local são necessários para calcular posições, ângulos e casas. Se o horário não for conhecido, não gere o mapa: ascendente, Meio do Céu e sobreposições de casas dependem dele.</p>
+          <div class="location-picker">
+            <label>País <select id="synastry-b-country" name="country" required></select></label>
+            <label class="region-field location-region-field" for="synastry-b-region" hidden>Estado / região <select id="synastry-b-region" name="region"></select></label>
+            <label>Cidade de nascimento <input id="synastry-b-city" name="city" type="search" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="synastry-b-city-options" autocomplete="off" required placeholder="Digite para buscar ou selecione na lista"></label>
+            <div id="synastry-b-city-options" class="city-suggestions" role="listbox" hidden></div>
+            <input name="place" type="hidden">
+          </div>
+          <p class="chosen-location" aria-live="polite"></p>
+            <p class="dst-note">O horário de verão histórico será verificado automaticamente.</p>
+        </fieldset>
+      </div>
+
+      <section class="synastry-criteria" aria-labelledby="criteria-title">
+        <h2 id="criteria-title">Aspectos a exibir</h2>
+        <div class="synastry-aspect-options">
+          <label><input type="checkbox" name="aspect" value="conjunction" checked> Conjunção (0°)</label>
+          <label><input type="checkbox" name="aspect" value="sextile" checked> Sextil (60°)</label>
+          <label><input type="checkbox" name="aspect" value="square" checked> Quadratura (90°)</label>
+          <label><input type="checkbox" name="aspect" value="trine" checked> Trígono (120°)</label>
+          <label><input type="checkbox" name="aspect" value="opposition" checked> Oposição (180°)</label>
+        </div>
+        <label class="synastry-orb">Limite global da orbe <input name="orb" type="range" min="0" max="10" value="5"><output>5°</output></label>
+      </section>
+
+      <button class="synastry-submit" type="submit">Calcular sinastria</button>
+      <p id="synastry-status" class="synastry-status" role="status" aria-live="polite">Aguardando o núcleo astrológico…</p>
+    </form>
+
+    <section id="synastry-results" class="synastry-results" aria-live="polite" hidden></section>
+    </main>
+  </div>
+  <script src="js/location-picker.js?v=20261124-location-picker2"></script>
+  <script type="module" src="js/sinastria.js?v=20261124-ux"></script>
+  <script type="module">
+    window.astroWasmLoading = true;
+    if (window.location.protocol !== 'file:') {
+      import('./wasm/astro_legacy_wasm_v11_local.js').then(({ default: createAstroModule }) => createAstroModule({ locateFile: (file) => `./wasm/${file}` })).then((module) => {
+        window.astroWasm = module;
+        window.astroWasmLoading = false;
+        window.dispatchEvent(new Event('astro-wasm-ready'));
+      }).catch((error) => {
+        window.astroWasmLoading = false;
+        console.error('Núcleo WebAssembly indisponível.', error);
+        window.dispatchEvent(new Event('astro-wasm-error'));
+      });
+    } else {
+      window.astroWasmLoading = false;
+      window.dispatchEvent(new Event('astro-wasm-error'));
+    }
+  </script>
+</body>
+</html>

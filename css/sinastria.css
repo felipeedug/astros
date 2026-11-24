@@ -1,0 +1,96 @@
+.synastry-page {
+  min-height: 100vh;
+  background: var(--fundo-conteudo);
+  color: var(--cinza-azulado);
+}
+
+.synastry-shell {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 28px 7vw 64px;
+}
+
+.synastry-header { align-items: flex-start; margin: 0 0 28px; text-align: left; }
+.synastry-back { display: inline-flex; align-items: center; gap: 8px; margin: 4px 0 0; padding: 10px 15px; border: 1px solid var(--line); border-radius: 999px; color: var(--ink); background: var(--off-white); font: 700 12px var(--fonte-corpo); cursor: pointer; }
+.synastry-back:hover,.synastry-back:focus-visible { color: var(--off-white); background: var(--azul-ceu); }
+.synastry-eyebrow { margin: 0 0 8px; color: #ad6b4e; font-size: .78rem; font-weight: 800; letter-spacing: .14em; }
+.synastry-header h1 { margin: 0; font: 700 clamp(42px,5.4vw,78px)/.94 var(--fonte-titulo); }
+.synastry-header > p:last-child { margin: 12px auto 0; max-width: 620px; line-height: 1.65; }
+.synastry-card { padding: clamp(20px, 4vw, 34px); border: 1px solid #d7dedf; border-radius: 18px; background: #fffefa; box-shadow: 0 14px 38px #18324712; }
+.synastry-method-note { margin-bottom: 20px; border-left: 4px solid #bf8a5a; }
+.synastry-method-note h2,.synastry-criteria h2 { margin: 0 0 12px; font-size: 1.1rem; }
+.synastry-method-note p { margin: 8px 0 0; line-height: 1.65; }
+.synastry-people { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.person-fields { min-width: 0; margin: 0; padding: 20px; border: 1px solid #d8dfdf; border-radius: 14px; }
+.person-fields legend { padding: 0 8px; font-size: 1.2rem; font-weight: 800; }
+.person-fields legend span { color: #b66f4f; font-size: .8rem; letter-spacing: .1em; }
+.person-fields label:not(.dst-choice),.synastry-orb { display: grid; gap: 7px; margin-top: 15px; font-size: .9rem; font-weight: 700; }
+.person-fields input,.person-fields select { width: 100%; min-width: 0; padding: 11px 12px; border: 1px solid #aebfc2; border-radius: 8px; background: #fff; color: inherit; font: inherit; }
+.person-fields [hidden] { display: none; }
+.synastry-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.synastry-help { margin: 12px 0 4px; color: #536976; font-size: .8rem; line-height: 1.55; }
+.dst-note { margin: 10px 0 0; color: #536976; font-size: .8rem; line-height: 1.5; }
+.synastry-aspect-options input { flex: 0 0 auto; width: 16px; height: 16px; margin-top: 2px; accent-color: #b46e50; }
+.chosen-location { min-height: 1.2em; margin: 7px 0 0; color: #536976; font-size: .78rem; }
+.city-suggestions { position: relative; z-index: 2; max-height: 220px; overflow: auto; margin-top: 5px; border: 1px solid #b9c8cb; border-radius: 8px; background: white; }
+.city-suggestions[hidden] { display: none; }
+.city-suggestion { display: block; width: 100%; padding: 9px 12px; border: 0; border-bottom: 1px solid #edf0ee; background: white; color: inherit; text-align: left; cursor: pointer; }
+.city-suggestion:hover,.city-suggestion:focus { background: #eff4f1; }
+.synastry-criteria { margin-top: 28px; }
+.synastry-aspect-options { display: flex; flex-wrap: wrap; gap: 12px 20px; }
+.synastry-aspect-options label { display: flex; align-items: flex-start; gap: 7px; font-size: .9rem; }
+.synastry-orb { max-width: 420px; grid-template-columns: 1fr auto; align-items: center; margin-top: 20px; }
+.synastry-orb input { grid-column: 1; width: 100%; accent-color: #b46e50; }
+.synastry-orb output { grid-column: 2; grid-row: 1 / span 2; color: #9b5d42; font-weight: 800; }
+.synastry-submit { display: block; min-height: 48px; margin: 28px auto 0; padding: 0 24px; border: 0; border-radius: 999px; background: #173a54; color: #fff; font: inherit; font-weight: 800; cursor: pointer; }
+.synastry-submit:disabled { opacity: .6; cursor: wait; }
+.synastry-status { min-height: 1.4em; margin: 12px 0 0; color: #536976; text-align: center; }
+.synastry-results { display: grid; gap: 18px; margin-top: 22px; }
+.synastry-result-card { overflow: hidden; border: 1px solid #d7dedf; border-radius: 16px; background: #fffefa; box-shadow: 0 14px 38px #18324712; }
+.synastry-result-card > h2 { margin: 0; padding: 18px 22px; background: #e9efec; font-size: 1.15rem; }
+.synastry-result-card > p { margin: 16px 22px; line-height: 1.55; }
+.synastry-table-wrap { overflow-x: auto; padding: 0 18px 18px; }
+.synastry-table { width: 100%; border-collapse: collapse; font-size: .86rem; }
+.synastry-table th,.synastry-table td { padding: 9px 10px; border-bottom: 1px solid #e1e7e4; text-align: left; white-space: nowrap; }
+.synastry-table th { color: #526872; font-size: .76rem; }
+.synastry-empty { padding: 18px 22px 24px; color: #536976; }
+.synastry-map-meta { color: #536976; font-size: .86rem; }
+.synastry-mandala-content { padding: 18px 20px 22px; }
+.synastry-layout-control { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-bottom: 14px; color: #405765; font-size: .9rem; font-weight: 700; }
+.synastry-layout-control select { max-width: 100%; padding: 9px 12px; border: 1px solid #aebfc2; border-radius: 8px; background: #fff; color: inherit; font: inherit; }
+.synastry-mandala-stage { overflow: hidden; border: 1px solid #d7dedf; border-radius: 12px; background: #fffefa; }
+.synastry-mandala-canvas { display: block; width: min(100%, 760px); height: auto; margin: 0 auto; }
+.synastry-mandala-caption { margin: 8px 16px 14px; color: #536976; font-size: .82rem; line-height: 1.5; text-align: center; }
+.synastry-mandala-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding: 12px; }
+.synastry-mandala-pair article { min-width: 0; overflow: hidden; border: 1px solid #d7dedf; border-radius: 10px; background: #fffefa; }
+.synastry-mandala-pair h3 { margin: 0; padding: 12px 16px 4px; color: #536976; font-size: .92rem; text-align: center; }
+.synastry-readouts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; padding: 0 22px 22px; }
+.synastry-readouts .readout-group { min-width: 0; }
+.synastry-readouts .readout-heading { margin-top: 0; }
+.synastry-readouts .planet-readout,.synastry-readouts .house-readout { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 0; }
+.synastry-readouts .readout-item { min-width: 0; min-height: 54px; }
+.synastry-readouts .readout-item b { min-width: 0; }
+.synastry-readouts .readout-object-name { overflow: hidden; text-overflow: ellipsis; }
+.synastry-readout-content { padding: 0 22px 22px; }
+.synastry-overlay-readout { grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; }
+.synastry-overlay-readout .readout-item { min-width: 0; min-height: 54px; flex-direction: column; align-items: flex-start; justify-content: center; gap: 2px; }
+.synastry-overlay-readout .readout-item b { min-width: 0; }
+.synastry-overlay-readout .readout-item small { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 4px; }
+.synastry-overlay-readout .readout-item small > span { display: inline; padding: 0; border: 0; background: transparent; color: inherit; line-height: inherit; }
+.synastry-overlay-readout .readout-item .synastry-house-label { color: #536976; font-size: 9px; white-space: nowrap; }
+
+@media (max-width: 760px) {
+  .synastry-people { grid-template-columns: 1fr; }
+  .synastry-shell { width: 100%; padding: 22px 22px 45px; }
+  .synastry-header { padding-bottom: 30px; }
+  .synastry-header h1 { font-size: clamp(38px, 10vw, 58px); }
+  .synastry-back { flex: 0 0 auto; }
+  .person-fields { padding: 16px; }
+  .synastry-field-row { grid-template-columns: 1fr; gap: 0; }
+  .synastry-mandala-content { padding: 14px 12px 16px; }
+  .synastry-mandala-pair { grid-template-columns: 1fr; }
+  .synastry-readouts { grid-template-columns: 1fr; gap: 12px; padding: 0 16px 18px; }
+  .synastry-readouts .planet-readout,.synastry-readouts .house-readout,.synastry-overlay-readout { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .synastry-readout-content { padding: 0 16px 18px; }
+}
