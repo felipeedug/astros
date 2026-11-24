@@ -370,7 +370,15 @@
 
       // Lançamentos "Em breve" com botão de inscrição
       const emBreve = produtos.filter((p) => p.status === 'em_breve');
-      const tiposLancamento = { live: 'Live', aula: 'Aula', produto: 'Novidade', ferramenta: 'Ferramenta' };
+      // Membros Fundadores testam antes: usam a data antecipada, quando houver
+      const souFundador = assinaturas.some((a) => a.plano_id === 'fundador');
+      if (souFundador) {
+        emBreve.forEach((p) => {
+          const antecipada = porSlug[p.slug]?.previsao_fundadores;
+          if (antecipada) { p.previsao = antecipada; p.antecipado = true; }
+        });
+      }
+      const tiposLancamento = { live: 'Live', aula: 'Aula', produto: 'Análise', vivencia: 'Vivência', ferramenta: 'Ferramenta' };
       const cartaoEmBreve = (p) => {
         const quando = p.previsao
           ? new Date(`${p.previsao}T00:00:00`).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long' })
@@ -391,7 +399,7 @@
             ${iconeProduto(p.icone || 'estrela')}
             <div>
               <h3>${escapar(p.nome)}</h3>
-              <span class="produto-versao">${escapar(tiposLancamento[p.tipo] || 'Novidade')} · ${escapar(quando)}</span>
+              <span class="produto-versao">${escapar(tiposLancamento[p.tipo] || 'Novidade')} · ${escapar(quando)}${p.antecipado ? ' · ⭐ antes para Fundadores' : ''}</span>
             </div>
           </div>
           ${p.preco_centavos && p.liberado ? `<span class="selo selo-incluido">${assinaturas.some((a) => a.plano_id === 'fundador') ? '✓ Incluído no seu pacote de Membro Fundador' : sou_membro ? '✓ Incluído no seu pacote de membro' : '✓ Já é seu'}</span>` : ''}

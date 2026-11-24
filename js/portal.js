@@ -288,6 +288,31 @@ export async function produtosAVenda() {
   return data || [];
 }
 
+// ------------------------------------------------------------- votos ("O que oferecemos")
+// Contagem pública (votos do formulário + do site), por produto_id
+export async function contagemVotos() {
+  exigirConfiguracao();
+  const { data, error } = await supabase.rpc('contagem_votos');
+  falha(error, 'Não foi possível carregar os votos.');
+  return Object.fromEntries((data || []).map((v) => [v.produto_id, v.votos]));
+}
+export async function meusVotos(clienteId) {
+  exigirConfiguracao();
+  const { data, error } = await supabase.from('votos').select('produto_id').eq('cliente_id', clienteId);
+  falha(error, 'Não foi possível carregar seus votos.');
+  return new Set((data || []).map((v) => v.produto_id));
+}
+export async function votar(clienteId, produtoId) {
+  exigirConfiguracao();
+  const { error } = await supabase.from('votos').insert({ cliente_id: clienteId, produto_id: produtoId });
+  if (error && !/duplicate|unique/i.test(error.message || '')) falha(error, 'Não foi possível registrar seu voto.');
+}
+export async function tirarVoto(clienteId, produtoId) {
+  exigirConfiguracao();
+  const { error } = await supabase.from('votos').delete().eq('cliente_id', clienteId).eq('produto_id', produtoId);
+  falha(error, 'Não foi possível tirar seu voto.');
+}
+
 // Um produto, para a página de divulgação (produto.html?p=slug). Aberta a todos.
 export async function produtoDaPagina(slug) {
   exigirConfiguracao();

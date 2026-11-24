@@ -669,3 +669,99 @@ label { display:block; margin-top:20px; color:var(--muted); font-size:10px; font
 .about-top-participants .home-participant-card { flex:0 0 calc(20% - 12px); grid-column:auto !important; grid-row:auto !important; order:3; }
 .about-top-participants .home-participant-card:nth-child(-n+3) { order:1; }
 @media (max-width:900px) { .about-top-participants .home-participant-card { flex-basis:calc(33.333% - 12px); } }
+
+/* ---------------------------------------------------------------- Início: portal para dentro de você */
+.home-page .hero-portal .hero-tagline { font-size:clamp(2.1rem,4.6vw,3.4rem); }
+.home-page .hero-question { max-width:760px; margin:26px auto 0; color:rgba(250,248,245,.86); font:400 clamp(1.05rem,1.8vw,1.3rem)/1.6 var(--fonte-corpo); }
+.home-page .hero-rule { width:64px; margin:34px auto 0; border:0; border-top:2px solid #C9A227; }
+.home-page .hero-portal .hero-intro { margin:26px auto 12px; }
+.home-page .hero-text { max-width:760px; margin:0 auto; color:rgba(250,248,245,.82); font:400 clamp(1rem,1.6vw,1.15rem)/1.7 var(--fonte-corpo); }
+.home-page .hero-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:14px; margin-top:36px; }
+.home-page .hero-btn--dourado { border-color:#C9A227; color:#1A1F2E; background:#C9A227; }
+.home-page .hero-btn--dourado:hover { color:#1A1F2E; background:#F0C75E; }
+.journey-section { text-align:center; }
+.journey-steps { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; max-width:1040px; margin:26px auto 0; padding:0; list-style:none; counter-reset:passo; text-align:left; }
+.journey-steps li { position:relative; padding:46px 22px 22px; border:1px solid rgba(30,58,95,.14); background:#fff; color:#2C3E50; font:400 15px/1.65 var(--fonte-corpo); counter-increment:passo; }
+.journey-steps li::before { content:counter(passo); position:absolute; top:16px; left:22px; color:#C9A227; font:700 22px/1 var(--fonte-titulo); }
+.journey-steps strong { display:block; margin-bottom:6px; color:#1E3A5F; font-size:16px; }
+.journey-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-top:12px; }
+.home-section-link { margin:18px 0 0; }
+.home-section-link a { color:#1E3A5F; font-weight:700; }
+@media (max-width:800px) { .journey-steps { grid-template-columns:1fr; } }
+
+/* ---------------------------------------------------------------- Quem somos: manifesto */
+.about-manifesto { margin:clamp(36px,6vw,64px) auto 0; padding-top:clamp(28px,4vw,40px); border-top:1px solid #E0DDD8; }
+.about-manifesto-header { margin-bottom:18px; text-align:center; }
+.about-manifesto-header h2 { margin:6px 0 0; color:#1E3A5F; font:700 clamp(1.7rem,3vw,2.3rem)/1.2 var(--fonte-titulo); }
+
+/* ---------------------------------------------------------------- O que oferecemos */
+.oferecemos { margin:8px 0 clamp(36px,5vw,56px); }
+.oferecemos-bloco { margin-top:clamp(28px,4vw,40px); }
+.oferecemos-cabecalho { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px 18px; }
+.oferecemos-cabecalho .editorial-section-title { margin-bottom:0; }
+.oferecemos-ordem { display:inline-flex; border:1px solid rgba(30,58,95,.25); }
+.oferecemos-ordem button { padding:7px 14px; border:0; background:transparent; color:#1E3A5F; font:600 12px var(--fonte-corpo); cursor:pointer; }
+.oferecemos-ordem button[aria-pressed="true"] { color:#FAF8F5; background:#1E3A5F; }
+.oferecemos-nota { margin:10px 0 18px; color:#2C3E50; font-size:15px; line-height:1.6; }
+.ofertas { display:grid; gap:14px; }
+.oferta { display:grid; grid-template-columns:150px minmax(0,1fr); gap:20px; padding:20px 22px; border:1px solid rgba(30,58,95,.14); background:#fff; }
+.oferta--disponivel { grid-template-columns:72px minmax(0,1fr); border-color:rgba(201,162,39,.55); background:#FFFBEF; }
+.oferta-icone .produto-icone { width:56px; height:56px; color:#C9A227; }
+.oferta-quando { display:flex; flex-direction:column; gap:6px; align-items:flex-start; padding-right:18px; border-right:2px solid #C9A227; color:#1E3A5F; font:700 15px/1.35 var(--fonte-titulo); }
+.oferta-categoria { margin:0 0 4px; color:#C9A227; font:700 11px/1.4 var(--fonte-corpo); letter-spacing:.14em; text-transform:uppercase; }
+.oferta h3 { margin:0 0 6px; color:#1E3A5F; font:700 clamp(1.2rem,2vw,1.4rem)/1.25 var(--fonte-titulo); }
+.oferta-corpo > p:not(.oferta-categoria) { margin:0; color:#2C3E50; font-size:15px; line-height:1.6; }
+.oferta-votos { display:flex; align-items:center; gap:8px; margin-top:12px; color:#2C3E50; font-size:13px; }
+.oferta-votos strong { color:#1E3A5F; }
+.oferta-votos-barra { flex:0 1 180px; height:6px; background:rgba(30,58,95,.1); }
+.oferta-votos-barra > span { display:block; height:100%; background:#C9A227; }
+.oferta-acoes { display:flex; flex-wrap:wrap; align-items:center; gap:10px 16px; margin-top:14px; }
+.oferta-voto { display:inline-flex; align-items:center; min-height:40px; padding:9px 16px; border:1px solid #1E3A5F; background:#1E3A5F; color:#FAF8F5; font:700 13px var(--fonte-corpo); text-decoration:none; cursor:pointer; }
+.oferta-voto:hover { background:transparent; color:#1E3A5F; }
+.oferta-voto--feito { border-color:#C9A227; background:#FFF6DA; color:#1E3A5F; }
+.oferta-link { color:#1E3A5F; font-weight:700; font-size:14px; }
+.oferta-preco { color:#2C3E50; font-size:13px; }
+.oferecemos-ajuda-titulo { margin-top:clamp(36px,5vw,56px); }
+@media (max-width:640px) {
+  .oferta { grid-template-columns:1fr; gap:10px; padding:18px; }
+  .oferta-quando { padding:0 0 8px; border-right:0; border-bottom:2px solid #C9A227; }
+  .oferta--disponivel { grid-template-columns:56px minmax(0,1fr); }
+}
+.oferta--marcada { border-color:rgba(201,162,39,.55); }
+.oferta-fundadores { color:#8A6D12; font:600 12px/1.4 var(--fonte-corpo); }
+
+/* ---------------------------------------------------------------- Início: céu com planetas (igual à entrada da Minha área) */
+.home-page .hero-portal { position:relative; overflow:hidden; isolation:isolate; background:radial-gradient(ellipse at 50% 40%, #16304D 0%, #0F2238 45%, #0A1626 100%); }
+.home-page .hero-portal .hero-content { position:relative; z-index:2; }
+.hero-portal .ceu { position:absolute; inset:0; z-index:0; pointer-events:none; }
+.hero-portal .ceu-estrelas { position:absolute; inset:-50% 0 0 0; background-repeat:repeat; }
+.hero-portal .ceu-estrelas--longe { background-image:radial-gradient(1px 1px at 20px 30px, rgba(255,255,255,.55), transparent 60%), radial-gradient(1px 1px at 120px 80px, rgba(255,255,255,.4), transparent 60%), radial-gradient(1px 1px at 200px 160px, rgba(240,199,94,.5), transparent 60%), radial-gradient(1px 1px at 60px 210px, rgba(255,255,255,.45), transparent 60%), radial-gradient(1px 1px at 260px 260px, rgba(255,255,255,.35), transparent 60%); background-size:300px 300px; animation:ceu-navegar 140s linear infinite; opacity:.8; }
+.hero-portal .ceu-estrelas--perto { background-image:radial-gradient(1.6px 1.6px at 50px 90px, rgba(255,255,255,.75), transparent 60%), radial-gradient(2px 2px at 330px 40px, rgba(240,199,94,.7), transparent 60%), radial-gradient(1.4px 1.4px at 180px 300px, rgba(255,255,255,.6), transparent 60%), radial-gradient(1.8px 1.8px at 400px 380px, rgba(255,255,255,.55), transparent 60%); background-size:460px 460px; animation:ceu-navegar 70s linear infinite, ceu-brilhar 6s ease-in-out infinite alternate; }
+.hero-portal .ceu-planeta { position:absolute; border-radius:50%; }
+.hero-portal .ceu-planeta--grande { width:520px; height:520px; right:-190px; bottom:-230px; background:radial-gradient(circle at 30% 30%, rgba(122,160,204,.16), rgba(27,58,92,.10) 45%, transparent 70%); box-shadow:inset 18px -12px 60px rgba(240,199,94,.05); animation:ceu-flutuar 38s ease-in-out infinite alternate; }
+.hero-portal .ceu-planeta--anel { width:150px; height:150px; left:7%; top:18%; background:radial-gradient(circle at 35% 35%, rgba(217,140,122,.18), rgba(27,58,92,.08) 60%, transparent 72%); animation:ceu-flutuar 30s ease-in-out infinite alternate-reverse; }
+.hero-portal .ceu-planeta--anel::after { content:""; position:absolute; left:-45%; top:38%; width:190%; height:26%; border:1.5px solid rgba(240,199,94,.16); border-radius:50%; transform:rotate(-18deg); }
+.hero-portal .ceu-planeta--pequeno { width:64px; height:64px; right:16%; top:12%; background:radial-gradient(circle at 35% 35%, rgba(240,199,94,.20), rgba(240,199,94,.04) 60%, transparent 72%); animation:ceu-flutuar 24s ease-in-out infinite alternate; }
+.hero-portal .ceu-vidro { position:absolute; inset:0; background:linear-gradient(115deg, transparent 38%, rgba(255,255,255,.035) 44%, transparent 52%), radial-gradient(ellipse at center, transparent 55%, rgba(5,12,22,.55) 100%); }
+@keyframes ceu-navegar { from { transform:translateY(0); } to { transform:translateY(33%); } }
+@keyframes ceu-brilhar { from { opacity:.55; } to { opacity:1; } }
+@keyframes ceu-flutuar { from { transform:translate(0,0); } to { transform:translate(-24px,18px); } }
+@media (prefers-reduced-motion:reduce) { .hero-portal .ceu-estrelas,.hero-portal .ceu-planeta { animation:none!important; } }
+@media (max-width:640px) { .hero-portal .ceu-planeta--grande { width:340px; height:340px; right:-160px; bottom:-150px; } .hero-portal .ceu-planeta--anel { width:90px; height:90px; left:-20px; } }
+
+/* ---------------------------------------------------------------- Alinhamento: todas as faixas com a mesma coluna central */
+.home-page .home-section { padding-left:max(24px, calc((100% - 980px) / 2)); padding-right:max(24px, calc((100% - 980px) / 2)); }
+.home-page .home-check-list,.home-page .home-simple-list { max-width:none; }
+
+/* ---------------------------------------------------------------- Início: linha da jornada com datas */
+.jornada-linha { display:grid; grid-auto-flow:column; grid-auto-columns:minmax(150px,1fr); gap:0; margin:30px 0 8px; overflow-x:auto; text-align:left; }
+.jornada-passo { position:relative; padding:34px 14px 6px 0; color:inherit; text-decoration:none; }
+.jornada-passo::before { content:""; position:absolute; top:11px; left:0; right:0; height:2px; background:rgba(30,58,95,.18); }
+.jornada-passo::after { content:""; position:absolute; top:4px; left:0; width:16px; height:16px; border:2px solid #C9A227; border-radius:50%; background:#FAF8F5; }
+.jornada-passo--agora::after { background:#C9A227; }
+.jornada-quando { display:block; color:#8A6D12; font:700 12px/1.3 var(--fonte-corpo); letter-spacing:.06em; text-transform:uppercase; }
+.jornada-nome { display:block; margin-top:4px; color:#1E3A5F; font:700 16px/1.3 var(--fonte-titulo); }
+.jornada-cat { display:block; margin-top:2px; color:#5A6270; font-size:12px; }
+.jornada-fund { display:block; margin-top:4px; color:#8A6D12; font-size:11.5px; font-weight:600; }
+a.jornada-passo:hover .jornada-nome { text-decoration:underline; }
+
