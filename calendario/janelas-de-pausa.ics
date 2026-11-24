@@ -1,0 +1,3608 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Entre Estrelas//Janelas de Pausa//PT-BR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Janelas de Pausa · Entre Estrelas
+X-WR-CALDESC:Os momentos de pausa\, a cada dois ou três dias. Entre Estr
+ elas.
+X-PUBLISHED-TTL:PT12H
+REFRESH-INTERVAL;VALUE=DURATION:PT12H
+BEGIN:VEVENT
+UID:janela-20261031T215930Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20261031T215930Z
+DTEND:20261101T041730Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20261103T001030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20261103T001030Z
+DTEND:20261103T082730Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20261104T065630Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20261104T065630Z
+DTEND:20261105T143730Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20261107T131930Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20261107T131930Z
+DTEND:20261107T223930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20261109T232430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20261109T232430Z
+DTEND:20261110T083530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20261112T112830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20261112T112830Z
+DTEND:20261112T202630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20261114T185530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20261114T185530Z
+DTEND:20261115T092330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20261117T142530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20261117T142530Z
+DTEND:20261117T211930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20261120T204330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20261120T204330Z
+DTEND:20261121T211930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20261124T100830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20261124T100830Z
+DTEND:20261124T110930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20261126T052330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20261126T052330Z
+DTEND:20261126T105030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20261128T053930Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20261128T053930Z
+DTEND:20261128T112030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20261130T100930Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20261130T100930Z
+DTEND:20261130T141230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20261202T091030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20261202T091030Z
+DTEND:20261202T200330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20261204T224030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20261204T224030Z
+DTEND:20261205T043430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20261207T090730Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20261207T090730Z
+DTEND:20261207T150630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20261209T210530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20261209T210530Z
+DTEND:20261210T030830Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20261210T191230Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20261210T191230Z
+DTEND:20261212T160530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20261214T223930Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20261214T223930Z
+DTEND:20261215T043530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20261219T021330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20261219T021330Z
+DTEND:20261219T043530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20261221T172530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20261221T172530Z
+DTEND:20261221T222630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20261223T170030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20261223T170030Z
+DTEND:20261223T215830Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20261225T000830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20261225T000830Z
+DTEND:20261225T211130Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20261227T163730Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20261227T163730Z
+DTEND:20261227T221230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20261229T101730Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20261229T101730Z
+DTEND:20261230T022630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270101T032730Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270101T032730Z
+DTEND:20270101T101530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270103T133230Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270103T133230Z
+DTEND:20270103T205630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270106T012230Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270106T012230Z
+DTEND:20270106T091630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270108T051030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270108T051030Z
+DTEND:20270108T221030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270111T015830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270111T015830Z
+DTEND:20270111T103530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270114T141430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270114T141430Z
+DTEND:20270115T103530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270118T045730Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270118T045730Z
+DTEND:20270118T083230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270120T010030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270120T010030Z
+DTEND:20270120T092030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270121T004430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270121T004430Z
+DTEND:20270122T084430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270123T233230Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270123T233230Z
+DTEND:20270124T084430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270125T175530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270125T175530Z
+DTEND:20270126T111130Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270128T074530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270128T074530Z
+DTEND:20270128T172030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270131T003530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270131T003530Z
+DTEND:20270131T031330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270202T130430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270202T130430Z
+DTEND:20270202T153230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270203T125230Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270203T125230Z
+DTEND:20270205T042830Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270207T014630Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270207T014630Z
+DTEND:20270207T163130Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270210T235630Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270210T235630Z
+DTEND:20270211T163130Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270214T075830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270214T075830Z
+DTEND:20270214T155830Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270216T144930Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270216T144930Z
+DTEND:20270216T183830Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270217T214830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270217T214830Z
+DTEND:20270218T193030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270220T160130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270220T160130Z
+DTEND:20270220T195830Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270222T075330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270222T075330Z
+DTEND:20270222T214430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270224T235830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270224T235830Z
+DTEND:20270225T022330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270227T063430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270227T063430Z
+DTEND:20270227T105230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270301T161830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270301T161830Z
+DTEND:20270301T223530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270303T013730Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270303T013730Z
+DTEND:20270304T113130Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270306T140030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270306T140030Z
+DTEND:20270306T232530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270310T194130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270310T194130Z
+DTEND:20270310T232530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270313T133230Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270313T133230Z
+DTEND:20270313T213030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270315T205130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270315T205130Z
+DTEND:20270316T011030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270317T225130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270317T225130Z
+DTEND:20270318T034030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270319T161630Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270319T161630Z
+DTEND:20270320T053630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270320T093330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270320T093330Z
+DTEND:20270322T080130Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270324T075830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270324T075830Z
+DTEND:20270324T121730Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270326T030330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270326T030330Z
+DTEND:20270326T194230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270328T123830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270328T123830Z
+DTEND:20270329T063230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270330T161230Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270330T161230Z
+DTEND:20270331T191930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270402T132830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270402T132830Z
+DTEND:20270403T072430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270407T072030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270407T072030Z
+DTEND:20270407T072430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270409T122130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270409T122130Z
+DTEND:20270410T032030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270411T160930Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270411T160930Z
+DTEND:20270412T063130Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270413T225630Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270413T225630Z
+DTEND:20270414T092930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270416T055130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270416T055130Z
+DTEND:20270416T123930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270418T125630Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270418T125630Z
+DTEND:20270418T162130Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270420T083830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270420T083830Z
+DTEND:20270420T212030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270422T161230Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270422T161230Z
+DTEND:20270423T043630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270425T025430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270425T025430Z
+DTEND:20270425T145130Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270427T071830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270427T071830Z
+DTEND:20270428T032330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270430T063130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270430T063130Z
+DTEND:20270430T155130Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270503T145900Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270503T145900Z
+DTEND:20270504T000000Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270505T020830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270505T020830Z
+DTEND:20270505T075230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270507T064830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270507T064830Z
+DTEND:20270507T110630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270509T095430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270509T095430Z
+DTEND:20270509T125830Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270511T074530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270511T074530Z
+DTEND:20270511T150030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270513T173130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270513T173130Z
+DTEND:20270513T180530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270515T124730Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270515T124730Z
+DTEND:20270515T223330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270517T145430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270517T145430Z
+DTEND:20270518T043230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270520T105830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270520T105830Z
+DTEND:20270520T122630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270522T085830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270522T085830Z
+DTEND:20270522T224230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270524T212930Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270524T212930Z
+DTEND:20270525T110430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270527T222330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270527T222330Z
+DTEND:20270527T235430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270531T043230Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270531T043230Z
+DTEND:20270531T235430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270601T070130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270601T070130Z
+DTEND:20270601T173230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270603T102230Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270603T102230Z
+DTEND:20270603T204230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270605T124330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270605T124330Z
+DTEND:20270605T213830Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270607T205430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270607T205430Z
+DTEND:20270607T221230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270609T152130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270609T152130Z
+DTEND:20270610T000030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270611T105530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270611T105530Z
+DTEND:20270612T035630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270614T013330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270614T013330Z
+DTEND:20270614T101630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270616T044530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270616T044530Z
+DTEND:20270616T185330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270619T004430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270619T004430Z
+DTEND:20270619T053530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270621T093630Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270621T093630Z
+DTEND:20270621T180030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270623T230230Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270623T230230Z
+DTEND:20270624T070030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270627T090330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270627T090330Z
+DTEND:20270628T070030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270630T224130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270630T224130Z
+DTEND:20270701T065530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270703T040430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270703T040430Z
+DTEND:20270703T075830Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270705T023530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270705T023530Z
+DTEND:20270705T073930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270707T041030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270707T041030Z
+DTEND:20270707T075630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270709T072830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270709T072830Z
+DTEND:20270709T102330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270711T144930Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270711T144930Z
+DTEND:20270711T155430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270713T230830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270713T230830Z
+DTEND:20270714T003230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270716T074030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270716T074030Z
+DTEND:20270716T113830Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270718T190530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270718T190530Z
+DTEND:20270719T001530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270721T111730Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270721T111730Z
+DTEND:20270721T131330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270725T054530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270725T054530Z
+DTEND:20270725T131330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270727T212730Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270727T212730Z
+DTEND:20270728T160930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270730T144830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270730T144830Z
+DTEND:20270730T182430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270801T155330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270801T155330Z
+DTEND:20270801T182430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270803T143030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270803T143030Z
+DTEND:20270803T175630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270804T084530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270804T084530Z
+DTEND:20270805T185430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270807T190430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270807T190430Z
+DTEND:20270807T225230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270809T045330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270809T045330Z
+DTEND:20270810T063530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270812T131830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270812T131830Z
+DTEND:20270812T173430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270815T015730Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270815T015730Z
+DTEND:20270815T061930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270817T144830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270817T144830Z
+DTEND:20270817T191130Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270821T014630Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270821T014630Z
+DTEND:20270821T191130Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270823T144230Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270823T144230Z
+DTEND:20270824T232630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270826T231930Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270826T231930Z
+DTEND:20270827T032030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270829T004530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270829T004530Z
+DTEND:20270829T044230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270831T024030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270831T024030Z
+DTEND:20270831T044330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270902T012830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270902T012830Z
+DTEND:20270902T050630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270904T030530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270904T030530Z
+DTEND:20270904T074330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270905T190530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270905T190530Z
+DTEND:20270906T140030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270908T182730Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270908T182730Z
+DTEND:20270909T001130Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270911T064230Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270911T064230Z
+DTEND:20270911T124930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270913T191930Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270913T191930Z
+DTEND:20270914T013830Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270917T080830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270917T080830Z
+DTEND:20270918T013830Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270921T011230Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270921T011230Z
+DTEND:20270921T050530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270923T033430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270923T033430Z
+DTEND:20270923T100130Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270925T100330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270925T100330Z
+DTEND:20270925T130030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270927T075430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270927T075430Z
+DTEND:20270927T142730Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20270928T194830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20270928T194830Z
+DTEND:20270929T153030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271001T102430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271001T102430Z
+DTEND:20271001T174530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271003T064130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271003T064130Z
+DTEND:20271003T225530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271006T030130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271006T030130Z
+DTEND:20271006T075830Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271008T102030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271008T102030Z
+DTEND:20271008T200930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271011T020330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271011T020330Z
+DTEND:20271011T090130Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271014T143030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271014T143030Z
+DTEND:20271015T090130Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271017T123530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271017T123530Z
+DTEND:20271018T104530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271020T094830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271020T094830Z
+DTEND:20271020T152430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271022T172830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271022T172830Z
+DTEND:20271022T190230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271024T113530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271024T113530Z
+DTEND:20271024T215330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271026T121230Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271026T121230Z
+DTEND:20271027T002030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271028T161930Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271028T161930Z
+DTEND:20271029T032230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271031T055930Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271031T055930Z
+DTEND:20271031T082330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271102T033930Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271102T033930Z
+DTEND:20271102T164030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271104T144330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271104T144330Z
+DTEND:20271105T041230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271107T100930Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271107T100930Z
+DTEND:20271107T170830Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271111T040030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271111T040030Z
+DTEND:20271111T170830Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271114T050630Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271114T050630Z
+DTEND:20271114T181430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271116T094030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271116T094030Z
+DTEND:20271116T213930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271118T175730Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271118T175730Z
+DTEND:20271119T002730Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271121T004730Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271121T004730Z
+DTEND:20271121T032430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271123T032630Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271123T032630Z
+DTEND:20271123T065230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271125T110430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271125T110430Z
+DTEND:20271125T110930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271127T112130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271127T112130Z
+DTEND:20271127T170030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271129T150230Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271129T150230Z
+DTEND:20271130T011830Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271202T021730Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271202T021730Z
+DTEND:20271202T122530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271204T074630Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271204T074630Z
+DTEND:20271205T011930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271208T213130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271208T213130Z
+DTEND:20271209T011930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271211T205730Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271211T205730Z
+DTEND:20271212T035430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271214T000330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271214T000330Z
+DTEND:20271214T062330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271216T014130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271216T014130Z
+DTEND:20271216T074030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271218T085630Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271218T085630Z
+DTEND:20271218T091630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271220T091030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271220T091030Z
+DTEND:20271220T121230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271222T005930Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271222T005930Z
+DTEND:20271222T170030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271224T181130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271224T181130Z
+DTEND:20271224T234930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271227T031330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271227T031330Z
+DTEND:20271227T085030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271229T142830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271229T142830Z
+DTEND:20271229T200330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20271231T144130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20271231T144130Z
+DTEND:20280101T085230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280105T014030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280105T014030Z
+DTEND:20280105T085230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280108T100130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280108T100130Z
+DTEND:20280108T142630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280110T130730Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280110T130730Z
+DTEND:20280110T171430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280112T134330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280112T134330Z
+DTEND:20280112T174230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280114T035430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280114T035430Z
+DTEND:20280114T173930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280116T143830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280116T143830Z
+DTEND:20280116T185130Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280118T192530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280118T192530Z
+DTEND:20280118T223430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280121T003030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280121T003030Z
+DTEND:20280121T052330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280123T094630Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280123T094630Z
+DTEND:20280123T150130Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280125T210730Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280125T210730Z
+DTEND:20280126T024330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280127T233130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280127T233130Z
+DTEND:20280128T153330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280202T022530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280202T022530Z
+DTEND:20280202T153630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280204T180430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280204T180430Z
+DTEND:20280204T234530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280207T033430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280207T033430Z
+DTEND:20280207T040630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280208T231830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280208T231830Z
+DTEND:20280209T051230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280210T174430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280210T174430Z
+DTEND:20280211T043430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280212T214230Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280212T214230Z
+DTEND:20280213T041230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280214T224830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280214T224830Z
+DTEND:20280215T060230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280217T080730Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280217T080730Z
+DTEND:20280217T112930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280219T113430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280219T113430Z
+DTEND:20280219T204430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280221T224030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280221T224030Z
+DTEND:20280222T084330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280224T101130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280224T101130Z
+DTEND:20280224T214330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280228T111930Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280228T111930Z
+DTEND:20280228T214330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280302T191930Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280302T191930Z
+DTEND:20280303T064830Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280305T044230Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280305T044230Z
+DTEND:20280305T125330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280307T082330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280307T082330Z
+DTEND:20280307T154230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280309T091930Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280309T091930Z
+DTEND:20280309T155930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280311T044030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280311T044030Z
+DTEND:20280311T152030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280313T094030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280313T094030Z
+DTEND:20280313T155230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280315T133830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280315T133830Z
+DTEND:20280315T193230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280318T004530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280318T004530Z
+DTEND:20280318T032630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280320T090030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280320T090030Z
+DTEND:20280320T145630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280322T223830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280322T223830Z
+DTEND:20280323T035930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280326T090830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280326T090830Z
+DTEND:20280327T035930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280330T082230Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280330T082230Z
+DTEND:20280330T122230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280401T163930Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280401T163930Z
+DTEND:20280401T191430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280403T213830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280403T213830Z
+DTEND:20280403T233730Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280406T000730Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280406T000730Z
+DTEND:20280406T013630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280407T090930Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280407T090930Z
+DTEND:20280408T020230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280410T015730Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280410T015730Z
+DTEND:20280410T023630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280411T103030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280411T103030Z
+DTEND:20280412T051830Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280414T065930Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280414T065930Z
+DTEND:20280414T114430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280416T163630Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280416T163630Z
+DTEND:20280416T221030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280419T104430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280419T104430Z
+DTEND:20280419T105630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280423T032830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280423T032830Z
+DTEND:20280423T105630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280426T023330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280426T023330Z
+DTEND:20280426T181430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280428T025430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280428T025430Z
+DTEND:20280429T003730Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280430T080830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280430T080830Z
+DTEND:20280501T052230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280502T125330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280502T125330Z
+DTEND:20280503T083530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280504T161330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280504T161330Z
+DTEND:20280505T103330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280506T183330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280506T183330Z
+DTEND:20280507T121530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280508T194830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280508T194830Z
+DTEND:20280509T151130Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280511T020630Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280511T020630Z
+DTEND:20280511T205930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280513T173830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280513T173830Z
+DTEND:20280514T062630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280516T104230Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280516T104230Z
+DTEND:20280516T183830Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280520T181430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280520T181430Z
+DTEND:20280520T183830Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280523T045830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280523T045830Z
+DTEND:20280524T013430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280525T092330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280525T092330Z
+DTEND:20280526T065930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280527T212630Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280527T212630Z
+DTEND:20280528T105430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280530T032830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280530T032830Z
+DTEND:20280530T140030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280601T090030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280601T090030Z
+DTEND:20280601T164630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280602T140230Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280602T140230Z
+DTEND:20280603T194330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280605T212230Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280605T212230Z
+DTEND:20280605T234430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280607T084030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280607T084030Z
+DTEND:20280608T055230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280609T165430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280609T165430Z
+DTEND:20280610T145630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280612T103130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280612T103130Z
+DTEND:20280613T024030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280616T131630Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280616T131630Z
+DTEND:20280617T024030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280619T151030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280619T151030Z
+DTEND:20280620T102430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280621T212830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280621T212830Z
+DTEND:20280622T151630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280624T011230Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280624T011230Z
+DTEND:20280624T180230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280625T150730Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280625T150730Z
+DTEND:20280626T195730Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280628T060530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280628T060530Z
+DTEND:20280628T220930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280630T032130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280630T032130Z
+DTEND:20280701T012730Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280702T141830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280702T141830Z
+DTEND:20280703T062330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280705T013430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280705T013430Z
+DTEND:20280705T132530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280707T063230Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280707T063230Z
+DTEND:20280707T224830Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280709T191730Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280709T191730Z
+DTEND:20280710T102330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280714T000830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280714T000830Z
+DTEND:20280714T102330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280715T031430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280715T031430Z
+DTEND:20280715T105030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280717T111630Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280717T111630Z
+DTEND:20280717T194530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280720T000330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280720T000330Z
+DTEND:20280720T010230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280722T030130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280722T030130Z
+DTEND:20280722T031630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280723T063930Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280723T063930Z
+DTEND:20280724T035530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280725T193930Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280725T193930Z
+DTEND:20280726T044030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280727T142730Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280727T142730Z
+DTEND:20280728T070130Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280730T031930Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280730T031930Z
+DTEND:20280730T115430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280801T111930Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280801T111930Z
+DTEND:20280801T193230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280803T215330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280803T215330Z
+DTEND:20280804T053330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280806T152830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280806T152830Z
+DTEND:20280806T172030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280810T094430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280810T094430Z
+DTEND:20280810T172030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280810T194330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280810T194330Z
+DTEND:20280811T181630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280814T003430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280814T003430Z
+DTEND:20280814T042230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280816T081030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280816T081030Z
+DTEND:20280816T105430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280818T115230Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280818T115230Z
+DTEND:20280818T134530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280820T104330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280820T104330Z
+DTEND:20280820T135930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280822T125530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280822T125530Z
+DTEND:20280822T132730Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280824T020030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280824T020030Z
+DTEND:20280824T141130Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280826T154530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280826T154530Z
+DTEND:20280826T175030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280827T191430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280827T191430Z
+DTEND:20280829T010630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280831T055630Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280831T055630Z
+DTEND:20280831T112630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280901T153430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280901T153430Z
+DTEND:20280902T233230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280906T165130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280906T165130Z
+DTEND:20280908T003430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280909T104330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280909T104330Z
+DTEND:20280910T112430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280912T004530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280912T004530Z
+DTEND:20280912T192530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280914T102530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280914T102530Z
+DTEND:20280914T234830Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280916T053230Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280916T053230Z
+DTEND:20280917T005130Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280918T182330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280918T182330Z
+DTEND:20280919T000530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280920T052130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280920T052130Z
+DTEND:20280920T233830Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280922T053530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280922T053530Z
+DTEND:20280923T013830Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280924T145030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280924T145030Z
+DTEND:20280925T073230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280926T133930Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280926T133930Z
+DTEND:20280927T172030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20280929T234930Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20280929T234930Z
+DTEND:20280930T053330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281003T224500Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281003T224500Z
+DTEND:20281004T000000Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281004T071130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281004T071130Z
+DTEND:20281005T062230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281006T213530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281006T213530Z
+DTEND:20281007T170930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281009T095830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281009T095830Z
+DTEND:20281010T015630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281011T115630Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281011T115630Z
+DTEND:20281012T075330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281014T005930Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281014T005930Z
+DTEND:20281014T103730Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281015T114230Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281015T114230Z
+DTEND:20281016T105530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281018T050530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281018T050530Z
+DTEND:20281018T102930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281020T075230Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281020T075230Z
+DTEND:20281020T112930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281022T152430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281022T152430Z
+DTEND:20281022T155030Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281024T174130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281024T174130Z
+DTEND:20281025T002230Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281026T130230Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281026T130230Z
+DTEND:20281027T120630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281031T055130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281031T055130Z
+DTEND:20281031T120630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281101T083730Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281101T083730Z
+DTEND:20281101T124430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281102T091730Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281102T091730Z
+DTEND:20281103T225730Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281105T041530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281105T041530Z
+DTEND:20281106T072330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281107T123430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281107T123430Z
+DTEND:20281108T134930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281109T212530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281109T212530Z
+DTEND:20281110T175930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281112T040030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281112T040030Z
+DTEND:20281112T195930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281114T071730Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281114T071730Z
+DTEND:20281114T204830Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281116T131730Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281116T131730Z
+DTEND:20281116T220530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281118T205630Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281118T205630Z
+DTEND:20281119T014130Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281121T080430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281121T080430Z
+DTEND:20281121T085630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281122T214030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281122T214030Z
+DTEND:20281123T194430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281127T092830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281127T092830Z
+DTEND:20281127T194430Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281128T001130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281128T001130Z
+DTEND:20281128T201730Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281130T113730Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281130T113730Z
+DTEND:20281201T060930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281202T220630Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281202T220630Z
+DTEND:20281203T134130Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281205T061530Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281205T061530Z
+DTEND:20281205T191930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281207T161430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281207T161430Z
+DTEND:20281207T232830Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281210T013930Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281210T013930Z
+DTEND:20281210T022930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281211T154130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281211T154130Z
+DTEND:20281212T045130Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281214T053030Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281214T053030Z
+DTEND:20281214T072830Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281216T073830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281216T073830Z
+DTEND:20281216T113330Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281218T160830Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281218T160830Z
+DTEND:20281218T181930Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281221T035330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281221T035330Z
+DTEND:20281221T041530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281224T163430Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281224T163430Z
+DTEND:20281225T041530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281225T171130Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281225T171130Z
+DTEND:20281226T044630Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281228T080230Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281228T080230Z
+DTEND:20281228T145730Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:janela-20281230T124330Z@entreestrelas.com
+DTSTAMP:20261124T064543Z
+DTSTART:20281230T124330Z
+DTEND:20281230T220530Z
+SUMMARY:Janela de Pausa
+DESCRIPTION:Momento de pausar: evite começar algo novo ou tomar decisõe
+ s importantes. Bom para descansar\, treinar e terminar o que já está e
+ m andamento.\nEntre Estrelas · entreestrelas.com
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR
