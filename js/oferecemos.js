@@ -118,7 +118,7 @@ const ABAS = {
   },
   comunidade: {
     nome: 'Constelação',
-    resumo: '<strong>Venha fazer parte desta constelação você também.</strong> A Constelação é a comunidade do Entre Estrelas: a jornada completa, com todas as análises e vivências incluídas, um novo passo por mês, e você recebe cada um antes. E você não recebe sozinho: em cada passo, a gente apresenta, ensina como aplicar na sua vida, conversa e acompanha em grupo, como ter uma astróloga do seu lado. É o jeito mais completo e o que sai mais em conta. Hoje, a forma de entrar é ser <strong>Membro Fundador</strong>.'
+    resumo: '<strong>Venha fazer parte desta constelação você também.</strong> A Constelação é a comunidade do Entre Estrelas: a jornada completa, com todas as análises e vivências incluídas, um novo passo por mês, e você recebe cada um antes. E você não recebe sozinho: em cada passo, a gente apresenta, ensina como aplicar na sua vida e conversa com todo o grupo. É o jeito mais completo e o que sai mais em conta. Hoje, a forma de entrar é ser <strong>Membro Fundador</strong>.<span class="oferecemos-aviso"><strong>O acompanhamento da Constelação é em grupo:</strong> encontros e conversas com toda a comunidade, não um atendimento individual. Para um olhar só para você, existem as Horas de Acompanhamento, contratadas à parte.</span>'
   },
   avulsos: {
     nome: 'Passo a passo',
