@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css?v=20261124-presente-gratis">
+  <link rel="stylesheet" href="css/portal.css?v=20261124-ver-todos">
 </head>
 <body>
   <header class="portal-topo">
@@ -80,6 +80,7 @@
         <h2>★ O que vem pela frente</h2>
         <p class="suave">O que estamos preparando para a sua jornada. Inscreva-se para receber as informações e participar.</p>
         <div class="produtos" id="lista-em-breve"></div>
+        <button type="button" class="link-ver-todos" id="ver-todos-em-breve" hidden></button>
       </section>
 
       <section class="cartao" id="cartao-aniversarios-comunidade" hidden>
@@ -445,9 +446,31 @@
           <div class="em-breve-acoes">${botao}</div>
         </article>`;
       };
+      // Mostra só as duas primeiras linhas; "Ver todos" abre o resto
+      let emBreveAberto = false;
+      const recolherEmBreve = () => {
+        const lista = document.querySelector('#lista-em-breve');
+        const botao = document.querySelector('#ver-todos-em-breve');
+        const cartoes = [...lista.children];
+        cartoes.forEach((c) => { c.hidden = false; });
+        const grade = getComputedStyle(lista).gridTemplateColumns;
+        const colunas = grade && grade !== 'none' ? grade.split(' ').filter(Boolean).length : 3;
+        const limite = colunas * 2;
+        if (cartoes.length <= limite) { botao.hidden = true; return; }
+        if (!emBreveAberto) cartoes.slice(limite).forEach((c) => { c.hidden = true; });
+        botao.hidden = false;
+        botao.textContent = emBreveAberto ? 'Mostrar menos ↑' : `Ver todos (${cartoes.length}) ↓`;
+      };
+      document.querySelector('#ver-todos-em-breve').addEventListener('click', () => {
+        emBreveAberto = !emBreveAberto;
+        recolherEmBreve();
+        if (!emBreveAberto) document.querySelector('#cartao-em-breve').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      addEventListener('resize', () => { if (!document.querySelector('#cartao-em-breve').hidden) recolherEmBreve(); });
       const desenharEmBreve = () => {
         document.querySelector('#lista-em-breve').innerHTML = emBreve.map(cartaoEmBreve).join('');
         document.querySelector('#cartao-em-breve').hidden = emBreve.length === 0;
+        recolherEmBreve();
         desenharCalendario();
       };
 
