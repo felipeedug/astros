@@ -687,3 +687,17 @@ textarea { font: inherit; font-weight: 400; padding: .7rem .8rem; border: 1px so
 .em-breve-votos strong { color: var(--azul-marca); font-size: 1rem; }
 
 .em-breve-acoes .inscrito-ok, .em-breve-acoes .em-breve-votos { flex-basis: 100%; }
+
+/* Novidades da versão: fechadas, como um botão; abrem ao clicar */
+.produto-novidades { padding: 0; border: 0; background: none; }
+.produto-novidades summary { display: inline-flex; align-items: center; padding: .45rem .9rem; border: 1px solid rgba(201, 162, 39, .55); border-radius: 999px; background: #FBF7EC; font-size: .85rem; list-style: none; }
+.produto-novidades summary::-webkit-details-marker { display: none; }
+.produto-novidades[open] summary { margin-bottom: .2rem; }
+.produto-novidades[open] ul { padding: .6rem .9rem .6rem 1.9rem; border-radius: 10px; background: #FBF7EC; }
+
+/* Saudação com os selos ao lado do nome (eles podem ir se acumulando) */
+.saudacao-linha { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; }
+.saudacao-linha h1 { margin: 0; }
+.selos { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; }
+.selos:empty { display: none; }
+
