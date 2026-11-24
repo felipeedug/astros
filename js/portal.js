@@ -391,6 +391,14 @@ export async function verPresente(codigo) {
   return (data || [])[0] || null;
 }
 
+// Presente sem pagamento dos conteúdos abertos (Comece agora): devolve o código do link
+export async function presentearGratis(slug) {
+  exigirConfiguracao();
+  const { data, error } = await supabase.rpc('presentear_gratis', { p_slug: slug });
+  falha(error, 'Não foi possível gerar o presente.');
+  return data;
+}
+
 export async function resgatarPresente(codigo) {
   exigirConfiguracao();
   const { data, error } = await supabase.rpc('resgatar_presente', { p_codigo: codigo });

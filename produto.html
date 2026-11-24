@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css?v=20261124-eventos">
+  <link rel="stylesheet" href="css/portal.css?v=20261124-presente-gratis">
 </head>
 <body>
   <header class="portal-topo">
@@ -39,8 +39,8 @@
   <script type="module">
     import {
       configurado, sessaoAtual, meuCadastro, meusProdutos, minhasAssinaturas, inscrever, cancelarInscricao,
-      produtoDaPagina, textoDaPagina, iconeProduto, imagemProduto, escapar, formatarPreco
-    } from './js/portal.js?v=20261124-comece';
+      produtoDaPagina, textoDaPagina, iconeProduto, imagemProduto, escapar, formatarPreco, presentearGratis, linkDePresente
+    } from './js/portal.js?v=20261124-presente-gratis';
 
     const parametros = new URLSearchParams(location.search);
     const slug = (parametros.get('p') || '').trim();
@@ -91,8 +91,29 @@
         history.replaceState(null, '', aqui);
       }
 
+      const aberto = ['aberto', 'cadastro'].includes(p.nivel);
+      // Mostra o link do presente gerado, com WhatsApp e copiar
+      const caixaPresente = (codigo) => {
+        const link = linkDePresente(codigo);
+        const texto = encodeURIComponent(`Tenho um presente para você ★ ${p.nome}, do Entre Estrelas. Abra este link para receber: ${link}`);
+        return `<div class="presente-gerado" role="status">
+          <strong>🎁 Seu presente está pronto!</strong>
+          <span>Envie o link para quem você quiser. A pessoa entra com o e-mail dela e recebe na hora.</span>
+          <div class="presente-gerado-acoes">
+            <a class="portal-entrada-botao portal-entrada-botao--principal" href="https://wa.me/?text=${texto}" target="_blank" rel="noopener noreferrer">Enviar pelo WhatsApp</a>
+            <button class="portal-entrada-botao portal-entrada-botao--contorno" data-copiar-link="${escapar(link)}">Copiar link</button>
+          </div>
+          <span class="presente-gerado-nota">Você encontra este presente também em Minha área → Meus presentes.</span>
+        </div>`;
+      };
       const acoes = () => {
         const presentear = () => {
+          // Conteúdo aberto (Comece agora): presente sem pagamento, gerado na hora
+          if (aberto) {
+            return cliente
+              ? '<button class="portal-entrada-botao portal-entrada-botao--contorno" data-presentear-gratis>🎁 Presentear alguém</button>'
+              : `<a class="portal-entrada-botao portal-entrada-botao--contorno" href="${entrarE(`${aqui}&presentear=1`)}">🎁 Presentear alguém</a>`;
+          }
           if (!p.permite_presente || !p.preco_centavos) return '';
           const preco = membro && p.preco_presente_membro_centavos ? p.preco_presente_membro_centavos : p.preco_centavos;
           const destino = `minha-area.html?presentear=${encodeURIComponent(p.slug)}`;
@@ -163,7 +184,34 @@
         texto.hidden = false;
       }
 
+      // Veio de "Presentear" antes de entrar: gera o presente assim que entra
+      if (aberto && cliente && parametros.get('presentear') === '1') {
+        history.replaceState(null, '', aqui);
+        presentearGratis(p.slug).then((codigo) => {
+          document.querySelector('.pagina-produto-acoes')?.insertAdjacentHTML('afterend', caixaPresente(codigo));
+        }).catch((e) => mostrar(e.message, 'erro'));
+      }
+
       document.body.addEventListener('click', async (evento) => {
+        const copiar = evento.target.closest('[data-copiar-link]');
+        if (copiar) {
+          await navigator.clipboard.writeText(copiar.dataset.copiarLink).catch(() => {});
+          copiar.textContent = 'Link copiado ✓';
+          return;
+        }
+        const presente = evento.target.closest('[data-presentear-gratis]');
+        if (presente && cliente) {
+          presente.disabled = true;
+          try {
+            const codigo = await presentearGratis(p.slug);
+            presente.closest('.pagina-produto-acoes').insertAdjacentHTML('afterend', caixaPresente(codigo));
+          } catch (e) {
+            mostrar(e.message, 'erro');
+          } finally {
+            presente.disabled = false;
+          }
+          return;
+        }
         const alvo = evento.target.closest('[data-participar], [data-cancelar]');
         if (!alvo || !cliente) return;
         alvo.disabled = true;

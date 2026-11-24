@@ -61,6 +61,17 @@
         const resultado = await resgatarPresente(codigo);
         if (resultado === 'ok' || resultado === 'ja_e_seu') {
           const ehMapa = !presente.produto_slug || presente.produto_slug === 'mapa-da-vida';
+          const ehEncontro = ['natal-2026'].includes(presente.produto_slug);
+          if (!ehMapa && !ehEncontro) {
+            // Conteúdo aberto (Quem Você É, Como Você Ama, Janelas de Pausa...): leva para a página dele
+            area.innerHTML = `
+            <h1>Seu presente chegou! ★</h1>
+            <p class="portal-entrada-pergunta"><strong>${escapar(presente.produto_nome)}</strong> agora faz parte da sua jornada.</p>
+            <hr class="portal-entrada-linha">
+            <p class="portal-entrada-texto">Veja como funciona e aproveite. Você também pode presentear outras pessoas.</p>
+            <div class="portal-entrada-acoes"><a class="portal-entrada-botao portal-entrada-botao--principal" href="produto.html?p=${encodeURIComponent(presente.produto_slug)}">Ver o meu presente</a></div>`;
+            return;
+          }
           area.innerHTML = ehMapa ? `
             <h1>Seu presente chegou! ★</h1>
             <p class="portal-entrada-pergunta"><strong>${escapar(presente.produto_nome)}</strong> agora faz parte da sua jornada.</p>
