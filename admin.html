@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css?v=20261124-contato-pedido">
+  <link rel="stylesheet" href="css/portal.css?v=20261124-cadastro-lista">
 </head>
 <body>
   <header class="portal-topo">
@@ -23,9 +23,14 @@
       <div class="cabecalho-area">
         <div>
           <h1>Painel</h1>
-          <p class="suave" id="resumo"></p>
         </div>
       </div>
+
+      <section class="cartao" aria-labelledby="titulo-numeros">
+        <h2 id="titulo-numeros">Indicadores</h2>
+        <div id="resumo" class="resumo-numeros"></div>
+        <p class="suave resumo-dica">Clique num número para ver quem são, na lista de Clientes.</p>
+      </section>
 
       <section class="cartao" id="cartao-agenda-admin" hidden>
         <h2>★ Agenda</h2>
@@ -62,6 +67,18 @@
         <div id="lista-lancamentos"></div>
       </section>
 
+      <section class="cartao" id="cartao-aniversarios">
+        <h2 id="titulo-aniversarios">🎂 Aniversariantes do mês</h2>
+        <div id="lista-aniversarios"><p class="suave">Carregando…</p></div>
+      </section>
+
+      <section class="cartao" id="cartao-indicacoes">
+        <h2>Indicações e repasses</h2>
+        <p class="suave" style="font-size:.88rem">Repasse de 50% sobre a associação de <strong>Membro Fundador</strong> das pessoas indicadas (cadastradas à mão contam como R$ 49,85).
+          As outras compras aparecem só como informação, sem repasse definido. Para tornar alguém parceira(o), use <strong>Editar cadastro</strong> na lista de clientes.</p>
+        <div id="lista-indicacoes"></div>
+      </section>
+
       <section class="cartao">
         <h2>Cadastrar cliente</h2>
         <p class="suave" style="font-size:.88rem">Cadastre quem comprou ou quem vai ganhar um produto. Quando a pessoa entrar com este e-mail, ela já verá o que foi liberado.</p>
@@ -83,21 +100,9 @@
         <p class="aviso" id="aviso-novo" role="status"></p>
       </section>
 
-      <section class="cartao" id="cartao-aniversarios">
-        <h2 id="titulo-aniversarios">🎂 Aniversariantes do mês</h2>
-        <div id="lista-aniversarios"><p class="suave">Carregando…</p></div>
-      </section>
-
-      <section class="cartao" id="cartao-indicacoes">
-        <h2>Indicações e repasses</h2>
-        <p class="suave" style="font-size:.88rem">Repasse de 50% sobre a associação de <strong>Membro Fundador</strong> das pessoas indicadas (cadastradas à mão contam como R$ 49,85).
-          As outras compras aparecem só como informação, sem repasse definido. Para tornar alguém parceira(o), use <strong>Editar cadastro</strong> na lista de clientes.</p>
-        <div id="lista-indicacoes"></div>
-      </section>
-
       <section class="cartao">
         <div class="cabecalho-area" style="margin-bottom:.5rem">
-          <h2 style="margin:0">Clientes</h2>
+          <h2 style="margin:0">Clientes <span class="filtro-ativo" id="filtro-ativo" hidden></span></h2>
           <label style="margin:0;min-width:260px">Buscar <input id="busca" type="search" placeholder="Nome, e-mail ou WhatsApp"></label>
         </div>
         <p class="aviso" id="aviso-lista" role="status"></p>
@@ -169,7 +174,7 @@
       configurado, sessaoAtual, meuCadastro, admListarClientes, admListarProdutos, admCriarCliente,
       admTornarFundador, admCancelarAssinatura, admRegistrarCompra, admEditarCliente, admEnviarAcesso, admDefinirIndicacao, linkDeIndicacao, admRegistrarRepasse, admExcluirRepasse, aniversariantesDoMes, htmlAniversariantes, escapar, seloFundador, MOTIVOS_LIBERACAO,
       admListarLancamentos, admListarEventos, admSalvarEvento, admExcluirEvento
-    } from './js/portal.js?v=20261124-contato-pedido';
+    } from './js/portal.js?v=20261124-cadastro-lista';
 
     // Opções de motivo (pagamento, equipe/cofundadora, doação, cortesia) em todos os seletores.
     document.querySelectorAll('select[data-motivos]').forEach((select) => {
@@ -186,18 +191,78 @@
     let produtos = [];
 
     const fundadorAtivo = (c) => c.assinaturas.find((a) => a.plano_id === 'fundador' && a.status === 'ativa' && (!a.fim || new Date(a.fim) > new Date()));
+    // Fundador pago = pagou pelo site (pagamento) ou pela planilha do Forms (importacao).
+    // Os demais (equipe, cortesia, doação, divulgação) têm o acesso liberado, mas não pagaram.
+    const ORIGENS_PAGAS = ['pagamento', 'importacao'];
+    const tipoCliente = (c) => {
+      const f = fundadorAtivo(c);
+      if (!f) return 'cadastro';
+      return ORIGENS_PAGAS.includes(f.origem) ? 'pago' : 'liberado';
+    };
+    const FILTROS = {
+      pago: { rotulo: 'Fundadores', teste: (c) => tipoCliente(c) === 'pago' },
+      'pago-sem-login': { rotulo: 'Fundadores que ainda não acessaram o portal', teste: (c) => tipoCliente(c) === 'pago' && !c.user_id },
+      liberado: { rotulo: 'Fundadores de apoio', teste: (c) => tipoCliente(c) === 'liberado' },
+      cadastro: { rotulo: 'Leads', teste: (c) => tipoCliente(c) === 'cadastro' }
+    };
+    let filtro = '';
+
+    function desenharResumo() {
+      const total = clientes.length;
+      const conta = (t) => clientes.filter((c) => tipoCliente(c) === t).length;
+      const pagos = conta('pago');
+      const liberados = conta('liberado');
+      const soCadastro = conta('cadastro');
+      const pagosEntraram = clientes.filter((c) => tipoCliente(c) === 'pago' && c.user_id).length;
+      const faltam = pagos - pagosEntraram;
+      const pct = (n, de) => (de ? Math.round((n / de) * 100) : 0);
+      const fatia = (n, classe, rotulo) => (n ? `<span class="barra-fatia ${classe}" style="flex-grow:${n}" title="${rotulo}: ${n}"></span>` : '');
+      document.querySelector('#resumo').innerHTML = `
+        <div class="resumo-blocos">
+          <button type="button" class="resumo-bloco resumo-bloco--destaque" data-filtro="pago">
+            <span class="resumo-rotulo">★ Fundadores</span>
+            <strong class="resumo-numero">${pagos}</strong>
+            <span class="resumo-detalhe">com pagamento confirmado</span>
+          </button>
+          <button type="button" class="resumo-bloco" data-filtro="pago-sem-login">
+            <span class="resumo-rotulo">Acesso ao portal</span>
+            <strong class="resumo-numero">${pagosEntraram}<small> de ${pagos} fundadores</small></strong>
+            <span class="resumo-progresso" aria-hidden="true"><span style="width:${pct(pagosEntraram, pagos)}%"></span></span>
+            <span class="resumo-detalhe">${faltam} ainda não ${faltam === 1 ? 'acessou' : 'acessaram'} · ver quem</span>
+          </button>
+          <button type="button" class="resumo-bloco" data-filtro="liberado">
+            <span class="resumo-rotulo">Fundadores de apoio</span>
+            <strong class="resumo-numero">${liberados}</strong>
+            <span class="resumo-detalhe">equipe e convidados, sem pagamento</span>
+          </button>
+          <button type="button" class="resumo-bloco" data-filtro="cadastro">
+            <span class="resumo-rotulo">Leads</span>
+            <strong class="resumo-numero">${soCadastro}</strong>
+            <span class="resumo-detalhe">cadastrados que ainda não são Fundadores</span>
+          </button>
+        </div>
+        <div class="resumo-barra-bloco">
+          <div class="resumo-barra-titulo"><span>Pessoas cadastradas</span><strong>${total}</strong></div>
+          <div class="resumo-barra" role="img" aria-label="${pagos} fundadores, ${liberados} fundadores de apoio, ${soCadastro} leads">
+            ${fatia(pagos, 'fatia-pago', 'Fundadores')}${fatia(liberados, 'fatia-liberado', 'Fundadores de apoio')}${fatia(soCadastro, 'fatia-cadastro', 'Leads')}
+          </div>
+          <div class="resumo-legenda">
+            <span><i class="fatia-pago"></i>Fundadores · ${pagos} (${pct(pagos, total)}%)</span>
+            <span><i class="fatia-liberado"></i>Fundadores de apoio · ${liberados} (${pct(liberados, total)}%)</span>
+            <span><i class="fatia-cadastro"></i>Leads · ${soCadastro} (${pct(soCadastro, total)}%)</span>
+          </div>
+        </div>`;
+      document.querySelectorAll('#resumo [data-filtro]').forEach((b) => b.classList.toggle('ativo', b.dataset.filtro === filtro));
+    }
 
     function desenhar() {
       const termo = document.querySelector('#busca').value.trim().toLowerCase();
-      const visiveis = clientes.filter((c) => !termo || [c.email, c.nome, c.whatsapp].some((v) => (v || '').toLowerCase().includes(termo)));
-      const fundadores = clientes.filter(fundadorAtivo).length;
-      const contar = (n, um, varios) => `${n} ${n === 1 ? um : varios}`;
-      const entraram = clientes.filter((c) => c.user_id).length;
-      document.querySelector('#resumo').textContent = [
-        contar(clientes.length, 'cliente', 'clientes'),
-        contar(fundadores, 'fundador', 'fundadores'),
-        `${entraram} ${entraram === 1 ? 'já entrou' : 'já entraram'} no portal`
-      ].join(' · ');
+      const visiveis = clientes.filter((c) => (!termo || [c.email, c.nome, c.whatsapp].some((v) => (v || '').toLowerCase().includes(termo)))
+        && (!filtro || FILTROS[filtro].teste(c)));
+      desenharResumo();
+      const chip = document.querySelector('#filtro-ativo');
+      chip.hidden = !filtro;
+      if (filtro) chip.innerHTML = `${escapar(FILTROS[filtro].rotulo)} · ${visiveis.length} <button type="button" data-limpar-filtro aria-label="Mostrar todos">✕</button>`;
       document.querySelector('#linhas').innerHTML = visiveis.map((c) => {
         const fundador = fundadorAtivo(c);
         const outrosPlanos = c.assinaturas.filter((a) => a.status === 'ativa' && a.plano_id !== 'fundador').map((a) => a.plano_id);
@@ -207,7 +272,7 @@
         }).join(', ');
         const proprio = c.mapas_nascimento.find((m) => m.proprio);
         const temNascimento = Boolean(proprio);
-        return `<tr>
+        return `<tr data-cliente-email="${escapar(c.email)}">
           <td><strong>${escapar(c.nome || proprio?.nome || '—')}</strong><br><span class="suave">${escapar(c.email)}</span>${c.whatsapp ? `<br><span class="suave">${escapar(c.whatsapp)}</span>` : ''}${c.papel !== 'cliente' ? `<br><span class="selo selo-cinza">${escapar(c.papel)}</span>` : ''}${c.parceiro ? ' <span class="selo">parceira(o)</span>' : ''}${c.indicado_por ? `<br><span class="suave" style="font-size:.8rem">↳ indicado(a) por <strong>${escapar(nomeDe(c.indicado_por))}</strong></span>` : ''}</td>
           <td>${fundador ? seloFundador('pequeno') : ''}${fundador && fundador.origem && fundador.origem !== 'pagamento' && rotuloMotivo(fundador.origem) ? `<br><span class="suave" style="font-size:.78rem">${escapar(rotuloMotivo(fundador.origem))}</span>` : ''}${outrosPlanos.map((p) => `<span class="selo selo-cinza">${escapar(p)}</span>`).join(' ')}</td>
           <td>${compras || '<span class="suave">—</span>'}</td>
@@ -595,6 +660,19 @@
     }
 
     document.querySelector('#busca').addEventListener('input', desenhar);
+    // Clicar num número filtra a lista de Clientes (clicar de novo mostra todos)
+    document.querySelector('#resumo').addEventListener('click', (evento) => {
+      const b = evento.target.closest('[data-filtro]');
+      if (!b) return;
+      filtro = filtro === b.dataset.filtro ? '' : b.dataset.filtro;
+      desenhar();
+      if (filtro) document.querySelector('#linhas').closest('section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    document.querySelector('#filtro-ativo').addEventListener('click', (evento) => {
+      if (!evento.target.closest('[data-limpar-filtro]')) return;
+      filtro = '';
+      desenhar();
+    });
 
     document.querySelector('#form-novo').addEventListener('submit', async (evento) => {
       evento.preventDefault();
@@ -619,6 +697,8 @@
         evento.target.reset();
         avisar(aviso, `Cliente ${novo.email} cadastrado.${enviado}`, 'ok');
         await recarregar();
+        // destaca a pessoa recém-cadastrada na lista logo abaixo
+        document.querySelector(`[data-cliente-email="${CSS.escape(novo.email)}"]`)?.classList.add('cliente-recem-criado');
       } catch (e) {
         avisar(aviso, e.message.includes('duplicate') ? 'Já existe um cliente com este e-mail.' : e.message, 'erro');
       }

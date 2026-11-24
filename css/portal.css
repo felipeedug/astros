@@ -392,6 +392,31 @@ td .acoes { display: flex; flex-wrap: wrap; gap: .35rem; }
 .evento-admin summary { cursor: pointer; }
 .evento-admin .grade-form { margin-top: .8rem; }
 textarea { font: inherit; font-weight: 400; padding: .7rem .8rem; border: 1px solid var(--linha); border-radius: 9px; min-height: 70px; resize: vertical; }
+.cliente-recem-criado > td { background: #FFF6DA; transition: background 1s; }
+/* Painel: números (fundadores pagos, acesso liberado, só cadastro) */
+.resumo-blocos { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: .8rem; }
+.resumo-bloco { display: grid; gap: .3rem; align-content: start; padding: 1rem 1.1rem; border: 1px solid var(--linha); border-radius: 14px; background: #fff; color: var(--azul-marca); font: inherit; text-align: left; cursor: pointer; transition: border-color .15s, box-shadow .15s; }
+.resumo-bloco:hover { border-color: var(--dourado-marca); }
+.resumo-bloco.ativo { border-color: var(--dourado-marca); box-shadow: 0 0 0 3px rgba(201, 162, 39, .25); }
+.resumo-bloco--destaque { background: #FFFBEF; border-color: rgba(201, 162, 39, .55); }
+.resumo-rotulo { font-size: .8rem; font-weight: 600; color: var(--texto); }
+.resumo-numero { font: 700 2.1rem/1.05 var(--fonte-titulo); color: var(--azul-marca); }
+.resumo-numero small { font: 600 .95rem var(--fonte-corpo); color: var(--texto); }
+.resumo-detalhe { font-size: .78rem; color: var(--texto); }
+.resumo-progresso { display: block; height: 6px; border-radius: 99px; background: rgba(30, 58, 95, .1); overflow: hidden; }
+.resumo-progresso > span { display: block; height: 100%; border-radius: 99px; background: var(--dourado-marca); }
+.resumo-barra-bloco { margin-top: 1.1rem; }
+.resumo-barra-titulo { display: flex; justify-content: space-between; margin-bottom: .4rem; font-size: .85rem; font-weight: 600; color: var(--azul-marca); }
+.resumo-barra { display: flex; gap: 2px; height: 14px; border-radius: 99px; overflow: hidden; background: rgba(30, 58, 95, .08); }
+.barra-fatia { display: block; min-width: 6px; }
+.fatia-pago { background: var(--dourado-marca); }
+.fatia-liberado { background: var(--azul-marca); }
+.fatia-cadastro { background: rgba(30, 58, 95, .25); }
+.resumo-legenda { display: flex; flex-wrap: wrap; gap: .4rem 1.2rem; margin-top: .55rem; font-size: .8rem; color: var(--texto); }
+.resumo-legenda i { display: inline-block; width: .75rem; height: .75rem; margin-right: .35rem; border-radius: 3px; vertical-align: -1px; }
+.resumo-dica { margin: .8rem 0 0; font-size: .78rem; }
+.filtro-ativo { display: inline-flex; align-items: center; gap: .4rem; margin-left: .5rem; padding: .2rem .4rem .2rem .7rem; border-radius: 99px; background: #FFF6DA; font: 600 .8rem var(--fonte-corpo); vertical-align: middle; }
+.filtro-ativo button { border: 0; background: transparent; color: var(--azul-marca); font: inherit; cursor: pointer; padding: 0 .2rem; }
 .evento-recem-criado { border-color: var(--dourado-marca); box-shadow: 0 0 0 3px rgba(240, 199, 94, .35); animation: recem-criado 2.5s ease-out; }
 @keyframes recem-criado { 0% { background: #FDF3D0; } 100% { background: #fff; } }
 /* Mini calendário de 2 semanas (Agenda) */
