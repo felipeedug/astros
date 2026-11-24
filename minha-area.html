@@ -306,9 +306,8 @@
         }
         if (!e.pode_participar) return '<span class="selo selo-cinza">Exclusivo para membros</span>';
         if (e.link_acesso) return `<a class="botao botao-dourado" href="${escapar(e.link_acesso)}" target="_blank" rel="noopener noreferrer">▶ Entrar agora</a>`;
-        if (e.inscrito) return `<div class="inscricao-ok" role="status"><strong>✓ Inscrição confirmada!</strong>
-            <span>No dia, o botão para entrar aparece aqui, 30 minutos antes. Também avisamos por WhatsApp e e-mail.</span></div>
-            <button class="botao botao-leve botao-pequeno" data-cancelar-evento="${e.id}">Cancelar inscrição</button>`;
+        if (e.inscrito) return `<p class="inscrito-ok" role="status">✓ Inscrição confirmada. No dia, o botão para entrar aparece aqui 30 minutos antes; também avisamos por WhatsApp e e-mail.</p>
+            <button class="link-cancelar" data-cancelar-evento="${e.id}">Cancelar inscrição</button>`;
         if (!e.inscricoes_abertas) return '<span class="selo selo-cinza">Inscrições encerradas</span>';
         return `<button class="botao botao-dourado" data-inscrever-evento="${e.id}">★ Quero participar</button>`;
       };
