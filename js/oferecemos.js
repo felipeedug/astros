@@ -3,7 +3,7 @@
 // Os dados vêm da tabela produtos (a mesma de "O que vem pela frente" na Minha área).
 import {
   configurado, sessaoAtual, meuCadastro, produtosAVenda, contagemVotos, meusVotos, votar, tirarVoto,
-  escapar, formatarPreco, iconeProduto, imagemProduto
+  escapar, formatarPreco, iconeProduto, imagemProduto, supabase
 } from './portal.js';
 
 // Nomes das categorias no site (troque aqui se quiser outros nomes)
@@ -158,7 +158,7 @@ function cartaoGratuito(p, rotulo = 'Comece agora') {
       <p class="oferta-categoria">${rotulo}${disponivel ? '' : ' · em breve'}</p>
       ${titulo(p)}
       <p>${escapar(p.descricao || '')}</p>
-      <div class="oferta-acoes">${disponivel ? `<a class="oferta-voto" href="${destino}">Experimentar</a>` : ''}${rotulo === 'Comece agora' ? `<a class="oferta-link" href="${paginaDe(p)}&presentear=1">🎁 Presentear</a>` : ''}<a class="oferta-link" href="${paginaDe(p)}">Conhecer →</a></div>
+      <div class="oferta-acoes">${disponivel ? `<a class="oferta-voto" href="${destino}"${cliente ? ` data-acesso="${escapar(p.slug)}"` : ''}>Experimentar</a>` : ''}${rotulo === 'Comece agora' ? `<a class="oferta-link" href="${paginaDe(p)}&presentear=1">🎁 Presentear</a>` : ''}<a class="oferta-link" href="${paginaDe(p)}">Conhecer →</a></div>
     </div>
   </article>`;
 }
@@ -297,6 +297,15 @@ function desenharJornada() {
 // Links da linha do tempo que levam para "O que oferecemos" (a navegação do site é feita pelo menu)
 // Links que abrem outra página do site (a navegação do site é feita pelo menu)
 document.addEventListener('click', (evento) => {
+  const acesso = evento.target.closest('[data-acesso]');
+  if (acesso) { // registra o que a pessoa abriu (vai para a Minha jornada) e só então abre
+    const href = acesso.getAttribute('href');
+    const registro = supabase ? supabase.rpc('registrar_acesso', { p_slug: acesso.dataset.acesso }).then(() => {}, () => {}) : Promise.resolve();
+    if (evento.ctrlKey || evento.metaKey || evento.shiftKey || evento.button) return;
+    evento.preventDefault();
+    Promise.race([registro, new Promise((r) => setTimeout(r, 800))]).then(() => { window.location.href = href; });
+    return;
+  }
   const link = evento.target.closest('[data-abrir-oferecemos], [data-abrir]');
   if (!link) return;
   evento.preventDefault();

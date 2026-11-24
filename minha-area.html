@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css?v=20261124-ver-todos">
+  <link rel="stylesheet" href="css/portal.css?v=20261124-jornada">
 </head>
 <body>
   <header class="portal-topo">
@@ -60,8 +60,8 @@
 
       <section class="cartao">
         <h2>Minha jornada</h2>
-        <p class="suave">Seus mapas, leituras e encontros de autoconhecimento.</p>
-        <div class="produtos" id="lista-produtos"></div>
+        <p class="suave">O que você já tem, o que já abriu e onde se inscreveu.</p>
+        <div class="minha-jornada" id="lista-produtos"></div>
       </section>
 
       <section class="cartao" id="cartao-agenda" hidden>
@@ -166,8 +166,9 @@
       mapaProprio, atualizarMeuCadastro, escapar, formatarPreco, seloFundador, iconeProduto,
       inscrever, cancelarInscricao, minhaAgenda, inscreverEvento, cancelarEvento,
       produtosAVenda, irParaPagamento, meusPresentes, linkDePresente, linkDoArquivo, registrarIndicacaoPendente, aniversariantesDoMes, htmlAniversariantes,
-      contagemVotos, meusVotos, votar, tirarVoto, imagemProduto, miniaturaProduto, slugDe, aniversariantesDaComunidade, htmlAniversariantesComunidade
-    } from './js/portal.js?v=20261124-miniaturas';
+      contagemVotos, meusVotos, votar, tirarVoto, imagemProduto, miniaturaProduto, slugDe, aniversariantesDaComunidade, htmlAniversariantesComunidade,
+      acessarRegistrando, meusAcessos
+    } from './js/portal.js?v=20261124-jornada';
 
     // Ilustração da oferta no lugar do ícone, quando houver
     const miniatura = (slug) => (imagemProduto(slug)
@@ -289,7 +290,7 @@
           ? (arquivo
             ? `<button class="botao" data-baixar="${escapar(arquivo)}">Baixar (PDF)</button>`
             : p.link_acesso
-              ? `<a class="botao" href="${escapar(p.link_acesso)}">Acessar</a>`
+              ? `<a class="botao" href="${escapar(p.link_acesso)}" data-acesso="${escapar(p.slug)}">Acessar</a>`
               : '<span class="selo selo-cinza">Em breve</span>')
           : p.preco_centavos
             ? `<button class="botao botao-leve" data-comprar="${escapar(p.slug)}">Quero este · ${formatarPreco(precoPara(p, false))}</button>`
@@ -337,6 +338,7 @@
       };
       const chaveDia = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
       let desenharCalendario = () => {}; // definido depois do Em breve
+      let desenharJornada = () => {}; // definido depois (usa a agenda e o Em breve)
       const desenharAgenda = () => {
         const agora = new Date();
         const proximos = agenda.filter((e) => fimDe(e) > agora);
@@ -370,6 +372,7 @@
         document.querySelector('#agenda-gravacoes').hidden = gravacoes.length === 0;
         document.querySelector('#cartao-agenda').hidden = agenda.length === 0;
         desenharCalendario();
+        desenharJornada();
       };
       desenharAgenda();
       document.querySelector('#mini-calendario').addEventListener('click', (evento) => {
@@ -472,6 +475,7 @@
         document.querySelector('#cartao-em-breve').hidden = emBreve.length === 0;
         recolherEmBreve();
         desenharCalendario();
+        desenharJornada();
       };
 
       // ---------------- Meu calendário: lives/encontros + lançamentos, esta semana e a próxima
@@ -597,8 +601,75 @@
       const disponiveis = produtos.filter((p) => p.status !== 'em_breve' && !porSlug[p.slug]?.concede_plano && !paraProfissionais(p)); // planos e itens para profissionais não aparecem aqui
       const pagos = disponiveis.filter((p) => (p.nivel || 'pago') === 'pago');
       const gratuitos = disponiveis.filter((p) => p.nivel && p.nivel !== 'pago');
-      document.querySelector('#lista-produtos').innerHTML = pagos.map((p) => cartaoProduto(p, true)).join('')
-        || '<p class="suave">Sua jornada começa em breve: assim que algo for liberado para você, aparece aqui.</p>';
+      // ---------------- Minha jornada: o que é seu, o que já abriu e onde se inscreveu, lado a lado
+      const acessos = await meusAcessos();
+      const dataCurta = (d) => d.toLocaleDateString('pt-BR', { day: 'numeric', month: 'short' }).replace('.', '');
+      const passo = ({ slug, icone, nome, estado, acao = '', destino, novo = false, extra = '' }) => {
+        const imagem = miniatura(slug); // com ilustração, o nome já está nela
+        return `
+        <article class="jornada-item${novo ? ' jornada-item--novo' : ''}">
+          <a class="jornada-item-imagem" href="${escapar(destino)}" title="${escapar(nome)}">${imagem ? imagem.replace('alt=""', `alt="${escapar(nome)}"`) : iconeProduto(icone || 'estrela')}</a>
+          <h3${imagem ? ' class="jornada-item-nome-oculto"' : ''}>${escapar(nome)}</h3>
+          ${estado ? `<span class="jornada-item-estado">${estado}</span>` : ''}
+          ${acao}${extra}
+        </article>`;
+      };
+      const acaoDoProduto = (p) => {
+        const arquivo = arquivosPorSlug[p.slug];
+        if (arquivo) return `<button class="botao botao-pequeno" data-baixar="${escapar(arquivo)}">Baixar</button>`;
+        if (p.link_acesso) return `<a class="botao botao-pequeno" href="${escapar(p.link_acesso)}" data-acesso="${escapar(p.slug)}">Acessar</a>`;
+        return '';
+      };
+      const novidadesDe = (p) => {
+        const linhas = String(p.novidades || '').split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
+        return linhas.length ? `<details class="produto-novidades"><summary>★ Novidades</summary><ul>${linhas.map((n) => `<li>${escapar(n)}</li>`).join('')}</ul></details>` : '';
+      };
+      desenharJornada = () => {
+        const agora = new Date();
+        const meus = pagos.filter((p) => p.liberado).map((p) => passo({
+          slug: p.slug, icone: p.icone, nome: p.nome, destino: `produto.html?p=${encodeURIComponent(p.slug)}`, novo: p.nova_versao,
+          estado: p.nova_versao ? `★ Nova versão${p.versao ? ` ${escapar(p.versao)}` : ''}` : '✓ É seu',
+          acao: acaoDoProduto(p), extra: p.nova_versao ? novidadesDe(p) : ''
+        }));
+        const abertos = gratuitos.filter((p) => acessos.has(p.id)).map((p) => passo({
+          slug: p.slug, icone: p.icone, nome: p.nome, destino: `produto.html?p=${encodeURIComponent(p.slug)}`,
+          estado: 'Você já abriu', acao: acaoDoProduto(p)
+        }));
+        const eventosInscritos = agenda.filter((e) => e.inscrito && fimDe(e) > agora);
+        // Quando o lançamento tem live(s), mostra só as lives (podem ser mais de uma), sem repetir o item
+        const comLive = new Set(eventosInscritos.flatMap((e) => [e.produto_id, slugDe(e.titulo), imagemProduto(slugDe(e.titulo))]).filter(Boolean));
+        const eventos = eventosInscritos.map((e) => {
+          const inicio = new Date(e.inicio);
+          const chave = chaveDia(inicio);
+          return passo({
+            slug: slugDe(e.titulo), nome: e.titulo, destino: `#dia-${chave}`,
+            estado: `✓ Inscrito(a) · ${dataCurta(inicio)}, ${inicio.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}`,
+            acao: e.link_acesso
+              ? `<a class="botao botao-dourado botao-pequeno" href="${escapar(e.link_acesso)}" target="_blank" rel="noopener noreferrer">▶ Entrar agora</a>`
+              : `<a class="jornada-item-link" href="#dia-${chave}">Ver na agenda</a>`
+          });
+        });
+        const lancamentos = emBreve.filter((p) => (p.inscrito || (p.preco_centavos && p.liberado)) && !comLive.has(p.id) && !comLive.has(p.slug) && !comLive.has(imagemProduto(p.slug))).map((p) => passo({
+          slug: p.slug, icone: p.icone, nome: p.nome, destino: `produto.html?p=${encodeURIComponent(p.slug)}`,
+          estado: `✓ ${p.inscrito ? 'Inscrito(a)' : 'Incluído'} · ${p.previsao ? dataCurta(new Date(`${p.previsao}T12:00:00`)) : 'data a confirmar'}`,
+          acao: `<a class="jornada-item-link" href="produto.html?p=${encodeURIComponent(p.slug)}">Detalhes</a>`
+        }));
+        const minhaJornada = [...meus, ...abertos, ...eventos, ...lancamentos];
+        const proximos = pagos.filter((p) => !p.liberado && (p.preco_centavos || p.link_pagamento)).map((p) => passo({
+          slug: p.slug, icone: p.icone, nome: p.nome, destino: `produto.html?p=${encodeURIComponent(p.slug)}`,
+          estado: p.preco_centavos ? formatarPreco(precoPara(p, false)) : '',
+          acao: p.preco_centavos
+            ? `<button class="botao botao-leve botao-pequeno" data-comprar="${escapar(p.slug)}">Quero este</button>`
+            : `<a class="botao botao-leve botao-pequeno" href="${escapar(p.link_pagamento)}" target="_blank" rel="noopener noreferrer">Quero este</a>`
+        }));
+        document.querySelector('#lista-produtos').innerHTML = `
+          ${minhaJornada.length
+            ? `<div class="jornada-faixa">${minhaJornada.join('')}</div>`
+            : '<p class="suave">Sua jornada começa aqui: o que você abrir, comprar ou se inscrever aparece neste lugar.</p>'}
+          ${proximos.length ? `<h3 class="jornada-subtitulo">Para dar o próximo passo</h3>
+            <div class="jornada-faixa jornada-faixa--proximos">${proximos.join('')}</div>` : ''}`;
+      };
+      desenharJornada();
       if (gratuitos.length) {
         document.querySelector('#lista-gratuitas').innerHTML = gratuitos.map((p) => cartaoProduto(p, false)).join('');
         document.querySelector('#cartao-gratuitas').hidden = false;
@@ -727,6 +798,11 @@
         abrirPedido(vindoDaPagina.get('presentear') || vindoDaPagina.get('comprar'), Boolean(vindoDaPagina.get('presentear')));
       }
       // Comprar para si / baixar arquivo, nos cards da Minha jornada
+      // "Acessar" registra o que a pessoa abriu (para a Minha jornada)
+      document.addEventListener('click', (evento) => {
+        const acesso = evento.target.closest('[data-acesso]');
+        if (acesso) acessarRegistrando(evento, acesso);
+      });
       document.querySelector('#lista-produtos').addEventListener('click', async (evento) => {
         const comprar = evento.target.closest('[data-comprar]');
         if (comprar) { evento.preventDefault(); abrirPedido(comprar.dataset.comprar, false); return; }
