@@ -119,7 +119,7 @@ const ABAS = {
   },
   avulsos: {
     nome: 'Passo a passo',
-    resumo: 'Prefere ir no seu ritmo? Escolha só o que faz sentido agora e pague por cada passo, quando precisar. Você recebe a sua análise completa; as conversas e o acompanhamento em grupo são da Constelação.'
+    resumo: '<strong>Monte do seu jeito.</strong> Escolha só o que faz sentido agora, de qualquer catálogo, e misture como quiser: uma análise, horas com uma astróloga, uma formação... Você paga por cada passo, na hora que quiser. As conversas e o acompanhamento em grupo são da Constelação.'
   },
   profissionais: {
     nome: 'Para profissionais',
@@ -218,15 +218,26 @@ function conteudoGratuitos() {
 
 // Os três catálogos abertos, um embaixo do outro, com todas as ilustrações (para comparar)
 function htmlCatalogosAbertos() {
-  const item = (p) => {
+  const item = (p, origem = '') => {
     const imagem = miniaturaProduto(p.slug);
-    return `<a class="catalogo-item" href="${paginaDe(p)}" title="${escapar(p.nome)}">
+    return `<a class="catalogo-item${origem ? ` catalogo-item--de-${origem}` : ''}" href="${paginaDe(p)}" title="${escapar(p.nome)}">
       ${imagem ? `<img src="${imagem}" alt="${escapar(p.nome)}" decoding="async">` : `<span class="catalogo-item-nome">${escapar(p.nome)}</span>`}
     </a>`;
   };
   const constelacao = imagemProduto('constelacao')
     ? `<a class="catalogo-item" href="#apoie" data-abrir="apoie" title="Constelação"><img src="${miniaturaProduto('constelacao')}" alt="Comunidade Constelação" decoding="async"></a>` : '';
   const jornada = [...itens].sort((a, b) => (a.status === 'em_breve') - (b.status === 'em_breve') || porData(a, b));
+  // Passo a passo: um exemplo de mistura, de vários catálogos (ninguém precisa comprar tudo separado)
+  const primeiro = (lista, slugs) => slugs.map((sl) => lista.find((p) => p.slug === sl)).find(Boolean) || lista[0];
+  const mistura = [
+    [primeiro(jornada, ['mapa-da-vida']), 'jornada'],
+    [primeiro(formacoes, ['formacao-astrologia']), 'profissionais'],
+    [primeiro(gratuitos, ['lua-fora-de-curso', 'janelas-de-pausa']), 'comecar'],
+    [primeiro(jornada, ['mapa-do-ano']), 'jornada'],
+    [primeiro(acompanhamentos, ['horas-de-acompanhamento']), 'jornada'],
+    [primeiro(formacoes, ['efemerides', 'caminhar-dos-planetas']), 'profissionais'],
+    [primeiro(jornada, ['talisma', 'carreira-e-trabalho']), 'jornada']
+  ].filter(([p], i, todos) => p && todos.findIndex(([q]) => q === p) === i);
   const bloco = (classe, titulo, sub, aba, html) => `<div class="catalogo-aberto catalogo-aberto--${classe}">
       <button type="button" class="catalogo-aberto-cabecalho" data-aba="${aba}" data-subir>
         <strong>${titulo}</strong><span>${sub}</span></button>
@@ -236,7 +247,7 @@ function htmlCatalogosAbertos() {
       <h2 class="editorial-section-title" id="catalogos-mapa-titulo">Nossos quatro catálogos</h2>
       ${bloco('comecar', 'Comece agora', 'Amostras do Mapa da Vida e ferramentas abertas, sem pagar nada', 'gratuitos', gratuitos.map(item).join(''))}
       ${bloco('constelacao', 'Constelação', 'Tudo incluído, com acompanhamento em grupo', 'comunidade', constelacao + jornada.map(item).join('') + acompanhamentos.map(item).join(''))}
-      ${bloco('jornada', 'Passo a passo', 'Cada análise ou vivência, quando você precisar', 'avulsos', jornada.map(item).join(''))}
+      ${bloco('jornada', 'Passo a passo', 'Monte do seu jeito: misture o que quiser, de qualquer catálogo, quando quiser', 'avulsos', mistura.map(([p, origem]) => item(p, origem)).join(''))}
       ${bloco('profissionais', 'Para profissionais', 'Formações e ferramentas de trabalho', 'profissionais', formacoes.map(item).join(''))}
     </section>`;
 }

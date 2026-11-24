@@ -869,3 +869,10 @@ a.jornada-passo:hover .jornada-nome { text-decoration:underline; }
 .catalogo-aberto--constelacao { --catalogo-cor:#1F4E8C; --catalogo-claro:#EAF1FB; --catalogo-borda:#C9A227; border-width:2px; }
 .catalogo-aberto--constelacao .catalogo-aberto-cabecalho { box-shadow:inset -3px 0 0 #C9A227; }
 .catalogo-aberto--constelacao .catalogo-aberto-cabecalho strong { color:#F3D36B; }
+
+/* Passo a passo: cada ilustração com um fio da cor do catálogo de onde veio */
+.catalogo-item[class*="catalogo-item--de-"] { box-shadow:inset 0 -5px 0 var(--cor-origem), 0 2px 8px rgba(13,27,42,.08); }
+.catalogo-item[class*="catalogo-item--de-"] img { height:calc(100% - 5px); align-self:flex-start; }
+.catalogo-item--de-jornada { --cor-origem:#1F4E8C; }
+.catalogo-item--de-profissionais { --cor-origem:#7E5BB5; }
+.catalogo-item--de-comecar { --cor-origem:#4E8F45; }
