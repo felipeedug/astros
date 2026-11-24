@@ -754,13 +754,22 @@ label { display:block; margin-top:20px; color:var(--muted); font-size:10px; font
 .home-page .home-check-list,.home-page .home-simple-list { max-width:none; }
 
 /* ---------------------------------------------------------------- Início: linha da jornada com datas */
-.jornada-linha { display:grid; grid-auto-flow:column; grid-auto-columns:minmax(150px,1fr); gap:0; margin:30px 0 8px; overflow-x:auto; text-align:left; }
-.jornada-passo { position:relative; padding:34px 14px 6px 0; color:inherit; text-decoration:none; }
-.jornada-passo::before { content:""; position:absolute; top:11px; left:0; right:0; height:2px; background:rgba(30,58,95,.18); }
-.jornada-passo::after { content:""; position:absolute; top:4px; left:0; width:16px; height:16px; border:2px solid #C9A227; border-radius:50%; background:#FAF8F5; }
+.jornada-linha { display:grid; grid-auto-flow:column; grid-auto-columns:minmax(118px,1fr); margin:24px 0 8px; padding-right:110px; overflow-x:auto; overflow-y:hidden; text-align:left; }
+/* Linha no meio; os textos alternam: um acima, o seguinte abaixo */
+.jornada-passo { position:relative; height:300px; color:inherit; text-decoration:none; }
+.jornada-passo::before { content:""; position:absolute; top:calc(50% - 1px); left:0; right:0; height:2px; background:rgba(30,58,95,.18); }
+.jornada-passo:last-child::before { right:auto; width:18px; }
+.jornada-passo::after { content:""; position:absolute; top:calc(50% - 9px); left:0; width:18px; height:18px; box-sizing:border-box; border:2px solid #C9A227; border-radius:50%; background:#FAF8F5; }
 .jornada-passo--agora::after { background:#C9A227; }
+.jornada-texto { position:absolute; left:0; width:215px; padding-left:2px; }
+.jornada-passo:nth-child(odd) .jornada-texto { bottom:calc(50% + 20px); }
+.jornada-passo:nth-child(even) .jornada-texto { top:calc(50% + 20px); }
+/* risquinho ligando o texto ao ponto */
+.jornada-passo:nth-child(odd) .jornada-texto::after,.jornada-passo:nth-child(even) .jornada-texto::before { content:""; position:absolute; left:8px; width:1px; height:12px; background:rgba(201,162,39,.6); }
+.jornada-passo:nth-child(odd) .jornada-texto::after { bottom:-16px; }
+.jornada-passo:nth-child(even) .jornada-texto::before { top:-16px; }
 .jornada-quando { display:block; color:#8A6D12; font:700 12px/1.3 var(--fonte-corpo); letter-spacing:.06em; text-transform:uppercase; }
-.jornada-nome { display:block; margin-top:4px; color:#1E3A5F; font:700 16px/1.3 var(--fonte-titulo); }
+.jornada-nome { display:block; margin-top:4px; color:#1E3A5F; font:700 16px/1.25 var(--fonte-titulo); }
 .jornada-cat { display:block; margin-top:2px; color:#5A6270; font-size:12px; }
 .jornada-fund { display:block; margin-top:4px; color:#8A6D12; font-size:11.5px; font-weight:600; }
 a.jornada-passo:hover .jornada-nome { text-decoration:underline; }

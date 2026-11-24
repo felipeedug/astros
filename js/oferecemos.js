@@ -127,10 +127,12 @@ function desenharJornada() {
     const destino = paginaDe(p);
     const atributos = destino ? `href="${destino}"` : 'href="#servicos" data-abrir-oferecemos';
     return `<a class="jornada-passo${disponivel ? ' jornada-passo--agora' : ''}" ${atributos}>
-      <span class="jornada-quando">${disponivel ? 'Disponível agora' : escapar(quando(p))}</span>
-      <span class="jornada-nome">${escapar(p.nome)}</span>
-      <span class="jornada-cat">${escapar(categoria(p))}</span>
-      ${!disponivel && p.previsao_fundadores ? `<span class="jornada-fund">⭐ Fundadores: ${escapar(quando({ previsao: p.previsao_fundadores }))}</span>` : ''}
+      <span class="jornada-texto">
+        <span class="jornada-quando">${disponivel ? 'Disponível agora' : escapar(quando(p))}</span>
+        <span class="jornada-nome">${escapar(p.nome)}</span>
+        <span class="jornada-cat">${escapar(categoria(p))}</span>
+        ${!disponivel && p.previsao_fundadores ? `<span class="jornada-fund">⭐ Fundadores: ${escapar(quando({ previsao: p.previsao_fundadores }))}</span>` : ''}
+      </span>
     </a>`;
   };
   const html = [...agora.map((p) => passo(p, true)), ...proximos.map((p) => passo(p, false))].join('');
