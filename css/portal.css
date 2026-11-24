@@ -695,3 +695,9 @@ textarea { font: inherit; font-weight: 400; padding: .7rem .8rem; border: 1px so
 .produto-novidades[open] summary { margin-bottom: .2rem; }
 .produto-novidades[open] ul { padding: .6rem .9rem .6rem 1.9rem; border-radius: 10px; background: #FBF7EC; }
 
+/* Saudação com os selos ao lado do nome (eles podem ir se acumulando) */
+.saudacao-linha { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; }
+.saudacao-linha h1 { margin: 0; }
+.selos { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; }
+.selos:empty { display: none; }
+
