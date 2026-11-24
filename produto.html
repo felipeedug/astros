@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css?v=20261124-imagens2">
+  <link rel="stylesheet" href="css/portal.css?v=20261124-bf2">
 </head>
 <body>
   <header class="portal-topo">
@@ -150,7 +150,16 @@
         // A ilustração abre a explicação (no cartão claro, combina com a aquarela)
         const ilustracao = imagemProduto(p.slug)
           ? `<img class="pagina-produto-imagem" src="${imagemProduto(p.slug)}" alt="${escapar(p.nome)}">` : '';
-        texto.innerHTML = ilustracao + corpo + `<div class="pagina-produto-fim"><div class="pagina-produto-acoes">${acoes()}</div></div>`;
+        // Black Friday (até 30/11): convite para a jornada completa, só na página do Mapa da Vida
+        const fundadorAberto = p.slug === 'mapa-da-vida' && new Date() < new Date('2026-12-01T00:00:00-03:00') && !membro;
+        const blocoFundador = fundadorAberto ? `<section class="bloco-fundador-bf">
+            <p class="bloco-fundador-bf-selo">★ Black Friday · só até 30/11</p>
+            <h2>Quer a jornada completa?</h2>
+            <p>Seja <strong>Membro Fundador</strong> por <strong>R$ 49,85, valor único</strong>: o seu Mapa da Vida, o Mapa do Ano antes de todo mundo, a Árvore de Natal com Raízes, voto nos próximos passos e acesso a tudo o que vem pela frente.</p>
+            <p><strong>E mais: um Mapa da Vida para você presentear quem quiser.</strong></p>
+            <a class="portal-entrada-botao portal-entrada-botao--principal" href="minha-area.html?comprar=membro-fundador">⭐ Quero ser Membro Fundador</a>
+          </section>` : '';
+        texto.innerHTML = ilustracao + corpo + `<div class="pagina-produto-fim"><div class="pagina-produto-acoes">${acoes()}</div></div>` + blocoFundador;
         texto.hidden = false;
       }
 

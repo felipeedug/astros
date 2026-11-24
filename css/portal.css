@@ -705,3 +705,11 @@ textarea { font: inherit; font-weight: 400; padding: .7rem .8rem; border: 1px so
 /* Ilustração de cada oferta (no lugar do ícone) */
 .produto-miniatura { flex: 0 0 auto; width: 64px; height: 64px; object-fit: cover; border-radius: 12px; }
 .pagina-produto-imagem { display: block; width: min(260px, 70%); aspect-ratio: 1; object-fit: cover; margin: 0 auto 1.4rem; border-radius: 16px; box-shadow: 0 6px 24px rgba(30, 58, 95, .12); }
+
+/* Black Friday: convite para Membro Fundador na página do Mapa da Vida */
+.bloco-fundador-bf { margin-top: 2rem; padding: 1.6rem 1.4rem; border-radius: 16px; background: linear-gradient(150deg, #16304D, #0D1B2A); color: #FAF8F5; text-align: center; }
+.bloco-fundador-bf h2 { margin: .3rem 0 .8rem; color: #F0C75E; }
+.bloco-fundador-bf p { color: rgba(250, 248, 245, .9); }
+.bloco-fundador-bf-selo { margin: 0; color: #F0C75E; font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.bloco-fundador-bf .portal-entrada-botao { display: inline-flex; margin-top: .6rem; }
+.bloco-fundador-bf strong { color: #F0C75E; }
