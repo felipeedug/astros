@@ -465,7 +465,7 @@ export async function admListarClientes() {
              repasses(id, valor_centavos, pago_em, observacao),
              assinaturas(id, plano_id, status, fim, origem, referencia_externa),
              compras(id, status, produto_id, pago_em, origem, valor_centavos, referencia_externa, produtos(nome)),
-             pedidos(id, status, total_centavos, valor_pago_centavos, itens),
+             pedidos(id, status, total_centavos, valor_pago_centavos, itens, forma_pagamento),
              mapas_nascimento(id, proprio, nome)`)
     .order('criado_em', { ascending: false });
   falha(error, 'Não foi possível carregar os clientes.');
