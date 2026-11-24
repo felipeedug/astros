@@ -392,7 +392,9 @@
       });
 
       // Lançamentos "Em breve" com botão de inscrição
-      const emBreve = produtos.filter((p) => p.status === 'em_breve');
+      // A jornada de autoconhecimento não mistura os itens para profissionais (formação, software)
+      const paraProfissionais = (p) => p.tipo === 'formacao';
+      const emBreve = produtos.filter((p) => p.status === 'em_breve' && !paraProfissionais(p));
       // Membros Fundadores testam antes: usam a data antecipada, quando houver
       const souFundador = assinaturas.some((a) => a.plano_id === 'fundador');
       if (souFundador) {
@@ -569,7 +571,7 @@
         }
       });
 
-      const disponiveis = produtos.filter((p) => p.status !== 'em_breve' && !porSlug[p.slug]?.concede_plano); // planos não aparecem como produto
+      const disponiveis = produtos.filter((p) => p.status !== 'em_breve' && !porSlug[p.slug]?.concede_plano && !paraProfissionais(p)); // planos e itens para profissionais não aparecem aqui
       const pagos = disponiveis.filter((p) => (p.nivel || 'pago') === 'pago');
       const gratuitos = disponiveis.filter((p) => p.nivel && p.nivel !== 'pago');
       document.querySelector('#lista-produtos').innerHTML = pagos.map((p) => cartaoProduto(p, true)).join('')
