@@ -758,6 +758,49 @@ function renderNatalInterpretation(content, chart) {
     house8TopicCard('CRISES, RESSIGNIFICAÇÕES E RENASCIMENTOS', 'crises'),
     interpretationCard('SEXUALIDADE E LIBIDO', [house8Entry('sexuality'), libidoEntry()])
   ], 'interpretation-topic--shared-follow')}${finalVisualsMarkup}${summaryMarkup}${closingMarkup}`;
+  aplicarCapitulo(content);
+}
+
+// Produtos que são um capítulo do Mapa da Vida (?capitulo=… junto de ?meu-mapa=1):
+// o mapa é montado igualzinho, com os mesmos textos de data/, e só o pedaço do produto fica na tela.
+const CAPITULOS_DO_MAPA = {
+  'quem-voce-e': { nome: 'Quem Você É', secao: '3. QUEM VOCÊ É', cartao: 'QUEM VOCÊ É', onde: 'a primeira parte da seção 3, “Quem Você É”' },
+  'como-voce-ama': { nome: 'Como Você Ama', secao: '6. AMOR E RELACIONAMENTOS', cartao: 'FORMA DE AMAR', onde: 'a “Forma de amar”, da seção 6, “Amor e Relacionamentos”' },
+  'mapa-da-vida-resumido': { nome: 'Resumo', resumo: true, onde: 'a seção 12, o “Resumo”, com um pouco de cada parte do seu mapa' }
+};
+const capituloPedido = CAPITULOS_DO_MAPA[new URLSearchParams(window.location.search).get('capitulo')] || null;
+
+function aplicarCapitulo(content) {
+  if (!capituloPedido) return;
+  const textoDe = (el) => (el?.textContent || '').trim().toUpperCase();
+  let pedaco = null;
+  if (capituloPedido.resumo) {
+    pedaco = content.querySelector('.map-life-summary');
+  } else {
+    pedaco = [...content.querySelectorAll('section.interpretation-topic')]
+      .find((s) => textoDe(s.querySelector('.interpretation-subtitle')) === capituloPedido.secao);
+    const grade = pedaco?.querySelector('.interpretation-grid');
+    const cartao = grade && [...grade.querySelectorAll(':scope > article.interpretation-card')]
+      .find((a) => textoDe(a.querySelector('h4')) === capituloPedido.cartao);
+    if (cartao) {
+      // A legenda Desafios/Facilidades fica no último cartão da seção: leva para o cartão que fica
+      const legenda = grade.querySelector('.interpretation-aspect-legend--chapter');
+      if (legenda && !cartao.contains(legenda)) cartao.append(legenda);
+      [...grade.children].forEach((filho) => { if (filho !== cartao) filho.remove(); });
+    }
+  }
+  if (!pedaco) return; // sem o pedaço, mostra o mapa como está, para não deixar a pessoa sem nada
+  const titulo = content.querySelector('.interpretation-main-title');
+  if (titulo) titulo.textContent = `MAPA DA VIDA | ${capituloPedido.nome.toUpperCase()}`;
+  const dados = content.querySelector('.interpretation-report-metadata');
+  const encerramento = content.querySelector('.interpretation-bookend--closing');
+  const aviso = document.createElement('section');
+  aviso.className = 'interpretation-bookend interpretation-bookend--opening capitulo-aviso';
+  aviso.innerHTML = `<p class="capitulo-aviso-olho">Um capítulo do Mapa da Vida</p><p>Esta é ${escapeHtml(capituloPedido.onde)} do seu Mapa da Vida. O Mapa da Vida completo tem 12 seções e mostra cada parte de você em detalhe.</p>`;
+  const convite = document.createElement('section');
+  convite.className = 'capitulo-convite';
+  convite.innerHTML = '<p><strong>Gostou?</strong> Isto é só um pedacinho. O Mapa da Vida completo traz quem você é, como sente, pensa, ama, trabalha e se transforma.</p><a class="editorial-button" href="produto.html?p=mapa-da-vida">Conhecer o Mapa da Vida completo →</a>';
+  content.replaceChildren(...[titulo, aviso, dados, pedaco, convite, encerramento].filter(Boolean));
 }
 
 function renderInterpretation() {
