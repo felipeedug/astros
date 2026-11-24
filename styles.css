@@ -822,3 +822,10 @@ a.jornada-passo:hover .jornada-nome { text-decoration:underline; }
 .oferecemos .oferta--destaque,.oferecemos .oferta--disponivel,.oferecemos .oferta--marcada { border-color:var(--catalogo); background:var(--catalogo-claro); }
 .oferecemos .oferta-link { color:var(--catalogo); }
 @media (max-width:640px) { .oferecemos .oferta-quando { border-bottom-color:var(--catalogo); } }
+
+/* Janelas de Pausa: assinar na agenda */
+.agenda-sincronizar { margin:18px 0; padding:16px 18px; border:1px solid rgba(78,143,69,.35); border-radius:12px; background:#EFF7EC; }
+.agenda-sincronizar p { margin:0 0 10px; color:#2C3E50; font-size:15px; line-height:1.55; }
+.agenda-sincronizar-botoes { display:flex; flex-wrap:wrap; gap:8px; }
+.agenda-botao { display:inline-flex; align-items:center; min-height:38px; padding:8px 14px; border:1px solid #4E8F45; border-radius:999px; background:#fff; color:#2F6A28; font:700 13px var(--fonte-corpo); text-decoration:none; }
+.agenda-botao:hover { background:#4E8F45; color:#fff; }
