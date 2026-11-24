@@ -147,8 +147,8 @@ function cartaoAvulso(p) {
 function cartaoGratuito(p) {
   const disponivel = p.status !== 'em_breve' && p.link_acesso;
   const destino = disponivel ? (cliente ? p.link_acesso : entrarPara(p.link_acesso)) : '';
-  return `<article class="oferta oferta--gratuita">
-    <div class="oferta-icone">${iconeProduto(p.icone || 'estrela')}</div>
+  return `<article class="oferta oferta--gratuita${figura(p) ? ' oferta--com-imagem' : ''}">
+    <div class="oferta-icone">${figura(p) || iconeProduto(p.icone || 'estrela')}</div>
     <div class="oferta-corpo">
       <p class="oferta-categoria">Para começar${disponivel ? '' : ' · em breve'}</p>
       <h3>${escapar(p.nome)}</h3>
@@ -206,6 +206,8 @@ function conteudoGratuitos() {
 function desenhar() {
   if (!ABAS[aba]) aba = 'comunidade';
   const conteudo = { comunidade: conteudoComunidade, avulsos: conteudoAvulsos, profissionais: conteudoProfissionais, gratuitos: conteudoGratuitos }[aba]();
+  // Cor de cada catálogo: azul (jornada), roxo (profissionais), verde (para começar)
+  raiz.dataset.catalogo = { comunidade: 'jornada', avulsos: 'jornada', profissionais: 'profissionais', gratuitos: 'comecar' }[aba];
   raiz.innerHTML = `
     <h2 class="oferecemos-titulo-abas">A mesma jornada, do seu jeito</h2>
     <div class="oferecemos-abas" role="tablist" aria-label="Formas de fazer a jornada">

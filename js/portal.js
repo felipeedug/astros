@@ -572,7 +572,8 @@ const ICONES = {
 // salve o arquivo com o slug como nome e acrescente o slug aqui.
 const COM_IMAGEM = new Set([
   'mapa-da-vida', 'mapa-infantil', 'membro-fundador', 'compatibilidade', 'mapa-do-ano', 'natal-2026',
-  'periodos-propicios', 'mudancas-no-trabalho', 'talisma', 'quem-voce-e', 'como-voce-ama', 'constelacao', 'horas-de-acompanhamento'
+  'periodos-propicios', 'mudancas-no-trabalho', 'talisma', 'quem-voce-e', 'como-voce-ama', 'constelacao', 'horas-de-acompanhamento',
+  'formacao-astrologia', 'software-astrologas'
 ]);
 export function imagemProduto(slug) {
   return COM_IMAGEM.has(slug) ? `images/ofertas/${slug}.webp` : '';

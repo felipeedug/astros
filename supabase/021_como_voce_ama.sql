@@ -27,3 +27,13 @@ Uma leitura aberta do seu mapa sobre o amor: como você se aproxima das pessoas,
 
 Quando quiser olhar para uma relação a dois, a Compatibilidade nos Relacionamentos está aqui.$t$
  where not exists (select 1 from public.produtos p where p.slug = 'como-voce-ama');
+
+-- Sem a palavra "gratuito" no site
+update public.produtos
+   set descricao = 'Um resumo do seu Mapa da Vida, aberto a todos: os pontos mais importantes de quem você é.'
+ where slug = 'quem-voce-e' and descricao ilike '%gratuito%';
+
+-- Nome do software como na arte
+update public.produtos
+   set nome = 'Entre Estrelas para Astrólogas e Astrólogos'
+ where slug = 'software-astrologas' and nome = 'Entre Estrelas para Astrólogas';
