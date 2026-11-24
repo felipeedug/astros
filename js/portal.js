@@ -610,6 +610,11 @@ export function imagemProduto(slug) {
   const chave = MESMA_IMAGEM[slug] || slug;
   return COM_IMAGEM.has(chave) ? `images/ofertas/${chave}.webp` : '';
 }
+// Versão leve (320 px) para listas e cards. Gerada por tools/gerar_miniaturas.ps1
+export function miniaturaProduto(slug) {
+  const chave = MESMA_IMAGEM[slug] || slug;
+  return COM_IMAGEM.has(chave) ? `images/ofertas/mini/${chave}.jpg` : '';
+}
 
 export function iconeProduto(chave) {
   const desenho = ICONES[chave] || ICONES.estrela;

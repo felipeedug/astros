@@ -165,12 +165,12 @@
       mapaProprio, atualizarMeuCadastro, escapar, formatarPreco, seloFundador, iconeProduto,
       inscrever, cancelarInscricao, minhaAgenda, inscreverEvento, cancelarEvento,
       produtosAVenda, irParaPagamento, meusPresentes, linkDePresente, linkDoArquivo, registrarIndicacaoPendente, aniversariantesDoMes, htmlAniversariantes,
-      contagemVotos, meusVotos, votar, tirarVoto, imagemProduto, slugDe, aniversariantesDaComunidade, htmlAniversariantesComunidade
-    } from './js/portal.js?v=20261124-presente-gratis';
+      contagemVotos, meusVotos, votar, tirarVoto, imagemProduto, miniaturaProduto, slugDe, aniversariantesDaComunidade, htmlAniversariantesComunidade
+    } from './js/portal.js?v=20261124-miniaturas';
 
     // Ilustração da oferta no lugar do ícone, quando houver
     const miniatura = (slug) => (imagemProduto(slug)
-      ? `<img class="produto-miniatura" src="${imagemProduto(slug)}" alt="" loading="lazy" decoding="async">` : '');
+      ? `<img class="produto-miniatura" src="${miniaturaProduto(slug)}" alt="" loading="lazy" decoding="async">` : '');
     const carregando = document.querySelector('#carregando');
     const erro = (texto) => { carregando.textContent = texto; carregando.className = 'aviso aviso-erro'; };
 

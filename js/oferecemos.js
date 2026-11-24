@@ -7,7 +7,7 @@ import {
 } from './portal.js';
 
 // Nomes das categorias no site (troque aqui se quiser outros nomes)
-const CATEGORIAS = { produto: 'Análises', vivencia: 'Vivências', live: 'Vivências', aula: 'Vivências', formacao: 'Para profissionais', ferramenta: 'Comece agora' };
+const CATEGORIAS = { produto: 'Análises', vivencia: 'Vivências', live: 'Vivências', aula: 'Vivências', formacao: 'Para profissionais', ferramenta: 'Comece agora', acompanhamento: 'Acompanhamento' };
 const categoria = (p) => CATEGORIAS[p.tipo] || 'Análises';
 
 const raiz = document.querySelector('[data-oferecemos]');
@@ -15,6 +15,7 @@ const jornadas = [...document.querySelectorAll('[data-jornada]')]; // linhas do 
 let itens = [];      // a jornada: análises e vivências
 let formacoes = [];  // para profissionais: formações e o software
 let gratuitos = [];  // para começar: análises e ferramentas abertas
+let acompanhamentos = []; // horas de acompanhamento (para ir além, na Constelação)
 let aba = new URLSearchParams(location.search).get('aba') || 'gratuitos';
 let votos = {};
 let meus = new Set();
@@ -28,10 +29,12 @@ const dataMarcada = (p) => Boolean(p.preco_centavos)
   || Boolean(p.previsao && (new Date(`${p.previsao}T00:00:00`) - new Date()) / 864e5 < 45);
 const entrarPara = (destino) => `entrar.html?voltar=${encodeURIComponent(destino)}`;
 // Ilustração da oferta (ou nada, quando ainda não houver)
+// Versão leve da ilustração (320 px, images/ofertas/mini/), para listas e cards
+const miniaturaProduto = (slug) => imagemProduto(slug).replace('/ofertas/', '/ofertas/mini/').replace(/\.webp$/, '.jpg');
 // Com ilustração, o nome já está na imagem: o título fica só para leitores de tela e buscadores
 const titulo = (p) => `<h3${imagemProduto(p.slug) ? ' class="visualmente-oculto"' : ''}>${escapar(p.nome)}</h3>`;
 const figura = (p) => (imagemProduto(p.slug)
-  ? `<img class="oferta-imagem" src="${imagemProduto(p.slug)}" alt="" decoding="async" onerror="this.closest('article')?.querySelector('h3')?.classList.remove('visualmente-oculto');this.remove()">` : '');
+  ? `<img class="oferta-imagem" src="${miniaturaProduto(p.slug)}" alt="" decoding="async" onerror="this.closest('article')?.querySelector('h3')?.classList.remove('visualmente-oculto');this.remove()">` : '');
 
 function quando(p) {
   if (!p.previsao) return 'Em breve';
@@ -173,6 +176,11 @@ function conteudoComunidade() {
       <h2 class="editorial-section-title" id="oferecemos-agora">Disponível agora</h2>
       <div class="ofertas">${disponiveis.map(cartaoDisponivel).join('')}</div>
     </section>` : ''}
+    ${acompanhamentos.length ? `<section class="oferecemos-bloco" aria-labelledby="oferecemos-alem">
+      <h2 class="editorial-section-title" id="oferecemos-alem">Para ir além</h2>
+      <p class="oferecemos-nota">Quer um olhar só para você? Além do acompanhamento em grupo, você pode ter horas de acompanhamento individual com uma astróloga.</p>
+      <div class="ofertas">${acompanhamentos.map(cartaoAvulso).join('')}</div>
+    </section>` : ''}
     ${emBreve.length ? `<section class="oferecemos-bloco" aria-labelledby="oferecemos-proximos">
       <div class="oferecemos-cabecalho">
         <h2 class="editorial-section-title" id="oferecemos-proximos">Os próximos passos</h2>
@@ -208,30 +216,45 @@ function conteudoGratuitos() {
     : '<p class="oferecemos-nota">Em breve, aqui.</p>';
 }
 
+// Os três catálogos abertos, um embaixo do outro, com todas as ilustrações (para comparar)
+function htmlCatalogosAbertos() {
+  const item = (p) => {
+    const imagem = miniaturaProduto(p.slug);
+    return `<a class="catalogo-item" href="${paginaDe(p)}" title="${escapar(p.nome)}">
+      ${imagem ? `<img src="${imagem}" alt="${escapar(p.nome)}" decoding="async">` : `<span class="catalogo-item-nome">${escapar(p.nome)}</span>`}
+    </a>`;
+  };
+  const constelacao = imagemProduto('constelacao')
+    ? `<a class="catalogo-item" href="#apoie" data-abrir="apoie" title="Constelação"><img src="${miniaturaProduto('constelacao')}" alt="Comunidade Constelação" decoding="async"></a>` : '';
+  const jornada = [...itens].sort((a, b) => (a.status === 'em_breve') - (b.status === 'em_breve') || porData(a, b));
+  const bloco = (classe, titulo, sub, aba, html) => `<div class="catalogo-aberto catalogo-aberto--${classe}">
+      <button type="button" class="catalogo-aberto-cabecalho" data-aba="${aba}" data-subir>
+        <strong>${titulo}</strong><span>${sub}</span></button>
+      <div class="catalogo-grade">${html}</div>
+    </div>`;
+  return `<section class="catalogos-mapa" aria-labelledby="catalogos-mapa-titulo">
+      <h2 class="editorial-section-title" id="catalogos-mapa-titulo">Nossos quatro catálogos</h2>
+      ${bloco('comecar', 'Comece agora', 'Amostras do Mapa da Vida e ferramentas abertas, sem pagar nada', 'gratuitos', gratuitos.map(item).join(''))}
+      ${bloco('constelacao', 'Constelação', 'Tudo incluído, com acompanhamento em grupo', 'comunidade', constelacao + jornada.map(item).join('') + acompanhamentos.map(item).join(''))}
+      ${bloco('jornada', 'Passo a passo', 'Cada análise ou vivência, quando você precisar', 'avulsos', jornada.map(item).join(''))}
+      ${bloco('profissionais', 'Para profissionais', 'Formações e ferramentas de trabalho', 'profissionais', formacoes.map(item).join(''))}
+    </section>`;
+}
+
 function desenhar() {
   if (!ABAS[aba]) aba = 'gratuitos';
   const conteudo = { comunidade: conteudoComunidade, avulsos: conteudoAvulsos, profissionais: conteudoProfissionais, gratuitos: conteudoGratuitos }[aba]();
   // Cor de cada catálogo: azul (jornada), roxo (profissionais), verde (para começar)
-  raiz.dataset.catalogo = { comunidade: 'jornada', avulsos: 'jornada', profissionais: 'profissionais', gratuitos: 'comecar' }[aba];
+  raiz.dataset.catalogo = { comunidade: 'constelacao', avulsos: 'jornada', profissionais: 'profissionais', gratuitos: 'comecar' }[aba];
   raiz.innerHTML = `
     <h2 class="oferecemos-titulo-abas">A mesma jornada, do seu jeito</h2>
     <div class="oferecemos-abas" role="tablist" aria-label="Formas de fazer a jornada">
       ${Object.entries(ABAS).map(([chave, a]) => `<button type="button" role="tab" data-aba="${chave}" aria-selected="${chave === aba}">${a.nome}</button>`).join('')}
     </div>
     <p class="oferecemos-aba-resumo">${aba === 'comunidade' && imagemProduto('constelacao')
-      ? `<img class="oferecemos-aba-imagem" src="${imagemProduto('constelacao')}" alt="Comunidade Constelação">` : ''}${ABAS[aba].resumo}</p>
+      ? `<img class="oferecemos-aba-imagem" src="${miniaturaProduto('constelacao')}" alt="Comunidade Constelação">` : ''}${ABAS[aba].resumo}</p>
     ${conteudo}
-    <section class="catalogos-mapa" aria-labelledby="catalogos-mapa-titulo">
-      <h2 class="editorial-section-title" id="catalogos-mapa-titulo">Nossos três catálogos</h2>
-      <div class="catalogos-mapa-blocos">
-        <button type="button" class="catalogo-bloco catalogo-bloco--comecar" data-aba="gratuitos" data-subir>
-          <strong>Comece agora</strong><span>Amostras do Mapa da Vida e ferramentas abertas</span></button>
-        <button type="button" class="catalogo-bloco catalogo-bloco--jornada" data-aba="comunidade" data-subir>
-          <strong>A jornada</strong><span>Constelação ou passo a passo</span></button>
-        <button type="button" class="catalogo-bloco catalogo-bloco--profissionais" data-aba="profissionais" data-subir>
-          <strong>Para profissionais</strong><span>Formações e ferramentas de trabalho</span></button>
-      </div>
-    </section>`;
+    ${htmlCatalogosAbertos()}`;
 }
 
 // Início: a jornada em linha do tempo (o que já está disponível + os próximos, com datas)
@@ -285,7 +308,8 @@ async function carregar() {
     // Para profissionais vem primeiro: inclui ferramentas de trabalho abertas (ex.: Caminhar dos Planetas)
     formacoes = oferecidos.filter((p) => p.tipo === 'formacao');
     gratuitos = oferecidos.filter((p) => !formacoes.includes(p) && ['aberto', 'cadastro'].includes(p.nivel));
-    itens = oferecidos.filter((p) => !gratuitos.includes(p) && !formacoes.includes(p) && p.tipo !== 'ferramenta');
+    acompanhamentos = oferecidos.filter((p) => p.tipo === 'acompanhamento');
+    itens = oferecidos.filter((p) => !gratuitos.includes(p) && !formacoes.includes(p) && !acompanhamentos.includes(p) && p.tipo !== 'ferramenta');
     votos = contagem;
     meus = meusSet;
 

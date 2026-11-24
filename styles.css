@@ -808,7 +808,7 @@ a.jornada-passo:hover .jornada-nome { text-decoration:underline; }
 .oferecemos { --catalogo:#3B6FB6; --catalogo-claro:#EEF4FC; }
 .oferecemos[data-catalogo="profissionais"] { --catalogo:#7E5BB5; --catalogo-claro:#F4EFFB; }
 .oferecemos[data-catalogo="comecar"] { --catalogo:#4E8F45; --catalogo-claro:#EFF7EC; }
-.oferecemos-abas button[data-aba="comunidade"],.oferecemos-abas button[data-aba="avulsos"] { --cor-aba:#3B6FB6; }
+.oferecemos-abas button[data-aba="avulsos"] { --cor-aba:#3B6FB6; }
 .oferecemos-abas button[data-aba="profissionais"] { --cor-aba:#7E5BB5; }
 .oferecemos-abas button[data-aba="gratuitos"] { --cor-aba:#4E8F45; }
 .oferecemos-abas button[aria-selected="true"] { color:var(--cor-aba); border-bottom-color:var(--cor-aba); }
@@ -840,12 +840,29 @@ a.jornada-passo:hover .jornada-nome { text-decoration:underline; }
 
 /* Os três catálogos */
 .catalogos-mapa { margin-top:clamp(32px,5vw,48px); }
-.catalogos-mapa-blocos { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-top:12px; }
-.catalogo-bloco { display:grid; gap:6px; align-content:center; min-height:120px; padding:18px 16px; border:0; border-radius:14px; color:#fff; font:inherit; text-align:left; cursor:pointer; transition:transform .15s, box-shadow .15s; }
-.catalogo-bloco strong { font:700 clamp(1.15rem,2vw,1.35rem)/1.2 var(--fonte-titulo); }
-.catalogo-bloco span { font-size:13px; line-height:1.45; opacity:.92; }
-.catalogo-bloco:hover { transform:translateY(-2px); box-shadow:0 10px 24px rgba(13,27,42,.18); }
-.catalogo-bloco--comecar { background:linear-gradient(150deg,#5FA555,#3F7A37); }
-.catalogo-bloco--jornada { background:linear-gradient(150deg,#4A82CC,#2E5C9A); }
-.catalogo-bloco--profissionais { background:linear-gradient(150deg,#9273C7,#6A4AA3); }
-@media (max-width:640px) { .catalogos-mapa-blocos { grid-template-columns:1fr; } .catalogo-bloco { min-height:0; } }
+
+/* Tudo o que oferecemos: os três catálogos abertos */
+.catalogo-aberto { margin-top:14px; border-radius:16px; overflow:hidden; background:var(--catalogo-claro,#fff); border:1px solid var(--catalogo-borda,rgba(30,58,95,.14)); }
+.catalogo-aberto--comecar { --catalogo-cor:#4E8F45; --catalogo-claro:#EFF7EC; --catalogo-borda:rgba(78,143,69,.35); }
+.catalogo-aberto--jornada { --catalogo-cor:#3B6FB6; --catalogo-claro:#EEF4FC; --catalogo-borda:rgba(59,111,182,.35); }
+.catalogo-aberto--profissionais { --catalogo-cor:#7E5BB5; --catalogo-claro:#F4EFFB; --catalogo-borda:rgba(126,91,181,.35); }
+.catalogo-aberto-cabecalho { display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 12px; width:100%; padding:14px 18px; border:0; background:var(--catalogo-cor); color:#fff; font:inherit; text-align:left; cursor:pointer; }
+.catalogo-aberto-cabecalho strong { font:700 clamp(1.15rem,2vw,1.35rem)/1.2 var(--fonte-titulo); }
+.catalogo-aberto-cabecalho span { font-size:13px; opacity:.92; }
+.catalogo-grade { display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:12px; padding:16px; }
+.catalogo-item { position:relative; display:flex; align-items:center; justify-content:center; aspect-ratio:1; border-radius:12px; overflow:hidden; background:#fff; color:#1E3A5F; text-decoration:none; box-shadow:0 2px 8px rgba(13,27,42,.08); transition:transform .15s, box-shadow .15s; }
+.catalogo-item:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(13,27,42,.15); }
+.catalogo-item img { width:100%; height:100%; object-fit:cover; }
+.catalogo-item-nome { padding:10px; font:700 14px/1.25 var(--fonte-titulo); text-align:center; }
+.catalogo-item-selo { position:absolute; right:6px; bottom:6px; padding:2px 8px; border-radius:99px; background:rgba(13,27,42,.72); color:#fff; font:600 10px/1.5 var(--fonte-corpo); }
+/* Faixas horizontais: nome do catálogo à esquerda, ilustrações enfileiradas à direita */
+.catalogo-aberto { display:grid; grid-template-columns:190px minmax(0,1fr); }
+.catalogo-aberto-cabecalho { flex-direction:column; align-items:flex-start; justify-content:center; gap:6px; }
+.catalogo-grade { display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x proximity; padding:14px; }
+.catalogo-item { flex:0 0 120px; width:120px; scroll-snap-align:start; }
+@media (max-width:640px) { .catalogo-aberto { grid-template-columns:1fr; } .catalogo-item { flex-basis:104px; width:104px; } }
+
+/* Constelação: dourado da marca (quarto catálogo) */
+.oferecemos[data-catalogo="constelacao"] { --catalogo:#B08A1E; --catalogo-claro:#FFF8E6; }
+.oferecemos-abas button[data-aba="comunidade"] { --cor-aba:#B08A1E; }
+.catalogo-aberto--constelacao { --catalogo-cor:#B08A1E; --catalogo-claro:#FFF8E6; --catalogo-borda:rgba(176,138,30,.4); }
