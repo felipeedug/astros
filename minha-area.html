@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css?v=20261124-votos">
+  <link rel="stylesheet" href="css/portal.css?v=20261124-novidades">
 </head>
 <body>
   <header class="portal-topo">
@@ -286,8 +286,8 @@
           </div>
           ${p.nova_versao ? '<span class="selo-nova-versao">★ Nova versão</span>' : ''}
           <p>${escapar(p.descricao || '')}</p>
-          ${novidades.length ? `<details class="produto-novidades" ${p.nova_versao ? 'open' : ''}>
-            <summary>O que há de novo${p.versao ? ` na versão ${escapar(p.versao)}` : ''}</summary>
+          ${novidades.length ? `<details class="produto-novidades">
+            <summary>★ Ver as novidades${p.versao ? ` da versão ${escapar(p.versao)}` : ''}</summary>
             <ul>${novidades.map((n) => `<li>${escapar(n)}</li>`).join('')}</ul>
           </details>` : ''}
           ${saibaMais(p.slug)}
