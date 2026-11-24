@@ -98,6 +98,39 @@ select v.slug, v.nome, v.descricao, v.tipo, 'em_breve', v.previsao::date, v.voto
        or lower(p.nome) like '%' || lower(trim(split_part(v.nome, ' ', 1) || ' ' || split_part(v.nome, ' ', 2))) || '%'
  );
 
+-- ---------------------------------------------------------------------
+-- Página de divulgação do Mapa da Vida (produto.html?p=mapa-da-vida)
+-- Só preenche se ainda estiver vazia. Edite à vontade no Table Editor.
+-- ---------------------------------------------------------------------
+alter table public.produtos add column if not exists slogan text;
+alter table public.produtos add column if not exists pagina text;
+
+update public.produtos set
+  slogan = coalesce(nullif(slogan, ''), 'A sua bússola maior: quem você é desde sempre.'),
+  pagina = $pagina$## O que é
+
+O Mapa da Vida é uma leitura do seu céu no momento em que você nasceu. Mais do que isso, é um convite para você se olhar por dentro e entender como age, sente, pensa, ama e constrói a vida.
+
+> Não é sentença nem prisão. É linguagem simbólica. É bússola.
+
+## O que você recebe
+
+- A sua mandala completa, com planetas, casas e aspectos
+- Uma interpretação sensível e pessoal, escrita para você
+- O seu temperamento e os pontos mais importantes do seu mapa
+- Leituras sobre quem você é, suas raízes, sua mente, amor e relacionamentos, propósito, carreira, tribo e transformações
+- Um resumo final para você voltar sempre que precisar
+- O seu PDF, para guardar e reler com calma
+
+## Como funciona
+
+- Você entra na Minha área com o seu e-mail
+- Preenche data, hora e local de nascimento uma única vez
+- O seu Mapa da Vida fica pronto na hora
+
+**Membros Fundadores já têm o Mapa da Vida incluído.**$pagina$
+ where slug = 'mapa-da-vida' and coalesce(pagina, '') = '';
+
 -- Mapa do Ano: Fundadores testam em dezembro, antes de abrir para todos em janeiro
 update public.produtos set previsao_fundadores = '2026-12-15'
  where slug = 'mapa-do-ano' and previsao_fundadores is null;

@@ -11,6 +11,7 @@ const CATEGORIAS = { produto: 'Análises', vivencia: 'Vivências', live: 'Vivên
 const categoria = (p) => CATEGORIAS[p.tipo] || 'Análises';
 
 const raiz = document.querySelector('[data-oferecemos]');
+const jornadas = [...document.querySelectorAll('[data-jornada]')]; // linhas do tempo (Início e Membro Fundador)
 let itens = [];
 let votos = {};
 let meus = new Set();
@@ -115,9 +116,38 @@ function desenhar() {
     </section>` : ''}`;
 }
 
+// Início: a jornada em linha do tempo (o que já está disponível + os próximos, com datas)
+function desenharJornada() {
+  if (!jornadas.length) return;
+  const agora = itens.filter((p) => p.status !== 'em_breve');
+  const proximos = itens.filter((p) => p.status === 'em_breve')
+    .sort((a, b) => String(a.previsao || '9999').localeCompare(String(b.previsao || '9999')))
+    .slice(0, 7);
+  const passo = (p, disponivel) => {
+    const destino = paginaDe(p);
+    const atributos = destino ? `href="${destino}"` : 'href="#servicos" data-abrir-oferecemos';
+    return `<a class="jornada-passo${disponivel ? ' jornada-passo--agora' : ''}" ${atributos}>
+      <span class="jornada-quando">${disponivel ? 'Disponível agora' : escapar(quando(p))}</span>
+      <span class="jornada-nome">${escapar(p.nome)}</span>
+      <span class="jornada-cat">${escapar(categoria(p))}</span>
+      ${!disponivel && p.previsao_fundadores ? `<span class="jornada-fund">⭐ Fundadores: ${escapar(quando({ previsao: p.previsao_fundadores }))}</span>` : ''}
+    </a>`;
+  };
+  const html = [...agora.map((p) => passo(p, true)), ...proximos.map((p) => passo(p, false))].join('');
+  jornadas.forEach((j) => { j.innerHTML = html; j.hidden = !html; });
+}
+
+// Links da linha do tempo que levam para "O que oferecemos" (a navegação do site é feita pelo menu)
+jornadas.forEach((j) => j.addEventListener('click', (evento) => {
+  const link = evento.target.closest('[data-abrir-oferecemos]');
+  if (!link) return;
+  evento.preventDefault();
+  document.querySelector('.nav-link[data-view="servicos"]')?.click();
+}));
+
 async function carregar() {
-  if (!raiz) return;
-  if (!configurado) { raiz.innerHTML = ''; return; }
+  if (!raiz && !jornadas.length) return;
+  if (!configurado) { if (raiz) raiz.innerHTML = ''; return; }
   try {
     const sessao = await sessaoAtual();
     if (sessao) cliente = await meuCadastro().catch(() => null);
@@ -142,10 +172,11 @@ async function carregar() {
       params.delete('votar');
       history.replaceState(null, '', `${location.pathname}${params.toString() ? `?${params}` : ''}${location.hash}`);
     }
-    desenhar();
+    if (raiz) desenhar();
+    desenharJornada();
   } catch (erro) {
     console.warn('O que oferecemos indisponível.', erro);
-    raiz.innerHTML = '';
+    if (raiz) raiz.innerHTML = '';
   }
 }
 
