@@ -40,14 +40,14 @@
     import {
       configurado, sessaoAtual, meuCadastro, meusProdutos, minhasAssinaturas, inscrever, cancelarInscricao,
       produtoDaPagina, textoDaPagina, iconeProduto, imagemProduto, escapar, formatarPreco
-    } from './js/portal.js?v=20261124-aniversarios';
+    } from './js/portal.js?v=20261124-comece';
 
     const parametros = new URLSearchParams(location.search);
     const slug = (parametros.get('p') || '').trim();
     const chamada = document.querySelector('#chamada');
     const aviso = document.querySelector('#aviso');
     const mostrar = (texto, tipo) => { aviso.textContent = texto; aviso.className = `aviso aviso-${tipo}`; };
-    const tipos = { live: 'Live', aula: 'Aula', produto: 'Análise', vivencia: 'Vivência', formacao: 'Para profissionais', ferramenta: 'Para começar' };
+    const tipos = { live: 'Live', aula: 'Aula', produto: 'Análise', vivencia: 'Vivência', formacao: 'Para profissionais', ferramenta: 'Comece agora' };
     const aqui = `produto.html?p=${encodeURIComponent(slug)}`;
     const entrarE = (destino) => `entrar.html?voltar=${encodeURIComponent(destino)}`;
 

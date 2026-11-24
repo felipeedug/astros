@@ -7,7 +7,7 @@ import {
 } from './portal.js';
 
 // Nomes das categorias no site (troque aqui se quiser outros nomes)
-const CATEGORIAS = { produto: 'Análises', vivencia: 'Vivências', live: 'Vivências', aula: 'Vivências', formacao: 'Para profissionais', ferramenta: 'Para começar' };
+const CATEGORIAS = { produto: 'Análises', vivencia: 'Vivências', live: 'Vivências', aula: 'Vivências', formacao: 'Para profissionais', ferramenta: 'Comece agora' };
 const categoria = (p) => CATEGORIAS[p.tipo] || 'Análises';
 
 const raiz = document.querySelector('[data-oferecemos]');
@@ -15,7 +15,7 @@ const jornadas = [...document.querySelectorAll('[data-jornada]')]; // linhas do 
 let itens = [];      // a jornada: análises e vivências
 let formacoes = [];  // para profissionais: formações e o software
 let gratuitos = [];  // para começar: análises e ferramentas abertas
-let aba = new URLSearchParams(location.search).get('aba') || 'comunidade';
+let aba = new URLSearchParams(location.search).get('aba') || 'gratuitos';
 let votos = {};
 let meus = new Set();
 let cliente = null;
@@ -104,8 +104,12 @@ function cartaoEmBreve(p, maximo, rotuloVoto = '★ Quero que venha primeiro') {
 
 // A mesma jornada, de quatro jeitos (troque os textos aqui)
 const ABAS = {
+  gratuitos: {
+    nome: 'Comece agora',
+    resumo: '<strong>Comece agora, sem pagar nada.</strong> Amostras do Mapa da Vida e ferramentas abertas a todos. É só entrar com o seu e-mail.'
+  },
   comunidade: {
-    nome: 'Na Constelação',
+    nome: 'Constelação',
     resumo: '<strong>Venha fazer parte desta constelação você também.</strong> A Constelação é a comunidade do Entre Estrelas: a jornada completa, com todas as análises e vivências incluídas, um novo passo por mês, e você recebe cada um antes. E você não recebe sozinho: em cada passo, a gente apresenta, ensina como aplicar na sua vida, conversa e acompanha em grupo, como ter uma astróloga do seu lado. É o jeito mais completo e o que sai mais em conta. Hoje, a forma de entrar é ser <strong>Membro Fundador</strong>.'
   },
   avulsos: {
@@ -115,10 +119,6 @@ const ABAS = {
   profissionais: {
     nome: 'Para profissionais',
     resumo: 'Para astrólogas, terapeutas e quem atende pessoas: ofereça as análises do Entre Estrelas aos seus clientes, junto com o seu próprio atendimento, use o software no dia a dia e faça as formações. <em>Em construção: marque o que te interessa.</em>'
-  },
-  gratuitos: {
-    nome: 'Para começar',
-    resumo: 'Conheça o Entre Estrelas através destas análises e ferramentas abertas. É só entrar com o seu e-mail.'
   }
 };
 
@@ -144,7 +144,7 @@ function cartaoAvulso(p) {
   </article>`;
 }
 
-function cartaoGratuito(p, rotulo = 'Para começar') {
+function cartaoGratuito(p, rotulo = 'Comece agora') {
   const disponivel = p.status !== 'em_breve' && p.link_acesso;
   const destino = disponivel ? (cliente ? p.link_acesso : entrarPara(p.link_acesso)) : '';
   return `<article class="oferta oferta--gratuita${figura(p) ? ' oferta--com-imagem' : ''}">
@@ -202,12 +202,12 @@ function conteudoProfissionais() {
 function conteudoGratuitos() {
   const lista = [...gratuitos].sort((a, b) => (a.status === 'em_breve') - (b.status === 'em_breve') || (a.ordem || 0) - (b.ordem || 0));
   return lista.length
-    ? `<div class="ofertas ofertas--gratuitas">${lista.map(cartaoGratuito).join('')}</div>`
+    ? `<div class="ofertas ofertas--gratuitas">${lista.map((p) => cartaoGratuito(p)).join('')}</div>`
     : '<p class="oferecemos-nota">Em breve, aqui.</p>';
 }
 
 function desenhar() {
-  if (!ABAS[aba]) aba = 'comunidade';
+  if (!ABAS[aba]) aba = 'gratuitos';
   const conteudo = { comunidade: conteudoComunidade, avulsos: conteudoAvulsos, profissionais: conteudoProfissionais, gratuitos: conteudoGratuitos }[aba]();
   // Cor de cada catálogo: azul (jornada), roxo (profissionais), verde (para começar)
   raiz.dataset.catalogo = { comunidade: 'jornada', avulsos: 'jornada', profissionais: 'profissionais', gratuitos: 'comecar' }[aba];
