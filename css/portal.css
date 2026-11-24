@@ -530,6 +530,8 @@ textarea { font: inherit; font-weight: 400; padding: .7rem .8rem; border: 1px so
 .pedido-linha { display: flex; justify-content: space-between; gap: 1rem; padding: .6rem 0; border-bottom: 1px solid var(--linha); font-size: 1.02rem; }
 .pedido-extra { display: flex; gap: .7rem; align-items: flex-start; margin: 1rem 0 0; padding: .9rem 1rem; border: 1.5px dashed var(--dourado-marca); border-radius: 12px; background: #FFFBEF; font-weight: 400; cursor: pointer; }
 .pedido-extra input { width: 1.2rem; height: 1.2rem; margin-top: .2rem; accent-color: var(--dourado-marca); }
+.pedido-contato { margin: 1rem 0 0; padding-top: .9rem; border-top: 1px solid rgba(13, 27, 42, .12); }
+.pedido-contato > p { margin: 0 0 .8rem; font-size: .85rem; }
 .pedido-total { display: flex; justify-content: space-between; margin: 1.1rem 0 .4rem; font-size: 1.15rem; }
 .pedido-acoes { display: flex; justify-content: flex-end; gap: .6rem; flex-wrap: wrap; }
 /* Página de cada produto (produto.html?p=slug) */
