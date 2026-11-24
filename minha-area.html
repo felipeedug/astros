@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css?v=20261124-bf2">
+  <link rel="stylesheet" href="css/portal.css?v=20261124-eventos">
 </head>
 <body>
   <header class="portal-topo">
@@ -159,8 +159,8 @@
       mapaProprio, atualizarMeuCadastro, escapar, formatarPreco, seloFundador, iconeProduto,
       inscrever, cancelarInscricao, minhaAgenda, inscreverEvento, cancelarEvento,
       produtosAVenda, irParaPagamento, meusPresentes, linkDePresente, linkDoArquivo, registrarIndicacaoPendente, aniversariantesDoMes, htmlAniversariantes,
-      contagemVotos, meusVotos, votar, tirarVoto, imagemProduto
-    } from './js/portal.js?v=20261124-cores';
+      contagemVotos, meusVotos, votar, tirarVoto, imagemProduto, slugDe
+    } from './js/portal.js?v=20261124-eventos';
 
     // Ilustração da oferta no lugar do ícone, quando houver
     const miniatura = (slug) => (imagemProduto(slug)
@@ -334,7 +334,7 @@
           <div class="agenda-dia" id="dia-${chave}">
             <h3 class="agenda-data">${escapar(new Date(`${chave}T12:00:00`).toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' }))}</h3>
             ${eventos.map((e) => `<article class="agenda-evento ${e.inscrito ? 'agenda-evento--inscrito' : ''}">
-              <div class="agenda-hora">${new Date(e.inicio).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}</div>
+              <div class="agenda-hora">${new Date(e.inicio).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}${miniatura(slugDe(e.titulo))}</div>
               <div class="agenda-info">
                 <span class="agenda-tipo">${escapar(tiposEvento[e.tipo] || 'Evento')}${e.publico === 'membros' ? ' · Membros' : ''}${e.produto_nome ? ` · ${escapar(e.produto_nome)}` : ''}</span>
                 <h4>${escapar(e.titulo)}</h4>
@@ -489,7 +489,7 @@
               : item.inscricoes_abertas ? `<button class="botao botao-dourado botao-pequeno" data-destaque-lancamento="${item.id}">★ Quero participar</button>` : '';
           }
           return `<article class="destaque">
-            ${miniatura(item.slug) || iconeProduto(item.icone || 'estrela')}
+            ${miniatura(item.slug || slugDe(item.titulo)) || iconeProduto(item.icone || 'estrela')}
             <div class="destaque-info">
               <span class="agenda-tipo">${escapar(rotuloTipo)} · ${escapar(quando)}</span>
               <h3>${escapar(item.titulo || item.nome)}</h3>
