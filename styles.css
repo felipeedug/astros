@@ -862,7 +862,10 @@ a.jornada-passo:hover .jornada-nome { text-decoration:underline; }
 .catalogo-item { flex:0 0 120px; width:120px; scroll-snap-align:start; }
 @media (max-width:640px) { .catalogo-aberto { grid-template-columns:1fr; } .catalogo-item { flex-basis:104px; width:104px; } }
 
-/* Constelação: dourado da marca (quarto catálogo) */
-.oferecemos[data-catalogo="constelacao"] { --catalogo:#B08A1E; --catalogo-claro:#FFF8E6; }
-.oferecemos-abas button[data-aba="comunidade"] { --cor-aba:#B08A1E; }
-.catalogo-aberto--constelacao { --catalogo-cor:#B08A1E; --catalogo-claro:#FFF8E6; --catalogo-borda:rgba(176,138,30,.4); }
+/* Constelação: azul mais escuro (a mesma jornada do Passo a passo) com contorno dourado */
+.oferecemos[data-catalogo="constelacao"] { --catalogo:#1F4E8C; --catalogo-claro:#EAF1FB; }
+.oferecemos[data-catalogo="constelacao"] .oferta--destaque,.oferecemos[data-catalogo="constelacao"] .oferta--disponivel,.oferecemos[data-catalogo="constelacao"] .oferta--marcada { border:2px solid #C9A227; }
+.oferecemos-abas button[data-aba="comunidade"] { --cor-aba:#1F4E8C; }
+.catalogo-aberto--constelacao { --catalogo-cor:#1F4E8C; --catalogo-claro:#EAF1FB; --catalogo-borda:#C9A227; border-width:2px; }
+.catalogo-aberto--constelacao .catalogo-aberto-cabecalho { box-shadow:inset -3px 0 0 #C9A227; }
+.catalogo-aberto--constelacao .catalogo-aberto-cabecalho strong { color:#F3D36B; }
