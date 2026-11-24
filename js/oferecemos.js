@@ -384,16 +384,59 @@ raiz?.addEventListener('click', async (evento) => {
 
 carregar();
 
-// Quem somos: nomes dos Membros Fundadores (o bloco só aparece se houver nomes)
+// Quem somos: nomes dos Membros Fundadores numa nuvem em forma de base de pirâmide,
+// logo abaixo das fotos: cada linha um pouco mais larga que a de cima.
+// O bloco só aparece se houver nomes.
+let nomesFundadores = [];
+
+function linhasDaPiramide(total, maximo) {
+  const inicio = Math.min(6, Math.max(2, maximo - 4));
+  const linhas = [];
+  let restante = total;
+  for (let n = inicio; restante > 0; n = Math.min(n + 1, maximo)) {
+    if (restante < n) break;
+    linhas.push(n);
+    restante -= n;
+  }
+  // O que sobrar entra nas linhas de baixo (+1 em cada), sem quebrar a forma
+  for (let i = linhas.length - 1; restante > 0; i = i > 0 ? i - 1 : linhas.length - 1) { linhas[i] += 1; restante -= 1; }
+  if (!linhas.length) linhas.push(total);
+  return linhas;
+}
+
+function desenharFundadores() {
+  const lista = document.querySelector('[data-fundadores-lista]');
+  if (!lista || !nomesFundadores.length) return;
+  const largura = lista.clientWidth || 1000;
+  const mediaLetras = nomesFundadores.reduce((s, n) => s + n.length, 0) / nomesFundadores.length;
+  const maximo = Math.max(2, Math.floor(largura / (mediaLetras * 8 + 30)));
+  // Tela estreita: sem forma, só a nuvem centralizada
+  const linhas = maximo < 5 ? [nomesFundadores.length] : linhasDaPiramide(nomesFundadores.length, maximo);
+  lista.classList.toggle('fundadores-site-lista--solta', maximo < 5);
+  const maior = Math.max(...linhas);
+  let i = 0;
+  lista.innerHTML = linhas.map((qtd) => {
+    const nomes = nomesFundadores.slice(i, i + qtd).map((nome, j) => {
+      const k = i + j;
+      const tom = ['a', 'b', 'c'][(k * 7) % 3];
+      return `<li class="fundador-nome fundador-nome--${tom}">${escapar(nome)}</li>`;
+    }).join('<li class="fundador-estrela" aria-hidden="true">✦</li>');
+    i += qtd;
+    return `<li class="fundadores-linha" style="--largura:${Math.round((qtd / maior) * 100)}%"><ul>${nomes}</ul></li>`;
+  }).join('');
+}
+
 async function carregarFundadores() {
   const bloco = document.querySelector('[data-fundadores-site]');
-  const lista = bloco?.querySelector('[data-fundadores-lista]');
-  if (!bloco || !lista || !configurado) return;
+  if (!bloco || !configurado) return;
   try {
-    const nomes = await fundadoresPublicos();
-    if (!nomes.length) return;
-    lista.innerHTML = nomes.map((n) => `<li><span aria-hidden="true">★</span> ${escapar(n)}</li>`).join('');
+    nomesFundadores = await fundadoresPublicos();
+    if (!nomesFundadores.length) return;
     bloco.hidden = false;
+    desenharFundadores();
+    let espera;
+    window.addEventListener('resize', () => { clearTimeout(espera); espera = setTimeout(desenharFundadores, 150); });
+    window.addEventListener('hashchange', () => setTimeout(desenharFundadores, 50));
   } catch (erro) {
     console.warn('Membros Fundadores indisponíveis.', erro);
   }
