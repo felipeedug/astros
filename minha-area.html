@@ -7,11 +7,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css?v=20261122-aniversarios">
+  <link rel="stylesheet" href="css/portal.css?v=20261124-contato-pedido">
 </head>
 <body>
   <header class="portal-topo">
-    <a href="index.html" aria-label="Entre Estrelas, início"><img src="fonts/Novo%20Design%20-%20COM%20texto.png" alt="Entre Estrelas"></a>
+<a href="index.html" aria-label="Entre Estrelas, início"><img src="fonts/Logo%205%20Pontas%20COM%20texto.png" alt="Entre Estrelas"></a>
     <nav>
       <a href="index.html">Site</a>
       <a href="admin.html" id="link-admin" hidden>Painel</a>
@@ -84,6 +84,11 @@
           <h2>Seu pedido</h2>
           <div id="pedido-itens"></div>
           <div id="pedido-extra"></div>
+          <div id="pedido-contato" class="pedido-contato" hidden>
+            <p class="suave">Para a gente te mandar as informações (lives, novidades) por WhatsApp e e-mail:</p>
+            <label>Nome completo <input id="pedido-nome" type="text" autocomplete="name"></label>
+            <label>WhatsApp <input id="pedido-whatsapp" type="tel" autocomplete="tel" placeholder="(11) 90000-0000"></label>
+          </div>
           <p class="pedido-total">Total <strong id="pedido-total"></strong></p>
           <p class="aviso" id="aviso-pedido" role="status"></p>
           <div class="pedido-acoes">
@@ -124,6 +129,7 @@
         <div style="display:flex;flex-wrap:wrap;gap:.6rem">
           <a class="botao botao-dourado" href="index.html?acesso-mapas=1#mapa">Gerar Mapa da Vida</a>
           <a class="botao botao-leve" href="index.html?acesso-mapas=1&amp;modo=ano#mapa">Mapa do Ano</a>
+          <a class="botao botao-leve" href="sinastria.html">Sinastria · comparar mapas</a>
           <a class="botao botao-leve" href="index.html?acesso-mapas=1#efemerides">Efemérides</a>
           <a class="botao botao-leve" href="index.html?acesso-mapas=1#lua">Lua fora de curso</a>
         </div>
@@ -150,7 +156,7 @@
       mapaProprio, atualizarMeuCadastro, escapar, formatarPreco, seloFundador, iconeProduto,
       inscrever, cancelarInscricao, minhaAgenda, inscreverEvento, cancelarEvento,
       produtosAVenda, irParaPagamento, meusPresentes, linkDePresente, linkDoArquivo, registrarIndicacaoPendente, aniversariantesDoMes, htmlAniversariantes
-    } from './js/portal.js?v=20261122-aniversarios';
+    } from './js/portal.js?v=20261124-contato-pedido';
 
     const carregando = document.querySelector('#carregando');
     const erro = (texto) => { carregando.textContent = texto; carregando.className = 'aviso aviso-erro'; };
@@ -585,6 +591,10 @@
         };
         document.querySelector('#pedido-levar-extra')?.addEventListener('change', atualizarTotal);
         atualizarTotal();
+        // Sem nome ou WhatsApp no cadastro: pede aqui, antes de pagar
+        document.querySelector('#pedido-contato').hidden = Boolean(cliente.nome && cliente.whatsapp);
+        document.querySelector('#pedido-nome').value = cliente.nome || nascimento?.nome || '';
+        document.querySelector('#pedido-whatsapp').value = cliente.whatsapp || '';
         document.querySelector('#aviso-pedido').className = 'aviso';
         document.querySelector('#aviso-pedido').textContent = '';
         dialogo.showModal();
@@ -593,12 +603,23 @@
         const botao = evento.currentTarget;
         const extra = document.querySelector('#pedido-levar-extra');
         const itens = [...pedidoAtual, ...(extra?.checked ? [{ slug: extra.value, presente: false }] : [])];
+        const aviso = document.querySelector('#aviso-pedido');
+        const pedirContato = !document.querySelector('#pedido-contato').hidden;
+        const nome = document.querySelector('#pedido-nome').value.trim();
+        const whatsapp = document.querySelector('#pedido-whatsapp').value.trim();
+        if (pedirContato && (!nome || whatsapp.replace(/\D/g, '').length < 10)) {
+          aviso.textContent = 'Preencha seu nome e o WhatsApp com DDD.'; aviso.className = 'aviso aviso-erro';
+          return;
+        }
         botao.disabled = true;
         botao.textContent = 'Abrindo o pagamento…';
         try {
+          if (pedirContato) {
+            await atualizarMeuCadastro(cliente.id, { nome, whatsapp, aceita_novidades: Boolean(cliente.aceita_novidades) });
+            Object.assign(cliente, { nome, whatsapp });
+          }
           await irParaPagamento(itens);
         } catch (e) {
-          const aviso = document.querySelector('#aviso-pedido');
           aviso.textContent = e.message; aviso.className = 'aviso aviso-erro';
           botao.disabled = false;
           botao.textContent = 'Ir para o pagamento';

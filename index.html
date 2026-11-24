@@ -8,8 +8,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Noto+Sans+Symbols+2&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20261122-quem-somos2">
-<link rel="stylesheet" href="print.css?v=20261123-readout-items">
+<link rel="stylesheet" href="styles.css?v=20261124-mapas-layout">
+<link rel="stylesheet" href="css/location-picker.css?v=20261124-location-picker2">
+<link rel="stylesheet" href="print.css?v=20261124-logo-5-pontas">
 </head>
 <body>
   <svg class="social-icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
@@ -22,7 +23,7 @@
   <div class="app-shell">
     <header class="sidebar">
       <a class="brand" href="#inicio" aria-label="Entre Estrelas, início">
-        <img class="brand-logo" src="fonts/Novo%20Design%20-%20COM%20texto.png" alt="Entre Estrelas">
+        <img class="brand-logo" src="fonts/Logo%205%20Pontas%20COM%20texto.png" alt="Entre Estrelas">
         <span class="brand-home-label">Início</span>
       </a>
       <nav class="nav" aria-label="Navegação principal">
@@ -40,7 +41,7 @@
         <section class="hero-section">
           <div class="hero-content">
             <span class="hero-logo-frame">
-              <img class="hero-logo" src="fonts/Novo%20Design%20-%20Texto%20ao%20lado.png" alt="Entre Estrelas">
+            <img class="hero-logo" src="fonts/Logo%205%20Pontas%20Horizontal.png" alt="Entre Estrelas">
             </span>
             <h1 class="hero-tagline"><span>Todos somos feitos do pó de estrelas.</span><span>Por isso, Entre Estrelas.</span></h1>
             <p class="hero-intro"><span>Uma comunidade de autoconhecimento que une astrologia,</span><span>tecnologia e desenvolvimento humano.</span></p>
@@ -135,6 +136,13 @@
             <p class="muted">Preencha os dados para montar uma leitura inicial do seu mapa.</p>
             <form id="birth-form">
               <label>Nome <input id="name" type="text" placeholder="Como voce se chama?" required></label>
+              <div class="saved-map-picker" data-saved-map-picker>
+                <label for="saved-map-query">Usar dados de uma pessoa cadastrada (opcional)</label>
+                <input id="saved-map-query" data-saved-map-query type="search" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="saved-map-options" placeholder="Buscar pessoa ou mapa cadastrado" autocomplete="off">
+                <div id="saved-map-options" class="saved-map-options" data-saved-map-options role="listbox" hidden></div>
+                <p class="saved-map-status" data-saved-map-status aria-live="polite">Carregando mapas disponíveis…</p>
+                <button class="saved-map-clear" data-saved-map-clear type="button" hidden>Remover seleção · preencher manualmente</button>
+              </div>
               <div class="field-row">
                 <label>Data <input id="date" type="date" value="1990-06-21" required></label>
                 <label>Hora <input id="time" type="time" value="12:00" required></label>
@@ -300,7 +308,7 @@
               </header>
               <div class="about-top-participants">
                 <article class="home-participant-card">
-                  <img src="fonts/Felipe.jpeg" alt="Foto de Felipe Gonçalves" loading="lazy">
+                  <img src="fonts/Participante-Felipe.jpeg" alt="Foto de Felipe Gonçalves" loading="lazy">
                   <div><h2>Felipe Gonçalves</h2><p>Fundador do Entre Estrelas</p></div>
                 </article>
                 <article class="home-participant-card">
@@ -308,27 +316,27 @@
                   <div><h2>Leonardo A. de Melo</h2><p>Mentor técnico do Entre Estrelas</p></div>
                 </article>
                 <article class="home-participant-card">
-                  <img src="fonts/Mara%20Bruxona.jpeg" alt="Foto de Mara Muniz" loading="lazy">
+                  <img src="fonts/Participante-Mara.jpeg" alt="Foto de Mara Muniz" loading="lazy">
                   <div><h2>Mara Muniz</h2><p>Inspiração e Cofundadora do Entre Estrelas</p></div>
                 </article>
                 <article class="home-participant-card">
-                  <img src="fonts/Ana%20Lia.jpeg" alt="Foto de Ana Lia Vandoni" loading="lazy">
+                  <img src="fonts/Participante-Ana%20Lia.jpeg" alt="Foto de Ana Lia Vandoni" loading="lazy">
                   <div><h2>Ana Lia Vandoni</h2><p>Astróloga e Parceira do Entre Estrelas</p></div>
                 </article>
                 <article class="home-participant-card">
-                  <img src="fonts/Flavia.jpeg" alt="Foto de Flávia Moreira" loading="lazy">
+                  <img src="fonts/Participante-Flavia.jpeg" alt="Foto de Flávia Moreira" loading="lazy">
                   <div><h2>Flávia Moreira</h2><p>Astróloga e Parceira do Entre Estrelas</p></div>
                 </article>
                 <article class="home-participant-card">
-                  <img src="fonts/Jussara.jpeg" alt="Foto de Jussara Macedo" loading="lazy">
+                  <img src="fonts/Participante-Jussara.jpeg" alt="Foto de Jussara Macedo" loading="lazy">
                   <div><h2>Jussara Macedo</h2><p>Astróloga e Parceira do Entre Estrelas</p></div>
                 </article>
                 <article class="home-participant-card">
-                  <img src="fonts/Rosa.jpeg" alt="Foto de Rosa Martinelli" loading="lazy">
+                  <img src="fonts/Participante-Rosa.jpeg" alt="Foto de Rosa Martinelli" loading="lazy">
                   <div><h2>Rosa Martinelli</h2><p>Astróloga e Parceira do Entre Estrelas</p></div>
                 </article>
                 <article class="home-participant-card">
-                  <img src="fonts/Simone.jpeg" alt="Foto de Simone Nascimento" loading="lazy">
+                  <img src="fonts/Participante-Simone.jpeg" alt="Foto de Simone Nascimento" loading="lazy">
                   <div><h2>Simone Nascimento</h2><p>Parceira do Entre Estrelas</p></div>
                 </article>
               </div>
@@ -359,7 +367,7 @@
             <div class="participant-cards">
               <article class="participant-card" aria-labelledby="participant-felipe-title">
                 <header class="participant-card-header">
-                  <img class="participant-photo" src="fonts/Felipe.jpeg" alt="Foto de Felipe Gonçalves" loading="lazy">
+                  <img class="participant-photo" src="fonts/Participante-Felipe.jpeg" alt="Foto de Felipe Gonçalves" loading="lazy">
                   <div class="participant-card-heading">
                   <h3 id="participant-felipe-title">Felipe Gonçalves</h3>
                   <p class="participant-role">Fundador do Entre Estrelas</p>
@@ -415,7 +423,7 @@
 
               <article class="participant-card" aria-labelledby="participant-mara-title">
                 <header class="participant-card-header">
-                  <img class="participant-photo" src="fonts/Mara%20Bruxona.jpeg" alt="Foto de Mara Muniz" loading="lazy">
+                  <img class="participant-photo" src="fonts/Participante-Mara.jpeg" alt="Foto de Mara Muniz" loading="lazy">
                   <div class="participant-card-heading">
                     <h3 id="participant-mara-title">Mara Muniz</h3>
                     <p class="participant-role">Inspiração e Cofundadora do Entre Estrelas</p>
@@ -435,7 +443,7 @@
 
               <article class="participant-card" aria-labelledby="participant-ana-lia-title">
                 <header class="participant-card-header">
-                  <img class="participant-photo" src="fonts/Ana%20Lia.jpeg" alt="Foto de Ana Lia Vandoni" loading="lazy">
+                  <img class="participant-photo" src="fonts/Participante-Ana%20Lia.jpeg" alt="Foto de Ana Lia Vandoni" loading="lazy">
                   <div class="participant-card-heading">
                     <h3 id="participant-ana-lia-title">Ana Lia Vandoni</h3>
                     <p class="participant-role">Conteúdo e Comunicação</p>
@@ -455,7 +463,7 @@
 
               <article class="participant-card" aria-labelledby="participant-flavia-title">
                 <header class="participant-card-header">
-                  <img class="participant-photo" src="fonts/Flavia.jpeg" alt="Foto de Flávia Moreira" loading="lazy">
+                  <img class="participant-photo" src="fonts/Participante-Flavia.jpeg" alt="Foto de Flávia Moreira" loading="lazy">
                   <div class="participant-card-heading">
                     <h3 id="participant-flavia-title">Flávia Moreira</h3>
                     <p class="participant-role">Astróloga e Taróloga</p>
@@ -474,7 +482,7 @@
 
               <article class="participant-card" aria-labelledby="participant-jussara-title">
                 <header class="participant-card-header">
-                  <img class="participant-photo" src="fonts/Jussara.jpeg" alt="Foto de Jussara Macedo" loading="lazy">
+                  <img class="participant-photo" src="fonts/Participante-Jussara.jpeg" alt="Foto de Jussara Macedo" loading="lazy">
                   <div class="participant-card-heading">
                   <h3 id="participant-jussara-title">Jussara Macedo</h3>
                   <p class="participant-role">Socióloga, Psicanalista e Professora</p>
@@ -494,7 +502,7 @@
 
               <article class="participant-card" aria-labelledby="participant-rosa-title">
                 <header class="participant-card-header">
-                  <img class="participant-photo" src="fonts/Rosa.jpeg" alt="Foto de Rosa Martinelli" loading="lazy">
+                  <img class="participant-photo" src="fonts/Participante-Rosa.jpeg" alt="Foto de Rosa Martinelli" loading="lazy">
                   <div class="participant-card-heading">
                     <h3 id="participant-rosa-title">Rosa Martinelli</h3>
                     <p class="participant-role">Educadora Física e Astróloga</p>
@@ -514,7 +522,7 @@
 
               <article class="participant-card" aria-labelledby="participant-simone-title">
                 <header class="participant-card-header">
-                  <img class="participant-photo" src="fonts/Simone.jpeg" alt="Foto de Simone Nascimento" loading="lazy">
+                  <img class="participant-photo" src="fonts/Participante-Simone.jpeg" alt="Foto de Simone Nascimento" loading="lazy">
                   <div class="participant-card-heading">
                     <h3 id="participant-simone-title">Simone Nascimento</h3>
                     <p class="participant-role">Marketing e Publicidade</p>
@@ -886,8 +894,17 @@
     <button class="bonus-lightbox-close" type="button" aria-label="Fechar foto">×</button>
     <img src="" alt="">
   </dialog>
-<script src="app.js?v=20261122-fundador-auto"></script>
+<script src="js/location-picker.js?v=20261124-location-picker2"></script>
+<script src="app.js?v=20261124-location-picker"></script>
   <script type="module">
+    import('./js/saved-map-picker.js').then(({ attachSavedMapPicker }) => {
+      const root = document.querySelector('[data-saved-map-picker]');
+      if (!root) return;
+      window.entreEstrelasMapa?.ready().then(() => attachSavedMapPicker(root, async (dados) => {
+        const ok = await window.entreEstrelasMapa.fill(dados);
+        if (!ok) throw new Error('A localidade cadastrada não existe no catálogo compartilhado. Confira os campos e escolha uma cidade válida.');
+      }));
+    }).catch((error) => console.warn('Seletor de mapas cadastrados indisponível.', error));
     const parametrosConta = new URLSearchParams(window.location.search);
     if (['meu-mapa', 'cliente', 'ferramenta', 'acesso-mapas'].some((p) => parametrosConta.has(p))) import('./js/mapa-conta.js');
   </script>

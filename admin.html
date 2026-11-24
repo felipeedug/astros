@@ -8,11 +8,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css?v=20261122-aniversarios">
+  <link rel="stylesheet" href="css/portal.css?v=20261124-contato-pedido">
 </head>
 <body>
   <header class="portal-topo">
-    <a href="index.html" aria-label="Entre Estrelas, início"><img src="fonts/Novo%20Design%20-%20COM%20texto.png" alt="Entre Estrelas"></a>
+<a href="index.html" aria-label="Entre Estrelas, início"><img src="fonts/Logo%205%20Pontas%20COM%20texto.png" alt="Entre Estrelas"></a>
     <nav><a href="minha-area.html">Minha área</a><a href="index.html">Site</a></nav>
   </header>
 
@@ -169,7 +169,7 @@
       configurado, sessaoAtual, meuCadastro, admListarClientes, admListarProdutos, admCriarCliente,
       admTornarFundador, admCancelarAssinatura, admRegistrarCompra, admEditarCliente, admEnviarAcesso, admDefinirIndicacao, linkDeIndicacao, admRegistrarRepasse, admExcluirRepasse, aniversariantesDoMes, htmlAniversariantes, escapar, seloFundador, MOTIVOS_LIBERACAO,
       admListarLancamentos, admListarEventos, admSalvarEvento, admExcluirEvento
-    } from './js/portal.js?v=20261122-aniversarios';
+    } from './js/portal.js?v=20261124-contato-pedido';
 
     // Opções de motivo (pagamento, equipe/cofundadora, doação, cortesia) em todos os seletores.
     document.querySelectorAll('select[data-motivos]').forEach((select) => {
@@ -580,7 +580,10 @@
         .map((p) => `<option value="${p.id}">${escapar(p.nome)}${p.ativo ? '' : ' (inativo)'}</option>`).join('');
       // Produto ao qual um evento pertence (ex.: a live do Árvore de Natal)
       document.querySelector('#ev-produto').insertAdjacentHTML('beforeend', produtos
-        .filter((p) => p.ativo && (p.nivel || 'pago') === 'pago')
+        // Produtos que concedem plano (ex.: Membro Fundador) ficam de fora: quem tem o plano
+        // não "comprou o produto", e o evento ficaria fechado para todos. Para eventos só de
+        // membros, use "Para quem: Só membros".
+        .filter((p) => p.ativo && (p.nivel || 'pago') === 'pago' && !p.concede_plano)
         .map((p) => `<option value="${p.id}">${escapar(p.nome)}</option>`).join(''));
       // "Liberar" no cadastro: Fundador (tudo) ou um produto pago avulso (ex.: só o Mapa da Vida).
       document.querySelector('#novo-liberar').insertAdjacentHTML('beforeend', produtos

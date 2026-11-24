@@ -84,7 +84,7 @@
 @media print {
   :root { color-scheme:light; }
   html,body { width:auto; min-width:0; color:#111; background:#fff; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
-  body.map-life-print::before { position:fixed; inset:0; z-index:0; content:""; background:url("fonts/Novo%20Design%20-%20COM%20texto.png") center center / 145mm auto no-repeat; filter:grayscale(1); opacity:.12; pointer-events:none; }
+  body.map-life-print::before { position:fixed; inset:0; z-index:0; content:""; background:url("fonts/Logo%205%20Pontas%20COM%20texto.png") center center / 145mm auto no-repeat; filter:grayscale(1); opacity:.12; pointer-events:none; }
   body.map-life-print .app-shell { position:relative; z-index:1; }
   .sidebar,.site-footer,.control-column,.result-actions,.icon-button,.insights,.hero-section,.interpretation-print-footer { display:none !important; }
   .main-content { width:100%; max-width:none; margin:0; padding:0; }

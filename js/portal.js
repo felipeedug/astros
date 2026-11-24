@@ -448,6 +448,10 @@ export async function salvarMapaProprio(clienteId, dados) {
     : supabase.from('mapas_nascimento').insert(registro);
   const { data, error } = await consulta.select().single();
   falha(error, 'Não foi possível salvar os dados de nascimento.');
+  // Cadastro sem nome (ex.: comprou direto pelo site): usa o nome do próprio mapa
+  if (dados.nome) {
+    await supabase.from('clientes').update({ nome: dados.nome }).eq('id', clienteId).is('nome', null);
+  }
   return data;
 }
 

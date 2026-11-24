@@ -215,7 +215,7 @@ label { display:block; margin-top:20px; color:var(--muted); font-size:10px; font
 .home-page .hero-section { min-height:calc(100svh - 125px); padding:36px 24px 56px; background:#0D1B2A; }
 .home-page .hero-content { max-width:1200px; animation:none; }
 .home-page .hero-logo-frame { display:block; width:min(900px,90vw); aspect-ratio:4 / 1; overflow:hidden; margin:0 auto 18px; }
-.home-page .hero-logo { display:block; width:100%; height:auto; margin:0; transform:translateY(-36%); }
+.home-page .hero-logo { display:block; width:100%; height:auto; margin:0; }
 .home-page .hero-tagline { display:grid; gap:0; max-width:1100px; margin:0 auto 0; color:#FAF8F5; font:700 clamp(2rem,4vw,3rem)/1.2 var(--fonte-titulo); letter-spacing:0; }
 .home-page .hero-intro { max-width:1200px; margin:48px auto 1.5em; color:#F0C75E; font:600 clamp(1.35rem,2.2vw,2rem)/1.35 var(--fonte-corpo); }
 .home-page .hero-intro span { display:block; }
@@ -631,6 +631,35 @@ label { display:block; margin-top:20px; color:var(--muted); font-size:10px; font
 /* O aviso da área de clientes ("Voltar à minha área" etc.) é só para a tela, nunca no PDF. */
 @media print {
   .faixa-conta { display:none !important; }
+}
+
+/* Mapas: formulário e configurações ficam acima da mandala, em toda a largura. */
+#mapa.workspace {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: stretch;
+}
+#mapa .control-column {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, .72fr);
+  gap: 20px;
+  width: 100%;
+}
+#mapa .control-column > .input-panel,
+#mapa .control-column > .configuration-panel { min-width: 0; margin: 0; }
+#mapa .configuration-panel { border-top: 1px solid rgba(44,62,80,.18); }
+#mapa .chart-panel { width: 100%; padding-top: 24px; border-top: 1px solid var(--line); }
+#mapa .chart-wrap { max-width: min(100%, 860px); }
+#mapa .solar-pair { max-width: min(100%, 1100px); }
+@media (max-width: 900px) {
+  #mapa .control-column { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 800px) {
+  #mapa.workspace { gap: 22px; }
+  #mapa .chart-panel { padding-top: 22px; }
+  #mapa .chart-wrap { max-width: min(100%, 620px); }
+  #mapa .solar-pair { max-width: min(100%, 620px); }
 }
 
 /* Quem somos: Felipe, Leonardo e Mara lado a lado na primeira fileira (Léo no meio);
