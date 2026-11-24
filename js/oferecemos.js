@@ -144,13 +144,13 @@ function cartaoAvulso(p) {
   </article>`;
 }
 
-function cartaoGratuito(p) {
+function cartaoGratuito(p, rotulo = 'Para começar') {
   const disponivel = p.status !== 'em_breve' && p.link_acesso;
   const destino = disponivel ? (cliente ? p.link_acesso : entrarPara(p.link_acesso)) : '';
   return `<article class="oferta oferta--gratuita${figura(p) ? ' oferta--com-imagem' : ''}">
     <div class="oferta-icone">${figura(p) || iconeProduto(p.icone || 'estrela')}</div>
     <div class="oferta-corpo">
-      <p class="oferta-categoria">Para começar${disponivel ? '' : ' · em breve'}</p>
+      <p class="oferta-categoria">${rotulo}${disponivel ? '' : ' · em breve'}</p>
       <h3>${escapar(p.nome)}</h3>
       <p>${escapar(p.descricao || '')}</p>
       <div class="oferta-acoes">${disponivel ? `<a class="oferta-voto" href="${destino}">Experimentar</a>` : ''}<a class="oferta-link" href="${paginaDe(p)}">Conhecer →</a></div>
@@ -190,10 +190,13 @@ function conteudoAvulsos() {
 }
 
 function conteudoProfissionais() {
-  const maximo = Math.max(0, ...formacoes.map((p) => votos[p.id] || 0));
-  return formacoes.length
-    ? `<div class="ofertas ofertas--calendario">${[...formacoes].sort(porData).map((p) => cartaoEmBreve(p, maximo, '★ Tenho interesse')).join('')}</div>`
-    : '<p class="oferecemos-nota">Em construção. Em breve, aqui.</p>';
+  // Ferramentas já disponíveis (Experimentar) e, depois, o que está em construção (Tenho interesse)
+  const prontas = formacoes.filter((p) => p.status !== 'em_breve');
+  const emBreve = formacoes.filter((p) => p.status === 'em_breve').sort(porData);
+  const maximo = Math.max(0, ...emBreve.map((p) => votos[p.id] || 0));
+  const html = prontas.map((p) => cartaoGratuito(p, 'Para profissionais')).join('')
+    + emBreve.map((p) => cartaoEmBreve(p, maximo, '★ Tenho interesse')).join('');
+  return html ? `<div class="ofertas ofertas--calendario">${html}</div>` : '<p class="oferecemos-nota">Em construção. Em breve, aqui.</p>';
 }
 
 function conteudoGratuitos() {
@@ -266,8 +269,9 @@ async function carregar() {
     ]);
     // Só o que é oferecido às pessoas (fora ferramentas gratuitas e o próprio plano de Fundador)
     const oferecidos = todos.filter((p) => !p.concede_plano);
-    gratuitos = oferecidos.filter((p) => ['aberto', 'cadastro'].includes(p.nivel));
-    formacoes = oferecidos.filter((p) => p.tipo === 'formacao' && !gratuitos.includes(p));
+    // Para profissionais vem primeiro: inclui ferramentas de trabalho abertas (ex.: Caminhar dos Planetas)
+    formacoes = oferecidos.filter((p) => p.tipo === 'formacao');
+    gratuitos = oferecidos.filter((p) => !formacoes.includes(p) && ['aberto', 'cadastro'].includes(p.nivel));
     itens = oferecidos.filter((p) => !gratuitos.includes(p) && !formacoes.includes(p) && p.tipo !== 'ferramenta');
     votos = contagem;
     meus = meusSet;
