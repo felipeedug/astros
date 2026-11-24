@@ -118,11 +118,11 @@ const ABAS = {
   },
   comunidade: {
     nome: 'Constelação',
-    resumo: '<strong>Venha fazer parte desta constelação você também.</strong> A Constelação é a comunidade do Entre Estrelas: a jornada completa, com todas as análises e vivências incluídas, um novo passo por mês, e você recebe cada um antes. E você não recebe sozinho: em cada passo, a gente apresenta, ensina como aplicar na sua vida, conversa e acompanha em grupo, como ter uma astróloga do seu lado. É o jeito mais completo e o que sai mais em conta. Hoje, a forma de entrar é ser <strong>Membro Fundador</strong>.'
+    resumo: '<strong>Venha fazer parte desta constelação você também.</strong> A Constelação é a comunidade do Entre Estrelas: a jornada completa, com todas as análises e vivências incluídas, um novo passo por mês, e você recebe cada um antes. E você não recebe sozinho: em cada passo, a gente coloca textos, leituras e explicações para você aplicar na sua vida, e a comunidade caminha junto. É o jeito mais completo e o que sai mais em conta. Hoje, a forma de entrar é ser <strong>Membro Fundador</strong>.<span class="oferecemos-aviso"><strong>Na Constelação, a orientação é para toda a comunidade:</strong> ela acontece pelos textos, leituras e explicações que a gente coloca para todos, a cada passo. É sempre a mesma para todos: não é um atendimento individual nem personalizado. Para um olhar só para você, existem as Horas de Acompanhamento, contratadas à parte.</span>'
   },
   avulsos: {
     nome: 'Passo a passo',
-    resumo: '<strong>Monte do seu jeito.</strong> Escolha só o que faz sentido agora, de qualquer catálogo, e misture como quiser: uma análise, horas com uma astróloga, uma formação... Você paga por cada passo, na hora que quiser. As conversas e o acompanhamento em grupo são da Constelação.'
+    resumo: '<strong>Monte do seu jeito.</strong> Escolha só o que faz sentido agora, de qualquer catálogo, e misture como quiser: uma análise, horas com uma astróloga, uma formação... Você paga por cada passo, na hora que quiser. Os textos, leituras e orientações para a comunidade são da Constelação.'
   },
   profissionais: {
     nome: 'Para profissionais',
@@ -181,7 +181,7 @@ function conteudoComunidade() {
     </section>` : ''}
     ${acompanhamentos.length ? `<section class="oferecemos-bloco" aria-labelledby="oferecemos-alem">
       <h2 class="editorial-section-title" id="oferecemos-alem">Para ir além</h2>
-      <p class="oferecemos-nota">Quer um olhar só para você? Além do acompanhamento em grupo, você pode ter horas de acompanhamento individual com uma astróloga.</p>
+      <p class="oferecemos-nota">Quer um olhar só para você? Além das orientações para toda a comunidade, você pode ter horas de acompanhamento individual com uma astróloga.</p>
       <div class="ofertas">${acompanhamentos.map(cartaoAvulso).join('')}</div>
     </section>` : ''}
     ${emBreve.length ? `<section class="oferecemos-bloco" aria-labelledby="oferecemos-proximos">
@@ -249,7 +249,7 @@ function htmlCatalogosAbertos() {
   return `<section class="catalogos-mapa" aria-labelledby="catalogos-mapa-titulo">
       <h2 class="editorial-section-title" id="catalogos-mapa-titulo">Nossos quatro catálogos</h2>
       ${bloco('comecar', 'Comece agora', 'Amostras do Mapa da Vida e ferramentas abertas, sem pagar nada', 'gratuitos', gratuitos.map(item).join(''))}
-      ${bloco('constelacao', 'Constelação', 'Tudo incluído, com acompanhamento em grupo', 'comunidade', constelacao + jornada.map(item).join('') + acompanhamentos.map(item).join(''))}
+      ${bloco('constelacao', 'Constelação', 'Tudo incluído, com orientações para toda a comunidade', 'comunidade', constelacao + jornada.map(item).join('') + acompanhamentos.map(item).join(''))}
       ${bloco('jornada', 'Passo a passo', 'Monte do seu jeito: misture o que quiser, de qualquer catálogo, quando quiser', 'avulsos', mistura.map(([p, origem]) => item(p, origem)).join(''))}
       ${bloco('profissionais', 'Para profissionais', 'Formações e ferramentas de trabalho', 'profissionais', formacoes.map(item).join(''))}
     </section>`;
