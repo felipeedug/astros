@@ -391,6 +391,33 @@ export async function verPresente(codigo) {
   return (data || [])[0] || null;
 }
 
+// O que a pessoa já abriu (vai para a Minha jornada). Nunca atrapalha o clique.
+export async function registrarAcesso(slug) {
+  try { if (supabase && slug) await supabase.rpc('registrar_acesso', { p_slug: slug }); } catch { /* 029 ainda não rodado */ }
+}
+
+// Clique em "Acessar"/"Experimentar": registra e só então abre (no máximo 0,8 s de espera)
+export function acessarRegistrando(evento, el) {
+  const slug = el?.dataset?.acesso;
+  if (!slug) return;
+  const href = el.getAttribute('href');
+  if (!href || el.target === '_blank' || evento.ctrlKey || evento.metaKey || evento.shiftKey || evento.button) {
+    registrarAcesso(slug);
+    return;
+  }
+  evento.preventDefault();
+  Promise.race([registrarAcesso(slug), new Promise((r) => setTimeout(r, 800))])
+    .then(() => { window.location.href = href; });
+}
+
+export async function meusAcessos() {
+  try {
+    const { data, error } = await supabase.from('acessos_conteudo').select('produto_id, ultimo_em');
+    if (error) return new Map();
+    return new Map((data || []).map((a) => [a.produto_id, a.ultimo_em]));
+  } catch { return new Map(); }
+}
+
 // Presente sem pagamento dos conteúdos abertos (Comece agora): devolve o código do link
 export async function presentearGratis(slug) {
   exigirConfiguracao();
