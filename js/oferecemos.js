@@ -3,8 +3,11 @@
 // Os dados vêm da tabela produtos (a mesma de "O que vem pela frente" na Minha área).
 import {
   configurado, sessaoAtual, meuCadastro, produtosAVenda, contagemVotos, meusVotos, votar, tirarVoto,
-  escapar, formatarPreco, iconeProduto, imagemProduto, supabase, fundadoresPublicos
+  escapar, formatarPreco, iconeProduto, imagemProduto, supabase
 } from './portal.js';
+// Funções novas do portal.js vêm por aqui: se o navegador ainda tiver a cópia antiga
+// do portal.js guardada (até 10 min), a página não quebra, só espera a próxima visita.
+import * as portal from './portal.js';
 
 // Nomes das categorias no site (troque aqui se quiser outros nomes)
 const CATEGORIAS = { produto: 'Análises', vivencia: 'Vivências', live: 'Vivências', aula: 'Vivências', formacao: 'Para profissionais', ferramenta: 'Comece agora', acompanhamento: 'Acompanhamento' };
@@ -434,7 +437,8 @@ async function carregarFundadores() {
   const bloco = document.querySelector('[data-fundadores-site]');
   if (!bloco || !configurado) return;
   try {
-    nomesFundadores = await fundadoresPublicos();
+    if (typeof portal.fundadoresPublicos !== 'function') return;
+    nomesFundadores = await portal.fundadoresPublicos();
     if (!nomesFundadores.length) return;
     bloco.hidden = false;
     desenharFundadores();
