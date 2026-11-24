@@ -704,4 +704,4 @@ textarea { font: inherit; font-weight: 400; padding: .7rem .8rem; border: 1px so
 
 /* Ilustração de cada oferta (no lugar do ícone) */
 .produto-miniatura { flex: 0 0 auto; width: 64px; height: 64px; object-fit: cover; border-radius: 12px; }
-.pagina-produto-imagem { display: block; width: min(240px, 60vw); aspect-ratio: 1; object-fit: cover; border-radius: 18px; box-shadow: 0 10px 40px rgba(0, 0, 0, .35); }
+.pagina-produto-imagem { display: block; width: min(260px, 70%); aspect-ratio: 1; object-fit: cover; margin: 0 auto 1.4rem; border-radius: 16px; box-shadow: 0 6px 24px rgba(30, 58, 95, .12); }
