@@ -70,8 +70,8 @@ insert into public.produtos (slug, nome, descricao, tipo, status, previsao, voto
 select v.slug, v.nome, v.descricao, v.tipo, 'em_breve', v.previsao::date, v.votos,
        true, 'pago', true, 'estrela', v.ordem
   from (values
-    ('mapa-do-ano', 'Mapa do Ano 2027',
-     'O que o seu ano pede: os temas, os ciclos e os melhores momentos para cada passo.',
+    ('mapa-do-ano', 'Mapa do Ano',
+     'O seu ano pessoal, de um aniversário ao outro: os temas, os ciclos e os melhores momentos para cada passo.',
      'produto', '2027-01-15', 21, 110),
     ('carreira-e-trabalho', 'Carreira e Trabalho',
      'Seus talentos no trabalho, o que te realiza e como usar melhor as suas habilidades.',
