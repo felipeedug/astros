@@ -3,7 +3,7 @@
 // Os dados vêm da tabela produtos (a mesma de "O que vem pela frente" na Minha área).
 import {
   configurado, sessaoAtual, meuCadastro, produtosAVenda, contagemVotos, meusVotos, votar, tirarVoto,
-  escapar, formatarPreco, iconeProduto, imagemProduto, supabase
+  escapar, formatarPreco, iconeProduto, imagemProduto, supabase, fundadoresPublicos
 } from './portal.js';
 
 // Nomes das categorias no site (troque aqui se quiser outros nomes)
@@ -383,3 +383,19 @@ raiz?.addEventListener('click', async (evento) => {
 });
 
 carregar();
+
+// Quem somos: nomes dos Membros Fundadores (o bloco só aparece se houver nomes)
+async function carregarFundadores() {
+  const bloco = document.querySelector('[data-fundadores-site]');
+  const lista = bloco?.querySelector('[data-fundadores-lista]');
+  if (!bloco || !lista || !configurado) return;
+  try {
+    const nomes = await fundadoresPublicos();
+    if (!nomes.length) return;
+    lista.innerHTML = nomes.map((n) => `<li><span aria-hidden="true">★</span> ${escapar(n)}</li>`).join('');
+    bloco.hidden = false;
+  } catch (erro) {
+    console.warn('Membros Fundadores indisponíveis.', erro);
+  }
+}
+carregarFundadores();
