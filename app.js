@@ -2025,12 +2025,17 @@ function initializeEphemerisControls() {
 }
 
 function showView(viewId) {
+  // O Manifesto agora fica dentro de Quem somos: links antigos (#manifesto) levam até ele.
+  if (viewId === 'manifesto') {
+    showView('quem-somos');
+    requestAnimationFrame(() => document.querySelector('#manifesto-conteudo')?.scrollIntoView({ block: 'start' }));
+    return;
+  }
   if (!viewPanels.some((panel) => panel.id === viewId)) return;
   viewPanels.forEach((panel) => { panel.hidden = panel.id !== viewId; });
   const pageTitles = {
-    manifesto: 'Manifesto | Entre Estrelas | Astrologia',
     'quem-somos': 'Quem somos | Entre Estrelas | Astrologia',
-    servicos: 'Serviços | Entre Estrelas | Astrologia',
+    servicos: 'O que oferecemos | Entre Estrelas | Astrologia',
     comunidade: 'Comunidade | Entre Estrelas | Astrologia',
     apoie: 'Membro Fundador | Entre Estrelas | Astrologia'
   };
@@ -2073,6 +2078,13 @@ navigationLinks.forEach((link) => {
     closeMapsMenu();
     showView(link.hash.slice(1));
   });
+});
+// Botões que rolam até um trecho da mesma página (ex.: "Conheça nosso manifesto")
+document.addEventListener('click', (event) => {
+  const alvo = event.target.closest('[data-rolar-para]');
+  if (!alvo) return;
+  event.preventDefault();
+  document.getElementById(alvo.dataset.rolarPara)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
 mapsMenuToggle?.addEventListener('click', () => {
   const isExpanded = mapsMenuToggle.getAttribute('aria-expanded') === 'true';
