@@ -82,6 +82,12 @@
         <div class="produtos" id="lista-em-breve"></div>
       </section>
 
+      <section class="cartao" id="cartao-aniversarios-comunidade" hidden>
+        <h2 id="titulo-aniversarios-comunidade">🎂 Aniversariantes do mês</h2>
+        <p class="suave">Quem da nossa constelação faz aniversário neste mês. Que tal mandar um carinho no grupo?</p>
+        <div id="lista-aniversarios-comunidade"></div>
+      </section>
+
       <section class="cartao cartao-festivo" id="cartao-presentear" hidden>
         <div class="festivo-laco" aria-hidden="true"></div>
         <p class="festivo-chamada">Black Friday · presentes com preço de membro</p>
@@ -159,8 +165,8 @@
       mapaProprio, atualizarMeuCadastro, escapar, formatarPreco, seloFundador, iconeProduto,
       inscrever, cancelarInscricao, minhaAgenda, inscreverEvento, cancelarEvento,
       produtosAVenda, irParaPagamento, meusPresentes, linkDePresente, linkDoArquivo, registrarIndicacaoPendente, aniversariantesDoMes, htmlAniversariantes,
-      contagemVotos, meusVotos, votar, tirarVoto, imagemProduto, slugDe
-    } from './js/portal.js?v=20261124-carreira';
+      contagemVotos, meusVotos, votar, tirarVoto, imagemProduto, slugDe, aniversariantesDaComunidade, htmlAniversariantesComunidade
+    } from './js/portal.js?v=20261124-aniversarios';
 
     // Ilustração da oferta no lugar do ícone, quando houver
     const miniatura = (slug) => (imagemProduto(slug)
@@ -200,7 +206,18 @@
         aniversariantesDoMes()
           .then((lista) => { document.querySelector('#lista-aniversarios-equipe').innerHTML = htmlAniversariantes(lista); })
           .catch((e) => { document.querySelector('#lista-aniversarios-equipe').innerHTML = `<p class="suave">${escapar(e.message)}</p>`; });
-      } else if (cliente.parceiro) {
+      }
+      // Toda a comunidade (membros): nome e dia de quem faz aniversário no mês (a equipe já vê a lista completa)
+      if (!['admin', 'astrologa'].includes(cliente.papel)) {
+        aniversariantesDaComunidade().then((lista) => {
+          if (!lista.length) return;
+          document.querySelector('#titulo-aniversarios-comunidade').textContent =
+            `🎂 Aniversariantes de ${new Date().toLocaleDateString('pt-BR', { month: 'long' })}`;
+          document.querySelector('#lista-aniversarios-comunidade').innerHTML = htmlAniversariantesComunidade(lista);
+          document.querySelector('#cartao-aniversarios-comunidade').hidden = false;
+        }).catch(() => {});
+      }
+      if (!['admin', 'astrologa'].includes(cliente.papel) && cliente.parceiro) {
         // Madrinha: vê só quem ela indicou (aparece se houver alguém fazendo aniversário no mês)
         aniversariantesDoMes().then((lista) => {
           if (!lista.length) return;
