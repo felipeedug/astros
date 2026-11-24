@@ -3,7 +3,7 @@
 // Os dados vêm da tabela produtos (a mesma de "O que vem pela frente" na Minha área).
 import {
   configurado, sessaoAtual, meuCadastro, produtosAVenda, contagemVotos, meusVotos, votar, tirarVoto,
-  escapar, formatarPreco, iconeProduto
+  escapar, formatarPreco, iconeProduto, imagemProduto
 } from './portal.js';
 
 // Nomes das categorias no site (troque aqui se quiser outros nomes)
@@ -27,6 +27,9 @@ const paginaDe = (p) => `produto.html?p=${encodeURIComponent(p.slug)}`;
 const dataMarcada = (p) => Boolean(p.preco_centavos)
   || Boolean(p.previsao && (new Date(`${p.previsao}T00:00:00`) - new Date()) / 864e5 < 45);
 const entrarPara = (destino) => `entrar.html?voltar=${encodeURIComponent(destino)}`;
+// Ilustração da oferta (ou nada, quando ainda não houver)
+const figura = (p) => (imagemProduto(p.slug)
+  ? `<img class="oferta-imagem" src="${imagemProduto(p.slug)}" alt="" decoding="async">` : '');
 
 function quando(p) {
   if (!p.previsao) return 'Em breve';
@@ -46,8 +49,8 @@ const antesFundadores = (p) => (p.previsao_fundadores
 
 function cartaoDisponivel(p) {
   const link = paginaDe(p) || 'minha-area.html';
-  return `<article class="oferta oferta--disponivel">
-    <div class="oferta-icone">${iconeProduto(p.icone || 'estrela')}</div>
+  return `<article class="oferta oferta--disponivel${figura(p) ? ' oferta--com-imagem' : ''}">
+    <div class="oferta-icone">${figura(p) || iconeProduto(p.icone || 'estrela')}</div>
     <div class="oferta-corpo">
       <p class="oferta-categoria">${escapar(categoria(p))} · disponível</p>
       <h3>${escapar(p.nome)}</h3>
@@ -67,7 +70,7 @@ function cartaoEmBreve(p, maximo, rotuloVoto = '★ Quero que venha primeiro') {
   // Data marcada (ex.: Árvore de Natal): é hora de participar, não de votar
   if (dataMarcada(p)) {
     return `<article class="oferta oferta--marcada">
-    <div class="oferta-quando"><span>${escapar(quando(p))}</span>${antesFundadores(p)}</div>
+    <div class="oferta-quando">${figura(p)}<span>${escapar(quando(p))}</span>${antesFundadores(p)}</div>
     <div class="oferta-corpo">
       <p class="oferta-categoria">${escapar(categoria(p))} · data marcada</p>
       <h3>${escapar(p.nome)}</h3>
@@ -82,7 +85,7 @@ function cartaoEmBreve(p, maximo, rotuloVoto = '★ Quero que venha primeiro') {
       ? `<button type="button" class="oferta-voto" data-votar="${p.id}">${rotuloVoto}</button>`
       : `<a class="oferta-voto" href="${entrarPara(`index.html?votar=${p.slug}&aba=${aba}#servicos`)}">${rotuloVoto}</a>`;
   return `<article class="oferta">
-    <div class="oferta-quando"><span>${escapar(quando(p))}</span>${antesFundadores(p)}</div>
+    <div class="oferta-quando">${figura(p)}<span>${escapar(quando(p))}</span>${antesFundadores(p)}</div>
     <div class="oferta-corpo">
       <p class="oferta-categoria">${escapar(categoria(p))}</p>
       <h3>${escapar(p.nome)}</h3>
@@ -131,7 +134,7 @@ function cartaoAvulso(p) {
       ? `<a class="oferta-voto" href="${pagina}">Quero participar · ${formatarPreco(p.preco_centavos)}</a>`
       : (disponivel ? '' : '<span class="oferta-preco">Valor avulso divulgado no lançamento</span>');
   return `<article class="oferta${disponivel ? ' oferta--destaque' : ''}">
-    <div class="oferta-quando"><span>${disponivel ? 'Disponível agora' : escapar(quando(p))}</span></div>
+    <div class="oferta-quando">${figura(p)}<span>${disponivel ? 'Disponível agora' : escapar(quando(p))}</span></div>
     <div class="oferta-corpo">
       <p class="oferta-categoria">${escapar(categoria(p))}</p>
       <h3>${escapar(p.nome)}</h3>
@@ -144,8 +147,8 @@ function cartaoAvulso(p) {
 function cartaoGratuito(p) {
   const disponivel = p.status !== 'em_breve' && p.link_acesso;
   const destino = disponivel ? (cliente ? p.link_acesso : entrarPara(p.link_acesso)) : '';
-  return `<article class="oferta oferta--gratuita">
-    <div class="oferta-icone">${iconeProduto(p.icone || 'estrela')}</div>
+  return `<article class="oferta oferta--gratuita${figura(p) ? ' oferta--com-imagem' : ''}">
+    <div class="oferta-icone">${figura(p) || iconeProduto(p.icone || 'estrela')}</div>
     <div class="oferta-corpo">
       <p class="oferta-categoria">Para começar${disponivel ? '' : ' · em breve'}</p>
       <h3>${escapar(p.nome)}</h3>
@@ -203,12 +206,15 @@ function conteudoGratuitos() {
 function desenhar() {
   if (!ABAS[aba]) aba = 'comunidade';
   const conteudo = { comunidade: conteudoComunidade, avulsos: conteudoAvulsos, profissionais: conteudoProfissionais, gratuitos: conteudoGratuitos }[aba]();
+  // Cor de cada catálogo: azul (jornada), roxo (profissionais), verde (para começar)
+  raiz.dataset.catalogo = { comunidade: 'jornada', avulsos: 'jornada', profissionais: 'profissionais', gratuitos: 'comecar' }[aba];
   raiz.innerHTML = `
     <h2 class="oferecemos-titulo-abas">A mesma jornada, do seu jeito</h2>
     <div class="oferecemos-abas" role="tablist" aria-label="Formas de fazer a jornada">
       ${Object.entries(ABAS).map(([chave, a]) => `<button type="button" role="tab" data-aba="${chave}" aria-selected="${chave === aba}">${a.nome}</button>`).join('')}
     </div>
-    <p class="oferecemos-aba-resumo">${ABAS[aba].resumo}</p>
+    <p class="oferecemos-aba-resumo">${aba === 'comunidade' && imagemProduto('constelacao')
+      ? `<img class="oferecemos-aba-imagem" src="${imagemProduto('constelacao')}" alt="Comunidade Constelação">` : ''}${ABAS[aba].resumo}</p>
     ${conteudo}`;
 }
 

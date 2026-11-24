@@ -568,6 +568,17 @@ const ICONES = {
   estrela: '<path fill="currentColor" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" d="M24 6l5.5 11.8 12.9 1.5-9.5 8.9 2.5 12.8L24 34.6l-11.4 6.4 2.5-12.8-9.5-8.9 12.9-1.5z"/>'
 };
 
+// Ilustração de cada oferta (images/ofertas/<slug>.webp). Para incluir uma nova,
+// salve o arquivo com o slug como nome e acrescente o slug aqui.
+const COM_IMAGEM = new Set([
+  'mapa-da-vida', 'mapa-infantil', 'membro-fundador', 'compatibilidade', 'mapa-do-ano', 'natal-2026',
+  'periodos-propicios', 'mudancas-no-trabalho', 'talisma', 'quem-voce-e', 'como-voce-ama', 'constelacao', 'horas-de-acompanhamento',
+  'formacao-astrologia', 'software-astrologas'
+]);
+export function imagemProduto(slug) {
+  return COM_IMAGEM.has(slug) ? `images/ofertas/${slug}.webp` : '';
+}
+
 export function iconeProduto(chave) {
   const desenho = ICONES[chave] || ICONES.estrela;
   return `<svg class="produto-icone" viewBox="0 0 48 48" aria-hidden="true">${desenho}</svg>`;

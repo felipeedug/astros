@@ -792,3 +792,33 @@ a.jornada-passo:hover .jornada-nome { text-decoration:underline; }
 .oferta--gratuita { grid-template-columns:72px minmax(0,1fr); }
 .oferta--destaque { border-color:rgba(201,162,39,.55); background:#FFFBEF; }
 .jornada-linha--curta { padding-right:100px; }
+
+/* Ilustração de cada oferta */
+.oferta-imagem { display:block; width:100%; max-width:150px; aspect-ratio:1; object-fit:cover; margin-bottom:10px; border-radius:10px; }
+.oferta--com-imagem { grid-template-columns:150px minmax(0,1fr); }
+.oferta--com-imagem .oferta-icone .oferta-imagem { margin:0; }
+@media (max-width:640px) { .oferta-imagem { max-width:120px; } .oferta--com-imagem { grid-template-columns:1fr; } }
+.founder-imagem { float:right; width:min(300px,38%); margin:0 0 16px 32px; border-radius:16px; box-shadow:0 12px 40px rgba(0,0,0,.25); }
+@media (max-width:640px) { .founder-imagem { float:none; display:block; width:min(260px,80%); margin:0 auto 20px; } }
+.oferecemos-aba-resumo::after { content:""; display:table; clear:both; }
+.oferecemos-aba-imagem { float:right; width:min(220px,40%); margin:0 0 12px 24px; border-radius:14px; box-shadow:0 6px 24px rgba(30,58,95,.12); }
+@media (max-width:640px) { .oferecemos-aba-imagem { float:none; display:block; width:min(240px,80%); margin:0 auto 16px; } }
+
+/* Cores dos catálogos: azul = jornada (Constelação e Passo a passo), roxo = profissionais, verde = para começar */
+.oferecemos { --catalogo:#3B6FB6; --catalogo-claro:#EEF4FC; }
+.oferecemos[data-catalogo="profissionais"] { --catalogo:#7E5BB5; --catalogo-claro:#F4EFFB; }
+.oferecemos[data-catalogo="comecar"] { --catalogo:#4E8F45; --catalogo-claro:#EFF7EC; }
+.oferecemos-abas button[data-aba="comunidade"],.oferecemos-abas button[data-aba="avulsos"] { --cor-aba:#3B6FB6; }
+.oferecemos-abas button[data-aba="profissionais"] { --cor-aba:#7E5BB5; }
+.oferecemos-abas button[data-aba="gratuitos"] { --cor-aba:#4E8F45; }
+.oferecemos-abas button[aria-selected="true"] { color:var(--cor-aba); border-bottom-color:var(--cor-aba); }
+.oferecemos-abas button:hover { color:var(--cor-aba); }
+.oferecemos .oferta-quando { border-right-color:var(--catalogo); }
+.oferecemos .oferta-categoria { color:var(--catalogo); }
+.oferecemos .oferta-voto { border-color:var(--catalogo); background:var(--catalogo); }
+.oferecemos .oferta-voto:hover { background:transparent; color:var(--catalogo); }
+.oferecemos .oferta-voto--feito { border-color:var(--catalogo); background:var(--catalogo-claro); color:var(--catalogo); }
+.oferecemos .oferta-votos-barra > span { background:var(--catalogo); }
+.oferecemos .oferta--destaque,.oferecemos .oferta--disponivel,.oferecemos .oferta--marcada { border-color:var(--catalogo); background:var(--catalogo-claro); }
+.oferecemos .oferta-link { color:var(--catalogo); }
+@media (max-width:640px) { .oferecemos .oferta-quando { border-bottom-color:var(--catalogo); } }

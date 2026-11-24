@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css?v=20261122-arvore">
+  <link rel="stylesheet" href="css/portal.css?v=20261124-imagens2">
 </head>
 <body>
   <header class="portal-topo">
@@ -39,15 +39,15 @@
   <script type="module">
     import {
       configurado, sessaoAtual, meuCadastro, meusProdutos, minhasAssinaturas, inscrever, cancelarInscricao,
-      produtoDaPagina, textoDaPagina, iconeProduto, escapar, formatarPreco
-    } from './js/portal.js';
+      produtoDaPagina, textoDaPagina, iconeProduto, imagemProduto, escapar, formatarPreco
+    } from './js/portal.js?v=20261124-cores';
 
     const parametros = new URLSearchParams(location.search);
     const slug = (parametros.get('p') || '').trim();
     const chamada = document.querySelector('#chamada');
     const aviso = document.querySelector('#aviso');
     const mostrar = (texto, tipo) => { aviso.textContent = texto; aviso.className = `aviso aviso-${tipo}`; };
-    const tipos = { live: 'Live', aula: 'Aula', produto: 'Novidade', ferramenta: 'Ferramenta' };
+    const tipos = { live: 'Live', aula: 'Aula', produto: 'Análise', vivencia: 'Vivência', formacao: 'Para profissionais', ferramenta: 'Para começar' };
     const aqui = `produto.html?p=${encodeURIComponent(slug)}`;
     const entrarE = (destino) => `entrar.html?voltar=${encodeURIComponent(destino)}`;
 
@@ -79,8 +79,10 @@
       // Ainda sem preço e sem data próxima: o botão é para ser avisado(a), não para participar
       const marcada = Boolean(p.preco_centavos) || Boolean(p.previsao && (new Date(`${p.previsao}T00:00:00`) - new Date()) / 864e5 < 45);
       const rotuloParticipar = marcada ? '★ Quero participar' : '★ Quero ser avisado(a)';
+      // Perto: dia e mês. Longe: só o mês e o ano (a data exata ainda pode mudar).
       const quando = p.previsao
-        ? new Date(`${p.previsao}T00:00:00`).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long' })
+        ? new Date(`${p.previsao}T00:00:00`).toLocaleDateString('pt-BR', (new Date(`${p.previsao}T00:00:00`) - new Date()) / 864e5 < 45
+          ? { day: 'numeric', month: 'long' } : { month: 'long', year: 'numeric' })
         : '';
 
       // Inscrição automática quando a pessoa clicou em "Quero participar" antes de entrar
@@ -145,7 +147,10 @@
         : novidades.length ? `<h2>O que há de novo</h2><ul>${novidades.map((n) => `<li>${escapar(n)}</li>`).join('')}</ul>` : '';
       if (corpo) {
         const texto = document.querySelector('#texto');
-        texto.innerHTML = corpo + `<div class="pagina-produto-fim"><div class="pagina-produto-acoes">${acoes()}</div></div>`;
+        // A ilustração abre a explicação (no cartão claro, combina com a aquarela)
+        const ilustracao = imagemProduto(p.slug)
+          ? `<img class="pagina-produto-imagem" src="${imagemProduto(p.slug)}" alt="${escapar(p.nome)}">` : '';
+        texto.innerHTML = ilustracao + corpo + `<div class="pagina-produto-fim"><div class="pagina-produto-acoes">${acoes()}</div></div>`;
         texto.hidden = false;
       }
 
