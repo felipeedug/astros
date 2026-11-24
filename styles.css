@@ -792,3 +792,11 @@ a.jornada-passo:hover .jornada-nome { text-decoration:underline; }
 .oferta--gratuita { grid-template-columns:72px minmax(0,1fr); }
 .oferta--destaque { border-color:rgba(201,162,39,.55); background:#FFFBEF; }
 .jornada-linha--curta { padding-right:100px; }
+
+/* Ilustração de cada oferta */
+.oferta-imagem { display:block; width:100%; max-width:150px; aspect-ratio:1; object-fit:cover; margin-bottom:10px; border-radius:10px; }
+.oferta--com-imagem { grid-template-columns:150px minmax(0,1fr); }
+.oferta--com-imagem .oferta-icone .oferta-imagem { margin:0; }
+@media (max-width:640px) { .oferta-imagem { max-width:120px; } .oferta--com-imagem { grid-template-columns:1fr; } }
+.founder-imagem { float:right; width:min(300px,38%); margin:0 0 16px 32px; border-radius:16px; box-shadow:0 12px 40px rgba(0,0,0,.25); }
+@media (max-width:640px) { .founder-imagem { float:none; display:block; width:min(260px,80%); margin:0 auto 20px; } }

@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css?v=20261122-arvore">
+  <link rel="stylesheet" href="css/portal.css?v=20261124-imagens">
 </head>
 <body>
   <header class="portal-topo">
@@ -39,8 +39,8 @@
   <script type="module">
     import {
       configurado, sessaoAtual, meuCadastro, meusProdutos, minhasAssinaturas, inscrever, cancelarInscricao,
-      produtoDaPagina, textoDaPagina, iconeProduto, escapar, formatarPreco
-    } from './js/portal.js';
+      produtoDaPagina, textoDaPagina, iconeProduto, imagemProduto, escapar, formatarPreco
+    } from './js/portal.js?v=20261124-imagens';
 
     const parametros = new URLSearchParams(location.search);
     const slug = (parametros.get('p') || '').trim();
@@ -131,7 +131,9 @@
           ? `${escapar(tipos[p.tipo] || 'Novidade')}${quando ? ` · ${escapar(quando)}` : ''}`
           : (p.versao ? `Versão ${escapar(p.versao)}` : 'Entre Estrelas');
         chamada.innerHTML = `
-          <div class="pagina-produto-icone">${iconeProduto(p.icone || 'estrela')}</div>
+          <div class="pagina-produto-icone">${imagemProduto(p.slug)
+            ? `<img class="pagina-produto-imagem" src="${imagemProduto(p.slug)}" alt="${escapar(p.nome)}">`
+            : iconeProduto(p.icone || 'estrela')}</div>
           <p class="pagina-produto-tipo">${linhaTipo}</p>
           <h1>${escapar(p.nome)}</h1>
           ${p.slogan ? `<p class="pagina-produto-slogan">${escapar(p.slogan)}</p>` : ''}

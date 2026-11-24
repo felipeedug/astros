@@ -701,3 +701,7 @@ textarea { font: inherit; font-weight: 400; padding: .7rem .8rem; border: 1px so
 .selos { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; }
 .selos:empty { display: none; }
 
+
+/* Ilustração de cada oferta (no lugar do ícone) */
+.produto-miniatura { flex: 0 0 auto; width: 64px; height: 64px; object-fit: cover; border-radius: 12px; }
+.pagina-produto-imagem { display: block; width: min(240px, 60vw); aspect-ratio: 1; object-fit: cover; border-radius: 18px; box-shadow: 0 10px 40px rgba(0, 0, 0, .35); }

@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css?v=20261124-selos">
+  <link rel="stylesheet" href="css/portal.css?v=20261124-imagens">
 </head>
 <body>
   <header class="portal-topo">
@@ -159,9 +159,12 @@
       mapaProprio, atualizarMeuCadastro, escapar, formatarPreco, seloFundador, iconeProduto,
       inscrever, cancelarInscricao, minhaAgenda, inscreverEvento, cancelarEvento,
       produtosAVenda, irParaPagamento, meusPresentes, linkDePresente, linkDoArquivo, registrarIndicacaoPendente, aniversariantesDoMes, htmlAniversariantes,
-      contagemVotos, meusVotos, votar, tirarVoto
-    } from './js/portal.js?v=20261124-votos';
+      contagemVotos, meusVotos, votar, tirarVoto, imagemProduto
+    } from './js/portal.js?v=20261124-imagens';
 
+    // Ilustração da oferta no lugar do ícone, quando houver
+    const miniatura = (slug) => (imagemProduto(slug)
+      ? `<img class="produto-miniatura" src="${imagemProduto(slug)}" alt="" loading="lazy" decoding="async">` : '');
     const carregando = document.querySelector('#carregando');
     const erro = (texto) => { carregando.textContent = texto; carregando.className = 'aviso aviso-erro'; };
 
@@ -281,7 +284,7 @@
           : '';
         return `<article class="produto ${p.liberado ? '' : 'produto-bloqueado'} ${p.nova_versao ? 'produto-novo' : ''}">
           <div class="produto-topo">
-            ${iconeProduto(p.icone)}
+            ${miniatura(p.slug) || iconeProduto(p.icone)}
             <div>
               <h3>${escapar(p.nome)}</h3>
               ${p.versao ? `<span class="produto-versao">Versão ${escapar(p.versao)}${dataVersao ? ` · ${escapar(dataVersao)}` : ''}</span>` : ''}
@@ -411,7 +414,7 @@
             : `<button class="botao botao-dourado" data-inscrever="${p.id}">★ Quero participar</button>`;
         return `<article class="produto produto-em-breve">
           <div class="produto-topo">
-            ${iconeProduto(p.icone || 'estrela')}
+            ${miniatura(p.slug) || iconeProduto(p.icone || 'estrela')}
             <div>
               <h3>${escapar(p.nome)}</h3>
               <span class="produto-versao">${escapar(tiposLancamento[p.tipo] || 'Novidade')} · ${escapar(quando)}${p.antecipado ? ' · ⭐ antes para Fundadores' : ''}</span>
@@ -486,7 +489,7 @@
               : item.inscricoes_abertas ? `<button class="botao botao-dourado botao-pequeno" data-destaque-lancamento="${item.id}">★ Quero participar</button>` : '';
           }
           return `<article class="destaque">
-            ${iconeProduto(item.icone || 'estrela')}
+            ${miniatura(item.slug) || iconeProduto(item.icone || 'estrela')}
             <div class="destaque-info">
               <span class="agenda-tipo">${escapar(rotuloTipo)} · ${escapar(quando)}</span>
               <h3>${escapar(item.titulo || item.nome)}</h3>
