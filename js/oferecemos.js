@@ -21,7 +21,11 @@ let meus = new Set();
 let cliente = null;
 let ordem = 'data';
 
-const paginaDe = (p) => (String(p.pagina || '').trim() ? `produto.html?p=${encodeURIComponent(p.slug)}` : '');
+// Todo item tem a sua página "Conhecer" (produto.html?p=slug), com o texto da coluna pagina
+const paginaDe = (p) => `produto.html?p=${encodeURIComponent(p.slug)}`;
+// Data marcada = já está à venda (tem preço) ou a data está próxima: é hora de participar, não de votar
+const dataMarcada = (p) => Boolean(p.preco_centavos)
+  || Boolean(p.previsao && (new Date(`${p.previsao}T00:00:00`) - new Date()) / 864e5 < 45);
 const entrarPara = (destino) => `entrar.html?voltar=${encodeURIComponent(destino)}`;
 
 function quando(p) {
@@ -60,15 +64,15 @@ function cartaoEmBreve(p, maximo, rotuloVoto = '★ Quero que venha primeiro') {
   const n = votos[p.id] || 0;
   const votei = meus.has(p.id);
   const pagina = paginaDe(p);
-  // Já tem página e data marcada (ex.: Árvore de Natal): é hora de participar, não de votar
-  if (pagina) {
+  // Data marcada (ex.: Árvore de Natal): é hora de participar, não de votar
+  if (dataMarcada(p)) {
     return `<article class="oferta oferta--marcada">
     <div class="oferta-quando"><span>${escapar(quando(p))}</span>${antesFundadores(p)}</div>
     <div class="oferta-corpo">
       <p class="oferta-categoria">${escapar(categoria(p))} · data marcada</p>
       <h3>${escapar(p.nome)}</h3>
       <p>${escapar(p.descricao || '')}</p>
-      <div class="oferta-acoes"><a class="oferta-voto" href="${pagina}">★ Quero participar</a></div>
+      <div class="oferta-acoes"><a class="oferta-voto" href="${pagina}">★ Quero participar</a><a class="oferta-link" href="${pagina}">Conhecer →</a></div>
     </div>
   </article>`;
   }
@@ -89,7 +93,7 @@ function cartaoEmBreve(p, maximo, rotuloVoto = '★ Quero que venha primeiro') {
       </div>
       <div class="oferta-acoes">
         ${botaoVoto}
-        ${pagina ? `<a class="oferta-link" href="${pagina}">Ver detalhes →</a>` : ''}
+        <a class="oferta-link" href="${pagina}">Conhecer →</a>
       </div>
     </div>
   </article>`;
@@ -132,7 +136,7 @@ function cartaoAvulso(p) {
       <p class="oferta-categoria">${escapar(categoria(p))}</p>
       <h3>${escapar(p.nome)}</h3>
       <p>${escapar(p.descricao || '')}</p>
-      <div class="oferta-acoes">${acao}${pagina && !(p.preco_centavos && !disponivel) ? `<a class="oferta-link" href="${pagina}">Ver detalhes →</a>` : ''}</div>
+      <div class="oferta-acoes">${acao}<a class="oferta-link" href="${pagina}">Conhecer →</a></div>
     </div>
   </article>`;
 }
@@ -146,7 +150,7 @@ function cartaoGratuito(p) {
       <p class="oferta-categoria">Para começar${disponivel ? '' : ' · em breve'}</p>
       <h3>${escapar(p.nome)}</h3>
       <p>${escapar(p.descricao || '')}</p>
-      ${disponivel ? `<div class="oferta-acoes"><a class="oferta-voto" href="${destino}">Experimentar</a></div>` : ''}
+      <div class="oferta-acoes">${disponivel ? `<a class="oferta-voto" href="${destino}">Experimentar</a>` : ''}<a class="oferta-link" href="${paginaDe(p)}">Conhecer →</a></div>
     </div>
   </article>`;
 }
