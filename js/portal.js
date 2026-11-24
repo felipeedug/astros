@@ -181,7 +181,6 @@ export function htmlAniversariantes(lista, assinatura = 'Felipe e Mara, do Entre
   const diaHoje = hoje.getDate();
   const linha = (p) => {
     const [ano, mes, dia] = p.data_nascimento.split('-').map(Number);
-    const idade = hoje.getFullYear() - ano;
     const primeiro = (p.nome || '').split(' ')[0];
     const numero = String(p.whatsapp || '').replace(/\D/g, '');
     const fone = numero.length >= 10 && numero.length <= 11 ? `55${numero}` : numero;
@@ -190,11 +189,30 @@ export function htmlAniversariantes(lista, assinatura = 'Felipe e Mara, do Entre
     return `<li class="aniversario-item aniversario-item--${quando}">
       <span class="aniversario-dia">${String(dia).padStart(2, '0')}/${String(mes).padStart(2, '0')}</span>
       <span class="aniversario-nome"><strong>${escapar(p.nome || p.email)}</strong>${p.fundador ? ' ★' : ''}
-        <span class="suave"> · ${idade} anos${quando === 'hoje' ? ' · <strong>é hoje! 🎂</strong>' : ''}</span>${p.madrinha ? `<br><span class="suave" style="font-size:.82rem">madrinha: ${escapar(p.madrinha)}</span>` : ''}</span>
+        ${quando === 'hoje' ? '<span class="suave"> · <strong>é hoje! 🎂</strong></span>' : ''}${p.madrinha ? `<br><span class="suave" style="font-size:.82rem">madrinha: ${escapar(p.madrinha)}</span>` : ''}</span>
       ${fone ? `<a class="botao botao-leve botao-pequeno" href="https://wa.me/${fone}?text=${texto}" target="_blank" rel="noopener noreferrer">WhatsApp</a>` : '<span class="suave" style="font-size:.8rem">sem WhatsApp</span>'}
     </li>`;
   };
   return `<ul class="lista-aniversarios">${lista.map(linha).join('')}</ul>`;
+}
+
+// Aniversariantes do mês para toda a comunidade: só nome e dia (sem ano, sem contato)
+export async function aniversariantesDaComunidade(mes = null) {
+  exigirConfiguracao();
+  const { data, error } = await supabase.rpc('aniversariantes_da_comunidade', { p_mes: mes });
+  if (error && /aniversariantes_da_comunidade|does not exist|schema cache/i.test(error.message)) return [];
+  falha(error, 'Não foi possível carregar os aniversariantes.');
+  return data || [];
+}
+export function htmlAniversariantesComunidade(lista) {
+  const diaHoje = new Date().getDate();
+  return `<ul class="lista-aniversarios">${lista.map((p) => {
+    const quando = p.dia === diaHoje ? 'hoje' : p.dia < diaHoje ? 'passou' : 'vem';
+    return `<li class="aniversario-item aniversario-item--${quando}">
+      <span class="aniversario-dia">${String(p.dia).padStart(2, '0')}/${String(p.mes).padStart(2, '0')}</span>
+      <span class="aniversario-nome"><strong>${escapar(p.nome || '')}</strong>${p.fundador ? ' ★' : ''}${quando === 'hoje' ? '<span class="suave"> · <strong>é hoje! 🎂</strong></span>' : ''}</span>
+    </li>`;
+  }).join('')}</ul>`;
 }
 
 // Repasses pagos às parceiras (só admin)
@@ -573,10 +591,15 @@ const ICONES = {
 const COM_IMAGEM = new Set([
   'mapa-da-vida', 'mapa-infantil', 'membro-fundador', 'compatibilidade', 'mapa-do-ano', 'natal-2026',
   'periodos-propicios', 'mudancas-no-trabalho', 'talisma', 'quem-voce-e', 'como-voce-ama', 'constelacao', 'horas-de-acompanhamento',
-  'formacao-astrologia', 'software-astrologas'
+  'formacao-astrologia', 'software-astrologas', 'boas-vindas-e-proximos-passos', 'carreira-e-trabalho'
 ]);
+// Lives e encontros usam o título como nome (ex.: "Boas Vindas e Próximos Passos")
+const MESMA_IMAGEM = { 'arvore-de-natal-com-raizes': 'natal-2026' };
+export const slugDe = (texto) => String(texto || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+  .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 export function imagemProduto(slug) {
-  return COM_IMAGEM.has(slug) ? `images/ofertas/${slug}.webp` : '';
+  const chave = MESMA_IMAGEM[slug] || slug;
+  return COM_IMAGEM.has(chave) ? `images/ofertas/${chave}.webp` : '';
 }
 
 export function iconeProduto(chave) {
