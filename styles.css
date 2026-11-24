@@ -876,3 +876,6 @@ a.jornada-passo:hover .jornada-nome { text-decoration:underline; }
 .catalogo-item--de-jornada { --cor-origem:#1F4E8C; }
 .catalogo-item--de-profissionais { --cor-origem:#7E5BB5; }
 .catalogo-item--de-comecar { --cor-origem:#4E8F45; }
+
+/* Membro Fundador: logo e frase no topo, mais baixo que o Início para o convite aparecer logo */
+.home-page .hero-section.hero-fundador { min-height:clamp(420px,62svh,640px); }
