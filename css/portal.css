@@ -678,3 +678,12 @@ textarea { font: inherit; font-weight: 400; padding: .7rem .8rem; border: 1px so
 .aniversario-item--hoje { background: #FFF6DC; border-radius: 10px; border-bottom-color: transparent; }
 .aniversario-item--hoje .aniversario-dia { color: #A8841C; }
 .aniversario-item--passou { opacity: .55; }
+
+/* O que vem pela frente: cards na altura do próprio conteúdo (um card grande não estica os outros) */
+#lista-em-breve { align-items: start; }
+.inscrito-ok { margin: 0; padding: .55rem .75rem; border-radius: 8px; background: #e8f4ea; color: #1d5a2c; font-size: .88rem; line-height: 1.45; }
+.link-cancelar { margin-top: .35rem; padding: 0; border: 0; background: none; color: var(--texto); font: inherit; font-size: .8rem; text-decoration: underline; cursor: pointer; }
+.em-breve-votos { margin: 0 0 .4rem; color: var(--texto); font-size: .85rem; }
+.em-breve-votos strong { color: var(--azul-marca); font-size: 1rem; }
+
+.em-breve-acoes .inscrito-ok, .em-breve-acoes .em-breve-votos { flex-basis: 100%; }
