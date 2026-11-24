@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css?v=20261124-cadastro-lista">
+  <link rel="stylesheet" href="css/portal.css?v=20261124-valor-liquido">
 </head>
 <body>
   <header class="portal-topo">
@@ -174,7 +174,7 @@
       configurado, sessaoAtual, meuCadastro, admListarClientes, admListarProdutos, admCriarCliente,
       admTornarFundador, admCancelarAssinatura, admRegistrarCompra, admEditarCliente, admEnviarAcesso, admDefinirIndicacao, linkDeIndicacao, admRegistrarRepasse, admExcluirRepasse, aniversariantesDoMes, htmlAniversariantes, escapar, seloFundador, MOTIVOS_LIBERACAO,
       admListarLancamentos, admListarEventos, admSalvarEvento, admExcluirEvento
-    } from './js/portal.js?v=20261124-cadastro-lista';
+    } from './js/portal.js?v=20261124-valor-liquido';
 
     // Opções de motivo (pagamento, equipe/cofundadora, doação, cortesia) em todos os seletores.
     document.querySelectorAll('select[data-motivos]').forEach((select) => {
@@ -301,7 +301,16 @@
     const PRECO_FUNDADOR = 4985;
     // Repasse de 50% só sobre a associação de Membro Fundador (combinado).
     // As demais compras aparecem só como informação, sem repasse, até a conta de custos ser definida.
-    const itensPagos = (c) => (c.pedidos || []).filter((p) => p.status === 'pago').flatMap((p) => p.itens || []);
+    const pedidosPagos = (c) => (c.pedidos || []).filter((p) => p.status === 'pago');
+    // Taxas da InfinitePay (plano 1 dia útil, link de pagamento). Pix não tem taxa.
+    // O site não sabe em quantas parcelas foi: no cartão, usa a taxa do crédito à vista (1x).
+    const TAXA_PIX = 0;
+    const TAXA_CARTAO_1X = 0.042;
+    const taxaDoPedido = (p) => (/pix/i.test(p.forma_pagamento || '') ? TAXA_PIX : /cred|card|cart|deb/i.test(p.forma_pagamento || '') ? TAXA_CARTAO_1X : 0);
+    // Soma o valor LÍQUIDO (já sem a taxa) dos itens pagos pelo site que passam no filtro
+    const liquidoPeloSite = (c, filtro) => pedidosPagos(c).reduce((total, p) => total + (p.itens || [])
+      .filter(filtro)
+      .reduce((s, i) => s + Math.round((i.preco_centavos || 0) * (1 - taxaDoPedido(p))), 0), 0);
     // "49,85" / "R$ 1.234,50" → centavos; vazio → null
     const centavosDe = (texto) => {
       const limpo = String(texto || '').replace(/[^\d,.-]/g, '').replace(/\./g, '').replace(',', '.');
@@ -311,12 +320,12 @@
     };
     function valorFundador(c) {
       if (Number.isInteger(c.valor_fundador_centavos)) return c.valor_fundador_centavos; // valor real informado por você
-      const peloPortal = itensPagos(c).filter((i) => i.slug === 'membro-fundador').reduce((s, i) => s + (i.preco_centavos || 0), 0);
+      const peloPortal = liquidoPeloSite(c, (i) => i.slug === 'membro-fundador');
       const aMao = c.assinaturas.filter((a) => a.plano_id === 'fundador' && a.origem === 'pagamento' && !a.referencia_externa).length * PRECO_FUNDADOR;
       return peloPortal + aMao;
     }
     function valorOutros(c) {
-      const peloPortal = itensPagos(c).filter((i) => i.slug !== 'membro-fundador').reduce((s, i) => s + (i.preco_centavos || 0), 0);
+      const peloPortal = liquidoPeloSite(c, (i) => i.slug !== 'membro-fundador');
       const aMao = c.compras.filter((x) => x.status === 'pago' && x.origem === 'pagamento' && !x.referencia_externa)
         .reduce((s, x) => s + (x.valor_centavos || 0), 0);
       return peloPortal + aMao;
