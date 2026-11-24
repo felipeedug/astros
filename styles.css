@@ -368,6 +368,19 @@ label { display:block; margin-top:20px; color:var(--muted); font-size:10px; font
 .participants-section > h2 { margin:0 0 14px; }
 .participants-intro { margin:0 0 24px; color:#5A6270; font:400 17px/1.7 var(--fonte-corpo); }
 .participant-cards { display:grid; gap:18px; }
+/* Quem somos: Membros Fundadores (nomes vindos de fundadores_publicos) */
+.fundadores-site { max-width:1160px; margin:26px auto 0; padding-top:20px; border-top:1px solid #E7D9B8; text-align:center; }
+.fundadores-site > h2 { margin:0 0 6px; }
+.fundadores-site .participants-intro { max-width:640px; margin:0 auto 14px; font-size:14px; line-height:1.6; }
+.fundadores-site-lista { display:grid; justify-items:center; gap:3px; padding-top:6px !important; margin:0; padding:0; list-style:none; }
+.fundadores-linha { width:var(--largura,100%); min-width:min(100%,260px); }
+.fundadores-linha ul { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:2px 6px; margin:0; padding:0; list-style:none; }
+.fundador-nome { white-space:nowrap; font:600 13px/1.6 var(--fonte-corpo); transform:translate(var(--lado,0),var(--sobe,0)); }
+.fundador-nome--a { color:#1E3A5F; }
+.fundador-nome--b { color:#987420; font-style:italic; font-family:var(--fonte-titulo); font-size:14px; }
+.fundador-nome--c { color:#5A6270; font-weight:500; }
+.fundador-estrela { color:#C9A24A; font-size:9px; opacity:.7; transform:translateY(-3px); }
+.fundadores-site-lista--solta .fundadores-linha ul { justify-content:center; gap:2px 8px; }
 .participant-card { padding:clamp(20px,4vw,30px); border:1px solid #E0DDD8; background:#FFFDFB; box-shadow:0 8px 24px rgba(26,31,46,.045); }
 .participant-card-header { display:flex; align-items:center; gap:16px; margin-bottom:18px; padding-bottom:16px; border-bottom:1px solid #E0DDD8; }
 .participant-photo { display:block; width:88px; height:88px; flex:0 0 88px; border-radius:50%; object-fit:cover; object-position:center; }

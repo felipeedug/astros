@@ -204,6 +204,14 @@ export async function aniversariantesDaComunidade(mes = null) {
   falha(error, 'Não foi possível carregar os aniversariantes.');
   return data || [];
 }
+// Membros Fundadores no "Quem somos": só primeiro nome e último sobrenome (supabase/030)
+export async function fundadoresPublicos() {
+  exigirConfiguracao();
+  const { data, error } = await supabase.rpc('fundadores_publicos');
+  if (error && /fundadores_publicos|does not exist|schema cache/i.test(error.message)) return [];
+  falha(error, 'Não foi possível carregar os Membros Fundadores.');
+  return (data || []).map((l) => l.nome).filter(Boolean);
+}
 export function htmlAniversariantesComunidade(lista) {
   const diaHoje = new Date().getDate();
   return `<ul class="lista-aniversarios">${lista.map((p) => {
