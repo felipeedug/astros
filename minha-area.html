@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css?v=20261124-valor-liquido">
+  <link rel="stylesheet" href="css/portal.css?v=20261124-votos">
 </head>
 <body>
   <header class="portal-topo">
@@ -155,8 +155,9 @@
       configurado, sessaoAtual, sair, meuCadastro, meusProdutos, minhasAssinaturas,
       mapaProprio, atualizarMeuCadastro, escapar, formatarPreco, seloFundador, iconeProduto,
       inscrever, cancelarInscricao, minhaAgenda, inscreverEvento, cancelarEvento,
-      produtosAVenda, irParaPagamento, meusPresentes, linkDePresente, linkDoArquivo, registrarIndicacaoPendente, aniversariantesDoMes, htmlAniversariantes
-    } from './js/portal.js?v=20261124-valor-liquido';
+      produtosAVenda, irParaPagamento, meusPresentes, linkDePresente, linkDoArquivo, registrarIndicacaoPendente, aniversariantesDoMes, htmlAniversariantes,
+      contagemVotos, meusVotos, votar, tirarVoto
+    } from './js/portal.js?v=20261124-votos';
 
     const carregando = document.querySelector('#carregando');
     const erro = (texto) => { carregando.textContent = texto; carregando.className = 'aviso aviso-erro'; };
@@ -378,6 +379,11 @@
           if (antecipada) { p.previsao = antecipada; p.antecipado = true; }
         });
       }
+      emBreve.sort((a, b) => String(a.previsao || '9999').localeCompare(String(b.previsao || '9999')));
+      // Votação (a mesma do site): o que ainda não tem página/data marcada recebe votos
+      const [votosEmBreve, meusVotosSet] = await Promise.all([
+        contagemVotos().catch(() => ({})), meusVotos(cliente.id).catch(() => new Set())
+      ]);
       const tiposLancamento = { live: 'Live', aula: 'Aula', produto: 'Análise', vivencia: 'Vivência', ferramenta: 'Ferramenta' };
       const cartaoEmBreve = (p) => {
         const quando = p.previsao
@@ -387,12 +393,19 @@
           ? `<button class="botao botao-dourado" data-comprar="${escapar(p.slug)}">★ Quero participar · ${formatarPreco(precoPara(p, false))}</button>`
           : !p.inscricoes_abertas
           ? '<span class="selo selo-cinza">Inscrições em breve</span>'
+          : !comPagina.has(p.slug)
+            ? (() => {
+                // Ainda sem data marcada: votação para priorizar
+                const n = votosEmBreve[p.id] || 0;
+                const votei = meusVotosSet.has(p.id);
+                return `<p class="em-breve-votos"><strong>${n}</strong> ${n === 1 ? 'voto' : 'votos'}</p>
+                  ${votei
+                    ? `<button class="botao botao-leve botao-pequeno" data-tirar-voto="${p.id}" title="Clique para tirar seu voto">✓ Você votou</button>`
+                    : `<button class="botao botao-dourado botao-pequeno" data-votar="${p.id}">★ Quero que venha primeiro</button>`}`;
+              })()
           : p.inscrito
-            ? `<div class="inscricao-ok" role="status">
-                 <strong>✓ Inscrição confirmada!</strong>
-                 <span>Você não precisa fazer mais nada. Antes ${p.previsao ? `de ${escapar(quando)}` : 'do lançamento'}, vamos te enviar por WhatsApp e e-mail as informações para participar.</span>
-               </div>
-               <button class="botao botao-leve botao-pequeno" data-cancelar="${p.id}">Cancelar inscrição</button>`
+            ? `<p class="inscrito-ok" role="status">✓ Inscrição confirmada. Antes ${p.previsao ? `de ${escapar(quando)}` : 'do lançamento'}, você recebe as informações por WhatsApp e e-mail.</p>
+               <button class="link-cancelar" data-cancelar="${p.id}">Cancelar inscrição</button>`
             : `<button class="botao botao-dourado" data-inscrever="${p.id}">★ Quero participar</button>`;
         return `<article class="produto produto-em-breve">
           <div class="produto-topo">
@@ -507,6 +520,17 @@
       document.querySelector('#lista-em-breve').addEventListener('click', async (evento) => {
         const comprar = evento.target.closest('[data-comprar]');
         if (comprar) { abrirPedido(comprar.dataset.comprar, false); return; }
+        const voto = evento.target.closest('[data-votar], [data-tirar-voto]');
+        if (voto) {
+          const id = voto.dataset.votar || voto.dataset.tirarVoto;
+          voto.disabled = true;
+          try {
+            if (voto.dataset.votar) { await votar(cliente.id, id); meusVotosSet.add(id); votosEmBreve[id] = (votosEmBreve[id] || 0) + 1; }
+            else { await tirarVoto(cliente.id, id); meusVotosSet.delete(id); votosEmBreve[id] = Math.max(0, (votosEmBreve[id] || 1) - 1); }
+            desenharEmBreve();
+          } catch (e) { alert(e.message); voto.disabled = false; }
+          return;
+        }
         const alvo = evento.target.closest('[data-inscrever], [data-cancelar]');
         if (!alvo) return;
         const id = alvo.dataset.inscrever || alvo.dataset.cancelar;
