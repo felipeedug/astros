@@ -780,3 +780,15 @@ a.jornada-passo:hover .jornada-nome { text-decoration:underline; }
 .jornada-passo:nth-child(odd) .jornada-nome { order:2; margin:0 0 6px; }
 .jornada-passo:nth-child(odd) .jornada-fund { order:3; margin:0 0 4px; }
 .jornada-passo:nth-child(odd) .jornada-quando { order:4; }
+
+/* O que oferecemos: abas "A mesma jornada, do seu jeito" */
+.oferecemos-titulo-abas { margin:8px 0 14px; color:#1E3A5F; font:700 clamp(1.4rem,2.6vw,1.8rem)/1.2 var(--fonte-titulo); }
+.oferecemos-abas { display:flex; flex-wrap:wrap; gap:0; border-bottom:2px solid rgba(30,58,95,.12); }
+.oferecemos-abas button { margin-bottom:-2px; padding:12px 18px; border:0; border-bottom:3px solid transparent; background:none; color:#5A6270; font:700 14px var(--fonte-corpo); cursor:pointer; }
+.oferecemos-abas button:hover { color:#1E3A5F; }
+.oferecemos-abas button[aria-selected="true"] { color:#1E3A5F; border-bottom-color:#C9A227; }
+.oferecemos-aba-resumo { margin:18px 0 8px; color:#2C3E50; font-size:16px; line-height:1.7; }
+.oferecemos-cta { margin:6px 0 4px; }
+.oferta--gratuita { grid-template-columns:72px minmax(0,1fr); }
+.oferta--destaque { border-color:rgba(201,162,39,.55); background:#FFFBEF; }
+.jornada-linha--curta { padding-right:100px; }
