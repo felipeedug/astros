@@ -395,7 +395,7 @@
           ? `<button class="botao botao-dourado" data-comprar="${escapar(p.slug)}">★ Quero participar · ${formatarPreco(precoPara(p, false))}</button>`
           : !p.inscricoes_abertas
           ? '<span class="selo selo-cinza">Inscrições em breve</span>'
-          : !comPagina.has(p.slug)
+          : !(p.preco_centavos || (p.previsao && (new Date(`${p.previsao}T00:00:00`) - new Date()) / 864e5 < 45))
             ? (() => {
                 // Ainda sem data marcada: votação para priorizar
                 const n = votosEmBreve[p.id] || 0;

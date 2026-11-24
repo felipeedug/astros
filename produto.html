@@ -76,6 +76,9 @@
       }
 
       const emBreve = p.status === 'em_breve';
+      // Ainda sem preço e sem data próxima: o botão é para ser avisado(a), não para participar
+      const marcada = Boolean(p.preco_centavos) || Boolean(p.previsao && (new Date(`${p.previsao}T00:00:00`) - new Date()) / 864e5 < 45);
+      const rotuloParticipar = marcada ? '★ Quero participar' : '★ Quero ser avisado(a)';
       const quando = p.previsao
         ? new Date(`${p.previsao}T00:00:00`).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long' })
         : '';
@@ -105,8 +108,8 @@
               <button class="pagina-produto-link" data-cancelar>Cancelar inscrição</button>${presentear()}`;
           }
           return cliente
-            ? `<button class="portal-entrada-botao portal-entrada-botao--principal" data-participar>★ Quero participar</button>${presentear()}`
-            :`<a class="portal-entrada-botao portal-entrada-botao--principal" href="${entrarE(`${aqui}&participar=1`)}">★ Quero participar${p.preco_centavos ? ` · ${formatarPreco(p.preco_centavos)}` : ''}</a>${presentear()}
+            ? `<button class="portal-entrada-botao portal-entrada-botao--principal" data-participar>${rotuloParticipar}</button>${presentear()}`
+            :`<a class="portal-entrada-botao portal-entrada-botao--principal" href="${entrarE(`${aqui}&participar=1`)}">${rotuloParticipar}${p.preco_centavos ? ` · ${formatarPreco(p.preco_centavos)}` : ''}</a>${presentear()}
                ${p.preco_centavos ? '<p class="pagina-produto-nota">Membro Fundador? Entre com o seu e-mail: já está incluído no seu pacote de Membro Fundador.</p>' : ''}`;
         }
         const botoes = [];
