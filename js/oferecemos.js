@@ -211,7 +211,8 @@ function desenhar() {
     <div class="oferecemos-abas" role="tablist" aria-label="Formas de fazer a jornada">
       ${Object.entries(ABAS).map(([chave, a]) => `<button type="button" role="tab" data-aba="${chave}" aria-selected="${chave === aba}">${a.nome}</button>`).join('')}
     </div>
-    <p class="oferecemos-aba-resumo">${ABAS[aba].resumo}</p>
+    <p class="oferecemos-aba-resumo">${aba === 'comunidade' && imagemProduto('constelacao')
+      ? `<img class="oferecemos-aba-imagem" src="${imagemProduto('constelacao')}" alt="Comunidade Constelação">` : ''}${ABAS[aba].resumo}</p>
     ${conteudo}`;
 }
 
