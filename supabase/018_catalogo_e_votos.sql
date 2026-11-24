@@ -14,6 +14,8 @@ alter table public.produtos add constraint produtos_tipo_valido
   check (tipo in ('produto', 'vivencia', 'live', 'aula', 'ferramenta'));
 
 alter table public.produtos add column if not exists votos_iniciais integer not null default 0;
+-- Membros Fundadores testam antes: data antecipada só para eles (vazio = mesma data de todos)
+alter table public.produtos add column if not exists previsao_fundadores date;
 
 update public.produtos set tipo = 'vivencia' where slug = 'natal-2026';
 
@@ -79,7 +81,7 @@ select v.slug, v.nome, v.descricao, v.tipo, 'em_breve', v.previsao::date, v.voto
      'produto', '2027-03-15', 7, 130),
     ('talisma', 'Talismã',
      'Uma vivência para criar o seu talismã pessoal, em sintonia com o seu mapa.',
-     'vivencia', '2027-04-15', 0, 140),
+     'vivencia', null, 0, 140),
     ('periodos-propicios', 'Períodos Propícios para Lançamentos e Eventos',
      'As melhores datas para lançar um projeto, abrir um negócio ou realizar um evento importante.',
      'produto', '2027-05-15', 2, 150),
@@ -95,5 +97,9 @@ select v.slug, v.nome, v.descricao, v.tipo, 'em_breve', v.previsao::date, v.voto
     where p.slug = v.slug
        or lower(p.nome) like '%' || lower(trim(split_part(v.nome, ' ', 1) || ' ' || split_part(v.nome, ' ', 2))) || '%'
  );
+
+-- Mapa do Ano: Fundadores testam em dezembro, antes de abrir para todos em janeiro
+update public.produtos set previsao_fundadores = '2026-12-15'
+ where slug = 'mapa-do-ano' and previsao_fundadores is null;
 
 notify pgrst, 'reload schema';

@@ -31,6 +31,11 @@ function quando(p) {
   return texto.charAt(0).toUpperCase() + texto.slice(1);
 }
 
+// Membros Fundadores testam antes de abrir para todos
+const antesFundadores = (p) => (p.previsao_fundadores
+  ? `<small class="oferta-fundadores">⭐ Membros Fundadores: ${escapar(quando({ previsao: p.previsao_fundadores }))}</small>`
+  : '');
+
 function cartaoDisponivel(p) {
   const link = paginaDe(p) || 'minha-area.html';
   return `<article class="oferta oferta--disponivel">
@@ -54,7 +59,7 @@ function cartaoEmBreve(p, maximo) {
   // Já tem página e data marcada (ex.: Árvore de Natal): é hora de participar, não de votar
   if (pagina) {
     return `<article class="oferta oferta--marcada">
-    <div class="oferta-quando"><span>${escapar(quando(p))}</span></div>
+    <div class="oferta-quando"><span>${escapar(quando(p))}</span>${antesFundadores(p)}</div>
     <div class="oferta-corpo">
       <p class="oferta-categoria">${escapar(categoria(p))} · data marcada</p>
       <h3>${escapar(p.nome)}</h3>
@@ -69,7 +74,7 @@ function cartaoEmBreve(p, maximo) {
       ? `<button type="button" class="oferta-voto" data-votar="${p.id}">★ Quero que venha primeiro</button>`
       : `<a class="oferta-voto" href="${entrarPara(`index.html?votar=${p.slug}#servicos`)}">★ Quero que venha primeiro</a>`;
   return `<article class="oferta">
-    <div class="oferta-quando"><span>${escapar(quando(p))}</span></div>
+    <div class="oferta-quando"><span>${escapar(quando(p))}</span>${antesFundadores(p)}</div>
     <div class="oferta-corpo">
       <p class="oferta-categoria">${escapar(categoria(p))}</p>
       <h3>${escapar(p.nome)}</h3>

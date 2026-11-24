@@ -707,7 +707,7 @@ label { display:block; margin-top:20px; color:var(--muted); font-size:10px; font
 .oferta { display:grid; grid-template-columns:150px minmax(0,1fr); gap:20px; padding:20px 22px; border:1px solid rgba(30,58,95,.14); background:#fff; }
 .oferta--disponivel { grid-template-columns:72px minmax(0,1fr); border-color:rgba(201,162,39,.55); background:#FFFBEF; }
 .oferta-icone .produto-icone { width:56px; height:56px; color:#C9A227; }
-.oferta-quando { display:flex; align-items:flex-start; padding-right:18px; border-right:2px solid #C9A227; color:#1E3A5F; font:700 15px/1.35 var(--fonte-titulo); }
+.oferta-quando { display:flex; flex-direction:column; gap:6px; align-items:flex-start; padding-right:18px; border-right:2px solid #C9A227; color:#1E3A5F; font:700 15px/1.35 var(--fonte-titulo); }
 .oferta-categoria { margin:0 0 4px; color:#C9A227; font:700 11px/1.4 var(--fonte-corpo); letter-spacing:.14em; text-transform:uppercase; }
 .oferta h3 { margin:0 0 6px; color:#1E3A5F; font:700 clamp(1.2rem,2vw,1.4rem)/1.25 var(--fonte-titulo); }
 .oferta-corpo > p:not(.oferta-categoria) { margin:0; color:#2C3E50; font-size:15px; line-height:1.6; }
@@ -728,3 +728,4 @@ label { display:block; margin-top:20px; color:var(--muted); font-size:10px; font
   .oferta--disponivel { grid-template-columns:56px minmax(0,1fr); }
 }
 .oferta--marcada { border-color:rgba(201,162,39,.55); }
+.oferta-fundadores { color:#8A6D12; font:600 12px/1.4 var(--fonte-corpo); }
