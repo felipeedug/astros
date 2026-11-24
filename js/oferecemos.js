@@ -153,7 +153,7 @@ function cartaoGratuito(p, rotulo = 'Comece agora') {
       <p class="oferta-categoria">${rotulo}${disponivel ? '' : ' · em breve'}</p>
       <h3>${escapar(p.nome)}</h3>
       <p>${escapar(p.descricao || '')}</p>
-      <div class="oferta-acoes">${disponivel ? `<a class="oferta-voto" href="${destino}">Experimentar</a>` : ''}<a class="oferta-link" href="${paginaDe(p)}">Conhecer →</a></div>
+      <div class="oferta-acoes">${disponivel ? `<a class="oferta-voto" href="${destino}">Experimentar</a>` : ''}${rotulo === 'Comece agora' ? `<a class="oferta-link" href="${paginaDe(p)}&presentear=1">🎁 Presentear</a>` : ''}<a class="oferta-link" href="${paginaDe(p)}">Conhecer →</a></div>
     </div>
   </article>`;
 }
