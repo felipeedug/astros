@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css?v=20261124-contato-pedido">
+  <link rel="stylesheet" href="css/portal.css?v=20261124-cadastro-lista">
 </head>
 <body>
   <header class="portal-topo">
@@ -61,6 +61,18 @@
         <div class="produtos" id="lista-produtos"></div>
       </section>
 
+      <section class="cartao" id="cartao-agenda" hidden>
+        <div class="cabecalho-area" style="margin-bottom:.4rem">
+          <h2 style="margin:0">★ Lives e encontros</h2>
+        </div>
+        <p class="suave">Lives, colunas com nossas astrólogas e encontros das próximas semanas. Inscreva-se nos que te interessam.</p>
+        <div id="agenda-dias"></div>
+        <div id="agenda-gravacoes" hidden>
+          <h3 class="agenda-subtitulo">Gravações</h3>
+          <div id="agenda-lista-gravacoes"></div>
+        </div>
+      </section>
+
       <section class="cartao" id="cartao-em-breve" hidden>
         <h2>★ O que vem pela frente</h2>
         <p class="suave">O que estamos preparando para a sua jornada. Inscreva-se para receber as informações e participar.</p>
@@ -98,18 +110,6 @@
           <p class="suave" style="font-size:.8rem;margin-top:.8rem">O pagamento é feito na InfinitePay, por Pix ou cartão.</p>
         </form>
       </dialog>
-
-      <section class="cartao" id="cartao-agenda" hidden>
-        <div class="cabecalho-area" style="margin-bottom:.4rem">
-          <h2 style="margin:0">★ Lives e encontros</h2>
-        </div>
-        <p class="suave">Lives, colunas com nossas astrólogas e encontros das próximas semanas. Inscreva-se nos que te interessam.</p>
-        <div id="agenda-dias"></div>
-        <div id="agenda-gravacoes" hidden>
-          <h3 class="agenda-subtitulo">Gravações</h3>
-          <div id="agenda-lista-gravacoes"></div>
-        </div>
-      </section>
 
       <section class="cartao" id="cartao-gratuitas" hidden>
         <h2>Ferramentas de apoio</h2>
@@ -156,7 +156,7 @@
       mapaProprio, atualizarMeuCadastro, escapar, formatarPreco, seloFundador, iconeProduto,
       inscrever, cancelarInscricao, minhaAgenda, inscreverEvento, cancelarEvento,
       produtosAVenda, irParaPagamento, meusPresentes, linkDePresente, linkDoArquivo, registrarIndicacaoPendente, aniversariantesDoMes, htmlAniversariantes
-    } from './js/portal.js?v=20261124-contato-pedido';
+    } from './js/portal.js?v=20261124-cadastro-lista';
 
     const carregando = document.querySelector('#carregando');
     const erro = (texto) => { carregando.textContent = texto; carregando.className = 'aviso aviso-erro'; };
