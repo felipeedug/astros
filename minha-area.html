@@ -635,7 +635,10 @@
           slug: p.slug, icone: p.icone, nome: p.nome, destino: `produto.html?p=${encodeURIComponent(p.slug)}`,
           estado: 'Você já abriu', acao: acaoDoProduto(p)
         }));
-        const eventos = agenda.filter((e) => e.inscrito && fimDe(e) > agora).map((e) => {
+        const eventosInscritos = agenda.filter((e) => e.inscrito && fimDe(e) > agora);
+        // Quando o lançamento tem live(s), mostra só as lives (podem ser mais de uma), sem repetir o item
+        const comLive = new Set(eventosInscritos.flatMap((e) => [e.produto_id, slugDe(e.titulo), imagemProduto(slugDe(e.titulo))]).filter(Boolean));
+        const eventos = eventosInscritos.map((e) => {
           const inicio = new Date(e.inicio);
           const chave = chaveDia(inicio);
           return passo({
@@ -646,7 +649,7 @@
               : `<a class="jornada-item-link" href="#dia-${chave}">Ver na agenda</a>`
           });
         });
-        const lancamentos = emBreve.filter((p) => p.inscrito || (p.preco_centavos && p.liberado)).map((p) => passo({
+        const lancamentos = emBreve.filter((p) => (p.inscrito || (p.preco_centavos && p.liberado)) && !comLive.has(p.id) && !comLive.has(p.slug) && !comLive.has(imagemProduto(p.slug))).map((p) => passo({
           slug: p.slug, icone: p.icone, nome: p.nome, destino: `produto.html?p=${encodeURIComponent(p.slug)}`,
           estado: `✓ ${p.inscrito ? 'Inscrito(a)' : 'Incluído'} · ${p.previsao ? dataCurta(new Date(`${p.previsao}T12:00:00`)) : 'data a confirmar'}`,
           acao: `<a class="jornada-item-link" href="produto.html?p=${encodeURIComponent(p.slug)}">Detalhes</a>`
