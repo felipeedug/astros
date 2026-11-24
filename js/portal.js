@@ -573,7 +573,7 @@ const ICONES = {
 const COM_IMAGEM = new Set([
   'mapa-da-vida', 'mapa-infantil', 'membro-fundador', 'compatibilidade', 'mapa-do-ano', 'natal-2026',
   'periodos-propicios', 'mudancas-no-trabalho', 'talisma', 'quem-voce-e', 'como-voce-ama', 'constelacao', 'horas-de-acompanhamento',
-  'formacao-astrologia', 'software-astrologas', 'boas-vindas-e-proximos-passos'
+  'formacao-astrologia', 'software-astrologas', 'boas-vindas-e-proximos-passos', 'carreira-e-trabalho'
 ]);
 // Lives e encontros usam o título como nome (ex.: "Boas Vindas e Próximos Passos")
 const MESMA_IMAGEM = { 'arvore-de-natal-com-raizes': 'natal-2026' };
