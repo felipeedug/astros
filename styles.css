@@ -804,11 +804,11 @@ a.jornada-passo:hover .jornada-nome { text-decoration:underline; }
 .oferecemos-aba-imagem { float:right; width:min(220px,40%); margin:0 0 12px 24px; border-radius:14px; box-shadow:0 6px 24px rgba(30,58,95,.12); }
 @media (max-width:640px) { .oferecemos-aba-imagem { float:none; display:block; width:min(240px,80%); margin:0 auto 16px; } }
 
-/* Cores dos catálogos: azul = jornada (Constelação e Passo a passo), roxo = profissionais, verde = para começar */
-.oferecemos { --catalogo:#3B6FB6; --catalogo-claro:#EEF4FC; }
+/* Cores dos catálogos: azul com dourado = Constelação, rosa = Passo a passo (avulso), roxo = profissionais, verde = para começar */
+.oferecemos { --catalogo:#B8527A; --catalogo-claro:#FBEFF4; }
 .oferecemos[data-catalogo="profissionais"] { --catalogo:#7E5BB5; --catalogo-claro:#F4EFFB; }
 .oferecemos[data-catalogo="comecar"] { --catalogo:#4E8F45; --catalogo-claro:#EFF7EC; }
-.oferecemos-abas button[data-aba="avulsos"] { --cor-aba:#3B6FB6; }
+.oferecemos-abas button[data-aba="avulsos"] { --cor-aba:#B8527A; }
 .oferecemos-abas button[data-aba="profissionais"] { --cor-aba:#7E5BB5; }
 .oferecemos-abas button[data-aba="gratuitos"] { --cor-aba:#4E8F45; }
 .oferecemos-abas button[aria-selected="true"] { color:var(--cor-aba); border-bottom-color:var(--cor-aba); }
@@ -844,7 +844,7 @@ a.jornada-passo:hover .jornada-nome { text-decoration:underline; }
 /* Tudo o que oferecemos: os três catálogos abertos */
 .catalogo-aberto { margin-top:14px; border-radius:16px; overflow:hidden; background:var(--catalogo-claro,#fff); border:1px solid var(--catalogo-borda,rgba(30,58,95,.14)); }
 .catalogo-aberto--comecar { --catalogo-cor:#4E8F45; --catalogo-claro:#EFF7EC; --catalogo-borda:rgba(78,143,69,.35); }
-.catalogo-aberto--jornada { --catalogo-cor:#3B6FB6; --catalogo-claro:#EEF4FC; --catalogo-borda:rgba(59,111,182,.35); }
+.catalogo-aberto--jornada { --catalogo-cor:#B8527A; --catalogo-claro:#FBEFF4; --catalogo-borda:rgba(184,82,122,.35); }
 .catalogo-aberto--profissionais { --catalogo-cor:#7E5BB5; --catalogo-claro:#F4EFFB; --catalogo-borda:rgba(126,91,181,.35); }
 .catalogo-aberto-cabecalho { display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 12px; width:100%; padding:14px 18px; border:0; background:var(--catalogo-cor); color:#fff; font:inherit; text-align:left; cursor:pointer; }
 .catalogo-aberto-cabecalho strong { font:700 clamp(1.15rem,2vw,1.35rem)/1.2 var(--fonte-titulo); }
@@ -862,7 +862,20 @@ a.jornada-passo:hover .jornada-nome { text-decoration:underline; }
 .catalogo-item { flex:0 0 120px; width:120px; scroll-snap-align:start; }
 @media (max-width:640px) { .catalogo-aberto { grid-template-columns:1fr; } .catalogo-item { flex-basis:104px; width:104px; } }
 
-/* Constelação: dourado da marca (quarto catálogo) */
-.oferecemos[data-catalogo="constelacao"] { --catalogo:#B08A1E; --catalogo-claro:#FFF8E6; }
-.oferecemos-abas button[data-aba="comunidade"] { --cor-aba:#B08A1E; }
-.catalogo-aberto--constelacao { --catalogo-cor:#B08A1E; --catalogo-claro:#FFF8E6; --catalogo-borda:rgba(176,138,30,.4); }
+/* Constelação: azul mais escuro (a mesma jornada do Passo a passo) com contorno dourado */
+.oferecemos[data-catalogo="constelacao"] { --catalogo:#1F4E8C; --catalogo-claro:#FFF8E6; }
+.oferecemos[data-catalogo="constelacao"] .oferta--destaque,.oferecemos[data-catalogo="constelacao"] .oferta--disponivel,.oferecemos[data-catalogo="constelacao"] .oferta--marcada { border:2px solid #C9A227; }
+.oferecemos-abas button[data-aba="comunidade"] { --cor-aba:#1F4E8C; }
+.catalogo-aberto--constelacao { --catalogo-cor:#1F4E8C; --catalogo-claro:#FFF3D1; --catalogo-borda:#C9A227; border-width:2px; }
+.catalogo-aberto--constelacao .catalogo-aberto-cabecalho { box-shadow:inset -3px 0 0 #C9A227; }
+.catalogo-aberto--constelacao .catalogo-aberto-cabecalho strong { color:#F3D36B; }
+
+/* Passo a passo: cada ilustração com um fio da cor do catálogo de onde veio */
+.catalogo-item[class*="catalogo-item--de-"] { box-shadow:inset 0 -5px 0 var(--cor-origem), 0 2px 8px rgba(13,27,42,.08); }
+.catalogo-item[class*="catalogo-item--de-"] img { height:calc(100% - 5px); align-self:flex-start; }
+.catalogo-item--de-jornada { --cor-origem:#1F4E8C; }
+.catalogo-item--de-profissionais { --cor-origem:#7E5BB5; }
+.catalogo-item--de-comecar { --cor-origem:#4E8F45; }
+
+/* Membro Fundador: logo e frase no topo, mais baixo que o Início para o convite aparecer logo */
+.home-page .hero-section.hero-fundador { min-height:clamp(420px,62svh,640px); }
