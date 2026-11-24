@@ -419,7 +419,11 @@ function desenharFundadores() {
     const nomes = nomesFundadores.slice(i, i + qtd).map((nome, j) => {
       const k = i + j;
       const tom = ['a', 'b', 'c'][(k * 7) % 3];
-      return `<li class="fundador-nome fundador-nome--${tom}">${escapar(nome)}</li>`;
+      // Nuvem: cada nome flutua um pouco (sempre igual para o mesmo nome), todos do mesmo tamanho
+      const semente = [...nome].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);
+      const sobe = (semente % 9) - 4;             // -4px a +4px
+      const lado = ((semente >> 4) % 9) - 4;      // -4px a +4px
+      return `<li class="fundador-nome fundador-nome--${tom}" style="--sobe:${sobe}px;--lado:${lado}px">${escapar(nome)}</li>`;
     }).join('<li class="fundador-estrela" aria-hidden="true">✦</li>');
     i += qtd;
     return `<li class="fundadores-linha" style="--largura:${Math.round((qtd / maior) * 100)}%"><ul>${nomes}</ul></li>`;
