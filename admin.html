@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css?v=20261124-valor-liquido">
+  <link rel="stylesheet" href="css/portal.css?v=20261124-indicacao">
 </head>
 <body>
   <header class="portal-topo">
@@ -174,7 +174,7 @@
       configurado, sessaoAtual, meuCadastro, admListarClientes, admListarProdutos, admCriarCliente,
       admTornarFundador, admCancelarAssinatura, admRegistrarCompra, admEditarCliente, admEnviarAcesso, admDefinirIndicacao, linkDeIndicacao, admRegistrarRepasse, admExcluirRepasse, aniversariantesDoMes, htmlAniversariantes, escapar, seloFundador, MOTIVOS_LIBERACAO,
       admListarLancamentos, admListarEventos, admSalvarEvento, admExcluirEvento
-    } from './js/portal.js?v=20261124-valor-liquido';
+    } from './js/portal.js?v=20261124-indicacao';
 
     // Opções de motivo (pagamento, equipe/cofundadora, doação, cortesia) em todos os seletores.
     document.querySelectorAll('select[data-motivos]').forEach((select) => {
@@ -735,6 +735,7 @@
       const papel = document.querySelector('#editar-papel').value;
       if (papel === 'admin' && clienteEmEdicao.papel !== 'admin'
           && !confirm(`Dar acesso ao Painel para ${clienteEmEdicao.email}? A pessoa poderá ver e alterar todos os clientes.`)) return;
+      const parceiro = document.querySelector('#editar-parceiro').checked;
       try {
         await admEditarCliente(clienteEmEdicao.id, {
           nome: document.querySelector('#editar-nome').value.trim(),
@@ -742,14 +743,20 @@
           papel,
           observacoes: document.querySelector('#editar-observacoes').value.trim(),
           indicado_por: document.querySelector('#editar-indicado-por').value,
-          parceiro: document.querySelector('#editar-parceiro').checked,
-          codigo_indicacao: document.querySelector('#editar-codigo').value.trim().toLowerCase(),
+          parceiro,
+          // Código de indicação só existe para parceiras. Antes ele era gravado para todo mundo
+          // (com o primeiro nome) e travava o salvamento quando havia duas pessoas com o mesmo nome.
+          codigo_indicacao: parceiro ? document.querySelector('#editar-codigo').value.trim().toLowerCase() : null,
           valor_fundador_centavos: centavosDe(document.querySelector('#editar-valor-fundador').value)
         });
         avisar(avisoLista, `Cadastro de ${document.querySelector('#editar-nome').value.trim() || clienteEmEdicao.email} atualizado.`, 'ok');
         await recarregar();
       } catch (e) {
-        avisar(avisoLista, e.message, 'erro');
+        const mensagem = /codigo_indicacao|duplicate|unique/i.test(e.message)
+          ? 'Este código de indicação já é usado por outra parceira. Escolha outro código.'
+          : e.message;
+        avisar(avisoLista, mensagem, 'erro');
+        alert(`O cadastro não foi salvo: ${mensagem}`);
       }
     });
 
