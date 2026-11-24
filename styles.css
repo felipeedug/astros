@@ -829,3 +829,23 @@ a.jornada-passo:hover .jornada-nome { text-decoration:underline; }
 .agenda-sincronizar-botoes { display:flex; flex-wrap:wrap; gap:8px; }
 .agenda-botao { display:inline-flex; align-items:center; min-height:38px; padding:8px 14px; border:1px solid #4E8F45; border-radius:999px; background:#fff; color:#2F6A28; font:700 13px var(--fonte-corpo); text-decoration:none; }
 .agenda-botao:hover { background:#4E8F45; color:#fff; }
+
+/* Cards com ilustração: a imagem é o destaque (o nome já está nela) */
+.visualmente-oculto { position:absolute!important; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+.oferta-imagem { max-width:190px; }
+.oferta:has(.oferta-imagem) { grid-template-columns:190px minmax(0,1fr); }
+.oferta--com-imagem { grid-template-columns:190px minmax(0,1fr); }
+.oferta:has(.oferta-imagem) .oferta-corpo { align-self:center; }
+@media (max-width:640px) { .oferta:has(.oferta-imagem),.oferta--com-imagem { grid-template-columns:1fr; } .oferta-imagem { max-width:220px; } }
+
+/* Os três catálogos */
+.catalogos-mapa { margin-top:clamp(32px,5vw,48px); }
+.catalogos-mapa-blocos { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-top:12px; }
+.catalogo-bloco { display:grid; gap:6px; align-content:center; min-height:120px; padding:18px 16px; border:0; border-radius:14px; color:#fff; font:inherit; text-align:left; cursor:pointer; transition:transform .15s, box-shadow .15s; }
+.catalogo-bloco strong { font:700 clamp(1.15rem,2vw,1.35rem)/1.2 var(--fonte-titulo); }
+.catalogo-bloco span { font-size:13px; line-height:1.45; opacity:.92; }
+.catalogo-bloco:hover { transform:translateY(-2px); box-shadow:0 10px 24px rgba(13,27,42,.18); }
+.catalogo-bloco--comecar { background:linear-gradient(150deg,#5FA555,#3F7A37); }
+.catalogo-bloco--jornada { background:linear-gradient(150deg,#4A82CC,#2E5C9A); }
+.catalogo-bloco--profissionais { background:linear-gradient(150deg,#9273C7,#6A4AA3); }
+@media (max-width:640px) { .catalogos-mapa-blocos { grid-template-columns:1fr; } .catalogo-bloco { min-height:0; } }

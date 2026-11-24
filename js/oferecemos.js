@@ -28,8 +28,10 @@ const dataMarcada = (p) => Boolean(p.preco_centavos)
   || Boolean(p.previsao && (new Date(`${p.previsao}T00:00:00`) - new Date()) / 864e5 < 45);
 const entrarPara = (destino) => `entrar.html?voltar=${encodeURIComponent(destino)}`;
 // Ilustração da oferta (ou nada, quando ainda não houver)
+// Com ilustração, o nome já está na imagem: o título fica só para leitores de tela e buscadores
+const titulo = (p) => `<h3${imagemProduto(p.slug) ? ' class="visualmente-oculto"' : ''}>${escapar(p.nome)}</h3>`;
 const figura = (p) => (imagemProduto(p.slug)
-  ? `<img class="oferta-imagem" src="${imagemProduto(p.slug)}" alt="" decoding="async">` : '');
+  ? `<img class="oferta-imagem" src="${imagemProduto(p.slug)}" alt="" decoding="async" onerror="this.closest('article')?.querySelector('h3')?.classList.remove('visualmente-oculto');this.remove()">` : '');
 
 function quando(p) {
   if (!p.previsao) return 'Em breve';
@@ -53,7 +55,7 @@ function cartaoDisponivel(p) {
     <div class="oferta-icone">${figura(p) || iconeProduto(p.icone || 'estrela')}</div>
     <div class="oferta-corpo">
       <p class="oferta-categoria">${escapar(categoria(p))} · disponível</p>
-      <h3>${escapar(p.nome)}</h3>
+      ${titulo(p)}
       <p>${escapar(p.descricao || '')}</p>
       <div class="oferta-acoes">
         <a class="editorial-button" href="${link}">Conhecer</a>
@@ -73,7 +75,7 @@ function cartaoEmBreve(p, maximo, rotuloVoto = '★ Quero que venha primeiro') {
     <div class="oferta-quando">${figura(p)}<span>${escapar(quando(p))}</span>${antesFundadores(p)}</div>
     <div class="oferta-corpo">
       <p class="oferta-categoria">${escapar(categoria(p))} · data marcada</p>
-      <h3>${escapar(p.nome)}</h3>
+      ${titulo(p)}
       <p>${escapar(p.descricao || '')}</p>
       <div class="oferta-acoes"><a class="oferta-voto" href="${pagina}">★ Quero participar</a><a class="oferta-link" href="${pagina}">Conhecer →</a></div>
     </div>
@@ -88,7 +90,7 @@ function cartaoEmBreve(p, maximo, rotuloVoto = '★ Quero que venha primeiro') {
     <div class="oferta-quando">${figura(p)}<span>${escapar(quando(p))}</span>${antesFundadores(p)}</div>
     <div class="oferta-corpo">
       <p class="oferta-categoria">${escapar(categoria(p))}</p>
-      <h3>${escapar(p.nome)}</h3>
+      ${titulo(p)}
       <p>${escapar(p.descricao || '')}</p>
       <div class="oferta-votos" aria-label="${n} ${n === 1 ? 'voto' : 'votos'}">
         <span class="oferta-votos-barra"><span style="width:${maximo ? Math.max(4, Math.round((n / maximo) * 100)) : 0}%"></span></span>
@@ -137,7 +139,7 @@ function cartaoAvulso(p) {
     <div class="oferta-quando">${figura(p)}<span>${disponivel ? 'Disponível agora' : escapar(quando(p))}</span></div>
     <div class="oferta-corpo">
       <p class="oferta-categoria">${escapar(categoria(p))}</p>
-      <h3>${escapar(p.nome)}</h3>
+      ${titulo(p)}
       <p>${escapar(p.descricao || '')}</p>
       <div class="oferta-acoes">${acao}<a class="oferta-link" href="${pagina}">Conhecer →</a></div>
     </div>
@@ -151,7 +153,7 @@ function cartaoGratuito(p, rotulo = 'Comece agora') {
     <div class="oferta-icone">${figura(p) || iconeProduto(p.icone || 'estrela')}</div>
     <div class="oferta-corpo">
       <p class="oferta-categoria">${rotulo}${disponivel ? '' : ' · em breve'}</p>
-      <h3>${escapar(p.nome)}</h3>
+      ${titulo(p)}
       <p>${escapar(p.descricao || '')}</p>
       <div class="oferta-acoes">${disponivel ? `<a class="oferta-voto" href="${destino}">Experimentar</a>` : ''}${rotulo === 'Comece agora' ? `<a class="oferta-link" href="${paginaDe(p)}&presentear=1">🎁 Presentear</a>` : ''}<a class="oferta-link" href="${paginaDe(p)}">Conhecer →</a></div>
     </div>
@@ -218,7 +220,18 @@ function desenhar() {
     </div>
     <p class="oferecemos-aba-resumo">${aba === 'comunidade' && imagemProduto('constelacao')
       ? `<img class="oferecemos-aba-imagem" src="${imagemProduto('constelacao')}" alt="Comunidade Constelação">` : ''}${ABAS[aba].resumo}</p>
-    ${conteudo}`;
+    ${conteudo}
+    <section class="catalogos-mapa" aria-labelledby="catalogos-mapa-titulo">
+      <h2 class="editorial-section-title" id="catalogos-mapa-titulo">Nossos três catálogos</h2>
+      <div class="catalogos-mapa-blocos">
+        <button type="button" class="catalogo-bloco catalogo-bloco--comecar" data-aba="gratuitos" data-subir>
+          <strong>Comece agora</strong><span>Amostras do Mapa da Vida e ferramentas abertas</span></button>
+        <button type="button" class="catalogo-bloco catalogo-bloco--jornada" data-aba="comunidade" data-subir>
+          <strong>A jornada</strong><span>Constelação ou passo a passo</span></button>
+        <button type="button" class="catalogo-bloco catalogo-bloco--profissionais" data-aba="profissionais" data-subir>
+          <strong>Para profissionais</strong><span>Formações e ferramentas de trabalho</span></button>
+      </div>
+    </section>`;
 }
 
 // Início: a jornada em linha do tempo (o que já está disponível + os próximos, com datas)
@@ -299,7 +312,12 @@ raiz?.addEventListener('click', async (evento) => {
   const ordemBotao = evento.target.closest('[data-ordem]');
   if (ordemBotao) { ordem = ordemBotao.dataset.ordem; desenhar(); return; }
   const abaBotao = evento.target.closest('[data-aba]');
-  if (abaBotao) { aba = abaBotao.dataset.aba; desenhar(); return; }
+  if (abaBotao) {
+    aba = abaBotao.dataset.aba;
+    desenhar();
+    if (abaBotao.hasAttribute('data-subir')) raiz.querySelector('.oferecemos-abas')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    return;
+  }
   const b = evento.target.closest('[data-votar], [data-tirar-voto]');
   if (!b || !cliente) return;
   b.disabled = true;
