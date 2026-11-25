@@ -18,6 +18,13 @@ const CORS = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
   'Access-Control-Allow-Methods': 'POST, OPTIONS'
 };
+// Telefone no formato que a InfinitePay espera (+55DDNNNNNNNNN). Sem DDI, considera Brasil.
+const telefoneInternacional = (valor: unknown) => {
+  const digitos = String(valor || '').replace(/\D/g, '');
+  if (digitos.length === 10 || digitos.length === 11) return `+55${digitos}`;
+  if (digitos.startsWith('55') && (digitos.length === 12 || digitos.length === 13)) return `+${digitos}`;
+  return '';
+};
 const resposta = (corpo: unknown, status = 200) =>
   new Response(JSON.stringify(corpo), { status, headers: { ...CORS, 'Content-Type': 'application/json' } });
 
@@ -27,7 +34,7 @@ Deno.serve(async (req) => {
 
   // O que a pessoa quer (até 5 itens): [{ slug, presente }]
   // Sem login, vem também "comprador": { email, nome, aceita_novidades, indicacao }
-  type Comprador = { email?: string; nome?: string; aceita_novidades?: boolean; indicacao?: string };
+  type Comprador = { email?: string; nome?: string; telefone?: string; aceita_novidades?: boolean; indicacao?: string };
   let pedidoBruto: { itens?: { slug: string; presente?: boolean }[]; comprador?: Comprador };
   try { pedidoBruto = await req.json(); } catch { return resposta({ erro: 'Pedido inválido.' }, 400); }
   const escolhidos = (pedidoBruto.itens || []).slice(0, 5);
@@ -44,6 +51,7 @@ Deno.serve(async (req) => {
 
   let cliente: { id: string; nome: string | null; email: string; whatsapp: string | null } | null = null;
   let nomeInformado = '';
+  let telefoneInformado = '';
   if (user) {
     ({ data: cliente } = await servidor.from('clientes')
       .select('id, nome, email, whatsapp').eq('user_id', user.id).single());
@@ -54,11 +62,13 @@ Deno.serve(async (req) => {
       return resposta({ erro: 'Confira o seu e-mail.' }, 400);
     }
     nomeInformado = String(comprador.nome || '').trim().slice(0, 120);
+    telefoneInformado = telefoneInternacional(comprador.telefone);
     const aceita = comprador.aceita_novidades === true;
     // Cadastro novo só com o que a pessoa informou; cadastro que já existe não é alterado
     await servidor.from('clientes').upsert({
       email,
       nome: nomeInformado || null,
+      whatsapp: telefoneInformado || null,
       aceita_novidades: aceita,
       aceita_novidades_em: aceita ? new Date().toISOString() : null,
       origem: 'compra-direta'
@@ -66,6 +76,11 @@ Deno.serve(async (req) => {
     ({ data: cliente } = await servidor.from('clientes')
       .select('id, nome, email, whatsapp, indicado_por').eq('email', email).single());
     if (!cliente) return resposta({ erro: 'Não foi possível registrar o seu e-mail. Tente de novo.' }, 500);
+    // Cadastro que já existia sem nome ou sem telefone: completa só o que estava vazio
+    const faltando: Record<string, string> = {};
+    if (!cliente.nome && nomeInformado) faltando.nome = nomeInformado;
+    if (!cliente.whatsapp && telefoneInformado) faltando.whatsapp = telefoneInformado;
+    if (Object.keys(faltando).length) await servidor.from('clientes').update(faltando).eq('id', cliente.id);
     // Veio pelo link de uma parceira: associa, se ainda não tiver indicação
     const codigo = String(comprador.indicacao || '').trim();
     if (/^[\w-]{2,40}$/.test(codigo) && !(cliente as { indicado_por?: string | null }).indicado_por) {
@@ -113,9 +128,12 @@ Deno.serve(async (req) => {
 
   // 5) Pede o link à InfinitePay
   const cliente_ip: Record<string, string> = {};
-  if (cliente.nome || nomeInformado) cliente_ip.name = cliente.nome || nomeInformado;
+  // Já vai preenchido na tela da InfinitePay (o que a pessoa acabou de digitar vem primeiro)
+  const nomeIP = nomeInformado || cliente.nome;
+  const telefoneIP = telefoneInformado || telefoneInternacional(cliente.whatsapp);
+  if (nomeIP) cliente_ip.name = nomeIP;
   if (cliente.email) cliente_ip.email = cliente.email;
-  if (cliente.whatsapp) cliente_ip.phone_number = cliente.whatsapp;
+  if (telefoneIP) cliente_ip.phone_number = telefoneIP;
 
   const ip = await fetch('https://api.checkout.infinitepay.io/links', {
     method: 'POST',
