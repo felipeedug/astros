@@ -698,7 +698,9 @@ label { display:block; margin-top:20px; color:var(--muted); font-size:10px; font
 .home-page .hero-portal .hero-intro { margin:26px auto 12px; }
 .home-page .hero-text { max-width:760px; margin:0 auto; color:rgba(250,248,245,.82); font:400 clamp(1rem,1.6vw,1.15rem)/1.7 var(--fonte-corpo); }
 .home-page .hero-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:14px; margin-top:36px; }
-.home-page .hero-dica { margin:12px 0 0; color:rgba(250,248,245,.75); font-size:14px; text-align:center; }
+.home-page .hero-dica { margin:12px 0 28px; color:rgba(250,248,245,.75); font-size:14px; text-align:center; }
+/* O botão fica no lugar do traço dourado, logo depois da pergunta */
+.home-page .hero-question + .hero-actions { margin-top:28px; }
 /* Botão de entrar do início: o mesmo da página de entrar (dourado, arredondado, brilho suave) */
 .home-page .hero-btn.hero-btn--entrar { min-width:260px; min-height:56px; padding:14px 40px; border:1.5px solid #C9A227; border-radius:999px; color:#0D1B2A; background:linear-gradient(180deg,#F0C75E,#DDB24B); font:600 17px var(--fonte-corpo); letter-spacing:.01em; box-shadow:0 8px 22px rgba(240,199,94,.18); }
 .home-page .hero-btn.hero-btn--entrar:hover { color:#0D1B2A; background:linear-gradient(180deg,#F5D27A,#E2B955); transform:translateY(-2px); box-shadow:0 12px 28px rgba(240,199,94,.3); }
@@ -906,3 +908,6 @@ a.jornada-passo:hover .jornada-nome { text-decoration:underline; }
 
 /* Membro Fundador: logo e frase no topo, mais baixo que o Início para o convite aparecer logo */
 .home-page .hero-section.hero-fundador { min-height:clamp(420px,62svh,640px); }
+
+/* "Autoconhecimento para a vida real." com destaque de subtítulo */
+.home-page .hero-portal .hero-intro, .home-page .hero-intro { font-size:clamp(1.6rem,3.2vw,2.6rem); line-height:1.25; }
