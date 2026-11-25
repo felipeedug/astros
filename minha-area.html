@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css?v=20261124-jornada">
+  <link rel="stylesheet" href="css/portal.css?v=20261124-em-breve-compacto">
 </head>
 <body>
   <header class="portal-topo">
@@ -419,7 +419,7 @@
           ? new Date(`${p.previsao}T00:00:00`).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long' })
           : 'Data a confirmar';
         const botao = (p.preco_centavos && !p.liberado)
-          ? `<button class="botao botao-dourado" data-comprar="${escapar(p.slug)}">★ Quero participar · ${formatarPreco(precoPara(p, false))}</button>`
+          ? `<button class="botao botao-dourado botao-pequeno" data-comprar="${escapar(p.slug)}">★ Quero participar · ${formatarPreco(precoPara(p, false))}</button>`
           : !p.inscricoes_abertas
           ? '<span class="selo selo-cinza">Inscrições em breve</span>'
           : !(p.preco_centavos || (p.previsao && (new Date(`${p.previsao}T00:00:00`) - new Date()) / 864e5 < 45))
@@ -430,12 +430,12 @@
                 return `<p class="em-breve-votos"><strong>${n}</strong> ${n === 1 ? 'voto' : 'votos'}</p>
                   ${votei
                     ? `<button class="botao botao-leve botao-pequeno" data-tirar-voto="${p.id}" title="Clique para tirar seu voto">✓ Você votou</button>`
-                    : `<button class="botao botao-dourado botao-pequeno" data-votar="${p.id}">★ Quero que venha primeiro</button>`}`;
+                    : `<button class="botao botao-dourado botao-pequeno" data-votar="${p.id}" title="Vote para este vir antes dos outros">★ Quero primeiro</button>`}`;
               })()
           : p.inscrito
-            ? `<p class="inscrito-ok" role="status">✓ Inscrição confirmada. Antes ${p.previsao ? `de ${escapar(quando)}` : 'do lançamento'}, você recebe as informações por WhatsApp e e-mail.</p>
-               <button class="link-cancelar" data-cancelar="${p.id}">Cancelar inscrição</button>`
-            : `<button class="botao botao-dourado" data-inscrever="${p.id}">★ Quero participar</button>`;
+            ? `<span class="destaque-ok" role="status" title="Antes ${p.previsao ? `de ${escapar(quando)}` : 'do lançamento'}, você recebe as informações por WhatsApp e e-mail.">✓ Inscrição confirmada</span>
+               <button class="link-cancelar" data-cancelar="${p.id}">Cancelar</button>`
+            : `<button class="botao botao-dourado botao-pequeno" data-inscrever="${p.id}">★ Quero participar</button>`;
         return `<article class="produto produto-em-breve">
           <div class="produto-topo">
             ${miniatura(p.slug) || iconeProduto(p.icone || 'estrela')}
@@ -444,7 +444,7 @@
               <span class="produto-versao">${escapar(tiposLancamento[p.tipo] || 'Novidade')} · ${escapar(quando)}${p.antecipado ? ' · ⭐ antes para Fundadores' : ''}</span>
             </div>
           </div>
-          ${p.preco_centavos && p.liberado ? `<span class="selo selo-incluido">${assinaturas.some((a) => a.plano_id === 'fundador') ? '✓ Incluído no seu pacote de Membro Fundador' : sou_membro ? '✓ Incluído no seu pacote de membro' : '✓ Já é seu'}</span>` : ''}
+          ${p.preco_centavos && p.liberado ? `<span class="selo selo-incluido">${assinaturas.some((a) => a.plano_id === 'fundador') ? '✓ Incluído no seu pacote' : sou_membro ? '✓ Incluído no seu pacote' : '✓ Já é seu'}</span>` : ''}
           <p>${escapar(p.descricao || '')}</p>
           ${saibaMais(p.slug)}
           <div class="em-breve-acoes">${botao}</div>
