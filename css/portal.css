@@ -687,6 +687,11 @@ textarea { font: inherit; font-weight: 400; padding: .7rem .8rem; border: 1px so
 .em-breve-votos strong { color: var(--azul-marca); font-size: 1rem; }
 
 .em-breve-acoes .inscrito-ok, .em-breve-acoes .em-breve-votos { flex-basis: 100%; }
+/* Cartões compactos: descrição em até 3 linhas (o "Saiba mais" tem o texto completo) */
+.produto-em-breve > p:not(.em-breve-votos) { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; flex: 0 0 auto; }
+.produto-em-breve .link-cancelar { margin-top: 0; }
+.produto-em-breve h3 { font-size: .98rem; line-height: 1.25; }
+.produto-em-breve .botao-pequeno { white-space: nowrap; }
 
 /* Novidades da versão: fechadas, como um botão; abrem ao clicar */
 .produto-novidades { padding: 0; border: 0; background: none; }
