@@ -322,7 +322,8 @@
     function valorFundador(c) {
       if (Number.isInteger(c.valor_fundador_centavos)) return c.valor_fundador_centavos; // valor real informado por você
       const peloPortal = liquidoPeloSite(c, (i) => i.slug === 'membro-fundador');
-      const aMao = c.assinaturas.filter((a) => a.plano_id === 'fundador' && a.origem === 'pagamento' && !a.referencia_externa).length * PRECO_FUNDADOR;
+      // Cadastro à mão ("pagamento") ou importação em lote da época do Mercado Pago ("importacao"): também foram pagos
+      const aMao = c.assinaturas.filter((a) => a.plano_id === 'fundador' && ['pagamento', 'importacao'].includes(a.origem) && !a.referencia_externa).length * PRECO_FUNDADOR;
       return peloPortal + aMao;
     }
     function valorOutros(c) {
