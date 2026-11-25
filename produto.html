@@ -121,7 +121,7 @@
           if (!p.permite_presente || !p.preco_centavos) return '';
           const preco = membro && p.preco_presente_membro_centavos ? p.preco_presente_membro_centavos : p.preco_centavos;
           const destino = `minha-area.html?presentear=${encodeURIComponent(p.slug)}`;
-          return `<a class="portal-entrada-botao portal-entrada-botao--contorno" href="${cliente ? destino : entrarE(destino)}">🎁 Dar de presente · ${formatarPreco(preco)}</a>`;
+          return `<a class="portal-entrada-botao portal-entrada-botao--contorno" href="${cliente ? destino : entrarE(destino)}"${direta(p.slug, true, preco)}>🎁 Dar de presente · ${formatarPreco(preco)}</a>`;
         };
         // Lançamento pago para quem ainda não tem: compra (que já inscreve) ou presente
         if (emBreve && p.preco_centavos && cliente && !meu?.liberado) {
@@ -235,6 +235,6 @@
 
     iniciar().catch((e) => mostrar(e.message, 'erro'));
   </script>
-<script type="module" src="js/compra-direta.js?v=20261125-produtos"></script>
+<script type="module" src="js/compra-direta.js?v=20261125-presente"></script>
 </body>
 </html>

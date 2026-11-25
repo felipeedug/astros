@@ -8,6 +8,7 @@ import * as portal from './portal.js';
 const FUNDADOR = 'membro-fundador';
 const SELETOR = `[data-compra-direta], [data-founder-checkout], a[href*="comprar=${FUNDADOR}"]`;
 let pedido = { slug: FUNDADOR, presente: false };
+let linkAtual = null;
 
 const estilo = `
 .compra-direta { width:min(440px,94vw); padding:28px 26px 24px; border:0; border-radius:4px; color:#1A1F2E;
@@ -79,6 +80,8 @@ function montar() {
         aceita_novidades: form.novidades.checked
       });
     } catch (e) {
+      // Servidor ainda sem a compra de presente sem login: segue o caminho antigo (entrar)
+      if (pedido.presente && /entre na sua área/i.test(e.message) && linkAtual) { window.location.href = linkAtual.href; return; }
       erro.textContent = e.message;
       erro.hidden = false;
       botao.disabled = false;
@@ -100,6 +103,7 @@ document.addEventListener('click', async (evento) => {
   const slug = link.dataset.compraDireta || FUNDADOR;
   const presente = link.dataset.presente === '1';
   pedido = { slug, presente };
+  linkAtual = link;
   const fundador = slug === FUNDADOR;
   d.querySelector('#cd-titulo').textContent = fundador ? '⭐ Membro Fundador'
     : `${presente ? '🎁 Presente: ' : ''}${link.dataset.nome || 'Sua compra'}`;
