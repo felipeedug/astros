@@ -17,7 +17,7 @@ const estilo = `
 .compra-direta h2 { margin:0 0 6px; color:#1E3A5F; font:700 24px/1.25 'Playfair Display',serif; }
 .compra-direta .cd-preco { margin:0 0 18px; color:#5A6270; font-size:15px; line-height:1.5; }
 .compra-direta label { display:block; margin:0 0 12px; color:#1E3A5F; font-size:13px; font-weight:600; }
-.compra-direta input[type=email], .compra-direta input[type=text] { display:block; width:100%; box-sizing:border-box;
+.compra-direta input[type=email], .compra-direta input[type=text], .compra-direta input[type=tel] { display:block; width:100%; box-sizing:border-box;
   margin-top:5px; padding:12px 13px; border:1px solid #C9C4BC; border-radius:3px; background:#fff; font:400 16px 'Montserrat',sans-serif; }
 .compra-direta input:focus { outline:2px solid #C9A227; outline-offset:1px; border-color:#C9A227; }
 .compra-direta label, .compra-direta label * { text-transform:none; letter-spacing:normal; }
@@ -56,6 +56,9 @@ function montar() {
       <label>Seu nome
         <input name="nome" type="text" autocomplete="name" placeholder="Nome e sobrenome" minlength="2" maxlength="120" required>
       </label>
+      <label>Seu celular (WhatsApp)
+        <input name="telefone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="(11) 99999-9999" maxlength="20" required>
+      </label>
       <label class="cd-check"><input name="novidades" type="checkbox" checked>
         <span>Quero receber novidades e conteúdos do Entre Estrelas.</span></label>
       <button class="cd-pagar" type="submit">Ir para o pagamento</button>
@@ -68,6 +71,13 @@ function montar() {
   const botao = dialogo.querySelector('.cd-pagar');
   dialogo.querySelector('.cd-fechar').addEventListener('click', () => dialogo.close());
   dialogo.addEventListener('click', (e) => { if (e.target === dialogo) dialogo.close(); });
+  form.telefone.addEventListener('input', () => {
+    let d = form.telefone.value.replace(/\D/g, '');
+    if (d.length > 11 && d.startsWith('55')) d = d.slice(2); // colou com +55: fica só DDD e número
+    d = d.slice(0, 11);
+    form.telefone.value = d.length > 6 ? `(${d.slice(0, 2)}) ${d.slice(2, d.length - 4)}-${d.slice(-4)}`
+      : d.length > 2 ? `(${d.slice(0, 2)}) ${d.slice(2)}` : d;
+  });
   form.addEventListener('submit', async (evento) => {
     evento.preventDefault();
     erro.hidden = true;
@@ -77,12 +87,20 @@ function montar() {
       form.nome.focus();
       return;
     }
+    const digitos = form.telefone.value.replace(/\D/g, '');
+    if (digitos.length < 10 || digitos.length > 13) {
+      erro.textContent = 'Digite o seu celular com DDD.';
+      erro.hidden = false;
+      form.telefone.focus();
+      return;
+    }
     botao.disabled = true;
     botao.textContent = 'Abrindo o pagamento…';
     try {
       await portal.comprarSemLogin([pedido], {
         email: form.email.value,
         nome: form.nome.value,
+        telefone: form.telefone.value,
         aceita_novidades: form.novidades.checked
       });
     } catch (e) {
