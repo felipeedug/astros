@@ -106,6 +106,8 @@
           <h2 style="margin:0">Clientes <span class="filtro-ativo" id="filtro-ativo" hidden></span></h2>
           <label style="margin:0;min-width:260px">Buscar <input id="busca" type="search" placeholder="Nome, e-mail ou WhatsApp"></label>
         </div>
+        <p style="margin:0 0 .6rem"><button class="botao botao-leve botao-pequeno" id="baixar-contatos" type="button">📱 Baixar contatos para o celular (WhatsApp)</button>
+          <span class="suave" style="font-size:.85rem">Planilha com nome, e-mail e telefone de quem tem WhatsApp, pronta para importar no Google Contatos.</span></p>
         <p class="aviso" id="aviso-lista" role="status"></p>
         <div class="tabela-wrap">
           <table>
@@ -536,6 +538,36 @@
         </details>`;
       }).join('') || '<p class="suave">Nenhum evento nos últimos 30 dias ou nos próximos.</p>';
     }
+
+    // Contatos para o celular: planilha no formato do Google Contatos (importe em contacts.google.com;
+    // o celular sincroniza e os contatos aparecem no WhatsApp). Só quem tem telefone.
+    function telefoneParaContato(valor) {
+      const d = String(valor || '').replace(/\D/g, '');
+      if (d.length === 10 || d.length === 11) return `+55 ${d.slice(0, 2)} ${d.slice(2)}`;
+      if (d.startsWith('55') && (d.length === 12 || d.length === 13)) return `+55 ${d.slice(2, 4)} ${d.slice(4)}`;
+      return d.length >= 8 ? `+${d}` : '';
+    }
+    document.querySelector('#baixar-contatos').addEventListener('click', (evento) => {
+      const botao = evento.currentTarget;
+      const celula = (v) => `"${String(v || '').replace(/"/g, '""')}"`;
+      const linhas = clientes
+        .map((c) => ({ c, telefone: telefoneParaContato(c.whatsapp) }))
+        .filter((x) => x.telefone)
+        .map(({ c, telefone }) => {
+          const nome = (c.nome || '').trim() || c.email.split('@')[0];
+          const partes = nome.split(/\s+/);
+          return [nome, partes[0], partes.length > 1 ? partes.slice(1).join(' ') : '',
+            '* Home', c.email, 'Mobile', telefone, 'Entre Estrelas ::: * myContacts'].map(celula).join(',');
+        });
+      const csv = '﻿' + ['Name,Given Name,Family Name,E-mail 1 - Type,E-mail 1 - Value,Phone 1 - Type,Phone 1 - Value,Group Membership']
+        .concat(linhas).join('\n');
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+      link.download = `contatos-entre-estrelas-${new Date().toISOString().slice(0, 10)}.csv`;
+      link.click();
+      const semTelefone = clientes.length - linhas.length;
+      botao.textContent = `✓ ${linhas.length} contatos baixados${semTelefone ? ` (${semTelefone} sem telefone ficaram de fora)` : ''}`;
+    });
 
     function exportarInscritos(botao, nome, pessoas, copiar) {
       if (copiar) {
