@@ -9,6 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/portal.css?v=20261125-figura-ao-lado">
+  <script src="js/pixel.js?v=20261125-pixel"></script>
+  <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1664681518623718&ev=PageView&noscript=1"></noscript>
 </head>
 <body>
   <header class="portal-topo">
@@ -60,6 +62,11 @@
         return;
       }
       document.title = `${p.nome} — Entre Estrelas`;
+      // Pixel do Meta: a pessoa viu este produto (para anúncios e públicos de quem se interessou)
+      window.eePixel?.('ViewContent', {
+        content_name: p.nome, content_ids: [p.slug], content_type: 'product',
+        ...(p.preco_centavos ? { value: p.preco_centavos / 100, currency: 'BRL' } : {})
+      });
       document.body.classList.add(`pagina-produto--${p.slug}`); // arte própria de cada produto (ver portal.css)
 
       // Quem já entrou: vê se já está inscrito(a) ou se já tem o produto
