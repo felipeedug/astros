@@ -368,7 +368,27 @@ export function textoDaPagina(texto) {
 // Cria o pagamento na InfinitePay e leva a pessoa para pagar. itens: [{ slug, presente }]
 export async function irParaPagamento(itens) {
   exigirConfiguracao();
-  const { data, error } = await supabase.functions.invoke('criar-pagamento', { body: { itens } });
+  // O "passe" do login vale 1 hora e o celular pausa a renovação com a aba em segundo plano.
+  // Antes de pagar, renova o passe; se o servidor ainda recusar, tenta uma vez com um passe novo.
+  // Só se a sessão tiver acabado de verdade, leva para entrar e volta para este mesmo pedido.
+  const voltarAoPedido = () => {
+    const primeiro = itens[0] || {};
+    const destino = `minha-area.html?${primeiro.presente ? 'presentear' : 'comprar'}=${encodeURIComponent(primeiro.slug || '')}`;
+    window.location.href = `entrar.html?voltar=${encodeURIComponent(destino)}`;
+    return new Promise(() => {}); // a página vai mudar: não mostra erro
+  };
+  const chamar = (sessao) => supabase.functions.invoke('criar-pagamento', {
+    body: { itens }, headers: { Authorization: `Bearer ${sessao.access_token}` }
+  });
+  let { data: { session } } = await supabase.auth.getSession(); // renova sozinho se o passe venceu
+  if (!session) return voltarAoPedido();
+  let { data, error } = await chamar(session);
+  if (error?.context?.status === 401) {
+    ({ data: { session } } = await supabase.auth.refreshSession());
+    if (!session) return voltarAoPedido();
+    ({ data, error } = await chamar(session));
+    if (error?.context?.status === 401) return voltarAoPedido();
+  }
   if (error || !data?.url) {
     let mensagem = 'Não foi possível iniciar o pagamento. Tente de novo em instantes.';
     try { mensagem = (await error.context.json()).erro || mensagem; } catch { /* mantém a padrão */ }
