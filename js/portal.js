@@ -365,6 +365,19 @@ export function textoDaPagina(texto) {
   }).join('\n');
 }
 
+// Pixel do Meta: avisa que a pessoa foi para o pagamento e guarda o valor do pedido
+// para a página de volta (pagamento-concluido.html) contar a compra com o valor certo.
+function avisarCheckout(data, itens) {
+  const valor = Number(data.total_centavos || 0) / 100;
+  const ids = (itens || []).map((i) => i.slug).filter(Boolean);
+  try {
+    localStorage.setItem('ee-pedido-pixel', JSON.stringify({ pedido: data.pedido, valor, ids }));
+  } catch { /* sem localStorage */ }
+  window.eePixel?.('InitiateCheckout', {
+    value: valor, currency: 'BRL', content_ids: ids, content_type: 'product', num_items: ids.length
+  }, data.pedido ? `checkout-${data.pedido}` : undefined);
+}
+
 // Cria o pagamento na InfinitePay e leva a pessoa para pagar. itens: [{ slug, presente }]
 export async function irParaPagamento(itens) {
   exigirConfiguracao();
@@ -394,6 +407,7 @@ export async function irParaPagamento(itens) {
     try { mensagem = (await error.context.json()).erro || mensagem; } catch { /* mantém a padrão */ }
     throw new Error(mensagem);
   }
+  avisarCheckout(data, itens);
   window.location.href = data.url;
 }
 
@@ -413,6 +427,7 @@ export async function comprarSemLogin(itens, comprador) {
     throw new Error(mensagem);
   }
   try { localStorage.setItem('ee-email-compra', comprador.email.trim().toLowerCase()); } catch { /* ok */ }
+  avisarCheckout(data, itens);
   window.location.href = data.url;
 }
 

@@ -10,6 +10,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/portal.css?v=20261125-figura-ao-lado">
+  <script src="js/pixel.js?v=20261125-pixel"></script>
+  <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1664681518623718&ev=PageView&noscript=1"></noscript>
 </head>
 <body class="pagina-portal">
   <header class="portal-topo">
@@ -49,7 +51,22 @@
     const acesso = semLogin
       ? `<p>Para acessar, entre no site com o e-mail ${emailDaCompra ? `<strong>${emailDaCompra.replace(/[<>&"]/g, '')}</strong>` : 'que você usou na compra'}: tudo já está lá esperando por você.</p>
         <p style="margin-top:1.2rem"><a class="botao botao-dourado" href="entrar.html">Entrar na minha área</a></p>` : '';
+    // Pixel do Meta: conta a compra uma vez, com o valor guardado na hora do checkout
+    // (o id do pedido evita contar duas vezes se a página for recarregada).
+    let compraContada = false;
+    const contarCompra = () => {
+      if (compraContada || !dados.order_nsu) return;
+      compraContada = true;
+      let guardado = {};
+      try { guardado = JSON.parse(localStorage.getItem('ee-pedido-pixel') || '{}'); } catch { /* ok */ }
+      const mesmo = guardado.pedido === dados.order_nsu;
+      window.eePixel?.('Purchase', {
+        value: mesmo ? guardado.valor : 0, currency: 'BRL',
+        content_ids: mesmo ? guardado.ids : [], content_type: 'product'
+      }, `compra-${dados.order_nsu}`);
+    };
     const sucesso = () => {
+      contarCompra();
       if (semLogin) {
         conteudo.innerHTML = `<h1>Pagamento confirmado! ★</h1><p>Obrigado! Boas-vindas ao Entre Estrelas.</p>${acesso}${recibo}`;
         return;
@@ -61,6 +78,8 @@
         <p style="margin-top:1.2rem"><a class="botao botao-dourado" href="minha-area.html">Ir para a minha área</a></p>${recibo}`;
     };
     const aguardando = () => {
+      // A InfinitePay só traz a pessoa de volta depois do pagamento: conta mesmo se a confirmação atrasar
+      if (dados.transaction_nsu) contarCompra();
       conteudo.innerHTML = `
         <h1>Pagamento recebido</h1>
         <p>Estamos finalizando a confirmação. Em alguns minutos tudo aparece na sua área.</p>
