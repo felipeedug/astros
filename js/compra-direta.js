@@ -1,11 +1,13 @@
-// "Quero ser Membro Fundador": vai direto para o pagamento.
+// Compra direta: "Quero ser Membro Fundador" e os botões de compra das páginas de produto
+// (data-compra-direta="slug", data-presente="1", data-nome, data-preco) vão direto ao pagamento.
 // Quem já entrou no site segue para a Minha área (que abre o pedido na hora).
 // Quem não entrou só digita o e-mail aqui mesmo: sem link, sem código.
 // import * : se o navegador ainda tiver a cópia antiga do portal.js, o botão segue o caminho antigo
 import * as portal from './portal.js';
 
-const SLUG = 'membro-fundador';
-const SELETOR = `[data-founder-checkout], a[href*="comprar=${SLUG}"]`;
+const FUNDADOR = 'membro-fundador';
+const SELETOR = `[data-compra-direta], [data-founder-checkout], a[href*="comprar=${FUNDADOR}"]`;
+let pedido = { slug: FUNDADOR, presente: false };
 
 const estilo = `
 .compra-direta { width:min(440px,94vw); padding:28px 26px 24px; border:0; border-radius:4px; color:#1A1F2E;
@@ -45,8 +47,8 @@ function montar() {
   dialogo.innerHTML = `
     <button type="button" class="cd-fechar" aria-label="Fechar">×</button>
     <form>
-      <h2 id="cd-titulo">⭐ Membro Fundador</h2>
-      <p class="cd-preco">R$ 49,85, valor único. Pix ou cartão.</p>
+      <h2 id="cd-titulo"></h2>
+      <p class="cd-preco"></p>
       <label>Seu e-mail
         <input name="email" type="email" autocomplete="email" placeholder="seu@email.com" required>
       </label>
@@ -57,7 +59,7 @@ function montar() {
         <span>Quero receber novidades e conteúdos do Entre Estrelas.</span></label>
       <button class="cd-pagar" type="submit">Ir para o pagamento</button>
       <p class="cd-erro" role="alert" hidden></p>
-      <p class="cd-nota">Depois de pagar, é só entrar no site com este mesmo e-mail: o seu acesso de Membro Fundador já vai estar lá.</p>
+      <p class="cd-nota"></p>
     </form>`;
   document.body.append(dialogo);
   const form = dialogo.querySelector('form');
@@ -71,7 +73,7 @@ function montar() {
     botao.disabled = true;
     botao.textContent = 'Abrindo o pagamento…';
     try {
-      await portal.comprarSemLogin([{ slug: SLUG, presente: false }], {
+      await portal.comprarSemLogin([pedido], {
         email: form.email.value,
         nome: form.nome.value,
         aceita_novidades: form.novidades.checked
@@ -95,6 +97,18 @@ document.addEventListener('click', async (evento) => {
   let email = '';
   try { email = localStorage.getItem('ee-email-compra') || ''; } catch { /* ok */ }
   const d = montar();
+  const slug = link.dataset.compraDireta || FUNDADOR;
+  const presente = link.dataset.presente === '1';
+  pedido = { slug, presente };
+  const fundador = slug === FUNDADOR;
+  d.querySelector('#cd-titulo').textContent = fundador ? '⭐ Membro Fundador'
+    : `${presente ? '🎁 Presente: ' : ''}${link.dataset.nome || 'Sua compra'}`;
+  d.querySelector('.cd-preco').textContent = fundador ? 'R$ 49,85, valor único. Pix ou cartão.'
+    : `${link.dataset.preco ? `${link.dataset.preco}. ` : ''}Pix ou cartão.`;
+  d.querySelector('.cd-nota').textContent = presente
+    ? 'Depois de pagar, entre no site com este mesmo e-mail: o link do presente para enviar estará em Minha área → Meus presentes.'
+    : `Depois de pagar, é só entrar no site com este mesmo e-mail: ${fundador ? 'o seu acesso de Membro Fundador' : 'a sua compra'} já vai estar lá.`;
+  d.querySelector('.cd-erro').hidden = true;
   if (email && !d.querySelector('[name=email]').value) d.querySelector('[name=email]').value = email;
   d.showModal();
   d.querySelector('[name=email]').focus();
