@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css?v=20261124-liberar-cabe">
+  <link rel="stylesheet" href="css/portal.css?v=20261125-tabela-indicados">
 </head>
 <body>
   <header class="portal-topo">
@@ -338,6 +338,39 @@
         + parceiros.map((p) => `<option value="${p.id}">${escapar(nomeDe(p.id))}</option>`).join('');
       document.querySelectorAll('select[data-parceiros]').forEach((s) => { const v = s.value; s.innerHTML = opcoes; s.value = v; });
     }
+    // Como o Fundador entrou (para a tabela de indicações)
+    function comoEntrou(c) {
+      if (pedidosPagos(c).some((p) => (p.itens || []).some((i) => i.slug === 'membro-fundador'))) return 'Site (InfinitePay)';
+      const a = c.assinaturas.find((x) => x.plano_id === 'fundador');
+      if (!a) return '—';
+      if (a.origem === 'importacao') return 'Mercado Pago (importado)';
+      if (a.origem === 'pagamento') return Number.isInteger(c.valor_fundador_centavos) ? 'Pagamento (valor informado)' : 'Pagamento (cadastro à mão)';
+      return rotuloMotivo(a.origem) || a.origem || '—';
+    }
+    // Tabela das indicações de uma parceira, com o texto pronto para copiar (colunas separadas por tab)
+    const tabelasParaCopiar = {};
+    function tabelaDeIndicados(parceira, indicados) {
+      const ordenados = indicados.slice().sort((a, b) => nomeDe(a.id).localeCompare(nomeDe(b.id)));
+      const linhas = ordenados.map((c) => {
+        const valor = valorFundador(c);
+        return { nome: nomeDe(c.id), email: c.email || '', fundador: fundadorAtivo(c) ? 'Sim' : 'Não', como: comoEntrou(c), valor, repasse: Math.round(valor / 2), outras: valorOutros(c) };
+      });
+      const total = linhas.reduce((s, l) => s + l.valor, 0);
+      const temOutras = linhas.some((l) => l.outras);
+      const brl = (c) => (c / 100).toFixed(2).replace('.', ',');
+      tabelasParaCopiar[parceira.id] = [
+        ['Nome', 'E-mail', 'Fundador', 'Como entrou', 'Valor (R$)', 'Repasse 50% (R$)', ...(temOutras ? ['Outras compras (R$)'] : [])].join('\t'),
+        ...linhas.map((l) => [l.nome, l.email, l.fundador, l.como, brl(l.valor), brl(l.repasse), ...(temOutras ? [brl(l.outras)] : [])].join('\t')),
+        ['TOTAL', '', `${linhas.filter((l) => l.fundador === 'Sim').length} fundadores`, '', brl(total), brl(Math.round(total / 2)), ...(temOutras ? [brl(linhas.reduce((s, l) => s + l.outras, 0))] : [])].join('\t')
+      ].join('\n');
+      return `<div style="display:flex;justify-content:space-between;align-items:center;gap:.5rem;margin:.8rem 0 .3rem">
+          <strong>Indicações (${linhas.length})</strong>
+          <button class="botao botao-leve botao-pequeno" data-copiar-tabela="${parceira.id}">Copiar tabela</button>
+        </div>
+        <div class="tabela-wrap"><table class="tabela-indicados"><thead><tr><th>Nome</th><th>E-mail</th><th>Fundador</th><th>Como entrou</th><th class="num">Valor</th><th class="num">Repasse 50%</th>${temOutras ? '<th class="num">Outras compras</th>' : ''}</tr></thead><tbody>
+          ${linhas.map((l) => `<tr><td>${escapar(l.nome)}</td><td>${escapar(l.email)}</td><td>${l.fundador === 'Sim' ? '★' : '—'}</td><td>${escapar(l.como)}</td><td class="num">${reaisAdm(l.valor)}</td><td class="num">${reaisAdm(l.repasse)}</td>${temOutras ? `<td class="num">${l.outras ? reaisAdm(l.outras) : '—'}</td>` : ''}</tr>`).join('')}
+        </tbody><tfoot><tr><th colspan="4">Total</th><th class="num">${reaisAdm(total)}</th><th class="num">${reaisAdm(Math.round(total / 2))}</th>${temOutras ? `<th class="num">${reaisAdm(linhas.reduce((s, l) => s + l.outras, 0))}</th>` : ''}</tr></tfoot></table></div>`;
+    }
     function desenharIndicacoes() {
       const parceiros = clientes.filter((c) => c.parceiro);
       const lista = document.querySelector('#lista-indicacoes');
@@ -377,8 +410,7 @@
           ${link ? `<p style="margin:.6rem 0">Link de indicação: <code>${escapar(link)}</code>
             <button class="botao botao-leve botao-pequeno" data-copiar-link="${escapar(link)}">Copiar link</button></p>`
             : '<p class="suave">Sem código de link ainda (Editar cadastro → Código do link).</p>'}
-          ${indicados.length ? `<ul>${indicados.map((c) => `<li>${escapar(nomeDe(c.id))} <span class="suave">(${escapar(c.email)})</span>${fundadorAtivo(c) ? ' ★' : ''} — Fundador ${reaisAdm(valorFundador(c))}${valorOutros(c) ? `, outras compras ${reaisAdm(valorOutros(c))}` : ''}</li>`).join('')}</ul>`
-            : '<p class="suave">Ninguém associado ainda.</p>'}
+          ${indicados.length ? tabelaDeIndicados(p, indicados) : '<p class="suave">Ninguém associado ainda.</p>'}
         </details>`;
       }).join('');
     }
@@ -420,6 +452,12 @@
         if (!confirm('Excluir este repasse registrado?')) return;
         try { await admExcluirRepasse(excluir.dataset.excluirRepasse); await recarregar(); }
         catch (e) { avisar(avisoLista, e.message, 'erro'); }
+        return;
+      }
+      const copiarTabela = evento.target.closest('[data-copiar-tabela]');
+      if (copiarTabela) {
+        await navigator.clipboard.writeText(tabelasParaCopiar[copiarTabela.dataset.copiarTabela] || '');
+        copiarTabela.textContent = 'Tabela copiada ✓ (cole no Excel ou na planilha)';
         return;
       }
       const b = evento.target.closest('[data-copiar-link]');
