@@ -191,6 +191,9 @@ th { font-size: .75rem; text-transform: uppercase; letter-spacing: .04em; color:
 td .acoes { display: flex; flex-wrap: wrap; gap: .35rem; }
 
 .grade-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0 1rem; align-items: end; }
+/* Campos respeitam a coluna: uma opção de nome longo (ex.: no "Liberar") não empurra o campo para fora do cartão */
+.grade-form > label { min-width: 0; }
+.grade-form select { width: 100%; max-width: 100%; min-width: 0; text-overflow: ellipsis; }
 
 [hidden] { display: none !important; }
 
