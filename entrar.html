@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css?v=20261124-entrar-direto">
+  <link rel="stylesheet" href="css/portal.css?v=20261124-email-no-traco">
 </head>
 <body class="pagina-portal">
   <header class="portal-topo">
@@ -31,10 +31,6 @@
       <img class="portal-entrada-logo" src="fonts/Logo%205%20Pontas%20Horizontal.png" alt="Entre Estrelas">
       <h1>Um portal para dentro de você.</h1>
       <p class="portal-entrada-pergunta">E se você pudesse compreender melhor quem você é, seus talentos, seus desafios e o que dá sentido à sua vida?</p>
-      <hr class="portal-entrada-linha">
-      <p class="portal-entrada-subtitulo">Autoconhecimento para a vida real.</p>
-      <p class="portal-entrada-texto">Um espaço para explorar quem somos, compreender nossos padrões e ampliar nossas possibilidades de escolha, unindo astrologia, tecnologia e desenvolvimento humano.</p>
-
       <form id="form-entrar" class="portal-entrada-form">
         <p class="portal-entrada-chamada" id="chamada">Para entrar ou começar, digite seu e-mail:</p>
         <div id="bloco-google" hidden>
@@ -62,6 +58,10 @@
       </form>
 
       <p class="aviso" id="aviso" role="status"></p>
+
+      <p class="portal-entrada-subtitulo">Autoconhecimento para a vida real.</p>
+      <p class="portal-entrada-texto">Um espaço para explorar quem somos, compreender nossos padrões e ampliar nossas possibilidades de escolha, unindo astrologia, tecnologia e desenvolvimento humano.</p>
+
     </div>
   </main>
 
@@ -86,6 +86,8 @@
       document.querySelector('.portal-entrada-texto').textContent =
         'Entre com o seu e-mail para começar. Em seguida, você paga por Pix ou cartão (R$ 49,85, valor único) e o seu acesso é liberado na hora, já com o seu Mapa da Vida.';
       document.querySelector('#chamada').textContent = 'Digite seu e-mail para continuar:';
+      // Aqui a explicação do caminho vem antes do e-mail
+      form.before(document.querySelector('.portal-entrada-subtitulo'), document.querySelector('.portal-entrada-texto'));
     }
 
     if (!configurado) {
