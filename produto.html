@@ -107,6 +107,9 @@
           <span class="presente-gerado-nota">Você encontra este presente também em Minha área → Meus presentes.</span>
         </div>`;
       };
+      // Sem login: o botão abre a janelinha de e-mail e vai direto ao pagamento (js/compra-direta.js)
+      const direta = (slug, presente, preco) => cliente ? ''
+        : ` data-compra-direta="${escapar(slug)}" data-presente="${presente ? '1' : '0'}" data-nome="${escapar(p.nome)}" data-preco="${escapar(formatarPreco(preco))}"`;
       const acoes = () => {
         const presentear = () => {
           // Conteúdo aberto (Comece agora): presente sem pagamento, gerado na hora
@@ -133,7 +136,7 @@
           }
           return cliente
             ? `<button class="portal-entrada-botao portal-entrada-botao--principal" data-participar>${rotuloParticipar}</button>${presentear()}`
-            :`<a class="portal-entrada-botao portal-entrada-botao--principal" href="${entrarE(`${aqui}&participar=1`)}">${rotuloParticipar}${p.preco_centavos ? ` · ${formatarPreco(p.preco_centavos)}` : ''}</a>${presentear()}
+            :`<a class="portal-entrada-botao portal-entrada-botao--principal" href="${entrarE(`${aqui}&participar=1`)}"${p.preco_centavos ? direta(p.slug, false, p.preco_centavos) : ''}>${rotuloParticipar}${p.preco_centavos ? ` · ${formatarPreco(p.preco_centavos)}` : ''}</a>${presentear()}
                ${p.preco_centavos ? '<p class="pagina-produto-nota">Membro Fundador? Entre com o seu e-mail: já está incluído no seu pacote de Membro Fundador.</p>' : ''}`;
         }
         const botoes = [];
@@ -142,7 +145,7 @@
         } else if (p.preco_centavos) {
           const destino = `minha-area.html?comprar=${encodeURIComponent(p.slug)}`;
           const meuPreco = membro && p.preco_membro_centavos ? p.preco_membro_centavos : p.preco_centavos;
-          botoes.push(`<a class="portal-entrada-botao portal-entrada-botao--principal" href="${cliente ? destino : entrarE(destino)}">Quero este · ${formatarPreco(meuPreco)}</a>`);
+          botoes.push(`<a class="portal-entrada-botao portal-entrada-botao--principal" href="${cliente ? destino : entrarE(destino)}"${direta(p.slug, false, meuPreco)}>Quero este · ${formatarPreco(meuPreco)}</a>`);
         }
         botoes.push(presentear());
         return botoes.join('');
@@ -232,6 +235,6 @@
 
     iniciar().catch((e) => mostrar(e.message, 'erro'));
   </script>
-<script type="module" src="js/compra-direta.js?v=20261125-sem-login"></script>
+<script type="module" src="js/compra-direta.js?v=20261125-produtos"></script>
 </body>
 </html>
