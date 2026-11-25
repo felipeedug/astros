@@ -397,6 +397,25 @@ export async function irParaPagamento(itens) {
   window.location.href = data.url;
 }
 
+// Compra sem login: só o e-mail de quem compra. A compra fica guardada nesse e-mail
+// e aparece na Minha área quando a pessoa entrar com ele.
+// comprador: { email, nome, aceita_novidades }
+export async function comprarSemLogin(itens, comprador) {
+  exigirConfiguracao();
+  let indicacao = '';
+  try { indicacao = localStorage.getItem(CHAVE_INDICACAO) || ''; } catch { /* sem localStorage */ }
+  const { data, error } = await supabase.functions.invoke('criar-pagamento', {
+    body: { itens, comprador: { ...comprador, indicacao } }
+  });
+  if (error || !data?.url) {
+    let mensagem = 'Não foi possível iniciar o pagamento. Tente de novo em instantes.';
+    try { mensagem = (await error.context.json()).erro || mensagem; } catch { /* mantém a padrão */ }
+    throw new Error(mensagem);
+  }
+  try { localStorage.setItem('ee-email-compra', comprador.email.trim().toLowerCase()); } catch { /* ok */ }
+  window.location.href = data.url;
+}
+
 // Confirma o pagamento na volta da InfinitePay (caso o aviso automático atrase)
 export async function confirmarPagamento(dados) {
   exigirConfiguracao();

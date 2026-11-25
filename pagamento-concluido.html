@@ -27,7 +27,7 @@
   </main>
 
   <script type="module">
-    import { configurado, confirmarPagamento } from './js/portal.js';
+    import { configurado, confirmarPagamento, sessaoAtual } from './js/portal.js';
 
     // A InfinitePay devolve: order_nsu, transaction_nsu, slug, capture_method, receipt_url
     const q = new URLSearchParams(location.search);
@@ -42,7 +42,18 @@
     const recibo = dados.receipt_url && /^https:\/\//.test(dados.receipt_url)
       ? `<p style="margin-top:1rem"><a href="${dados.receipt_url.replace(/"/g, '')}" target="_blank" rel="noopener noreferrer">Ver comprovante</a></p>` : '';
 
+    // Comprou sem entrar no site (só com o e-mail): mostra como acessar
+    let emailDaCompra = '';
+    try { emailDaCompra = localStorage.getItem('ee-email-compra') || ''; } catch { /* ok */ }
+    const semLogin = configurado ? !(await sessaoAtual().catch(() => null)) : false;
+    const acesso = semLogin
+      ? `<p>Para acessar, entre no site com o e-mail ${emailDaCompra ? `<strong>${emailDaCompra.replace(/[<>&"]/g, '')}</strong>` : 'que você usou na compra'}: tudo já está lá esperando por você.</p>
+        <p style="margin-top:1.2rem"><a class="botao botao-dourado" href="entrar.html">Entrar na minha área</a></p>` : '';
     const sucesso = () => {
+      if (semLogin) {
+        conteudo.innerHTML = `<h1>Pagamento confirmado! ★</h1><p>Obrigado! Boas-vindas ao Entre Estrelas.</p>${acesso}${recibo}`;
+        return;
+      }
       conteudo.innerHTML = `
         <h1>Pagamento confirmado! ★</h1>
         <p>Obrigado! Tudo o que você comprou já está na sua área.</p>
@@ -54,7 +65,7 @@
         <h1>Pagamento recebido</h1>
         <p>Estamos finalizando a confirmação. Em alguns minutos tudo aparece na sua área.</p>
         <p class="suave">Pagou por Pix? A confirmação pode levar um pouquinho mais.</p>
-        <p style="margin-top:1.2rem"><a class="botao" href="minha-area.html">Ir para a minha área</a></p>${recibo}`;
+        ${acesso || '<p style="margin-top:1.2rem"><a class="botao" href="minha-area.html">Ir para a minha área</a></p>'}${recibo}`;
     };
 
     async function iniciar() {
