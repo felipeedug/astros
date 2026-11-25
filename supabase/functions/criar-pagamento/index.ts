@@ -53,7 +53,6 @@ Deno.serve(async (req) => {
     if (email.length > 200 || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
       return resposta({ erro: 'Confira o seu e-mail.' }, 400);
     }
-    if (escolhidos.some((i) => i.presente)) return resposta({ erro: 'Para presentear, entre na sua área.' }, 401);
     nomeInformado = String(comprador.nome || '').trim().slice(0, 120);
     const aceita = comprador.aceita_novidades === true;
     // Cadastro novo só com o que a pessoa informou; cadastro que já existe não é alterado
