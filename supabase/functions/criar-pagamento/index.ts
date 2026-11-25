@@ -1,5 +1,5 @@
 // Cria um pagamento na InfinitePay (Checkout Integrado) só com os itens escolhidos.
-// Chamada pelo site com a pessoa logada. Os preços são calculados AQUI, no servidor:
+// Chamada pelo site com a pessoa logada ou, sem login, só com o e-mail de quem compra. Os preços são calculados AQUI, no servidor:
 // o navegador só diz o que quer comprar, nunca quanto custa.
 //
 // Variáveis (Supabase → Edge Functions → Secrets):
@@ -25,22 +25,61 @@ Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: CORS });
   if (req.method !== 'POST') return resposta({ erro: 'Método não permitido.' }, 405);
 
-  // 1) Quem está comprando (sessão do site)
-  const autorizacao = req.headers.get('Authorization') || '';
-  const comoUsuario = createClient(SUPABASE_URL, ANON_KEY, { global: { headers: { Authorization: autorizacao } } });
-  const { data: { user } } = await comoUsuario.auth.getUser();
-  if (!user) return resposta({ erro: 'Entre na sua área antes de comprar.' }, 401);
-
-  const servidor = createClient(SUPABASE_URL, SERVICE_KEY);
-  const { data: cliente } = await servidor.from('clientes')
-    .select('id, nome, email, whatsapp').eq('user_id', user.id).single();
-  if (!cliente) return resposta({ erro: 'Cadastro não encontrado.' }, 400);
-
-  // 2) O que a pessoa quer (até 5 itens): [{ slug, presente }]
-  let pedidoBruto: { itens?: { slug: string; presente?: boolean }[] };
+  // O que a pessoa quer (até 5 itens): [{ slug, presente }]
+  // Sem login, vem também "comprador": { email, nome, aceita_novidades, indicacao }
+  type Comprador = { email?: string; nome?: string; aceita_novidades?: boolean; indicacao?: string };
+  let pedidoBruto: { itens?: { slug: string; presente?: boolean }[]; comprador?: Comprador };
   try { pedidoBruto = await req.json(); } catch { return resposta({ erro: 'Pedido inválido.' }, 400); }
   const escolhidos = (pedidoBruto.itens || []).slice(0, 5);
   if (!escolhidos.length) return resposta({ erro: 'Nenhum item escolhido.' }, 400);
+
+  // 1) Quem está comprando: a sessão do site ou, sem login, só o e-mail.
+  // Sem login a compra fica guardada no e-mail; quando a pessoa entrar com ele,
+  // o login é ligado ao cadastro (gatilho ligar_cliente_ao_login) e tudo aparece.
+  const servidor = createClient(SUPABASE_URL, SERVICE_KEY);
+  const autorizacao = req.headers.get('Authorization') || '';
+  const comoUsuario = createClient(SUPABASE_URL, ANON_KEY, { global: { headers: { Authorization: autorizacao } } });
+  const { data: { user } } = await comoUsuario.auth.getUser();
+  const comprador = pedidoBruto.comprador;
+
+  let cliente: { id: string; nome: string | null; email: string; whatsapp: string | null } | null = null;
+  let nomeInformado = '';
+  if (user) {
+    ({ data: cliente } = await servidor.from('clientes')
+      .select('id, nome, email, whatsapp').eq('user_id', user.id).single());
+    if (!cliente) return resposta({ erro: 'Cadastro não encontrado.' }, 400);
+  } else if (comprador?.email) {
+    const email = String(comprador.email).toLowerCase().trim();
+    if (email.length > 200 || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      return resposta({ erro: 'Confira o seu e-mail.' }, 400);
+    }
+    if (escolhidos.some((i) => i.presente)) return resposta({ erro: 'Para presentear, entre na sua área.' }, 401);
+    nomeInformado = String(comprador.nome || '').trim().slice(0, 120);
+    const aceita = comprador.aceita_novidades === true;
+    // Cadastro novo só com o que a pessoa informou; cadastro que já existe não é alterado
+    await servidor.from('clientes').upsert({
+      email,
+      nome: nomeInformado || null,
+      aceita_novidades: aceita,
+      aceita_novidades_em: aceita ? new Date().toISOString() : null,
+      origem: 'compra-direta'
+    }, { onConflict: 'email', ignoreDuplicates: true });
+    ({ data: cliente } = await servidor.from('clientes')
+      .select('id, nome, email, whatsapp, indicado_por').eq('email', email).single());
+    if (!cliente) return resposta({ erro: 'Não foi possível registrar o seu e-mail. Tente de novo.' }, 500);
+    // Veio pelo link de uma parceira: associa, se ainda não tiver indicação
+    const codigo = String(comprador.indicacao || '').trim();
+    if (/^[\w-]{2,40}$/.test(codigo) && !(cliente as { indicado_por?: string | null }).indicado_por) {
+      const { data: parceira } = await servidor.from('clientes')
+        .select('id').eq('parceiro', true).ilike('codigo_indicacao', codigo.replace(/_/g, '\\_')).maybeSingle();
+      if (parceira && parceira.id !== cliente.id) {
+        await servidor.from('clientes').update({ indicado_por: parceira.id })
+          .eq('id', cliente.id).is('indicado_por', null);
+      }
+    }
+  } else {
+    return resposta({ erro: 'Entre na sua área antes de comprar.' }, 401);
+  }
 
   const { data: produtos } = await servidor.from('produtos')
     .select('id, slug, nome, preco_centavos, preco_membro_centavos, preco_presente_membro_centavos, permite_presente, ativo, concede_plano, venda_ate')
@@ -59,7 +98,7 @@ Deno.serve(async (req) => {
     const presente = Boolean(escolha.presente);
     if (presente && !p.permite_presente) return resposta({ erro: `${p.nome} não pode ser dado de presente.` }, 400);
     if (p.venda_ate && new Date(p.venda_ate) < new Date()) return resposta({ erro: `As vendas de ${p.nome} foram encerradas.` }, 400);
-    if (p.concede_plano && (planos || []).some((a) => a.plano_id === p.concede_plano)) return resposta({ erro: `Você já é ${p.nome}.` }, 400);
+    if (p.concede_plano && (planos || []).some((a) => a.plano_id === p.concede_plano)) return resposta({ erro: user ? `Você já é ${p.nome}.` : `Este e-mail já é ${p.nome}. Entre na sua área com ele para ver tudo.` }, 400);
     // Membro paga o preço de membro: para presentear (se houver) ou para si
     const precoMembro = presente ? (p.preco_presente_membro_centavos || p.preco_membro_centavos) : p.preco_membro_centavos;
     const preco = membro && precoMembro ? precoMembro : p.preco_centavos;
@@ -75,7 +114,7 @@ Deno.serve(async (req) => {
 
   // 5) Pede o link à InfinitePay
   const cliente_ip: Record<string, string> = {};
-  if (cliente.nome) cliente_ip.name = cliente.nome;
+  if (cliente.nome || nomeInformado) cliente_ip.name = cliente.nome || nomeInformado;
   if (cliente.email) cliente_ip.email = cliente.email;
   if (cliente.whatsapp) cliente_ip.phone_number = cliente.whatsapp;
 
