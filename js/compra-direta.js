@@ -53,8 +53,8 @@ function montar() {
       <label>Seu e-mail
         <input name="email" type="email" autocomplete="email" placeholder="seu@email.com" required>
       </label>
-      <label>Seu nome <span style="font-weight:400">(opcional)</span>
-        <input name="nome" type="text" autocomplete="name">
+      <label>Seu nome
+        <input name="nome" type="text" autocomplete="name" placeholder="Nome e sobrenome" minlength="2" maxlength="120" required>
       </label>
       <label class="cd-check"><input name="novidades" type="checkbox" checked>
         <span>Quero receber novidades e conteúdos do Entre Estrelas.</span></label>
@@ -71,6 +71,12 @@ function montar() {
   form.addEventListener('submit', async (evento) => {
     evento.preventDefault();
     erro.hidden = true;
+    if (form.nome.value.trim().length < 2) {
+      erro.textContent = 'Digite o seu nome.';
+      erro.hidden = false;
+      form.nome.focus();
+      return;
+    }
     botao.disabled = true;
     botao.textContent = 'Abrindo o pagamento…';
     try {
