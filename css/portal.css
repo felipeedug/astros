@@ -301,6 +301,8 @@ td .acoes { display: flex; flex-wrap: wrap; gap: .35rem; }
 }
 .portal-entrada-consentimento input { width: 1.1rem; height: 1.1rem; margin-top: .15rem; accent-color: var(--dourado-marca); }
 .portal-entrada-nota { margin: .2rem 0 0; color: rgba(250, 248, 245, .7); font-size: .85rem; text-align: center; }
+/* O campo de e-mail já aberto: uma frase dizendo o que fazer */
+.portal-entrada-chamada { margin: 0 0 .2rem; color: #F0C75E; font-weight: 700; font-size: 1.05rem; text-align: center; }
 .portal-entrada .aviso { width: min(460px, 100%); margin: 1.2rem auto 0; text-align: left; }
 .grade-form .caixa-consentimento {
   grid-column: 1 / -1;

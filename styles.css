@@ -698,6 +698,7 @@ label { display:block; margin-top:20px; color:var(--muted); font-size:10px; font
 .home-page .hero-portal .hero-intro { margin:26px auto 12px; }
 .home-page .hero-text { max-width:760px; margin:0 auto; color:rgba(250,248,245,.82); font:400 clamp(1rem,1.6vw,1.15rem)/1.7 var(--fonte-corpo); }
 .home-page .hero-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:14px; margin-top:36px; }
+.home-page .hero-dica { margin:12px 0 0; color:rgba(250,248,245,.75); font-size:14px; text-align:center; }
 .home-page .hero-btn--dourado { border-color:#C9A227; color:#1A1F2E; background:#C9A227; }
 .home-page .hero-btn--dourado:hover { color:#1A1F2E; background:#F0C75E; }
 .journey-section { text-align:center; }
