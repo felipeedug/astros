@@ -82,7 +82,7 @@
 .ephemerides-page .print-button { margin-top:14px; padding:12px; border:1px solid var(--ink); color:var(--ink); background:transparent; font:700 10px var(--fonte-corpo); text-align:left; cursor:pointer; }
 .ephemerides-page .print-button:hover { color:var(--off-white); background:var(--ink); }
 @media print {
-  :root { color-scheme:light; }
+  :root { color-scheme:only light; }
   html,body { width:auto; min-width:0; color:#111; background:#fff; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
   body.map-life-print::before { position:fixed; inset:0; z-index:0; content:""; background:url("fonts/Logo%205%20Pontas%20COM%20texto.png") center center / 145mm auto no-repeat; filter:grayscale(1); opacity:.12; pointer-events:none; }
   body.map-life-print .app-shell { position:relative; z-index:1; }

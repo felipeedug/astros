@@ -1,3 +1,5 @@
+/* O site é só claro: não deixa o modo escuro automático do celular (Chrome/Samsung) escurecer as páginas nem o PDF */
+:root { color-scheme: only light; }
 :root {
 	--azul-noite: #0D1B2A;
 	--azul-ceu: #1B3A5C;
