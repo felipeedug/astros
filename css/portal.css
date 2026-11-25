@@ -757,3 +757,6 @@ textarea { font: inherit; font-weight: 400; padding: .7rem .8rem; border: 1px so
 .jornada-faixa--proximos .jornada-item-imagem { width: 120px; opacity: .85; }
 .jornada-faixa--proximos .jornada-item-estado { color: var(--texto); }
 .jornada-item-nome-oculto { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* "Autoconhecimento para a vida real." com destaque de subtítulo */
+.portal-entrada-subtitulo { font-size: clamp(1.6rem, 3.2vw, 2.4rem); line-height: 1.25; }
