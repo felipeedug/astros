@@ -720,3 +720,25 @@ export function formatarPreco(centavos) {
   if (centavos == null) return '';
   return (centavos / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
+
+// ------------------------------------------------------------------ comentários das gravações
+// (supabase/033) Todo mundo lê; para comentar, precisa ter entrado no site.
+export async function comentariosDaGravacao(gravacao) {
+  exigirConfiguracao();
+  const { data, error } = await supabase.rpc('comentarios_da_gravacao', { p_gravacao: gravacao });
+  if (error && /comentarios_da_gravacao|does not exist|schema cache/i.test(error.message)) return null; // ainda não instalado
+  falha(error, 'Não foi possível carregar os comentários.');
+  return data || [];
+}
+
+export async function comentar(gravacao, texto) {
+  exigirConfiguracao();
+  const { error } = await supabase.rpc('comentar', { p_gravacao: gravacao, p_texto: texto });
+  falha(error, 'Não foi possível publicar o comentário.');
+}
+
+export async function apagarComentario(id) {
+  exigirConfiguracao();
+  const { error } = await supabase.rpc('apagar_comentario', { p_id: id });
+  falha(error, 'Não foi possível apagar o comentário.');
+}

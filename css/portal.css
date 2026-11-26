@@ -805,3 +805,40 @@ textarea { font: inherit; font-weight: 400; padding: .7rem .8rem; border: 1px so
 .tabela-indicados td, .tabela-indicados th { white-space: nowrap; }
 .tabela-indicados .num { text-align: right; }
 .tabela-indicados tfoot th { border-top: 2px solid var(--linha); border-bottom: 0; color: var(--azul-marca); font-size: .85rem; text-transform: none; letter-spacing: 0; }
+
+/* Página da gravação (gravacao.html) */
+.gravacao-topo { padding-bottom: 2.4rem; }
+.gravacao-palco { position: relative; z-index: 1; width: min(960px, 94vw); margin: 0 auto; text-align: center; color: #FAF8F5; }
+.gravacao-palco h1 { color: #FAF8F5; font-size: clamp(1.6rem, 4vw, 2.4rem); margin: .2rem 0 .3rem; }
+.gravacao-com { margin: 0 0 1.2rem; color: #C9D3DE; }
+.gravacao-partes { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; margin-bottom: 1rem; }
+.gravacao-partes button { padding: .55rem 1.1rem; border: 1px solid rgba(240, 199, 94, .5); border-radius: 999px; background: transparent; color: #FAF8F5; font: 600 .9rem 'Montserrat', sans-serif; cursor: pointer; }
+.gravacao-partes button[aria-selected="true"] { background: #F0C75E; border-color: #F0C75E; color: #16304D; }
+.gravacao-video { position: relative; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; background: #16304D; box-shadow: 0 18px 50px rgba(13, 27, 42, .45); }
+.gravacao-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.gravacao-corpo { width: min(960px, 94vw); }
+.gravacao-capitulos-parte { margin: 1.2rem 0 .4rem; font-size: 1.05rem; }
+.gravacao-capitulos { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: .3rem .8rem; }
+.gravacao-capitulos button { display: flex; gap: .7rem; align-items: baseline; width: 100%; padding: .5rem .6rem; border: 0; border-radius: 8px; background: none; text-align: left; color: var(--azul-marca); font: 500 .98rem 'Montserrat', sans-serif; cursor: pointer; }
+.gravacao-capitulos button:hover { background: #F7F3EE; }
+.gravacao-tempo { flex: 0 0 auto; min-width: 3.2em; color: var(--dourado-marca); font-weight: 700; font-variant-numeric: tabular-nums; }
+.gravacao-proximos { margin: 0; padding-left: 0; list-style: none; }
+.gravacao-proximos li { margin: .35rem 0; }
+.gravacao-ofertas { background: linear-gradient(150deg, #1B3A5C, #16304D); color: #FAF8F5; }
+.gravacao-ofertas h2 { color: #FAF8F5; }
+.gravacao-ofertas-lista { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+.gravacao-oferta { display: flex; flex-direction: column; gap: .4rem; padding: 1.1rem; border: 1px solid rgba(240, 199, 94, .3); border-radius: 14px; background: rgba(250, 248, 245, .06); }
+.gravacao-oferta strong { color: #F0C75E; font-size: 1.05rem; }
+.gravacao-oferta span { color: #C9D3DE; font-size: .92rem; flex: 1; }
+.gravacao-oferta .botao { margin-top: .4rem; text-align: center; }
+.gravacao-comentar { display: flex; flex-direction: column; gap: .6rem; margin-bottom: 1rem; }
+.gravacao-comentar textarea { width: 100%; box-sizing: border-box; padding: .8rem; border: 1px solid var(--linha); border-radius: 10px; font: 400 1rem 'Montserrat', sans-serif; resize: vertical; }
+.gravacao-comentar button { align-self: flex-end; }
+.gravacao-entrar { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; margin: 0 0 1rem; }
+.gravacao-comentario { display: flex; gap: .8rem; padding: .9rem 0; border-top: 1px solid var(--linha); }
+.gravacao-comentario p { margin: 0; }
+.gravacao-comentario-topo { margin-bottom: .2rem !important; }
+.gravacao-comentario-avatar { flex: 0 0 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #1E3A5F; color: #F0C75E; font: 700 1.05rem 'Playfair Display', serif; }
+.gravacao-apagar { margin-left: .4rem; border: 0; background: none; color: var(--texto); font-size: .8rem; text-decoration: underline; cursor: pointer; }
+.gravacao-oferta .botao:not(.botao-dourado) { background: transparent; border: 1px solid #F0C75E; color: #F0C75E; }
+.gravacao-oferta .botao:not(.botao-dourado):hover { background: rgba(240, 199, 94, .12); }

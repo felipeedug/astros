@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css?v=20261126-gravacoes">
+  <link rel="stylesheet" href="css/portal.css?v=20261126-gravacao-pagina">
   <script src="js/pixel.js?v=20261125-pixel"></script>
   <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1664681518623718&ev=PageView&noscript=1"></noscript>
 </head>
@@ -376,7 +376,9 @@
         const [ultima, ...anteriores] = gravacoes;
         document.querySelector('#gravacao-destaque').innerHTML = ultima ? (() => {
           const nova = (agora - fimDe(ultima)) / 864e5 < 15;
-          return `<a class="gravacao-destaque" href="${escapar(ultima.link_gravacao)}" target="_blank" rel="noopener noreferrer">
+          // Página da gravação no próprio site abre na mesma aba; YouTube e outros, em aba nova
+          const fora = !/^(https:\/\/entreestrelas\.com\/)?gravacao\.html/.test(ultima.link_gravacao);
+          return `<a class="gravacao-destaque" href="${escapar(ultima.link_gravacao)}"${fora ? ' target="_blank" rel="noopener noreferrer"' : ''}>
             <span class="gravacao-destaque-capa"><span class="gravacao-play" aria-hidden="true">▶</span></span>
             <span class="gravacao-destaque-texto">
               <span class="gravacao-selo">${nova ? '★ Nova gravação' : 'Gravação'}</span>

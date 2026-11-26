@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="only light">
+  <title>Gravação — Entre Estrelas</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/portal.css?v=20261126-gravacao-pagina">
+  <script src="js/pixel.js?v=20261125-pixel"></script>
+  <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1664681518623718&ev=PageView&noscript=1"></noscript>
+</head>
+<body>
+  <header class="portal-topo">
+    <a href="index.html" aria-label="Entre Estrelas, início"><img src="fonts/Logo%20Estrelas%20Novo.png" alt="Entre Estrelas"></a>
+    <nav>
+      <a href="index.html">Site</a>
+      <a href="minha-area.html">Minha área</a>
+    </nav>
+  </header>
+
+  <section class="pagina-produto-topo gravacao-topo">
+    <div class="ceu" aria-hidden="true">
+      <div class="ceu-estrelas ceu-estrelas--longe"></div>
+      <div class="ceu-estrelas ceu-estrelas--perto"></div>
+      <div class="ceu-vidro"></div>
+    </div>
+    <div class="gravacao-palco">
+      <p class="pagina-produto-tipo" id="gravacao-tipo">Gravação</p>
+      <h1 id="gravacao-titulo">Carregando…</h1>
+      <p class="gravacao-com" id="gravacao-com"></p>
+      <div class="gravacao-partes" id="gravacao-partes" role="tablist" aria-label="Partes da live"></div>
+      <div class="gravacao-video"><iframe id="gravacao-player" title="Gravação da live" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+    </div>
+  </section>
+
+  <main class="pagina-produto-corpo gravacao-corpo">
+    <section class="cartao">
+      <h2>Capítulos</h2>
+      <p class="suave">Clique para ir direto ao trecho.</p>
+      <div id="gravacao-capitulos"></div>
+    </section>
+
+    <section class="cartao">
+      <h2>Sobre esta live</h2>
+      <p id="gravacao-resumo"></p>
+      <div id="gravacao-proximos"></div>
+    </section>
+
+    <section class="cartao gravacao-ofertas" id="gravacao-ofertas">
+      <h2>Continue a sua jornada ✨</h2>
+      <div class="gravacao-ofertas-lista">
+        <div class="gravacao-oferta">
+          <strong>🗺️ Seu Mapa da Vida</strong>
+          <span>Seus talentos, desafios e caminhos.</span>
+          <a class="botao botao-dourado" href="minha-area.html?comprar=mapa-da-vida" data-compra-direta="mapa-da-vida" data-presente="0" data-nome="Mapa da Vida" data-preco="R$ 35,90">Quero o meu · R$ 35,90</a>
+        </div>
+        <div class="gravacao-oferta">
+          <strong>🎁 Presentear alguém</strong>
+          <span>Um presente que fica para a vida inteira.</span>
+          <a class="botao" href="minha-area.html?presentear=mapa-da-vida" data-compra-direta="mapa-da-vida" data-presente="1" data-nome="Mapa da Vida" data-preco="R$ 35,90">Dar de presente</a>
+        </div>
+        <div class="gravacao-oferta" id="oferta-fundador">
+          <strong>⭐ Membro Fundador</strong>
+          <span>Acesso a tudo, valor único. Só até 30/11.</span>
+          <a class="botao botao-dourado" href="minha-area.html?comprar=membro-fundador" data-founder-checkout>Quero ser Fundador · R$ 49,85</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="cartao" id="gravacao-comentarios" hidden>
+      <h2>Comentários <span class="suave" id="total-comentarios"></span></h2>
+      <form id="form-comentario" class="gravacao-comentar" hidden>
+        <label for="texto-comentario" class="so-leitor">Seu comentário</label>
+        <textarea id="texto-comentario" rows="3" maxlength="1000" placeholder="O que você achou da live? Deixe seu comentário 💛" required></textarea>
+        <button class="botao botao-dourado" type="submit">Comentar</button>
+      </form>
+      <p class="gravacao-entrar" id="entrar-para-comentar" hidden>
+        <a class="botao" id="link-entrar-comentar" href="entrar.html">Entrar para comentar</a>
+        <span class="suave">É só o seu e-mail, sem senha.</span>
+      </p>
+      <p class="aviso" id="aviso-comentario" role="status"></p>
+      <div class="gravacao-lista-comentarios" id="lista-comentarios"></div>
+    </section>
+
+    <p class="aviso" id="aviso" role="status"></p>
+  </main>
+
+  <script type="module">
+    import { GRAVACOES } from './js/gravacoes.js?v=20261126';
+    import * as portal from './js/portal.js';
+
+    const chave = new URLSearchParams(location.search).get('live') || '';
+    const g = GRAVACOES[chave];
+    const $ = (s) => document.querySelector(s);
+    const escapar = (t) => String(t ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const tempo = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+
+    if (!g) {
+      $('#gravacao-titulo').textContent = 'Gravação não encontrada';
+      $('#gravacao-com').innerHTML = 'Veja as gravações na <a href="minha-area.html" style="color:#F0C75E">Minha área</a>.';
+      document.querySelector('.gravacao-video').hidden = true;
+      document.querySelector('.gravacao-corpo').hidden = true;
+    } else {
+      document.title = `${g.titulo} — Entre Estrelas`;
+      $('#gravacao-tipo').textContent = `Gravação · ${new Date(`${g.data}T12:00:00`).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' })}`;
+      $('#gravacao-titulo').textContent = g.titulo;
+      $('#gravacao-com').textContent = g.com ? `com ${g.com}` : '';
+      $('#gravacao-resumo').textContent = g.resumo;
+      $('#gravacao-proximos').innerHTML = g.proximos?.length
+        ? `<h3 class="agenda-subtitulo">O que vem por aí</h3><ul class="gravacao-proximos">${g.proximos.map((p) => `<li>${escapar(p)}</li>`).join('')}</ul>` : '';
+      if (new Date() >= new Date('2026-12-01T00:00:00-03:00')) $('#oferta-fundador').remove();
+
+      // Player: troca de parte e pula para o capítulo clicado
+      let parteAtual = 0;
+      const tocar = (parte, inicio = 0, autoplay = false) => {
+        parteAtual = parte;
+        const p = g.partes[parte];
+        $('#gravacao-player').src = `https://www.youtube-nocookie.com/embed/${p.video}?rel=0&modestbranding=1&start=${inicio}${autoplay ? '&autoplay=1' : ''}`;
+        document.querySelectorAll('[data-parte]').forEach((b) => b.setAttribute('aria-selected', String(Number(b.dataset.parte) === parte)));
+      };
+      $('#gravacao-partes').innerHTML = g.partes.length > 1
+        ? g.partes.map((p, i) => `<button type="button" role="tab" data-parte="${i}">${escapar(p.titulo)}</button>`).join('') : '';
+      $('#gravacao-capitulos').innerHTML = g.partes.map((p, i) => `
+        ${g.partes.length > 1 ? `<h3 class="gravacao-capitulos-parte">${escapar(p.titulo)}</h3>` : ''}
+        <ol class="gravacao-capitulos">${p.capitulos.map(([s, t]) => `
+          <li><button type="button" data-ir="${i}:${s}"><span class="gravacao-tempo">${tempo(s)}</span>${escapar(t)}</button></li>`).join('')}
+        </ol>`).join('');
+      document.addEventListener('click', (e) => {
+        const parte = e.target.closest('[data-parte]');
+        if (parte) { tocar(Number(parte.dataset.parte)); return; }
+        const ir = e.target.closest('[data-ir]');
+        if (ir) {
+          const [i, s] = ir.dataset.ir.split(':').map(Number);
+          tocar(i, s, true);
+          document.querySelector('.gravacao-video').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+      tocar(0);
+      window.eePixel?.('ViewContent', { content_name: `Gravação: ${g.titulo}`, content_type: 'video', content_ids: [`gravacao-${chave}`] });
+
+      // Comentários
+      const desenharComentarios = async () => {
+        const lista = await portal.comentariosDaGravacao?.(chave).catch(() => null);
+        if (!lista) return; // função ainda não instalada no banco: a seção fica escondida
+        $('#gravacao-comentarios').hidden = false;
+        $('#total-comentarios').textContent = lista.length ? `(${lista.length})` : '';
+        $('#lista-comentarios').innerHTML = lista.length ? lista.slice().reverse().map((c) => `
+          <article class="gravacao-comentario">
+            <div class="gravacao-comentario-avatar" aria-hidden="true">${escapar((c.autor || '?').charAt(0))}</div>
+            <div>
+              <p class="gravacao-comentario-topo"><strong>${escapar(c.autor)}</strong> <span class="suave">${new Date(c.criado_em).toLocaleDateString('pt-BR', { day: 'numeric', month: 'short' })}</span>
+                ${c.posso_apagar ? `<button type="button" class="gravacao-apagar" data-apagar="${c.id}">apagar</button>` : ''}</p>
+              <p>${escapar(c.texto).replace(/\n/g, '<br>')}</p>
+            </div>
+          </article>`).join('') : '<p class="suave">Seja a primeira pessoa a comentar ✨</p>';
+      };
+      const logado = Boolean(await portal.sessaoAtual().catch(() => null));
+      $('#form-comentario').hidden = !logado;
+      $('#entrar-para-comentar').hidden = logado;
+      $('#link-entrar-comentar').href = `entrar.html?voltar=${encodeURIComponent(`gravacao.html?live=${chave}`)}`;
+      await desenharComentarios();
+
+      $('#form-comentario').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const botao = e.target.querySelector('button');
+        const aviso = $('#aviso-comentario');
+        botao.disabled = true;
+        try {
+          await portal.comentar(chave, $('#texto-comentario').value);
+          $('#texto-comentario').value = '';
+          aviso.textContent = ''; aviso.className = 'aviso';
+          await desenharComentarios();
+        } catch (erro) {
+          aviso.textContent = erro.message; aviso.className = 'aviso aviso-erro';
+        } finally { botao.disabled = false; }
+      });
+      $('#lista-comentarios').addEventListener('click', async (e) => {
+        const b = e.target.closest('[data-apagar]');
+        if (!b || !confirm('Apagar este comentário?')) return;
+        try { await portal.apagarComentario(b.dataset.apagar); await desenharComentarios(); }
+        catch (erro) { alert(erro.message); }
+      });
+    }
+  </script>
+  <script type="module" src="js/compra-direta.js?v=20261125-telefone"></script>
+</body>
+</html>
