@@ -26,7 +26,7 @@ No nosso primeiro encontro ao vivo, contamos como o Entre Estrelas nasceu, o que
 1. **Análises avulsas:** para quem quer começar sem compromisso.
 2. **Constelação:** a comunidade de autoconhecimento, com pagamento recorrente, a partir de 1º de dezembro. Constelação é o coletivo de estrelas: cada um de nós é uma estrela.
 3. **Passo a passo:** análises e vivências para quem não está na comunidade.
-4. **Formação:** para quem quer se profissionalizar, com curso de astrologia e software para astrólogos.
+4. **Formação:** para quem quer se profissionalizar e levar o autoconhecimento a outras pessoas.
 5. **(Ideia nova, em conversa) Viagens e retiros de autoconhecimento.**
 
 **Membros Fundadores:** acesso vitalício a todas as análises, por R$ 49,85, valor único, **só até segunda-feira, 30/11**. Seus nomes já estão no "Quem somos" do site.
@@ -35,7 +35,7 @@ No nosso primeiro encontro ao vivo, contamos como o Entre Estrelas nasceu, o que
 - **5/12, às 14h30:** a vivência **Árvore de Natal com Raízes**. Compre uma arvorezinha pequena e prepare 12 bolas. Vale montar com as crianças.
 - **Semana que vem:** live para aprofundar e tirar dúvidas sobre o **Mapa da Vida**.
 - **Dezembro:** lançamento do **Mapa do Ano**.
-- **Depois do Natal:** **As 12 Noites Santas**, revisitando casa por casa e signo por signo.
+- **Depois do Natal:** **As 12 Noites Santas**, revisitando, noite a noite, cada área da vida.
 - **Em breve:** o **Mapa Infantil**.
 - **Todo mês:** uma live de boas-vindas para quem chegar.
 
@@ -74,13 +74,13 @@ No nosso primeiro encontro ao vivo, contamos como o Entre Estrelas nasceu, o que
 ```
 Hoje a gente enfrenta o mundo inteiro, mas quase nunca tem coragem de lutar por si. ✨
 
-A astrologia é uma ferramenta de autoconhecimento: ela mostra seus talentos, seus desafios e os caminhos que você pode escolher.
+Se conhecer é o primeiro passo: entender seus talentos, seus desafios e os caminhos que você pode escolher.
 
 O que a vida pede da gente é a coragem do autoconhecimento. 💛
 
 👉 Comece pelo seu Mapa da Vida: link na bio.
 
-#autoconhecimento #astrologia #mapaastral #entreestrelas
+#autoconhecimento #coragem #desenvolvimentopessoal #entreestrelas
 ```
 
 ### Post 2: Reel "Ressignificar"
@@ -97,7 +97,7 @@ Quando você recebe o seu Mapa da Vida, a primeira proposta é essa: olhar para 
 
 👉 Mapa da Vida: link na bio.
 
-#ressignificar #autoconhecimento #astrologia #entreestrelas
+#ressignificar #autoconhecimento #desenvolvimentopessoal #entreestrelas
 ```
 
 ### Post 3: Carrossel "O melhor presente é autoconhecimento" (Black Friday)
@@ -119,7 +119,7 @@ Você compra, recebe um link e manda pelo WhatsApp. Simples assim.
 🗓️ Black Friday até 30/11
 👉 Link na bio
 
-#blackfriday #presente #autoconhecimento #mapaastral #entreestrelas
+#blackfriday #presentedenatal #autoconhecimento #desenvolvimentopessoal #entreestrelas
 ```
 
 ### Post 4: Reel "Constelação: cada um de nós é uma estrela"
@@ -136,15 +136,15 @@ Por isso, a comunidade do Entre Estrelas se chama Constelação: o coletivo de e
 ⭐ Até 30/11 ainda dá para entrar como Membro Fundador, por R$ 49,85, valor único.
 👉 Link na bio
 
-#comunidade #autoconhecimento #astrologia #entreestrelas
+#comunidade #autoconhecimento #desenvolvimentopessoal #entreestrelas
 ```
 
 ### Post 5: Reel "Quando você divide, você multiplica"
 **Corte:** Parte 1, de 19:50 a 20:10 (Mara)
-**Texto na tela:** "A matemática da astrologia é diferente."
+**Texto na tela:** "A matemática do autoconhecimento é diferente."
 **Legenda:**
 ```
-Na astrologia, a conta é diferente:
+No autoconhecimento, a conta é diferente:
 quando você soma só para você, diminui.
 Quando você divide, multiplica. 💛
 
@@ -152,7 +152,7 @@ Conhecimento não é para ficar guardado. Quanto mais a gente divide, mais a gen
 
 Marque alguém com quem você quer dividir essa jornada. ✨
 
-#autoconhecimento #astrologia #comunidade #entreestrelas
+#autoconhecimento #comunidade #propósito #entreestrelas
 ```
 
 ---
@@ -160,13 +160,13 @@ Marque alguém com quem você quer dividir essa jornada. ✨
 ## 4. Perguntas e respostas (FAQ para o site)
 
 **O que é o Entre Estrelas?**
-Uma comunidade de autoconhecimento que usa a astrologia como base, junto com tecnologia e desenvolvimento humano, para ser acessível no preço e na linguagem.
+Uma comunidade de autoconhecimento que une conhecimentos milenares, tecnologia e desenvolvimento humano, acessível no preço e na linguagem.
 
-**Preciso entender de astrologia?**
+**Preciso entender de alguma coisa antes?**
 Não. As análises são escritas para qualquer pessoa entender e trazem orientações práticas para o dia a dia.
 
-**A astrologia do Entre Estrelas é determinista?**
-Não. É uma astrologia humanista: o mapa mostra tendências e cuidados, mas o caminho está na sua mão. Nada é sentença.
+**O Mapa da Vida diz o que vai acontecer comigo?**
+Não. Ele mostra tendências, talentos e pontos de atenção, mas o caminho está na sua mão. Nada é sentença.
 
 **Como eu entro no portal?**
 Em entreestrelas.com, digite o seu e-mail. Você recebe um código e um link: use qualquer um dos dois. Não tem senha para decorar. No primeiro acesso, o site pede seu nome, a data, o horário e a cidade de nascimento.
