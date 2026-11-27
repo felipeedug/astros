@@ -174,7 +174,7 @@ function conteudoComunidade() {
   const maximo = Math.max(0, ...emBreve.map((p) => votos[p.id] || 0));
   return `
     <div class="jornada-linha jornada-linha--curta" aria-label="Calendário da jornada">${htmlJornada(4)}</div>
-    <div class="oferecemos-cta"><a class="editorial-button" data-abrir="apoie" href="#apoie">⭐ Seja Membro Fundador</a></div>
+    <div class="oferecemos-cta"><a class="editorial-button" data-abrir="fundador" href="#fundador">⭐ Seja Membro Fundador</a></div>
     ${disponiveis.length ? `<section class="oferecemos-bloco" aria-labelledby="oferecemos-agora">
       <h2 class="editorial-section-title" id="oferecemos-agora">Disponível agora</h2>
       <div class="ofertas">${disponiveis.map(cartaoDisponivel).join('')}</div>
@@ -228,7 +228,7 @@ function htmlCatalogosAbertos() {
     </a>`;
   };
   const constelacao = imagemProduto('constelacao')
-    ? `<a class="catalogo-item" href="#apoie" data-abrir="apoie" title="Constelação"><img src="${miniaturaProduto('constelacao')}" alt="Comunidade Constelação" decoding="async"></a>` : '';
+    ? `<a class="catalogo-item" href="#fundador" data-abrir="fundador" title="Constelação"><img src="${miniaturaProduto('constelacao')}" alt="Comunidade Constelação" decoding="async"></a>` : '';
   const jornada = [...itens].sort((a, b) => (a.status === 'em_breve') - (b.status === 'em_breve') || porData(a, b));
   // Passo a passo: um exemplo de mistura, de vários catálogos (ninguém precisa comprar tudo separado)
   const primeiro = (lista, slugs) => slugs.map((sl) => lista.find((p) => p.slug === sl)).find(Boolean) || lista[0];

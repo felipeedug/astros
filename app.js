@@ -2068,6 +2068,8 @@ function initializeEphemerisControls() {
 }
 
 function showView(viewId) {
+  // Nome antigo da seção do Membro Fundador: links com #apoie continuam funcionando
+  if (viewId === 'apoie') viewId = 'fundador';
   // O Manifesto agora fica dentro de Quem somos: links antigos (#manifesto) levam até ele.
   if (viewId === 'manifesto') {
     showView('quem-somos');
@@ -2083,17 +2085,17 @@ function showView(viewId) {
     return;
   }
   viewPanels.forEach((panel) => { panel.hidden = panel.id !== viewId; });
-  // O endereço acompanha a seção (ex.: entreestrelas.com/#apoie), para dar para copiar e mandar
-  if (['quem-somos', 'servicos', 'comunidade', 'apoie'].includes(viewId)) {
+  // O endereço acompanha a seção (ex.: entreestrelas.com/#fundador), para dar para copiar e mandar
+  if (['quem-somos', 'servicos', 'comunidade', 'fundador'].includes(viewId)) {
     if (window.location.hash !== `#${viewId}`) history.replaceState(null, '', `${window.location.pathname}${window.location.search}#${viewId}`);
   } else if (viewId === 'inicio' && window.location.hash) {
     history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
   }
   const pageTitles = {
-    'quem-somos': 'Quem somos | Entre Estrelas | Astrologia',
-    servicos: 'O que oferecemos | Entre Estrelas | Astrologia',
-    comunidade: 'Comunidade | Entre Estrelas | Astrologia',
-    apoie: 'Membro Fundador | Entre Estrelas | Astrologia'
+    'quem-somos': 'Quem somos | Entre Estrelas | Autoconhecimento',
+    servicos: 'O que oferecemos | Entre Estrelas | Autoconhecimento',
+    comunidade: 'Comunidade | Entre Estrelas | Autoconhecimento',
+    fundador: 'Membro Fundador | Entre Estrelas | Autoconhecimento'
   };
   document.title = pageTitles[viewId] || 'Entre Estrelas — Todos somos feitos do pó de estrelas.';
   navigationLinks.forEach((link) => {
@@ -2187,7 +2189,7 @@ const accessParams = new URLSearchParams(window.location.search);
 // gratuitas com cadastro; cliente e acesso-mapas = só administradores.
 const privateMapsAccess = ['acesso-mapas', 'meu-mapa', 'cliente', 'ferramenta'].some((param) => accessParams.has(param));
 const requestedView = window.location.hash.slice(1);
-const publicViews = ['inicio', 'manifesto', 'quem-somos', 'servicos', 'comunidade', 'apoie'];
+const publicViews = ['inicio', 'manifesto', 'quem-somos', 'servicos', 'comunidade', 'fundador', 'apoie'];
 const privateMapViews = ['ascendente', 'efemerides', 'mapa', 'lua'];
 if (privateMapsAccess && privateMapViews.includes(requestedView)) {
   if (requestedView === 'mapa') {
