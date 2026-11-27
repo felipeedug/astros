@@ -2249,7 +2249,7 @@ const interpretationReady = Promise.all([
   fetch('./data/interpretations.json?v=20261027-asc-virgo').then((response) => response.json()),
   fetch('./data/financial-interpretations.json?v=20261121').then((response) => response.json()),
   fetch('./data/house8-interpretations.json?v=20261121').then((response) => response.json()),
-  fetch('./data/sun-ascendant-interpretations.json?v=20261122-summary').then((response) => response.json())
+  fetch('./data/sun-ascendant-interpretations.json?v=20261127-who-you-are-update-final-four').then((response) => response.json())
 ]).then(([data, financialPlanetSigns, house8Interpretations, sunAscendantInterpretations]) => {
   interpretationData = { ...data, financialPlanetSigns, house8Interpretations, sunAscendantInterpretations };
   if (!document.querySelector('#interpretation-panel')?.hidden) renderInterpretation();
