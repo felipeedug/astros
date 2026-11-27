@@ -842,3 +842,5 @@ textarea { font: inherit; font-weight: 400; padding: .7rem .8rem; border: 1px so
 .gravacao-apagar { margin-left: .4rem; border: 0; background: none; color: var(--texto); font-size: .8rem; text-decoration: underline; cursor: pointer; }
 .gravacao-oferta .botao:not(.botao-dourado) { background: transparent; border: 1px solid #F0C75E; color: #F0C75E; }
 .gravacao-oferta .botao:not(.botao-dourado):hover { background: rgba(240, 199, 94, .12); }
+.meu-presente--enviado strong { opacity: .85; }
+.meu-presente--enviado .suave { color: #F0C75E !important; }

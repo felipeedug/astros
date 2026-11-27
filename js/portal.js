@@ -446,6 +446,12 @@ export async function meusPresentes() {
   return data || [];
 }
 
+// Marca que o presente já foi enviado (supabase/034). Sem a função no banco, não faz nada.
+export async function marcarPresenteEnviado(codigo) {
+  exigirConfiguracao();
+  await supabase.rpc('marcar_presente_enviado', { p_codigo: codigo }).catch(() => {});
+}
+
 export async function verPresente(codigo) {
   exigirConfiguracao();
   const { data, error } = await supabase.rpc('ver_presente', { p_codigo: codigo });
