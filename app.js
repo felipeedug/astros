@@ -2083,6 +2083,12 @@ function showView(viewId) {
     return;
   }
   viewPanels.forEach((panel) => { panel.hidden = panel.id !== viewId; });
+  // O endereço acompanha a seção (ex.: entreestrelas.com/#apoie), para dar para copiar e mandar
+  if (['quem-somos', 'servicos', 'comunidade', 'apoie'].includes(viewId)) {
+    if (window.location.hash !== `#${viewId}`) history.replaceState(null, '', `${window.location.pathname}${window.location.search}#${viewId}`);
+  } else if (viewId === 'inicio' && window.location.hash) {
+    history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+  }
   const pageTitles = {
     'quem-somos': 'Quem somos | Entre Estrelas | Astrologia',
     servicos: 'O que oferecemos | Entre Estrelas | Astrologia',
