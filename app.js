@@ -2075,6 +2075,13 @@ function showView(viewId) {
     return;
   }
   if (!viewPanels.some((panel) => panel.id === viewId)) return;
+  // Mapas e ferramentas só abrem pelos endereços que passam pela conta (js/mapa-conta.js confere
+  // login e acesso). Qualquer outro caminho (botão antigo, link solto) vai para Entrar.
+  const viaConta = ['acesso-mapas', 'meu-mapa', 'cliente', 'ferramenta'].some((p) => new URLSearchParams(window.location.search).has(p));
+  if (['ascendente', 'efemerides', 'mapa', 'lua'].includes(viewId) && !viaConta) {
+    window.location.href = 'entrar.html';
+    return;
+  }
   viewPanels.forEach((panel) => { panel.hidden = panel.id !== viewId; });
   const pageTitles = {
     'quem-somos': 'Quem somos | Entre Estrelas | Astrologia',
@@ -2151,11 +2158,7 @@ document.querySelector('.brand')?.addEventListener('click', (event) => {
   event.preventDefault();
   showView('inicio');
 });
-document.querySelector('.hero-btn')?.addEventListener('click', (event) => {
-  event.preventDefault();
-  setMapMode('life');
-  showView('mapa');
-});
+// O botão principal ("Entrar ou começar") é um link para entrar.html: não intercepta o clique.
 document.querySelector('#share-project')?.addEventListener('click', async () => {
   const status = document.querySelector('#share-status');
   try {
