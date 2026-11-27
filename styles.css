@@ -927,3 +927,6 @@ body.mapa-bloqueado--convite #mapa { display:block !important; padding:clamp(28p
 .convite-mapa-acoes { display:flex; flex-direction:column; align-items:center; gap:.8rem; margin-top:1.4rem; }
 .convite-mapa-botao { display:inline-block; padding:14px 26px; border-radius:999px; background:#F0C75E; color:#16304D; font:700 16px var(--fonte-corpo); text-decoration:none; }
 .convite-mapa-link { color:#F0C75E; font:600 15px var(--fonte-corpo); }
+.convite-mapa a.convite-mapa-botao, .convite-mapa a.convite-mapa-botao:visited { color:#16304D !important; text-decoration:none !important; }
+.convite-mapa a.convite-mapa-botao:hover { background:#E5B843; }
+.convite-mapa a.convite-mapa-link, .convite-mapa a.convite-mapa-link:visited { color:#F0C75E !important; }
