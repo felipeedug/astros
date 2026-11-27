@@ -930,3 +930,5 @@ body.mapa-bloqueado--convite #mapa { display:block !important; padding:clamp(28p
 .convite-mapa a.convite-mapa-botao, .convite-mapa a.convite-mapa-botao:visited { color:#16304D !important; text-decoration:none !important; }
 .convite-mapa a.convite-mapa-botao:hover { background:#E5B843; }
 .convite-mapa a.convite-mapa-link, .convite-mapa a.convite-mapa-link:visited { color:#F0C75E !important; }
+/* "Tipo de mapa" só aparece na ferramenta do Mapa do Ano (setMapMode tira o hidden) */
+#map-type-control[hidden] { display:none !important; }
