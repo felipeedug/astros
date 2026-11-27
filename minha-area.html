@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portal.css?v=20261126-gravacao-pagina">
+  <link rel="stylesheet" href="css/portal.css?v=20261126-presente-enviado">
   <script src="js/pixel.js?v=20261125-pixel"></script>
   <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1664681518623718&ev=PageView&noscript=1"></noscript>
 </head>
@@ -171,10 +171,10 @@
       configurado, sessaoAtual, sair, meuCadastro, meusProdutos, minhasAssinaturas,
       mapaProprio, atualizarMeuCadastro, escapar, formatarPreco, seloFundador, iconeProduto,
       inscrever, cancelarInscricao, minhaAgenda, inscreverEvento, cancelarEvento,
-      produtosAVenda, irParaPagamento, meusPresentes, linkDePresente, linkDoArquivo, registrarIndicacaoPendente, aniversariantesDoMes, htmlAniversariantes,
+      produtosAVenda, irParaPagamento, meusPresentes, marcarPresenteEnviado, linkDePresente, linkDoArquivo, registrarIndicacaoPendente, aniversariantesDoMes, htmlAniversariantes,
       contagemVotos, meusVotos, votar, tirarVoto, imagemProduto, miniaturaProduto, slugDe, aniversariantesDaComunidade, htmlAniversariantesComunidade,
       acessarRegistrando, meusAcessos
-    } from './js/portal.js?v=20261124-sessao-pagamento';
+    } from './js/portal.js?v=20261126-presente-enviado';
 
     // Ilustração da oferta no lugar do ícone, quando houver
     const miniatura = (slug) => (imagemProduto(slug)
@@ -722,28 +722,46 @@
       document.querySelector('#cartao-presentear').hidden = presenteaveis.length === 0;
       document.querySelector('.festivo-chamada').hidden = !presenteaveis.some((p) => precoPara(p, true) < p.preco_centavos);
 
-      // Meus presentes (links para enviar)
+      // Meus presentes (links para enviar). "Enviado" fica no banco (supabase/034) e,
+      // enquanto isso não existir, neste navegador.
+      const presentesEnviados = new Set((() => { try { return JSON.parse(localStorage.getItem('ee-presentes-enviados') || '[]'); } catch { return []; } })());
+      const marcarEnviado = (codigo) => {
+        if (!codigo) return;
+        presentesEnviados.add(codigo);
+        try { localStorage.setItem('ee-presentes-enviados', JSON.stringify([...presentesEnviados])); } catch { /* ok */ }
+        marcarPresenteEnviado(codigo).catch(() => {});
+      };
       const desenharMeusPresentes = async () => {
         const presentes = await meusPresentes().catch(() => []);
         document.querySelector('#bloco-meus-presentes').hidden = presentes.length === 0;
         document.querySelector('#lista-meus-presentes').innerHTML = presentes.map((g) => {
           const link = linkDePresente(g.codigo);
           const texto = encodeURIComponent(`Tenho um presente para você ★ ${g.produto_nome}, do Entre Estrelas. Abra este link para receber: ${link}`);
-          return `<div class="meu-presente">
+          const enviado = g.enviado || presentesEnviados.has(g.codigo);
+          const status = g.resgatado ? `✓ Recebido${g.para_quem ? ` por ${escapar(g.para_quem)}` : ''}`
+            : enviado ? '✓ Enviado · aguardando a pessoa abrir' : 'Aguardando você enviar';
+          return `<div class="meu-presente${enviado && !g.resgatado ? ' meu-presente--enviado' : ''}">
             <div><strong>${escapar(g.produto_nome)}</strong><br>
-              <span class="suave">${g.resgatado ? `✓ Recebido${g.para_quem ? ` por ${escapar(g.para_quem)}` : ''}` : 'Aguardando você enviar'}</span></div>
+              <span class="suave">${status}</span></div>
             ${g.resgatado ? '' : `<div class="meu-presente-acoes">
-              <a class="botao botao-dourado botao-pequeno" href="https://wa.me/?text=${texto}" target="_blank" rel="noopener noreferrer">Enviar pelo WhatsApp</a>
-              <button class="botao botao-leve botao-pequeno" data-copiar-presente="${escapar(link)}">Copiar link</button></div>`}
+              <a class="botao ${enviado ? 'botao-leve' : 'botao-dourado'} botao-pequeno" href="https://wa.me/?text=${texto}" target="_blank" rel="noopener noreferrer" data-enviar-presente="${escapar(g.codigo)}">${enviado ? 'Reenviar' : 'Enviar pelo WhatsApp'}</a>
+              <button class="botao botao-leve botao-pequeno" data-copiar-presente="${escapar(link)}" data-codigo="${escapar(g.codigo)}">Copiar link</button>
+              ${enviado ? '' : `<button class="botao botao-leve botao-pequeno" data-ja-enviei="${escapar(g.codigo)}">Já enviei ✓</button>`}</div>`}
           </div>`;
         }).join('');
       };
       await desenharMeusPresentes();
       document.querySelector('#lista-meus-presentes').addEventListener('click', async (evento) => {
+        const jaEnviei = evento.target.closest('[data-ja-enviei]');
+        if (jaEnviei) { marcarEnviado(jaEnviei.dataset.jaEnviei); desenharMeusPresentes(); return; }
+        const enviar = evento.target.closest('[data-enviar-presente]');
+        if (enviar) { marcarEnviado(enviar.dataset.enviarPresente); setTimeout(desenharMeusPresentes, 800); return; }
         const b = evento.target.closest('[data-copiar-presente]');
         if (!b) return;
         await navigator.clipboard.writeText(b.dataset.copiarPresente);
         b.textContent = 'Link copiado ✓';
+        marcarEnviado(b.dataset.codigo);
+        setTimeout(desenharMeusPresentes, 1500);
       });
 
       // Diálogo do pedido, com o "leve também"
