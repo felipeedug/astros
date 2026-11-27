@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Noto+Sans+Symbols+2&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20261124-subtitulo">
+<link rel="stylesheet" href="styles.css?v=20261126-acesso-mapa">
 <link rel="stylesheet" href="css/location-picker.css?v=20261124-location-picker2">
 <link rel="stylesheet" href="print.css?v=20261125-logo-novo">
   <script src="js/pixel.js?v=20261125-pixel"></script>
@@ -806,7 +806,7 @@
       }));
     }).catch((error) => console.warn('Seletor de mapas cadastrados indisponível.', error));
     const parametrosConta = new URLSearchParams(window.location.search);
-    if (['meu-mapa', 'cliente', 'ferramenta', 'acesso-mapas'].some((p) => parametrosConta.has(p))) import('./js/mapa-conta.js');
+    if (['meu-mapa', 'cliente', 'ferramenta', 'acesso-mapas'].some((p) => parametrosConta.has(p))) import('./js/mapa-conta.js?v=20261126-acesso');
   </script>
   <script type="module">
     window.astroWasmLoading = true;

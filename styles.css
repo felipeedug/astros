@@ -911,3 +911,19 @@ a.jornada-passo:hover .jornada-nome { text-decoration:underline; }
 
 /* "Autoconhecimento para a vida real." com destaque de subtítulo */
 .home-page .hero-portal .hero-intro, .home-page .hero-intro { font-size:clamp(1.6rem,3.2vw,2.6rem); line-height:1.25; }
+
+/* Mapa da Vida sem acesso (js/mapa-conta.js): só o formulário para salvar os dados; nada de mandala, interpretação ou PDF */
+body.mapa-bloqueado #mapa .chart-panel,
+body.mapa-bloqueado #mapa #interpretation-panel,
+body.mapa-bloqueado #mapa #interpret-button,
+body.mapa-bloqueado #mapa #print-chart { display:none !important; }
+body.mapa-bloqueado--convite #mapa > :not(.faixa-conta) { display:none !important; }
+body.mapa-bloqueado--convite #mapa { display:block !important; padding:clamp(28px,5vw,60px) 16px; }
+.convite-mapa { max-width:640px; margin:0 auto; padding:clamp(24px,4vw,40px); border-radius:18px; text-align:center; color:#FAF8F5;
+  background:linear-gradient(150deg,#1B3A5C,#16304D); box-shadow:0 14px 40px rgba(30,58,95,.25); }
+.convite-mapa h2 { margin:.2rem 0 .8rem; color:#FAF8F5; font:700 clamp(24px,3.4vw,32px)/1.2 var(--fonte-titulo); }
+.convite-mapa p { margin:0 0 1rem; color:#D6DEE8; font:400 17px/1.6 var(--fonte-corpo); }
+.convite-mapa .convite-mapa-ok { color:#F0C75E; font-weight:700; }
+.convite-mapa-acoes { display:flex; flex-direction:column; align-items:center; gap:.8rem; margin-top:1.4rem; }
+.convite-mapa-botao { display:inline-block; padding:14px 26px; border-radius:999px; background:#F0C75E; color:#16304D; font:700 16px var(--fonte-corpo); text-decoration:none; }
+.convite-mapa-link { color:#F0C75E; font:600 15px var(--fonte-corpo); }
